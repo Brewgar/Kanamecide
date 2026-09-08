@@ -3,6 +3,10 @@
 This document explains exactly how an AI agent (for example, an agent operating through
 Cline) should use the `research/` knowledge base. Read it end-to-end before working.
 
+> **The collective system prompt** lives at `research/AGENT_MEGAPROMPT.md`. Use it as the
+> agent's system prompt (or `python research/scripts/research.py megaprompt`), together with the
+> agent's role profile. It defines the full research objective, phases, and output structure.
+
 ## 1. Mental model
 
 - `research/project_state.md` = the only shared **fact** file. Everything else is opinion,

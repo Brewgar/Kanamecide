@@ -82,6 +82,10 @@ In this order:
 
 For a one-command overview, run `python research/scripts/research.py status`.
 
+To run as a full collective-member agent, use `research/AGENT_MEGAPROMPT.md` as your system
+prompt (or print it with `python research/scripts/research.py megaprompt`) together with your
+role's `research/agents/<role>/profile.md`.
+
 ## Agent workflow
 
 ```text
@@ -125,6 +129,7 @@ python research/scripts/research.py experiments    # list experiments
 python research/scripts/research.py failures       # list failures
 python research/scripts/research.py update         # regenerate index.md
 python research/scripts/research.py validate       # check record integrity
+python research/scripts/research.py megaprompt     # print the collective system prompt
 python research/scripts/research.py context --topic search   # focused briefing
 python research/scripts/research.py new-hypothesis --title "..."   # scaffold (next ID)
 python research/scripts/research.py new-debate --title "..."

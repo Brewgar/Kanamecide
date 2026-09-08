@@ -491,6 +491,14 @@ def cmd_validate(_args):
     print("Validation OK — records are consistent; facts/opinions/decisions are separated by directory.")
 
 
+def cmd_megaprompt(_args):
+    path = RESEARCH_DIR / "AGENT_MEGAPROMPT.md"
+    if not path.exists():
+        print(f"missing: {path}")
+        sys.exit(1)
+    print(path.read_text(encoding="utf-8"))
+
+
 def build_parser():
     p = argparse.ArgumentParser(prog="research", description="Kanamecide multi-agent research-memory CLI")
     sub = p.add_subparsers(dest="command", required=True)
@@ -503,6 +511,7 @@ def build_parser():
     sub.add_parser("failures").set_defaults(func=cmd_failures)
     sub.add_parser("update").set_defaults(func=cmd_update)
     sub.add_parser("validate").set_defaults(func=cmd_validate)
+    sub.add_parser("megaprompt").set_defaults(func=cmd_megaprompt)
 
     for name, dest in (("new-hypothesis", "cmd_new_hypothesis"), ("new-debate", "cmd_new_debate"),
                        ("new-decision", "cmd_new_decision"), ("new-experiment", "cmd_new_experiment"),
@@ -534,6 +543,13 @@ def build_parser():
 
 
 def main(argv=None):
+    # Prevent UnicodeEncodeError when a non-UTF8 Windows console can't encode an
+    # em dash / arrow in a record title or prompt. Files on disk stay UTF-8 either way.
+    for stream in (sys.stdout, sys.stderr):
+        try:
+            stream.reconfigure(encoding="utf-8", errors="replace")
+        except Exception:
+            pass
     args = build_parser().parse_args(argv)
     args.func(args)
     return 0
