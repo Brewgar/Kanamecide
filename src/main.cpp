@@ -1,14 +1,149 @@
 #include <cstdio>
 #include <cstring>
 #include <cstdlib>
+#include <iostream>
+#include <string>
+#include <sstream>
 #include "board.h"
 #include "movegen.h"
 #include "perft.h"
 #include "zobrist.h"
 #include "bench.h"
+#include "search.h"
 #include <cstdint>
 
 using namespace kana;
+
+// --- O3a minimal UCI -----------------------------------------------------------
+// Deliberately minimal: uci / isready / ucinewgame / position / go depth N / stop / quit.
+// Full time control (movetime, wtime/btime, etc.) is O3d — not here.
+
+static constexpr int MATE = 1000000;
+static constexpr int INF  = 2000000;
+
+static Move parse_move(Board& b, const std::string& token) {
+    // token like "e2e4" or "e7e8q"; find the matching pseudo-legal move and verify legality.
+    if (token.size() < 4) return 0;
+    int f = (token[0] - 'a') + 8 * (token[1] - '1');
+    int t = (token[2] - 'a') + 8 * (token[3] - '1');
+    if (f < 0 || f > 63 || t < 0 || t > 63) return 0;
+    PieceType promo = PIECE_TYPE_NB;
+    if (token.size() >= 5) {
+        switch (token[4]) {
+            case 'n': promo = KNIGHT; break;
+            case 'b': promo = BISHOP; break;
+            case 'r': promo = ROOK; break;
+            case 'q': promo = QUEEN; break;
+            default: return 0;
+        }
+    }
+    Move moves[256];
+    int n = generate_moves(b, moves);
+    for (int i = 0; i < n; i++) {
+        if (int(move_from(moves[i])) != f || int(move_to(moves[i])) != t) continue;
+        if (move_flag(moves[i]) == PROMOTION && move_promo(moves[i]) != promo) continue;
+        if (move_flag(moves[i]) != PROMOTION && promo != PIECE_TYPE_NB) continue;
+        // legality (DEC-0008)
+        Undo u;
+        make_move(b, moves[i], u);
+        Color us = ~b.side;
+        bool legal = !attacked_by(b, b.king_sq[us], b.side);
+        unmake_move(b, moves[i], u);
+        if (legal) return moves[i];
+    }
+    return 0;
+}
+
+static Move search_root(Board& b, int depth, int& nodes) {
+    Move moves[256];
+    int n = generate_moves(b, moves);
+    int best = -INF;
+    Move bestmove = 0;
+    int legal = 0;
+    nodes = 0;
+    for (int i = 0; i < n; i++) {
+        Undo u;
+        make_move(b, moves[i], u);
+        Color us = ~b.side;
+        if (!attacked_by(b, b.king_sq[us], b.side)) {
+            legal++;
+            Undo child_u;
+            int score = -search::negamax(b, depth - 1, -INF, INF, child_u);
+            if (score > best || bestmove == 0) {
+                best = score;
+                bestmove = moves[i];
+            }
+        }
+        unmake_move(b, moves[i], u);
+    }
+    if (bestmove == 0 && n > 0) bestmove = moves[0]; // fallback (shouldn't happen in legal pos)
+    return bestmove;
+}
+
+static void run_uci() {
+    Board board;
+    set_startpos(board);
+    std::string line;
+    while (std::getline(std::cin, line)) {
+        std::istringstream iss(line);
+        std::string token;
+        iss >> token;
+        if (token == "uci") {
+            printf("id name Kanamecide\n");
+            printf("id author Kanamecide-collective\n");
+            printf("uciok\n");
+        } else if (token == "isready") {
+            printf("readyok\n");
+        } else if (token == "ucinewgame" || token == "setoption") {
+            set_startpos(board);
+        } else if (token == "position") {
+            std::string pos;
+            iss >> pos;
+            if (pos == "startpos") {
+                set_startpos(board);
+            } else if (pos == "fen") {
+                // read up to 6 FEN fields, stopping at "moves" or end-of-stream
+                std::string fen, w;
+                int fields = 0;
+                while (fields < 6 && iss >> w) {
+                    if (w == "moves") break;
+                    fen += w;
+                    fen += ' ';
+                    fields++;
+                }
+                if (!fen.empty())
+                    fen.pop_back(); // drop trailing space
+                set_fen(board, fen);
+            }
+            // apply trailing "moves ..." (re-split the whole line for simplicity)
+            std::string mv;
+            bool in_moves = false;
+            std::istringstream lss(line);
+            while (lss >> mv) {
+                if (mv == "moves") { in_moves = true; continue; }
+                if (in_moves) {
+                    Move m = parse_move(board, mv);
+                    if (m) { Undo u; make_move(board, m, u); }
+                }
+            }
+        } else if (token == "go") {
+            std::string what;
+            int depth = 4;
+            while (iss >> what) {
+                if (what == "depth") { iss >> depth; break; }
+            }
+            int nodes = 0;
+            Move best = search_root(board, depth, nodes);
+            if (best == 0) best = 0;
+            printf("bestmove %s\n", move_to_string(best ? best : Move(0)).c_str());
+        } else if (token == "stop") {
+            // O3a has no search thread to interrupt; no-op (time control is O3d).
+        } else if (token == "quit") {
+            break;
+        }
+        fflush(stdout);
+    }
+}
 
 static void dump_moves(const Board& b) {
   Move moves[256];
@@ -35,9 +170,15 @@ int main(int argc, char** argv) {
   bool fen_mode   = (argc > 1 && strcmp(argv[1], "--fen") == 0);
   bool bench_mode = (argc > 1 && strcmp(argv[1], "--bench") == 0);
   bool audit_mode = (argc > 1 && strcmp(argv[1], "--audit") == 0);
+  bool uci_mode   = (argc > 1 && strcmp(argv[1], "uci") == 0);
 
   bitboards_init();
   kana::zobrist::init();
+
+  if (uci_mode) {
+    run_uci();
+    return 0;
+  }
 
   if (bench_mode) {
     int reps = (argc > 2) ? atoi(argv[2]) : 5;
@@ -104,17 +245,17 @@ int main(int argc, char** argv) {
   static_assert(PIECE_TYPE_NB == 6, "piece types");
   static_assert(COLOR_NB == 2, "colors");
 
-  uint64_t all_ok = true;
+  uint64_t all_ok = 1;
   Board b0 = board_55();
-  all_ok &= run_perft(b0, "startpos", 1, 20);
+  all_ok &= run_perft(b0, "startpos", 1, 20) ? 1ULL : 0ULL;
   b0 = board_55();
-  all_ok &= run_perft(b0, "startpos", 2, 400);
+  all_ok &= run_perft(b0, "startpos", 2, 400) ? 1ULL : 0ULL;
   b0 = board_55();
-  all_ok &= run_perft(b0, "startpos", 3, 8902);
+  all_ok &= run_perft(b0, "startpos", 3, 8902) ? 1ULL : 0ULL;
   b0 = board_55();
-  all_ok &= run_perft(b0, "startpos", 4, 197281);
+  all_ok &= run_perft(b0, "startpos", 4, 197281) ? 1ULL : 0ULL;
   b0 = board_55();
-  all_ok &= run_perft(b0, "startpos", 5, 4865609);
+  all_ok &= run_perft(b0, "startpos", 5, 4865609) ? 1ULL : 0ULL;
 
   // Kiwipete (CPW position 1)
   {

@@ -11,6 +11,7 @@ add_executable(kana
   src/movegen.cpp
   src/perft.cpp
   src/bench.cpp
+  src/search.cpp
   src/main.cpp
 )
 

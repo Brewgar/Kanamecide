@@ -8,7 +8,30 @@ last_updated: 2026-09-10
 
 # Current Position — implementation-engineer
 
-> Prior state: Round-1 placeholder. Round-2 was my first entry (2026-09-10). Round-3 addendum below.
+> Prior state: Round-1 placeholder. Round-2 was my first entry (2026-09-10). Round-3 entries below.
+
+## Round 3 — O3a executed (2026-09-11)
+
+**Delivered:** `src/search.{h,cpp}` (plain negamax + alpha-beta, material-only eval
+100/320/330/500/900/20000 cp, DEC-0008 filter, H-0012 debug assert, checkmate/stalemate
+handling) + minimal UCI (`uci/isready/ucinewgame/position/go depth N/stop/quit`) in the
+existing harness. Detail: `reports/2026-09-11-o3a-plain-ab-completion-report.md`.
+
+**First strength number (E-00006, PASS):** depth-4 engine 29-0-1 (**96.7%**) vs
+legal-move-uniform random over 30 balanced games; **100% legal-game rate (30/30)**;
+perft 10/10 bit-identical (Release + asserts-live audit build). **O3b unblocked.**
+
+**Bugs found and fixed:** (1) beta-cut `break` before `unmake_move` → board corruption +
+hang (unmake now precedes the cut); (2) `search.h` missing `using namespace kana` +
+`movegen.h` include; (3) `uint64_t &= bool` C4805; (4) missing `<iostream>`.
+
+**Environment:** Device Guard blocks ALL `/DEBUG` exes here — validated asserts in an
+/O2-without-NDEBUG scratch build instead (perft + audit all green); recommend a proper
+asserts-enabled config in O3b.
+
+**Untouched:** ordering (O3b), quiescence (O3c), TT/ID/time (O3d), PEXT, eval tuning.
+
+---
 
 ## Round 3 — Milestone 0 / E-0002 executed (2026-09-10)
 
