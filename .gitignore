@@ -1,5 +1,7 @@
 # Build artifacts (CMake / MSVC)
 build/
+build_o2/         # Round-2 scratch /O2 harness copy (E-00003 provenance) — external evidence, not part of the build
+bench.cpp         # Round-2 scratch bench driver (E-00003) — moved to evidence, not part of the build
 *.obj
 *.exe
 *.pdb
@@ -17,6 +19,18 @@ CMakeFiles/
 x64/
 Debug/
 Release/
+
+# Research: agent scratch dumps from Round 2 (not records).
+research/_sys_*.txt
+
+# Milestone 0 / E-0002 session scratch (evidence, on disk, not in git).
+m0_ctrl/
+m0_*
+diff_timing.*
+bench_out.txt
+build_log.txt
+dbg_log.txt
+ps1_out.txt
 
 # Python
 __pycache__/
