@@ -1,4 +1,5 @@
 #pragma once
+#include <cassert>
 #include <cstdint>
 #include <string>
 
@@ -61,7 +62,12 @@ inline std::string square_name(Square s) {
 
 inline std::string move_to_string(Move m) {
   std::string r = square_name(move_from(m)) + square_name(move_to(m));
-  if (move_flag(m) == PROMOTION) r += "nbrq"[int(move_promo(m)) - KNIGHT];
+  if (move_flag(m) == PROMOTION) {
+    // H-0012 guard (debug): move_promo() would return a phantom piece on any
+    // non-promotion move; assert the flag at every read site.
+    assert(int(move_promo(m)) >= KNIGHT && int(move_promo(m)) <= QUEEN);
+    r += "nbrq"[int(move_promo(m)) - KNIGHT];
+  }
   return r;
 }
 

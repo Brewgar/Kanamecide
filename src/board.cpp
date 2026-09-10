@@ -1,6 +1,7 @@
 #include "board.h"
 #include "zobrist.h"
 
+#include <cassert>
 #include <cctype>
 #include <cstring>
 #include <cstdlib>
@@ -107,6 +108,12 @@ bool in_check(const Board& b, Color c) { return attacked_by(b, b.king_sq[int(c)]
 void make_move(Board& b, Move m, Undo& u) {
   Square from = move_from(m), to = move_to(m);
   Color us = b.side;
+
+  // H-0012 guardrail (debug-only): never apply a pseudo-legal move that captures
+  // the enemy king. In filtered legal play this is impossible; it guards future
+  // fast paths and arbitrary `--fen` input. Compiled out under NDEBUG.
+  assert(to != b.king_sq[int(~us)]);
+
   int pc = b.mailbox[from];
   int pt = int(piece_type(pc));
   MoveFlag fl = move_flag(m);
@@ -133,6 +140,9 @@ void make_move(Board& b, Move m, Undo& u) {
     else if (to == C8) { remove_piece(b, A8); add_piece(b, D8, make_piece(us, ROOK)); }
   } else {
     if (b.mailbox[to]) { captured = b.mailbox[to]; capt_sq = int(to); remove_piece(b, to); }
+    // H-0012 guard (debug): move_promo() must only be read on a real promotion.
+    if (fl == PROMOTION)
+      assert(int(move_promo(m)) >= KNIGHT && int(move_promo(m)) <= QUEEN);
     add_piece(b, to, fl == PROMOTION ? make_piece(us, move_promo(m)) : pc);
   }
 

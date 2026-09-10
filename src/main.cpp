@@ -1,9 +1,11 @@
 #include <cstdio>
 #include <cstring>
+#include <cstdlib>
 #include "board.h"
 #include "movegen.h"
 #include "perft.h"
 #include "zobrist.h"
+#include "bench.h"
 #include <cstdint>
 
 using namespace kana;
@@ -31,9 +33,28 @@ static bool run_perft(Board& b, const char* name, int depth, uint64_t expected) 
 int main(int argc, char** argv) {
   bool list_moves = (argc > 1 && strcmp(argv[1], "--moves") == 0);
   bool fen_mode   = (argc > 1 && strcmp(argv[1], "--fen") == 0);
+  bool bench_mode = (argc > 1 && strcmp(argv[1], "--bench") == 0);
+  bool audit_mode = (argc > 1 && strcmp(argv[1], "--audit") == 0);
 
   bitboards_init();
   kana::zobrist::init();
+
+  if (bench_mode) {
+    int reps = (argc > 2) ? atoi(argv[2]) : 5;
+    if (reps < 1) reps = 1;
+    return run_bench(reps);
+  }
+
+  if (audit_mode) {
+#ifdef NDEBUG
+    printf("state audit is compiled out under NDEBUG — build Debug to run it.\n");
+    return 0;
+#else
+    int rc = run_state_audit();
+    printf("=== %s\n", rc == 0 ? "STATE AUDIT PASSED" : "STATE AUDIT FAILED");
+    return rc;
+#endif
+  }
 
   if (list_moves) {
     Board b;
@@ -78,9 +99,6 @@ int main(int argc, char** argv) {
   printf("Kana — chess engine correctness test harness\n");
   printf("CPU: AMD Ryzen 7 9700X (8C/16T, AVX-512)\n");
   printf("Target: correct move generation + make/unmake validated by perft\n\n");
-
-  bitboards_init();
-  kana::zobrist::init();
 
   static_assert(SQ_NB == 64, "square count");
   static_assert(PIECE_TYPE_NB == 6, "piece types");
@@ -152,6 +170,16 @@ int main(int argc, char** argv) {
            (unsigned long long)got, 3894594ULL, 0ULL);
     all_ok &= (got == 3894594);
   }
+
+#ifndef NDEBUG
+  {
+    // H-0014/H-0012 guardrails: state-integrity audit (same_position + key==compute_key
+    // round-trip walk) is a debug-only gate; compiled out of Release.
+    int rc = run_state_audit();
+    all_ok &= (rc == 0);
+    printf("\n=== %s\n", rc == 0 ? "STATE AUDIT PASSED" : "STATE AUDIT FAILED");
+  }
+#endif
 
   printf("\n=== %s\n", all_ok ? "ALL TESTS PASSED" : "TESTS FAILED");
   return all_ok ? 0 : 1;
