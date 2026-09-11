@@ -32,6 +32,27 @@ build_log.txt
 dbg_log.txt
 ps1_out.txt
 
+# O3a / E-00006 session scratch (evidence, on disk, not in git).
+random_selfplay.py
+selfplay_out.txt
+run_sp.bat
+uci_test.bat
+uci_test.txt
+spd4.bat
+m0_audit.bat
+m0_audit/
+m0_suite.bat
+dbg_audit.bat
+dbg_build.log
+dbg_run.txt
+diag*.bat
+diag*.txt
+diag_out.txt
+full_build.log
+inc.log
+clpath.txt
+search.err
+search.i
 # Python
 __pycache__/
 *.pyc
