@@ -6,13 +6,11 @@ using namespace kana;
 
 namespace search {
 
-// O3b — staged move ordering, controlled by ORDER_STAGE (compile-time, default 4):
-//   0 = unordered (O3a baseline)   1 = + PV move first (root, shallow-prior pass)
-//   2 = + MVV-LVA captures         3 = + killers (2 slots/ply)
-//   4 = + history heuristic (quiets)
-// negamax: alpha-beta + material-only eval; `nodes` counts every node visited;
-// DEC-0008 legality filter applied per candidate AFTER make_move; H-0012 assert live.
-// Returns side-to-move score.
+// O3c — quiescence search hook. When QSEARCH (compile-time, default 1) is enabled, the
+// negamax leaf calls qsearch() which resolves captures/promotions (plus ALL moves when
+// in check) to a quiet position instead of returning the static material eval directly.
+// O3b-order stages controlled by ORDER_STAGE (see src/search.cpp): 0 unordered, 1 +PV,
+// 2 +MVV-LVA, 3 +killers, 4 +history.
 int negamax(Board& b, int depth, int alpha, int beta, int ply, uint64_t& nodes);
 
 // Root search: returns the best move (Move 0 if none), fills `score` and `nodes`.

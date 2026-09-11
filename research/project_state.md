@@ -16,12 +16,13 @@ evaluation and learning.
 - **Move application:** make/unmake (not copy-make).
 - **Move generation:** pseudo-legal generation + king-safety filter at the search/perft site (DEC-0008, ratified 2026-09-10; supersedes DEC-0005).
 - **En passant legality:** verified by make/unmake probe (handles discovered-check pins).
-- **Search (O3b, 2026-09-11):** negamax + alpha-beta, material-only eval; STAGED MOVE ORDERING
-  (PV-first → MVV-LVA captures → killers → history) = **91.2% fewer nodes vs O3a unordered at
-  depth 6** (E-00007, PASS). No quiescence (O3c), no TT/ID/time (O3d).
+- **Search (O3c, 2026-09-11):** negamax + alpha-beta, material eval, full ordering (O3b),
+  QUIESCENCE search at the leaf (stand-pat + captures/promotions + delta pruning + check
+  evasion) = tactically resolved leaf; finds mates + fixes phantom overestimates (E-00008
+  PASS, 2.08x nodes vs O3b). No TT/ID/time (O3d).
 - **UCI:** `uci` / `isready` / `ucinewgame` / `position` / `go depth N` (+`go nodes N` parsed) /
   `stop` / `quit`; `go` reports `info depth N nodes X time T score cp S`.
-- **Phase:** O3b complete; O3c (quiescence) unblocked by E-00007 PASS.
+- **Phase:** O3c complete; O3d (TT/ID/time-control) unblocked by E-00008 PASS.
 
 ## Current Strength
 Move generator + board model validated against the Chess Programming Wiki perft suite with
@@ -109,19 +110,19 @@ None executed yet. `E-0001` is pending (and is also an EXAMPLE record).
 The movegen/perft validation is a correctness milestone, not a strength experiment.
 
 ## Current Champion
-Engine plays its first games (O3b, ordered plain-AB, material-only, depth 4):
-**30/30 wins (100%) vs legal-move-uniform random mover, 30/30 legal** (E-00007, PASS).
-Move ordering cuts search nodes **91.2%** at fixed depth (O3a 96.7% → O3b 100% vs random).
-These are the baseline strength + efficiency numbers every later delta is measured against.
+Engine (O3c, ordered AB + quiescence, material-only) plays its first tactically-sound games:
+**30/30 wins (100%) vs legal-move-uniform random mover, 30/30 legal** at depth 4. Search
+efficiency (91.2% node cut, O3b) + tactical leaf accuracy (qsearch, O3c) are the baselines
+for every later delta.
 
 ## Current Known Problems
-- No evaluation yet beyond material-only (E-EVAL); no quiescence (O3c), no TT/ID/time control (O3d).
+- No evaluation beyond material-only (E-EVAL); no TT / iterative deepening / time control (O3d).
 
 ## Current Development Priorities
-1. **Phase 2 — Search (next: O3c):** quiescence (stand-pat + captures/promotions + delta pruning)
-   on top of the O3b ordered search; then O3d (TT/ID/time-control/UCI depth-time).
+1. **Phase 2 — Search (next: O3d):** transposition table + iterative deepening + time
+   management + `stop`-during-search on top of the O3c quiescence search; then E-EVAL.
 2. **Phase 3+ — Evaluation & learning:** hand-tuned evaluation -> NNUE; self-play data
    generation; training pipeline (PyTorch + GPU); experiment tracking; SPRT-based testing.
 
 ## Last Updated
-2026-09-11 (O3b / E-00007 complete)
+2026-09-11 (O3c / E-00008 complete)

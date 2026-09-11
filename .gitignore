@@ -65,6 +65,21 @@ go_out2.txt
 dscan.txt
 s0_check.txt
 audit_build.log
+
+# O3c / E-00008 session scratch (evidence, on disk, not in git).
+gen_tactics.py
+tactics_set.py
+measure_qs.py
+sum_qs.py
+run_oc.bat
+kana_o3b.exe
+kana_o3c.exe
+ob4.txt
+oc4.txt
+ob3.txt
+oc3.txt
+tactics_gen.txt
+uci_q1.bat
 # Python
 __pycache__/
 *.pyc

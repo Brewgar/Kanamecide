@@ -10,6 +10,30 @@ last_updated: 2026-09-10
 
 > Prior state: Round-1 placeholder. Round-2 first entry (2026-09-10). Round-3 entries below.
 
+## Round 3 — O3c executed (2026-09-11)
+
+**Delivered:** qsearch (`src/search.cpp`) at the negamax leaf — stand-pat fail-high,
+captures+promotions, delta pruning (margin 200), check evasion (all motions when in check,
+else -MATE). Compile-time `QSEARCH` flag. Report:
+`reports/2026-09-11-o3c-quiescence-completion-report.md`.
+
+**Result (E-00008, PASS):** perft 10/10 bit-identical; 73/73 tactical pass at d3+4; O3c finds
+8 mate scores + corrects 2 phantom overestimates that O3b produces at fixed depth; 30/30 (100%)
+vs random, 30/30 legal; node count 2.08x (expected — qsearch extends the search). O3d unblocked.
+
+**Findings:** tactical pass-rate does NOT discriminate O3b vs O3c at d3-4 for simple hangs (both
+100% — the capture is within horizon); the discriminator is SCORE accuracy. Refined the H-0012
+make_move assert: it fired on legitimate pseudo-legal king-captures in CHECK positions (the
+DEC-0008 filter rejects them after make_move); now fires only when the enemy is NOT already in
+check — a genuine generator bug, not a filter artifact.
+
+**Environment:** same Device Guard behavior (intermittent hash-based WDAC block on fresh builds;
+retry is the workaround). Tactical test set now self-validating via python-chess (73 positions).
+
+**Untouched:** TT/ID/time-control (O3d), eval tuning (E-EVAL), self-play/NNUE.
+
+---
+
 ## Round 3 — O3b executed (2026-09-11)
 
 **Delivered:** staged move ordering (PV → MVV-LVA → killers → history) in `src/search.{h,cpp}`

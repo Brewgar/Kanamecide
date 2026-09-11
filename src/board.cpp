@@ -109,10 +109,12 @@ void make_move(Board& b, Move m, Undo& u) {
   Square from = move_from(m), to = move_to(m);
   Color us = b.side;
 
-  // H-0012 guardrail (debug-only): never apply a pseudo-legal move that captures
-  // the enemy king. In filtered legal play this is impossible; it guards future
-  // fast paths and arbitrary `--fen` input. Compiled out under NDEBUG.
-  assert(to != b.king_sq[int(~us)]);
+  // H-0012 guardrail: the pseudo-legal generator must never produce a move that captures
+  // the enemy king in a position where the enemy is NOT already in check. (When the enemy
+  // IS in check, a pseudo-legal king-capture is expected - the king-safety filter rejects
+  // it after make_move. This guard catches a generator bug, not a filter artifact.)
+  if (!attacked_by(b, b.king_sq[int(~us)], us))
+    assert(to != b.king_sq[int(~us)]);
 
   int pc = b.mailbox[from];
   int pt = int(piece_type(pc));

@@ -15,6 +15,19 @@ using namespace kana;
 #define ORDER_STAGE 4
 #endif
 
+// O3c: leaf quiescence search (compile-time, default ON).
+#ifndef QSEARCH
+#define QSEARCH 1
+#endif
+
+// Delta-pruning margin: a capture is skipped if stand_pat + victim + margin < alpha.
+// Material-only eval is exact in material, so 200 cp is generous safety.
+static constexpr int DELTA_MARGIN = 200;
+
+// Qsearch recursion guard: captures strictly remove material so this can never be reached
+// in legal play; it exists only to turn a hypothetical bug into a return, not a hang.
+static constexpr int QSEARCH_MAX_PLY = 512;
+
 namespace search {
 
 // Centipawn material values (hand-tuned baseline; Texel tuning is E-EVAL).
@@ -92,10 +105,89 @@ static int evaluate(const Board& b) {
 
 struct ScoredMove { Move m; int s; };
 
+// Victim's material value for a pseudo-legal capture/promotion (used for delta pruning).
+static int capture_value(const Board& b, Move m) {
+    if (move_flag(m) == PROMOTION) return VALUE[move_promo(m)];
+    if (move_flag(m) == EN_PASSANT) return VALUE[PAWN];
+    return VALUE[piece_type(b.mailbox[move_to(m)])];
+}
+
+// O3c quiescence: resolve captures/promotions to a quiet position at the leaf.
+// - Stand-pat: if not in check and eval >= beta, fail high immediately.
+// - If in check: do NOT stand-pat; search ALL legal evasions (captures AND quiets).
+// - Otherwise search only captures + promotions, delta-pruned.
+// - Same DEC-0008 filter per candidate after make_move; H-0012 assert live.
+int qsearch(Board& b, int alpha, int beta, int ply, uint64_t& nodes) {
+    nodes++;
+    if (ply > QSEARCH_MAX_PLY)
+        return evaluate(b); // unreachable guard (captures strictly remove material)
+
+    const int stand_pat = evaluate(b);
+    const bool in_check = attacked_by(b, b.king_sq[b.side], ~b.side);
+
+    if (!in_check) {
+        if (stand_pat >= beta)
+            return stand_pat;          // stand-pat fail high
+        if (stand_pat > alpha)
+            alpha = stand_pat;
+    }
+
+    Move moves[256];
+    int n = generate_moves(b, moves);
+
+    ScoredMove sm[256];
+    int legal = 0;      // count of LEGAL moves actually searched (for check evasion mate test)
+
+    for (int i = 0; i < n; i++) {
+        const Move m = moves[i];
+        const bool cap = is_capture_or_promo(b, m);
+        if (!in_check && !cap)
+            continue;                                  // quiets can't change material (stand-pat holds)
+        if (!in_check && stand_pat + capture_value(b, m) + DELTA_MARGIN < alpha)
+            continue;                                  // delta prune
+        const int s = cap ? SCORE_CAPTURE + mvv_lva(b, m) : 0;
+        sm[legal] = ScoredMove{m, s};
+        legal++;
+    }
+    if (legal > 1)
+        std::stable_sort(sm, sm + legal,
+                         [](const ScoredMove& a, const ScoredMove& b) { return a.s > b.s; });
+
+    int best = in_check ? -INF : stand_pat;
+    for (int i = 0; i < legal; i++) {
+        Move m = sm[i].m;
+        Undo u;
+        make_move(b, m, u);
+
+        Color us = ~b.side; // the side that just moved
+        if (!attacked_by(b, b.king_sq[us], b.side)) {
+            // DEC-0008 legality filter; H-0012 enemy-king assert.
+            assert(move_to(m) != b.king_sq[~us]);
+            Undo child_u;
+            int score = -qsearch(b, -beta, -alpha, ply + 1, nodes);
+            if (score > best)
+                best = score;
+            if (best > alpha)
+                alpha = best;
+        }
+
+        unmake_move(b, m, u);
+        if (in_check && alpha >= beta)
+            break;   // beta cutoff while evading check: a refutation suffices
+        if (!in_check && alpha >= beta)
+            break;   // normal beta cutoff
+    }
+
+    if (in_check && best == -INF)
+        return -MATE; // in check and no legal evasion survives the DEC-0008 filter: mated
+
+    return best;
+}
+
 int negamax(Board& b, int depth, int alpha, int beta, int ply, uint64_t& nodes) {
     nodes++;
     if (depth <= 0)
-        return evaluate(b);
+        return QSEARCH ? qsearch(b, alpha, beta, ply, nodes) : evaluate(b);
 
     Move moves[256];
     int n = generate_moves(b, moves);
