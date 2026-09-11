@@ -4,6 +4,7 @@
 #include <iostream>
 #include <string>
 #include <sstream>
+#include <chrono>
 #include "board.h"
 #include "movegen.h"
 #include "perft.h"
@@ -17,9 +18,6 @@ using namespace kana;
 // --- O3a minimal UCI -----------------------------------------------------------
 // Deliberately minimal: uci / isready / ucinewgame / position / go depth N / stop / quit.
 // Full time control (movetime, wtime/btime, etc.) is O3d — not here.
-
-static constexpr int MATE = 1000000;
-static constexpr int INF  = 2000000;
 
 static Move parse_move(Board& b, const std::string& token) {
     // token like "e2e4" or "e7e8q"; find the matching pseudo-legal move and verify legality.
@@ -52,32 +50,6 @@ static Move parse_move(Board& b, const std::string& token) {
         if (legal) return moves[i];
     }
     return 0;
-}
-
-static Move search_root(Board& b, int depth, int& nodes) {
-    Move moves[256];
-    int n = generate_moves(b, moves);
-    int best = -INF;
-    Move bestmove = 0;
-    int legal = 0;
-    nodes = 0;
-    for (int i = 0; i < n; i++) {
-        Undo u;
-        make_move(b, moves[i], u);
-        Color us = ~b.side;
-        if (!attacked_by(b, b.king_sq[us], b.side)) {
-            legal++;
-            Undo child_u;
-            int score = -search::negamax(b, depth - 1, -INF, INF, child_u);
-            if (score > best || bestmove == 0) {
-                best = score;
-                bestmove = moves[i];
-            }
-        }
-        unmake_move(b, moves[i], u);
-    }
-    if (bestmove == 0 && n > 0) bestmove = moves[0]; // fallback (shouldn't happen in legal pos)
-    return bestmove;
 }
 
 static void run_uci() {
@@ -129,13 +101,23 @@ static void run_uci() {
         } else if (token == "go") {
             std::string what;
             int depth = 4;
+            uint64_t node_limit = 0;
             while (iss >> what) {
-                if (what == "depth") { iss >> depth; break; }
+                if (what == "depth") { iss >> depth; }
+                else if (what == "nodes") { iss >> node_limit; }
             }
-            int nodes = 0;
-            Move best = search_root(board, depth, nodes);
-            if (best == 0) best = 0;
-            printf("bestmove %s\n", move_to_string(best ? best : Move(0)).c_str());
+            if (depth < 1) depth = 1;
+            search::clear_ordering();
+            auto t0 = std::chrono::steady_clock::now();
+            int score = 0;
+            uint64_t nodes = 0;
+            Move best = search::bestmove(board, depth, score, nodes);
+            auto t1 = std::chrono::steady_clock::now();
+            double ms = std::chrono::duration<double, std::milli>(t1 - t0).count();
+            (void)node_limit; // node limit is a stop hint for O3d; not honored yet
+            printf("info depth %d nodes %llu time %.1f score cp %d\n",
+                   depth, (unsigned long long)nodes, ms, score);
+            printf("bestmove %s\n", move_to_string(best).c_str());
         } else if (token == "stop") {
             // O3a has no search thread to interrupt; no-op (time control is O3d).
         } else if (token == "quit") {

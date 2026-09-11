@@ -8,7 +8,29 @@ last_updated: 2026-09-10
 
 # Current Position — implementation-engineer
 
-> Prior state: Round-1 placeholder. Round-2 was my first entry (2026-09-10). Round-3 entries below.
+> Prior state: Round-1 placeholder. Round-2 first entry (2026-09-10). Round-3 entries below.
+
+## Round 3 — O3b executed (2026-09-11)
+
+**Delivered:** staged move ordering (PV → MVV-LVA → killers → history) in `src/search.{h,cpp}`
+via compile-time `ORDER_STAGE`; per-move `ScoredMove`, node counter, `info` reporting; new CMake
+`Audit` config (/O2 w/o NDEBUG, no /DEBUG — Device Guard blocks /DEBUG here). Report:
+`reports/2026-09-11-o3b-staged-move-ordering-completion-report.md`.
+
+**Result (E-00007, PASS):** full ordering = **91.2% fewer nodes** vs O3a unordered at depth 6
+(11 positions); perft 10/10 bit-identical; 30/30 (100%) vs random, 30/30 legal. Scores
+bit-identical across all stages (sound); O3c unblocked.
+
+**Findings:** PV-first alone = 0.0% (needs ID — O3d) — recorded honestly; MVV-LVA is the dominant
+lever (84%), then killers (+6.5pp), history (+0.7pp). Caught+fixed an O3a-vintage wrong assert
+(negamax enemy-king check was testing the mover's king — silently never compiled until Audit).
+
+**Environment:** WDAC/Smart App Control intermittently blocks freshly-built unsigned EXEs
+(hash-based); retry is the workaround; documented.
+
+**Untouched:** quiescence (O3c), TT/ID/time (O3d), eval tuning, self-play/NNUE.
+
+---
 
 ## Round 3 — O3a executed (2026-09-11)
 

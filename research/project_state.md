@@ -16,11 +16,12 @@ evaluation and learning.
 - **Move application:** make/unmake (not copy-make).
 - **Move generation:** pseudo-legal generation + king-safety filter at the search/perft site (DEC-0008, ratified 2026-09-10; supersedes DEC-0005).
 - **En passant legality:** verified by make/unmake probe (handles discovered-check pins).
-- **Search (O3a, 2026-09-11):** plain negamax + alpha-beta, material-only eval
-  (100/320/330/500/900/20000 cp), leaf eval at depth 0 — no ordering, no quiescence, no TT;
-  E-00006 PASSED (29/30 vs random at depth 4, 100% legal).
-- **UCI (O3a, minimal):** `uci` / `isready` / `ucinewgame` / `position` / `go depth N` / `stop` / `quit`.
-- **Phase:** O3a complete; O3b (move ordering) unblocked by E-00006 PASS.
+- **Search (O3b, 2026-09-11):** negamax + alpha-beta, material-only eval; STAGED MOVE ORDERING
+  (PV-first → MVV-LVA captures → killers → history) = **91.2% fewer nodes vs O3a unordered at
+  depth 6** (E-00007, PASS). No quiescence (O3c), no TT/ID/time (O3d).
+- **UCI:** `uci` / `isready` / `ucinewgame` / `position` / `go depth N` (+`go nodes N` parsed) /
+  `stop` / `quit`; `go` reports `info depth N nodes X time T score cp S`.
+- **Phase:** O3b complete; O3c (quiescence) unblocked by E-00007 PASS.
 
 ## Current Strength
 Move generator + board model validated against the Chess Programming Wiki perft suite with
@@ -108,18 +109,19 @@ None executed yet. `E-0001` is pending (and is also an EXAMPLE record).
 The movegen/perft validation is a correctness milestone, not a strength experiment.
 
 ## Current Champion
-Engine plays its first games (O3a, plain-AB, material-only, depth 4):
-**29/30 wins (96.7%) vs legal-move-uniform random mover, 30/30 legal games** (E-00006, PASS).
-This is the baseline strength number — every later delta (O3b/O3c/O3d) is measured against it.
+Engine plays its first games (O3b, ordered plain-AB, material-only, depth 4):
+**30/30 wins (100%) vs legal-move-uniform random mover, 30/30 legal** (E-00007, PASS).
+Move ordering cuts search nodes **91.2%** at fixed depth (O3a 96.7% → O3b 100% vs random).
+These are the baseline strength + efficiency numbers every later delta is measured against.
 
 ## Current Known Problems
-- No evaluation yet beyond material-only (O3b/E-EVAL); no quiescence (O3c), no TT/ID/time control (O3d), no move ordering (O3b).
+- No evaluation yet beyond material-only (E-EVAL); no quiescence (O3c), no TT/ID/time control (O3d).
 
 ## Current Development Priorities
-1. **Phase 2 — Search (next: O3b):** staged move ordering (PV → MVV-LVA → killers → history)
-   on top of the O3a plain baseline; then quiescence (O3c), then ID/TT/time/UCI (O3d).
+1. **Phase 2 — Search (next: O3c):** quiescence (stand-pat + captures/promotions + delta pruning)
+   on top of the O3b ordered search; then O3d (TT/ID/time-control/UCI depth-time).
 2. **Phase 3+ — Evaluation & learning:** hand-tuned evaluation -> NNUE; self-play data
    generation; training pipeline (PyTorch + GPU); experiment tracking; SPRT-based testing.
 
 ## Last Updated
-2026-09-11 (O3a / E-00006 complete)
+2026-09-11 (O3b / E-00007 complete)

@@ -53,6 +53,18 @@ inc.log
 clpath.txt
 search.err
 search.i
+
+# O3b / E-00007 session scratch (evidence, on disk, not in git).
+measure_ob.py
+sum_stages.py
+run_stage.bat
+stage*.txt
+go_test.bat
+go_out.txt
+go_out2.txt
+dscan.txt
+s0_check.txt
+audit_build.log
 # Python
 __pycache__/
 *.pyc
