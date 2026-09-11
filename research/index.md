@@ -40,6 +40,7 @@
 - [E-00003](experiments/E-00003-scratch-o2-vs-od-perft-baseline-measurement-external-harness.md) — Scratch /O2 vs /Od perft baseline measurement (external harness) — status=COMPLETED
 - [E-00006](experiments/E-00006-o3a-plain-alpha-beta-baseline-vs-random-mover.md) — O3a plain alpha-beta baseline vs random mover — status=COMPLETED
 - [E-00007](experiments/E-00007-o3b-staged-move-ordering-pv-mvv-lva-killers-history.md) — O3b staged move ordering (PV, MVV-LVA, killers, history) — status=COMPLETED
+- [E-00008](experiments/E-00008-o3c-quiescence-search-stand-pat-captures-promos-delta-prune-check-evasion.md) — O3c quiescence search (stand-pat, captures/promos, delta prune, check evasion) — status=COMPLETED
 - [E-0002](experiments/E-0002-bench-harness-and-o2-baseline.md) — Bench harness plus O2 build baseline (perft NPS, fixed flags) — status=COMPLETED
 
 ## Failures
