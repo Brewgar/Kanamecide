@@ -1,7 +1,9 @@
 # Build artifacts (CMake / MSVC)
 build/
-build_o2/         # Round-2 scratch /O2 harness copy (E-00003 provenance) — external evidence, not part of the build
-bench.cpp         # Round-2 scratch bench driver (E-00003) — moved to evidence, not part of the build
+# Round-2 scratch /O2 harness copy (E-00003 provenance) — external evidence, not part of the build
+build_o2/
+# Round-2 scratch bench driver (E-00003) — moved to evidence, not part of the build
+bench.cpp
 *.obj
 *.exe
 *.pdb
