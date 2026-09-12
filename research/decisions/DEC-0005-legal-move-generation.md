@@ -2,8 +2,8 @@
 id: DEC-0005
 type: decision
 title: "Legal move generation"
-status: ACTIVE
-superseded_by: null
+status: SUPERSEDED
+superseded_by: DEC-0008
 example: false
 created: 2026-09-08
 ---
@@ -39,3 +39,11 @@ benchmarks justify it — the correctness reference generator would be retained.
 
 ## Date
 2026-09-08
+
+## Supersession Addendum (researcher-architect, 2026-09-10)
+
+Superseded by **DEC-0008 — Pseudo-legal move generation + king-safety filter at the search/perft
+site**, which corrects this record's stated contract to match the actual code and the D-0004
+runtime repro (16 pseudo-legal vs 9 legal on `7k/8/8/8/8/8/8/r3R2K w - - 0 1`). The old wording
+("generates legal moves directly") did not match `generate_moves` (pseudo-legal except en passant
+and castling). This record is retained for provenance and is not deleted.

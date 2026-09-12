@@ -16,13 +16,20 @@ evaluation and learning.
 - **Move application:** make/unmake (not copy-make).
 - **Move generation:** pseudo-legal generation + king-safety filter at the search/perft site (DEC-0008, ratified 2026-09-10; supersedes DEC-0005).
 - **En passant legality:** verified by make/unmake probe (handles discovered-check pins).
-- **Search (O3c, 2026-09-11):** negamax + alpha-beta, material eval, full ordering (O3b),
+- **Search (O3d, 2026-09-13):** negamax + alpha-beta, material eval, full ordering (O3b),
   QUIESCENCE search at the leaf (stand-pat + captures/promotions + delta pruning + check
-  evasion) = tactically resolved leaf; finds mates + fixes phantom overestimates (E-00008
-  PASS, 2.08x nodes vs O3b). No TT/ID/time (O3d).
-- **UCI:** `uci` / `isready` / `ucinewgame` / `position` / `go depth N` (+`go nodes N` parsed) /
-  `stop` / `quit`; `go` reports `info depth N nodes X time T score cp S`.
-- **Phase:** O3c complete; O3d (TT/ID/time-control) unblocked by E-00008 PASS.
+  evasion) = tactically resolved leaf (E-00008 PASS, 2.08x nodes vs O3b); + 64-bit-key
+  transposition table (64 MiB default, two-entry buckets, TT-move ordering + PV build,
+  sound depth/bound-gated cutoffs, DEC-0008 re-validation of stored moves) + root iterative
+  deepening (PV-first) + repetition/50-move draw scoring (E-00009 PASS: 9.5x fewer nodes
+  vs O3c at depth 6, best moves 11/11 identical). No persistent-TT-across-moves yet.
+- **UCI:** `uci` / `isready` / `ucinewgame` / `position (startpos|fen ... moves ...)` /
+  `go depth|nodes|movetime|wtime btime winc binc` / `setoption Hash 1-1024` / `stop` /
+  `quit`; `go` reports `info depth N nodes X time T score cp S nps Y pv ...` with
+  `tt_probes/tt_hits/tt_cutoffs`; `stop` returns `bestmove` in <= 16 ms (measured max
+  15.1 ms over 10 trials); engine emits nothing until the `uci` token is received.
+- **Phase:** Phase-2 search stack COMPLETE (O3d / E-00009 PASS); E-EVAL + self-play
+  driver unblocked.
 
 ## Current Strength
 Move generator + board model validated against the Chess Programming Wiki perft suite with
@@ -110,19 +117,26 @@ None executed yet. `E-0001` is pending (and is also an EXAMPLE record).
 The movegen/perft validation is a correctness milestone, not a strength experiment.
 
 ## Current Champion
-Engine (O3c, ordered AB + quiescence, material-only) plays its first tactically-sound games:
-**30/30 wins (100%) vs legal-move-uniform random mover, 30/30 legal** at depth 4. Search
-efficiency (91.2% node cut, O3b) + tactical leaf accuracy (qsearch, O3c) are the baselines
-for every later delta.
+Engine (O3d, ordered AB + quiescence + TT + iterative deepening) plays complete legal
+timed games: **2/2 self-play games 100 % legal at 200 ms/move** (a 234-ply draw and a
+77-ply checkmate finish), **30/30 wins (100 %) vs legal-move-uniform random mover,
+30/30 legal** at depth 4, `stop` latency max 15.1 ms, and **9.5x fewer nodes than the
+O3c single-shot at depth 6** (5.11 M vs 48.6 M over the 11-position E-00007 set) with
+identical best moves. Search efficiency (91.2 % node cut, O3b) + tactical leaf accuracy
+(qsearch, O3c) + TT/ID node reduction (9.5x, O3d) are the baselines for every later delta.
 
 ## Current Known Problems
-- No evaluation beyond material-only (E-EVAL); no TT / iterative deepening / time control (O3d).
+- No evaluation beyond material-only (E-EVAL next). No persistent TT across moves
+  (TT is cleared per `go`); no aspiration/PVS/LMR/null-move (O3e candidates).
 
 ## Current Development Priorities
-1. **Phase 2 — Search (next: O3d):** transposition table + iterative deepening + time
-   management + `stop`-during-search on top of the O3c quiescence search; then E-EVAL.
+1. **Phase 3 — Evaluation (next: E-EVAL):** material + piece-square evaluation on top of the
+   complete O3d search stack, calibrated via self-play; then PVS/LMR/null-move (O3e) and
+   persistent TT across moves.
 2. **Phase 3+ — Evaluation & learning:** hand-tuned evaluation -> NNUE; self-play data
    generation; training pipeline (PyTorch + GPU); experiment tracking; SPRT-based testing.
 
 ## Last Updated
-2026-09-11 (O3c / E-00008 complete)
+2026-09-13 (O3d / E-00009 complete: TT + ID + time control + repetition; all five
+decision-rule gates PASS — perft 10/10, 2/2 legal self-play @200 ms/move, stop max
+15.1 ms, 9.5x node reduction, 30/30 vs random)

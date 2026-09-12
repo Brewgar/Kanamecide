@@ -22,6 +22,7 @@ add_executable(kana
   src/perft.cpp
   src/bench.cpp
   src/search.cpp
+  src/tt.cpp
   src/main.cpp
 )
 

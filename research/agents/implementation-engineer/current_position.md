@@ -2,13 +2,40 @@
 type: current_position
 agent: implementation-engineer
 confidence: 0.76
-focus: "Phase 2 search implementation; correctness/perft-hazard audit; E-0002 harness spec"
-last_updated: 2026-09-10
+focus: "Phase 2 search implementation (O3a-O3d complete); correctness/perft-hazard audit; E-0002 harness spec"
+last_updated: 2026-09-13
 ---
 
 # Current Position — implementation-engineer
 
 > Prior state: Round-1 placeholder. Round-2 first entry (2026-09-10). Round-3 entries below.
+
+## Round 3 — O3d executed (2026-09-13)
+
+**Delivered:** 64-bit TT (`src/tt.{h,cpp}` new; 64 MiB, 2-entry buckets, mate-score
+root shifting, bound-gated probes, DEC-0008 re-validation of stored moves, tt_stats on
+`info`), root iterative deepening (PV-first, per-depth `info`+pv), repetition/50-move
+draw scoring (UCI game keys + in-search path stack), UCI time control
+(depth/nodes/movetime/wtime/btime/winc/binc) + `stop`-during-search. Report:
+`reports/2026-09-13-o3d-tt-id-time-control-completion-report.md`.
+
+**Result (E-00009, PASS — all five pre-registered gates):** perft 10/10 (Release AND
+Audit, state audit PASSED); self-play @200 ms/move 2/2 games 100 % legal (234-ply
+draw-insufficient-material + 77-ply mate `Rd7#`); `stop` latency max 15.1 ms over 10
+trials (rule < 50); **9.51x fewer nodes than O3c** at depth 6 on E-00007 (5.11 M vs
+48.6 M) with best moves identical 11/11 and TT hit-rate 27–44 %; 30/30 (100 %) vs
+random, 30/30 legal. Phase-2 search stack COMPLETE.
+
+**Findings:** TT cutoffs are score-neutral in practice at these depths (11/11 bestmove
+identity vs O3c single-shot). The "detached spawn zero-output" bug was harness-side:
+engine prints nothing until `uci` is received (handshake = response), the old driver
+used deadline-free blocking reads, and the shell kills foreground processes on the next
+tool call. Hardened driver (send-`uci`, reader thread + timeouts) produced every number.
+
+**Untouched:** persistent TT across moves, aspiration/PVS/LMR/null-move (O3e), eval
+tuning (E-EVAL next), self-play/NNUE.
+
+---
 
 ## Round 3 — O3c executed (2026-09-11)
 

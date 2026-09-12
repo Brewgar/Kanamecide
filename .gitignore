@@ -80,6 +80,34 @@ ob3.txt
 oc3.txt
 tactics_gen.txt
 uci_q1.bat
+# O3d / E-00009 session scratch (evidence, on disk, not in git).
+sp_driver.py
+probe_kana.py
+stop_latency.py
+ttid_measure.py
+boot_test.py
+fix_negamax.py
+ttid_*.txt
+ttid_run.bat
+sp_*.txt
+sl_*.txt
+rsp_*.txt
+pf_*.txt
+boot_*.txt
+selfplay_o3d.pgn
+uci_t*.bat
+uci_*.txt
+run_stop*.bat
+retry_rel.bat
+probe_out.txt
+t_boot.txt
+_*.txt
+g2*.txt
+err*.txt
+audit_*.txt
+audit_*.out
+*.log
+build_rel.log
 # Python
 __pycache__/
 *.pyc

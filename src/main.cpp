@@ -12,6 +12,11 @@
 #include "bench.h"
 #include "search.h"
 #include <cstdint>
+#include <thread>
+#include <mutex>
+#include <condition_variable>
+#include <deque>
+#include <atomic>
 
 using namespace kana;
 
@@ -52,81 +57,130 @@ static Move parse_move(Board& b, const std::string& token) {
     return 0;
 }
 
-static void run_uci() {
-    Board board;
-    set_startpos(board);
+static std::mutex              g_qmtx;
+static std::condition_variable g_qcv;
+static std::deque<std::string> g_q;
+
+static std::string read_line() {
+    std::unique_lock lk(g_qmtx);
+    g_qcv.wait(lk, []{ return !g_q.empty(); });
+    std::string s = g_q.front(); g_q.pop_front();
+    return s;
+}
+
+static void reader_loop() {
     std::string line;
     while (std::getline(std::cin, line)) {
-        std::istringstream iss(line);
-        std::string token;
-        iss >> token;
-        if (token == "uci") {
-            printf("id name Kanamecide\n");
-            printf("id author Kanamecide-collective\n");
-            printf("uciok\n");
-        } else if (token == "isready") {
-            printf("readyok\n");
-        } else if (token == "ucinewgame" || token == "setoption") {
-            set_startpos(board);
-        } else if (token == "position") {
-            std::string pos;
-            iss >> pos;
-            if (pos == "startpos") {
-                set_startpos(board);
-            } else if (pos == "fen") {
-                // read up to 6 FEN fields, stopping at "moves" or end-of-stream
-                std::string fen, w;
-                int fields = 0;
-                while (fields < 6 && iss >> w) {
-                    if (w == "moves") break;
-                    fen += w;
-                    fen += ' ';
-                    fields++;
-                }
-                if (!fen.empty())
-                    fen.pop_back(); // drop trailing space
-                set_fen(board, fen);
-            }
-            // apply trailing "moves ..." (re-split the whole line for simplicity)
-            std::string mv;
-            bool in_moves = false;
-            std::istringstream lss(line);
-            while (lss >> mv) {
-                if (mv == "moves") { in_moves = true; continue; }
-                if (in_moves) {
-                    Move m = parse_move(board, mv);
-                    if (m) { Undo u; make_move(board, m, u); }
-                }
-            }
-        } else if (token == "go") {
-            std::string what;
-            int depth = 4;
-            uint64_t node_limit = 0;
-            while (iss >> what) {
-                if (what == "depth") { iss >> depth; }
-                else if (what == "nodes") { iss >> node_limit; }
-            }
-            if (depth < 1) depth = 1;
-            search::clear_ordering();
-            auto t0 = std::chrono::steady_clock::now();
-            int score = 0;
-            uint64_t nodes = 0;
-            Move best = search::bestmove(board, depth, score, nodes);
-            auto t1 = std::chrono::steady_clock::now();
-            double ms = std::chrono::duration<double, std::milli>(t1 - t0).count();
-            (void)node_limit; // node limit is a stop hint for O3d; not honored yet
-            printf("info depth %d nodes %llu time %.1f score cp %d\n",
-                   depth, (unsigned long long)nodes, ms, score);
-            printf("bestmove %s\n", move_to_string(best).c_str());
-        } else if (token == "stop") {
-            // O3a has no search thread to interrupt; no-op (time control is O3d).
-        } else if (token == "quit") {
-            break;
-        }
-        fflush(stdout);
+        { std::lock_guard lk(g_qmtx); g_q.push_back(line); }
+        g_qcv.notify_one();
     }
 }
 
+static void run_uci() {
+    Board board;
+    std::vector<uint64_t> game_keys;
+    set_startpos(board);
+    game_keys.push_back(board.key);
+    std::thread reader(reader_loop);
+    bool quit_requested = false;
+
+    while (!quit_requested) {
+        std::string line = read_line();
+        std::istringstream iss(line);
+        std::string token;
+        iss >> token;
+
+        if (token == "uci") {
+            printf("id name Kanamecide\n");
+            printf("id author Kanamecide-collective\n");
+            printf("option name Hash type spin default 64 min 1 max 1024\n");
+            printf("uciok\n");
+        } else if (token == "isready") {
+            printf("readyok\n");
+        } else if (token == "ucinewgame") {
+            { std::lock_guard lk(g_qmtx); game_keys.clear(); }
+            set_startpos(board);
+            game_keys.push_back(board.key);
+            search::tt_clear();
+            search::clear_state();
+        } else if (token == "setoption") {
+            std::string n, v;
+            if (iss >> n >> v && n == "Hash") {
+                int mb = atoi(v.c_str());
+                if (mb < 1) mb = 1;
+                search::tt_init((size_t)mb);
+            }
+        } else if (token == "position") {
+            std::string pos; iss >> pos;
+            if (pos == "startpos") { set_startpos(board); game_keys = std::vector<uint64_t>{board.key}; }
+            else if (pos == "fen") {
+                std::string fen, w; int fields = 0;
+                while (fields < 6 && (iss >> w)) { if (w == "moves") break; fen += w; fen += ' '; fields++; }
+                if (!fen.empty()) { fen.pop_back(); set_fen(board, fen); }
+                game_keys = std::vector<uint64_t>{board.key};
+            }
+            {
+                std::string mv; bool in_moves = false;
+                std::istringstream lss(line); std::string first; lss >> first;
+                while (lss >> mv) {
+                    if (mv == "moves") { in_moves = true; continue; }
+                    if (in_moves) {
+                        Move m = parse_move(board, mv);
+                        if (m) { Undo u; make_move(board, m, u); game_keys.push_back(board.key); }
+                    }
+                }
+            }
+        } else if (token == "go") {
+            std::string w; int depth = 0; uint64_t node_limit = 0;
+            int movetime = 0, wtime = 0, btime = 0, winc = 0, binc = 0;
+            while (iss >> w) {
+                if (w == "depth")      iss >> depth;
+                else if (w == "nodes") iss >> node_limit;
+                else if (w == "movetime") iss >> movetime;
+                else if (w == "wtime")  iss >> wtime;
+                else if (w == "btime")  iss >> btime;
+                else if (w == "winc")   iss >> winc;
+                else if (w == "binc")   iss >> binc;
+            }
+            int our_time = (board.side == WHITE) ? wtime : btime;
+            int our_inc  = (board.side == WHITE) ? winc : binc;
+            int time_ms  = 0;
+            if (movetime > 0) time_ms = movetime;
+            else if (our_time > 0) { time_ms = our_time / 30 + our_inc - 50; if (time_ms < 10) time_ms = 10; }
+            if (depth <= 0) depth = (time_ms > 0) ? 256 : 4;
+
+            search::set_game_keys(game_keys);
+            int score = 0; uint64_t nodes = 0; std::string pv; search::TTStats stats;
+            Move best = 0;
+            std::atomic<bool> done{false};
+            std::thread searcher([&]{
+                best = search::search_root(board, depth, time_ms, node_limit, score, nodes, pv, stats);
+                done.store(true, std::memory_order_relaxed);
+            });
+            while (!done.load(std::memory_order_relaxed)) {
+                {
+                    std::unique_lock lk(g_qmtx);
+                    g_qcv.wait_for(lk, std::chrono::milliseconds(2), []{ return !g_q.empty(); });
+                    while (!g_q.empty()) {
+                        std::istringstream si(g_q.front()); std::string t; si >> t;
+                        if (t == "stop")      { search::request_stop(); g_q.pop_front(); }
+                        else if (t == "quit") { search::request_stop(); quit_requested = true; g_q.pop_front(); }
+                        else break;
+                    }
+                }
+                std::this_thread::yield();
+            }
+            searcher.join();
+            printf("bestmove %s\n", move_to_string(best).c_str());
+        } else if (token == "stop") {
+            // No search running: nothing to interrupt.
+        } else if (token == "quit") {
+            quit_requested = true;
+        }
+        fflush(stdout);
+    }
+    if (reader.joinable()) reader.detach();
+}
 static void dump_moves(const Board& b) {
   Move moves[256];
   int n = generate_moves(b, moves);
@@ -156,6 +210,7 @@ int main(int argc, char** argv) {
 
   bitboards_init();
   kana::zobrist::init();
+  search::tt_init(64);
 
   if (uci_mode) {
     run_uci();

@@ -48,6 +48,16 @@ Time-to-depth and Elo numbers for both approaches on this specific engine.
 ## Proposed Resolution Experiment
 E-0001 (baseline classical search), followed by a same-conditions MCTS prototype.
 
+## Researcher-Architect Addendum (2026-09-09, independent baseline)
+My position (conf 0.75, likely): classical alpha-beta/PVS + ID + TT + quiescence +
+ordered moves FIRST; GPU MCTS/PUCT is Phase 3+ AFTER a measured CPU baseline and a
+trained evaluator exist. Sharpened argument: MCTS-without-net is circular (needs
+policy/value -> needs games -> needs a playing engine). H-0003 records this as a real
+(non-example) hypothesis with O3 success criteria. I do not move to close D-0001:
+the systems-researcher GPU case (batch inference economics) deserves real batch=1 vs
+batch=32 latency curves (P3) before dismissal. Example-status note: this D-0001 file
+is example:true (mock seed); my H-0003/D-0002 are example:false real records.
+
 ## Resolution
 (unresolved — do not force consensus)
 
