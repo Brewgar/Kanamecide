@@ -1,0 +1,2 @@
+total=1 A=0 B=1 draw=0 bad=0
+results=B

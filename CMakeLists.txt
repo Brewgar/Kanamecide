@@ -7,6 +7,8 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 # O3b: move-ordering stage, 0..4 (see src/search.cpp). Default = full ordering.
 set(ORDER_STAGE "4" CACHE STRING "Move-ordering stage (0=unordered,1=PV,2=MVV-LVA,3=killers,4=history)")
 set(QSEARCH "1" CACHE STRING "Quiescence at leaf (1=on, 0=off for O3b baseline)")
+# E-0010: eval stage 0..6 (0=material-only baseline … 6=full eval with tempo).
+set(EVAL_STAGE "6" CACHE STRING "Eval stage (0=material,1=taper,2=+PST,3=+pawn,4=+mobility,5=+positional,6=+tempo)")
 
 # O3b: add an "Audit" configuration = /O2 WITHOUT NDEBUG (asserts live) and no /DEBUG
 # pdb, because Device Guard on this machine blocks any /DEBUG-flagged executable.
@@ -23,6 +25,7 @@ add_executable(kana
   src/bench.cpp
   src/search.cpp
   src/tt.cpp
+  src/eval.cpp
   src/main.cpp
 )
 
@@ -50,4 +53,5 @@ endif()
 target_compile_definitions(kana PRIVATE
   KANA_GIT_COMMIT=\"${KANA_GIT_COMMIT}\"
   ORDER_STAGE=${ORDER_STAGE}
-  QSEARCH=${QSEARCH})
+  QSEARCH=${QSEARCH}
+  EVAL_STAGE=${EVAL_STAGE})

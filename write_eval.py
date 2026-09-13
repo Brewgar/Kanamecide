@@ -1,0 +1,51 @@
+#!/usr/bin/env python3
+"""Write eval.cpp in parts to avoid shell escaping issues."""
+
+def write_eval():
+    lines = []
+    
+    # Header comment + includes
+    lines.append('// E-0010 - Tapered hand-tuned evaluation.')
+    lines.append('// Stage-gated for per-term self-play Elo attribution.')
+    lines.append('//   Stage 0: flat material only (baseline).')
+    lines.append('//   Stage 1: tapered material (mg/eg interpolated by phase).')
+    lines.append('//   Stage 2: + MG/EG PSTs.')
+    lines.append('//   Stage 3: + pawn structure (doubled/isolated/passed).')
+    lines.append('//   Stage 4: + enemy-pawn-discounted mobility.')
+    lines.append('//   Stage 5: + bishop pair / open-semi-open file / 7th rank / king shield / king center.')
+    lines.append('//   Stage 6: + tempo.')
+    lines.append('')
+    lines.append('#include "eval.h"')
+    lines.append('#include "board.h"')
+    lines.append('#include "bitboard.h"')
+    lines.append('')
+    lines.append('#include <algorithm>')
+    lines.append('#include <cstring>')
+    lines.append('')
+    lines.append('namespace kana {')
+    lines.append('')
+    lines.append('static EvalCoeffs C;')
+    lines.append('static int stage =')
+    lines.append('#ifdef EVAL_STAGE')
+    lines.append('    EVAL_STAGE')
+    lines.append('#else')
+    lines.append('    6')
+    lines.append('#endif')
+    lines.append('    ;')
+    lines.append('')
+    lines.append('static Bitboard file_mask[8];')
+    lines.append('static Bitboard adj_file_mask[8];')
+    lines.append('static Bitboard passed_mask[2][SQ_NB];')
+    lines.append('static Bitboard shelter_mask[2][SQ_NB];')
+    lines.append('')
+    lines.append('static const int GAME_PHASE_MAX = 24;')
+    lines.append('static constexpr int FLAT_VALUE[PIECE_TYPE_NB] = {100, 320, 330, 500, 900, 20000};')
+    lines.append('')
+    lines.append('static inline Square mirror_sq(Square s) { return Square(s ^ 56); }')
+    lines.append('static inline int file_of(Square s) { return int(s) & 7; }')
+    lines.append('static inline int rank_of(Square s) { return int(s) >> 3; }')
+    lines.append('')
+    
+    with open(r'c:\Users\tahae\Kanamecide\src\eval.cpp', 'w') as f:
+        f.write('\n'.join(lines))
+    print('Part 1 written')

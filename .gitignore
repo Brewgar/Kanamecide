@@ -121,3 +121,10 @@ research/context/*
 # OS / editor
 Thumbs.db
 .DS_Store
+
+# Session scratch (agents; not records or source)
+a.txt
+in.txt
+out.txt
+src/_write_eval.py
+src/_gen.py

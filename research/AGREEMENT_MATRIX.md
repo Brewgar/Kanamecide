@@ -1,0 +1,26 @@
+# Agreement Matrix — Round 2
+
+> Collective ledger for `research/AGENT_MEGAPROMPT_ROUND2.md` §3.C / §6.
+> Each agent may edit **only its own column** (one cell per debate). Leave the other columns alone.
+> Cell format: `<state> — <one-line AGREE/DISAGREE reason>`.
+> States (see Round2 §2): **AGREED** · **ROUTED** (pre-registered experiment exists) · **CONFLICT**.
+> Write reasons as "AGREE with <agent> on <claim> because <reason>" / "DISAGREE with <agent> … because …".
+
+| Debate | Question (short) | researcher-architect | adversarial-reviewer | systems-researcher | implementation-engineer |
+|---|---|---|---|---|---|
+| D-0001 | Classical-first vs GPU MCTS/PUCT roadmap | ROUTED — AGREE with systems-researcher & implementation-engineer on classical-first; GPU PUCT stays Phase-3 behind a re-specified CPU-baselined gate (E-00004 as-is cannot gate). | | ROUTED — AGREE with researcher-architect on classical-first because MCTS-without-net is circular (needs policy/value → needs games → needs playing engine); GPU MCTS feasibility gated on RTX 5070 Ti batch-inference latency curve (pre-registered experiment) | ROUTED — AGREE with researcher-architect & systems-researcher on classical-first (buildable lawfully today; GPU PUCT gated on E-00004); E-00004 thresholds buildable but wrong fan-out for PUCT → re-spec before it gates D-0001 |
+| D-0002 | /Od flags invalidate NPS claims; kana_o2 provenance | AGREED — AGREE with adversarial-reviewer two-tier rule; kana_o2.exe (253,952 B) delete-or-quarantine as unrecorded provenance. | | AGREED — AGREE with researcher-architect and adversarial-reviewer that current NPS numbers are provisional (~2 sig figs, unpinned); kana_o2.exe excluded until provenance documented; E-0002 certified bench (5 reps, pinned, hash logged) is the certification path | AGREED — AGREE with adversarial-reviewer two-tier (provisional vs E-0002-certified); pinning (SetThreadAffinityMask) + SHA-256 achievable, frequency "fixing" proxy-only (WMI + high-perf plan); kana_o2.exe (253,952 B) ≠ build_o2 scratch exe (74,240 B) → delete or document |
+| D-0003 | PEXT speedup magnitude (≥3x vs 1.3–2.5x) | ROUTED — AGREE single 4-way CI partition as the pre-registered E-PEXT rule; H-0006 falsification fence aligned to outside [1.3, 2.5]. | | ROUTED — AGREE with researcher-architect (revised) and adversarial-reviewer that 1.3-2.5x is working prior; ≥3x implausible at ~47 Mnps baseline (would require >140 Mnps); pre-registered 4-way partition in D-0003 before E-PEXT | ROUTED — AGREE the 4-way partition is one pre-registerable rule but AMEND: add CI/noise clause (boundary-straddling CI → INCONCLUSIVE) to stop stalemate at 1.3/3.0; magnitude prior 0.5 (slider share unprofiled) |
+| D-0004 | movegen pseudo-legal vs legal contract (DEC-0005) | AGREED — AGREE pseudo-legal + filter (16 vs 9 triple-verified); DEC-0005 superseded by DEC-0008 with the implementer-named filter. | | AGREED — AGREE with researcher-architect and adversarial-reviewer confirmed at runtime (16 pseudo vs 9 legal on pinned-rook FEN); correct DEC-0005/README/project_state.md to "pseudo-legal + filter at search site"; no behavior change needed | AGREED — VERIFIED myself (16 vs 9, dump_moves mislabels); name the search filter exactly: `!attacked_by(b, king_sq[pre-move us], b.side)` post-make, + enemy-king-capture & promo-phantom asserts |
+| D-0005 | make-unmake vs copy-make for search | ROUTED — AGREE keep make/unmake (DEC-0004) as O3 default; E-COPYMAKE deferred past O3 as side microbench with >=5% TTD plus a <=10s escape and CI. | | ROUTED — AGREE with adversarial-reviewer priors favor make/unmake (0.6); copy-make crossover plausible at depth≥10 but unmeasured; pre-registered ≥5% TTD rule at depths 6-14 on two suites for E-COPYMAKE | ROUTED — AGREE keep make/unmake (DEC-0004); E-COPYMAKE ≥5% TTD buildable but DEFER past O3 (no duplicate search build); rule needs ≤10s-TTD escape + CI (5% ≈ noise floor) |
+| D-0006 | O3 build order: quiescence-first vs PVS/TT-first | AGREED — AGREE quiescence-first; accept O3a→O3b→O3c→O3d split; vacuous crossover replaced by nodes/TTD + days-to-SPRT proxy. | | AGREED — AGREE with researcher-architect and adversarial-reviewer on quiescence-first conclusion; AMEND adversarial-reviewer's resolution: crossover experiment is vacuous (both paths converge); pre-register measurable proxy (days-to-interpretable-SPRT, fixed-depth nodes/TTD matrix) | AGREED — AGREE quiescence-first (vs PVS/TT); AMEND: O3 must SPLIT plain-AB → ordering → quiescence → ID/UCI (one-shot un-measurable); crossover rule vacuous → replace w/ nodes/TTD proxy |
+
+## Already-entered agents (back-fill from your own records)
+
+- **researcher-architect** (conf 0.78) — column filled above from my Round-2 ratification entry in current_position.md.
+- **adversarial-reviewer** (conf 0.65) — fill your column from R-0002 and your D-0002…D-0006 positions.
+
+## First-entry agents
+
+- **systems-researcher** — FIRST ENTRY (Round2 §4); verify the two demonstrated findings before filling.
+- **implementation-engineer** — FIRST ENTRY (Round2 §4); verify the two demonstrated findings before filling.

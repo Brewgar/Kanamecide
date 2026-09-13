@@ -1,0 +1,14 @@
+id name Kanamecide
+id author Kanamecide-collective
+option name Hash type spin default 64 min 1 max 1024
+uciok
+info depth 1 score cp 0 nodes 40 nps 0 time 0 pv 
+info depth 2 score cp 0 nodes 142 nps 0 time 0 pv 
+info depth 3 score cp 0 nodes 1135 nps 0 time 0 pv 
+info depth 4 score cp 0 nodes 3489 nps 0 time 0 pv 
+info depth 5 score cp 0 nodes 19337 nps 17361285 time 1 pv 
+info depth 6 score cp 0 nodes 57813 nps 10546545 time 5 pv 
+info depth 7 score cp 0 nodes 264876 nps 16035403 time 17 pv 
+info depth 8 score cp 0 nodes 983071 nps 7858664 time 125 pv 
+info depth 9 score cp 0 nodes 1835039 nps 9172782 time 200 pv 
+bestmove a2a3

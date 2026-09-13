@@ -11,12 +11,15 @@
 #include "zobrist.h"
 #include "bench.h"
 #include "search.h"
+#include "eval.h"
 #include <cstdint>
 #include <thread>
 #include <mutex>
 #include <condition_variable>
 #include <deque>
 #include <atomic>
+#include <random>
+#include <vector>
 
 using namespace kana;
 
@@ -57,6 +60,13 @@ static Move parse_move(Board& b, const std::string& token) {
     return 0;
 }
 
+// E-0010 diagnostics: ms-since-epoch for the [GO]/[BM] stderr trace (stderr is
+// DEVNULL in match runs, so traces are free there and captureable in repro).
+static long long now_ms() {
+    return std::chrono::duration_cast<std::chrono::milliseconds>(
+        std::chrono::steady_clock::now().time_since_epoch()).count();
+}
+
 static std::mutex              g_qmtx;
 static std::condition_variable g_qcv;
 static std::deque<std::string> g_q;
@@ -94,6 +104,13 @@ static void run_uci() {
             printf("id name Kanamecide\n");
             printf("id author Kanamecide-collective\n");
             printf("option name Hash type spin default 64 min 1 max 1024\n");
+            printf("option name EvalStage type spin default %d min 0 max 6\n",
+#ifdef EVAL_STAGE
+                   EVAL_STAGE
+#else
+                   6
+#endif
+            );
             printf("uciok\n");
         } else if (token == "isready") {
             printf("readyok\n");
@@ -103,12 +120,30 @@ static void run_uci() {
             game_keys.push_back(board.key);
             search::tt_clear();
             search::clear_state();
+            kana::eval_init();
         } else if (token == "setoption") {
-            std::string n, v;
-            if (iss >> n >> v && n == "Hash") {
-                int mb = atoi(v.c_str());
-                if (mb < 1) mb = 1;
-                search::tt_init((size_t)mb);
+            // E-0010 fix (gate-c validity): the previous parser extracted a single "n v"
+            // pair and tested n=="Hash" / n=="EvalStage". For the standard UCI form
+            // ("setoption name EvalStage value 6") n=="name" never matched, and for the
+            // compact form the driver sends ("setoption EvalStage 6") the else-if
+            // re-extracted from the already-exhausted stream and also failed -- so
+            // EvalStage was silently NEVER applied and every "stage K vs stage 0" match
+            // ran both engines at the compiled default (stage 6). Parse all tokens, drop
+            // the "name"/"value" keywords, apply every (key, value) pair. Both forms work.
+            std::vector<std::string> w;
+            std::string x;
+            while (iss >> x) w.push_back(x);
+            std::vector<std::string> t;
+            for (size_t i = 0; i < w.size(); i++)
+                if (w[i] != "name" && w[i] != "value") t.push_back(w[i]);
+            for (size_t i = 0; i + 1 < t.size(); i += 2) {
+                if (t[i] == "Hash") {
+                    int mb = atoi(t[i + 1].c_str());
+                    if (mb < 1) mb = 1;
+                    search::tt_init((size_t)mb);
+                } else if (t[i] == "EvalStage") {
+                    kana::set_eval_stage(atoi(t[i + 1].c_str()));
+                }
             }
         } else if (token == "position") {
             std::string pos; iss >> pos;
@@ -142,12 +177,20 @@ static void run_uci() {
                 else if (w == "winc")   iss >> winc;
                 else if (w == "binc")   iss >> binc;
             }
-            int our_time = (board.side == WHITE) ? wtime : btime;
+                                    int our_time = (board.side == WHITE) ? wtime : btime;
             int our_inc  = (board.side == WHITE) ? winc : binc;
             int time_ms  = 0;
             if (movetime > 0) time_ms = movetime;
-            else if (our_time > 0) { time_ms = our_time / 30 + our_inc - 50; if (time_ms < 10) time_ms = 10; }
+            else if (our_time > 0) {
+                // E-0010: under heavy same-exe contention the shared TT thrashes and
+                // nps collapses; reserve a hard stop margin so the search halts cleanly
+                // well inside the caller's watchdog rather than racing the budget.
+                time_ms = our_time / 30 + our_inc - 50 - 40;
+                if (time_ms < 10) time_ms = 10;
+            }
             if (depth <= 0) depth = (time_ms > 0) ? 256 : 4;
+            fprintf(stderr, "[GO] %lld time_ms=%d depth=%d wtime=%d btime=%d\n",
+                    now_ms(), time_ms, depth, wtime, btime);
 
             search::set_game_keys(game_keys);
             int score = 0; uint64_t nodes = 0; std::string pv; search::TTStats stats;
@@ -171,7 +214,11 @@ static void run_uci() {
                 std::this_thread::yield();
             }
             searcher.join();
-            printf("bestmove %s\n", move_to_string(best).c_str());
+            fprintf(stderr, "[BM] %lld best=%s\n", now_ms(), move_to_string(best).c_str());
+            // E-0010 fix: best==0 means no legal root move (mate/stalemate seen by the
+            // engine). Emit the UCI null move instead of move_to_string(0)=="a1a1",
+            // which drivers validate as an illegal move and score as a bad game.
+            printf("bestmove %s\n", (best == 0) ? "0000" : move_to_string(best).c_str());
         } else if (token == "stop") {
             // No search running: nothing to interrupt.
         } else if (token == "quit") {
@@ -191,6 +238,62 @@ static void dump_moves(const Board& b) {
 
 static Board board_55() { Board b; std::memset(&b, 0, sizeof(b)); return b; }
 
+// --- E-0010 gate (b): eval symmetry harness --------------------------------------
+// build_mirror mirrors the board: swap piece colors, mirror ranks (s ^ 56), and
+// optionally flip side-to-move (the full chess mirror). Castling/ep/halfmove/fullmove
+// do not affect evaluate(), so they are intentionally not carried over.
+static Board build_mirror(const Board& b, bool flip_side) {
+  Board f; std::memset(&f, 0, sizeof(f));
+  for (int s = 0; s < SQ_NB; s++) {
+    int pc = b.mailbox[s];
+    if (pc == 0) continue;
+    Color c = piece_color(pc);
+    PieceType pt = piece_type(pc);
+    int ms = s ^ 56;
+    f.mailbox[ms] = (uint8_t)make_piece(~c, pt);
+    f.pieces[~c][pt] |= (1ULL << ms);
+    f.occ[~c] |= (1ULL << ms);
+    if (pt == KING) f.king_sq[~c] = Square(ms);
+  }
+  f.side = flip_side ? ~b.side : b.side;
+  return f;
+}
+
+static int run_symmetry(int n, int stg) {
+  kana::eval_init();
+  kana::set_eval_stage(stg);
+  std::mt19937 rng(20260913);
+  int checked = 0, viol_keep = 0, viol_flip = 0;
+  for (int i = 0; i < n; i++) {
+    Board b; set_startpos(b);
+    int plies = int(rng() % 60u);
+    for (int p = 0; p < plies; p++) {
+      Move pseudo[256]; int np = generate_moves(b, pseudo);
+      Move legal[256]; int nl = 0;
+      for (int m = 0; m < np; m++) {
+        Undo u; make_move(b, pseudo[m], u);
+        if (!attacked_by(b, b.king_sq[~b.side], b.side)) legal[nl++] = pseudo[m];
+        unmake_move(b, pseudo[m], u);
+      }
+      if (nl == 0) break;                       // terminal — stop the walk
+      Undo u; make_move(b, legal[rng() % (unsigned)nl], u);
+    }
+    int s1 = kana::evaluate(b);
+    Board mk = build_mirror(b, false);          // colors+ranks, side kept
+    Board mf = build_mirror(b, true);           // colors+ranks+turn (full mirror)
+    int a = kana::evaluate(mk);
+    int c = kana::evaluate(mf);
+    checked++;
+    if (s1 != -a) viol_keep++;                  // protocol-literal convention
+    if (s1 != c) viol_flip++;                   // full-mirror mover convention
+  }
+    printf("symmetry stage=%d positions=%d checked=%d keep_side_viol=%d full_mirror_viol=%d %s%s\n",
+         stg, n, checked, viol_keep, viol_flip,
+         (viol_flip == 0) ? "PASS" : "VIOLATIONS",
+         (viol_keep == 0) ? "" : "  [keep_side nonzero at stage>=6 is EXPECTED: the tempo term is a side-to-move bonus, which is symmetric under a 180-deg mirror (side flips) but cannot negate under a geometry-only flip (side held); full_mirror is the binding chess-symmetry gate]");
+  return (viol_flip == 0) ? 0 : 1;
+}
+
 static bool run_perft(Board& b, const char* name, int depth, uint64_t expected) {
   set_startpos(b);
   uint64_t got = perft(b, depth);
@@ -206,6 +309,7 @@ int main(int argc, char** argv) {
   bool fen_mode   = (argc > 1 && strcmp(argv[1], "--fen") == 0);
   bool bench_mode = (argc > 1 && strcmp(argv[1], "--bench") == 0);
   bool audit_mode = (argc > 1 && strcmp(argv[1], "--audit") == 0);
+  bool symmetry_mode = (argc > 1 && strcmp(argv[1], "--symmetry") == 0);
   bool uci_mode   = (argc > 1 && strcmp(argv[1], "uci") == 0);
 
   bitboards_init();
@@ -232,6 +336,12 @@ int main(int argc, char** argv) {
     printf("=== %s\n", rc == 0 ? "STATE AUDIT PASSED" : "STATE AUDIT FAILED");
     return rc;
 #endif
+  }
+
+  if (symmetry_mode) {
+    int n = (argc > 2) ? atoi(argv[2]) : 1000;
+    int stg = (argc > 3) ? atoi(argv[3]) : 6;
+    return run_symmetry(n, stg);
   }
 
   if (list_moves) {

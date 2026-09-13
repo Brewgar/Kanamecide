@@ -3,6 +3,7 @@
 
 #include "search.h"
 #include "tt.h"
+#include "eval.h"
 
 #include <algorithm>
 #include <atomic>
@@ -106,20 +107,13 @@ static int score_move(const Board& b, Move m, int ply, Move pv) {
     return history_tbl[b.side][move_from(m)][move_to(m)];
 }
 
-static int evaluate(const Board& b) {
-    int s = 0;
-    for (int c = 0; c < COLOR_NB; c++)
-        for (int pt = 0; pt < PIECE_TYPE_NB; pt++)
-            s += (c == WHITE ? 1 : -1) * VALUE[pt] * popcount(b.pieces[c][pt]);
-    return (b.side == WHITE) ? s : -s;
-}
 
 struct ScoredMove { Move m; int s; };
 
 static int qsearch(Board& b, int alpha, int beta, uint64_t& nodes) {
     nodes++;
     int best = -INF;
-    int sp = evaluate(b);
+    int sp = kana::evaluate(b);
     if (stopped(nodes)) return sp;
     if (sp >= beta) return beta;
     best = sp;
@@ -166,7 +160,7 @@ int negamax(Board& b, int depth, int alpha, int beta, int ply, uint64_t& nodes) 
     if (count_reps(b.key) >= 2) return 0;        // threefold repetition
     if (b.halfmove >= 100) return 0;             // 50-move rule
     if (stopped(nodes)) return 0;
-    if (depth <= 0) return QSEARCH ? qsearch(b, alpha, beta, nodes) : evaluate(b);
+    if (depth <= 0) return QSEARCH ? qsearch(b, alpha, beta, nodes) : kana::evaluate(b);
     assert(ply < MAX_PLY && path_len < MAX_PLY);
 #ifndef NDEBUG
     uint64_t ck = compute_key(b);
@@ -257,10 +251,16 @@ static std::string build_pv(Board root, int maxply) {
     return pv;
 }
 
+static long long sr_now_ms() {
+    return std::chrono::duration_cast<std::chrono::milliseconds>(
+        std::chrono::steady_clock::now().time_since_epoch()).count();
+}
+
 Move search_root(Board& b, int max_depth, int time_ms, uint64_t node_limit_in,
                  int& score, uint64_t& nodes, std::string& pv_out, TTStats& stats) {
         if (max_depth < 1) max_depth = 1;
     if (max_depth > MAX_PLY - 4) max_depth = MAX_PLY - 4;
+    fprintf(stderr, "[SR] %lld enter time_ms=%d maxd=%d\n", sr_now_ms(), time_ms, max_depth);
     clear_state();
     tt_clear();                 // O3d: start each search from a clean transposition table
     stop_flag.store(false, std::memory_order_relaxed);
@@ -294,6 +294,8 @@ Move search_root(Board& b, int max_depth, int time_ms, uint64_t node_limit_in,
             if (stop_flag.load(std::memory_order_relaxed)) break;
         }
         nodes += it_nodes;
+        if (stop_flag.load(std::memory_order_relaxed))
+            fprintf(stderr, "[SR] %lld stop-fired depth=%d\n", sr_now_ms(), depth);
         if (!stop_flag.load(std::memory_order_relaxed) || best == 0) {
             score = it_score; best = it_best;
             // root is not searched inside negamax, so store its exact entry here for PV walk
@@ -312,7 +314,16 @@ Move search_root(Board& b, int max_depth, int time_ms, uint64_t node_limit_in,
         fflush(stdout);
         if (stop_flag.load(std::memory_order_relaxed)) break;
     }
+    {
+        double ex_ms = std::chrono::duration<double, std::milli>(
+            std::chrono::steady_clock::now() - t0).count();
+        fprintf(stderr, "[SR] %lld loop-exit best=%u stopped=%d ms=%.0f nodes=%llu\n",
+                sr_now_ms(), (unsigned)best,
+                (int)stop_flag.load(std::memory_order_relaxed), ex_ms,
+                (unsigned long long)nodes);
+    }
     pv_out = build_pv(b, max_depth);
+    fprintf(stderr, "[SR] %lld pv_built len=%zu\n", sr_now_ms(), pv_out.size());
     stats = tt_stats();
     return best;
 }
