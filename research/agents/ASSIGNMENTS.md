@@ -13,12 +13,20 @@
 
 | Role | Assigned model | Since | Notes |
 |---|---|---|---|
-| researcher-architect | (unassigned) | — | — |
-| systems-researcher | (unassigned) | — | — |
-| adversarial-reviewer | (unassigned) | — | — |
-| implementation-engineer | (unassigned) | — | — |
+| researcher-architect | (unassigned) | — | Round 4: W-0001 pre-registration, W-0005 pre-registration |
+| systems-researcher | (unassigned) | — | Round 4: W-0001 build/run under runjob.py |
+| adversarial-reviewer | (unassigned) | — | Round 4: W-0002, W-0003; critiques W-0001/W-0005 pre-registrations |
+| implementation-engineer | (unassigned) | — | Round 4: W-0001 generator code, W-0006 hygiene |
+| verification-auditor | (unassigned — rotating fresh-agent seat) | 2026-09-14 | Round 4: W-0004; designed for brand-new agents with zero chat history |
+
+> The owner runs one agent chat at a time and pastes each session's final output to a
+> separate orchestrator chat. Any model can occupy any role; record the assignment here
+> and never inside the role directory. The `verification-auditor` seat is deliberately
+> rotated: a fresh model/instance with no history is the *ideal* occupant (SYSTEM.md §5).
 
 ## How to reassign
-1. Pick (or create) a role directory under `agents/`.
+1. Pick (or create) a role directory under `agents/` (`research.py new-agent <name>
+   --role "<Role>"` scaffolds one).
 2. Update this table with the model, date, and any notes.
-3. Have the model read the role's `profile.md`, then continue from its `current_position.md`.
+3. Have the model read `research/README.md` → `AGENT_MEGAPROMPT.md` → the role's
+   `profile.md`, then continue from its `current_position.md`.
