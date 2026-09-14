@@ -1,0 +1,47 @@
+---
+id: W-0004
+type: work
+title: "Fresh-reviewer onboarding proof: two independent verification reviews of E-0010"
+round: 4
+owner: verification-auditor
+status: OPEN
+deliverable: "two research/reviews/R-#### (kind: verification) of E-0010 by brand-new agents, plus updated agents/ASSIGNMENTS.md rows"
+exit_check: "two verification reviews COMPLETED, each re-running e0010_report.py and listing any number that did not reproduce; reviewers are not owners of any verified item"
+evidence: []
+verified_by: null
+verification_verdict: null
+example: false
+created: 2026-09-14
+closed: null
+---
+
+# W-0004 — Fresh-reviewer onboarding proof
+
+## Objective
+The owner will onboard two completely new agents. Prove the bootstrap path works: each
+new agent starts from the repo ALONE (research/README.md → AGENT_MEGAPROMPT.md →
+agents/verification-auditor/profile.md → `research.py status --brief` → Gate 0) and
+delivers one `kind: verification` review of E-0010 — re-running
+`python e0010_report.py`, recomputing the ladder Elo/CI/LOS numbers, and checking
+`duplicate-move-lists=0`.
+
+## Deliverable (exact path(s))
+- `research/reviews/R-####-verification-of-e-0010-*.md` ×2
+- `research/agents/ASSIGNMENTS.md` rows for the two occupants.
+
+## Exit Check
+```powershell
+python research/scripts/research.py reviews     # both listed, COMPLETED
+python research/scripts/research.py validate    # OK
+```
+
+## Evidence
+- (to be filled)
+
+## Work Log (append-only while OPEN)
+- 2026-09-14 — opened by Round-4 meta-agent (SYSTEM.md §5; G1/Q5).
+
+## Verification
+- verified_by: (a different agent than owner)
+- verdict: (VERIFIED | CONTRADICTED | PARTIAL | UNVERIFIABLE)
+- evidence: (review record id + command outputs)
