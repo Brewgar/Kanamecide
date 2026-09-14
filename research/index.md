@@ -20,6 +20,12 @@
 - [H-0014](hypotheses/H-0014-board-state-integrity-audit-halfmove-ep-key-castling-rights-round-trip-tests.md) — Board state integrity audit - halfmove EP-key castling-rights round-trip tests — status=OPEN
 - [H-0015](hypotheses/H-0015-learned-time-management-value-of-computation-allocation-from-eval-variance.md) — Learned time management - value of computation allocation from eval variance — status=OPEN
 
+## Closed Hypotheses
+
+- [H-0002-classical-stub](hypotheses/H-0002-classical-alpha-beta-pvs-is-the-correct-phase-2-foundation.md) — SUPERSEDED placeholder (renumbered to H-0003/H-0004/H-0005 on 2026-09-09) — status=SUPERSEDED
+- [H-0002-hand-tuned-stub](hypotheses/H-0002-hand-tuned-evaluation-baseline-sufficient-for-2500-elo.md) — Hand-Tuned Evaluation Baseline Sufficient for 2500+ Elo — status=SUPERSEDED
+- [H-0002-magic-stub](hypotheses/H-0002-magic-bitboards-with-pext-provide-3x-nps-speedup.md) — Magic Bitboards with PEXT Provide >=3x NPS Speedup — status=SUPERSEDED
+
 ## Open Disagreements
 
 - [D-0001](debates/D-0001-search-framework-classical-vs-mcts.md) — Search framework: classical alpha-beta/PVS vs GPU MCTS/PUCT — status=OPEN  [EXAMPLE]
@@ -29,6 +35,10 @@
 - [D-0005](debates/D-0005-make-unmake-vs-copy-make-for-phase-2-search-dec-0004-under-conditions.md) — make-unmake vs copy-make for Phase 2 search: DEC-0004 under conditions — status=OPEN
 - [D-0006](debates/D-0006-o3-search-order-quiescence-before-pvs-tt-or-pvs-tt-before-quiescence.md) — O3 search order - quiescence before PVS-TT or PVS-TT before quiescence — status=OPEN
 
+## Routed / Resolved Disagreements
+
+(none)
+
 ## Pending / Running Experiments
 
 - [E-00004](experiments/E-00004-gpu-batch-inference-latency-curve-rtx-5070-ti-dense-net-256-512-hidden.md) — GPU batch-inference latency curve (RTX 5070 Ti, dense net 256-512 hidden) — status=PENDING
@@ -37,13 +47,13 @@
 
 ## Completed Experiments
 
-- [E-00003](experiments/E-00003-scratch-o2-vs-od-perft-baseline-measurement-external-harness.md) — Scratch /O2 vs /Od perft baseline measurement (external harness) — status=COMPLETED
-- [E-00006](experiments/E-00006-o3a-plain-alpha-beta-baseline-vs-random-mover.md) — O3a plain alpha-beta baseline vs random mover — status=COMPLETED
-- [E-00007](experiments/E-00007-o3b-staged-move-ordering-pv-mvv-lva-killers-history.md) — O3b staged move ordering (PV, MVV-LVA, killers, history) — status=COMPLETED
-- [E-00008](experiments/E-00008-o3c-quiescence-search-stand-pat-captures-promos-delta-prune-check-evasion.md) — O3c quiescence search (stand-pat, captures/promos, delta prune, check evasion) — status=COMPLETED
-- [E-00009](experiments/E-00009-o3d-tt-iterative-deepening-time-control-repetition-50-move-search-stack-completion.md) — O3d TT + iterative deepening + time control + repetition/50-move (search-stack completion) — status=COMPLETED
-- [E-0002](experiments/E-0002-bench-harness-and-o2-baseline.md) — Bench harness plus O2 build baseline (perft NPS, fixed flags) — status=COMPLETED
-- [E-0010](experiments/E-0010-ee-val-tapered-hand-tuned-evaluation-term-by-term-self-play-elo-attribution.md) — E-EVAL — Tapered Hand-Tuned Evaluation (term-by-term self-play Elo attribution) — status=COMPLETED
+- [E-00003](experiments/E-00003-scratch-o2-vs-od-perft-baseline-measurement-external-harness.md) — Scratch /O2 vs /Od perft baseline measurement (external harness) — status=COMPLETED  result=perft NPS /O2 ~43-50 Mnp
+- [E-00006](experiments/E-00006-o3a-plain-alpha-beta-baseline-vs-random-mover.md) — O3a plain alpha-beta baseline vs random mover — status=COMPLETED  result=PASS: 29/30 wins (96.7%)
+- [E-00007](experiments/E-00007-o3b-staged-move-ordering-pv-mvv-lva-killers-history.md) — O3b staged move ordering (PV, MVV-LVA, killers, history) — status=COMPLETED  result=PASS: full ordering redu
+- [E-00008](experiments/E-00008-o3c-quiescence-search-stand-pat-captures-promos-delta-prune-check-evasion.md) — O3c quiescence search (stand-pat, captures/promos, delta prune, check evasion) — status=COMPLETED  result=PASS: perft bit-identica
+- [E-00009](experiments/E-00009-o3d-tt-iterative-deepening-time-control-repetition-50-move-search-stack-completion.md) — O3d TT + iterative deepening + time control + repetition/50-move (search-stack completion) — status=COMPLETED  result=PASS
+- [E-0002](experiments/E-0002-bench-harness-and-o2-baseline.md) — Bench harness plus O2 build baseline (perft NPS, fixed flags) — status=COMPLETED  result=certified /O2 = 43-47 Mn
+- [E-0010](experiments/E-0010-ee-val-tapered-hand-tuned-evaluation-term-by-term-self-play-elo-attribution.md) — E-EVAL — Tapered Hand-Tuned Evaluation (term-by-term self-play Elo attribution) — status=COMPLETED  result=FAIL (pre-registered gat
 
 ## Failures
 
@@ -55,10 +65,50 @@
 - [DEC-0002](decisions/DEC-0002-bitboard-mailbox-hybrid.md) — Bitboard + mailbox hybrid board representation — status=ACTIVE
 - [DEC-0003](decisions/DEC-0003-incremental-zobrist-hashing.md) — Incremental Zobrist hashing — status=ACTIVE
 - [DEC-0004](decisions/DEC-0004-make-unmake-move-application.md) — Make/unmake move application — status=ACTIVE
-- [DEC-0005](decisions/DEC-0005-legal-move-generation.md) — Legal move generation — status=SUPERSEDED
+- [DEC-0005](decisions/DEC-0005-legal-move-generation.md) — Legal move generation — status=SUPERSEDED  superseded_by=DEC-0008
 - [DEC-0006](decisions/DEC-0006-en-passant-legality-probe.md) — En passant legality via make/unmake probe — status=ACTIVE
 - [DEC-0007](decisions/DEC-0007-research-memory-system.md) — Repository-based multi-agent research memory system — status=ACTIVE
 - [DEC-0008](decisions/DEC-0008-pseudo-legal-move-generation-king-safety-filter-at-the-search-perft-site.md) — Pseudo-legal move generation + king-safety filter at the search/perft site — status=ACTIVE
+- [DEC-0009](decisions/DEC-0009-research-system-verification-and-coordination-layer.md) — Verification and coordination layer for the research system (amends DEC-0007) — status=ACTIVE
+
+## Reviews
+
+- [R-0001](reviews/R-0001-review-of-pvs-hypothesis.md) — (untitled) — status=DRAFT  [EXAMPLE]
+- [R-0002](reviews/R-0002-review-of-researcher-architect-6-report-corpus-pseudo-legal-contract-sprt-bar-falsification-bounds.md) — (untitled) — status=COMPLETED
+- [R-0003](reviews/R-0003-full-project-and-multi-agent-system-audit.md) — Full-project and multi-agent research-system audit (Round 4 meta) — status=COMPLETED
+
+## Work Items (open)
+
+- [W-0001](work/W-0001-e0011-self-play-data-pipeline-pre-register-build-run-verify.md) — E-0011 self-play data pipeline (pre-register, build, run, verify) — status=OPEN
+- [W-0002](work/W-0002-recalibrate-e0010-effect-size-decision-rule-d-0007-dec-0010.md) — Recalibrate the E-0010 effect-size decision rule (D-0007 -> DEC-0010) — status=OPEN
+- [W-0003](work/W-0003-round2-agreement-matrix-reviewer-column-backfill.md) — Round-2 AGREEMENT_MATRIX reviewer column backfill (as an addendum review) — status=OPEN
+- [W-0004](work/W-0004-fresh-reviewer-onboarding-proof-two-verification-reviews-of-e-0010.md) — Fresh-reviewer onboarding proof: two independent verification reviews of E-0010 — status=OPEN
+- [W-0005](work/W-0005-e-sprt-lite-comparison-harness-pre-register-build-validate.md) — E-SPRT-lite comparison harness: pre-register, build, validate against known difference — status=OPEN
+- [W-0006](work/W-0006-root-scratch-debt-reduction-grandfathered-list-shrink.md) — Root-scratch debt reduction: shrink root_grandfathered.txt with itemized deletions — status=OPEN
+
+## Work Items (closed)
+
+(none)
+
+## Handoffs (open)
+
+(none)
+
+## Runs (live)
+
+(none)
+
+## Runs (finished)
+
+(none)
+
+## Sessions
+
+- [S-0001](sessions/S-0001-meta-agent-round4-audit-and-system-redesign.md) — Full-project audit + multi-agent research-system redesign (DEC-0009) — status=CLOSED
+
+## Unrendered Records (bug — report this)
+
+(none — every scanned record appears above)
 
 ## Agent Positions
 
@@ -66,4 +116,5 @@
 - [implementation-engineer](agents/implementation-engineer/current_position.md) — confidence 0.76 — Phase 2 search implementation (O3a-O3d complete); correctness/perft-hazard audit; E-0002 harness spec
 - [researcher-architect](agents/researcher-architect/current_position.md) — confidence 0.78 — Phase-2 search architecture + pseudo-legal movegen contract + SPRT methodology
 - [systems-researcher](agents/systems-researcher/current_position.md) — confidence 0.65 — Hardware ceilings + training/data pipeline design
+- [verification-auditor](agents/verification-auditor/current_position.md) — confidence — — —
 

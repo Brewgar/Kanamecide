@@ -4,6 +4,16 @@
 > Agent opinions live in `research/agents/`; hypotheses in `research/hypotheses/`;
 > decisions in `research/decisions/`. Do not add unverified claims to this file.
 
+<!-- research-meta
+last_updated: 2026-09-14
+reflects: [DEC-0001, DEC-0002, DEC-0003, DEC-0004, DEC-0006, DEC-0007, DEC-0008, DEC-0009, E-0002, E-00003, E-00006, E-00007, E-00008, E-00009, E-0010]
+not_reflected: []
+-->
+> The `research-meta` block above is machine-checked by `research.py validate`:
+> `last_updated` may not be older than the newest COMPLETED experiment / ACTIVE
+> decision, and every such record must appear in `reflects` or — with a stated reason
+> in the body — in `not_reflected`. This is the anti-staleness gate (DEC-0009, F7).
+
 ## Mission
 Build a strong, research-driven chess engine ("Kanamecide", executable `kana`) and use it
 as a platform for long-term multi-agent research. Correctness first, then search, then
@@ -28,28 +38,45 @@ evaluation and learning.
   `quit`; `go` reports `info depth N nodes X time T score cp S nps Y pv ...` with
   `tt_probes/tt_hits/tt_cutoffs`; `stop` returns `bestmove` in <= 16 ms (measured max
   15.1 ms over 10 trials); engine emits nothing until the `uci` token is received.
-- **Phase:** Phase-2 search stack COMPLETE (O3d / E-00009 PASS); E-EVAL + self-play
-  driver unblocked.
+- **Evaluation (E-0010, 2026-09-14):** tapered hand-tuned eval (`src/eval.{h,cpp}`), 6 named
+  terms (taper, MG/EG PSTs, pawn structure, mobility, bishop-pair/open-file/king group,
+  tempo) selected at runtime by the UCI `EvalStage` option (0..6). Measured vs material-only:
+  +116.1 Elo (LOS 100.00%, CI95 [+70.8,+163.5], N=240 independent games); pre-registered
+  ≥150 bar NOT met (honest FAIL). Symmetry: 0 full-mirror violations on 1000 positions.
+- **Phase:** Phase 2 COMPLETE (O3d), Phase 3 evaluation measured (E-0010). Next: self-play
+  data pipeline (E-0011) + comparison harness with pre-registered error control (H-0010).
 
-## Current Strength
-Move generator + board model validated against the Chess Programming Wiki perft suite with
-exact matches (see table below).
+## Certified Perft Anchors (SACRED — single protected home)
 
-## Current Performance
-
-Verified perft results (all exact matches, from README.md; **re-verified by direct run of
-`build\Release\kana.exe` on 2026-09-09**):
+> These counts are the project's correctness floor. They live here and **only** here
+> (DEC-0009 amended from R-0003 F12; the README is a pointer, never a second copy).
+> Any change that alters one of these counts is a correctness regression and is
+> reverted. `research.py validate` asserts every number below; deleting or altering the
+> section fails validation loudly.
+> Re-verified live on 2026-09-14 by direct run of `build\Release\kana.exe`:
+> `PASS`/`0 diff` on all ten positions, final line `=== ALL TESTS PASSED`, exit code 0.
 
 | Position | Depth | Nodes |
 |---|---|---|
-| Startpos | 1–5 | 20, 400, 8902, 197281, 4865609 |
+| Startpos | 1 | 20 |
+| Startpos | 2 | 400 |
+| Startpos | 3 | 8902 |
+| Startpos | 4 | 197281 |
+| Startpos | 5 | 4865609 |
 | Kiwipete | 3 | 97,862 |
 | CPW pos 3 (EP/pins) | 4 | 43,238 |
 | CPW pos 4 (promotions) | 4 | 422,333 |
 | CPW pos 5 (promotions) | 4 | 2,103,487 |
 | CPW pos 6 (quiet) | 4 | 3,894,594 |
 
-### Certified perft NPS baseline (E-0002, 2026-09-10 — MILESTONE 0, DECISION RULE PASSED)
+Reproduction command: `build\Release\kana.exe` (no arguments). Expected: 10 `PASS` lines
+with `0 diff` and the string `ALL TESTS PASSED`.
+
+## Current Strength
+Move generator + board model validated against the Chess Programming Wiki perft suite with
+exact matches (see the anchor table above).
+
+## Current Performance
 
 In-tree `--bench 5` harness (`src/bench.{h,cpp}`), CMake Release `/O2 /GL /EHsc /arch:AVX512
 /DNDEBUG` + `/LTCG`, thread pinned (CPU 0), WMI clock proxy 3800 MHz (not fixed), background
@@ -84,8 +111,9 @@ single machine, 1-3 reps, unpinned (~2 significant digits):
 | CPW pos 6 d4 | ~50.0-50.4 Mnps | ~21.1 Mnps | ~2.4x |
 
 All perft counts are bit-identical across both builds (correctness is flag-independent).
-Note: Release ships `/Od /Zi /EHsc /JMC` + `/DEBUG` (CMakeLists.txt:16-17); fixing to /O2
-is E-0002. In-tree `--bench` (5 reps + binary-hash logging) is the certification path.
+Note: Release shipped `/Od /Zi /EHsc /JMC` + `/DEBUG` before Milestone 0 (`CMakeLists.txt:16-17`);
+E-0002 fixed that to `/O2` + `/LTCG`. The in-tree `--bench 5` (5 reps + binary-hash logging)
+is the certification path.
 
 ## Hardware
 - CPU: AMD Ryzen 7 9700X (8C/16T, AVX-512 with VNNI/BF16/FP16).
@@ -98,45 +126,78 @@ None yet. The research system is model-independent; roles are mapped to models o
 `research/agents/ASSIGNMENTS.md`.
 
 ## Current Training Pipeline
-None yet. Planned for Phase 3: self-play data generation + training (PyTorch + GPU).
+None yet. The raw material exists locally (E-0010 match JSONL, gitignored) but there is no
+game generator, no dataset, no labels and no model. Planned: E-0011 self-play data pipeline
+→ Texel fitting (H-0013) → NNUE (PyTorch + GPU).
 
 ## Active Research Questions
-- Which search framework should be the primary architecture? (see `D-0001`, `H-0001`)
-- How much do PVS + transposition tables help time-to-depth on this engine? (see `H-0001`, `E-0001`)
-- How should evaluation (hand-tuned -> NNUE) be sequenced against search? (see the lesson in `F-0001`)
+- Which search framework should be the primary architecture? (see `D-0001`, `H-0002`/`H-0003` family)
+- How much do PVS + transposition tables help time-to-depth on this engine? (`H-0009`, O3e)
+- What evaluation representation justifies the next step (Texel-fitted hand-tuned → NNUE)?
+  (`H-0004`, `H-0013`; the lesson in `F-0001` is illustrative, not a real incident — see R-0003)
+- What sample size / error control is required before a change may be called an improvement?
+  (`H-0010`, R-0002 Q2, E-0010's power analysis)
 
 ## Current Known Problems
-- No search or evaluation yet — the engine only does board + move generation + perft.
-- No self-play / data / training infrastructure.
+- ~~No search or evaluation yet — the engine only does board + move generation + perft.~~
+  RESOLVED: O3a-O3d (search) and E-0010 (tapered eval) are complete and measured.
+- No self-play / training pipeline yet (E-0011, next milestone). Raw self-play data exists
+  only as E-0010's local match evidence (1.31 MB, gitignored) — not a dataset pipeline.
 - ~~`kana_o2.exe` in build/Release (253,952 B) has unrecorded build-provenance — excluded
   from claims (D-0002).~~ RESOLVED 2026-09-10: quarantined as `kana_o2.exe.QUARANTINED-D0002`;
   the certified /O2 baseline is the in-tree E-0002 harness (flags + self-SHA-256 logged).
 
 ## Recent Important Experiments
-None executed yet. `E-0001` is pending (and is also an EXAMPLE record).
-The movegen/perft validation is a correctness milestone, not a strength experiment.
+- **E-0010 (COMPLETED, verdict FAIL — honest):** tapered hand-tuned eval vs material-only.
+  Gates (a) perft+legality PASS, (b) symmetry PASS (0 full-mirror violations, stages 0-6),
+  (d) NPS PASS (43.25 vs 31.95 Mnps, i.e. faster). Gate (c) **FAIL on effect size only**:
+  stage-6 beats stage-0 by **+116.1 Elo, LOS 100.00%, CI95 [+70.8, +163.5], N=240
+  independent games** (0 duplicate move-lists; 1240/1240 legal) — below the pre-registered
+  ≥150 bar. Per-term ladder vs stage-0: k1 +36.3, k2 +82.3, k3 +104.5, k4 +100.8,
+  k5 +127.6, k6 +116.1. Mobility and tempo are non-positive; taper + PST + pawn structure
+  carry the strength. Reproducible with `python e0010_report.py`.
+- **E-00009 (COMPLETED, PASS):** TT + iterative deepening + time control + repetition —
+  9.5x fewer nodes than O3c at depth 6, 11/11 best moves identical.
+- **E-0002 (COMPLETED, PASS):** certified `/O2` NPS baseline 43-47 Mnps (`--bench 5`, pinned,
+  SHA-256 logged); O3 unblocked.
+- Earlier: E-00006 (O3a plain AB), E-00007 (O3b ordering, -91.2% nodes), E-00008 (O3c
+  quiescence), E-00003 (provisional /O2-vs-/Od, superseded by E-0002 for citation).
 
 ## Current Champion
-Engine (O3d, ordered AB + quiescence + TT + iterative deepening) plays complete legal
-timed games: **2/2 self-play games 100 % legal at 200 ms/move** (a 234-ply draw and a
-77-ply checkmate finish), **30/30 wins (100 %) vs legal-move-uniform random mover,
-30/30 legal** at depth 4, `stop` latency max 15.1 ms, and **9.5x fewer nodes than the
-O3c single-shot at depth 6** (5.11 M vs 48.6 M over the 11-position E-00007 set) with
-identical best moves. Search efficiency (91.2 % node cut, O3b) + tactical leaf accuracy
-(qsearch, O3c) + TT/ID node reduction (9.5x, O3d) are the baselines for every later delta.
+Engine (O3d + E-0010 eval, i.e. ordered AB + quiescence + TT + iterative deepening +
+tapered hand-tuned eval at `EvalStage=6`) plays complete legal timed games: **2/2 self-play
+games 100 % legal at 200 ms/move** (a 234-ply draw and a 77-ply checkmate finish),
+**30/30 wins (100 %) vs legal-move-uniform random mover, 30/30 legal** at depth 4, `stop`
+latency max 15.1 ms, and **9.5x fewer nodes than the O3c single-shot at depth 6** (5.11 M vs
+48.6 M over the 11-position E-00007 set) with identical best moves. Search efficiency
+(91.2 % node cut, O3b) + tactical leaf accuracy (qsearch, O3c) + TT/ID node reduction
+(9.5x, O3d) are the baselines for every later delta. The eval adds **+116.1 Elo over
+material-only at LOS 100.00 % (N=240 independent games, E-0010)** — significantly positive,
+below its pre-registered ≥150 bar.
 
 ## Current Known Problems
-- No evaluation beyond material-only (E-EVAL next). No persistent TT across moves
-  (TT is cleared per `go`); no aspiration/PVS/LMR/null-move (O3e candidates).
+- Evaluation exists and is measured (E-0010: +116.1 Elo over material-only at LOS 100%,
+  below its pre-registered ≥150 bar). Mobility and tempo are non-positive increments and
+  need re-tuning (H-0013 Texel fitting), not more hand weights.
+- No comparison harness with pre-registered error control (H-0010 / E-SPRT): every future
+  A/B claim currently depends on ad-hoc match harnesses.
+- No persistent TT across moves (TT is cleared per `go`); no aspiration/PVS/LMR/null-move
+  (O3e candidates).
+- No self-play data pipeline and no trained model (E-0011 / NNUE).
 
 ## Current Development Priorities
-1. **Phase 3 — Evaluation (next: E-EVAL):** material + piece-square evaluation on top of the
-   complete O3d search stack, calibrated via self-play; then PVS/LMR/null-move (O3e) and
-   persistent TT across moves.
-2. **Phase 3+ — Evaluation & learning:** hand-tuned evaluation -> NNUE; self-play data
-   generation; training pipeline (PyTorch + GPU); experiment tracking; SPRT-based testing.
+1. **E-0011 — self-play data pipeline (next milestone):** turn the E-0010 match harness into a
+   resumable, provenance-carrying game generator + position dataset (legal-move-flushed JSONL,
+   opening diversity, dedup, holdout). Pre-registered rule + power required before it runs.
+2. **E-SPRT-lite — comparison harness (H-0010):** two-tier pre-registered error control
+   (screening δ≈20 Elo, regression δ=5, LLR ±2.944, game cap with post-cap INCONCLUSIVE) so
+   every later change is decided, not argued.
+3. **O3e — PVS / LMR / null-move** measured against the O3d baseline once (2) exists.
+4. **Phase 3+ — learning:** Texel-fit the hand-tuned terms (H-0013), then NNUE; self-play →
+   training pipeline (PyTorch + GPU) on top of (1).
 
 ## Last Updated
-2026-09-13 (O3d / E-00009 complete: TT + ID + time control + repetition; all five
-decision-rule gates PASS — perft 10/10, 2/2 legal self-play @200 ms/move, stop max
-15.1 ms, 9.5x node reduction, 30/30 vs random)
+2026-09-14 (E-0010 tapered eval COMPLETE and measured — gates (a)(b)(d) PASS, gate (c)
+honest FAIL at +116.1 Elo / LOS 100.00% / N=240; project memory corrected for staleness;
+perft anchor given a single protected home in this file; verification/coordination layer
+ratified in DEC-0009 and described in `research/SYSTEM.md`)
