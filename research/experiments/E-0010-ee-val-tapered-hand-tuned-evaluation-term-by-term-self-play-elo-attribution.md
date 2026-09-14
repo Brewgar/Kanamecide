@@ -2,8 +2,8 @@
 id: E-0010
 type: experiment
 title: "E-EVAL — Tapered Hand-Tuned Evaluation (term-by-term self-play Elo attribution)"
-status: FAILED
-result: "Gates (a),(b),(d) PASS; gate (c) FAIL on effect size: stage-6 (full tapered eval) beats stage-0 (material-only) +116.1 Elo (LOS 100.00%, CI95 [+70.8,+163.5], N=240 independent games, 1240/1240 legal) but does not clear the pre-registered >=150 Elo bar. Per-term ladder vs stage-0: k1 +36.3, k2 +82.3, k3 +104.5, k4 +100.8, k5 +127.6, k6 +116.1 (N=240)."
+status: COMPLETED
+result: "FAIL (pre-registered gate (c) effect size; direction significantly positive). Gates (a),(b),(d) PASS. gate (c): stage-6 (full tapered eval) beats stage-0 (material-only) +116.1 Elo (LOS 100.00%, CI95 [+70.8,+163.5], N=240 independent games, 1240/1240 legal) but does not clear the pre-registered >=150 Elo bar. Per-term ladder vs stage-0: k1 +36.3, k2 +82.3, k3 +104.5, k4 +100.8, k5 +127.6, k6 +116.1 (N=240)."
 elo_change: "+116.1 (stage-6 vs stage-0, N=240 independent, LOS 100.00%, CI95 [+70.8,+163.5]) — significantly positive, below the >=150 gate"
 hypothesis: H-0004
 priority: high
@@ -89,10 +89,10 @@ Measurement binary `build\Release\kana.exe`, **SHA256
 `git commit: 962368b` — that is the HEAD pointer at build time (2026-09-13 23:39, the
 parent of the commit below), but `src/` is byte-clean against HEAD `9b69e0a`, the commit
 that added `src/eval.cpp` and the crash-fixed `src/search.cpp`, so the **measured sources
-== HEAD `9b69e0a`**. Compile flags (bench header): /O2 /GL /EHsc /arch:AVX512 /DNDEBUG. Opening randomization: **10 random legal plies from
-startpos per game**, python-chess legal-move RNG, seed = `random.Random(20260914 * 1000003 +
-game_index)`, the same opening sent to both engines as `position startpos moves <uci...>`,
-colors balanced. All matches 100ms+100ms inc (O3d time formula), max 2 engine-pairs
+== HEAD `9b69e0a`**. Compile flags (bench header): /O2 /GL /EHsc /arch:AVX512 /DNDEBUG.
+Opening randomization: **10 random legal plies from startpos per game**, python-chess
+legal-move RNG, seed = `random.Random(20260914 * 1000003 + game_index)`, the same opening
+sent to both engines as `position startpos moves <uci...>`, colors balanced. All matches 100ms+100ms inc (O3d time formula), max 2 engine-pairs
 concurrent, per-game JSONL incremental flush. Full campaign = **1240 games, 0 bad
 (illegal) games, no stalls**.
 
@@ -194,11 +194,16 @@ conjuncts). Gate (c) measured: **+116.1 Elo, LOS 100.00%, N=240 independent game
 effect-size conjunct fails (+116.1 < 150; CI95 [+70.8, +163.5] straddles +150, so >=150
 cannot be confirmed at this sample size). Gates (a) perft+legality, (b) symmetry
 (0 full-mirror violations, stages 0-6), and (d) NPS (43.25 vs 31.95 Mnps baseline,
-−35.4% "drop" = faster) all **PASS**. Note on the taxonomy: under the orchestrator's
-buckets this outcome sits between FAILED (stage-6 losing — not our case) and
-INCONCLUSIVE (CI95 straddles +150 — true, but with LOS 100%, not <95%); it is recorded
-as FAILED because the pre-registered PASS conjunction is objectively not met, while the
-Conclusion documents that the direction is significantly positive.
+−35.4% "drop" = faster) all **PASS**. Note on the taxonomy and on the front-matter
+encoding: under the orchestrator's buckets this outcome sits between FAILED (stage-6
+losing — not our case) and INCONCLUSIVE (CI95 straddles +150 — true, but with LOS 100%,
+not <95%); the **verdict is FAILED** because the pre-registered PASS conjunction is
+objectively not met, while the direction is significantly positive. The front-matter
+field `status` is the *lifecycle* field in this repo's memory tool (`research.py`:
+PENDING / RUNNING / COMPLETED — any other value silently drops the record from the
+generated `research/index.md`), so E-0010 carries `status: COMPLETED` and the FAILED
+verdict lives in `result:` ("FAIL (pre-registered gate (c) effect size…)", shown by
+`research.py experiments`) and in this Conclusion.
 
 **What the per-term ladder implies:** strength is concentrated in taper + PST (+82.3
 cumulative after k2) plus pawn structure (+22.2); the later hand-tuned terms (mobility,
@@ -345,9 +350,32 @@ max 2 engine-pairs concurrent, no stalls.**
   <=30% met with margin. (A parser unit bug in e0010_gates_bd.py compared Mnps against
   raw nps and printed a bogus drop=100.0%; fixed to convert the baseline to Mnps.)
 - **Record:** Results / Statistical Analysis / Interpretation / Conclusion / Follow-Up
-  filled; frontmatter status=FAILED (effect-size miss, direction significantly positive),
-  result/elo_change set, completed=2026-09-14.
-- **Hygiene:** repo root cleaned of session scratch; retained harness scripts:
-  e0010_match.py, e0010_match2.py, e0010_report.py, e0010_elo.py, e0010_run_all.py,
-  e0010_gates_bd.py, e0010_wait_then_bd.py, e0010_watchdog.py, e0010_repro_match.py,
-  repro_stall.py. Everything committed (HEAD recorded in research/index.md).
+  filled; frontmatter `status: COMPLETED` (lifecycle) with `result:` = "FAIL
+  (pre-registered gate (c) effect size; direction significantly positive)…" — the verdict
+  is carried by `result`, not by `status`, because `research.py`'s experiment status
+  vocabulary is PENDING / RUNNING / COMPLETED and an out-of-vocabulary status silently
+  removes the record from the generated index (observed and fixed this session).
+  `elo_change` and `completed=2026-09-14` set. `hypothesis: H-0004` left OPEN — E-0010
+  measures the eval's delta vs material-only, not absolute 2500+ strength.
+- **Hygiene / artifacts:** per the Round-3 convention (raw scratch is external evidence —
+  "keep them locally, keep them out of git history"), the raw measurement artifacts stay
+  **local and gitignored** (new `.gitignore` E-0010 block): `e0010_k{1..6}n_games.jsonl` +
+  `e0010_k{1..6}n_result.txt` (1.31 MB — exactly the data `e0010_report.py` re-aggregates),
+  `e0010_gates_bd.txt` (gates b+d raw output), `_g0_perft.txt` (gate a raw output),
+  `e0010_runner_log.txt` + `e0010_ALL_done.txt` (wave schedule + elapsed 5807s ≈ 97 min).
+  Deleted: per-match done-markers, `*_log.txt` / `*_err.txt` dumps, smoke/waiter/gbd
+  scratch, `_chtest.py`. Already committed in `9b69e0a` and therefore left as-is: the
+  earlier m1-campaign logs `e0010_k1..k6.txt`, `e0010_k{1..6}_err.txt`,
+  `e0010_pilot6_err.txt`. Retained (committed) harness scripts: e0010_match.py,
+  e0010_match2.py, e0010_report.py, e0010_elo.py, e0010_run_all.py, e0010_gates_bd.py,
+  e0010_wait_then_bd.py, e0010_watchdog.py, e0010_repro_match.py, repro_stall.py.
+- **Code state / commits:** the measured code is committed as `9b69e0a` ("E-0010 tapered
+  eval + self-play elo attribution: add eval.cpp/.h, e0010 harness scripts, …"); the
+  measurement binary's embedded `git commit: 962368b` is the HEAD pointer at build time
+  (its parent). Results, harness scripts and the regenerated index are committed in
+  `b5b3cf2`.
+- **Re-verification at record time:** `python e0010_report.py` was re-run after the
+  campaign and reproduced every number in this record exactly (per-stage Elo/CI/LOS,
+  0 duplicate move-lists at every stage, gate (a) legality PASS, gate (c) FAIL); gate (a)
+  was re-run live on the same binary (10/10 perft, 0 diff, "ALL TESTS PASSED") and the
+  binary SHA256 was confirmed unchanged; `python research.py validate` reports OK.

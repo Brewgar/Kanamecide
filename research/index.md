@@ -43,6 +43,7 @@
 - [E-00008](experiments/E-00008-o3c-quiescence-search-stand-pat-captures-promos-delta-prune-check-evasion.md) — O3c quiescence search (stand-pat, captures/promos, delta prune, check evasion) — status=COMPLETED
 - [E-00009](experiments/E-00009-o3d-tt-iterative-deepening-time-control-repetition-50-move-search-stack-completion.md) — O3d TT + iterative deepening + time control + repetition/50-move (search-stack completion) — status=COMPLETED
 - [E-0002](experiments/E-0002-bench-harness-and-o2-baseline.md) — Bench harness plus O2 build baseline (perft NPS, fixed flags) — status=COMPLETED
+- [E-0010](experiments/E-0010-ee-val-tapered-hand-tuned-evaluation-term-by-term-self-play-elo-attribution.md) — E-EVAL — Tapered Hand-Tuned Evaluation (term-by-term self-play Elo attribution) — status=COMPLETED
 
 ## Failures
 
