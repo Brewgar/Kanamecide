@@ -128,3 +128,19 @@ in.txt
 out.txt
 src/_write_eval.py
 src/_gen.py
+
+# E-0010 session scratch + raw measurement evidence (on disk, not in git history;
+# convention: AGENT_MEGAPROMPT_ROUND3.md - evidence stays local, out of git).
+e0010_k*_games.jsonl
+e0010_k*_result.txt
+e0010_k*_log.txt
+e0010_k*_done.txt
+e0010_gates_bd.txt
+e0010_gates_bd_done.txt
+e0010_gbd_*.txt
+e0010_runner_*.txt
+e0010_smk_*.txt
+e0010_smk_games.jsonl
+e0010_waiter_*.txt
+e0010_ALL_done.txt
+_chtest.py
