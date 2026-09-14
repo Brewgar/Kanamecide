@@ -76,6 +76,7 @@
 - [R-0001](reviews/R-0001-review-of-pvs-hypothesis.md) — (untitled) — status=DRAFT  [EXAMPLE]
 - [R-0002](reviews/R-0002-review-of-researcher-architect-6-report-corpus-pseudo-legal-contract-sprt-bar-falsification-bounds.md) — (untitled) — status=COMPLETED
 - [R-0003](reviews/R-0003-full-project-and-multi-agent-system-audit.md) — Full-project and multi-agent research-system audit (Round 4 meta) — status=COMPLETED
+- [R-0004](reviews/R-0004-independent-verification-of-e-0010-fresh-agent-w-0004-occupant-1.md) — (untitled) — status=COMPLETED
 
 ## Work Items (open)
 
@@ -105,6 +106,7 @@
 ## Sessions
 
 - [S-0001](sessions/S-0001-meta-agent-round4-audit-and-system-redesign.md) — Full-project audit + multi-agent research-system redesign (DEC-0009) — status=CLOSED
+- [S-0002](sessions/S-0002-w-0004-occupant-1-bootstrap-proof-verification-review-r-0004-of-e-0010.md) — W-0004 occupant 1: bootstrap proof + verification review R-0004 of E-0010 — status=CLOSED
 
 ## Unrendered Records (bug — report this)
 

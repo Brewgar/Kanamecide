@@ -40,8 +40,32 @@ python research/scripts/research.py validate    # OK
 
 ## Work Log (append-only while OPEN)
 - 2026-09-14 — opened by Round-4 meta-agent (SYSTEM.md §5; G1/Q5).
+- 2026-09-14 — verification-auditor seat, occupant 1 (fresh agent, zero chat history):
+  bootstrap completed per SYSTEM.md §11 (README → MEGAPROMPT → ASSIGNMENTS row found →
+  profile/current_position/beliefs → ROUND4 megaprompt → SYSTEM.md → project_state →
+  index skim). Gate 0: `build\Release\kana.exe` → 10/10 PASS, `=== ALL TESTS PASSED`
+  (exit 0). `research.py validate` → OK. Ran `python e0010_report.py` (exit 0) and
+  reproduced EVERY published E-0010 number (full k1-k6 ladder Elo/CI95/LOS, W/L/D,
+  N per rung, bad=0 legality, duplicate-move-lists=0 on every rung, k6 +116.1 /
+  [+70.8,+163.5] / LOS 100.00% / N=240, FAIL verdict per pre-registered rule).
+  Recomputed binary SHA-256 `504EB01A…A6DAA` — matches the measurement binary. Gate
+  (b)/(d) confirmed from raw `e0010_gates_bd.txt` (not re-executed live). Two cosmetic
+  nits recorded (Wrate label collision in the aggregator; front-matter "(N=240)"
+  ambiguity). Filed `research/reviews/R-0004-…` (kind: verification), verdict VERIFIED.
+  Occupant 2's review still pending — item remains OPEN.
 
 ## Verification
-- verified_by: (a different agent than owner)
-- verdict: (VERIFIED | CONTRADICTED | PARTIAL | UNVERIFIABLE)
-- evidence: (review record id + command outputs)
+- verified_by: verification-auditor seat, occupant 1 — review R-0004
+  (`research/reviews/R-0004-independent-verification-of-e-0010-fresh-agent-w-0004-occupant-1.md`,
+  kind: verification, status: COMPLETED)
+- verdict (R-0004, on the E-0010 reproduction): VERIFIED — every published E-0010
+  number reproduced from raw evidence by a fresh agent with no prior chat history;
+  the recorded FAIL follows the pre-registered decision rule as written. No number
+  failed to reproduce.
+- evidence: `python e0010_report.py` exit 0 (raw output retained at
+  `research/context/_e0010_report_out.txt`, gitignored local); perft 10/10
+  `=== ALL TESTS PASSED` (`research/context/_gate0.txt`); SHA-256 recomputed
+  (`research/context/_kana_sha.txt`); raw JSONL/result/gates files read directly.
+- Note: W-0004's exit check requires TWO verification reviews (occupant 2 pending);
+  this item therefore stays OPEN and unmarked-DONE until the second review lands.
+  The verifier (occupant 1) is not the owner of E-0010, W-0001, or W-0002.
