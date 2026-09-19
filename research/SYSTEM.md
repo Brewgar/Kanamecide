@@ -286,3 +286,37 @@ A new agent with zero chat history does, in order:
 
 The whole bootstrap is one `research.py context --topic <topic>` call plus four file
 reads — under ~15k tokens, by design.
+
+## 12. The derived-intelligence layer (DEC-0011, amends §0/§1)
+
+The records stay the only source of truth. On top of them the derived layer computes —
+from the store itself, deterministically — the views an agent used to rebuild by reading
+everything.
+
+> **Projections point; they never conclude.** `search`, `beliefs`, `codemap`,
+> `contradictions`, `revivals` and `state` output is labelled PROJECTION/CANDIDATE. A
+> projection is a pointer to records; only the records decide.
+
+- **Search:** `research.py search "quiescence move ordering"` — BM25-ranked hits with a
+  provenance snippet, plus a graph-expanded "read these too" list. `graph E-00008` shows a
+  record's in/out edges.
+- **Current best beliefs:** `research.py beliefs` — each hypothesis with its status, a
+  calibrated confidence band (not a bare number), and the experiments that test it.
+- **Negative/dup knowledge:** `research.py contradictions`, `research.py duplicates`,
+  `research.py revivals` — what conflicts, what repeats, what was shelved and when to
+  revisit it. Candidates; never merged or force-resolved by the tool.
+- **Questions:** `research.py questions` — the persistent open-question registry (Q-####),
+  with dependencies and suggested experiments.
+- **Code traceability:** `research.py codemap` — record -> src file -> commit chain.
+- **State:** `research.py state --write` regenerates `state.md` + `state.json`
+  (GENERATED — never hand-edit them).
+- **Audit:** `research.py audit` — memory integrity, dangling links, evidence drift,
+  metrics. `validate` surfaces its advisory checks.
+- **Self-check:** `research.py selftest` runs the layer's own unit tests (tests_memory.py).
+- **Hygiene:** `research.py hygiene` — classifies repo-root files (sanctioned /
+  grandfathered-debt / new / unreferenced) so debt can be shrunk without losing evidence.
+
+New record kinds (`questions`, `principles`, `evidence`) use the existing discipline:
+closed status vocabularies, `example` flags, IDs via `research.py new-*`, templates under
+`research/templates/`. See `research/SCHEMA.md` for the full data model and migration
+policy.

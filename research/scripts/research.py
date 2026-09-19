@@ -35,6 +35,9 @@ WORK_DIR = RESEARCH_DIR / "work"
 HO_DIR = RESEARCH_DIR / "handoffs"
 RUN_DIR = RESEARCH_DIR / "runs"
 SES_DIR = RESEARCH_DIR / "sessions"
+QUESTIONS_DIR = RESEARCH_DIR / "questions"
+PRINCIPLES_DIR = RESEARCH_DIR / "principles"
+EVIDENCE_DIR = RESEARCH_DIR / "evidence"
 PROJECT_STATE = RESEARCH_DIR / "project_state.md"
 
 # --- Closed status vocabularies (DEC-0009: an unknown status is a LOUD error) ---
@@ -51,7 +54,13 @@ STATUS_VOCAB = {
     "handoff": {"REQUESTED", "ACCEPTED", "DONE", "REJECTED", "WITHDRAWN"},
     "run": {"PLANNED", "RUNNING", "COMPLETED", "FAILED", "ABANDONED"},
     "session": {"OPEN", "CLOSED"},
+    # DEC-0011: Layer-3/4 record kinds (open questions, strategic/meta principles,
+    # evidence inventory). An unknown status is a LOUD error, as for every other kind.
+    "question": {"OPEN", "INVESTIGATING", "ANSWERED", "BLOCKED", "ABANDONED", "SUPERSEDED"},
+    "principle": {"ACTIVE", "REVISED", "RETIRED"},
+    "evidence": {"REGISTERED", "SUPERSEDED", "LOST"},
 }
+QUESTION_OPEN = {"OPEN", "INVESTIGATING", "BLOCKED"}
 # Verdict prefixes accepted in an experiment's `result` (free-form text may follow).
 RESULT_PREFIXES = ("PASS", "FAIL", "FAILED", "WIN", "LOSS", "NEUTRAL", "INCONCLUSIVE")
 
@@ -602,6 +611,10 @@ def _index_lines() -> list:
     section("Failures", FAIL_DIR, "failure")
     section("Decisions", DEC_DIR, "decision")
     section("Reviews", REV_DIR, "review")
+    section("Open Questions", QUESTIONS_DIR, "question", QUESTION_OPEN)
+    section("Closed Questions", QUESTIONS_DIR, "question", {"ANSWERED", "ABANDONED", "SUPERSEDED"})
+    section("Principles", PRINCIPLES_DIR, "principle")
+    section("Evidence", EVIDENCE_DIR, "evidence")
     section("Work Items (open)", WORK_DIR, "work", WORK_OPEN)
     section("Work Items (closed)", WORK_DIR, "work", {"DONE", "CANCELLED"})
     section("Handoffs (open)", HO_DIR, "handoff", HO_OPEN)
@@ -614,6 +627,8 @@ def _index_lines() -> list:
     all_records = []
     for directory, kind in ((HYP_DIR, "hypothesis"), (DEB_DIR, "debate"), (DEC_DIR, "decision"),
                             (EXP_DIR, "experiment"), (FAIL_DIR, "failure"), (REV_DIR, "review"),
+                            (QUESTIONS_DIR, "question"), (PRINCIPLES_DIR, "principle"),
+                            (EVIDENCE_DIR, "evidence"),
                             (WORK_DIR, "work"), (HO_DIR, "handoff"), (RUN_DIR, "run"),
                             (SES_DIR, "session")):
         all_records.extend(scan(directory, kind))
@@ -757,6 +772,9 @@ def cmd_validate(_args):
         (HO_DIR, "handoff", {"status", "created", "from", "to", "title"}),
         (RUN_DIR, "run", {"status", "created", "title"}),
         (SES_DIR, "session", {"status", "created", "agent"}),
+        (QUESTIONS_DIR, "question", {"status", "created"}),
+        (PRINCIPLES_DIR, "principle", {"status", "created"}),
+        (EVIDENCE_DIR, "evidence", {"status", "created", "path"}),
     ]
     for directory, kind, required in specs:
         problems.extend(_record_problems(directory, kind, required, seen, warnings))
@@ -772,6 +790,25 @@ def cmd_validate(_args):
         for f in ("profile.md", "current_position.md", "beliefs.md"):
             if not (ag["_dir"] / f).exists():
                 problems.append(f"{ag['name']}/{f}: missing")
+
+    # DEC-0011 derived-layer checks (advisory): memory integrity beyond the record files.
+    try:
+        import memorylib as M
+        _nodes = M.load_nodes()
+        _code = M.code_nodes()
+        for d in M.missing_reference_targets(_nodes):
+            warnings.append(f"dangling id {d['id']} referenced by {d['referenced_by'][:3]}")
+        for ev in M.evidence_inventory(_nodes):
+            if ev["path"] and not ev["exists"]:
+                warnings.append(f"evidence {ev['id']}: path missing on disk: {ev['path']}")
+            if ev["exists"] and ev["sha256_recorded"] and ev["sha256"].lower() != str(ev["sha256_recorded"]).lower():
+                problems.append(f"evidence {ev['id']}: sha256 drift on {ev['path']} "
+                                f"(recorded {str(ev['sha256_recorded'])[:12]}…, on-disk {ev['sha256'][:12]}…)")
+        n_contra = len(M.contradiction_candidates(_nodes))
+        if n_contra:
+            warnings.append(f"{n_contra} contradiction candidate(s) — run `research.py contradictions`")
+    except Exception as exc:  # the layer must never make validate fail by crashing
+        warnings.append(f"derived-layer checks skipped (memorylib error: {exc})")
 
     problems.extend(_project_state_problems())
     problems.extend(root_hygiene_problems())
@@ -1030,6 +1067,110 @@ def cmd_new_session(a):
               {"AGENT": a.agent, "ROUND": a.round or "1"})
 
 
+def _ml_run(a, cmd: str) -> int:
+    """Forward a derived-intelligence command to memorylib (DEC-0011). memorylib is
+    imported lazily here so `import memorylib` <- `import research` never cycles."""
+    import memorylib as M
+    return M.run_derived(cmd, getattr(a, "margs", []))
+
+
+def cmd_search(a): return _ml_run(a, "search")
+def cmd_graph(a): return _ml_run(a, "graph")
+def cmd_beliefs(a): return _ml_run(a, "beliefs")
+def cmd_contradictions(a): return _ml_run(a, "contradictions")
+def cmd_duplicates(a): return _ml_run(a, "duplicates")
+def cmd_questions(a): return _ml_run(a, "questions")
+def cmd_principles(a):
+    _list("Principles", PRINCIPLES_DIR, "principle")
+def cmd_revivals(a): return _ml_run(a, "revivals")
+def cmd_timeline(a): return _ml_run(a, "timeline")
+def cmd_codemap(a): return _ml_run(a, "codemap")
+def cmd_audit(a): return _ml_run(a, "audit")
+def cmd_evidence_list(a):
+    if getattr(a, "margs", None):
+        return _ml_run(a, "evidence")
+    _list("Evidence", EVIDENCE_DIR, "evidence")
+def cmd_state(a):
+    import memorylib as M
+    argv = getattr(a, "margs", [])
+    if "--write" in argv or a.write:
+        argv = [x for x in argv if x != "--write"]
+        argv.append("--write")
+        return M.run_derived("state", argv)
+    return M.run_derived("state", argv)
+
+
+def cmd_new_question(a): _scaffold(QUESTIONS_DIR, "Q-", 4, "question.md", a.title)
+def cmd_new_principle(a): _scaffold(PRINCIPLES_DIR, "PR-", 4, "principle.md", a.title)
+
+
+def cmd_new_evidence(a):
+    p = _scaffold(EVIDENCE_DIR, "EV-", 4, "evidence.md", a.title,
+                  {"PATH": getattr(a, "path", "") or ""})
+    print("  fill `path` and (optionally) `regenerate:`; then run `research.py evidence` "
+          "to capture the sha256 of the artifact on disk.")
+    return p
+
+
+def cmd_hygiene(a):
+    """Classification of root-level files: sanctioned / grandfathered-debt /
+    unsanctioned-new / unreferenced-candidate. Read-only unless --json is requested."""
+    import memorylib as M
+    sanctioned = SANCTIONED_ROOT_FILES
+    grand = load_grandfathered()
+    nodes = M.load_nodes()
+    corpus = "\n".join(n["text"] + "\n" + n["title"] for n in nodes.values())
+    rows = []
+    for pth in sorted(REPO_ROOT.iterdir()):
+        if not pth.is_file():
+            continue
+        name = pth.name
+        cls = ("sanctioned" if name in sanctioned else
+               "grandfathered-debt" if name in grand else "unsanctioned-NEW")
+        referenced = name in corpus
+        rows.append({"file": name, "class": cls, "referenced_in_records": referenced,
+                     "size": pth.stat().st_size})
+    counts = {"sanctioned": 0, "grandfathered-debt": 0, "unsanctioned-NEW": 0}
+    for r in rows:
+        counts[r["class"]] += 1
+    unreferenced_debt = [r for r in rows if r["class"] == "grandfathered-debt"
+                         and not r["referenced_in_records"]]
+    if getattr(a, "json", False):
+        print(M.json_dump({"counts": counts, "unreferenced_debt_candidates": unreferenced_debt,
+                           "files": rows}))
+        return 0
+    print(f"Root file classes: {counts}")
+    print(f"Grandfathered files with no record referencing them (W-0006 shrink candidates): "
+          f"{len(unreferenced_debt)}")
+    for r in unreferenced_debt[:30]:
+        print(f"  {r['file']}  ({r['size']} B)")
+    return 0
+
+
+def cmd_schema(a):
+    import memorylib as M
+    out = {"schema_version": M.SCHEMA_VERSION,
+           "record_kinds": sorted(set(M.STATUS_VOCAB) | {"report", "doc", "code"}),
+           "layers": M.LAYERS,
+           "relation_kinds": sorted(set(M.EDGE_STRUCTURAL.values()) | set(M.EDGE_ACTOR.values())
+                                    | {"mentions", "touches-code"}),
+           "verdict_prefixes": list(RESULT_PREFIXES),
+           "confidence_labels": [name for _, name in M.CONFIDENCE_LADDER]}
+    print(M.json_dump(out))
+    return 0
+
+
+def cmd_selftest(a):
+    """Run the memory-system self-tests (research/scripts/tests_memory.py) and return
+    its exit code — the memory layer is software and it must prove itself."""
+    import subprocess as _sp
+    root = Path(__file__).resolve().parent
+    exe = sys.executable
+    rc = _sp.call([exe, str(root / "tests_memory.py")], cwd=str(REPO_ROOT))
+    print("selftest:", "OK" if rc == 0 else f"FAILED (exit {rc})")
+    return rc
+
+
 def build_parser():
     p = argparse.ArgumentParser(prog="research", description="Kanamecide multi-agent research-memory CLI")
     sub = p.add_subparsers(dest="command", required=True)
@@ -1105,6 +1246,37 @@ def build_parser():
     sc = sub.add_parser("context")
     sc.add_argument("--topic", "-t", required=True)
     sc.set_defaults(func=cmd_context)
+
+    # ---- DEC-0011: derived-intelligence layer (search/graph/beliefs/audit/...) ----
+    for name, fn in (("search", cmd_search), ("graph", cmd_graph),
+                     ("beliefs", cmd_beliefs), ("contradictions", cmd_contradictions),
+                     ("duplicates", cmd_duplicates), ("questions", cmd_questions),
+                     ("revivals", cmd_revivals), ("timeline", cmd_timeline),
+                     ("codemap", cmd_codemap), ("audit", cmd_audit),
+                     ("evidence", cmd_evidence_list)):
+        sp = sub.add_parser(name)
+        sp.add_argument("margs", nargs=argparse.REMAINDER)
+        sp.set_defaults(func=fn)
+    ss = sub.add_parser("state", help="write/print the generated research state (state.md + state.json)")
+    ss.add_argument("--write", action="store_true")
+    ss.add_argument("margs", nargs=argparse.REMAINDER)
+    ss.set_defaults(func=cmd_state)
+    sub.add_parser("schema").set_defaults(func=cmd_schema)
+    sh = sub.add_parser("hygiene", help="classify repo-root files (sanctioned / debt / new / unreferenced)")
+    sh.add_argument("--json", action="store_true")
+    sh.set_defaults(func=cmd_hygiene)
+    sub.add_parser("selftest", help="run the memory-system unit tests").set_defaults(func=cmd_selftest)
+
+    sq = sub.add_parser("new-question")
+    sq.add_argument("--title", "-t")
+    sq.set_defaults(func=cmd_new_question)
+    spr2 = sub.add_parser("new-principle")
+    spr2.add_argument("--title", "-t")
+    spr2.set_defaults(func=cmd_new_principle)
+    sev = sub.add_parser("new-evidence")
+    sev.add_argument("--title", "-t")
+    sev.add_argument("--path")
+    sev.set_defaults(func=cmd_new_evidence)
     return p
 
 
@@ -1116,7 +1288,10 @@ def main(argv=None):
             stream.reconfigure(encoding="utf-8", errors="replace")
         except Exception:
             pass
-    args = build_parser().parse_args(argv)
+    p = build_parser()
+    args, extra = p.parse_known_args(argv)
+    if extra and hasattr(args, "margs"):
+        args.margs = list(extra) + list(getattr(args, "margs", []) or [])
     args.func(args)
     return 0
 

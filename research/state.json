@@ -1,0 +1,1808 @@
+{
+  "beliefs": [
+    {
+      "agents_opposing": [],
+      "agents_supporting": [],
+      "assess": "PROJECTION — follow the linked records; a verdict count is not a fact.",
+      "calibration": "—",
+      "confidence": null,
+      "example": false,
+      "experiments_negative": [],
+      "experiments_positive": [],
+      "experiments_testing": [],
+      "falsifier": "",
+      "id": "2026-09-09-placeholder",
+      "n_experiments": 0,
+      "rel": "agents/researcher-architect/reports/2026-09-09-placeholder.md",
+      "status": "—",
+      "title": "2026 09 09 placeholder"
+    },
+    {
+      "agents_opposing": [
+        "adversarial-reviewer"
+      ],
+      "agents_supporting": [
+        "implementation-engineer",
+        "researcher-architect"
+      ],
+      "assess": "PROJECTION — follow the linked records; a verdict count is not a fact.",
+      "calibration": "likely",
+      "confidence": "0.65",
+      "example": true,
+      "experiments_negative": [],
+      "experiments_positive": [],
+      "experiments_testing": [],
+      "falsifier": "",
+      "id": "H-0001",
+      "n_experiments": 0,
+      "rel": "hypotheses/H-0001-pvs-transposition-table-reduces-time-to-depth.md",
+      "status": "OPEN",
+      "title": "PVS + transposition table materially reduces time-to-depth vs plain alpha-beta"
+    },
+    {
+      "agents_opposing": [],
+      "agents_supporting": [],
+      "assess": "PROJECTION — follow the linked records; a verdict count is not a fact.",
+      "calibration": "—",
+      "confidence": null,
+      "example": false,
+      "experiments_negative": [],
+      "experiments_positive": [],
+      "experiments_testing": [],
+      "falsifier": "",
+      "id": "H-0002-classical-stub",
+      "n_experiments": 0,
+      "rel": "hypotheses/H-0002-classical-alpha-beta-pvs-is-the-correct-phase-2-foundation.md",
+      "status": "SUPERSEDED",
+      "title": "SUPERSEDED placeholder (renumbered to H-0003/H-0004/H-0005 on 2026-09-09)"
+    },
+    {
+      "agents_opposing": [],
+      "agents_supporting": [
+        "researcher-architect"
+      ],
+      "assess": "PROJECTION — follow the linked records; a verdict count is not a fact.",
+      "calibration": "likely",
+      "confidence": "0.6",
+      "example": false,
+      "experiments_negative": [],
+      "experiments_positive": [],
+      "experiments_testing": [],
+      "falsifier": "",
+      "id": "H-0002-hand-tuned-stub",
+      "n_experiments": 0,
+      "rel": "hypotheses/H-0002-hand-tuned-evaluation-baseline-sufficient-for-2500-elo.md",
+      "status": "SUPERSEDED",
+      "title": "Hand-Tuned Evaluation Baseline Sufficient for 2500+ Elo"
+    },
+    {
+      "agents_opposing": [],
+      "agents_supporting": [
+        "researcher-architect"
+      ],
+      "assess": "PROJECTION — follow the linked records; a verdict count is not a fact.",
+      "calibration": "likely",
+      "confidence": "0.7",
+      "example": false,
+      "experiments_negative": [],
+      "experiments_positive": [],
+      "experiments_testing": [],
+      "falsifier": "",
+      "id": "H-0002-magic-stub",
+      "n_experiments": 0,
+      "rel": "hypotheses/H-0002-magic-bitboards-with-pext-provide-3x-nps-speedup.md",
+      "status": "SUPERSEDED",
+      "title": "Magic Bitboards with PEXT Provide >=3x NPS Speedup"
+    },
+    {
+      "agents_opposing": [],
+      "agents_supporting": [
+        "researcher-architect"
+      ],
+      "assess": "PROJECTION — follow the linked records; a verdict count is not a fact.",
+      "calibration": "strongly supported",
+      "confidence": "0.75",
+      "example": false,
+      "experiments_negative": [],
+      "experiments_positive": [],
+      "experiments_testing": [],
+      "falsifier": "",
+      "id": "H-0003",
+      "n_experiments": 0,
+      "rel": "hypotheses/H-0003-classical-alpha-beta-pvs-is-the-correct-phase-2-foundation.md",
+      "status": "OPEN",
+      "title": "Classical Alpha-Beta/PVS is the Correct Phase 2 Foundation"
+    },
+    {
+      "agents_opposing": [],
+      "agents_supporting": [
+        "researcher-architect"
+      ],
+      "assess": "PROJECTION — follow the linked records; a verdict count is not a fact.",
+      "calibration": "likely",
+      "confidence": "0.6",
+      "example": false,
+      "experiments_negative": [
+        "E-0010"
+      ],
+      "experiments_positive": [],
+      "experiments_testing": [
+        {
+          "id": "E-0010",
+          "rel": "experiments/E-0010-ee-val-tapered-hand-tuned-evaluation-term-by-term-self-play-elo-attribution.md",
+          "result": "FAIL (pre-registered gate (c) effect size; direction significantly positive). Gates (a),(b),(d) PASS. gate (c): stage-6 (full tapered eval) beats stage-0 (mater",
+          "status": "COMPLETED",
+          "title": "E-EVAL — Tapered Hand-Tuned Evaluation (term-by-term self-play Elo attribution)",
+          "verdict": "negative"
+        }
+      ],
+      "falsifier": "",
+      "id": "H-0004",
+      "n_experiments": 1,
+      "rel": "hypotheses/H-0004-hand-tuned-evaluation-baseline-sufficient-for-2500-elo.md",
+      "status": "OPEN",
+      "title": "Hand-Tuned Evaluation Baseline Sufficient for 2500+ Elo"
+    },
+    {
+      "agents_opposing": [],
+      "agents_supporting": [
+        "researcher-architect"
+      ],
+      "assess": "PROJECTION — follow the linked records; a verdict count is not a fact.",
+      "calibration": "plausible",
+      "confidence": "0.45",
+      "example": false,
+      "experiments_negative": [],
+      "experiments_positive": [],
+      "experiments_testing": [
+        {
+          "id": "E-00003",
+          "rel": "experiments/E-00003-scratch-o2-vs-od-perft-baseline-measurement-external-harness.md",
+          "result": "perft NPS /O2 ~43-50 Mnps vs /Od ~19-21 Mnps (2.1-2.4x); all counts exact",
+          "status": "COMPLETED",
+          "title": "Scratch /O2 vs /Od perft baseline measurement (external harness)",
+          "verdict": "unverdicted"
+        },
+        {
+          "id": "E-0002",
+          "rel": "experiments/E-0002-bench-harness-and-o2-baseline.md",
+          "result": "certified /O2 = 43-47 Mnps (5 reps, pinned, SHA-256 logged); all E-00003-comparable positions within +-10% -> baseline CERTIFIED, O3 gate open",
+          "status": "COMPLETED",
+          "title": "Bench harness plus O2 build baseline (perft NPS, fixed flags)",
+          "verdict": "unverdicted"
+        }
+      ],
+      "falsifier": "",
+      "id": "H-0005",
+      "n_experiments": 2,
+      "rel": "hypotheses/H-0005-magic-bitboards-with-pext-provide-3x-nps-speedup.md",
+      "status": "OPEN",
+      "title": "Magic Bitboards with PEXT Provide >=3x NPS Speedup"
+    },
+    {
+      "agents_opposing": [],
+      "agents_supporting": [
+        "researcher-architect"
+      ],
+      "assess": "PROJECTION — follow the linked records; a verdict count is not a fact.",
+      "calibration": "likely",
+      "confidence": "0.6",
+      "example": false,
+      "experiments_negative": [],
+      "experiments_positive": [],
+      "experiments_testing": [
+        {
+          "id": "E-00003",
+          "rel": "experiments/E-00003-scratch-o2-vs-od-perft-baseline-measurement-external-harness.md",
+          "result": "perft NPS /O2 ~43-50 Mnps vs /Od ~19-21 Mnps (2.1-2.4x); all counts exact",
+          "status": "COMPLETED",
+          "title": "Scratch /O2 vs /Od perft baseline measurement (external harness)",
+          "verdict": "unverdicted"
+        },
+        {
+          "id": "E-00005",
+          "rel": "experiments/E-00005-slider-attack-time-share-and-pext-speedup-ceiling-pre-pext-profile.md",
+          "result": "",
+          "status": "PENDING",
+          "title": "Slider-attack time share and PEXT speedup ceiling (pre-PEXT profile)",
+          "verdict": "unverdicted"
+        }
+      ],
+      "falsifier": "",
+      "id": "H-0006",
+      "n_experiments": 2,
+      "rel": "hypotheses/H-0006-pext-magic-sliders-raise-perft-nps-1-3-2-5x-not-3x-at-o2-vs-current-ray-stepping.md",
+      "status": "OPEN",
+      "title": "PEXT/magic sliders raise perft NPS 1.3-2.5x (not >=3x) at O2 vs current ray-stepping"
+    },
+    {
+      "agents_opposing": [],
+      "agents_supporting": [
+        "researcher-architect"
+      ],
+      "assess": "PROJECTION — follow the linked records; a verdict count is not a fact.",
+      "calibration": "likely",
+      "confidence": "0.65",
+      "example": false,
+      "experiments_negative": [],
+      "experiments_positive": [],
+      "experiments_testing": [],
+      "falsifier": "",
+      "id": "H-0007",
+      "n_experiments": 0,
+      "rel": "hypotheses/H-0007-removing-the-per-call-board-copy-in-generate-moves-raises-perft-nps-10-at-o2.md",
+      "status": "OPEN",
+      "title": "Removing the per-call Board copy in generate_moves raises perft NPS >=10% at O2"
+    },
+    {
+      "agents_opposing": [],
+      "agents_supporting": [
+        "researcher-architect"
+      ],
+      "assess": "PROJECTION — follow the linked records; a verdict count is not a fact.",
+      "calibration": "likely",
+      "confidence": "0.7",
+      "example": false,
+      "experiments_negative": [],
+      "experiments_positive": [
+        "E-00006",
+        "E-00007"
+      ],
+      "experiments_testing": [
+        {
+          "id": "E-00006",
+          "rel": "experiments/E-00006-o3a-plain-alpha-beta-baseline-vs-random-mover.md",
+          "result": "PASS: 29/30 wins (96.7%) at depth 4 over 30 balanced-color games; 100% legal-game rate; perft 10/10 bit-identical. O3b unblocked",
+          "status": "COMPLETED",
+          "title": "O3a plain alpha-beta baseline vs random mover",
+          "verdict": "positive"
+        },
+        {
+          "id": "E-00007",
+          "rel": "experiments/E-00007-o3b-staged-move-ordering-pv-mvv-lva-killers-history.md",
+          "result": "PASS: full ordering reduces nodes 91.2% vs O3a unordered (d6, 11 positions); perft bit-identical; 30/30 (100%) vs random; scores identical at every stage",
+          "status": "COMPLETED",
+          "title": "O3b staged move ordering (PV, MVV-LVA, killers, history)",
+          "verdict": "positive"
+        }
+      ],
+      "falsifier": "",
+      "id": "H-0008",
+      "n_experiments": 2,
+      "rel": "hypotheses/H-0008-move-ordering-dominates-raw-nps-for-phase-2-time-to-depth.md",
+      "status": "OPEN",
+      "title": "Move ordering dominates raw NPS for Phase-2 time-to-depth"
+    },
+    {
+      "agents_opposing": [],
+      "agents_supporting": [
+        "researcher-architect"
+      ],
+      "assess": "PROJECTION — follow the linked records; a verdict count is not a fact.",
+      "calibration": "likely",
+      "confidence": "0.7",
+      "example": false,
+      "experiments_negative": [],
+      "experiments_positive": [],
+      "experiments_testing": [],
+      "falsifier": "",
+      "id": "H-0009",
+      "n_experiments": 0,
+      "rel": "hypotheses/H-0009-pvs-plus-transposition-table-reduces-nodes-to-depth-versus-plain-alpha-beta.md",
+      "status": "OPEN",
+      "title": "PVS plus transposition table reduces nodes-to-depth versus plain alpha-beta"
+    },
+    {
+      "agents_opposing": [],
+      "agents_supporting": [
+        "researcher-architect"
+      ],
+      "assess": "PROJECTION — follow the linked records; a verdict count is not a fact.",
+      "calibration": "strongly supported",
+      "confidence": "0.85",
+      "example": false,
+      "experiments_negative": [],
+      "experiments_positive": [
+        "E-00006"
+      ],
+      "experiments_testing": [
+        {
+          "id": "E-00006",
+          "rel": "experiments/E-00006-o3a-plain-alpha-beta-baseline-vs-random-mover.md",
+          "result": "PASS: 29/30 wins (96.7%) at depth 4 over 30 balanced-color games; 100% legal-game rate; perft 10/10 bit-identical. O3b unblocked",
+          "status": "COMPLETED",
+          "title": "O3a plain alpha-beta baseline vs random mover",
+          "verdict": "positive"
+        }
+      ],
+      "falsifier": "",
+      "id": "H-0010",
+      "n_experiments": 1,
+      "rel": "hypotheses/H-0010-sprt-based-engine-comparison-harness-is-required-before-any-version-claim-is-trustworthy.md",
+      "status": "OPEN",
+      "title": "SPRT-based engine comparison harness is required before any version claim is trustworthy"
+    },
+    {
+      "agents_opposing": [],
+      "agents_supporting": [
+        "researcher-architect"
+      ],
+      "assess": "PROJECTION — follow the linked records; a verdict count is not a fact.",
+      "calibration": "likely",
+      "confidence": "0.55",
+      "example": false,
+      "experiments_negative": [],
+      "experiments_positive": [],
+      "experiments_testing": [],
+      "falsifier": "",
+      "id": "H-0011",
+      "n_experiments": 0,
+      "rel": "hypotheses/H-0011-copy-make-outperforms-make-unmake-for-alpha-beta-at-depths-10-on-this-hardware.md",
+      "status": "OPEN",
+      "title": "Copy-make outperforms make-unmake for alpha-beta at depths >=10 on this hardware"
+    },
+    {
+      "agents_opposing": [],
+      "agents_supporting": [
+        "researcher-architect"
+      ],
+      "assess": "PROJECTION — follow the linked records; a verdict count is not a fact.",
+      "calibration": "likely",
+      "confidence": "0.7",
+      "example": false,
+      "experiments_negative": [],
+      "experiments_positive": [
+        "E-00008"
+      ],
+      "experiments_testing": [
+        {
+          "id": "E-00008",
+          "rel": "experiments/E-00008-o3c-quiescence-search-stand-pat-captures-promos-delta-prune-check-evasion.md",
+          "result": "PASS: perft bit-identical; 73/73 tactical pass; O3c finds 8 mate scores O3b misses; 30/30 (100%) vs random; node count 2.08x (expected)",
+          "status": "COMPLETED",
+          "title": "O3c quiescence search (stand-pat, captures/promos, delta prune, check evasion)",
+          "verdict": "positive"
+        },
+        {
+          "id": "E-0002",
+          "rel": "experiments/E-0002-bench-harness-and-o2-baseline.md",
+          "result": "certified /O2 = 43-47 Mnps (5 reps, pinned, SHA-256 logged); all E-00003-comparable positions within +-10% -> baseline CERTIFIED, O3 gate open",
+          "status": "COMPLETED",
+          "title": "Bench harness plus O2 build baseline (perft NPS, fixed flags)",
+          "verdict": "unverdicted"
+        }
+      ],
+      "falsifier": "",
+      "id": "H-0012",
+      "n_experiments": 2,
+      "rel": "hypotheses/H-0012-search-fast-path-move-invariants-king-capture-exclusion-and-promo-phantom-asserts.md",
+      "status": "OPEN",
+      "title": "Search fast-path move invariants - king-capture exclusion and promo-phantom asserts"
+    },
+    {
+      "agents_opposing": [],
+      "agents_supporting": [
+        "researcher-architect"
+      ],
+      "assess": "PROJECTION — follow the linked records; a verdict count is not a fact.",
+      "calibration": "likely",
+      "confidence": "0.6",
+      "example": false,
+      "experiments_negative": [
+        "E-0010"
+      ],
+      "experiments_positive": [],
+      "experiments_testing": [
+        {
+          "id": "E-0010",
+          "rel": "experiments/E-0010-ee-val-tapered-hand-tuned-evaluation-term-by-term-self-play-elo-attribution.md",
+          "result": "FAIL (pre-registered gate (c) effect size; direction significantly positive). Gates (a),(b),(d) PASS. gate (c): stage-6 (full tapered eval) beats stage-0 (mater",
+          "status": "COMPLETED",
+          "title": "E-EVAL — Tapered Hand-Tuned Evaluation (term-by-term self-play Elo attribution)",
+          "verdict": "negative"
+        }
+      ],
+      "falsifier": "",
+      "id": "H-0013",
+      "n_experiments": 1,
+      "rel": "hypotheses/H-0013-tapered-eval-plus-texel-protocol-mg-eg-interpolation-and-quiet-label-holdout-design.md",
+      "status": "OPEN",
+      "title": "Tapered eval plus Texel protocol - mg-eg interpolation and quiet-label holdout design"
+    },
+    {
+      "agents_opposing": [],
+      "agents_supporting": [
+        "researcher-architect"
+      ],
+      "assess": "PROJECTION — follow the linked records; a verdict count is not a fact.",
+      "calibration": "likely",
+      "confidence": "0.6",
+      "example": false,
+      "experiments_negative": [],
+      "experiments_positive": [],
+      "experiments_testing": [
+        {
+          "id": "E-0002",
+          "rel": "experiments/E-0002-bench-harness-and-o2-baseline.md",
+          "result": "certified /O2 = 43-47 Mnps (5 reps, pinned, SHA-256 logged); all E-00003-comparable positions within +-10% -> baseline CERTIFIED, O3 gate open",
+          "status": "COMPLETED",
+          "title": "Bench harness plus O2 build baseline (perft NPS, fixed flags)",
+          "verdict": "unverdicted"
+        }
+      ],
+      "falsifier": "",
+      "id": "H-0014",
+      "n_experiments": 1,
+      "rel": "hypotheses/H-0014-board-state-integrity-audit-halfmove-ep-key-castling-rights-round-trip-tests.md",
+      "status": "OPEN",
+      "title": "Board state integrity audit - halfmove EP-key castling-rights round-trip tests"
+    },
+    {
+      "agents_opposing": [],
+      "agents_supporting": [
+        "researcher-architect"
+      ],
+      "assess": "PROJECTION — follow the linked records; a verdict count is not a fact.",
+      "calibration": "plausible",
+      "confidence": "0.3",
+      "example": false,
+      "experiments_negative": [],
+      "experiments_positive": [],
+      "experiments_testing": [],
+      "falsifier": "",
+      "id": "H-0015",
+      "n_experiments": 0,
+      "rel": "hypotheses/H-0015-learned-time-management-value-of-computation-allocation-from-eval-variance.md",
+      "status": "OPEN",
+      "title": "Learned time management - value of computation allocation from eval variance"
+    }
+  ],
+  "codemap": [
+    {
+      "code_files": [
+        "src/main.cpp",
+        "src/movegen.cpp"
+      ],
+      "commits_mentioned": [],
+      "kind": "doc",
+      "record": "AGENT_MEGAPROMPT_ROUND3",
+      "rel": "AGENT_MEGAPROMPT_ROUND3.md",
+      "status": "—",
+      "title": "AGENT_MEGAPROMPT_ROUND3"
+    },
+    {
+      "code_files": [
+        "src/main.cpp"
+      ],
+      "commits_mentioned": [],
+      "kind": "doc",
+      "record": "IMPLEMENTATION_MEGAPROMPT_DRAFT",
+      "rel": "IMPLEMENTATION_MEGAPROMPT_DRAFT.md",
+      "status": "—",
+      "title": "IMPLEMENTATION_MEGAPROMPT_DRAFT"
+    },
+    {
+      "code_files": [
+        "src/movegen.cpp"
+      ],
+      "commits_mentioned": [
+        "300bdeb",
+        "a4c6b16"
+      ],
+      "kind": "current_position",
+      "record": "current_position",
+      "rel": "agents/adversarial-reviewer/current_position.md",
+      "status": "—",
+      "title": "current_position"
+    },
+    {
+      "code_files": [
+        "src/search.cpp"
+      ],
+      "commits_mentioned": [
+        "300bdeb",
+        "a4c6b16"
+      ],
+      "kind": "current_position",
+      "record": "current_position",
+      "rel": "agents/implementation-engineer/current_position.md",
+      "status": "—",
+      "title": "current_position"
+    },
+    {
+      "code_files": [
+        "src/main.cpp"
+      ],
+      "commits_mentioned": [],
+      "kind": "report",
+      "record": "R-IE-O3A",
+      "rel": "agents/implementation-engineer/reports/2026-09-11-o3a-plain-ab-completion-report.md",
+      "status": "—",
+      "title": "O3a plain-AB completion report (2026-09-11)"
+    },
+    {
+      "code_files": [
+        "src/main.cpp"
+      ],
+      "commits_mentioned": [],
+      "kind": "report",
+      "record": "R-IE-O3B",
+      "rel": "agents/implementation-engineer/reports/2026-09-11-o3b-staged-move-ordering-completion-report.md",
+      "status": "—",
+      "title": "O3b staged move ordering completion report (2026-09-11)"
+    },
+    {
+      "code_files": [
+        "src/board.cpp",
+        "src/search.cpp"
+      ],
+      "commits_mentioned": [],
+      "kind": "report",
+      "record": "R-IE-O3C",
+      "rel": "agents/implementation-engineer/reports/2026-09-11-o3c-quiescence-completion-report.md",
+      "status": "—",
+      "title": "O3c quiescence completion report (2026-09-11)"
+    },
+    {
+      "code_files": [
+        "src/main.cpp",
+        "src/search.cpp",
+        "src/tt.cpp"
+      ],
+      "commits_mentioned": [],
+      "kind": "report",
+      "record": "R-IE-O3D",
+      "rel": "agents/implementation-engineer/reports/2026-09-13-o3d-tt-id-time-control-completion-report.md",
+      "status": "—",
+      "title": "O3d TT + iterative deepening + time control completion report (2026-09-13)"
+    },
+    {
+      "code_files": [
+        "src/bitboard.cpp",
+        "src/board.cpp",
+        "src/board.h",
+        "src/defs.h",
+        "src/main.cpp",
+        "src/movegen.cpp",
+        "src/movegen.h",
+        "src/perft.cpp",
+        "src/perft.h",
+        "src/zobrist.cpp",
+        "src/zobrist.h"
+      ],
+      "commits_mentioned": [],
+      "kind": "report",
+      "record": "2026-09-09-a-p-analysis-architecture-strengths-weaknesses-and-research-roadmap",
+      "rel": "agents/researcher-architect/reports/2026-09-09-a-p-analysis-architecture-strengths-weaknesses-and-research-roadmap.md",
+      "status": "—",
+      "title": "2026 09 09 a p analysis architecture strengths weaknesses and research roadmap"
+    },
+    {
+      "code_files": [
+        "src/bitboard.h",
+        "src/board.h",
+        "src/defs.h",
+        "src/main.cpp",
+        "src/movegen.h",
+        "src/perft.h",
+        "src/zobrist.h"
+      ],
+      "commits_mentioned": [],
+      "kind": "report",
+      "record": "2026-09-09-a-p-analysis-move-ordering-lever-pseudo-legal-movegen-contract-and-phase-2-search-roadmap",
+      "rel": "agents/researcher-architect/reports/2026-09-09-a-p-analysis-move-ordering-lever-pseudo-legal-movegen-contract-and-phase-2-search-roadmap.md",
+      "status": "—",
+      "title": "2026 09 09 a p analysis move ordering lever pseudo legal movegen contract and phase 2 search roadmap"
+    },
+    {
+      "code_files": [
+        "src/main.cpp"
+      ],
+      "commits_mentioned": [],
+      "kind": "report",
+      "record": "2026-09-09-baseline-revalidated-a-p-analysis-measured-perft-baseline-od-vs-o2-flags-and-revised-pext-expectations",
+      "rel": "agents/researcher-architect/reports/2026-09-09-baseline-revalidated-a-p-analysis-measured-perft-baseline-od-vs-o2-flags-and-revised-pext-expectations.md",
+      "status": "—",
+      "title": "2026 09 09 baseline revalidated a p analysis measured perft baseline od vs o2 flags and revised pext expectations"
+    },
+    {
+      "code_files": [
+        "src/bitboard.h",
+        "src/board.h",
+        "src/defs.h",
+        "src/main.cpp",
+        "src/movegen.h",
+        "src/perft.h",
+        "src/zobrist.h"
+      ],
+      "commits_mentioned": [],
+      "kind": "report",
+      "record": "2026-09-09-fresh-a-p-analysis-confirmed-baseline-search-first-roadmap-and-corrected-movegen-contract",
+      "rel": "agents/researcher-architect/reports/2026-09-09-fresh-a-p-analysis-confirmed-baseline-search-first-roadmap-and-corrected-movegen-contract.md",
+      "status": "—",
+      "title": "2026 09 09 fresh a p analysis confirmed baseline search first roadmap and corrected movegen contract"
+    },
+    {
+      "code_files": [
+        "src/bitboard.h",
+        "src/board.h",
+        "src/defs.h",
+        "src/main.cpp",
+        "src/movegen.cpp",
+        "src/perft.cpp",
+        "src/zobrist.cpp"
+      ],
+      "commits_mentioned": [],
+      "kind": "report",
+      "record": "2026-09-09-independent-baseline-a-p-analysis",
+      "rel": "agents/researcher-architect/reports/2026-09-09-independent-baseline-a-p-analysis.md",
+      "status": "—",
+      "title": "2026 09 09 independent baseline a p analysis"
+    },
+    {
+      "code_files": [
+        "src/bitboard.cpp",
+        "src/board.cpp",
+        "src/movegen.cpp",
+        "src/search.cpp"
+      ],
+      "commits_mentioned": [
+        "300bdeb",
+        "a4c6b16"
+      ],
+      "kind": "current_position",
+      "record": "current_position",
+      "rel": "agents/systems-researcher/current_position.md",
+      "status": "—",
+      "title": "current_position"
+    },
+    {
+      "code_files": [
+        "src/movegen.cpp"
+      ],
+      "commits_mentioned": [],
+      "kind": "debate",
+      "record": "D-0004",
+      "rel": "debates/D-0004-generate-moves-is-pseudo-legal-not-legal-reconcile-dec-0005-wording-and-the-search-contract.md",
+      "status": "OPEN",
+      "title": "generate_moves is pseudo-legal not legal: reconcile DEC-0005 wording and the search contract"
+    },
+    {
+      "code_files": [
+        "src/main.cpp",
+        "src/movegen.cpp",
+        "src/perft.cpp"
+      ],
+      "commits_mentioned": [],
+      "kind": "decision",
+      "record": "DEC-0008",
+      "rel": "decisions/DEC-0008-pseudo-legal-move-generation-king-safety-filter-at-the-search-perft-site.md",
+      "status": "ACTIVE",
+      "title": "Pseudo-legal move generation + king-safety filter at the search/perft site"
+    },
+    {
+      "code_files": [
+        "src/main.cpp",
+        "src/search.cpp"
+      ],
+      "commits_mentioned": [],
+      "kind": "experiment",
+      "record": "E-00007",
+      "rel": "experiments/E-00007-o3b-staged-move-ordering-pv-mvv-lva-killers-history.md",
+      "status": "COMPLETED",
+      "title": "O3b staged move ordering (PV, MVV-LVA, killers, history)"
+    },
+    {
+      "code_files": [
+        "src/board.cpp"
+      ],
+      "commits_mentioned": [],
+      "kind": "experiment",
+      "record": "E-00008",
+      "rel": "experiments/E-00008-o3c-quiescence-search-stand-pat-captures-promos-delta-prune-check-evasion.md",
+      "status": "COMPLETED",
+      "title": "O3c quiescence search (stand-pat, captures/promos, delta prune, check evasion)"
+    },
+    {
+      "code_files": [
+        "src/eval.cpp",
+        "src/eval.h",
+        "src/main.cpp",
+        "src/search.cpp"
+      ],
+      "commits_mentioned": [
+        "962368b",
+        "9b69e0a",
+        "b5b3cf2"
+      ],
+      "kind": "experiment",
+      "record": "E-0010",
+      "rel": "experiments/E-0010-ee-val-tapered-hand-tuned-evaluation-term-by-term-self-play-elo-attribution.md",
+      "status": "COMPLETED",
+      "title": "E-EVAL — Tapered Hand-Tuned Evaluation (term-by-term self-play Elo attribution)"
+    },
+    {
+      "code_files": [
+        "src/bitboard.cpp"
+      ],
+      "commits_mentioned": [],
+      "kind": "hypothesis",
+      "record": "H-0002-magic-stub",
+      "rel": "hypotheses/H-0002-magic-bitboards-with-pext-provide-3x-nps-speedup.md",
+      "status": "SUPERSEDED",
+      "title": "Magic Bitboards with PEXT Provide >=3x NPS Speedup"
+    },
+    {
+      "code_files": [
+        "src/bitboard.cpp"
+      ],
+      "commits_mentioned": [],
+      "kind": "hypothesis",
+      "record": "H-0005",
+      "rel": "hypotheses/H-0005-magic-bitboards-with-pext-provide-3x-nps-speedup.md",
+      "status": "OPEN",
+      "title": "Magic Bitboards with PEXT Provide >=3x NPS Speedup"
+    },
+    {
+      "code_files": [
+        "src/bitboard.cpp"
+      ],
+      "commits_mentioned": [],
+      "kind": "hypothesis",
+      "record": "H-0006",
+      "rel": "hypotheses/H-0006-pext-magic-sliders-raise-perft-nps-1-3-2-5x-not-3x-at-o2-vs-current-ray-stepping.md",
+      "status": "OPEN",
+      "title": "PEXT/magic sliders raise perft NPS 1.3-2.5x (not >=3x) at O2 vs current ray-stepping"
+    },
+    {
+      "code_files": [
+        "src/board.cpp",
+        "src/defs.h",
+        "src/main.cpp",
+        "src/movegen.cpp",
+        "src/perft.cpp"
+      ],
+      "commits_mentioned": [],
+      "kind": "review",
+      "record": "R-0002",
+      "rel": "reviews/R-0002-review-of-researcher-architect-6-report-corpus-pseudo-legal-contract-sprt-bar-falsification-bounds.md",
+      "status": "COMPLETED",
+      "title": "R 0002 review of researcher architect 6 report corpus pseudo legal contract sprt bar falsification bounds"
+    },
+    {
+      "code_files": [
+        "src/main.cpp"
+      ],
+      "commits_mentioned": [
+        "991cd0d"
+      ],
+      "kind": "review",
+      "record": "R-0003",
+      "rel": "reviews/R-0003-full-project-and-multi-agent-system-audit.md",
+      "status": "COMPLETED",
+      "title": "Full-project and multi-agent research-system audit (Round 4 meta)"
+    }
+  ],
+  "contradiction_candidates": [],
+  "debates_open": [
+    {
+      "id": "D-0001",
+      "participants": [
+        "researcher-architect",
+        "systems-researcher",
+        "adversarial-reviewer"
+      ],
+      "rel": "debates/D-0001-search-framework-classical-vs-mcts.md",
+      "status": "OPEN",
+      "title": "Search framework: classical alpha-beta/PVS vs GPU MCTS/PUCT"
+    },
+    {
+      "id": "D-0002",
+      "participants": [
+        "researcher-architect",
+        "adversarial-reviewer"
+      ],
+      "rel": "debates/D-0002-release-build-flags-and-nps-validity.md",
+      "status": "OPEN",
+      "title": "Release build flags invalidate current NPS claims and O2-binary provenance"
+    },
+    {
+      "id": "D-0003",
+      "participants": [
+        "researcher-architect",
+        "adversarial-reviewer"
+      ],
+      "rel": "debates/D-0003-h-0005-3x-pext-speedup-vs-measured-47-mnps-perft-baseline.md",
+      "status": "OPEN",
+      "title": "H-0005 >=3x PEXT speedup vs measured ~47 Mnps perft baseline"
+    },
+    {
+      "id": "D-0004",
+      "participants": [
+        "researcher-architect",
+        "adversarial-reviewer"
+      ],
+      "rel": "debates/D-0004-generate-moves-is-pseudo-legal-not-legal-reconcile-dec-0005-wording-and-the-search-contract.md",
+      "status": "OPEN",
+      "title": "generate_moves is pseudo-legal not legal: reconcile DEC-0005 wording and the search contract"
+    },
+    {
+      "id": "D-0005",
+      "participants": [
+        "adversarial-reviewer",
+        "researcher-architect"
+      ],
+      "rel": "debates/D-0005-make-unmake-vs-copy-make-for-phase-2-search-dec-0004-under-conditions.md",
+      "status": "OPEN",
+      "title": "make-unmake vs copy-make for Phase 2 search: DEC-0004 under conditions"
+    },
+    {
+      "id": "D-0006",
+      "participants": [
+        "researcher-architect",
+        "adversarial-reviewer"
+      ],
+      "rel": "debates/D-0006-o3-search-order-quiescence-before-pvs-tt-or-pvs-tt-before-quiescence.md",
+      "status": "OPEN",
+      "title": "O3 search order - quiescence before PVS-TT or PVS-TT before quiescence"
+    }
+  ],
+  "duplicate_candidates": [
+    {
+      "a": "H-0002-hand-tuned-stub",
+      "a_rel": "hypotheses/H-0002-hand-tuned-evaluation-baseline-sufficient-for-2500-elo.md",
+      "b": "H-0004",
+      "b_rel": "hypotheses/H-0004-hand-tuned-evaluation-baseline-sufficient-for-2500-elo.md",
+      "kinds": [
+        "hypothesis",
+        "hypothesis"
+      ],
+      "score": 1.0
+    },
+    {
+      "a": "H-0002-magic-stub",
+      "a_rel": "hypotheses/H-0002-magic-bitboards-with-pext-provide-3x-nps-speedup.md",
+      "b": "H-0005",
+      "b_rel": "hypotheses/H-0005-magic-bitboards-with-pext-provide-3x-nps-speedup.md",
+      "kinds": [
+        "hypothesis",
+        "hypothesis"
+      ],
+      "score": 1.0
+    }
+  ],
+  "evidence": [
+    {
+      "cites": [
+        "E-0010"
+      ],
+      "exists": true,
+      "id": "EV-0001",
+      "kind": "raw-data",
+      "path": "e0010_k6n_games.jsonl",
+      "regenerate": "per-game JSONL is a one-way artifact; regenerate by re-running the campaign: python e0010_run_all.py (build\\\\Release\\\\kana.exe, stage6 vs stage0, N=240)",
+      "rel": "evidence/EV-0001-e0010-k6n-randomized-self-play.md",
+      "sha256": "9da1cfa0cb24ed94cf4a64ad47c0fed9387b5a3163b590153677e61c1fd0d227",
+      "sha256_recorded": null,
+      "status": "REGISTERED",
+      "title": "E-0010 randomized self-play games, stage-6 vs stage-0 (240-game match)"
+    },
+    {
+      "cites": [
+        "E-0010"
+      ],
+      "exists": true,
+      "id": "EV-0002",
+      "kind": "harness",
+      "path": "e0010_report.py",
+      "regenerate": "python e0010_report.py — reads e0010_k{1..6}n_result.txt + _games.jsonl (EV-0001) and prints the ladder + gates",
+      "rel": "evidence/EV-0002-e0010-reproduction-harness.md",
+      "sha256": "0db77c47774886204c049ad45bf73b14e8e89174f370caf40a04bc03791b9baf",
+      "sha256_recorded": null,
+      "status": "REGISTERED",
+      "title": "E-0010 aggregator+estimator harness (reproduces every published number)"
+    },
+    {
+      "cites": [],
+      "exists": true,
+      "id": "EV-0003",
+      "kind": "measurement",
+      "path": "build/Release/kana.exe",
+      "regenerate": "build.bat (Release), then: build\\\\Release\\\\kana.exe — expect 10x PASS with 0 diff and the final line 'ALL TESTS PASSED",
+      "rel": "evidence/EV-0003-perft-anchor-gate0.md",
+      "sha256": "504eb01a828770dd9bfca252ab8245a5692df51580957cb6e5553012347a6daa",
+      "sha256_recorded": null,
+      "status": "REGISTERED",
+      "title": "Certified Perft Anchor run (Gate 0 / the correctness floor)"
+    },
+    {
+      "cites": [
+        "E-0002"
+      ],
+      "exists": true,
+      "id": "EV-0004",
+      "kind": "measurement",
+      "path": "build/Release/kana.exe",
+      "regenerate": "build\\\\Release\\\\kana.exe --bench 5 (pinned, WMI clock proxy logged; self-SHA256 printed per run)",
+      "rel": "evidence/EV-0004-e0002-certified-o2-bench.md",
+      "sha256": "504eb01a828770dd9bfca252ab8245a5692df51580957cb6e5553012347a6daa",
+      "sha256_recorded": null,
+      "status": "REGISTERED",
+      "title": "E-0002 certified /O2 bench (5 reps, pinned, SHA-256 logged)"
+    },
+    {
+      "cites": [
+        "E-00007"
+      ],
+      "exists": true,
+      "id": "EV-0005",
+      "kind": "measurement",
+      "path": "stage0.txt",
+      "regenerate": "rebuild with ORDER_STAGE=0..4 and run measure_ob.py on the 11-position set",
+      "rel": "evidence/EV-0005-o3b-ordering-node-table.md",
+      "sha256": "1ac3c2a331a00945bc35576806f02508a880dc56b0f72e803725fd6716c5c81d",
+      "sha256_recorded": null,
+      "status": "REGISTERED",
+      "title": "O3b staged move-ordering node table (ORDER_STAGE 0-4, 11 positions, depth 6)"
+    },
+    {
+      "cites": [
+        "E-00008"
+      ],
+      "exists": true,
+      "id": "EV-0006",
+      "kind": "dataset",
+      "path": "tactics_set.py",
+      "regenerate": "python gen_tactics.py > tactics_gen.txt ; tactics_set.py (auto-generated validated positions) ; python measure_qs.py <exe> QSEARCH=0/1",
+      "rel": "evidence/EV-0006-e0008-tactical-set.md",
+      "sha256": "c593ceb2b57804621ee6bba7db9aaeef20dbab831f860a5fae448a3a9b5c500b",
+      "sha256_recorded": null,
+      "status": "REGISTERED",
+      "title": "E-00008 tactical test set (73 self-validated positions) + qsearch effect"
+    },
+    {
+      "cites": [
+        "E-00009"
+      ],
+      "exists": true,
+      "id": "EV-0007",
+      "kind": "measurement",
+      "path": "ttid_d6.txt",
+      "regenerate": "python ttid_measure.py <o3d_exe> <o3c_exe> 6  (writes ttid_d6.txt)",
+      "rel": "evidence/EV-0007-e0009-tt-id.md",
+      "sha256": "fc5a2fe2189e6a208b874d3af69d9642e5adfd869579cae414a720a51f99b811",
+      "sha256_recorded": null,
+      "status": "REGISTERED",
+      "title": "E-00009 TT + iterative-deepening vs fixed-depth (9.51x fewer nodes)"
+    },
+    {
+      "cites": [
+        "E-0010"
+      ],
+      "exists": true,
+      "id": "EV-0010",
+      "kind": "binary",
+      "path": "build/Release/kana.exe",
+      "regenerate": "build.bat from commit 9b69e0a (src/eval.{h,cpp}, search.cpp crash fix). Rebuild reproduces the harness; the exact hash requires the exact toolchain.",
+      "rel": "evidence/EV-0010-e0010-measurement-binary.md",
+      "sha256": "504eb01a828770dd9bfca252ab8245a5692df51580957cb6e5553012347a6daa",
+      "sha256_recorded": "504EB01A828770DD9BFCA252AB8245A5692DF51580957CB6E5553012347A6DAA",
+      "status": "REGISTERED",
+      "title": "E-0010 measurement binary (the current build/Release/kana.exe)"
+    }
+  ],
+  "facts": {
+    "note": "GENERATED file. Facts of record are project_state.md + the records it links.",
+    "perft_anchor_host": "research/project_state.md ## Certified Perft Anchors (SACRED)"
+  },
+  "failures": [
+    {
+      "id": "F-0001",
+      "lesson": "",
+      "rel": "failures/F-0001-premature-nnue-without-a-correct-search.md",
+      "title": "Premature NNUE without a correct search"
+    }
+  ],
+  "generated": "2026-09-19T18:42:45",
+  "metrics": {
+    "by_kind": {
+      "agent_profile": 1,
+      "beliefs": 1,
+      "current_position": 5,
+      "debate": 6,
+      "decision": 10,
+      "doc": 14,
+      "evidence": 8,
+      "experiment": 10,
+      "failure": 1,
+      "handoff": 1,
+      "hypothesis": 18,
+      "principle": 4,
+      "profile": 4,
+      "question": 8,
+      "report": 12,
+      "review": 5,
+      "round_megaprompt": 1,
+      "session": 2,
+      "work": 7
+    },
+    "by_status": {
+      "ACTIVE": 13,
+      "CLOSED": 2,
+      "COMPLETED": 11,
+      "DRAFT": 1,
+      "OPEN": 35,
+      "PENDING": 3,
+      "RECORDED": 1,
+      "REGISTERED": 8,
+      "REQUESTED": 1,
+      "SUPERSEDED": 4,
+      "—": 1
+    },
+    "code_files": 21,
+    "contradiction_candidates": 0,
+    "dangling_ids": 11,
+    "duplicate_candidates": 2,
+    "edges_total": 852,
+    "legacy_experiments_without_pre_registration": 6,
+    "open_questions": 8,
+    "records_total": 118,
+    "revival_candidates": 5
+  },
+  "questions_all": [
+    {
+      "blocked_by": [],
+      "created": "2026-09-19",
+      "depends_on": [
+        "W-0002"
+      ],
+      "id": "Q-0001",
+      "priority": "high",
+      "rel": "questions/Q-0001-which-eval-terms-earn-their-cost.md",
+      "related_experiments": [
+        "E-0010"
+      ],
+      "related_hypotheses": [
+        "H-0004",
+        "H-0013"
+      ],
+      "status": "OPEN",
+      "suggested_experiments": [
+        "E-TEXEL: Texel-fit the tapered terms on qsearch-resolved positions; compare mobility/tempo refit vs drop"
+      ],
+      "title": "Which eval terms actually earn their cost, and should mobility/tempo be re-tuned or removed?"
+    },
+    {
+      "blocked_by": [],
+      "created": "2026-09-19",
+      "depends_on": [],
+      "id": "Q-0002",
+      "priority": "high",
+      "rel": "questions/Q-0002-pvs-tt-lmr-null-measured-deltas.md",
+      "related_experiments": [],
+      "related_hypotheses": [
+        "H-0009"
+      ],
+      "status": "OPEN",
+      "suggested_experiments": [
+        "E-PVS-TT: TT-only",
+        "PVS-only",
+        "both on the E-00007 11-position set; disambiguate the two contributions"
+      ],
+      "title": "Can PVS + TT + LMR/null-move be added as measured deltas on O3d (O3e), and how much do they cut nodes?"
+    },
+    {
+      "blocked_by": [],
+      "created": "2026-09-19",
+      "depends_on": [
+        "Q-0002"
+      ],
+      "id": "Q-0003",
+      "priority": "medium",
+      "rel": "questions/Q-0003-persistent-tt-across-moves.md",
+      "related_experiments": [
+        "E-00009"
+      ],
+      "related_hypotheses": [],
+      "status": "OPEN",
+      "suggested_experiments": [
+        "E-TTPERSIST: same fixed positions as E-00009 at successive root moves with and without TT persistence; node/time deltas"
+      ],
+      "title": "Should the transposition table persist across moves (TT reuse), and what does a correct aging/reuse policy gain vs. per-move clear?"
+    },
+    {
+      "blocked_by": [],
+      "created": "2026-09-19",
+      "depends_on": [],
+      "id": "Q-0004",
+      "priority": "high",
+      "rel": "questions/Q-0004-prepreregistered-sprt-harness.md",
+      "related_experiments": [],
+      "related_hypotheses": [
+        "H-0010"
+      ],
+      "status": "OPEN",
+      "suggested_experiments": [
+        "E-SPRT-lite: screening delta~20 Elo + regression delta=5",
+        "LLR +-2.944",
+        "cap 30000",
+        "crash=loss",
+        "post-cap INCONCLUSIVE"
+      ],
+      "title": "Can a pre-registered two-tier SPRT harness decide every engine-delta claim against a calibrated bar?"
+    },
+    {
+      "blocked_by": [],
+      "created": "2026-09-19",
+      "depends_on": [
+        "Q-0006"
+      ],
+      "id": "Q-0005",
+      "priority": "low",
+      "rel": "questions/Q-0005-gpu-vs-cpu-inference-economics.md",
+      "related_experiments": [
+        "E-00004"
+      ],
+      "related_hypotheses": [],
+      "status": "OPEN",
+      "suggested_experiments": [
+        "E-00004 RE-SPEC: add a CPU AVX-512 VNNI batch=1 baseline and the HalfKP feature-transform + PCIe cost; only then can it gate D-0001"
+      ],
+      "title": "CPU-VNNI vs GPU batch-1 inference economics: is the RTX 5070 Ti a training device or a playing device?"
+    },
+    {
+      "blocked_by": [],
+      "created": "2026-09-19",
+      "depends_on": [],
+      "id": "Q-0006",
+      "priority": "high",
+      "rel": "questions/Q-0006-self-play-data-pipeline.md",
+      "related_experiments": [
+        "E-0010"
+      ],
+      "related_hypotheses": [
+        "H-0004",
+        "H-0013"
+      ],
+      "status": "OPEN",
+      "suggested_experiments": [
+        "E-0011: >=1000 legal",
+        "deduplicated",
+        "provenance-carrying games; resume-from-checkpoint adds no duplicates"
+      ],
+      "title": "Can the E-0011 self-play pipeline produce a deduped, provenance-carrying dataset that trains an eval that beats the hand-tuned one?"
+    },
+    {
+      "blocked_by": [],
+      "created": "2026-09-19",
+      "depends_on": [],
+      "id": "Q-0007",
+      "priority": "medium",
+      "rel": "questions/Q-0007-pext-slider-share-and-worth.md",
+      "related_experiments": [
+        "E-0002",
+        "E-00005"
+      ],
+      "related_hypotheses": [
+        "H-0005",
+        "H-0006"
+      ],
+      "status": "OPEN",
+      "suggested_experiments": [
+        "E-00005: measure slider-attack share of perft time at /O2 (profile); the Amdahl ceiling before PEXT code is written",
+        "E-PEXT: only if slider_share >= 30%"
+      ],
+      "title": "How much of perft time is slider attacks (the Amdahl ceiling for PEXT), and is the PEXT/magic swap worth doing at 1.3-2.5x?"
+    },
+    {
+      "blocked_by": [],
+      "created": "2026-09-19",
+      "depends_on": [
+        "Q-0004",
+        "Q-0001"
+      ],
+      "id": "Q-0008",
+      "priority": "low",
+      "rel": "questions/Q-0008-learned-time-management.md",
+      "related_experiments": [],
+      "related_hypotheses": [
+        "H-0015"
+      ],
+      "status": "OPEN",
+      "suggested_experiments": [
+        "E-TIME: after SPRT exists",
+        "log per-move search stats; train an allocator offline; A/B at fixed total time",
+        "0 forfeits required"
+      ],
+      "title": "Can computation be allocated by predicted value-of-search (eval variance / PV instability) rather than fixed heuristics?"
+    }
+  ],
+  "questions_open": [
+    {
+      "blocked_by": [],
+      "created": "2026-09-19",
+      "depends_on": [
+        "W-0002"
+      ],
+      "id": "Q-0001",
+      "priority": "high",
+      "rel": "questions/Q-0001-which-eval-terms-earn-their-cost.md",
+      "related_experiments": [
+        "E-0010"
+      ],
+      "related_hypotheses": [
+        "H-0004",
+        "H-0013"
+      ],
+      "status": "OPEN",
+      "suggested_experiments": [
+        "E-TEXEL: Texel-fit the tapered terms on qsearch-resolved positions; compare mobility/tempo refit vs drop"
+      ],
+      "title": "Which eval terms actually earn their cost, and should mobility/tempo be re-tuned or removed?"
+    },
+    {
+      "blocked_by": [],
+      "created": "2026-09-19",
+      "depends_on": [],
+      "id": "Q-0002",
+      "priority": "high",
+      "rel": "questions/Q-0002-pvs-tt-lmr-null-measured-deltas.md",
+      "related_experiments": [],
+      "related_hypotheses": [
+        "H-0009"
+      ],
+      "status": "OPEN",
+      "suggested_experiments": [
+        "E-PVS-TT: TT-only",
+        "PVS-only",
+        "both on the E-00007 11-position set; disambiguate the two contributions"
+      ],
+      "title": "Can PVS + TT + LMR/null-move be added as measured deltas on O3d (O3e), and how much do they cut nodes?"
+    },
+    {
+      "blocked_by": [],
+      "created": "2026-09-19",
+      "depends_on": [
+        "Q-0002"
+      ],
+      "id": "Q-0003",
+      "priority": "medium",
+      "rel": "questions/Q-0003-persistent-tt-across-moves.md",
+      "related_experiments": [
+        "E-00009"
+      ],
+      "related_hypotheses": [],
+      "status": "OPEN",
+      "suggested_experiments": [
+        "E-TTPERSIST: same fixed positions as E-00009 at successive root moves with and without TT persistence; node/time deltas"
+      ],
+      "title": "Should the transposition table persist across moves (TT reuse), and what does a correct aging/reuse policy gain vs. per-move clear?"
+    },
+    {
+      "blocked_by": [],
+      "created": "2026-09-19",
+      "depends_on": [],
+      "id": "Q-0004",
+      "priority": "high",
+      "rel": "questions/Q-0004-prepreregistered-sprt-harness.md",
+      "related_experiments": [],
+      "related_hypotheses": [
+        "H-0010"
+      ],
+      "status": "OPEN",
+      "suggested_experiments": [
+        "E-SPRT-lite: screening delta~20 Elo + regression delta=5",
+        "LLR +-2.944",
+        "cap 30000",
+        "crash=loss",
+        "post-cap INCONCLUSIVE"
+      ],
+      "title": "Can a pre-registered two-tier SPRT harness decide every engine-delta claim against a calibrated bar?"
+    },
+    {
+      "blocked_by": [],
+      "created": "2026-09-19",
+      "depends_on": [
+        "Q-0006"
+      ],
+      "id": "Q-0005",
+      "priority": "low",
+      "rel": "questions/Q-0005-gpu-vs-cpu-inference-economics.md",
+      "related_experiments": [
+        "E-00004"
+      ],
+      "related_hypotheses": [],
+      "status": "OPEN",
+      "suggested_experiments": [
+        "E-00004 RE-SPEC: add a CPU AVX-512 VNNI batch=1 baseline and the HalfKP feature-transform + PCIe cost; only then can it gate D-0001"
+      ],
+      "title": "CPU-VNNI vs GPU batch-1 inference economics: is the RTX 5070 Ti a training device or a playing device?"
+    },
+    {
+      "blocked_by": [],
+      "created": "2026-09-19",
+      "depends_on": [],
+      "id": "Q-0006",
+      "priority": "high",
+      "rel": "questions/Q-0006-self-play-data-pipeline.md",
+      "related_experiments": [
+        "E-0010"
+      ],
+      "related_hypotheses": [
+        "H-0004",
+        "H-0013"
+      ],
+      "status": "OPEN",
+      "suggested_experiments": [
+        "E-0011: >=1000 legal",
+        "deduplicated",
+        "provenance-carrying games; resume-from-checkpoint adds no duplicates"
+      ],
+      "title": "Can the E-0011 self-play pipeline produce a deduped, provenance-carrying dataset that trains an eval that beats the hand-tuned one?"
+    },
+    {
+      "blocked_by": [],
+      "created": "2026-09-19",
+      "depends_on": [],
+      "id": "Q-0007",
+      "priority": "medium",
+      "rel": "questions/Q-0007-pext-slider-share-and-worth.md",
+      "related_experiments": [
+        "E-0002",
+        "E-00005"
+      ],
+      "related_hypotheses": [
+        "H-0005",
+        "H-0006"
+      ],
+      "status": "OPEN",
+      "suggested_experiments": [
+        "E-00005: measure slider-attack share of perft time at /O2 (profile); the Amdahl ceiling before PEXT code is written",
+        "E-PEXT: only if slider_share >= 30%"
+      ],
+      "title": "How much of perft time is slider attacks (the Amdahl ceiling for PEXT), and is the PEXT/magic swap worth doing at 1.3-2.5x?"
+    },
+    {
+      "blocked_by": [],
+      "created": "2026-09-19",
+      "depends_on": [
+        "Q-0004",
+        "Q-0001"
+      ],
+      "id": "Q-0008",
+      "priority": "low",
+      "rel": "questions/Q-0008-learned-time-management.md",
+      "related_experiments": [],
+      "related_hypotheses": [
+        "H-0015"
+      ],
+      "status": "OPEN",
+      "suggested_experiments": [
+        "E-TIME: after SPRT exists",
+        "log per-move search stats; train an allocator offline; A/B at fixed total time",
+        "0 forfeits required"
+      ],
+      "title": "Can computation be allocated by predicted value-of-search (eval variance / PV instability) rather than fixed heuristics?"
+    }
+  ],
+  "revivals": [
+    {
+      "created": "2026-09-08",
+      "id": "DEC-0005",
+      "kind": "decision",
+      "note": "CANDIDATE: a newer architecture, hardware, or design may change the answer.",
+      "rel": "decisions/DEC-0005-legal-move-generation.md",
+      "revisit_when": "",
+      "status": "SUPERSEDED",
+      "title": "Legal move generation",
+      "why_it_died": ""
+    },
+    {
+      "created": "2026-09-13",
+      "id": "E-0010",
+      "kind": "experiment",
+      "note": "CANDIDATE: a newer architecture, hardware, or design may change the answer.",
+      "rel": "experiments/E-0010-ee-val-tapered-hand-tuned-evaluation-term-by-term-self-play-elo-attribution.md",
+      "revisit_when": "",
+      "status": "COMPLETED",
+      "title": "E-EVAL — Tapered Hand-Tuned Evaluation (term-by-term self-play Elo attribution)",
+      "why_it_died": "FAIL (pre-registered gate (c) effect size; direction significantly positive). Gates (a),(b),(d) PASS. gate (c): stage-6 (full tapered eval) beats stage-0 (material-only) +116.1 Elo (LOS 100.00%, CI95 "
+    },
+    {
+      "created": "2026-09-09",
+      "id": "H-0002-classical-stub",
+      "kind": "hypothesis",
+      "note": "CANDIDATE: a newer architecture, hardware, or design may change the answer.",
+      "rel": "hypotheses/H-0002-classical-alpha-beta-pvs-is-the-correct-phase-2-foundation.md",
+      "revisit_when": "",
+      "status": "SUPERSEDED",
+      "title": "SUPERSEDED placeholder (renumbered to H-0003/H-0004/H-0005 on 2026-09-09)",
+      "why_it_died": ""
+    },
+    {
+      "created": "2026-09-09",
+      "id": "H-0002-hand-tuned-stub",
+      "kind": "hypothesis",
+      "note": "CANDIDATE: a newer architecture, hardware, or design may change the answer.",
+      "rel": "hypotheses/H-0002-hand-tuned-evaluation-baseline-sufficient-for-2500-elo.md",
+      "revisit_when": "",
+      "status": "SUPERSEDED",
+      "title": "Hand-Tuned Evaluation Baseline Sufficient for 2500+ Elo",
+      "why_it_died": ""
+    },
+    {
+      "created": "2026-09-09",
+      "id": "H-0002-magic-stub",
+      "kind": "hypothesis",
+      "note": "CANDIDATE: a newer architecture, hardware, or design may change the answer.",
+      "rel": "hypotheses/H-0002-magic-bitboards-with-pext-provide-3x-nps-speedup.md",
+      "revisit_when": "",
+      "status": "SUPERSEDED",
+      "title": "Magic Bitboards with PEXT Provide >=3x NPS Speedup",
+      "why_it_died": ""
+    }
+  ],
+  "schema_version": 2,
+  "timeline_tail": [
+    {
+      "example": false,
+      "id": "profile",
+      "kind": "profile",
+      "rel": "agents/adversarial-reviewer/profile.md",
+      "status": "—",
+      "title": "profile",
+      "when": "2026-09-14"
+    },
+    {
+      "example": false,
+      "id": "profile",
+      "kind": "profile",
+      "rel": "agents/implementation-engineer/profile.md",
+      "status": "—",
+      "title": "profile",
+      "when": "2026-09-14"
+    },
+    {
+      "example": false,
+      "id": "profile",
+      "kind": "profile",
+      "rel": "agents/researcher-architect/profile.md",
+      "status": "—",
+      "title": "profile",
+      "when": "2026-09-14"
+    },
+    {
+      "example": false,
+      "id": "profile",
+      "kind": "profile",
+      "rel": "agents/systems-researcher/profile.md",
+      "status": "—",
+      "title": "profile",
+      "when": "2026-09-14"
+    },
+    {
+      "example": false,
+      "id": "report",
+      "kind": "report",
+      "rel": "agents/systems-researcher/reports/2026-09-14-round4-meta-audit-and-system-redesign.md",
+      "status": "—",
+      "title": "Round-4 meta session: full audit (R-0003), system redesign (DEC-0009/SYSTEM.md), tooling gates",
+      "when": "2026-09-14"
+    },
+    {
+      "example": false,
+      "id": "R-0003",
+      "kind": "review",
+      "rel": "reviews/R-0003-full-project-and-multi-agent-system-audit.md",
+      "status": "COMPLETED",
+      "title": "Full-project and multi-agent research-system audit (Round 4 meta)",
+      "when": "2026-09-14"
+    },
+    {
+      "example": false,
+      "id": "R-0004",
+      "kind": "review",
+      "rel": "reviews/R-0004-independent-verification-of-e-0010-fresh-agent-w-0004-occupant-1.md",
+      "status": "COMPLETED",
+      "title": "R 0004 independent verification of e 0010 fresh agent w 0004 occupant 1",
+      "when": "2026-09-14"
+    },
+    {
+      "example": false,
+      "id": "ROUND4",
+      "kind": "round_megaprompt",
+      "rel": "AGENT_MEGAPROMPT_ROUND4.md",
+      "status": "ACTIVE",
+      "title": "Round 4 — data pipeline + E-0010 resolution + reviewer onboarding",
+      "when": "2026-09-14"
+    },
+    {
+      "example": false,
+      "id": "S-0001",
+      "kind": "session",
+      "rel": "sessions/S-0001-meta-agent-round4-audit-and-system-redesign.md",
+      "status": "CLOSED",
+      "title": "Full-project audit + multi-agent research-system redesign (DEC-0009)",
+      "when": "2026-09-14"
+    },
+    {
+      "example": false,
+      "id": "S-0002",
+      "kind": "session",
+      "rel": "sessions/S-0002-w-0004-occupant-1-bootstrap-proof-verification-review-r-0004-of-e-0010.md",
+      "status": "CLOSED",
+      "title": "W-0004 occupant 1: bootstrap proof + verification review R-0004 of E-0010",
+      "when": "2026-09-14"
+    },
+    {
+      "example": false,
+      "id": "W-0001",
+      "kind": "work",
+      "rel": "work/W-0001-e0011-self-play-data-pipeline-pre-register-build-run-verify.md",
+      "status": "OPEN",
+      "title": "E-0011 self-play data pipeline (pre-register, build, run, verify)",
+      "when": "2026-09-14"
+    },
+    {
+      "example": false,
+      "id": "W-0002",
+      "kind": "work",
+      "rel": "work/W-0002-recalibrate-e0010-effect-size-decision-rule-d-0007-dec-0010.md",
+      "status": "OPEN",
+      "title": "Recalibrate the E-0010 effect-size decision rule (D-0007 -> DEC-0010)",
+      "when": "2026-09-14"
+    },
+    {
+      "example": false,
+      "id": "W-0003",
+      "kind": "work",
+      "rel": "work/W-0003-round2-agreement-matrix-reviewer-column-backfill.md",
+      "status": "OPEN",
+      "title": "Round-2 AGREEMENT_MATRIX reviewer column backfill (as an addendum review)",
+      "when": "2026-09-14"
+    },
+    {
+      "example": false,
+      "id": "W-0004",
+      "kind": "work",
+      "rel": "work/W-0004-fresh-reviewer-onboarding-proof-two-verification-reviews-of-e-0010.md",
+      "status": "OPEN",
+      "title": "Fresh-reviewer onboarding proof: two independent verification reviews of E-0010",
+      "when": "2026-09-14"
+    },
+    {
+      "example": false,
+      "id": "W-0005",
+      "kind": "work",
+      "rel": "work/W-0005-e-sprt-lite-comparison-harness-pre-register-build-validate.md",
+      "status": "OPEN",
+      "title": "E-SPRT-lite comparison harness: pre-register, build, validate against known difference",
+      "when": "2026-09-14"
+    },
+    {
+      "example": false,
+      "id": "W-0006",
+      "kind": "work",
+      "rel": "work/W-0006-root-scratch-debt-reduction-grandfathered-list-shrink.md",
+      "status": "OPEN",
+      "title": "Root-scratch debt reduction: shrink root_grandfathered.txt with itemized deletions",
+      "when": "2026-09-14"
+    },
+    {
+      "example": false,
+      "id": "DEC-0011",
+      "kind": "decision",
+      "rel": "decisions/DEC-0011-derived-intelligence-layer.md",
+      "status": "ACTIVE",
+      "title": "Derived-intelligence layer for the research memory (graph, retrieval, state, audit, questions, evidence, principles)",
+      "when": "2026-09-19"
+    },
+    {
+      "example": false,
+      "id": "EV-0001",
+      "kind": "evidence",
+      "rel": "evidence/EV-0001-e0010-k6n-randomized-self-play.md",
+      "status": "REGISTERED",
+      "title": "E-0010 randomized self-play games, stage-6 vs stage-0 (240-game match)",
+      "when": "2026-09-19"
+    },
+    {
+      "example": false,
+      "id": "EV-0002",
+      "kind": "evidence",
+      "rel": "evidence/EV-0002-e0010-reproduction-harness.md",
+      "status": "REGISTERED",
+      "title": "E-0010 aggregator+estimator harness (reproduces every published number)",
+      "when": "2026-09-19"
+    },
+    {
+      "example": false,
+      "id": "EV-0003",
+      "kind": "evidence",
+      "rel": "evidence/EV-0003-perft-anchor-gate0.md",
+      "status": "REGISTERED",
+      "title": "Certified Perft Anchor run (Gate 0 / the correctness floor)",
+      "when": "2026-09-19"
+    },
+    {
+      "example": false,
+      "id": "EV-0004",
+      "kind": "evidence",
+      "rel": "evidence/EV-0004-e0002-certified-o2-bench.md",
+      "status": "REGISTERED",
+      "title": "E-0002 certified /O2 bench (5 reps, pinned, SHA-256 logged)",
+      "when": "2026-09-19"
+    },
+    {
+      "example": false,
+      "id": "EV-0005",
+      "kind": "evidence",
+      "rel": "evidence/EV-0005-o3b-ordering-node-table.md",
+      "status": "REGISTERED",
+      "title": "O3b staged move-ordering node table (ORDER_STAGE 0-4, 11 positions, depth 6)",
+      "when": "2026-09-19"
+    },
+    {
+      "example": false,
+      "id": "EV-0006",
+      "kind": "evidence",
+      "rel": "evidence/EV-0006-e0008-tactical-set.md",
+      "status": "REGISTERED",
+      "title": "E-00008 tactical test set (73 self-validated positions) + qsearch effect",
+      "when": "2026-09-19"
+    },
+    {
+      "example": false,
+      "id": "EV-0007",
+      "kind": "evidence",
+      "rel": "evidence/EV-0007-e0009-tt-id.md",
+      "status": "REGISTERED",
+      "title": "E-00009 TT + iterative-deepening vs fixed-depth (9.51x fewer nodes)",
+      "when": "2026-09-19"
+    },
+    {
+      "example": false,
+      "id": "EV-0010",
+      "kind": "evidence",
+      "rel": "evidence/EV-0010-e0010-measurement-binary.md",
+      "status": "REGISTERED",
+      "title": "E-0010 measurement binary (the current build/Release/kana.exe)",
+      "when": "2026-09-19"
+    },
+    {
+      "example": false,
+      "id": "HO-0001",
+      "kind": "handoff",
+      "rel": "handoffs/HO-0001-verify-dec-0011-layer.md",
+      "status": "REQUESTED",
+      "title": "Independently verify the DEC-0011 derived-intelligence layer",
+      "when": "2026-09-19"
+    },
+    {
+      "example": false,
+      "id": "PR-0001",
+      "kind": "principle",
+      "rel": "principles/PR-0001-measure-first.md",
+      "status": "ACTIVE",
+      "title": "Measure first; no claim without a run",
+      "when": "2026-09-19"
+    },
+    {
+      "example": false,
+      "id": "PR-0002",
+      "kind": "principle",
+      "rel": "principles/PR-0002-one-protected-home.md",
+      "status": "ACTIVE",
+      "title": "One protected home for every sacred fact",
+      "when": "2026-09-19"
+    },
+    {
+      "example": false,
+      "id": "PR-0003",
+      "kind": "principle",
+      "rel": "principles/PR-0003-honest-fail-first-class.md",
+      "status": "ACTIVE",
+      "title": "Honest FAIL is a first-class result; negative knowledge is an asset",
+      "when": "2026-09-19"
+    },
+    {
+      "example": false,
+      "id": "PR-0004",
+      "kind": "principle",
+      "rel": "principles/PR-0004-verifier-never-owner.md",
+      "status": "ACTIVE",
+      "title": "The verifier is never the owner",
+      "when": "2026-09-19"
+    },
+    {
+      "example": false,
+      "id": "Q-0001",
+      "kind": "question",
+      "rel": "questions/Q-0001-which-eval-terms-earn-their-cost.md",
+      "status": "OPEN",
+      "title": "Which eval terms actually earn their cost, and should mobility/tempo be re-tuned or removed?",
+      "when": "2026-09-19"
+    },
+    {
+      "example": false,
+      "id": "Q-0002",
+      "kind": "question",
+      "rel": "questions/Q-0002-pvs-tt-lmr-null-measured-deltas.md",
+      "status": "OPEN",
+      "title": "Can PVS + TT + LMR/null-move be added as measured deltas on O3d (O3e), and how much do they cut nodes?",
+      "when": "2026-09-19"
+    },
+    {
+      "example": false,
+      "id": "Q-0003",
+      "kind": "question",
+      "rel": "questions/Q-0003-persistent-tt-across-moves.md",
+      "status": "OPEN",
+      "title": "Should the transposition table persist across moves (TT reuse), and what does a correct aging/reuse policy gain vs. per-move clear?",
+      "when": "2026-09-19"
+    },
+    {
+      "example": false,
+      "id": "Q-0004",
+      "kind": "question",
+      "rel": "questions/Q-0004-prepreregistered-sprt-harness.md",
+      "status": "OPEN",
+      "title": "Can a pre-registered two-tier SPRT harness decide every engine-delta claim against a calibrated bar?",
+      "when": "2026-09-19"
+    },
+    {
+      "example": false,
+      "id": "Q-0005",
+      "kind": "question",
+      "rel": "questions/Q-0005-gpu-vs-cpu-inference-economics.md",
+      "status": "OPEN",
+      "title": "CPU-VNNI vs GPU batch-1 inference economics: is the RTX 5070 Ti a training device or a playing device?",
+      "when": "2026-09-19"
+    },
+    {
+      "example": false,
+      "id": "Q-0006",
+      "kind": "question",
+      "rel": "questions/Q-0006-self-play-data-pipeline.md",
+      "status": "OPEN",
+      "title": "Can the E-0011 self-play pipeline produce a deduped, provenance-carrying dataset that trains an eval that beats the hand-tuned one?",
+      "when": "2026-09-19"
+    },
+    {
+      "example": false,
+      "id": "Q-0007",
+      "kind": "question",
+      "rel": "questions/Q-0007-pext-slider-share-and-worth.md",
+      "status": "OPEN",
+      "title": "How much of perft time is slider attacks (the Amdahl ceiling for PEXT), and is the PEXT/magic swap worth doing at 1.3-2.5x?",
+      "when": "2026-09-19"
+    },
+    {
+      "example": false,
+      "id": "Q-0008",
+      "kind": "question",
+      "rel": "questions/Q-0008-learned-time-management.md",
+      "status": "OPEN",
+      "title": "Can computation be allocated by predicted value-of-search (eval variance / PV instability) rather than fixed heuristics?",
+      "when": "2026-09-19"
+    },
+    {
+      "example": false,
+      "id": "R-0005",
+      "kind": "review",
+      "rel": "reviews/R-0005-memory-system-self-audit-and-dec-0011.md",
+      "status": "COMPLETED",
+      "title": "R 0005 memory system self audit and dec 0011",
+      "when": "2026-09-19"
+    },
+    {
+      "example": false,
+      "id": "W-0007",
+      "kind": "work",
+      "rel": "work/W-0007-derived-intelligence-layer.md",
+      "status": "OPEN",
+      "title": "Derived-intelligence layer (graph, retrieval, beliefs, contradiction/revival, state, audit, self-tests)",
+      "when": "2026-09-19"
+    }
+  ]
+}

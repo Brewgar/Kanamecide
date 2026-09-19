@@ -141,6 +141,33 @@ python research/scripts/research.py new-agent NAME --role "Role Title"
 python research/scripts/research.py report AGENT --title "..."
 ```
 
+### Derived-intelligence commands (DEC-0011)
+
+```powershell
+python research/scripts/research.py search "quiescence move ordering"
+python research/scripts/research.py graph E-00008            # a record's in/out edges
+python research/scripts/research.py beliefs                  # current-best-belief rollup
+python research/scripts/research.py contradictions           # candidate conflicts (never merges)
+python research/scripts/research.py duplicates               # candidate same-idea pairs
+python research/scripts/research.py revivals                 # failed/abandoned ideas worth a revisit
+python research/scripts/research.py questions                # the open-questions registry
+python research/scripts/research.py timeline                 # the research history, ordered
+python research/scripts/research.py codemap                  # record -> code -> commit
+python research/scripts/research.py audit                    # memory-integrity self-check
+python research/scripts/research.py state --write            # regenerate state.md + state.json
+python research/scripts/research.py schema                   # the data model, machine-readable
+python research/scripts/research.py hygiene                  # repo-root debt classifier
+python research/scripts/research.py selftest                 # the memory layer's own tests
+
+# New record scaffolds (Layer-3/4 kinds):
+python research/scripts/research.py new-question --title "..."
+python research/scripts/research.py new-principle --title "..."
+python research/scripts/research.py new-evidence --title "..." --path e0010_k6n_games.jsonl
+```
+
+The full data model, relation vocabulary, epistemic classes, and migration policy are in
+`research/SCHEMA.md`. The derived views are recomputable; the records are the truth.
+
 A convenience wrapper `research.bat` exists at the repo root, so `.\research.bat status`
 also works. The Python form is the canonical, portable one.
 
