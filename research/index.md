@@ -79,6 +79,7 @@
 - [R-0003](reviews/R-0003-full-project-and-multi-agent-system-audit.md) — Full-project and multi-agent research-system audit (Round 4 meta) — status=COMPLETED
 - [R-0004](reviews/R-0004-independent-verification-of-e-0010-fresh-agent-w-0004-occupant-1.md) — (untitled) — status=COMPLETED
 - [R-0005](reviews/R-0005-memory-system-self-audit-and-dec-0011.md) — (untitled) — status=COMPLETED
+- [R-0006](reviews/R-0006-independent-verification-of-the-dec-0011-derived-intelligence-layer-ho-0001-w-0007.md) — (untitled) — status=COMPLETED
 
 ## Open Questions
 
@@ -129,7 +130,7 @@
 
 ## Handoffs (open)
 
-- [HO-0001](handoffs/HO-0001-verify-dec-0011-layer.md) — Independently verify the DEC-0011 derived-intelligence layer — status=REQUESTED
+(none)
 
 ## Runs (live)
 
@@ -144,10 +145,11 @@
 - [S-0001](sessions/S-0001-meta-agent-round4-audit-and-system-redesign.md) — Full-project audit + multi-agent research-system redesign (DEC-0009) — status=CLOSED
 - [S-0002](sessions/S-0002-w-0004-occupant-1-bootstrap-proof-verification-review-r-0004-of-e-0010.md) — W-0004 occupant 1: bootstrap proof + verification review R-0004 of E-0010 — status=CLOSED
 - [S-0003](sessions/S-0003-dec-0011-derived-intelligence-layer.md) — DEC-0011 derived-intelligence layer: graph, retrieval, beliefs, contradiction/revival detection, state, audit, self-tests — status=CLOSED
+- [S-0004](sessions/S-0004-ho-0001-verification-of-the-dec-0011-derived-intelligence-layer-partial-3-named-gaps.md) — HO-0001: verification of the DEC-0011 derived-intelligence layer (PARTIAL - 4 named gaps) — status=CLOSED
 
 ## Unrendered Records (bug — report this)
 
-(none — every scanned record appears above)
+- !!! HO-0001 (handoffs/HO-0001-verify-dec-0011-layer.md) status='DONE' type='handoff' — NOT RENDERED
 
 ## Agent Positions
 

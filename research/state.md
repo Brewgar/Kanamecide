@@ -1,7 +1,7 @@
 # Research State (GENERATED — do not edit)
 
 Derived from the record store by `research.py state`. Regenerate after every change.
-Generated: 2026-09-19T18:42:45; schema 2.
+Generated: 2026-09-19T22:07:16; schema 2.
 Every entry is a PROJECTION of the linked records — follow them before believing.
 
 ## Current best beliefs (hypotheses with measured weight)
@@ -43,9 +43,6 @@ Every entry is a PROJECTION of the linked records — follow them before believi
 - hypothesis **H-0002-magic-stub** Magic Bitboards with PEXT Provide >=3x NPS Speedup — SUPERSEDED. No revisit condition recorded.
 
 ## Recent timeline
-- 2026-09-19 handoff HO-0001 (REQUESTED) : Independently verify the DEC-0011 derived-intelligence layer
-- 2026-09-19 principle PR-0001 (ACTIVE) : Measure first; no claim without a run
-- 2026-09-19 principle PR-0002 (ACTIVE) : One protected home for every sacred fact
 - 2026-09-19 principle PR-0003 (ACTIVE) : Honest FAIL is a first-class result; negative knowledge is an asset
 - 2026-09-19 principle PR-0004 (ACTIVE) : The verifier is never the owner
 - 2026-09-19 question Q-0001 (OPEN) : Which eval terms actually earn their cost, and should mobility/tempo be re-tuned or removed?
@@ -57,6 +54,9 @@ Every entry is a PROJECTION of the linked records — follow them before believi
 - 2026-09-19 question Q-0007 (OPEN) : How much of perft time is slider attacks (the Amdahl ceiling for PEXT), and is the PEXT/magic swap worth doing at 1.3-2.5x?
 - 2026-09-19 question Q-0008 (OPEN) : Can computation be allocated by predicted value-of-search (eval variance / PV instability) rather than fixed heuristics?
 - 2026-09-19 review R-0005 (COMPLETED) : R 0005 memory system self audit and dec 0011
+- 2026-09-19 review R-0006 (COMPLETED) : R 0006 independent verification of the dec 0011 derived intelligence layer ho 0001 w 0007
+- 2026-09-19 session S-0003 (CLOSED) : DEC-0011 derived-intelligence layer: graph, retrieval, beliefs, contradiction/revival detection, state, audit, self-tests
+- 2026-09-19 session S-0004 (CLOSED) : HO-0001: verification of the DEC-0011 derived-intelligence layer (PARTIAL - 4 named gaps)
 - 2026-09-19 work W-0007 (OPEN) : Derived-intelligence layer (graph, retrieval, beliefs, contradiction/revival, state, audit, self-tests)
 
 ## Metrics
@@ -78,32 +78,32 @@ Every entry is a PROJECTION of the linked records — follow them before believi
     "profile": 4,
     "question": 8,
     "report": 12,
-    "review": 5,
+    "review": 6,
     "round_megaprompt": 1,
-    "session": 2,
+    "session": 4,
     "work": 7
   },
   "by_status": {
     "ACTIVE": 13,
-    "CLOSED": 2,
-    "COMPLETED": 11,
+    "CLOSED": 4,
+    "COMPLETED": 12,
+    "DONE": 1,
     "DRAFT": 1,
     "OPEN": 35,
     "PENDING": 3,
     "RECORDED": 1,
     "REGISTERED": 8,
-    "REQUESTED": 1,
     "SUPERSEDED": 4,
     "—": 1
   },
   "code_files": 21,
   "contradiction_candidates": 0,
-  "dangling_ids": 11,
+  "dangling_ids": 10,
   "duplicate_candidates": 2,
-  "edges_total": 852,
+  "edges_total": 932,
   "legacy_experiments_without_pre_registration": 6,
   "open_questions": 8,
-  "records_total": 118,
+  "records_total": 121,
   "revival_candidates": 5
 }
 

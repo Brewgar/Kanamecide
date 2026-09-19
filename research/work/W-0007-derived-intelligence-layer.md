@@ -12,8 +12,8 @@ evidence:
   - "research/scripts/kgraph.py (shim), research.py (CLI + validate extensions)"
   - "research/state.json + research/state.md (GENERATED)"
 evidence_files: []
-verified_by: null
-verification_verdict: null
+verified_by: "verification-auditor (fresh-agent seat, Round 5 occupant 2)"
+verification_verdict: PARTIAL
 example: false
 created: 2026-09-19
 closed: null
@@ -53,9 +53,55 @@ python research/scripts/research.py state --write
   filed DEC-0011 + R-0005.
 
 ## Verification
-- verified_by: handed off (HO-0001) to the verification-auditor seat (never the owner).
-- verdict: PENDING — self-verification is NOT verification (DEC-0009 Gate 3); a fresh
-  agent must run the exit_check before W-0007 moves to DONE.
+- verified_by: **verification-auditor (fresh-agent seat, Round 5 occupant 2)** — a
+  zero-chat-history agent that is not the owner of W-0007, DEC-0011 or R-0005, accepted via
+  HO-0001 (never the owner).
+- verdict: **PARTIAL** — every exit_check command in this item reproduced green by the
+  verifier (`selftest` exit 0 / 35 tests; `validate` exit 0 / 0 problems; `state --write`
+  twice, byte-identical `state.json`; `search "quiescence"` → E-00008 rank 0), but the
+  verified deliverable carries three named defects, so DEC-0009 gate 3 forbids DONE on this
+  verdict. Full evidence, raw commands, recomputed hashes and the four named gaps:
+  `research/reviews/R-0006-independent-verification-of-the-dec-0011-derived-intelligence-layer-ho-0001-w-0007.md`.
+- **G1 (gate defect, must be fixed before this item can be VERIFIED):** `PERFT_ANCHOR` row 1
+  is `("startpos d1-5", ("20","400","8902","197281","4865609"))` — five distinct counts passed
+  as alternative spellings — and `_project_state_problems` uses
+  `any(v in flat for v in variants)`. Result: **20 / 400 / 8902 / 197281 / 4865609 are
+  unasserted**; four independent mutations of the certified table (each number occurs once in
+  `project_state.md`) left `validate` at exit 0 "Validation OK". The other five anchor rows and
+  the section-presence check DO fire (demonstrated), so this is a coverage bug, not a dead gate.
+  It contradicts `project_state.md`'s own line "`research.py validate` asserts every number below".
+- **G2 (stale generated artifact):** the committed `research/state.{md,json}` were generated at
+  18:42:45 but committed at 19:17:41, after S-0003/HO-0001 landed — hence `records_total 118`
+  vs the regenerated 119, `session 2` vs 3, `edges_total 852` vs 866. The `state --write`
+  determinism claim is true of the mechanism; the shipped projection was stale. The verifier's
+  two runs regenerated both files, so the working tree now holds the corrected generated
+  output — **it needs a commit by the owner; never hand-edited.**
+- **G5 (gate defect + Round-5 blocker, found after the first pass of this review):** this
+  record's own `evidence:` field is written as a **block sequence**, which
+  `research.py:parse_simple_yaml` does not parse — `evidence` reads as `None` (probe #7). So a
+  correct `status: DONE` + `verification_verdict: VERIFIED` on this record makes
+  `validate` exit 1 with "`work/W-0007-derived-intelligence-layer.md: DONE without evidence
+  (DEC-0009 gate 1)`", while `round --round 5` prints `[PASS]` for the same state (it only
+  consults `evidence`/`exit_check` when the item is not already DONE+VERIFIED). Rewriting the
+  same three entries as an **inline** list makes validate exit 0 — same content, different YAML
+  style (sandbox cases B vs C, `context/_ho0001_report9.txt`). **Fix: make this record's
+  `evidence:` an inline list (owner's edit), and/or teach the parser block sequences.** Until
+  then this item cannot be DONE *and* validate-green at the same time.
+- **G1 addendum:** the anchor gate defect (see R-0006) is not in this record but blocks the
+  same closure path for `project_state.md`'s guarantee; it needs a tooling-agent fix.
+  `problems=1` (`status='—' not in the hypothesis vocabulary`, caused by the status-less
+  `type: hypothesis` placeholder `agents/researcher-architect/reports/2026-09-09-placeholder.md`)
+  while `validate` exits 0 because `cmd_validate` never calls `M.audit()`. DEC-0011 §6's "audit
+  … feeding `validate`" is therefore only partly implemented, and `audit()`'s docstring claim
+  that `problems` "should block closing a round" is enforced nowhere.
+- **Correction to this item's Evidence section:** "`state --write` run: state.json/state.md
+  written and deterministic" is accurate about the command and should be read as such; what was
+  *committed* was one corpus revision behind (G2). Addendum, not a rewrite.
+- Also recorded (not this item's defect): Gate 0 could not be executed in the verifier's
+  environment — every `kana.exe` invocation (Release, Audit, copied, and via
+  `runjob.py launch --retry 8`) returned exit 4551, "blocked by your organization's Device
+  Guard policy" — so no engine number was re-proved this session; EV-0010's recorded SHA-256
+  does still match the binary on disk (`504EB01A…A6DAA`).
 
 ## Work Log (continued)
 - 2026-09-19 — Gate-check incident: I briefly claimed DONE with my own evidence.

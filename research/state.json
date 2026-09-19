@@ -1003,7 +1003,7 @@
       "title": "Premature NNUE without a correct search"
     }
   ],
-  "generated": "2026-09-19T18:42:45",
+  "generated": "2026-09-19T22:07:16",
   "metrics": {
     "by_kind": {
       "agent_profile": 1,
@@ -1021,32 +1021,32 @@
       "profile": 4,
       "question": 8,
       "report": 12,
-      "review": 5,
+      "review": 6,
       "round_megaprompt": 1,
-      "session": 2,
+      "session": 4,
       "work": 7
     },
     "by_status": {
       "ACTIVE": 13,
-      "CLOSED": 2,
-      "COMPLETED": 11,
+      "CLOSED": 4,
+      "COMPLETED": 12,
+      "DONE": 1,
       "DRAFT": 1,
       "OPEN": 35,
       "PENDING": 3,
       "RECORDED": 1,
       "REGISTERED": 8,
-      "REQUESTED": 1,
       "SUPERSEDED": 4,
       "—": 1
     },
     "code_files": 21,
     "contradiction_candidates": 0,
-    "dangling_ids": 11,
+    "dangling_ids": 10,
     "duplicate_candidates": 2,
-    "edges_total": 852,
+    "edges_total": 932,
     "legacy_experiments_without_pre_registration": 6,
     "open_questions": 8,
-    "records_total": 118,
+    "records_total": 121,
     "revival_candidates": 5
   },
   "questions_all": [
@@ -1448,33 +1448,6 @@
       "example": false,
       "id": "profile",
       "kind": "profile",
-      "rel": "agents/adversarial-reviewer/profile.md",
-      "status": "—",
-      "title": "profile",
-      "when": "2026-09-14"
-    },
-    {
-      "example": false,
-      "id": "profile",
-      "kind": "profile",
-      "rel": "agents/implementation-engineer/profile.md",
-      "status": "—",
-      "title": "profile",
-      "when": "2026-09-14"
-    },
-    {
-      "example": false,
-      "id": "profile",
-      "kind": "profile",
-      "rel": "agents/researcher-architect/profile.md",
-      "status": "—",
-      "title": "profile",
-      "when": "2026-09-14"
-    },
-    {
-      "example": false,
-      "id": "profile",
-      "kind": "profile",
       "rel": "agents/systems-researcher/profile.md",
       "status": "—",
       "title": "profile",
@@ -1674,7 +1647,7 @@
       "id": "HO-0001",
       "kind": "handoff",
       "rel": "handoffs/HO-0001-verify-dec-0011-layer.md",
-      "status": "REQUESTED",
+      "status": "DONE",
       "title": "Independently verify the DEC-0011 derived-intelligence layer",
       "when": "2026-09-19"
     },
@@ -1793,6 +1766,33 @@
       "rel": "reviews/R-0005-memory-system-self-audit-and-dec-0011.md",
       "status": "COMPLETED",
       "title": "R 0005 memory system self audit and dec 0011",
+      "when": "2026-09-19"
+    },
+    {
+      "example": false,
+      "id": "R-0006",
+      "kind": "review",
+      "rel": "reviews/R-0006-independent-verification-of-the-dec-0011-derived-intelligence-layer-ho-0001-w-0007.md",
+      "status": "COMPLETED",
+      "title": "R 0006 independent verification of the dec 0011 derived intelligence layer ho 0001 w 0007",
+      "when": "2026-09-19"
+    },
+    {
+      "example": false,
+      "id": "S-0003",
+      "kind": "session",
+      "rel": "sessions/S-0003-dec-0011-derived-intelligence-layer.md",
+      "status": "CLOSED",
+      "title": "DEC-0011 derived-intelligence layer: graph, retrieval, beliefs, contradiction/revival detection, state, audit, self-tests",
+      "when": "2026-09-19"
+    },
+    {
+      "example": false,
+      "id": "S-0004",
+      "kind": "session",
+      "rel": "sessions/S-0004-ho-0001-verification-of-the-dec-0011-derived-intelligence-layer-partial-3-named-gaps.md",
+      "status": "CLOSED",
+      "title": "HO-0001: verification of the DEC-0011 derived-intelligence layer (PARTIAL - 4 named gaps)",
       "when": "2026-09-19"
     },
     {
