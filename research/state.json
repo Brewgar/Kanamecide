@@ -1003,7 +1003,7 @@
       "title": "Premature NNUE without a correct search"
     }
   ],
-  "generated": "2026-09-19T22:07:16",
+  "generated": "2026-09-19T22:09:42",
   "metrics": {
     "by_kind": {
       "agent_profile": 1,
@@ -1043,7 +1043,7 @@
     "contradiction_candidates": 0,
     "dangling_ids": 10,
     "duplicate_candidates": 2,
-    "edges_total": 932,
+    "edges_total": 933,
     "legacy_experiments_without_pre_registration": 6,
     "open_questions": 8,
     "records_total": 121,

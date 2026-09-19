@@ -36,7 +36,7 @@ not hidden.
 | # | Command (HO-0001's own list) | Exit | What I observed | Raw output retained |
 |---|---|---|---|---|
 | 1 | `research.py selftest` | 0 | `Ran 35 tests` + `OK` — the "35 tests" claim is exact | `context/_ho0001_selftest.txt` |
-| 2 | `research.py validate` | 0 | `Validation OK`, **0 problems**, 18 advisory warnings (9 grandfathered legacy pre-registration, 9 dangling-id) | `context/_v2_validate.txt` |
+| 2 | `research.py validate` | 0 | `Validation OK`, **0 problems**, 19 advisory warnings at session end (9 legacy/grandfathered + 10 dangling-id; 20 before my records landed — see precision note below) | `context/_v2_validate.txt`, `_final_validate.txt` |
 | 3 | `research.py state --write` ×2 | 0/0 | `state.json` **byte-identical** across runs (sha256 `f57fd375230b37cd9a4c9a32b2c52da03358f2e624af684369d4cc25828c353b`), equal raw **and** with the `generated` stamp stripped; `state.md` likewise | `context/_v2_state_run{1,2}.*`, `_ho0001_report2.txt` |
 | 4 | `research.py search "quiescence stand-pat"` | 0 | **E-00008 rank 0** (score 10.6327); keys `hits/query/related`; agent **reports** ranked in the same list (R-IE-O3C 9.6939, R-IE-O3B 6.1917) | `context/_v2_search.json` |
 | 5 | `kgraph.py beliefs --json` | 0 | JSON array, n=18 hypotheses, contains `H-0001` — the shim works, not just exists | `context/_v2_kgraph_beliefs.json` |
@@ -259,7 +259,7 @@ runs) and needs a commit. One of my own drafts was caught by the layer during th
   (G1/G5/G2/G3) and one false acceptance clause (G4) are named above; Gate 0 unexecutable (G4b).
 - **Commands re-run by me (raw output retained):**
   1. `python research/scripts/research.py selftest` → exit 0; `Ran 35 tests` … `OK`.
-  2. `python research/scripts/research.py validate` → exit 0; `Validation OK`, 0 problems, 18 advisory warnings.
+  2. `python research/scripts/research.py validate` → exit 0; `Validation OK`, 0 problems, 19 advisory warnings (9 legacy/grandfathered + 10 dangling-id).
   3. `python research/scripts/research.py state --write` (×2) → exit 0/0; byte-identical `state.json` (sha256 `f57fd375230b37cd9a4c9a32b2c52da03358f2e624af684369d4cc25828c353b`) and `state.md`, raw and timestamp-stripped.
   4. `python research/scripts/research.py search "quiescence stand-pat"` → exit 0; E-00008 rank 0 (10.6327).
   5. `python research/scripts/kgraph.py beliefs --json` → exit 0; JSON array n=18, contains `H-0001`.
@@ -312,3 +312,14 @@ runs) and needs a commit. One of my own drafts was caught by the layer during th
   session** (Gate 0 blocked; EV-0010's hash does match the on-disk binary, so artifact identity
   is intact even though execution is not). That R-0005 F16's contradiction detector fires on its
   motivating case — **unverified**.
+
+### Precision note (self-correction, same session)
+
+My first pass of this review said "18 advisory warnings" in three places. That number was
+hand-counted, not measured. Measured with a counter over the captured output: **20 warnings
+before** this session's records existed (9 legacy/grandfathered + 11 dangling-id, one of which
+was the pre-existing dangling `S-0004`) and **19 at session end** (9 + 10 — creating S-0004
+resolved that dangling reference; a warning I introduced myself in a draft, G5a, was removed
+again). The three places now carry the measured figures. Recorded as a correction because this
+review's own standard is that a count without its composition and capture is not evidence — and
+because a verifier's own numbers should survive the same scrutiny they apply to others'.

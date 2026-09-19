@@ -140,7 +140,11 @@ closed: 2026-09-19
 
 ## Validation Status
 - `python research/scripts/research.py validate` → **exit 0, `Validation OK`** (0 problems;
-  18 advisory warnings: 9 grandfathered legacy pre-registration, 9 dangling-id).
+  19 advisory warnings at session end: 9 legacy/grandfathered + 10 dangling-id. It was 20
+  before this session's records existed: creating S-0004 resolved a pre-existing dangling
+  `S-0004` reference, and one warning I accidentally introduced myself was removed again — so
+  the count moved 20 → 21 → 20 → 19 across the session. Recorded because "the warning count"
+  is only meaningful with its composition).
 - `python research/scripts/research.py selftest` → exit 0, `Ran 35 tests … OK`.
 - `python research/scripts/research.py update` → index.md regenerated (exit 0).
 - `python research/scripts/research.py state --write` → `state.{md,json}` rewritten (exit 0);
