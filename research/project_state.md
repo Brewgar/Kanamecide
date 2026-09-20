@@ -183,7 +183,12 @@ below its pre-registered ≥150 bar.
   A/B claim currently depends on ad-hoc match harnesses.
 - No persistent TT across moves (TT is cleared per `go`); no aspiration/PVS/LMR/null-move
   (O3e candidates).
-- No self-play data pipeline and no trained model (E-0011 / NNUE).
+- **2026-09-19 — Gate 0 environment blockage (F-0002).** Every `kana.exe` invocation
+  currently fails with exit 4551 (Device Guard hard block): Release, Audit, and
+  `runjob.py`-launched alike. Engine-level verification sessions cannot execute the
+  engine on this host until the owner allow-lists/rebuilds under a permitted policy.
+  The perft-anchor `validate` check remains green but is consistency-only — the floor
+  runner itself must execute to re-verify behavior.
 
 ## Current Development Priorities
 1. **E-0011 — self-play data pipeline (next milestone):** turn the E-0010 match harness into a

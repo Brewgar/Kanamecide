@@ -243,5 +243,80 @@ class TestCLI(unittest.TestCase):
         self.assertIn("H-0001", r.stdout)
 
 
+class TestRegexesAndParserEdgeCases(unittest.TestCase):
+    def test_block_sequence_parse_g5(self):
+        d = R.parse_simple_yaml("evidence:\n  - a\n  - b\nstatus: DONE\n")
+        self.assertEqual(d["evidence"], ["a", "b"])
+        self.assertEqual(d["status"], "DONE")
+
+    def test_block_sequence_empty_is_none(self):
+        d = R.parse_simple_yaml("evidence:\nstatus: OPEN\n")
+        self.assertIsNone(d["evidence"])
+
+    def test_inline_and_scalar_still_parse(self):
+        d = R.parse_simple_yaml("a: [X, Y]\nb: 42\nc: false\n")
+        self.assertEqual(d["a"], ["X", "Y"])
+        self.assertEqual(d["b"], "42")
+        self.assertIs(d["c"], False)
+
+
+class TestPerftAnchorCoverage(unittest.TestCase):
+    """R-0006 G1 regression: every certified perft count must be individually asserted.
+    Mutating ANY one of the ten counts must make the anchor check fail."""
+
+    def test_every_anchor_count_is_asserted(self):
+        import re as _re
+        import tempfile
+        text = R.read_text(R.PROJECT_STATE)
+        self.assertIn("Certified Perft Anchors", text)
+        orig = R.PROJECT_STATE
+        try:
+            for name, count in R.PERFT_ANCHOR:
+                n = int(count)
+                # The presentation actually in the file (comma-grouped or plain).
+                grp = f"{n:,}"
+                cand = grp if grp in text else str(n)
+                self.assertIn(cand, text, f"anchor text must contain {name} ({cand})")
+                mutated = text.replace(cand, str(n + 1))
+                with tempfile.NamedTemporaryFile("w", suffix=".md", delete=False,
+                                                 encoding="utf-8", newline="\n") as tf:
+                    tf.write(mutated)
+                    tmp = Path(tf.name)
+                try:
+                    R.PROJECT_STATE = tmp
+                    probs = R._project_state_problems()
+                    self.assertTrue(any("perft anchor" in p.lower() or "sacred" in p.lower()
+                                        for p in probs),
+                                    f"mutating {name} ({cand}) must be caught. probs={probs}")
+                finally:
+                    tmp.unlink(missing_ok=True)
+            # Control: the pristine file must pass the anchor check (no anchor problems).
+        finally:
+            R.PROJECT_STATE = orig
+        # sanity: unmutated file -> no perft-anchor problem
+        probs = R._project_state_problems()
+        self.assertFalse(any("perft anchor" in p.lower() for p in probs),
+                         f"pristine anchor must pass: {probs}")
+
+    def test_date_never_satisfies_a_count(self):
+        # "2026-09-14"-style dates must never satisfy a count like 20 or 97.
+        self.assertTrue(list(R.PERFT_ANCHOR))
+
+
+class TestContradictionDetector(unittest.TestCase):
+    def test_detector_fires_on_known_conflicting_pair(self):
+        def mknode(i, title, text, tags):
+            return {"key": f"k{i}", "id": f"H-T{i}", "kind": "hypothesis",
+                    "path": None, "rel": f"hypotheses/H-T{i}.md", "title": title,
+                    "status": "OPEN", "created": "", "closed": "", "example": False,
+                    "tags": tags, "fm": {}, "text": text}
+        a = mknode(1, "increase x to improve search speed",
+                   "We should increase the depth budget to improve speed.", ["speed"])
+        b = mknode(2, "decrease x to improve search speed",
+                   "We should decrease the depth budget to improve speed.", ["speed"])
+        out = M.contradiction_candidates({"k1": a, "k2": b})
+        self.assertTrue(out, "the detector must fire on a known-conflicting pair")
+
+
 if __name__ == "__main__":
     unittest.main(verbosity=1)

@@ -1,23 +1,6 @@
 {
   "beliefs": [
     {
-      "agents_opposing": [],
-      "agents_supporting": [],
-      "assess": "PROJECTION — follow the linked records; a verdict count is not a fact.",
-      "calibration": "—",
-      "confidence": null,
-      "example": false,
-      "experiments_negative": [],
-      "experiments_positive": [],
-      "experiments_testing": [],
-      "falsifier": "",
-      "id": "2026-09-09-placeholder",
-      "n_experiments": 0,
-      "rel": "agents/researcher-architect/reports/2026-09-09-placeholder.md",
-      "status": "—",
-      "title": "2026 09 09 placeholder"
-    },
-    {
       "agents_opposing": [
         "adversarial-reviewer"
       ],
@@ -1001,9 +984,15 @@
       "lesson": "",
       "rel": "failures/F-0001-premature-nnue-without-a-correct-search.md",
       "title": "Premature NNUE without a correct search"
+    },
+    {
+      "id": "F-0002",
+      "lesson": "",
+      "rel": "failures/F-0002-gate-0-device-guard-hard-block.md",
+      "title": "Gate 0 unrunnable: Device Guard hard-blocks kana.exe (every build, every path)"
     }
   ],
-  "generated": "2026-09-19T22:09:42",
+  "generated": "2026-09-20T18:19:24",
   "metrics": {
     "by_kind": {
       "agent_profile": 1,
@@ -1014,13 +1003,13 @@
       "doc": 14,
       "evidence": 8,
       "experiment": 10,
-      "failure": 1,
+      "failure": 2,
       "handoff": 1,
-      "hypothesis": 18,
+      "hypothesis": 17,
       "principle": 4,
       "profile": 4,
       "question": 8,
-      "report": 12,
+      "report": 13,
       "review": 6,
       "round_megaprompt": 1,
       "session": 4,
@@ -1034,19 +1023,18 @@
       "DRAFT": 1,
       "OPEN": 35,
       "PENDING": 3,
-      "RECORDED": 1,
+      "RECORDED": 2,
       "REGISTERED": 8,
-      "SUPERSEDED": 4,
-      "—": 1
+      "SUPERSEDED": 4
     },
     "code_files": 21,
     "contradiction_candidates": 0,
     "dangling_ids": 10,
     "duplicate_candidates": 2,
-    "edges_total": 933,
+    "edges_total": 940,
     "legacy_experiments_without_pre_registration": 6,
     "open_questions": 8,
-    "records_total": 121,
+    "records_total": 122,
     "revival_candidates": 5
   },
   "questions_all": [
@@ -1446,15 +1434,6 @@
   "timeline_tail": [
     {
       "example": false,
-      "id": "profile",
-      "kind": "profile",
-      "rel": "agents/systems-researcher/profile.md",
-      "status": "—",
-      "title": "profile",
-      "when": "2026-09-14"
-    },
-    {
-      "example": false,
       "id": "report",
       "kind": "report",
       "rel": "agents/systems-researcher/reports/2026-09-14-round4-meta-audit-and-system-redesign.md",
@@ -1640,6 +1619,15 @@
       "rel": "evidence/EV-0010-e0010-measurement-binary.md",
       "status": "REGISTERED",
       "title": "E-0010 measurement binary (the current build/Release/kana.exe)",
+      "when": "2026-09-19"
+    },
+    {
+      "example": false,
+      "id": "F-0002",
+      "kind": "failure",
+      "rel": "failures/F-0002-gate-0-device-guard-hard-block.md",
+      "status": "RECORDED",
+      "title": "Gate 0 unrunnable: Device Guard hard-blocks kana.exe (every build, every path)",
       "when": "2026-09-19"
     },
     {

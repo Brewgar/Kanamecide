@@ -676,6 +676,32 @@ def audit(nodes: dict, code: dict) -> dict:
                              "msg": f"sha256 drift on {ev['path']}: recorded "
                                     f"{str(ev['sha256_recorded'])[:12]}… vs on-disk {ev['sha256'][:12]}…"})
 
+    # Contradiction / duplicate candidates surfaced as findings (never silent, never merged).
+    for c in contradiction_candidates(nodes):
+        findings.append({"severity": "warning", "area": "contradiction",
+                         "msg": f"candidate: {c['a']} vs {c['b']} — {c['why'][:120]}"})
+    for d in duplicate_candidates(nodes):
+        findings.append({"severity": "warning", "area": "duplication",
+                         "msg": f"possible duplicate: {d['a']} ~ {d['b']} (score {d['score']})"})
+
+    # Committed-layer staleness (R-0006 G2): a generated state that no longer matches
+    # the corpus warns loudly. state.json is NEVER hand-edited — it is regenerated.
+    sf = RESEARCH_DIR / "state.json"
+    if sf.exists():
+        try:
+            stored = json.loads(sf.read_text(encoding="utf-8"))
+            rt = (stored.get("metrics") or {}).get("records_total")
+            if rt is not None and rt != len(nodes):
+                findings.append({"severity": "warning", "area": "state",
+                                 "msg": f"state.json is stale: stored records_total={rt}, "
+                                        f"live={len(nodes)} — run `state --write` and commit"})
+        except Exception:
+            findings.append({"severity": "warning", "area": "state",
+                             "msg": "state.json is unreadable — regenerate it"})
+    else:
+        findings.append({"severity": "warning", "area": "state",
+                         "msg": "state.json is absent — run `state --write` and commit it"})
+
     by_kind: dict = {}
     for n in nodes.values():
         by_kind[n["kind"]] = by_kind.get(n["kind"], 0) + 1

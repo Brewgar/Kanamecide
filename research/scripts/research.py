@@ -85,14 +85,23 @@ PRE_REG_SECTIONS = (
 
 # The sacred perft anchor. Its SINGLE protected home is research/project_state.md
 # (DEC-0009 / R-0003 F12). Any change to these numbers is a correctness regression.
+# One entry per certified count (DEC-0011 / R-0006 G1: the old row 1 passed five
+# DISTINCT counts to an `any()` check, so 20/400/8902/197281/4865609 were unasserted —
+# and "20" was always satisfied by the date strings in the section). Every count is
+# asserted individually below with digit-boundary matching, so a date can never satisfy
+# a count.
 PERFT_ANCHOR_SECTION = "## Certified Perft Anchors"
 PERFT_ANCHOR = (
-    ("startpos d1-5", ("20", "400", "8902", "197281", "4865609")),
-    ("kiwipete d3", ("97,862", "97862")),
-    ("cpw3 d4", ("43,238", "43238")),
-    ("cpw4 d4", ("422,333", "422333")),
-    ("cpw5 d4", ("2,103,487", "2103487")),
-    ("cpw6 d4", ("3,894,594", "3894594")),
+    ("startpos d1", "20"),
+    ("startpos d2", "400"),
+    ("startpos d3", "8902"),
+    ("startpos d4", "197281"),
+    ("startpos d5", "4865609"),
+    ("kiwipete d3", "97862"),
+    ("cpw3 d4", "43238"),
+    ("cpw4 d4", "422333"),
+    ("cpw5 d4", "2103487"),
+    ("cpw6 d4", "3894594"),
 )
 
 # Repo-root hygiene (DEC-0009 / R-0003 F9). Root-level scratch that predates the
@@ -177,10 +186,23 @@ def today() -> str:
 
 
 def parse_simple_yaml(text: str) -> dict:
-    """Parse the tiny YAML subset used in front-matter: scalars, inline lists, bools."""
+    """Parse the tiny YAML subset used in front-matter: scalars, inline lists, bools,
+    and (DEC-0011 G5 fix) block sequences:
+
+        evidence:
+          - a
+          - b
+
+    A block sequence is the `key:` line followed by one or more indented `- ` items.
+    A lone `- item` line can never again be misread as a junk key (that silent-drop
+    behaviour is the same failure class as R-0003 F8).
+    """
     data = {}
-    for raw in text.splitlines():
-        line = raw.rstrip()
+    lines = text.splitlines()
+    i, n = 0, len(lines)
+    while i < n:
+        line = lines[i].rstrip()
+        i += 1
         if not line.strip() or line.lstrip().startswith("#") or ":" not in line:
             continue
         key, val = line.split(":", 1)
@@ -189,7 +211,20 @@ def parse_simple_yaml(text: str) -> dict:
         if not key:
             continue
         if val == "" or val.lower() in ("null", "none", "~"):
-            data[key] = None
+            # Possible block sequence: consume following `- item` lines.
+            items = []
+            while i < n:
+                s = lines[i].strip()
+                if s.startswith("- "):
+                    items.append(s[2:].strip().strip("'\""))
+                    i += 1
+                elif s == "-":
+                    i += 1
+                elif s == "":
+                    break
+                else:
+                    break
+            data[key] = items if items else None
         elif val.startswith("[") and val.endswith("]"):
             inner = val[1:-1].strip()
             data[key] = [x.strip().strip("'\"") for x in inner.split(",")] if inner else []
@@ -791,22 +826,23 @@ def cmd_validate(_args):
             if not (ag["_dir"] / f).exists():
                 problems.append(f"{ag['name']}/{f}: missing")
 
-    # DEC-0011 derived-layer checks (advisory): memory integrity beyond the record files.
+    # DEC-0011 derived-layer checks: `validate` and `audit` are now the SAME surface
+    # (R-0006 G3 — the two must never diverge). audit() checks are passed through:
+    # its `problems` fail validation, its `warnings`/`findings` are advisory.
     try:
         import memorylib as M
         _nodes = M.load_nodes()
         _code = M.code_nodes()
-        for d in M.missing_reference_targets(_nodes):
-            warnings.append(f"dangling id {d['id']} referenced by {d['referenced_by'][:3]}")
-        for ev in M.evidence_inventory(_nodes):
-            if ev["path"] and not ev["exists"]:
-                warnings.append(f"evidence {ev['id']}: path missing on disk: {ev['path']}")
-            if ev["exists"] and ev["sha256_recorded"] and ev["sha256"].lower() != str(ev["sha256_recorded"]).lower():
-                problems.append(f"evidence {ev['id']}: sha256 drift on {ev['path']} "
-                                f"(recorded {str(ev['sha256_recorded'])[:12]}…, on-disk {ev['sha256'][:12]}…)")
-        n_contra = len(M.contradiction_candidates(_nodes))
-        if n_contra:
-            warnings.append(f"{n_contra} contradiction candidate(s) — run `research.py contradictions`")
+        _aud = M.audit(_nodes, _code)
+        for it in _aud["problems"]:
+            problems.append(f"audit[{it.get('area', '?')}]: {it.get('msg', '')}"
+                            + (f" ({it.get('rel')})" if it.get("rel") else ""))
+        for it in _aud["warnings"]:
+            warnings.append(f"audit[{it.get('area', '?')}]: {it.get('msg', '')}"
+                            + (f" ({it.get('rel')})" if it.get("rel") else ""))
+        for it in _aud["findings"]:
+            warnings.append(f"audit[{it.get('severity', '?')}:{it.get('area', '?')}]: "
+                            f"{it.get('msg', '')}")
     except Exception as exc:  # the layer must never make validate fail by crashing
         warnings.append(f"derived-layer checks skipped (memorylib error: {exc})")
 
@@ -843,11 +879,15 @@ def _project_state_problems() -> list:
         )
     else:
         flat = anchor.replace(" ", "")
-        for name, variants in PERFT_ANCHOR:
-            if not any(v in flat for v in variants):
+        for name, count in PERFT_ANCHOR:
+            # Digit-boundary match so a date or a neighbouring number can never satisfy a
+            # count (R-0006 G1). Commonly written with commas in the record, so compare
+            # against a comma-stripped view.
+            pat = re.compile(r"(?<!\d)" + re.escape(count) + r"(?!\d)")
+            if not pat.search(flat.replace(",", "")):
                 problems.append(
                     f"project_state.md perft anchor: expected count for {name} "
-                    f"({variants[0]}) not found — SACRED: any change is a regression"
+                    f"({count}) not found — SACRED: any change is a regression"
                 )
     meta = meta_block(text)
     if not meta:

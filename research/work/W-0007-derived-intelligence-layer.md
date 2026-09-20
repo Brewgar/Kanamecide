@@ -7,10 +7,7 @@ owner: chief-architect
 status: OPEN
 deliverable: "research/scripts/memorylib.py + research/scripts/kgraph.py (shim) + research.py CLI extensions + tests_memory.py + records (DEC-0011, R-0005, Q/PR/EV) + generated state.md/state.json + index.md"
 exit_check: "python research/scripts/research.py selftest -> OK; python research/scripts/research.py validate -> OK; python research/scripts/research.py state --write writes state.md/state.json; python research/scripts/research.py search 'quiescence' returns E-00008"
-evidence:
-  - "research/scripts/memorylib.py (self-test suite: tests_memory.py, 35 tests OK)"
-  - "research/scripts/kgraph.py (shim), research.py (CLI + validate extensions)"
-  - "research/state.json + research/state.md (GENERATED)"
+evidence: ["research/scripts/memorylib.py (self-test suite: tests_memory.py, 35 tests OK)", "research/scripts/kgraph.py (shim), research.py (CLI + validate extensions)", "research/state.json + research/state.md (GENERATED)"]
 evidence_files: []
 verified_by: "verification-auditor (fresh-agent seat, Round 5 occupant 2)"
 verification_verdict: PARTIAL
