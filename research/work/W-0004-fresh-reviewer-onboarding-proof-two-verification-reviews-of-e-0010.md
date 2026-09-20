@@ -4,15 +4,15 @@ type: work
 title: "Fresh-reviewer onboarding proof: two independent verification reviews of E-0010"
 round: 4
 owner: verification-auditor
-status: OPEN
+status: DONE
 deliverable: "two research/reviews/R-#### (kind: verification) of E-0010 by brand-new agents, plus updated agents/ASSIGNMENTS.md rows"
 exit_check: "two verification reviews COMPLETED, each re-running e0010_report.py and listing any number that did not reproduce; reviewers are not owners of any verified item"
-evidence: []
-verified_by: null
-verification_verdict: null
+evidence: ["research/reviews/R-0004-independent-verification-of-e-0010-fresh-agent-w-0004-occupant-1.md (COMPLETED, VERIFIED)", "research/reviews/R-0008-second-independent-verification-of-e-0010-fresh-agent-w-0004-occupant-3.md (COMPLETED, VERIFIED)", "python e0010_report.py re-run by BOTH occupants (exit 0 both); kana.exe sha256 504EB01A…A6DAA recomputed by both"]
+verified_by: "owner (human orchestrator) — adjudicating the S-0006 escalation; not the authoring seat and not an author of either review"
+verification_verdict: VERIFIED
 example: false
 created: 2026-09-14
-closed: null
+closed: 2026-09-20
 ---
 
 # W-0004 — Fresh-reviewer onboarding proof
@@ -81,3 +81,24 @@ python research/scripts/research.py validate    # OK
 - Note: W-0004's exit check requires TWO verification reviews (occupant 2 pending);
   this item therefore stays OPEN and unmarked-DONE until the second review lands.
   The verifier (occupant 1) is not the owner of E-0010, W-0001, or W-0002.
+
+## Closure adjudication (owner, 2026-09-20 — resolves the S-0006 escalation)
+
+The deliverable is complete per this item's own exit check: two COMPLETED
+`kind: verification` reviews of E-0010 (**R-0004**, occupant 1; **R-0008**, occupant 3),
+each authored by a distinct zero-chat-history agent, each re-running
+`python e0010_report.py` itself, each listing exactly what did not reproduce (nothing
+did; cosmetic nits only), and neither reviewer being the owner of any verified item
+(both verified E-0010, owned by implementation-engineer).
+
+**Who verifies a verification-seat work item (the mechanical question):** the verifier
+must not be the *author of the artifact under verification* and must not be the work
+item's *owning seat*. The human owner is neither, so the owner adjudicates. This is the
+same relationship DEC-0009 already relies on: the owner orchestrates, and the verifier
+is never the *agent that produced the claim*. Recorded here so the next verification-seat
+work item has precedent: **a verification-seat deliverable is closed by owner
+adjudication, citing the distinct-occupant reviews as the evidence.**
+
+Verdict: **VERIFIED** — the onboarding proof works and has now worked three times
+(occupants 1, 2, 3), including once with Gate 0 hard-blocked (F-0002), which is the
+harder test of the bootstrap path.

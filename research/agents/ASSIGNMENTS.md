@@ -19,6 +19,14 @@
 | implementation-engineer | (unassigned) | — | Round 4: W-0001 generator code, W-0006 hygiene |
 | verification-auditor | (unassigned — rotating fresh-agent seat) | 2026-09-14 | Round 4: W-0004; designed for brand-new agents with zero chat history |
 
+### verification-auditor occupant log (the rotating seat; models deliberately not recorded)
+
+| Occupant | Date | Session | Deliverable | Verdict |
+|---|---|---|---|---|
+| 1 | 2026-09-14 | S-0002 | R-0004 (verification of E-0010) | VERIFIED |
+| 2 | 2026-09-19 | S-0004 | R-0006 (verification of W-0007/DEC-0011) | PARTIAL (4 defects named → fixed in `055772f`) |
+| 3 | 2026-09-20 | S-0006 | R-0007 (re-verification of W-0007) VERIFIED; R-0008 (2nd verification of E-0010) VERIFIED | VERIFIED |
+
 > The owner runs one agent chat at a time and pastes each session's final output to a
 > separate orchestrator chat. Any model can occupy any role; record the assignment here
 > and never inside the role directory. The `verification-auditor` seat is deliberately

@@ -1,7 +1,7 @@
 # Research State (GENERATED — do not edit)
 
 Derived from the record store by `research.py state`. Regenerate after every change.
-Generated: 2026-09-20T22:45:28; schema 2.
+Generated: 2026-09-20T23:19:56; schema 2.
 Every entry is a PROJECTION of the linked records — follow them before believing.
 
 ## Current best beliefs (hypotheses with measured weight)
@@ -43,7 +43,6 @@ Every entry is a PROJECTION of the linked records — follow them before believi
 - hypothesis **H-0002-magic-stub** Magic Bitboards with PEXT Provide >=3x NPS Speedup — SUPERSEDED. No revisit condition recorded.
 
 ## Recent timeline
-- 2026-09-19 question Q-0003 (OPEN) : Should the transposition table persist across moves (TT reuse), and what does a correct aging/reuse policy gain vs. per-move clear?
 - 2026-09-19 question Q-0004 (OPEN) : Can a pre-registered two-tier SPRT harness decide every engine-delta claim against a calibrated bar?
 - 2026-09-19 question Q-0005 (OPEN) : CPU-VNNI vs GPU batch-1 inference economics: is the RTX 5070 Ti a training device or a playing device?
 - 2026-09-19 question Q-0006 (OPEN) : Can the E-0011 self-play pipeline produce a deduped, provenance-carrying dataset that trains an eval that beats the hand-tuned one?
@@ -57,6 +56,7 @@ Every entry is a PROJECTION of the linked records — follow them before believi
 - 2026-09-20 review R-0007 (COMPLETED) : R 0007 re verification of the r 0006 fixes to the dec 0011 layer w 0007 occupant 3
 - 2026-09-20 review R-0008 (COMPLETED) : R 0008 second independent verification of e 0010 fresh agent w 0004 occupant 3
 - 2026-09-20 session S-0006 (CLOSED) : Round 5 occupant 3: W-0007 re-verification VERIFIED (R-0007); second E-0010 verification (R-0008) completes the W-0004 deliverable; Gate-0 re-block
+- 2026-09-20 work W-0004 (DONE) : Fresh-reviewer onboarding proof: two independent verification reviews of E-0010
 - 2026-09-20 work W-0007 (DONE) : Derived-intelligence layer (graph, retrieval, beliefs, contradiction/revival, state, audit, self-tests)
 
 ## Metrics
@@ -87,9 +87,9 @@ Every entry is a PROJECTION of the linked records — follow them before believi
     "ACTIVE": 13,
     "CLOSED": 6,
     "COMPLETED": 14,
-    "DONE": 2,
+    "DONE": 3,
     "DRAFT": 1,
-    "OPEN": 34,
+    "OPEN": 33,
     "PENDING": 3,
     "RECORDED": 2,
     "REGISTERED": 8,
@@ -99,7 +99,7 @@ Every entry is a PROJECTION of the linked records — follow them before believi
   "contradiction_candidates": 0,
   "dangling_ids": 10,
   "duplicate_candidates": 2,
-  "edges_total": 1018,
+  "edges_total": 1031,
   "legacy_experiments_without_pre_registration": 6,
   "open_questions": 8,
   "records_total": 126,

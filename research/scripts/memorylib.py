@@ -685,18 +685,20 @@ def audit(nodes: dict, code: dict) -> dict:
                          "msg": f"possible duplicate: {d['a']} ~ {d['b']} (score {d['score']})"})
 
     # Committed-layer staleness (R-0006 G2): a generated state that no longer matches
-    # the corpus warns loudly. state.json is NEVER hand-edited — it is regenerated.
+    # the corpus is a HARD problem, mirroring the project_state.md staleness gate (F7) —
+    # a stale Layer-3 projection is exactly the "memory silently misleads" failure class.
+    # state.json is NEVER hand-edited; the fix is `state --write` + commit.
     sf = RESEARCH_DIR / "state.json"
     if sf.exists():
         try:
             stored = json.loads(sf.read_text(encoding="utf-8"))
             rt = (stored.get("metrics") or {}).get("records_total")
             if rt is not None and rt != len(nodes):
-                findings.append({"severity": "warning", "area": "state",
+                problems.append({"area": "state", "rel": "state.json",
                                  "msg": f"state.json is stale: stored records_total={rt}, "
                                         f"live={len(nodes)} — run `state --write` and commit"})
         except Exception:
-            findings.append({"severity": "warning", "area": "state",
+            problems.append({"area": "state", "rel": "state.json",
                              "msg": "state.json is unreadable — regenerate it"})
     else:
         findings.append({"severity": "warning", "area": "state",

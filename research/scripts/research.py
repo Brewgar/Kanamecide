@@ -185,6 +185,39 @@ def today() -> str:
     return date.today().isoformat()
 
 
+def _split_inline_list(inner: str) -> list:
+    """Split a YAML inline list on commas that are OUTSIDE quotes (R-0006/S-0006 nit:
+    a value containing a comma — e.g. 'self-test suite: tests_memory.py, 35 tests OK' —
+    used to be split mid-string). Quote-aware, depth-aware for nested brackets."""
+    if not inner.strip():
+        return []
+    items, buf, quote, depth = [], [], "", 0
+    for ch in inner:
+        if quote:
+            buf.append(ch)
+            if ch == quote:
+                quote = ""
+            continue
+        if ch in "'\"":
+            quote = ch
+            buf.append(ch)
+        elif ch == "[":
+            depth += 1
+            buf.append(ch)
+        elif ch == "]":
+            depth -= 1
+            buf.append(ch)
+        elif ch == "," and depth == 0:
+            items.append("".join(buf).strip().strip("'\""))
+            buf = []
+        else:
+            buf.append(ch)
+    tail = "".join(buf).strip()
+    if tail:
+        items.append(tail.strip("'\""))
+    return [x for x in items if x]
+
+
 def parse_simple_yaml(text: str) -> dict:
     """Parse the tiny YAML subset used in front-matter: scalars, inline lists, bools,
     and (DEC-0011 G5 fix) block sequences:
@@ -227,7 +260,7 @@ def parse_simple_yaml(text: str) -> dict:
             data[key] = items if items else None
         elif val.startswith("[") and val.endswith("]"):
             inner = val[1:-1].strip()
-            data[key] = [x.strip().strip("'\"") for x in inner.split(",")] if inner else []
+            data[key] = _split_inline_list(inner)
         elif val.lower() == "true":
             data[key] = True
         elif val.lower() == "false":
@@ -653,6 +686,7 @@ def _index_lines() -> list:
     section("Work Items (open)", WORK_DIR, "work", WORK_OPEN)
     section("Work Items (closed)", WORK_DIR, "work", {"DONE", "CANCELLED"})
     section("Handoffs (open)", HO_DIR, "handoff", HO_OPEN)
+    section("Handoffs (closed)", HO_DIR, "handoff", {"DONE", "REJECTED", "WITHDRAWN"})
     section("Runs (live)", RUN_DIR, "run", RUN_LIVE)
     section("Runs (finished)", RUN_DIR, "run", {"COMPLETED", "FAILED", "ABANDONED"})
     section("Sessions", SES_DIR, "session")

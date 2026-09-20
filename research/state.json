@@ -992,7 +992,7 @@
       "title": "Gate 0 unrunnable: Device Guard hard-blocks kana.exe (every build, every path)"
     }
   ],
-  "generated": "2026-09-20T22:45:28",
+  "generated": "2026-09-20T23:19:56",
   "metrics": {
     "by_kind": {
       "agent_profile": 1,
@@ -1019,9 +1019,9 @@
       "ACTIVE": 13,
       "CLOSED": 6,
       "COMPLETED": 14,
-      "DONE": 2,
+      "DONE": 3,
       "DRAFT": 1,
-      "OPEN": 34,
+      "OPEN": 33,
       "PENDING": 3,
       "RECORDED": 2,
       "REGISTERED": 8,
@@ -1031,7 +1031,7 @@
     "contradiction_candidates": 0,
     "dangling_ids": 10,
     "duplicate_candidates": 2,
-    "edges_total": 1018,
+    "edges_total": 1031,
     "legacy_experiments_without_pre_registration": 6,
     "open_questions": 8,
     "records_total": 126,
@@ -1073,9 +1073,7 @@
       ],
       "status": "OPEN",
       "suggested_experiments": [
-        "E-PVS-TT: TT-only",
-        "PVS-only",
-        "both on the E-00007 11-position set; disambiguate the two contributions"
+        "E-PVS-TT: TT-only, PVS-only, both on the E-00007 11-position set; disambiguate the two contributions"
       ],
       "title": "Can PVS + TT + LMR/null-move be added as measured deltas on O3d (O3e), and how much do they cut nodes?"
     },
@@ -1111,11 +1109,7 @@
       ],
       "status": "OPEN",
       "suggested_experiments": [
-        "E-SPRT-lite: screening delta~20 Elo + regression delta=5",
-        "LLR +-2.944",
-        "cap 30000",
-        "crash=loss",
-        "post-cap INCONCLUSIVE"
+        "E-SPRT-lite: screening delta~20 Elo + regression delta=5, LLR +-2.944, cap 30000, crash=loss, post-cap INCONCLUSIVE"
       ],
       "title": "Can a pre-registered two-tier SPRT harness decide every engine-delta claim against a calibrated bar?"
     },
@@ -1154,9 +1148,7 @@
       ],
       "status": "OPEN",
       "suggested_experiments": [
-        "E-0011: >=1000 legal",
-        "deduplicated",
-        "provenance-carrying games; resume-from-checkpoint adds no duplicates"
+        "E-0011: >=1000 legal, deduplicated, provenance-carrying games; resume-from-checkpoint adds no duplicates"
       ],
       "title": "Can the E-0011 self-play pipeline produce a deduped, provenance-carrying dataset that trains an eval that beats the hand-tuned one?"
     },
@@ -1198,9 +1190,7 @@
       ],
       "status": "OPEN",
       "suggested_experiments": [
-        "E-TIME: after SPRT exists",
-        "log per-move search stats; train an allocator offline; A/B at fixed total time",
-        "0 forfeits required"
+        "E-TIME: after SPRT exists, log per-move search stats; train an allocator offline; A/B at fixed total time, 0 forfeits required"
       ],
       "title": "Can computation be allocated by predicted value-of-search (eval variance / PV instability) rather than fixed heuristics?"
     }
@@ -1241,9 +1231,7 @@
       ],
       "status": "OPEN",
       "suggested_experiments": [
-        "E-PVS-TT: TT-only",
-        "PVS-only",
-        "both on the E-00007 11-position set; disambiguate the two contributions"
+        "E-PVS-TT: TT-only, PVS-only, both on the E-00007 11-position set; disambiguate the two contributions"
       ],
       "title": "Can PVS + TT + LMR/null-move be added as measured deltas on O3d (O3e), and how much do they cut nodes?"
     },
@@ -1279,11 +1267,7 @@
       ],
       "status": "OPEN",
       "suggested_experiments": [
-        "E-SPRT-lite: screening delta~20 Elo + regression delta=5",
-        "LLR +-2.944",
-        "cap 30000",
-        "crash=loss",
-        "post-cap INCONCLUSIVE"
+        "E-SPRT-lite: screening delta~20 Elo + regression delta=5, LLR +-2.944, cap 30000, crash=loss, post-cap INCONCLUSIVE"
       ],
       "title": "Can a pre-registered two-tier SPRT harness decide every engine-delta claim against a calibrated bar?"
     },
@@ -1322,9 +1306,7 @@
       ],
       "status": "OPEN",
       "suggested_experiments": [
-        "E-0011: >=1000 legal",
-        "deduplicated",
-        "provenance-carrying games; resume-from-checkpoint adds no duplicates"
+        "E-0011: >=1000 legal, deduplicated, provenance-carrying games; resume-from-checkpoint adds no duplicates"
       ],
       "title": "Can the E-0011 self-play pipeline produce a deduped, provenance-carrying dataset that trains an eval that beats the hand-tuned one?"
     },
@@ -1366,9 +1348,7 @@
       ],
       "status": "OPEN",
       "suggested_experiments": [
-        "E-TIME: after SPRT exists",
-        "log per-move search stats; train an allocator offline; A/B at fixed total time",
-        "0 forfeits required"
+        "E-TIME: after SPRT exists, log per-move search stats; train an allocator offline; A/B at fixed total time, 0 forfeits required"
       ],
       "title": "Can computation be allocated by predicted value-of-search (eval variance / PV instability) rather than fixed heuristics?"
     }
@@ -1475,15 +1455,6 @@
       "rel": "work/W-0003-round2-agreement-matrix-reviewer-column-backfill.md",
       "status": "OPEN",
       "title": "Round-2 AGREEMENT_MATRIX reviewer column backfill (as an addendum review)",
-      "when": "2026-09-14"
-    },
-    {
-      "example": false,
-      "id": "W-0004",
-      "kind": "work",
-      "rel": "work/W-0004-fresh-reviewer-onboarding-proof-two-verification-reviews-of-e-0010.md",
-      "status": "OPEN",
-      "title": "Fresh-reviewer onboarding proof: two independent verification reviews of E-0010",
       "when": "2026-09-14"
     },
     {
@@ -1781,6 +1752,15 @@
       "rel": "sessions/S-0006-round-5-occupant-3-w-0007-re-verification-verified-r-0007-second-e-0010-verification-r-0008-completes-the-w-0004-deliverable-gate-0-re-block.md",
       "status": "CLOSED",
       "title": "Round 5 occupant 3: W-0007 re-verification VERIFIED (R-0007); second E-0010 verification (R-0008) completes the W-0004 deliverable; Gate-0 re-block",
+      "when": "2026-09-20"
+    },
+    {
+      "example": false,
+      "id": "W-0004",
+      "kind": "work",
+      "rel": "work/W-0004-fresh-reviewer-onboarding-proof-two-verification-reviews-of-e-0010.md",
+      "status": "DONE",
+      "title": "Fresh-reviewer onboarding proof: two independent verification reviews of E-0010",
       "when": "2026-09-20"
     },
     {

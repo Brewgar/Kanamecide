@@ -260,6 +260,14 @@ class TestRegexesAndParserEdgeCases(unittest.TestCase):
         self.assertIs(d["c"], False)
 
 
+    def test_inline_list_quote_aware(self):
+        # R-0006/S-0006 nit: a value containing a comma used to split mid-string.
+        d = R.parse_simple_yaml(
+            'evidence: ["memorylib.py (self-test: tests, 41 tests OK)", "kgraph.py shim"]')
+        self.assertEqual(d["evidence"],
+                         ["memorylib.py (self-test: tests, 41 tests OK)", "kgraph.py shim"])
+
+
 class TestPerftAnchorCoverage(unittest.TestCase):
     """R-0006 G1 regression: every certified perft count must be individually asserted.
     Mutating ANY one of the ten counts must make the anchor check fail."""

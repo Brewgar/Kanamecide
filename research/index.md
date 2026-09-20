@@ -122,17 +122,21 @@
 - [W-0001](work/W-0001-e0011-self-play-data-pipeline-pre-register-build-run-verify.md) — E-0011 self-play data pipeline (pre-register, build, run, verify) — status=OPEN
 - [W-0002](work/W-0002-recalibrate-e0010-effect-size-decision-rule-d-0007-dec-0010.md) — Recalibrate the E-0010 effect-size decision rule (D-0007 -> DEC-0010) — status=OPEN
 - [W-0003](work/W-0003-round2-agreement-matrix-reviewer-column-backfill.md) — Round-2 AGREEMENT_MATRIX reviewer column backfill (as an addendum review) — status=OPEN
-- [W-0004](work/W-0004-fresh-reviewer-onboarding-proof-two-verification-reviews-of-e-0010.md) — Fresh-reviewer onboarding proof: two independent verification reviews of E-0010 — status=OPEN
 - [W-0005](work/W-0005-e-sprt-lite-comparison-harness-pre-register-build-validate.md) — E-SPRT-lite comparison harness: pre-register, build, validate against known difference — status=OPEN
 - [W-0006](work/W-0006-root-scratch-debt-reduction-grandfathered-list-shrink.md) — Root-scratch debt reduction: shrink root_grandfathered.txt with itemized deletions — status=OPEN
 
 ## Work Items (closed)
 
+- [W-0004](work/W-0004-fresh-reviewer-onboarding-proof-two-verification-reviews-of-e-0010.md) — Fresh-reviewer onboarding proof: two independent verification reviews of E-0010 — status=DONE
 - [W-0007](work/W-0007-derived-intelligence-layer.md) — Derived-intelligence layer (graph, retrieval, beliefs, contradiction/revival, state, audit, self-tests) — status=DONE
 
 ## Handoffs (open)
 
 (none)
+
+## Handoffs (closed)
+
+- [HO-0001](handoffs/HO-0001-verify-dec-0011-layer.md) — Independently verify the DEC-0011 derived-intelligence layer — status=DONE
 
 ## Runs (live)
 
@@ -153,7 +157,7 @@
 
 ## Unrendered Records (bug — report this)
 
-- !!! HO-0001 (handoffs/HO-0001-verify-dec-0011-layer.md) status='DONE' type='handoff' — NOT RENDERED
+(none — every scanned record appears above)
 
 ## Agent Positions
 
