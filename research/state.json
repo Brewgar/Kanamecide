@@ -992,7 +992,7 @@
       "title": "Gate 0 unrunnable: Device Guard hard-blocks kana.exe (every build, every path)"
     }
   ],
-  "generated": "2026-09-20T19:24:34",
+  "generated": "2026-09-20T22:45:28",
   "metrics": {
     "by_kind": {
       "agent_profile": 1,
@@ -1010,18 +1010,18 @@
       "profile": 4,
       "question": 8,
       "report": 13,
-      "review": 6,
+      "review": 8,
       "round_megaprompt": 1,
-      "session": 5,
+      "session": 6,
       "work": 7
     },
     "by_status": {
       "ACTIVE": 13,
-      "CLOSED": 5,
-      "COMPLETED": 12,
-      "DONE": 1,
+      "CLOSED": 6,
+      "COMPLETED": 14,
+      "DONE": 2,
       "DRAFT": 1,
-      "OPEN": 35,
+      "OPEN": 34,
       "PENDING": 3,
       "RECORDED": 2,
       "REGISTERED": 8,
@@ -1031,10 +1031,10 @@
     "contradiction_candidates": 0,
     "dangling_ids": 10,
     "duplicate_candidates": 2,
-    "edges_total": 947,
+    "edges_total": 1018,
     "legacy_experiments_without_pre_registration": 6,
     "open_questions": 8,
-    "records_total": 123,
+    "records_total": 126,
     "revival_candidates": 5
   },
   "questions_all": [
@@ -1434,33 +1434,6 @@
   "timeline_tail": [
     {
       "example": false,
-      "id": "R-0003",
-      "kind": "review",
-      "rel": "reviews/R-0003-full-project-and-multi-agent-system-audit.md",
-      "status": "COMPLETED",
-      "title": "Full-project and multi-agent research-system audit (Round 4 meta)",
-      "when": "2026-09-14"
-    },
-    {
-      "example": false,
-      "id": "R-0004",
-      "kind": "review",
-      "rel": "reviews/R-0004-independent-verification-of-e-0010-fresh-agent-w-0004-occupant-1.md",
-      "status": "COMPLETED",
-      "title": "R 0004 independent verification of e 0010 fresh agent w 0004 occupant 1",
-      "when": "2026-09-14"
-    },
-    {
-      "example": false,
-      "id": "ROUND4",
-      "kind": "round_megaprompt",
-      "rel": "AGENT_MEGAPROMPT_ROUND4.md",
-      "status": "ACTIVE",
-      "title": "Round 4 — data pipeline + E-0010 resolution + reviewer onboarding",
-      "when": "2026-09-14"
-    },
-    {
-      "example": false,
       "id": "S-0001",
       "kind": "session",
       "rel": "sessions/S-0001-meta-agent-round4-audit-and-system-redesign.md",
@@ -1785,12 +1758,39 @@
     },
     {
       "example": false,
+      "id": "R-0007",
+      "kind": "review",
+      "rel": "reviews/R-0007-re-verification-of-the-r-0006-fixes-to-the-dec-0011-layer-w-0007-occupant-3.md",
+      "status": "COMPLETED",
+      "title": "R 0007 re verification of the r 0006 fixes to the dec 0011 layer w 0007 occupant 3",
+      "when": "2026-09-20"
+    },
+    {
+      "example": false,
+      "id": "R-0008",
+      "kind": "review",
+      "rel": "reviews/R-0008-second-independent-verification-of-e-0010-fresh-agent-w-0004-occupant-3.md",
+      "status": "COMPLETED",
+      "title": "R 0008 second independent verification of e 0010 fresh agent w 0004 occupant 3",
+      "when": "2026-09-20"
+    },
+    {
+      "example": false,
+      "id": "S-0006",
+      "kind": "session",
+      "rel": "sessions/S-0006-round-5-occupant-3-w-0007-re-verification-verified-r-0007-second-e-0010-verification-r-0008-completes-the-w-0004-deliverable-gate-0-re-block.md",
+      "status": "CLOSED",
+      "title": "Round 5 occupant 3: W-0007 re-verification VERIFIED (R-0007); second E-0010 verification (R-0008) completes the W-0004 deliverable; Gate-0 re-block",
+      "when": "2026-09-20"
+    },
+    {
+      "example": false,
       "id": "W-0007",
       "kind": "work",
       "rel": "work/W-0007-derived-intelligence-layer.md",
-      "status": "OPEN",
+      "status": "DONE",
       "title": "Derived-intelligence layer (graph, retrieval, beliefs, contradiction/revival, state, audit, self-tests)",
-      "when": "2026-09-19"
+      "when": "2026-09-20"
     }
   ]
 }

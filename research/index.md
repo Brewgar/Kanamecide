@@ -81,6 +81,8 @@
 - [R-0004](reviews/R-0004-independent-verification-of-e-0010-fresh-agent-w-0004-occupant-1.md) — (untitled) — status=COMPLETED
 - [R-0005](reviews/R-0005-memory-system-self-audit-and-dec-0011.md) — (untitled) — status=COMPLETED
 - [R-0006](reviews/R-0006-independent-verification-of-the-dec-0011-derived-intelligence-layer-ho-0001-w-0007.md) — (untitled) — status=COMPLETED
+- [R-0007](reviews/R-0007-re-verification-of-the-r-0006-fixes-to-the-dec-0011-layer-w-0007-occupant-3.md) — (untitled) — status=COMPLETED
+- [R-0008](reviews/R-0008-second-independent-verification-of-e-0010-fresh-agent-w-0004-occupant-3.md) — (untitled) — status=COMPLETED
 
 ## Open Questions
 
@@ -123,11 +125,10 @@
 - [W-0004](work/W-0004-fresh-reviewer-onboarding-proof-two-verification-reviews-of-e-0010.md) — Fresh-reviewer onboarding proof: two independent verification reviews of E-0010 — status=OPEN
 - [W-0005](work/W-0005-e-sprt-lite-comparison-harness-pre-register-build-validate.md) — E-SPRT-lite comparison harness: pre-register, build, validate against known difference — status=OPEN
 - [W-0006](work/W-0006-root-scratch-debt-reduction-grandfathered-list-shrink.md) — Root-scratch debt reduction: shrink root_grandfathered.txt with itemized deletions — status=OPEN
-- [W-0007](work/W-0007-derived-intelligence-layer.md) — Derived-intelligence layer (graph, retrieval, beliefs, contradiction/revival, state, audit, self-tests) — status=OPEN
 
 ## Work Items (closed)
 
-(none)
+- [W-0007](work/W-0007-derived-intelligence-layer.md) — Derived-intelligence layer (graph, retrieval, beliefs, contradiction/revival, state, audit, self-tests) — status=DONE
 
 ## Handoffs (open)
 
@@ -148,6 +149,7 @@
 - [S-0003](sessions/S-0003-dec-0011-derived-intelligence-layer.md) — DEC-0011 derived-intelligence layer: graph, retrieval, beliefs, contradiction/revival detection, state, audit, self-tests — status=CLOSED
 - [S-0004](sessions/S-0004-ho-0001-verification-of-the-dec-0011-derived-intelligence-layer-partial-3-named-gaps.md) — HO-0001: verification of the DEC-0011 derived-intelligence layer (PARTIAL - 4 named gaps) — status=CLOSED
 - [S-0005](sessions/S-0005-round5-fixes.md) — Resolve R-0006 findings G1–G5 in the DEC-0011 layer + record F-0002 (Gate-0 Device Guard block) — status=CLOSED
+- [S-0006](sessions/S-0006-round-5-occupant-3-w-0007-re-verification-verified-r-0007-second-e-0010-verification-r-0008-completes-the-w-0004-deliverable-gate-0-re-block.md) — Round 5 occupant 3: W-0007 re-verification VERIFIED (R-0007); second E-0010 verification (R-0008) completes the W-0004 deliverable; Gate-0 re-block — status=CLOSED
 
 ## Unrendered Records (bug — report this)
 

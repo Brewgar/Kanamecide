@@ -53,6 +53,18 @@ python research/scripts/research.py validate    # OK
   nits recorded (Wrate label collision in the aggregator; front-matter "(N=240)"
   ambiguity). Filed `research/reviews/R-0004-…` (kind: verification), verdict VERIFIED.
   Occupant 2's review still pending — item remains OPEN.
+- 2026-09-20 — verification-auditor seat, occupant 3 (fresh agent, zero chat history):
+  the second required review is delivered — `reviews/R-0008-second-independent-verification-of-e-0010-fresh-agent-w-0004-occupant-3.md`
+  (kind: verification, COMPLETED, **VERIFIED**). Re-ran `python e0010_report.py` (exit 0;
+  full k1–k6 ladder reproduced; gate (c) FAIL exactly as recorded), added a from-scratch
+  k6 recomputation via a different algorithm (Elo +116.1225, CI95 [+70.76,+163.51],
+  LOS 99.999980%), re-derived all six raw JSONL tallies (`res` counts == `result.txt`;
+  dupes=0; BAD=0; 1240 games total) and recomputed `kana.exe` SHA-256 = EV-0010's
+  (`504EB01A…A6DAA`). Deliverable (two reviews) is now complete (R-0004 + R-0008).
+  Item left **OPEN**: its owner is this role itself, so DEC-0009 gate 3
+  (`verified_by` ≠ owner) cannot be satisfied by this seat — needs a non-seat verifier
+  or an owner decision. Gate 0 was blocked this session (F-0002), so gates (b)/(d) were
+  re-read, not re-executed.
 
 ## Verification
 - verified_by: verification-auditor seat, occupant 1 — review R-0004
