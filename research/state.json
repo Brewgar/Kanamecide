@@ -992,7 +992,7 @@
       "title": "Gate 0 unrunnable: Device Guard hard-blocks kana.exe (every build, every path)"
     }
   ],
-  "generated": "2026-09-20T18:19:24",
+  "generated": "2026-09-20T19:24:34",
   "metrics": {
     "by_kind": {
       "agent_profile": 1,
@@ -1012,12 +1012,12 @@
       "report": 13,
       "review": 6,
       "round_megaprompt": 1,
-      "session": 4,
+      "session": 5,
       "work": 7
     },
     "by_status": {
       "ACTIVE": 13,
-      "CLOSED": 4,
+      "CLOSED": 5,
       "COMPLETED": 12,
       "DONE": 1,
       "DRAFT": 1,
@@ -1031,10 +1031,10 @@
     "contradiction_candidates": 0,
     "dangling_ids": 10,
     "duplicate_candidates": 2,
-    "edges_total": 940,
+    "edges_total": 947,
     "legacy_experiments_without_pre_registration": 6,
     "open_questions": 8,
-    "records_total": 122,
+    "records_total": 123,
     "revival_candidates": 5
   },
   "questions_all": [
@@ -1434,15 +1434,6 @@
   "timeline_tail": [
     {
       "example": false,
-      "id": "report",
-      "kind": "report",
-      "rel": "agents/systems-researcher/reports/2026-09-14-round4-meta-audit-and-system-redesign.md",
-      "status": "—",
-      "title": "Round-4 meta session: full audit (R-0003), system redesign (DEC-0009/SYSTEM.md), tooling gates",
-      "when": "2026-09-14"
-    },
-    {
-      "example": false,
       "id": "R-0003",
       "kind": "review",
       "rel": "reviews/R-0003-full-project-and-multi-agent-system-audit.md",
@@ -1781,6 +1772,15 @@
       "rel": "sessions/S-0004-ho-0001-verification-of-the-dec-0011-derived-intelligence-layer-partial-3-named-gaps.md",
       "status": "CLOSED",
       "title": "HO-0001: verification of the DEC-0011 derived-intelligence layer (PARTIAL - 4 named gaps)",
+      "when": "2026-09-19"
+    },
+    {
+      "example": false,
+      "id": "S-0005",
+      "kind": "session",
+      "rel": "sessions/S-0005-round5-fixes.md",
+      "status": "CLOSED",
+      "title": "Resolve R-0006 findings G1–G5 in the DEC-0011 layer + record F-0002 (Gate-0 Device Guard block)",
       "when": "2026-09-19"
     },
     {

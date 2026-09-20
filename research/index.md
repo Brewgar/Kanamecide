@@ -147,6 +147,7 @@
 - [S-0002](sessions/S-0002-w-0004-occupant-1-bootstrap-proof-verification-review-r-0004-of-e-0010.md) — W-0004 occupant 1: bootstrap proof + verification review R-0004 of E-0010 — status=CLOSED
 - [S-0003](sessions/S-0003-dec-0011-derived-intelligence-layer.md) — DEC-0011 derived-intelligence layer: graph, retrieval, beliefs, contradiction/revival detection, state, audit, self-tests — status=CLOSED
 - [S-0004](sessions/S-0004-ho-0001-verification-of-the-dec-0011-derived-intelligence-layer-partial-3-named-gaps.md) — HO-0001: verification of the DEC-0011 derived-intelligence layer (PARTIAL - 4 named gaps) — status=CLOSED
+- [S-0005](sessions/S-0005-round5-fixes.md) — Resolve R-0006 findings G1–G5 in the DEC-0011 layer + record F-0002 (Gate-0 Device Guard block) — status=CLOSED
 
 ## Unrendered Records (bug — report this)
 
