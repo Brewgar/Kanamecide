@@ -125,7 +125,7 @@
 - [W-0002](work/W-0002-recalibrate-e0010-effect-size-decision-rule-d-0007-dec-0010.md) — Recalibrate the E-0010 effect-size decision rule (D-0007 -> DEC-0010) — status=IN_PROGRESS
 - [W-0003](work/W-0003-round2-agreement-matrix-reviewer-column-backfill.md) — Round-2 AGREEMENT_MATRIX reviewer column backfill (as an addendum review) — status=OPEN
 - [W-0005](work/W-0005-e-sprt-lite-comparison-harness-pre-register-build-validate.md) — E-SPRT-lite comparison harness: pre-register, build, validate against known difference — status=OPEN
-- [W-0006](work/W-0006-root-scratch-debt-reduction-grandfathered-list-shrink.md) — Root-scratch debt reduction: shrink root_grandfathered.txt with itemized deletions — status=OPEN
+- [W-0006](work/W-0006-root-scratch-debt-reduction-grandfathered-list-shrink.md) — Root-scratch debt reduction: shrink root_grandfathered.txt with itemized deletions — status=IN_PROGRESS
 
 ## Work Items (closed)
 

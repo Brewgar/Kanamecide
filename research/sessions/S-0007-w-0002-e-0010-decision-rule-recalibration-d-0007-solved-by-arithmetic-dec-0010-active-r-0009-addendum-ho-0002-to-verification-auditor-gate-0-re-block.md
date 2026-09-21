@@ -40,9 +40,15 @@ closed: 2026-09-21
   (DEC-0009 gate 3). The next verification-auditor session closes it.
 - **Did not edit E-0010, R-0004, R-0008, H-0010** — append-only discipline; this
   session added R-0009 only.
-- **Did not start W-0006** (root-scratch debt): W-0002's closure (verification) is
-  pending and the remaining budget was committed to careful closure + reproducible
-  evidence instead. W-0006 remains OPEN and untouched.
+- **Did start W-0006 (bounded) after W-0002's deliverable completed.** Acted under the
+  orchestrator's explicit instruction even though the work item's owner field is
+  implementation-engineer. Deleted 11 unambiguously transient files (6 `.obj` build
+  intermediates, process/heartbeat listings), shrank `root_grandfathered.txt`
+  282→271 lines, validate OK after. Kept ALL `e0010*` files and flagged a **hygiene
+  classifier false-negative**: the per-term ladder JSONL (`e0010_k1n..k5n_*`, ~1.13 MB,
+  EV-0001-pinned, R-0008-re-derived) is flagged "unreferenced" because references use
+  range shorthand — full detail and recommendation in W-0006's work log. Item left
+  IN_PROGRESS (owner/verifier seat decides the borderline classes and closes it).
 - **Did not re-run any engine-dependent gate** — hard-blocked (F-0002); no engine
   number is claimed this session.
 
@@ -82,9 +88,11 @@ closed: 2026-09-21
   review; fill W-0002 `verified_by`/`verification_verdict`
   (VERIFIED | CONTRADICTED | PARTIAL) — only then may W-0002 close and the round-4
   closer re-check `research.py round --round 4`.
-- After W-0002 closes: **W-0006** (hygiene) is the next unclaimed item; **W-0005**
-  needs its pre-registration reviewed BEFORE it goes RUNNING (this seat's duty) and
-  should cite DEC-0010's tiers.
+- After W-0002 closes: **W-0006** is IN_PROGRESS — the 2026-09-21 bounded pass deleted 11
+  files (itemized in its work log) and flagged the hygiene false-negative; the owner/verifier
+  should decide the retained borderline classes (`_repro_err_m1_*` ~9.5 MB, `kana_o3b/o3c.exe`)
+  and close it. **W-0005** needs its pre-registration reviewed BEFORE it goes RUNNING
+  (this seat's duty) and should cite DEC-0010's tiers.
 
 ## Escalations (owner decisions needed)
 - F-0002 escalation stands: the owner must allow-list/rebuild under a permitted App

@@ -1,7 +1,7 @@
 # Research State (GENERATED — do not edit)
 
 Derived from the record store by `research.py state`. Regenerate after every change.
-Generated: 2026-09-21T22:46:38; schema 2.
+Generated: 2026-09-21T22:52:20; schema 2.
 Every entry is a PROJECTION of the linked records — follow them before believing.
 
 ## Current best beliefs (hypotheses with measured weight)
@@ -89,8 +89,8 @@ Every entry is a PROJECTION of the linked records — follow them before believi
     "COMPLETED": 15,
     "DONE": 3,
     "DRAFT": 1,
-    "IN_PROGRESS": 1,
-    "OPEN": 32,
+    "IN_PROGRESS": 2,
+    "OPEN": 31,
     "PENDING": 3,
     "RECORDED": 2,
     "REGISTERED": 8,
@@ -102,7 +102,7 @@ Every entry is a PROJECTION of the linked records — follow them before believi
   "contradiction_candidates": 0,
   "dangling_ids": 8,
   "duplicate_candidates": 2,
-  "edges_total": 1172,
+  "edges_total": 1181,
   "legacy_experiments_without_pre_registration": 6,
   "open_questions": 8,
   "records_total": 131,

@@ -992,7 +992,7 @@
       "title": "Gate 0 unrunnable: Device Guard hard-blocks kana.exe (every build, every path)"
     }
   ],
-  "generated": "2026-09-21T22:46:38",
+  "generated": "2026-09-21T22:52:20",
   "metrics": {
     "by_kind": {
       "agent_profile": 1,
@@ -1021,8 +1021,8 @@
       "COMPLETED": 15,
       "DONE": 3,
       "DRAFT": 1,
-      "IN_PROGRESS": 1,
-      "OPEN": 32,
+      "IN_PROGRESS": 2,
+      "OPEN": 31,
       "PENDING": 3,
       "RECORDED": 2,
       "REGISTERED": 8,
@@ -1034,7 +1034,7 @@
     "contradiction_candidates": 0,
     "dangling_ids": 8,
     "duplicate_candidates": 2,
-    "edges_total": 1172,
+    "edges_total": 1181,
     "legacy_experiments_without_pre_registration": 6,
     "open_questions": 8,
     "records_total": 131,
@@ -1429,7 +1429,7 @@
       "id": "W-0006",
       "kind": "work",
       "rel": "work/W-0006-root-scratch-debt-reduction-grandfathered-list-shrink.md",
-      "status": "OPEN",
+      "status": "IN_PROGRESS",
       "title": "Root-scratch debt reduction: shrink root_grandfathered.txt with itemized deletions",
       "when": "2026-09-14"
     },

@@ -3,8 +3,6 @@
 # tolerated as DEBT, not blessing. validate() ERRORS on any root file present on disk
 # that is neither sanctioned nor listed here. Do not regenerate this file silently;
 # shrink it (work item W-0006) as the scratch is cleaned up.
-_alive.txt
-_cpu.txt
 _g0_audit.txt
 _g0_bench.txt
 _g0_loop.txt
@@ -20,10 +18,7 @@ _g0a_err.txt
 _g0a_loop.txt
 _g0p_err.txt
 _g0p_loop.txt
-_plist.txt
 _probe1.txt
-_procs.txt
-_procs2.txt
 _pyerr.txt
 _rel_build.txt
 _rel_build2.txt
@@ -87,8 +82,6 @@ Ba.log
 Bd.log
 bench.cpp
 bench_out.txt
-bitboard.obj
-board.obj
 boot_err.txt
 boot_out.txt
 boot_test.py
@@ -178,15 +171,12 @@ m0_bench3.txt
 m0_dbg.txt
 m0_runbench.cmd
 m0_suite.bat
-main.obj
 measure_ob.py
 measure_qs.py
-movegen.obj
 moves.log
 ob4.txt
 oc4.txt
 out.txt
-perft.obj
 pf_aud.txt
 pf_rel.txt
 probe_kana.py
@@ -279,4 +269,3 @@ write_eval_p4.py
 write_eval_p5.py
 write_search1.py
 write_search2.py
-zobrist.obj
