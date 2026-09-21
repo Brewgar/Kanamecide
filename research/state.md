@@ -1,7 +1,7 @@
 # Research State (GENERATED — do not edit)
 
 Derived from the record store by `research.py state`. Regenerate after every change.
-Generated: 2026-09-20T23:19:56; schema 2.
+Generated: 2026-09-21T22:46:38; schema 2.
 Every entry is a PROJECTION of the linked records — follow them before believing.
 
 ## Current best beliefs (hypotheses with measured weight)
@@ -43,11 +43,6 @@ Every entry is a PROJECTION of the linked records — follow them before believi
 - hypothesis **H-0002-magic-stub** Magic Bitboards with PEXT Provide >=3x NPS Speedup — SUPERSEDED. No revisit condition recorded.
 
 ## Recent timeline
-- 2026-09-19 question Q-0004 (OPEN) : Can a pre-registered two-tier SPRT harness decide every engine-delta claim against a calibrated bar?
-- 2026-09-19 question Q-0005 (OPEN) : CPU-VNNI vs GPU batch-1 inference economics: is the RTX 5070 Ti a training device or a playing device?
-- 2026-09-19 question Q-0006 (OPEN) : Can the E-0011 self-play pipeline produce a deduped, provenance-carrying dataset that trains an eval that beats the hand-tuned one?
-- 2026-09-19 question Q-0007 (OPEN) : How much of perft time is slider attacks (the Amdahl ceiling for PEXT), and is the PEXT/magic swap worth doing at 1.3-2.5x?
-- 2026-09-19 question Q-0008 (OPEN) : Can computation be allocated by predicted value-of-search (eval variance / PV instability) rather than fixed heuristics?
 - 2026-09-19 review R-0005 (COMPLETED) : R 0005 memory system self audit and dec 0011
 - 2026-09-19 review R-0006 (COMPLETED) : R 0006 independent verification of the dec 0011 derived intelligence layer ho 0001 w 0007
 - 2026-09-19 session S-0003 (CLOSED) : DEC-0011 derived-intelligence layer: graph, retrieval, beliefs, contradiction/revival detection, state, audit, self-tests
@@ -58,6 +53,11 @@ Every entry is a PROJECTION of the linked records — follow them before believi
 - 2026-09-20 session S-0006 (CLOSED) : Round 5 occupant 3: W-0007 re-verification VERIFIED (R-0007); second E-0010 verification (R-0008) completes the W-0004 deliverable; Gate-0 re-block
 - 2026-09-20 work W-0004 (DONE) : Fresh-reviewer onboarding proof: two independent verification reviews of E-0010
 - 2026-09-20 work W-0007 (DONE) : Derived-intelligence layer (graph, retrieval, beliefs, contradiction/revival, state, audit, self-tests)
+- 2026-09-21 debate D-0007 (RESOLVED) : What effect-size decision rule for eval-strength deltas is decidable at achievable N on this host (E-0010 recalibration)
+- 2026-09-21 decision DEC-0010 (ACTIVE) : Calibrated effect-size decision rule for engine-strength comparisons (two-tier SPRT + magnitude zones)
+- 2026-09-21 handoff HO-0002 (REQUESTED) : Independently verify W-0002: D-0007 + DEC-0010 + R-0009 (E-0010 decision-rule recalibration)
+- 2026-09-21 review R-0009 (COMPLETED) : R 0009 addendum e0010 outcome under the dec 0010 calibrated rule
+- 2026-09-21 session S-0007 (CLOSED) : W-0002: E-0010 decision-rule recalibration (D-0007 solved by arithmetic; DEC-0010 ACTIVE; R-0009 addendum; HO-0002 to verification-auditor; Gate-0 re-block)
 
 ## Metrics
 ```
@@ -66,43 +66,46 @@ Every entry is a PROJECTION of the linked records — follow them before believi
     "agent_profile": 1,
     "beliefs": 1,
     "current_position": 5,
-    "debate": 6,
-    "decision": 10,
+    "debate": 7,
+    "decision": 11,
     "doc": 14,
     "evidence": 8,
     "experiment": 10,
     "failure": 2,
-    "handoff": 1,
+    "handoff": 2,
     "hypothesis": 17,
     "principle": 4,
     "profile": 4,
     "question": 8,
     "report": 13,
-    "review": 8,
+    "review": 9,
     "round_megaprompt": 1,
-    "session": 6,
+    "session": 7,
     "work": 7
   },
   "by_status": {
-    "ACTIVE": 13,
-    "CLOSED": 6,
-    "COMPLETED": 14,
+    "ACTIVE": 14,
+    "CLOSED": 7,
+    "COMPLETED": 15,
     "DONE": 3,
     "DRAFT": 1,
-    "OPEN": 33,
+    "IN_PROGRESS": 1,
+    "OPEN": 32,
     "PENDING": 3,
     "RECORDED": 2,
     "REGISTERED": 8,
+    "REQUESTED": 1,
+    "RESOLVED": 1,
     "SUPERSEDED": 4
   },
   "code_files": 21,
   "contradiction_candidates": 0,
-  "dangling_ids": 10,
+  "dangling_ids": 8,
   "duplicate_candidates": 2,
-  "edges_total": 1031,
+  "edges_total": 1172,
   "legacy_experiments_without_pre_registration": 6,
   "open_questions": 8,
-  "records_total": 126,
+  "records_total": 131,
   "revival_candidates": 5
 }
 

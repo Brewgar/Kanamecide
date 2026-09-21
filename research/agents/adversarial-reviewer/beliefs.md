@@ -80,8 +80,19 @@ cheaper on this hardware would demote sequential testing to an optimization.
 
 ### Revisions
 - 2026-09-09 — initial statement.
+- 2026-09-21 — **ADOPTED AS PROJECT POLICY: DEC-0010** (calibration of this belief, from
+  W-0002 / D-0007). Parameters now measured-variance-derived, not sketched:
+  screening [0, +20] with cap 8,000 games; regression [0, +5] with cap 30,000;
+  magnitude claims only as wide-zone SPRTs [M-50, M]; α=β=0.05, LLR ±2.944; post-cap
+  INCONCLUSIVE. The earlier "screening ~1-1.5k games" sketch was low: with the measured
+  σ=371 Elo/game the ASN is ~1.8-2.0k. Agent B's strongest-argument-against (fixed-sample
+  equivalence) is now a recorded standing objection in D-0007, not a defeater: the tiers
+  are defined by margins/error rates, so fixed-N implementations remain valid. What
+  falsifies the calibration remains as stated: a demonstrated cheaper protocol with the
+  same error rates on this host → W-0005's realized stopping times are the test.
 
 ## Belief: H-0005's falsification bound is E-PEXT NPS ratio < 3.0 at /O2
+
 
 - **Status:** working-assumption
 - **Confidence:** 0.85 (protocol requirement); 0.5 (H-0006 1.3-2.5x magnitude)

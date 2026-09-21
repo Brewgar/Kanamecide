@@ -992,49 +992,52 @@
       "title": "Gate 0 unrunnable: Device Guard hard-blocks kana.exe (every build, every path)"
     }
   ],
-  "generated": "2026-09-20T23:19:56",
+  "generated": "2026-09-21T22:46:38",
   "metrics": {
     "by_kind": {
       "agent_profile": 1,
       "beliefs": 1,
       "current_position": 5,
-      "debate": 6,
-      "decision": 10,
+      "debate": 7,
+      "decision": 11,
       "doc": 14,
       "evidence": 8,
       "experiment": 10,
       "failure": 2,
-      "handoff": 1,
+      "handoff": 2,
       "hypothesis": 17,
       "principle": 4,
       "profile": 4,
       "question": 8,
       "report": 13,
-      "review": 8,
+      "review": 9,
       "round_megaprompt": 1,
-      "session": 6,
+      "session": 7,
       "work": 7
     },
     "by_status": {
-      "ACTIVE": 13,
-      "CLOSED": 6,
-      "COMPLETED": 14,
+      "ACTIVE": 14,
+      "CLOSED": 7,
+      "COMPLETED": 15,
       "DONE": 3,
       "DRAFT": 1,
-      "OPEN": 33,
+      "IN_PROGRESS": 1,
+      "OPEN": 32,
       "PENDING": 3,
       "RECORDED": 2,
       "REGISTERED": 8,
+      "REQUESTED": 1,
+      "RESOLVED": 1,
       "SUPERSEDED": 4
     },
     "code_files": 21,
     "contradiction_candidates": 0,
-    "dangling_ids": 10,
+    "dangling_ids": 8,
     "duplicate_candidates": 2,
-    "edges_total": 1031,
+    "edges_total": 1172,
     "legacy_experiments_without_pre_registration": 6,
     "open_questions": 8,
-    "records_total": 126,
+    "records_total": 131,
     "revival_candidates": 5
   },
   "questions_all": [
@@ -1414,51 +1417,6 @@
   "timeline_tail": [
     {
       "example": false,
-      "id": "S-0001",
-      "kind": "session",
-      "rel": "sessions/S-0001-meta-agent-round4-audit-and-system-redesign.md",
-      "status": "CLOSED",
-      "title": "Full-project audit + multi-agent research-system redesign (DEC-0009)",
-      "when": "2026-09-14"
-    },
-    {
-      "example": false,
-      "id": "S-0002",
-      "kind": "session",
-      "rel": "sessions/S-0002-w-0004-occupant-1-bootstrap-proof-verification-review-r-0004-of-e-0010.md",
-      "status": "CLOSED",
-      "title": "W-0004 occupant 1: bootstrap proof + verification review R-0004 of E-0010",
-      "when": "2026-09-14"
-    },
-    {
-      "example": false,
-      "id": "W-0001",
-      "kind": "work",
-      "rel": "work/W-0001-e0011-self-play-data-pipeline-pre-register-build-run-verify.md",
-      "status": "OPEN",
-      "title": "E-0011 self-play data pipeline (pre-register, build, run, verify)",
-      "when": "2026-09-14"
-    },
-    {
-      "example": false,
-      "id": "W-0002",
-      "kind": "work",
-      "rel": "work/W-0002-recalibrate-e0010-effect-size-decision-rule-d-0007-dec-0010.md",
-      "status": "OPEN",
-      "title": "Recalibrate the E-0010 effect-size decision rule (D-0007 -> DEC-0010)",
-      "when": "2026-09-14"
-    },
-    {
-      "example": false,
-      "id": "W-0003",
-      "kind": "work",
-      "rel": "work/W-0003-round2-agreement-matrix-reviewer-column-backfill.md",
-      "status": "OPEN",
-      "title": "Round-2 AGREEMENT_MATRIX reviewer column backfill (as an addendum review)",
-      "when": "2026-09-14"
-    },
-    {
-      "example": false,
       "id": "W-0005",
       "kind": "work",
       "rel": "work/W-0005-e-sprt-lite-comparison-harness-pre-register-build-validate.md",
@@ -1771,6 +1729,51 @@
       "status": "DONE",
       "title": "Derived-intelligence layer (graph, retrieval, beliefs, contradiction/revival, state, audit, self-tests)",
       "when": "2026-09-20"
+    },
+    {
+      "example": false,
+      "id": "D-0007",
+      "kind": "debate",
+      "rel": "debates/D-0007-e0010-effect-size-decision-rule-what-is-decidable-at-achievable-n.md",
+      "status": "RESOLVED",
+      "title": "What effect-size decision rule for eval-strength deltas is decidable at achievable N on this host (E-0010 recalibration)",
+      "when": "2026-09-21"
+    },
+    {
+      "example": false,
+      "id": "DEC-0010",
+      "kind": "decision",
+      "rel": "decisions/DEC-0010-two-tier-sprt-effect-size-decision-rule.md",
+      "status": "ACTIVE",
+      "title": "Calibrated effect-size decision rule for engine-strength comparisons (two-tier SPRT + magnitude zones)",
+      "when": "2026-09-21"
+    },
+    {
+      "example": false,
+      "id": "HO-0002",
+      "kind": "handoff",
+      "rel": "handoffs/HO-0002-independently-verify-w-0002-d-0007-dec-0010-r-0009-e-0010-decision-rule-recalibration.md",
+      "status": "REQUESTED",
+      "title": "Independently verify W-0002: D-0007 + DEC-0010 + R-0009 (E-0010 decision-rule recalibration)",
+      "when": "2026-09-21"
+    },
+    {
+      "example": false,
+      "id": "R-0009",
+      "kind": "review",
+      "rel": "reviews/R-0009-addendum-e0010-outcome-under-the-dec-0010-calibrated-rule.md",
+      "status": "COMPLETED",
+      "title": "R 0009 addendum e0010 outcome under the dec 0010 calibrated rule",
+      "when": "2026-09-21"
+    },
+    {
+      "example": false,
+      "id": "S-0007",
+      "kind": "session",
+      "rel": "sessions/S-0007-w-0002-e-0010-decision-rule-recalibration-d-0007-solved-by-arithmetic-dec-0010-active-r-0009-addendum-ho-0002-to-verification-auditor-gate-0-re-block.md",
+      "status": "CLOSED",
+      "title": "W-0002: E-0010 decision-rule recalibration (D-0007 solved by arithmetic; DEC-0010 ACTIVE; R-0009 addendum; HO-0002 to verification-auditor; Gate-0 re-block)",
+      "when": "2026-09-21"
     }
   ]
 }

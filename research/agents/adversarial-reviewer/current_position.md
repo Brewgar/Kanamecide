@@ -127,3 +127,9 @@ unmeasured magnitude — that is the job.
 
 ## Last Updated
 2026-09-09
+
+2026-09-21 — W-0002 session (E-0010 decision-rule recalibration): D-0007 RESOLVED,
+DEC-0010 ACTIVE (two-tier + magnitude-zone SPRT calibrated from measured σ=371 Elo/game;
+caps 8k/30k/8k), R-0009 addendum on E-0010 (screening PASS / regression PASS / ">=150"
+not established at N=240). Handoff HO-0002 to verification-auditor; W-0002 IN_PROGRESS
+pending independent verification. Gate 0: hard-blocked (F-0002), attempted once.

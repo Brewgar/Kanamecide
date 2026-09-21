@@ -5,8 +5,8 @@
 > decisions in `research/decisions/`. Do not add unverified claims to this file.
 
 <!-- research-meta
-last_updated: 2026-09-19
-reflects: [DEC-0001, DEC-0002, DEC-0003, DEC-0004, DEC-0006, DEC-0007, DEC-0008, DEC-0009, DEC-0011, E-0002, E-00003, E-00006, E-00007, E-00008, E-00009, E-0010]
+last_updated: 2026-09-21
+reflects: [DEC-0001, DEC-0002, DEC-0003, DEC-0004, DEC-0006, DEC-0007, DEC-0008, DEC-0009, DEC-0010, DEC-0011, E-0002, E-00003, E-00006, E-00007, E-00008, E-00009, E-0010]
 not_reflected: []
 -->
 > The `research-meta` block above is machine-checked by `research.py validate`:
@@ -43,6 +43,13 @@ evaluation and learning.
   tempo) selected at runtime by the UCI `EvalStage` option (0..6). Measured vs material-only:
   +116.1 Elo (LOS 100.00%, CI95 [+70.8,+163.5], N=240 independent games); pre-registered
   ≥150 bar NOT met (honest FAIL). Symmetry: 0 full-mirror violations on 1000 positions.
+- **Strength-comparison decision rule (DEC-0010, 2026-09-21; W-0002):** calibrated from
+  E-0010's measured variance (σ=371 Elo/game, six verified rungs; throughput 769 games/h):
+  screening tier [0,+20] Elo, α=β=0.05 (LLR ±2.944), cap 8,000 games; regression tier
+  [0,+5], cap 30,000; magnitude claims only as wide-zone SPRTs [M−50, M]; post-cap verdict
+  INCONCLUSIVE. E-0010 restated under this rule (R-0009): screening PASS, regression PASS,
+  "≥150" not established at N=240 (decidable at ~910 games via the [100,150] zone SPRT).
+  Arithmetic reproducible: `research/context/w0002_power.py`.
 - **Phase:** Phase 2 COMPLETE (O3d), Phase 3 evaluation measured (E-0010). Next: self-play
   data pipeline (E-0011) + comparison harness with pre-registered error control (H-0010).
 
@@ -194,14 +201,21 @@ below its pre-registered ≥150 bar.
 1. **E-0011 — self-play data pipeline (next milestone):** turn the E-0010 match harness into a
    resumable, provenance-carrying game generator + position dataset (legal-move-flushed JSONL,
    opening diversity, dedup, holdout). Pre-registered rule + power required before it runs.
-2. **E-SPRT-lite — comparison harness (H-0010):** two-tier pre-registered error control
-   (screening δ≈20 Elo, regression δ=5, LLR ±2.944, game cap with post-cap INCONCLUSIVE) so
-   every later change is decided, not argued.
+2. **E-SPRT-lite — comparison harness (H-0010 + DEC-0010):** two-tier pre-registered error
+   control per DEC-0010 — screening [0,+20] cap 8,000, regression [0,+5] cap 30,000,
+   magnitude claims as [M−50,M] zones, LLR ±2.944, α=β=0.05, post-cap INCONCLUSIVE —
+   so every later change is decided, not argued.
 3. **O3e — PVS / LMR / null-move** measured against the O3d baseline once (2) exists.
 4. **Phase 3+ — learning:** Texel-fit the hand-tuned terms (H-0013), then NNUE; self-play →
    training pipeline (PyTorch + GPU) on top of (1).
 
 ## Last Updated
+2026-09-21 (W-0002: E-0010's decision rule recalibrated — D-0007 RESOLVED by arithmetic
+over measured variance; DEC-0010 ACTIVE [screening/regression/magnitude tiers, LLR
+±2.944, caps 8k/30k/8k, post-cap INCONCLUSIVE]; R-0009 restates E-0010 under the
+calibrated rule [screening PASS, regression PASS, "≥150" not established at N=240];
+Gate 0 remains hard-blocked, F-0002; W-0002 IN_PROGRESS pending independent verification
+via HO-0002)
 2026-09-14 (E-0010 tapered eval COMPLETE and measured — gates (a)(b)(d) PASS, gate (c)
 honest FAIL at +116.1 Elo / LOS 100.00% / N=240; project memory corrected for staleness;
 perft anchor given a single protected home in this file; verification/coordination layer
