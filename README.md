@@ -1,7 +1,7 @@
 ﻿# Kanamecide
 
 C++20 chess engine (`kana`) and long-term multi-agent research platform.
-Correctness first, then search, then evaluation and learning
+Correctness first, then search, then evaluation and learning.
 
 ## Build & run (Windows, MSVC, CMake)
 
