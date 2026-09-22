@@ -26,6 +26,7 @@
 | 1 | 2026-09-14 | S-0002 | R-0004 (verification of E-0010) | VERIFIED |
 | 2 | 2026-09-19 | S-0004 | R-0006 (verification of W-0007/DEC-0011) | PARTIAL (4 defects named → fixed in `055772f`) |
 | 3 | 2026-09-20 | S-0006 | R-0007 (re-verification of W-0007) VERIFIED; R-0008 (2nd verification of E-0010) VERIFIED | VERIFIED |
+| 4 | 2026-09-22 | S-0008 | R-0010 (verification of W-0002: D-0007/DEC-0010/R-0009/E-0010 recalibration, HO-0002) | VERIFIED (2 documentation nits named, routed) |
 
 > The owner runs one agent chat at a time and pastes each session's final output to a
 > separate orchestrator chat. Any model can occupy any role; record the assignment here

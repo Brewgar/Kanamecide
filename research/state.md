@@ -1,7 +1,7 @@
 # Research State (GENERATED — do not edit)
 
 Derived from the record store by `research.py state`. Regenerate after every change.
-Generated: 2026-09-22T10:48:29; schema 2.
+Generated: 2026-09-22T13:32:25; schema 2.
 Every entry is a PROJECTION of the linked records — follow them before believing.
 
 ## Current best beliefs (hypotheses with measured weight)
@@ -43,9 +43,6 @@ Every entry is a PROJECTION of the linked records — follow them before believi
 - hypothesis **H-0002-magic-stub** Magic Bitboards with PEXT Provide >=3x NPS Speedup — SUPERSEDED. No revisit condition recorded.
 
 ## Recent timeline
-- 2026-09-19 review R-0005 (COMPLETED) : R 0005 memory system self audit and dec 0011
-- 2026-09-19 review R-0006 (COMPLETED) : R 0006 independent verification of the dec 0011 derived intelligence layer ho 0001 w 0007
-- 2026-09-19 session S-0003 (CLOSED) : DEC-0011 derived-intelligence layer: graph, retrieval, beliefs, contradiction/revival detection, state, audit, self-tests
 - 2026-09-19 session S-0004 (CLOSED) : HO-0001: verification of the DEC-0011 derived-intelligence layer (PARTIAL - 4 named gaps)
 - 2026-09-19 session S-0005 (CLOSED) : Resolve R-0006 findings G1–G5 in the DEC-0011 layer + record F-0002 (Gate-0 Device Guard block)
 - 2026-09-20 review R-0007 (COMPLETED) : R 0007 re verification of the r 0006 fixes to the dec 0011 layer w 0007 occupant 3
@@ -55,9 +52,12 @@ Every entry is a PROJECTION of the linked records — follow them before believi
 - 2026-09-20 work W-0007 (DONE) : Derived-intelligence layer (graph, retrieval, beliefs, contradiction/revival, state, audit, self-tests)
 - 2026-09-21 debate D-0007 (RESOLVED) : What effect-size decision rule for eval-strength deltas is decidable at achievable N on this host (E-0010 recalibration)
 - 2026-09-21 decision DEC-0010 (ACTIVE) : Calibrated effect-size decision rule for engine-strength comparisons (two-tier SPRT + magnitude zones)
-- 2026-09-21 handoff HO-0002 (REQUESTED) : Independently verify W-0002: D-0007 + DEC-0010 + R-0009 (E-0010 decision-rule recalibration)
 - 2026-09-21 review R-0009 (COMPLETED) : R 0009 addendum e0010 outcome under the dec 0010 calibrated rule
 - 2026-09-21 session S-0007 (CLOSED) : W-0002: E-0010 decision-rule recalibration (D-0007 solved by arithmetic; DEC-0010 ACTIVE; R-0009 addendum; HO-0002 to verification-auditor; Gate-0 re-block)
+- 2026-09-22 handoff HO-0002 (DONE) : Independently verify W-0002: D-0007 + DEC-0010 + R-0009 (E-0010 decision-rule recalibration)
+- 2026-09-22 review R-0010 (COMPLETED) : R 0010 independent verification w 0002 d 0007 dec 0010 r 0009 occupant 4
+- 2026-09-22 session S-0008 (CLOSED) : HO-0002: independent verification of W-0002 (D-0007/DEC-0010/R-0009) — VERIFIED — occupant 4; Gate-0 re-block
+- 2026-09-22 work W-0002 (DONE) : Recalibrate the E-0010 effect-size decision rule (D-0007 -> DEC-0010)
 
 ## Metrics
 ```
@@ -78,23 +78,22 @@ Every entry is a PROJECTION of the linked records — follow them before believi
     "profile": 4,
     "question": 8,
     "report": 13,
-    "review": 9,
+    "review": 10,
     "round_megaprompt": 1,
-    "session": 7,
+    "session": 8,
     "work": 7
   },
   "by_status": {
     "ACTIVE": 14,
-    "CLOSED": 7,
-    "COMPLETED": 15,
-    "DONE": 3,
+    "CLOSED": 8,
+    "COMPLETED": 16,
+    "DONE": 5,
     "DRAFT": 1,
-    "IN_PROGRESS": 2,
+    "IN_PROGRESS": 1,
     "OPEN": 31,
     "PENDING": 3,
     "RECORDED": 2,
     "REGISTERED": 8,
-    "REQUESTED": 1,
     "RESOLVED": 1,
     "SUPERSEDED": 4
   },
@@ -102,10 +101,10 @@ Every entry is a PROJECTION of the linked records — follow them before believi
   "contradiction_candidates": 0,
   "dangling_ids": 8,
   "duplicate_candidates": 2,
-  "edges_total": 1184,
+  "edges_total": 1253,
   "legacy_experiments_without_pre_registration": 6,
   "open_questions": 8,
-  "records_total": 131,
+  "records_total": 133,
   "revival_candidates": 5
 }
 

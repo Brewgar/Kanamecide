@@ -85,6 +85,7 @@
 - [R-0007](reviews/R-0007-re-verification-of-the-r-0006-fixes-to-the-dec-0011-layer-w-0007-occupant-3.md) — (untitled) — status=COMPLETED
 - [R-0008](reviews/R-0008-second-independent-verification-of-e-0010-fresh-agent-w-0004-occupant-3.md) — (untitled) — status=COMPLETED
 - [R-0009](reviews/R-0009-addendum-e0010-outcome-under-the-dec-0010-calibrated-rule.md) — (untitled) — status=COMPLETED
+- [R-0010](reviews/R-0010-independent-verification-w-0002-d-0007-dec-0010-r-0009-occupant-4.md) — (untitled) — status=COMPLETED
 
 ## Open Questions
 
@@ -122,23 +123,24 @@
 ## Work Items (open)
 
 - [W-0001](work/W-0001-e0011-self-play-data-pipeline-pre-register-build-run-verify.md) — E-0011 self-play data pipeline (pre-register, build, run, verify) — status=OPEN
-- [W-0002](work/W-0002-recalibrate-e0010-effect-size-decision-rule-d-0007-dec-0010.md) — Recalibrate the E-0010 effect-size decision rule (D-0007 -> DEC-0010) — status=IN_PROGRESS
 - [W-0003](work/W-0003-round2-agreement-matrix-reviewer-column-backfill.md) — Round-2 AGREEMENT_MATRIX reviewer column backfill (as an addendum review) — status=OPEN
 - [W-0005](work/W-0005-e-sprt-lite-comparison-harness-pre-register-build-validate.md) — E-SPRT-lite comparison harness: pre-register, build, validate against known difference — status=OPEN
 - [W-0006](work/W-0006-root-scratch-debt-reduction-grandfathered-list-shrink.md) — Root-scratch debt reduction: shrink root_grandfathered.txt with itemized deletions — status=IN_PROGRESS
 
 ## Work Items (closed)
 
+- [W-0002](work/W-0002-recalibrate-e0010-effect-size-decision-rule-d-0007-dec-0010.md) — Recalibrate the E-0010 effect-size decision rule (D-0007 -> DEC-0010) — status=DONE
 - [W-0004](work/W-0004-fresh-reviewer-onboarding-proof-two-verification-reviews-of-e-0010.md) — Fresh-reviewer onboarding proof: two independent verification reviews of E-0010 — status=DONE
 - [W-0007](work/W-0007-derived-intelligence-layer.md) — Derived-intelligence layer (graph, retrieval, beliefs, contradiction/revival, state, audit, self-tests) — status=DONE
 
 ## Handoffs (open)
 
-- [HO-0002](handoffs/HO-0002-independently-verify-w-0002-d-0007-dec-0010-r-0009-e-0010-decision-rule-recalibration.md) — Independently verify W-0002: D-0007 + DEC-0010 + R-0009 (E-0010 decision-rule recalibration) — status=REQUESTED
+(none)
 
 ## Handoffs (closed)
 
 - [HO-0001](handoffs/HO-0001-verify-dec-0011-layer.md) — Independently verify the DEC-0011 derived-intelligence layer — status=DONE
+- [HO-0002](handoffs/HO-0002-independently-verify-w-0002-d-0007-dec-0010-r-0009-e-0010-decision-rule-recalibration.md) — Independently verify W-0002: D-0007 + DEC-0010 + R-0009 (E-0010 decision-rule recalibration) — status=DONE
 
 ## Runs (live)
 
@@ -157,6 +159,7 @@
 - [S-0005](sessions/S-0005-round5-fixes.md) — Resolve R-0006 findings G1–G5 in the DEC-0011 layer + record F-0002 (Gate-0 Device Guard block) — status=CLOSED
 - [S-0006](sessions/S-0006-round-5-occupant-3-w-0007-re-verification-verified-r-0007-second-e-0010-verification-r-0008-completes-the-w-0004-deliverable-gate-0-re-block.md) — Round 5 occupant 3: W-0007 re-verification VERIFIED (R-0007); second E-0010 verification (R-0008) completes the W-0004 deliverable; Gate-0 re-block — status=CLOSED
 - [S-0007](sessions/S-0007-w-0002-e-0010-decision-rule-recalibration-d-0007-solved-by-arithmetic-dec-0010-active-r-0009-addendum-ho-0002-to-verification-auditor-gate-0-re-block.md) — W-0002: E-0010 decision-rule recalibration (D-0007 solved by arithmetic; DEC-0010 ACTIVE; R-0009 addendum; HO-0002 to verification-auditor; Gate-0 re-block) — status=CLOSED
+- [S-0008](sessions/S-0008-ho-0002-verification-of-w-0002-verified-occupant-4-e-0010-untouched-gate-0-re-block.md) — HO-0002: independent verification of W-0002 (D-0007/DEC-0010/R-0009) — VERIFIED — occupant 4; Gate-0 re-block — status=CLOSED
 
 ## Unrendered Records (bug — report this)
 

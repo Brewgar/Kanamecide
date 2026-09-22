@@ -4,15 +4,15 @@ type: work
 title: "Recalibrate the E-0010 effect-size decision rule (D-0007 -> DEC-0010)"
 round: 4
 owner: adversarial-reviewer
-status: IN_PROGRESS
+status: DONE
 deliverable: "research/debates/D-0007-*.md (RESOLVED) + research/decisions/DEC-0010-*.md (ACTIVE) + addendum review on E-0010"
 exit_check: "DEC-0010 ACTIVE citing E-0010's measured CI95; E-0010 outcome restated under the calibrated rule in an ADDENDUM review (record untouched)"
 evidence: ["research/debates/D-0007-e0010-effect-size-decision-rule-what-is-decidable-at-achievable-n.md (RESOLVED; arithmetic incl. N-vs-half-width, ASN table, the fixed-sample counter-case)", "research/decisions/DEC-0010-two-tier-sprt-effect-size-decision-rule.md (ACTIVE; tiers S/R/M with margins, alpha=beta=0.05, LLR +/-2.944, caps 8k/30k/8k, post-cap INCONCLUSIVE, draw/opening/color/crash protocol, E-0010 outcome table)", "research/reviews/R-0009-addendum-e0010-outcome-under-the-dec-0010-calibrated-rule.md (COMPLETED, kind: critique; E-0010 untouched)", "research/context/w0002_power.py + w0002_power_output.txt (reproducible derivation; conservative Elo-space and score-space LLR cross-check)", "research/context/bootstrap/gate0.txt (Gate 0 attempted once this session: App Control policy block, no process started — F-0002 class)"]
-verified_by: null
-verification_verdict: null
+verified_by: "verification-auditor (occupant 4)"
+verification_verdict: VERIFIED
 example: false
 created: 2026-09-14
-closed: null
+closed: 2026-09-22
 ---
 
 # W-0002 — Recalibrate the E-0010 effect-size decision rule
@@ -64,10 +64,24 @@ python research/scripts/research.py decisions  # DEC-0010 listed ACTIVE
   (6) E-0010, R-0004, R-0008, H-0010 were READ ONLY — no edits to reviewed records.
   (7) Cannot self-verify (owner = this seat): handoff filed to verification-auditor
   to re-run the exit check; item stays IN_PROGRESS until a fresh verifier decides.
+- 2026-09-22 — verification-auditor (occupant 4, HO-0002): independent verification
+  complete, verdict **VERIFIED** (review record R-0010, kind: verification). validate
+  exit 0 / 0 problems; DEC-0010 ACTIVE; D-0007 RESOLVED; R-0009 COMPLETED;
+  `w0002_power.py` re-run text-identical to `w0002_power_output.txt` (34/34 lines);
+  E-0010 byte-identical (last commit cb66bf8, ancestor of session commit dac1a3f);
+  5/5 independent re-derivations match within stated rounding (k6 Elo +116.1225;
+  per-rung sigmas 349-371; fixed Ns 3,722/59,545/14,886; ASN 1,822/29,159/292;
+  N=240 LLRs +3.70/+0.99/-0.78; score-space +5.31/+1.43/-0.73/+1.91). Two
+  documentation-class nits named in R-0010 (ASN(H0) column ~11% conservative vs
+  symmetric-Wald; 1.23% written as "1.2%") — neither changes any tier verdict;
+  routed to the W-0006 documentation bucket. Gate 0 re-attempted once: F-0002 block
+  persists. Item closed DONE.
 
 ## Verification
-- verified_by: (pending — handoff `HO-0002` filed 2026-09-21 to the rotating
-  verification-auditor seat; the owner of W-0002 is this seat, so it cannot self-verify)
-- verdict: (pending the fresh verifier's INDEPENDENT re-run of the exit check)
-- evidence: (to be filed by the verifier as a `kind: verification` review record +
-  raw command outputs; acceptance criteria in HO-0002)
+- verified_by: verification-auditor (occupant 4, zero chat history; HO-0002 receiver)
+- verdict: VERIFIED (2026-09-22)
+- evidence: `research/reviews/R-0010-independent-verification-w-0002-d-0007-dec-0010-r-0009-occupant-4.md`
+  (kind: verification; full command/exit-code/raw-capture ledger); raw captures in
+  gitignored `research/context/va4_*.txt`; independent arithmetic
+  `research/context/va4_rederive.py` + `va4_rederive.txt`; Gate-0 capture
+  `research/context/bootstrap/gate0.txt`; HO-0002 closed DONE (pass).
