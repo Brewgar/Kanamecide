@@ -38,6 +38,17 @@ generator + position dataset — the prerequisite for Texel fitting (H-0013) and
 
 ## Work Log (append-only while OPEN)
 - 2026-09-14 — opened by Round-4 meta-agent (SYSTEM.md/DEC-0009 rollout).
+- 2026-09-22 — researcher-architect: step 1 (pre-registration) filed —
+  `research/experiments/E-0011-*.md` (PENDING). Deliverable contract (≥1,000 legal
+  deduplicated provenance-carrying games, JSONL, legal-move-flushed, resume gate),
+  DEC-0010 tier mapping (artifact checks here; the downstream "beats hand-tuned" claim
+  is Tier R on fresh games under E-0012, NOT this record — no conflation), power/sample
+  discussion (1,000 games ≈ 120k positions ≳ the Texel fit's needs; h(1000) = ±23 Elo
+  ⇒ no Elo verdict possible, none claimed), run plan (`tools/e0011_generate.py` +
+  `tools/e0011_check.py` under `runjob.py`, ≤2 pairs, evidence pinning) written.
+  Status stays OPEN; NOTHING ran (F-0002). Handoff HO-0003 requests adversarial-reviewer
+  critique BEFORE any RUNNING. Next: implementation-engineer build + systems-researcher
+  run, after critique.
 
 ## Verification
 - verified_by: (a different agent than owner)
