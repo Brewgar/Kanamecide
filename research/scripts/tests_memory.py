@@ -268,6 +268,51 @@ class TestRegexesAndParserEdgeCases(unittest.TestCase):
                          ["memorylib.py (self-test: tests, 41 tests OK)", "kgraph.py shim"])
 
 
+class TestHygieneKeepNames(unittest.TestCase):
+    """W-0006 finding (2026-09-21): records cite evidence by range/glob shorthand;
+    the literal-substring scan used to mark EV-pinned raw data 'unreferenced'."""
+
+    def test_dotdot_range_expands(self):
+        corpus = "per-term ladder: `e0010_k1n..k5n_games.jsonl` (kept).\n"
+        exact, globs = R._hygiene_keep_names(corpus)
+        for k in "12345":
+            self.assertIn(f"e0010_k{k}n_games.jsonl", exact)
+        self.assertNotIn("e0010_k6n_games.jsonl", exact)
+        self.assertEqual(globs, [])
+
+    def test_brace_range_and_zfill(self):
+        corpus = "raw: `e0010_k{1..6}n_result.txt`, seed run `run_{01..03}_x.csv`\n"
+        exact, _ = R._hygiene_keep_names(corpus)
+        for k in "123456":
+            self.assertIn(f"e0010_k{k}n_result.txt", exact)
+        for n in ("01", "02", "03"):
+            self.assertIn(f"run_{n}_x.csv", exact)
+
+    def test_glob_kept_as_glob(self):
+        corpus = "all ladder data: `e0010_*.jsonl`\n"
+        exact, globs = R._hygiene_keep_names(corpus)
+        self.assertIn("e0010_*.jsonl", globs)
+
+    def test_deleted_class_globs_are_not_protected(self):
+        # E-0010/R-0004 cite these patterns as DELETED classes; protecting by them
+        # would invert the record's meaning (found while verifying the W-0006 fix).
+        corpus = ("Deleted: `*_log.txt` / `*_err.txt` dumps; my scratch `_*.txt` "
+                  "files; a bare `*` mention\n")
+        exact, globs = R._hygiene_keep_names(corpus)
+        self.assertEqual(globs, [])
+        self.assertNotIn("*", exact)
+
+    def test_real_corpus_protects_ev0001_ladder(self):
+        # Live-corpus anchor: EV-0001/E-0010's shorthands must expand over every
+        # per-term ladder file they pin; del the pattern => test fails loudly.
+        import memorylib as M
+        corpus = "\n".join(n["text"] for n in M.load_nodes().values())
+        exact, _ = R._hygiene_keep_names(corpus)
+        for k in "123456":
+            self.assertIn(f"e0010_k{k}n_games.jsonl", exact)
+            self.assertIn(f"e0010_k{k}n_result.txt", exact)
+
+
 class TestPerftAnchorCoverage(unittest.TestCase):
     """R-0006 G1 regression: every certified perft count must be individually asserted.
     Mutating ANY one of the ten counts must make the anchor check fail."""

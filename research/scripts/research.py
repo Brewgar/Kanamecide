@@ -14,6 +14,7 @@ rewrites an existing record (so research history is never silently overwritten).
 from __future__ import annotations
 
 import argparse
+import os
 import re
 import sys
 from datetime import date
@@ -1186,6 +1187,66 @@ def cmd_new_evidence(a):
     return p
 
 
+# Range/glob citation forms the literal-substring scan cannot see (W-0006 finding,
+# 2026-09-21): records cite evidence by shorthand, e.g.
+#   `e0010_k1n..k5n_games.jsonl`        (dot-dot numeric range)
+#   `e0010_k{1..6}n_games.jsonl`        (brace range)
+#   `e0010_*.jsonl`                     (glob)
+_RE_RANGE_BRACE = re.compile(r"^(.*)\{(\d+)\.\.(\d+)\}(.*)$")
+
+
+def _hygiene_keep_names(corpus: str):
+    """Extract preserve-sets from record text for the hygiene classifier.
+    Conservative by construction: may only ADD protects, never remove any.
+    Returns (exact_names, glob_patterns). Backtick-quoted tokens are the primary
+    source (records cite files in code spans); bare prose is already covered by
+    the substring scan, so no need to parse it here."""
+    exact, globs = set(), []
+    for tok in re.findall(r"`([^`\n]+)`", corpus):
+        tok = tok.strip()
+        if not tok or any(c in tok for c in " \"'"):
+            continue
+        base = os.path.basename(tok.rstrip("/\\"))
+        if not base or base.startswith("-"):
+            continue
+        m = _RE_RANGE_BRACE.match(base)
+        if m:
+            pre, lo, hi, post = m.groups()
+            width = len(m.group(2))
+            for n in range(int(lo), int(hi) + 1):
+                exact.add(pre + str(n).zfill(width) + post)
+            continue
+        if ".." in base and "." in base:
+            left, _, right = base.partition("..")
+            ml = re.search(r"(\d+)(?!.*\d)", left)      # last digit run in left
+            mr = re.search(r"(\d+)", right)             # first digit run in right
+            if ml and mr:
+                lp = re.search(r"([A-Za-z]+)$", left[:ml.start()])
+                rp = re.search(r"([A-Za-z]+)$", right[:mr.start()])
+                ls = re.match(r"([A-Za-z]+)", left[ml.end():])
+                rs = re.match(r"([A-Za-z]+)", right[mr.end():])
+                p, s = (lp.group(1) if lp else ""), (ls.group(1) if ls else "")
+                if p == (rp.group(1) if rp else "") and s == (rs.group(1) if rs else "") \
+                        and int(mr.group(1)) >= int(ml.group(1)):
+                    head, tail = left[:ml.start()], right[mr.end():]
+                    width = len(ml.group(1))
+                    for n in range(int(ml.group(1)), int(mr.group(1)) + 1):
+                        exact.add(head + str(n).zfill(width) + tail)
+                    continue
+        if any(c in base for c in "*?"):
+            first = min(base.find(c) for c in "*?" if c in base)
+            # Guard rail: a glob must have a literal prefix >= 3 chars. Bare `*`,
+            # `*_err.txt` and `_*.txt` would otherwise protect the whole class —
+            # and records cite exactly those as DELETED classes (E-0010: "Deleted:
+            # ... `*_log.txt` / `*_err.txt` dumps"; R-0004: "my own scratch `_*.txt`
+            # files"), so protecting them would invert the record's meaning.
+            if len(base[:first]) >= 3:
+                globs.append(base)
+            continue
+        exact.add(base)
+    return exact, globs
+
+
 def cmd_hygiene(a):
     """Classification of root-level files: sanctioned / grandfathered-debt /
     unsanctioned-new / unreferenced-candidate. Read-only unless --json is requested."""
@@ -1194,6 +1255,8 @@ def cmd_hygiene(a):
     grand = load_grandfathered()
     nodes = M.load_nodes()
     corpus = "\n".join(n["text"] + "\n" + n["title"] for n in nodes.values())
+    import fnmatch as _fm
+    keep_exact, keep_globs = _hygiene_keep_names(corpus)
     rows = []
     for pth in sorted(REPO_ROOT.iterdir()):
         if not pth.is_file():
@@ -1201,7 +1264,8 @@ def cmd_hygiene(a):
         name = pth.name
         cls = ("sanctioned" if name in sanctioned else
                "grandfathered-debt" if name in grand else "unsanctioned-NEW")
-        referenced = name in corpus
+        referenced = (name in corpus or name in keep_exact or
+                      any(_fm.fnmatch(name, g) for g in keep_globs))
         rows.append({"file": name, "class": cls, "referenced_in_records": referenced,
                      "size": pth.stat().st_size})
     counts = {"sanctioned": 0, "grandfathered-debt": 0, "unsanctioned-NEW": 0}

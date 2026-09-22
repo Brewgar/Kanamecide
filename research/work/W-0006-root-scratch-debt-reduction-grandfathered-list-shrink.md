@@ -83,6 +83,27 @@ python e0010_report.py                          # still reproduces every E-0010 
   - Item left **IN_PROGRESS** (not DONE): the owner seat (implementation-engineer) or a
     fresh verifier should confirm the 11 deletions + list shrink, decide the retained
     borderline classes (`_repro_err_m1_*`, old exes), and close it.
+- 2026-09-21 — system owner (orchestrator session): **the recommendation is implemented.**
+  `research.py` now derives the hygiene keep-set from record text, not just the literal
+  substring scan (`_hygiene_keep_names`, selftests 47 OK):
+  (a) backtick-quoted basenames in prose are extracted as exact pins;
+  (b) `x..y` numeric ranges expand (`e0010_k1n..k5n_games.jsonl` → k1n…k5n, zero-pad aware);
+  (c) brace ranges expand (`e0010_k{1..6}n_result.txt` → k1n…k6n);
+  (d) glob citations (`e0010_*.jsonl`) are honored via fnmatch — with a guard rail:
+      a glob needs a literal prefix of ≥3 chars before its first wildcard, because
+      records cite `*_err.txt`, `*_log.txt` and `_*.txt` as DELETED classes (E-0010's
+      hygiene note; R-0004/S-0001/S-0002 scratch notes) and honoring them would have
+      protected the whole class and inverted the record's meaning.
+  Before→after on the live corpus: candidates 218 → 134; the 84 newly protected files
+  are exactly the shorthand/glob-cited classes (`e0010*` 46, `_repro_err_c12_*` 13,
+  `_repro_err_m1_*` 12, `_g0*` 15, …); **zero regressions** (nothing previously
+  protected is now flagged); no `e0010*` file remains a candidate. Proof artifacts:
+  `research/context/_fix4_probe.py` + `_fix4_probe.txt` (before/after diff + glob
+  breadth audit), `_fix5_ctx.py` + `_fix5_ctx.txt` (citation-context extraction that
+  motivated the glob guard rail), `_hyg.txt` / `_fix4_hyg.txt` (raw before/after).
+  The full 134-file pass can now proceed — with the caveat that glob protection is
+  deliberately conservative: a reviewer should still eyeball each candidate before
+  deleting. Item stays IN_PROGRESS for its owner/verifier.
 
 ## Verification
 - verified_by: (a different agent than owner)
