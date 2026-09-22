@@ -37,6 +37,17 @@ regression δ=5, LLR bounds ±2.944, game cap → INCONCLUSIVE. Resumable, runjo
 
 ## Work Log (append-only while OPEN)
 - 2026-09-14 — opened by Round-4 meta-agent; sequencing depends on W-0002's calibrated rule.
+- 2026-09-22 — researcher-architect: step 1 (pre-registration) filed —
+  `research/experiments/E-0012-*.md` (PENDING): harness contract (lite LLR, ±2.9444,
+  caps 8k/30k/8k, post-cap INCONCLUSIVE, crash=loss, runjob-resumable), known-difference
+  design (stage-6 vs stage-0, bands vs E-0010's +116.1), and the OFFLINE validation
+  (D-0007's routed ASN-model residual): realized replay of EV-0001's k1..k6 JSONL
+  through the lite LLR — k6 Tier S H1 at game **179** (pred 191/173/133), Tier R
+  undecided at 240 (pred 713), Tier M undecided, LLR −0.673 <0; ASN(H1) re-derived
+  1823.7/29179.8/291.8 (≈ R-0010's 1822/29159/292; σ rounding). Script + output pinned
+  at `research/context/w0005_sprt_replay.py` / `…_output.txt` (SHA-256 in E-0012).
+  Status stays OPEN; handoff HO-0004 to adversarial-reviewer BEFORE any RUNNING.
+  Live validation remains blocked by F-0002.
 
 ## Verification
 - verified_by: (a different agent than owner)
