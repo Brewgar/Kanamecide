@@ -296,11 +296,19 @@
           "status": "COMPLETED",
           "title": "O3a plain alpha-beta baseline vs random mover",
           "verdict": "positive"
+        },
+        {
+          "id": "E-0012",
+          "rel": "experiments/E-0012-e-sprt-lite-comparison-harness-pre-registered-dec-0010-tiers.md",
+          "result": "",
+          "status": "PENDING",
+          "title": "E-0012 — E-SPRT-lite comparison harness (pre-registered, DEC-0010 tiers), offline-validated on retained E-0010 data",
+          "verdict": "unverdicted"
         }
       ],
       "falsifier": "",
       "id": "H-0010",
-      "n_experiments": 1,
+      "n_experiments": 2,
       "rel": "hypotheses/H-0010-sprt-based-engine-comparison-harness-is-required-before-any-version-claim-is-trustworthy.md",
       "status": "OPEN",
       "title": "SPRT-based engine comparison harness is required before any version claim is trustworthy"
@@ -383,11 +391,19 @@
           "status": "COMPLETED",
           "title": "E-EVAL — Tapered Hand-Tuned Evaluation (term-by-term self-play Elo attribution)",
           "verdict": "negative"
+        },
+        {
+          "id": "E-0011",
+          "rel": "experiments/E-0011-self-play-data-pipeline-provenance-carrying-resumable-deduplicated-game-dataset.md",
+          "result": "",
+          "status": "PENDING",
+          "title": "E-0011 — Self-play data pipeline: resumable, provenance-carrying, deduplicated game dataset for Texel fitting",
+          "verdict": "unverdicted"
         }
       ],
       "falsifier": "",
       "id": "H-0013",
-      "n_experiments": 1,
+      "n_experiments": 2,
       "rel": "hypotheses/H-0013-tapered-eval-plus-texel-protocol-mg-eg-interpolation-and-quiet-label-holdout-design.md",
       "status": "OPEN",
       "title": "Tapered eval plus Texel protocol - mg-eg interpolation and quiet-label holdout design"
@@ -992,7 +1008,7 @@
       "title": "Gate 0 unrunnable: Device Guard hard-blocks kana.exe (every build, every path)"
     }
   ],
-  "generated": "2026-09-22T13:32:25",
+  "generated": "2026-09-22T20:40:35",
   "metrics": {
     "by_kind": {
       "agent_profile": 1,
@@ -1002,9 +1018,9 @@
       "decision": 11,
       "doc": 14,
       "evidence": 8,
-      "experiment": 10,
+      "experiment": 12,
       "failure": 2,
-      "handoff": 2,
+      "handoff": 4,
       "hypothesis": 17,
       "principle": 4,
       "profile": 4,
@@ -1012,31 +1028,32 @@
       "report": 13,
       "review": 10,
       "round_megaprompt": 1,
-      "session": 8,
+      "session": 9,
       "work": 7
     },
     "by_status": {
       "ACTIVE": 14,
-      "CLOSED": 8,
+      "CLOSED": 9,
       "COMPLETED": 16,
       "DONE": 5,
       "DRAFT": 1,
       "IN_PROGRESS": 1,
       "OPEN": 31,
-      "PENDING": 3,
+      "PENDING": 5,
       "RECORDED": 2,
       "REGISTERED": 8,
+      "REQUESTED": 2,
       "RESOLVED": 1,
       "SUPERSEDED": 4
     },
     "code_files": 21,
     "contradiction_candidates": 0,
-    "dangling_ids": 8,
+    "dangling_ids": 7,
     "duplicate_candidates": 2,
-    "edges_total": 1253,
+    "edges_total": 1389,
     "legacy_experiments_without_pre_registration": 6,
     "open_questions": 8,
-    "records_total": 133,
+    "records_total": 138,
     "revival_candidates": 5
   },
   "questions_all": [
@@ -1416,51 +1433,6 @@
   "timeline_tail": [
     {
       "example": false,
-      "id": "EV-0001",
-      "kind": "evidence",
-      "rel": "evidence/EV-0001-e0010-k6n-randomized-self-play.md",
-      "status": "REGISTERED",
-      "title": "E-0010 randomized self-play games, stage-6 vs stage-0 (240-game match)",
-      "when": "2026-09-19"
-    },
-    {
-      "example": false,
-      "id": "EV-0002",
-      "kind": "evidence",
-      "rel": "evidence/EV-0002-e0010-reproduction-harness.md",
-      "status": "REGISTERED",
-      "title": "E-0010 aggregator+estimator harness (reproduces every published number)",
-      "when": "2026-09-19"
-    },
-    {
-      "example": false,
-      "id": "EV-0003",
-      "kind": "evidence",
-      "rel": "evidence/EV-0003-perft-anchor-gate0.md",
-      "status": "REGISTERED",
-      "title": "Certified Perft Anchor run (Gate 0 / the correctness floor)",
-      "when": "2026-09-19"
-    },
-    {
-      "example": false,
-      "id": "EV-0004",
-      "kind": "evidence",
-      "rel": "evidence/EV-0004-e0002-certified-o2-bench.md",
-      "status": "REGISTERED",
-      "title": "E-0002 certified /O2 bench (5 reps, pinned, SHA-256 logged)",
-      "when": "2026-09-19"
-    },
-    {
-      "example": false,
-      "id": "EV-0005",
-      "kind": "evidence",
-      "rel": "evidence/EV-0005-o3b-ordering-node-table.md",
-      "status": "REGISTERED",
-      "title": "O3b staged move-ordering node table (ORDER_STAGE 0-4, 11 positions, depth 6)",
-      "when": "2026-09-19"
-    },
-    {
-      "example": false,
       "id": "EV-0006",
       "kind": "evidence",
       "rel": "evidence/EV-0006-e0008-tactical-set.md",
@@ -1740,11 +1712,47 @@
     },
     {
       "example": false,
+      "id": "E-0011",
+      "kind": "experiment",
+      "rel": "experiments/E-0011-self-play-data-pipeline-provenance-carrying-resumable-deduplicated-game-dataset.md",
+      "status": "PENDING",
+      "title": "E-0011 — Self-play data pipeline: resumable, provenance-carrying, deduplicated game dataset for Texel fitting",
+      "when": "2026-09-22"
+    },
+    {
+      "example": false,
+      "id": "E-0012",
+      "kind": "experiment",
+      "rel": "experiments/E-0012-e-sprt-lite-comparison-harness-pre-registered-dec-0010-tiers.md",
+      "status": "PENDING",
+      "title": "E-0012 — E-SPRT-lite comparison harness (pre-registered, DEC-0010 tiers), offline-validated on retained E-0010 data",
+      "when": "2026-09-22"
+    },
+    {
+      "example": false,
       "id": "HO-0002",
       "kind": "handoff",
       "rel": "handoffs/HO-0002-independently-verify-w-0002-d-0007-dec-0010-r-0009-e-0010-decision-rule-recalibration.md",
       "status": "DONE",
       "title": "Independently verify W-0002: D-0007 + DEC-0010 + R-0009 (E-0010 decision-rule recalibration)",
+      "when": "2026-09-22"
+    },
+    {
+      "example": false,
+      "id": "HO-0003",
+      "kind": "handoff",
+      "rel": "handoffs/HO-0003-critique-e-0011-pre-registration-before-any-running.md",
+      "status": "REQUESTED",
+      "title": "Critique the E-0011 pre-registration (W-0001 step 1) BEFORE any RUNNING",
+      "when": "2026-09-22"
+    },
+    {
+      "example": false,
+      "id": "HO-0004",
+      "kind": "handoff",
+      "rel": "handoffs/HO-0004-critique-e-0012-pre-registration-and-offline-sprt-replay.md",
+      "status": "REQUESTED",
+      "title": "Critique the E-0012 pre-registration and its offline SPRT replay validation BEFORE any RUNNING",
       "when": "2026-09-22"
     },
     {
@@ -1763,6 +1771,15 @@
       "rel": "sessions/S-0008-ho-0002-verification-of-w-0002-verified-occupant-4-e-0010-untouched-gate-0-re-block.md",
       "status": "CLOSED",
       "title": "HO-0002: independent verification of W-0002 (D-0007/DEC-0010/R-0009) — VERIFIED — occupant 4; Gate-0 re-block",
+      "when": "2026-09-22"
+    },
+    {
+      "example": false,
+      "id": "S-0009",
+      "kind": "session",
+      "rel": "sessions/S-0009-w-0001-w-0005-step-1-pre-registrations-e-0011-e-0012-filed-offline-sprt-replay-pass-ho-0003-ho-0004-gate-0-re-block.md",
+      "status": "CLOSED",
+      "title": "W-0001/W-0005 step 1: E-0011 + E-0012 pre-registrations filed; offline SPRT replay PASS; HO-0003/HO-0004; Gate-0 re-block",
       "when": "2026-09-22"
     },
     {

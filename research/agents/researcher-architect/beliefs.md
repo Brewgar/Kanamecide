@@ -240,6 +240,61 @@ firing, which preempts search work (a win for correctness-first).
 ### Revisions
 - 2026-09-09 — initial statement (independent re-verification).
 
+## Belief: sprt-lite-crossing-model-validated-at-operating-point
+
+- **Status:** supported-by-evidence
+- **Confidence:** 0.8
+- **Last updated:** 2026-09-22
+
+**Position:** DEC-0010's crossing-time model (Wald-Elo ~191; exact-lite ~173) for Tier S
+at an effect far above the zone edge is validated against real data: replaying the
+recorded k6n W/D/L sequence (EV-0001) through the draws-as-halves LLR crosses +2.9444
+at game 179 — within 7%/4% of the two predictions. Tier R and Tier M stay undecided
+within the 240 recorded games exactly as predicted (713 / ~910).
+
+**Strongest argument for:** realized, hash-pinned replay (`w0005_sprt_replay.py`,
+single run, exit 0); per-rung totals match E-0010 exactly; every ≥+100-Elo rung
+decides H1 and no rung decides sign-wrong.
+
+**Strongest argument against:** ONE sequence at ONE operating point; says nothing about
+mid-zone behavior (where the DEC-0010 cap+INCONCLUSIVE design must carry the load) or
+about ASN in distribution; the live harness (crash path, handshake, resume) is unseen.
+
+**Evidence:** research/context/w0005_sprt_replay_output.txt; E-0012 Results; DEC-0010.
+
+**What would falsify this:** the live E-0012 validation (stage-6 vs stage-0, Tier S)
+landing its H1 acceptance outside the pre-registered [80, 800] band, or any future
+recorded-match replay contradicting the model by >2×.
+
+### Revisions
+- 2026-09-22 — initial statement.
+
+## Belief: dataset-contracts-are-not-elo-claims
+
+- **Status:** supported-by-evidence
+- **Confidence:** 0.85
+- **Last updated:** 2026-09-22
+
+**Position:** A data-pipeline experiment (E-0011 pattern) must carry artifact gates
+(volume/legality/dedup/provenance/resume) and NO Elo gate; the "the trained eval beats
+hand-tuned" claim is a separate DEC-0010 Tier-R experiment on FRESH games. Conflating
+them reproduces the F6/R-0003 ill-formed-bar defect.
+
+**Strongest argument for:** h(1000) = ±23 Elo at the measured σ=371 — 1,000 games arith-
+metically cannot decide even a ±20 screen, so any Elo gate on the dataset run would be
+structure, not power; the Tier-R claim needs ~29k games anyway, which must be a campaign.
+
+**Strongest argument against:** a reviewer may argue Tier S screening of the dataset
+run is free information; agreed — it is *reported* information, never a gate.
+
+**Evidence:** DEC-0010 tiers + caps; w0002_power.py arithmetic; E-0011 record.
+
+**What would falsify this:** a demonstrated protocol making a strength verdict from the
+training games themselves unbiased (leakage-free in-sample testing).
+
+### Revisions
+- 2026-09-22 — initial statement.
+
 To add a belief, append one section per belief using this format:
 
 ```markdown

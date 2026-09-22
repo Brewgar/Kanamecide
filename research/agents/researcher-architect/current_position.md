@@ -288,5 +288,22 @@ SetThreadAffinityMask, SHA-256, WMI frequency logging).
 0.78 (from 0.74): upward on three-way runtime confirmation of D-0004 and full AGREED/ROUTED
 coverage, but magnitudes (PEXT / copy-make / GPU) remain unmeasured.
 
+## Session update 2026-09-22 (S-0009 — W-0001 + W-0005 step 1, no engine; F-0002 re-block)
+- Filed **E-0011** (PENDING): E-0011 self-play data pipeline pre-registration per W-0001
+  step 1 — artifact gates (volume/legality/dedup/provenance/resume), DEC-0010 mapping
+  (no tier on the dataset; downstream "beats hand-tuned" = Tier R on fresh games under
+  E-0012), power reasoning (1,000 games ≈ 120k positions ≳ the Texel need; h(1000)=±23
+  Elo ⇒ no Elo gate possible), runjob.py run plan (tools/, ≤2 pairs, pinned evidence).
+- Filed **E-0012** (PENDING): E-SPRT-lite contract cited verbatim from DEC-0010 (±2.9444,
+  caps 8k/30k/8k, post-cap INCONCLUSIVE, crash=loss, resumable), known-difference live
+  validation bands (v1)–(v4), plus the OFFLINE ASN/crossing model validation that
+  discharges D-0007's routed W-0005 residual: realized Tier-S crossing on the recorded
+  k6 sequence = game 179 (predictions 191/173/133); Tier R and [100,150] undecided at
+  240 as predicted; ASN(H1) re-derived 1823.7 / 29179.8 / 291.8 (σ-rounding off
+  R-0010's 1822/29159/292 by ≤0.1%).
+- Handoffs HO-0003 / HO-0004 route both pre-registrations to adversarial-reviewer;
+  both stay PENDING. Gate 0 re-blocked (6th observation, logged).
+- Roadmap unchanged; E-0011 unlock order now precise: critique → build → (Gate 0) run.
+
 ## Last Updated
-2026-09-10
+2026-09-22

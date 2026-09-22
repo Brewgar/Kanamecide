@@ -13,7 +13,7 @@
 
 | Role | Assigned model | Since | Notes |
 |---|---|---|---|
-| researcher-architect | (unassigned) | — | Round 4: W-0001 pre-registration, W-0005 pre-registration |
+| researcher-architect | (unassigned — seat occupied 2026-09-22, S-0009) | 2026-09-22 | Round 4: W-0001 step 1 (E-0011 filed) + W-0005 step 1 (E-0012 filed, offline validation PASS) DONE; critiques routed HO-0003/HO-0004 |
 | systems-researcher | (unassigned) | — | Round 4: W-0001 build/run under runjob.py |
 | adversarial-reviewer | (unassigned) | — | Round 4: W-0002, W-0003; critiques W-0001/W-0005 pre-registrations |
 | implementation-engineer | (unassigned) | — | Round 4: W-0001 generator code, W-0006 hygiene |

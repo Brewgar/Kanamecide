@@ -44,6 +44,8 @@
 - [E-00004](experiments/E-00004-gpu-batch-inference-latency-curve-rtx-5070-ti-dense-net-256-512-hidden.md) — GPU batch-inference latency curve (RTX 5070 Ti, dense net 256-512 hidden) — status=PENDING
 - [E-00005](experiments/E-00005-slider-attack-time-share-and-pext-speedup-ceiling-pre-pext-profile.md) — Slider-attack time share and PEXT speedup ceiling (pre-PEXT profile) — status=PENDING
 - [E-0001](experiments/E-0001-classical-alpha-beta-baseline-time-to-depth.md) — Classical alpha-beta baseline (time-to-depth) — status=PENDING  [EXAMPLE]
+- [E-0011](experiments/E-0011-self-play-data-pipeline-provenance-carrying-resumable-deduplicated-game-dataset.md) — E-0011 — Self-play data pipeline: resumable, provenance-carrying, deduplicated game dataset for Texel fitting — status=PENDING
+- [E-0012](experiments/E-0012-e-sprt-lite-comparison-harness-pre-registered-dec-0010-tiers.md) — E-0012 — E-SPRT-lite comparison harness (pre-registered, DEC-0010 tiers), offline-validated on retained E-0010 data — status=PENDING
 
 ## Completed Experiments
 
@@ -135,7 +137,8 @@
 
 ## Handoffs (open)
 
-(none)
+- [HO-0003](handoffs/HO-0003-critique-e-0011-pre-registration-before-any-running.md) — Critique the E-0011 pre-registration (W-0001 step 1) BEFORE any RUNNING — status=REQUESTED
+- [HO-0004](handoffs/HO-0004-critique-e-0012-pre-registration-and-offline-sprt-replay.md) — Critique the E-0012 pre-registration and its offline SPRT replay validation BEFORE any RUNNING — status=REQUESTED
 
 ## Handoffs (closed)
 
@@ -160,6 +163,7 @@
 - [S-0006](sessions/S-0006-round-5-occupant-3-w-0007-re-verification-verified-r-0007-second-e-0010-verification-r-0008-completes-the-w-0004-deliverable-gate-0-re-block.md) — Round 5 occupant 3: W-0007 re-verification VERIFIED (R-0007); second E-0010 verification (R-0008) completes the W-0004 deliverable; Gate-0 re-block — status=CLOSED
 - [S-0007](sessions/S-0007-w-0002-e-0010-decision-rule-recalibration-d-0007-solved-by-arithmetic-dec-0010-active-r-0009-addendum-ho-0002-to-verification-auditor-gate-0-re-block.md) — W-0002: E-0010 decision-rule recalibration (D-0007 solved by arithmetic; DEC-0010 ACTIVE; R-0009 addendum; HO-0002 to verification-auditor; Gate-0 re-block) — status=CLOSED
 - [S-0008](sessions/S-0008-ho-0002-verification-of-w-0002-verified-occupant-4-e-0010-untouched-gate-0-re-block.md) — HO-0002: independent verification of W-0002 (D-0007/DEC-0010/R-0009) — VERIFIED — occupant 4; Gate-0 re-block — status=CLOSED
+- [S-0009](sessions/S-0009-w-0001-w-0005-step-1-pre-registrations-e-0011-e-0012-filed-offline-sprt-replay-pass-ho-0003-ho-0004-gate-0-re-block.md) — W-0001/W-0005 step 1: E-0011 + E-0012 pre-registrations filed; offline SPRT replay PASS; HO-0003/HO-0004; Gate-0 re-block — status=CLOSED
 
 ## Unrendered Records (bug — report this)
 
