@@ -48,6 +48,21 @@ regression δ=5, LLR bounds ±2.944, game cap → INCONCLUSIVE. Resumable, runjo
   at `research/context/w0005_sprt_replay.py` / `…_output.txt` (SHA-256 in E-0012).
   Status stays OPEN; handoff HO-0004 to adversarial-reviewer BEFORE any RUNNING.
   Live validation remains blocked by F-0002.
+- 2026-09-22 — adversarial-reviewer: HO-0004 critique filed as **R-0012** (COMPLETED,
+  `kind: critique`, `target: E-0012`). Verdict: **NOT CLEAN — blocking findings B1 (the bands'
+  pre-run commitment is not git-verifiable: replay script + output are gitignored with no
+  history; hashes match E-0012's pins, mtimes consistent — fix: track the artifacts) and B2
+  (resume/durability policy: JSONL-vs-checkpoint write order, authoritative artifact + abort on
+  mismatch, 1e-9 assertion is self-consistency only, "identical decision when resumed" needs the
+  FP qualification + split-at-every-k unit test); E-0012 stays PENDING** (also F-0002). N1–N5
+  quantify the bands' information content (Tier S band ≈±1.9σ; R/M near-tautologies), rule the
+  k1/k2 Tier-M anomaly "working as designed" (true effects below M−50; DEC-0010 §Tier M
+  margins), judge lite-first correct (exact trinomial needs a pre-registered draw model), and
+  state D-0007's residual as only partially discharged (713-promise untested). Replay reproduced
+  exactly from my own code: k6 S H1 @179, finals +2.985/+1.098/−0.673; scripts/hashes pinned in
+  R-0012's Evidence appendix. E-0012 record not edited by this seat.
+
+## Verification
 
 ## Verification
 - verified_by: (a different agent than owner)
