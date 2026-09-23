@@ -1017,7 +1017,7 @@
       "title": "Gate 0 unrunnable: Device Guard hard-blocks kana.exe (every build, every path)"
     }
   ],
-  "generated": "2026-09-24T00:10:58",
+  "generated": "2026-09-24T00:18:43",
   "metrics": {
     "by_kind": {
       "agent_profile": 1,
@@ -1029,7 +1029,7 @@
       "evidence": 8,
       "experiment": 12,
       "failure": 2,
-      "handoff": 7,
+      "handoff": 8,
       "hypothesis": 17,
       "principle": 4,
       "profile": 4,
@@ -1037,12 +1037,12 @@
       "report": 13,
       "review": 15,
       "round_megaprompt": 1,
-      "session": 12,
+      "session": 13,
       "work": 7
     },
     "by_status": {
       "ACTIVE": 14,
-      "CLOSED": 12,
+      "CLOSED": 13,
       "COMPLETED": 21,
       "DONE": 9,
       "DRAFT": 1,
@@ -1051,7 +1051,7 @@
       "PENDING": 5,
       "RECORDED": 2,
       "REGISTERED": 8,
-      "REQUESTED": 1,
+      "REQUESTED": 2,
       "RESOLVED": 1,
       "SUPERSEDED": 4
     },
@@ -1059,10 +1059,10 @@
     "contradiction_candidates": 0,
     "dangling_ids": 7,
     "duplicate_candidates": 2,
-    "edges_total": 1780,
+    "edges_total": 1830,
     "legacy_experiments_without_pre_registration": 6,
     "open_questions": 8,
-    "records_total": 149,
+    "records_total": 151,
     "revival_candidates": 5
   },
   "questions_all": [
@@ -1442,24 +1442,6 @@
   "timeline_tail": [
     {
       "example": false,
-      "id": "Q-0003",
-      "kind": "question",
-      "rel": "questions/Q-0003-persistent-tt-across-moves.md",
-      "status": "OPEN",
-      "title": "Should the transposition table persist across moves (TT reuse), and what does a correct aging/reuse policy gain vs. per-move clear?",
-      "when": "2026-09-19"
-    },
-    {
-      "example": false,
-      "id": "Q-0004",
-      "kind": "question",
-      "rel": "questions/Q-0004-prepreregistered-sprt-harness.md",
-      "status": "OPEN",
-      "title": "Can a pre-registered two-tier SPRT harness decide every engine-delta claim against a calibrated bar?",
-      "when": "2026-09-19"
-    },
-    {
-      "example": false,
       "id": "Q-0005",
       "kind": "question",
       "rel": "questions/Q-0005-gpu-vs-cpu-inference-economics.md",
@@ -1766,6 +1748,15 @@
     },
     {
       "example": false,
+      "id": "HO-0008",
+      "kind": "handoff",
+      "rel": "handoffs/HO-0008-rule-r-0014-b3-fully-discharged-e-0011-clear-for-build-run.md",
+      "status": "REQUESTED",
+      "title": "Rule R-0014 B3 fully discharged after the end-vocabulary addendum (E-0011 clear for build+run)",
+      "when": "2026-09-23"
+    },
+    {
+      "example": false,
       "id": "R-0014",
       "kind": "review",
       "rel": "reviews/R-0014-critique-e-0011-addenda-b1-b2-b3-response-ruling.md",
@@ -1798,6 +1789,15 @@
       "rel": "sessions/S-0012-ho-0006-ho-0007-recritique-r-0014-partial-r-0015-clean.md",
       "status": "CLOSED",
       "title": "HO-0006/HO-0007 re-critique of the R-0011/R-0012 addenda: R-0014 (E-0011 PARTIAL, 1 sentence left) + R-0015 (E-0012 CLEAN)",
+      "when": "2026-09-23"
+    },
+    {
+      "example": false,
+      "id": "S-0013",
+      "kind": "session",
+      "rel": "sessions/S-0013-micro-r-0014-b3-fix-e-0011-end-vocabulary-ns-suffix-ho-0008-gate0-12.md",
+      "status": "CLOSED",
+      "title": "Micro-session: R-0014 B3 fix (end vocabulary + (Ns) suffix policy) landed verbatim in E-0011; HO-0008 full-discharge ruling requested; Gate 0 attempt #12 (OPEN); engine-free text work only",
       "when": "2026-09-23"
     }
   ]

@@ -143,6 +143,7 @@
 ## Handoffs (open)
 
 - [HO-0005](handoffs/HO-0005-verify-w-0003-round2-agreement-matrix-backfill-r-0013.md) — Verify W-0003: R-0013 (Round-2 AGREEMENT_MATRIX backfill) and the untouched matrix — status=REQUESTED
+- [HO-0008](handoffs/HO-0008-rule-r-0014-b3-fully-discharged-e-0011-clear-for-build-run.md) — Rule R-0014 B3 fully discharged after the end-vocabulary addendum (E-0011 clear for build+run) — status=REQUESTED
 
 ## Handoffs (closed)
 
@@ -175,6 +176,7 @@
 - [S-0010](sessions/S-0010-ho-0003-ho-0004-critiques-not-clean-w-0003-backfill-ho-0005.md) — HO-0003/HO-0004 critiques (R-0011/R-0012: both NOT CLEAN) + W-0003 backfill (R-0013) + HO-0005 — status=CLOSED
 - [S-0011](sessions/S-0011-r-0011-r-0012-addenda-e-0011-b1-b2-b3-e-0012-b1-b2-n4-replay-tracked-ho-0006-ho-0007-gate0-open.md) — R-0011/R-0012 blocking-findings fix session: E-0011 B1/B2/B3 + E-0012 B1/B2 + N4 adopted; replay artifacts git-tracked (16ac1ff); HO-0006/HO-0007 re-critiques out; Gate 0 OPEN (attempt #10); engine-free by design — status=CLOSED
 - [S-0012](sessions/S-0012-ho-0006-ho-0007-recritique-r-0014-partial-r-0015-clean.md) — HO-0006/HO-0007 re-critique of the R-0011/R-0012 addenda: R-0014 (E-0011 PARTIAL, 1 sentence left) + R-0015 (E-0012 CLEAN) — status=CLOSED
+- [S-0013](sessions/S-0013-micro-r-0014-b3-fix-e-0011-end-vocabulary-ns-suffix-ho-0008-gate0-12.md) — Micro-session: R-0014 B3 fix (end vocabulary + (Ns) suffix policy) landed verbatim in E-0011; HO-0008 full-discharge ruling requested; Gate 0 attempt #12 (OPEN); engine-free text work only — status=CLOSED
 
 ## Unrendered Records (bug — report this)
 

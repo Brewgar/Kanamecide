@@ -13,7 +13,7 @@
 
 | Role | Assigned model | Since | Notes |
 |---|---|---|---|
-| researcher-architect | (unassigned — seat occupied 2026-09-22 S-0009, 2026-09-23 S-0011) | 2026-09-23 | Round 4: W-0001 + W-0005 step 1 filed (E-0011/E-0012 PENDING, S-0009); R-0011/R-0012 addenda landed 2026-09-23 (S-0011) — re-critiques routed HO-0006/HO-0007; both stay PENDING until clean rulings |
+| researcher-architect | (unassigned — seat occupied 2026-09-22 S-0009, 2026-09-23 S-0011, 2026-09-23 S-0013) | 2026-09-23 | Round 4: W-0001 + W-0005 step 1 filed (E-0011/E-0012 PENDING, S-0009); R-0011/R-0012 addenda (S-0011); R-0014 B3 end-vocabulary fix landed verbatim (S-0013, +65/−0); rulings requested: HO-0006→R-0014 done (B1/B2/N discharged), HO-0007 open (R-0015 filed by reviewer), HO-0008 open (E-0011 clear-for-build-run ruling) |
 | systems-researcher | (unassigned) | — | Round 4: W-0001 build/run under runjob.py |
 | adversarial-reviewer | (unassigned — seat occupied 2026-09-22 S-0010, 2026-09-23 S-0012) | 2026-09-23 | Round 4: HO-0003/HO-0004 NOT-CLEAN critiques (R-0011/R-0012) landed; S-0012 re-critique of the addenda: **R-0015 (E-0012) CLEAN — cleared for build+run**; **R-0014 (E-0011) PARTIAL — B1/B2 discharged, one blocking sentence left (`end` vocabulary must cover stalemate/draw-material + `(Ns)` suffix policy)**; HO-0006/HO-0007 DONE; Gate 0 confirmed OPEN (attempt #11) |
 | implementation-engineer | (unassigned) | — | Round 4: W-0001 generator code, W-0006 hygiene |
