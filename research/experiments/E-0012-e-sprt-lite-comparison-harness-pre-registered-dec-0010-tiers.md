@@ -213,3 +213,141 @@ and any `status: RUNNING`, remain blocked on HO-0004 + F-0002.
 - After live validation: E-MAG-6V0 (D-0007's routed magnitude run, [100,150], ~910
   predicted games) becomes the harness's first productive use and would convert
   E-0010's "≥150 not established" into a decided verdict.
+
+## Addendum: R-0012 B1 response, 2026-09-23
+
+> R-0012: "the bands' pre-commitment is asserted, not verifiable, because the replay
+> artifact is untracked." ACCEPTED. Provenance finding only — no rule, band, or number
+> changes; the original text above is untouched.
+
+**Fix landed.** `.gitignore` now negates the two artifacts (targeted `!` exceptions
+after `research/context/*`), and both are committed:
+
+- **commit `16ac1ff`** (2026-09-23) adds `research/context/w0005_sprt_replay.py` and
+  `research/context/w0005_sprt_replay_output.txt` to git.
+- The committed content byte-matches the SHA-256s this record has pinned since its
+  own commit `2a9d997` (2026-09-22): script `94631d6b1105795f83f662a35df1db260ce9db8df286c1f0fdd5fb3f39d1233c`,
+  output `9cd40402e5426a09367c1a9c370aa9fa89ff8c2aab8f4e03d4983e8d68ea35ad`
+  (re-verified with `certutil -hashfile` after the commit, 2026-09-23).
+- The audit chain is therefore now git-based: (i) `2a9d997` publishes the hashes AND
+  the band text; (ii) `16ac1ff` lands the files whose hashes equal those pins; (iii)
+  any later diff of either file breaks the chain visibly. This is stronger than the
+  docstring claim R-0012 correctly called "consistent, not proof".
+- `python research/scripts/research.py validate` re-run after the `.gitignore` change:
+  exit 0, "Validation OK … repo-root hygiene is respected" (0 problems; capture
+  `research/context/_s11_validate_postgitignore.txt`).
+
+## Addendum: R-0012 B2 response, 2026-09-23
+
+> R-0012: "resume/durability policy, and the qualification of the 'identical decision'
+> claim." ACCEPTED in full — all five unspecified items (i)–(v) pinned below; original
+> contract item 5 above is unchanged and these clauses complete it.
+
+**(B2.i) Write/durability order:** per game, the order is fixed as — (1) append the
+game's JSONL line; (2) `fsync` the JSONL; (3) write the checkpoint (W/D/L, cumulative
+LLR, next_game_index, tier, salt); (4) `fsync` the checkpoint. A crash between (2) and
+(4) leaves the JSONL AHEAD of the checkpoint — the designed, safe direction (see ii).
+The reverse order is prohibited.
+
+**(B2.ii) Authoritative artifact + failure path:** the **JSONL is authoritative**.
+On resume: recompute W/D/L and the cumulative LLR by replaying the JSONL through the
+same LLR code; record a `resume_mismatch` incident if the recomputed state differs
+from the checkpoint at all; **continue only if recomputed == checkpoint to 1e-9;
+otherwise ABORT the run and file it FAILED** (never "repair", never silently prefer
+the checkpoint).
+
+**(B2.iii) The assertion is a self-consistency check only.** Both sides of the 1e-9
+comparison come from one LLR implementation, so a systematic scale/sign bug passes it.
+The scale/sign detectors are named and separate: the offline exact-value reproduction
+(crossing 179, finals +2.985 / +1.098 / −0.673 — committed artifacts above) plus the
+unit tests (i)–(iii) already in Test Method. Resume-equality detects *durability*
+drift; only the offline reproduction + unit tests detect *model/code* drift.
+
+**(B2.iv) FP-ordering qualification — "identical decision when run in one process or
+resumed" is qualified, not absolute.** It holds **up to floating-point summation
+order** (replay order == live order by construction because both consume the JSONL in
+file order; a partial-line quarantine re-emits under the same id, preserving order)
+**and only if no cumulative LLR lands within 1e-9 of a bound** — a sample that touches
+a bound within 1e-9 is treated as a boundary touch and decides (ties decide toward the
+bound reached), recorded as a `bound_within_epsilon` incident for audit. The absolute
+form is retired; the qualified form plus (B2.v)'s test is the claim.
+
+**(B2.v) Split-at-every-k unit test — pre-registered harness acceptance step.** For a
+canned W/D/L sequence (the retained k6n 240-game order is the natural fixture): for
+**every** split point k ∈ [1, N−1], run (a) in one process and (b) as run→kill at k→
+resume; assert identical verdict AND identical crossing index (or both none), and a
+`resume_mismatch`-free log. `tools/e0012_sprt.py` MUST pass this before any live run;
+failure = harness not adopted (same class as a (v1)–(v4) FAIL).
+
+**Runjob facts acknowledged (R-0012 (v)):** `runjob.py resume` is a plain re-launch
+of the same command line — idempotence is the JOB's duty (this contract); `launch`
+**deletes** the previous log, so the harness run policy is: preserve the interrupted
+log itself before relaunch (same rule as E-0011's B2.5: copy to
+`run.log.<UTC-timestamp>.preserved`, name both in the RUN record); the supervisor's
+checkpoint telemetry counts raw `splitlines()` — a torn line counts as an item — so
+runjob counts are telemetry, never an integrity signal.
+
+## Addendum: R-0012 N4 adopted + N1/N2/N3/N5 text, 2026-09-23
+
+> R-0012's non-blocking findings, routed to the record. N4 is a RECOMMENDATION the
+> instructions of S-0011 require me to either adopt or attack — **ADOPTED** below,
+> before RUNNING, exactly as recommended. Silence is not an answer.
+
+**(N4) Live null-pair bias control — PRE-REGISTERED as a companion gate of the live
+validation.** Design: **stage-6 vs stage-6** (same binary, same EvalStage, distinct
+openings per the standard protocol), **cap 240 games** (~0.3 h at the measured
+769 games/h), decision statistic = the cumulative Tier-S lite LLR. Acceptance
+(correct-harness control):
+
+- the run must **complete under the cap without adopting a biased verdict**: with the
+  true difference 0, a +2.944 acceptance within 240 games would require a constant
+  per-game bias of ≈ 0.0123 LLR — the reviewer's arithmetic, ≈ 0.24 σ/game from their
+  delta-method drift ≈ −0.0015/game and sd ≈ 0.058/game. **Control PASS = no H1
+  acceptance within the cap and the final cumulative LLR's sign/magnitude consistent
+  with the colour-corrected null** (report the realized value against the reviewer's
+  drift/sd, don't re-derive);
+- **the null is colour-corrected, not 50%:** White scores **58.5%** in the retained
+  E-0010 data (R-0011's measurement; k6 cells 0.783 as White vs 0.542 as Black), so
+  any expected-score term in the control uses that measured prior — a naive
+  50%-centred band is explicitly prohibited (F6 in reverse);
+- a Control FAIL (H1 acceptance on a null pair) = **harness bias alarm**, treated as a
+  (v1)–(v4)-class harness FAIL: audit first (arms, colour bookkeeping, seeding), never
+  "the engines differ";
+- side benefit, stated: this control is also the live test of the honest-INCONCLUSIVE
+  / cap path that the offline replay can never reach (R-0012 Missing Arguments).
+
+**(N1) Band information content, added as text:** at the operating point the crossing
+time has sd ≈ 42 games (reviewer's delta-method), so Tier S's [100, 260] is ≈ ±1.9σ
+around 179 ⇒ ~5.4% two-sided false-FAIL from sampling noise alone; its detection floor
+for a constant LLR-scale error is 1.79× upward / 0.69× downward (crossing = 179/scale
+must leave the band). Tier R/M "no decision within 240" are near-tautologies under the
+model (≈ 4.6σ excursion, P ≈ 2×10⁻⁶ at R) — consistency checks, as already labelled. A
+(v2)-only FAIL (verdict correct, timing outside band) triggers the harness audit FIRST
+(this record's own rule: "harness bug, not a surprise about the engines") before any
+claim against the model.
+
+**(N2) Refinement clause tightened (text):** DEC-0010's "exact trinomial LLR is an
+allowed refinement if W-0005 validates it" is read here as requiring a **pre-registered
+draw model** (p(δ) mapping) as part of that validation — otherwise the refinement is a
+degrees-of-freedom generator. Lite stays the shipping form.
+
+**(N3) Offline-replay blind classes, appended to the Interpretation list:** UCI
+handshake + EvalStage echo; TC enforcement; bestmove deadline/stall detection;
+crash-rule scoring; colour alternation as *played*; derived opening applied to both
+engines; checkpoint durability order (now specified by B2.i–v, still untested live);
+cap enforcement; ≤2-pair discipline; salt freshness vs the training set (now specified
+by E-0011's B1.2); result adjudication vocabulary; one-look discipline. Residual
+exposure is mostly engineering defects the live run surfaces as crashes/stalls —
+accepted, provided B2.v's split-at-every-k test and N4's control ship with the build.
+
+**(N5) σ circularity sentence (added to Interpretation):** σ = 371 Elo/game was
+obtained from the six rungs' own CI half-widths, and the h(N) model then "reproduces"
+the k6 half-width — a consistency check on the same data, not an independent
+validation. What the offline replay adds is different in kind: it tests the *path*
+(first-passage time under the stated rule), which the CI fit does not.
+
+**D-0007 residual wording:** R-0012's "replay half done, live half open" characteriza-
+tion is accepted as accurate — no dispute to open. W-0005 stays OPEN, which is how it
+is filed; the live half closes only with (v1)–(v4) + N4 after HO-0007's clean ruling.
+
+

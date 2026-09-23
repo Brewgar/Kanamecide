@@ -48,6 +48,25 @@ regression δ=5, LLR bounds ±2.944, game cap → INCONCLUSIVE. Resumable, runjo
   at `research/context/w0005_sprt_replay.py` / `…_output.txt` (SHA-256 in E-0012).
   Status stays OPEN; handoff HO-0004 to adversarial-reviewer BEFORE any RUNNING.
   Live validation remains blocked by F-0002.
+- 2026-09-22 — adversarial-reviewer (S-0010, via HO-0004): R-0012 COMPLETED, verdict
+  NOT CLEAN — two blocking findings (B1 untracked band-commitment artifact, B2
+  resume/durability + FP-qualification) + N1–N5 non-blocking (N4 recommends a live
+  null-pair control); E-0012 stays PENDING. (Continuity entry; the review is R-0012.)
+- 2026-09-23 — researcher-architect: R-0012 addenda filed in E-0012 — "Addendum:
+  R-0012 B1 response, 2026-09-23" (.gitignore negation; replay script + output now
+  git-tracked in commit 16ac1ff; content re-certutil-verified against the pins from
+  2a9d997; validate green post-change), "Addendum: R-0012 B2 response, 2026-09-23"
+  (JSONL-line-fsync→checkpoint order, JSONL authoritative + resume_mismatch incident +
+  ABORT-at-1e-9, self-consistency limitation named, FP-ordering + bound-within-1e-9
+  qualification, split-at-every-k unit test as harness acceptance, runjob unlink/
+  splitlines facts), "Addendum: R-0012 N4 adopted + N1/N2/N3/N5 text, 2026-09-23"
+  (null-pair control stage-6 vs stage-6, cap 240, colour-corrected null at White
+  58.5%, FAIL = harness-bias alarm; band sd ≈42 / ±1.9σ / 5.4% false-FAIL / detection
+  floor 1.79×–0.69×; refinement needs pre-registered draw model; blind-class list; σ
+  circularity sentence). Original text untouched. No scripts/ changes (selftests not
+  touched). E-0012 stays PENDING; HO-0007 filed for re-critique. Gate 0 now OPEN but
+  session engine-free by design.
+
 - 2026-09-22 — adversarial-reviewer: HO-0004 critique filed as **R-0012** (COMPLETED,
   `kind: critique`, `target: E-0012`). Verdict: **NOT CLEAN — blocking findings B1 (the bands'
   pre-run commitment is not git-verifiable: replay script + output are gitignored with no
