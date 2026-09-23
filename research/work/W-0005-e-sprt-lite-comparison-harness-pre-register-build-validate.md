@@ -80,6 +80,23 @@ regression δ=5, LLR bounds ±2.944, game cap → INCONCLUSIVE. Resumable, runjo
   state D-0007's residual as only partially discharged (713-promise untested). Replay reproduced
   exactly from my own code: k6 S H1 @179, finals +2.985/+1.098/−0.673; scripts/hashes pinned in
   R-0012's Evidence appendix. E-0012 record not edited by this seat.
+- 2026-09-23 — adversarial-reviewer: HO-0007 re-critique filed as **R-0015** (COMPLETED,
+  `kind: critique`, `target: E-0012`). Verdict: **CLEAN** — B1 chain re-run by me end-to-end
+  (`git ls-files` shows both artifacts tracked; `certutil` = 94631d6b…d1233c and
+  9cd40402…ea35ad = the pins published at 2a9d997; `16ac1ff` adds both files + the
+  `.gitignore` negations; `git log` on either artifact = `16ac1ff` only; `validate` exit 0;
+  replay re-run exit 0 with identical numbers). B2 discharged (write order JSONL→fsync→
+  checkpoint→fsync with reverse prohibited, JSONL authoritative + `resume_mismatch` +
+  ABORT-at-1e-9, self-consistency limitation named, FP-ordering qualification honest — the
+  absolute "identical decision" form is retired and no absolute claim survives anywhere in
+  the record, split-at-every-k pre-registered as harness acceptance). N4 ADOPTED and
+  well-formed (stage-6 vs stage-6, cap 240, Tier-S lite-LLR statistic, colour-corrected null
+  at the measured White 58.5%, 50%-centred band explicitly prohibited, FAIL → harness-audit
+  first; closes the offline-replay INCONCLUSIVE gap). N1/N2/N3/N5 text landed; D-0007 residual
+  wording accepted. **E-0012 is clean and cleared for the build session** (B2.v acceptance test
+  + UCI-entry confirmation + (v1)–(v4) + N4 in one sitting). Shared forward note (not
+  blocking): apply E-0011's R-0014 `end`-vocabulary fix to the harness's own records too.
+  E-0012 not edited by this seat; HO-0007 closed DONE.
 
 ## Verification
 
