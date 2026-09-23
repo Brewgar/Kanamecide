@@ -190,12 +190,12 @@ below its pre-registered ≥150 bar.
   A/B claim currently depends on ad-hoc match harnesses.
 - No persistent TT across moves (TT is cleared per `go`); no aspiration/PVS/LMR/null-move
   (O3e candidates).
-- **2026-09-19 — Gate 0 environment blockage (F-0002).** Every `kana.exe` invocation
-  currently fails with exit 4551 (Device Guard hard block): Release, Audit, and
-  `runjob.py`-launched alike. Engine-level verification sessions cannot execute the
-  engine on this host until the owner allow-lists/rebuilds under a permitted policy.
-  The perft-anchor `validate` check remains green but is consistency-only — the floor
-  runner itself must execute to re-verify behavior.
+- **2026-09-23 — Gate 0 UNBLOCKED (F-0002 condition ended).** The owner changed the App
+  Control/WDAC policy; an orchestrator probe ran `build\Release\kana.exe` to completion
+  (exit 0) with the default perft suite passing (startpos d1–d5 exact, kiwipete d3,
+  cpw_pos3/4 d4) — attempt #9 on record (`research/failures/F-0002-*`). Engine-level
+  work (self-play pipeline, live SPRT validation) is executable on this host again;
+  F-0002 stays RECORDED as a failure class against policy regression.
 
 ## Current Development Priorities
 1. **E-0011 — self-play data pipeline (next milestone):** turn the E-0010 match harness into a
