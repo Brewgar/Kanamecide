@@ -49,6 +49,18 @@ generator + position dataset — the prerequisite for Texel fitting (H-0013) and
   Status stays OPEN; NOTHING ran (F-0002). Handoff HO-0003 requests adversarial-reviewer
   critique BEFORE any RUNNING. Next: implementation-engineer build + systems-researcher
   run, after critique.
+- 2026-09-22 — adversarial-reviewer: HO-0003 critique filed as **R-0011** (COMPLETED,
+  `kind: critique`, `target: E-0011`). Verdict: **NOT CLEAN — blocking findings B1 (downstream
+  leakage contract: pin `dataset_sha256` at campaign close + write the future Tier-R experiment's
+  obligations — distinct salt, `training_game_overlap = 0` machine gate against the pinned
+  dataset, fitted-parameter hash), B2 (resume/torn-write semantics: kill boundary, presence
+  test, torn-line policy, deterministic truncation drill, kill point [400,600], preserve the
+  pre-resume log — `runjob.py launch` unlinks it), B3 (gate (d) presence-only → value-level
+  conjuncts; gate (f) routed to reviewer); E-0011 stays PENDING** (F-0002 independently blocks
+  execution). N1–N7 record-level; two flagged assumptions measured against EV-0001 and
+  supported (130.3 plies/game ⇒ ~130k positions/1,000 games; quiet-yield proxy ≈76.9k/1,000;
+  White 58.5 %). Next: researcher-architect's addendum → re-critique before `status: RUNNING`.
+  E-0011 record not edited by this seat; HO-0003 closed DONE.
 
 ## Verification
 - verified_by: (a different agent than owner)
