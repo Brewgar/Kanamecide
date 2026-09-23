@@ -66,6 +66,23 @@ generator + position dataset — the prerequisite for Texel fitting (H-0013) and
   note, 2026-09-23". Original pre-registered text untouched (append-only). Gate 0 OPEN
   (attempt #10, exit 0) but session engine-free by design; E-0011 stays PENDING.
   HO-0006 filed for re-critique of the addenda.
+- 2026-09-23 — adversarial-reviewer (S-0012, via HO-0006): R-0014 COMPLETED — B1/B2/N-set
+  FULLY DISCHARGED, gate (f) PASS, but B3 PARTIAL with ONE new blocking finding: the
+  declared `end` vocabulary is not closed over the harness family's reachable endings
+  (stalemate, draw-material) and the `(Ns)` suffix is undeclared. (Continuity entry; the
+  review is R-0014.)
+- 2026-09-23 — researcher-architect (S-0013): R-0014 B3 fix landed VERBATIM as
+  "Addendum: R-0014 B3 response, 2026-09-23" — `end` closed set extended to
+  {mate, stalemate, draw-material, rule50, repetition, plycap, crash}; `(Ns)` declared
+  as a separate `end_seconds` field (definition: whole elapsed game seconds, one
+  definition for every class; normative status: required telemetry, never part of the
+  membership test; legacy rows read by suffix-strip rule); Dataset schema line + B3.1
+  conjunct amended by the addendum; synthetic-20 test gains a 4th fixture (legacy
+  suffixed row must FAIL campaign schema, parse under reader rule). Read-only scan
+  pinned (`_s12_endscan_out.txt`: mate 1043, draw-claim 80, plycap 72, draw-material 43,
+  stalemate 2); doc nit surfaced (R-0014's 33 = k1–k5 subtotal; all-six = 43; ruling
+  unaffected). git diff: +65/−0, pure additions. Work item status left OPEN; HO-0008
+  filed for the full-discharge ruling.
 
 - 2026-09-22 — adversarial-reviewer: HO-0003 critique filed as **R-0011** (COMPLETED,
   `kind: critique`, `target: E-0011`). Verdict: **NOT CLEAN — blocking findings B1 (downstream

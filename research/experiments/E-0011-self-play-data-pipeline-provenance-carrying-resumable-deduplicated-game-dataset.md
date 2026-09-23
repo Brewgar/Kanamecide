@@ -389,5 +389,70 @@ CLI flag) — and record the confirmed working invocation in the RUN record. Gat
 open is engine *availability*; the critique loop (HO-0006/HO-0007) is still engine
 *permission*. E-0011 stays PENDING.
 
+## Addendum: R-0014 B3 response, 2026-09-23
+
+> R-0014 (critique, COMPLETED): B1 FULLY DISCHARGED, B2 FULLY DISCHARGED, N1–N7 + UCI
+> note DISCHARGED, gate (f) route executed PASS; **B3 PARTIAL — one new blocking
+> finding: the declared `end` vocabulary is not closed over the harness family's
+> reachable endings, and the `(Ns)` suffix is undeclared.** The fix below is landed
+> VERBATIM as R-0014 ordered it (their "exact missing sentence", lines 145–150 of
+> R-0014). Original text above is untouched; this block is pure additions.
+
+**The operative sentence (R-0014 verbatim, adopted):**
+
+> The `end` field's closed set is extended to `{mate, stalemate, draw-material, rule50,
+> repetition, plycap, crash}` — and the record declares whether the `(Ns)` seconds
+> suffix is part of the token or a separate `end_seconds` field; the Dataset section's
+> `end` schema line and the B3.1 conjunct agree with the extended set.
+
+**Decision on the suffix (the declaration R-0014 requires): the `(Ns)` suffix is NOT
+part of the token; it is a separate `end_seconds` field.**
+- **What N is:** whole elapsed seconds of the game — from the first engine move to
+  terminal adjudication — one single definition for every end-class, no per-class
+  variants (driver source of record: `e0010_match2.py` lines 119–125, `end + f"({dt:.0f}s)"`).
+  Observed ranges in the retained evidence (my read-only scan, engine-free, pinned
+  below): mate 0–19s, draw-claim 2–20s, draw-material 8–19s, stalemate 5–12s,
+  plycap 19–21s.
+- **Normative status:** `end_seconds` is REQUIRED TELEMETRY (integer ≥ 0, present in
+  every record), NOT a member of the closed vocabulary and NOT part of any
+  membership test: gate (d) checks the suffix-stripped token against the extended set
+  and checks `end_seconds` is a non-negative integer. No class-specific range is
+  gated (the retained evidence shows `mate(0s)` and `plycap(21s)`; both legal).
+- **Emission + reader rule:** the new generator MUST emit `end` as a SUFFIX-FREE token
+  plus `end_seconds` as its own field. For legacy/audit reads of EV-0001-family rows
+  (`token(Ns)`), the reader splits at `(`: `end = token`, `end_seconds = int(N)`.
+  Retained evidence stays valid under the reader rule without rewrite.
+
+**Extended vocabulary, effective for this campaign:** `end` ∈ `{mate, stalemate,
+draw-material, rule50, repetition, plycap, crash}` (R-0014's set, extended per the
+verbatim sentence). Mapping of the retained legacy tokens (realized set, my scan):
+`mate`→`mate`; `stalemate`→`stalemate`; `draw-material`→`draw-material`;
+`plycap`→`plycap`; `draw-claim`→ the fifty-move/repetition pair — the new campaign
+splits it into `rule50` (fifty-move claim fired) and `repetition` (threefold
+repetition fired); for any legacy row the discriminator is not recoverable from the
+retained JSONL alone, so audit reads map legacy `draw-claim` to the pair-union; `crash`
+covers the pre-existing crash rule (engine died / illegal / timeout → recorded as
+`crash` per the DEC-0010 crash=loss rule, alongside `crash_incident`).
+
+**Dataset-schema agreement (item 3 of the ordered fix):** the Dataset section's `end`
+schema line and the B2/B3.1 conjunct are amended BY THIS ADDENDUM (append-only — the
+original lines remain visible above, as history): the operative schema for the
+campaign is `end` ∈ the extended suffix-free set above AND `end_seconds` (int ≥ 0)
+AND `crash_incident` when `end == crash`. `tools/e0011_check.py` implements exactly
+this (extended set + suffix-strip reader rule); the synthetic-20-game negative test
+gains a fourth fixture: one legacy-style suffixed `end` row must FAIL the campaign
+schema while parsing cleanly under the reader rule (proving the rule is implemented,
+not assumed).
+
+**Evidence (this session's read-only scan; command → exit → path):**
+`python research\context\_s12_endscan.py` → EXIT:0 →
+`research\context\_s12_endscan_out.txt`. All-six realized totals (suffix-stripped):
+mate 1043, draw-claim 80, plycap 72, draw-material 43, stalemate 2, total 1,240.
+**Documentation nit surfaced (does not change the ruling):** R-0014 states
+"draw-material (all six rungs, 33/1,240 games)"; my scan finds 43/1,240 — 33 is
+exactly the k1–k5 subtotal (11+8+6+3+5), with k6 contributing the remaining 10. The
+finding stands under either count (draw-material is present on every rung); the number
+should be reconciled at the re-critique.
+
 
 
