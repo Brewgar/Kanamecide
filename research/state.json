@@ -1017,7 +1017,7 @@
       "title": "Gate 0 unrunnable: Device Guard hard-blocks kana.exe (every build, every path)"
     }
   ],
-  "generated": "2026-09-23T21:56:16",
+  "generated": "2026-09-24T00:10:58",
   "metrics": {
     "by_kind": {
       "agent_profile": 1,
@@ -1035,23 +1035,23 @@
       "profile": 4,
       "question": 8,
       "report": 13,
-      "review": 13,
+      "review": 15,
       "round_megaprompt": 1,
-      "session": 11,
+      "session": 12,
       "work": 7
     },
     "by_status": {
       "ACTIVE": 14,
-      "CLOSED": 11,
-      "COMPLETED": 19,
-      "DONE": 7,
+      "CLOSED": 12,
+      "COMPLETED": 21,
+      "DONE": 9,
       "DRAFT": 1,
       "IN_PROGRESS": 2,
       "OPEN": 30,
       "PENDING": 5,
       "RECORDED": 2,
       "REGISTERED": 8,
-      "REQUESTED": 3,
+      "REQUESTED": 1,
       "RESOLVED": 1,
       "SUPERSEDED": 4
     },
@@ -1059,10 +1059,10 @@
     "contradiction_candidates": 0,
     "dangling_ids": 7,
     "duplicate_candidates": 2,
-    "edges_total": 1676,
+    "edges_total": 1780,
     "legacy_experiments_without_pre_registration": 6,
     "open_questions": 8,
-    "records_total": 146,
+    "records_total": 149,
     "revival_candidates": 5
   },
   "questions_all": [
@@ -1442,33 +1442,6 @@
   "timeline_tail": [
     {
       "example": false,
-      "id": "PR-0004",
-      "kind": "principle",
-      "rel": "principles/PR-0004-verifier-never-owner.md",
-      "status": "ACTIVE",
-      "title": "The verifier is never the owner",
-      "when": "2026-09-19"
-    },
-    {
-      "example": false,
-      "id": "Q-0001",
-      "kind": "question",
-      "rel": "questions/Q-0001-which-eval-terms-earn-their-cost.md",
-      "status": "OPEN",
-      "title": "Which eval terms actually earn their cost, and should mobility/tempo be re-tuned or removed?",
-      "when": "2026-09-19"
-    },
-    {
-      "example": false,
-      "id": "Q-0002",
-      "kind": "question",
-      "rel": "questions/Q-0002-pvs-tt-lmr-null-measured-deltas.md",
-      "status": "OPEN",
-      "title": "Can PVS + TT + LMR/null-move be added as measured deltas on O3d (O3e), and how much do they cut nodes?",
-      "when": "2026-09-19"
-    },
-    {
-      "example": false,
       "id": "Q-0003",
       "kind": "question",
       "rel": "questions/Q-0003-persistent-tt-across-moves.md",
@@ -1778,7 +1751,7 @@
       "id": "HO-0006",
       "kind": "handoff",
       "rel": "handoffs/HO-0006-re-critique-e-0011-addenda-b1-b2-b3-before-any-running.md",
-      "status": "REQUESTED",
+      "status": "DONE",
       "title": "Re-critique E-0011's R-0011 addenda (B1/B2/B3 responses) before any RUNNING",
       "when": "2026-09-23"
     },
@@ -1787,8 +1760,26 @@
       "id": "HO-0007",
       "kind": "handoff",
       "rel": "handoffs/HO-0007-re-critique-e-0012-addenda-b1-b2-n4-null-pair-before-any-running.md",
-      "status": "REQUESTED",
+      "status": "DONE",
       "title": "Re-critique E-0012's R-0012 addenda (B1/B2 responses + adopted null-pair control) before any RUNNING",
+      "when": "2026-09-23"
+    },
+    {
+      "example": false,
+      "id": "R-0014",
+      "kind": "review",
+      "rel": "reviews/R-0014-critique-e-0011-addenda-b1-b2-b3-response-ruling.md",
+      "status": "COMPLETED",
+      "title": "R 0014 critique e 0011 addenda b1 b2 b3 response ruling",
+      "when": "2026-09-23"
+    },
+    {
+      "example": false,
+      "id": "R-0015",
+      "kind": "review",
+      "rel": "reviews/R-0015-critique-e-0012-addenda-b1-b2-n4-null-pair-ruling.md",
+      "status": "COMPLETED",
+      "title": "R 0015 critique e 0012 addenda b1 b2 n4 null pair ruling",
       "when": "2026-09-23"
     },
     {
@@ -1798,6 +1789,15 @@
       "rel": "sessions/S-0011-r-0011-r-0012-addenda-e-0011-b1-b2-b3-e-0012-b1-b2-n4-replay-tracked-ho-0006-ho-0007-gate0-open.md",
       "status": "CLOSED",
       "title": "R-0011/R-0012 blocking-findings fix session: E-0011 B1/B2/B3 + E-0012 B1/B2 + N4 adopted; replay artifacts git-tracked (16ac1ff); HO-0006/HO-0007 re-critiques out; Gate 0 OPEN (attempt #10); engine-free by design",
+      "when": "2026-09-23"
+    },
+    {
+      "example": false,
+      "id": "S-0012",
+      "kind": "session",
+      "rel": "sessions/S-0012-ho-0006-ho-0007-recritique-r-0014-partial-r-0015-clean.md",
+      "status": "CLOSED",
+      "title": "HO-0006/HO-0007 re-critique of the R-0011/R-0012 addenda: R-0014 (E-0011 PARTIAL, 1 sentence left) + R-0015 (E-0012 CLEAN)",
       "when": "2026-09-23"
     }
   ]

@@ -1,7 +1,7 @@
 # Research State (GENERATED — do not edit)
 
 Derived from the record store by `research.py state`. Regenerate after every change.
-Generated: 2026-09-23T21:56:16; schema 2.
+Generated: 2026-09-24T00:10:58; schema 2.
 Every entry is a PROJECTION of the linked records — follow them before believing.
 
 ## Current best beliefs (hypotheses with measured weight)
@@ -43,9 +43,6 @@ Every entry is a PROJECTION of the linked records — follow them before believi
 - hypothesis **H-0002-magic-stub** Magic Bitboards with PEXT Provide >=3x NPS Speedup — SUPERSEDED. No revisit condition recorded.
 
 ## Recent timeline
-- 2026-09-22 handoff HO-0002 (DONE) : Independently verify W-0002: D-0007 + DEC-0010 + R-0009 (E-0010 decision-rule recalibration)
-- 2026-09-22 handoff HO-0003 (DONE) : Critique the E-0011 pre-registration (W-0001 step 1) BEFORE any RUNNING
-- 2026-09-22 handoff HO-0004 (DONE) : Critique the E-0012 pre-registration and its offline SPRT replay validation BEFORE any RUNNING
 - 2026-09-22 handoff HO-0005 (REQUESTED) : Verify W-0003: R-0013 (Round-2 AGREEMENT_MATRIX backfill) and the untouched matrix
 - 2026-09-22 review R-0010 (COMPLETED) : R 0010 independent verification w 0002 d 0007 dec 0010 r 0009 occupant 4
 - 2026-09-22 review R-0011 (COMPLETED) : R 0011 critique e 0011 pre registration self play data pipeline
@@ -55,9 +52,12 @@ Every entry is a PROJECTION of the linked records — follow them before believi
 - 2026-09-22 session S-0009 (CLOSED) : W-0001/W-0005 step 1: E-0011 + E-0012 pre-registrations filed; offline SPRT replay PASS; HO-0003/HO-0004; Gate-0 re-block
 - 2026-09-22 session S-0010 (CLOSED) : HO-0003/HO-0004 critiques (R-0011/R-0012: both NOT CLEAN) + W-0003 backfill (R-0013) + HO-0005
 - 2026-09-22 work W-0002 (DONE) : Recalibrate the E-0010 effect-size decision rule (D-0007 -> DEC-0010)
-- 2026-09-23 handoff HO-0006 (REQUESTED) : Re-critique E-0011's R-0011 addenda (B1/B2/B3 responses) before any RUNNING
-- 2026-09-23 handoff HO-0007 (REQUESTED) : Re-critique E-0012's R-0012 addenda (B1/B2 responses + adopted null-pair control) before any RUNNING
+- 2026-09-23 handoff HO-0006 (DONE) : Re-critique E-0011's R-0011 addenda (B1/B2/B3 responses) before any RUNNING
+- 2026-09-23 handoff HO-0007 (DONE) : Re-critique E-0012's R-0012 addenda (B1/B2 responses + adopted null-pair control) before any RUNNING
+- 2026-09-23 review R-0014 (COMPLETED) : R 0014 critique e 0011 addenda b1 b2 b3 response ruling
+- 2026-09-23 review R-0015 (COMPLETED) : R 0015 critique e 0012 addenda b1 b2 n4 null pair ruling
 - 2026-09-23 session S-0011 (CLOSED) : R-0011/R-0012 blocking-findings fix session: E-0011 B1/B2/B3 + E-0012 B1/B2 + N4 adopted; replay artifacts git-tracked (16ac1ff); HO-0006/HO-0007 re-critiques out; Gate 0 OPEN (attempt #10); engine-free by design
+- 2026-09-23 session S-0012 (CLOSED) : HO-0006/HO-0007 re-critique of the R-0011/R-0012 addenda: R-0014 (E-0011 PARTIAL, 1 sentence left) + R-0015 (E-0012 CLEAN)
 
 ## Metrics
 ```
@@ -78,23 +78,23 @@ Every entry is a PROJECTION of the linked records — follow them before believi
     "profile": 4,
     "question": 8,
     "report": 13,
-    "review": 13,
+    "review": 15,
     "round_megaprompt": 1,
-    "session": 11,
+    "session": 12,
     "work": 7
   },
   "by_status": {
     "ACTIVE": 14,
-    "CLOSED": 11,
-    "COMPLETED": 19,
-    "DONE": 7,
+    "CLOSED": 12,
+    "COMPLETED": 21,
+    "DONE": 9,
     "DRAFT": 1,
     "IN_PROGRESS": 2,
     "OPEN": 30,
     "PENDING": 5,
     "RECORDED": 2,
     "REGISTERED": 8,
-    "REQUESTED": 3,
+    "REQUESTED": 1,
     "RESOLVED": 1,
     "SUPERSEDED": 4
   },
@@ -102,10 +102,10 @@ Every entry is a PROJECTION of the linked records — follow them before believi
   "contradiction_candidates": 0,
   "dangling_ids": 7,
   "duplicate_candidates": 2,
-  "edges_total": 1676,
+  "edges_total": 1780,
   "legacy_experiments_without_pre_registration": 6,
   "open_questions": 8,
-  "records_total": 146,
+  "records_total": 149,
   "revival_candidates": 5
 }
 
