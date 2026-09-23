@@ -1,0 +1,50 @@
+W-0005 / E-0012 offline SPRT replay — researcher-architect, 2026-09-22
+bounds +/-2.9444 (alpha=beta=0.05); sigma(Elo)=371 (E-0010, DEC-0010)
+
+k1n: N=200  W=85 D=51 L=64  (record 85/51/64, N=200)  totals_match=True  duplicate-move-lists=0  a_white=100/200
+     input sha256: df66d3cf90858cd4263a4de08edbb67270e33299cf4eaa9a62150f3061f426c9
+k2n: N=200  W=101 D=45 L=54  (record 101/45/54, N=200)  totals_match=True  duplicate-move-lists=0  a_white=100/200
+     input sha256: 334efce53e16239a6a2f64b20bc22eafec8a1dd2fbcca0882ba6f4f659ebba9f
+k3n: N=200  W=116 D=27 L=57  (record 116/27/57, N=200)  totals_match=True  duplicate-move-lists=0  a_white=100/200
+     input sha256: 81d6e123c16fe27d0df415d9a6237f2b267dfae6f0802c40c9d2999cffccb480
+k4n: N=200  W=120 D=17 L=63  (record 120/17/63, N=200)  totals_match=True  duplicate-move-lists=0  a_white=100/200
+     input sha256: 06750e89947e449962096a1442f51eeec910f3d1edea6f3b4b3f47a0594915a4
+k5n: N=200  W=122 D=27 L=51  (record 122/27/51, N=200)  totals_match=True  duplicate-move-lists=0  a_white=100/200
+     input sha256: 835dc77f1e05dc36eb126b3e7283d54fdbe2ebad0ebac499b5ae986d39b86c28
+k6n: N=240  W=144 D=30 L=66  (record 144/30/66, N=240)  totals_match=True  duplicate-move-lists=0  a_white=120/240
+     input sha256: 9da1cfa0cb24ed94cf4a64ad47c0fed9387b5a3163b590153677e61c1fd0d227
+
+== Replay: cumulative draws-as-halves (lite) LLR, [lo,hi] from DEC-0010 ==
+  k1n S [0,+20]   : no decision in 200       final LLR= +0.878   (pred-cross Wald=    770 lite=    671)
+  k1n R [0,+5]    : no decision in 200       final LLR= +0.282   (pred-cross Wald=   2398 lite=   2092)
+  k1n M [100,150] : decide H0 at game   79   final LLR= -3.053   (pred-cross Wald=    -91 lite=    -85)
+  k2n S [0,+20]   : no decision in 200       final LLR= +2.374   (pred-cross Wald=    280 lite=    248)
+  k2n R [0,+5]    : no decision in 200       final LLR= +0.656   (pred-cross Wald=   1016 lite=    898)
+  k2n M [100,150] : decide H0 at game  192   final LLR= -3.043   (pred-cross Wald=   -190 lite=   -187)
+  k3n S [0,+20]   : decide H1 at game  191   final LLR= +2.965   (pred-cross Wald=    214 lite=    192)
+  k3n R [0,+5]    : no decision in 200       final LLR= +0.828   (pred-cross Wald=    795 lite=    711)
+  k3n M [100,150] : no decision in 200       final LLR= -1.425   (pred-cross Wald=   -395 lite=   -413)
+  k4n S [0,+20]   : decide H1 at game  190   final LLR= +2.967   (pred-cross Wald=    223 lite=    200)
+  k4n R [0,+5]    : no decision in 200       final LLR= +0.800   (pred-cross Wald=    825 lite=    736)
+  k4n M [100,150] : no decision in 200       final LLR= -1.712   (pred-cross Wald=   -335 lite=   -344)
+  k5n S [0,+20]   : decide H1 at game  147   final LLR= +2.980   (pred-cross Wald=    172 lite=    157)
+  k5n R [0,+5]    : no decision in 200       final LLR= +1.001   (pred-cross Wald=    648 lite=    588)
+  k5n M [100,150] : no decision in 200       final LLR= +0.302   (pred-cross Wald=   3118 lite=   1948)
+  k6n S [0,+20]   : decide H1 at game  179   final LLR= +2.985   (pred-cross Wald=    191 lite=    173)
+  k6n R [0,+5]    : no decision in 240       final LLR= +1.098   (pred-cross Wald=    714 lite=    644)
+  k6n M [100,150] : no decision in 240       final LLR= -0.673   (pred-cross Wald=   -911 lite=  -1049)
+
+== k6 (stage-6 vs stage-0, true +116.1 Elo) vs pre-registered bands ==
+  Tier S [0,+20]:   verdict=H1 crossing_game=179 final=+2.985 -> band [100,260] & H1: PASS
+  Tier R [0,+5]:    verdict=None crossing_game=None final=+1.098 -> 'no decision in 240': PASS
+  Tier M [100,150]: verdict=None crossing_game=None final=-0.673 -> 'no decision, LLR<0': PASS
+
+== Model quantities re-derived (w0002_power.py formulas, sigma=371) ==
+  Tier S [0,20]     ASN(H1)= 1823.7  ASN(H0)= 2026.4
+  Tier R [0,5]      ASN(H1)=29179.8  ASN(H0)=32422.0
+  Tier M [100,150]  ASN(H1)=  291.8  ASN(H0)=  324.2
+
+sample-integrity: all-rung totals match E-0010 = True
+NOTE: a single replay estimates a crossing TIME at the known true effect, not ASN;
+ASN(H1)=~1822 (Tier S) is the model's expectation at the +20 edge, re-derived above.
+EXIT:0 

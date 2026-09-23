@@ -117,6 +117,10 @@ __pycache__/
 # Research: derived context packs are regenerated, not hand-authored.
 research/context/*
 !research/context/.gitkeep
+# R-0012 B1 (2026-09-23): the E-SPRT-lite replay artifacts are AUDIT EVIDENCE —
+# their git history proves the pre-committed band state, so they must be tracked.
+!research/context/w0005_sprt_replay.py
+!research/context/w0005_sprt_replay_output.txt
 
 # OS / editor
 Thumbs.db
