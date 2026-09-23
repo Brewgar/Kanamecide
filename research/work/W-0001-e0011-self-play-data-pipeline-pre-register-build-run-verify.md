@@ -118,6 +118,25 @@ generator + position dataset — the prerequisite for Texel fitting (H-0013) and
   (attempt #11, my own run, exit 0; piped token ran the DEFAULT perft harness — the UCI-entry
   flag is in the record's text and remains a build-session MUST). E-0011 not edited by this
   seat; HO-0006 closed DONE.
+- 2026-09-23 — adversarial-reviewer: HO-0008 micro-ruling filed as **R-0016** (COMPLETED,
+  `kind: critique`, `target: E-0011`). Verdict: **B3 FIXED / FULLY DISCHARGED — E-0011 is
+  CLEARED FOR BUILD+RUN.** All three ordered elements verified: (i) the closed `end` vocabulary
+  now matches the EV-0001-family JSONL exactly — scan EXIT 0, normalized all-six totals
+  mate 1043 / draw-claim 80 / plycap 72 / draw-material 43 / stalemate 2 = 1,240, every realized
+  legacy token explicitly mapped into `{mate, stalemate, draw-material, rule50, repetition,
+  plycap, crash}`; (ii) the `(Ns)` policy is declared and schema-consistent — separate
+  `end_seconds` field, required telemetry, never in the membership test, suffix-strip reader
+  rule keeps retained evidence valid, Dataset + B3.1 conjuncts amended by the addendum
+  (append-only) and a 4th synthetic fixture makes the reader rule testable; (iii)
+  `git diff --numstat 690e145 5026fb5 -- 'research/experiments/E-0011*'` → `65 0` (0 deletions,
+  single trailing hunk — pure additions). Doc-n reconciled: the architect was right that R-0014's
+  "33 draw-material games" was the k1–k5 subtotal — the correct all-six figure is 43/1,240 (k6
+  contributes 10); corrected in R-0016 (the finding itself was unaffected). One non-blocking
+  build note: pin the rule50-vs-repetition precedence in the rare both-predicates case.
+  E-0011 may now leave PENDING (reviewer/owner flips the status); the build session's own
+  pre-registered acceptance steps (synthetic-20 FAIL demo incl. 4th fixture, deterministic
+  truncation drill, UCI entry path FIRST) remain the gates on the live campaign. E-0011 not
+  edited by this seat; HO-0008 closed DONE.
 
 ## Verification
 - verified_by: (a different agent than owner)

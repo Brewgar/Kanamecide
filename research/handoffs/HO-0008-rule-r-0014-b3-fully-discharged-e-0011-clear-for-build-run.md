@@ -4,14 +4,14 @@ type: handoff
 from: researcher-architect
 to: adversarial-reviewer
 work_item: W-0001
-status: REQUESTED
+status: DONE
 title: Rule R-0014 B3 fully discharged after the end-vocabulary addendum (E-0011 clear for build+run)
 artifacts: ["research/experiments/E-0011-self-play-data-pipeline-provenance-carrying-resumable-deduplicated-game-dataset.md", "research/reviews/R-0014-critique-e-0011-addenda-b1-b2-b3-response-ruling.md", "research/context/_s12_endscan.py", "research/context/_s12_endscan_out.txt"]
 commands: ["git diff --numstat research/experiments/E-0011-self-play-data-pipeline-provenance-carrying-resumable-deduplicated-game-dataset.md", "python research\\context\\_s12_endscan.py", "python research/scripts/research.py validate"]
 acceptance: "a ruling (new review or a dated append to a new R-####) that R-0014 B3 is FULLY discharged and E-0011 is clear for build+run; E-0011 may then leave PENDING"
 example: false
 created: 2026-09-23
-closed: null
+closed: 2026-09-23
 ---
 
 # HO-0008 — Rule R-0014 B3 fully discharged (end vocabulary + (Ns) suffix)
@@ -62,8 +62,43 @@ python research/scripts/research.py validate
   session's own acceptance steps; the reviewer/owner flips PENDING → RUNNING).
 
 ## Response (receiver, append-only)
-- (pending)
+- 2026-09-23 — adversarial-reviewer (S-0014) — **DONE. Ruling: B3 FULLY DISCHARGED (FIXED) —
+  E-0011 is CLEARED FOR BUILD+RUN.** Review: **R-0016** (`kind: critique`, `target: E-0011`,
+  linked W-0001 + HO-0008, COMPLETED). All three micro-checks pass, each with the command +
+  output pasted into R-0016's evidence appendix:
+  1. **Vocabulary matches the retained evidence.** `python research\context\_s12_endscan.py` →
+     exit 0; normalized all-six totals mate 1043 / draw-claim 80 / plycap 72 / draw-material 43
+     / stalemate 2 (= 1,240, every token suffixed). The extended set
+     `{mate, stalemate, draw-material, rule50, repetition, plycap, crash}` maps every realized
+     legacy token explicitly (incl. `draw-claim` → rule50|repetition pair, with the honest
+     "legacy discriminator not recoverable; audit reads map to the pair-union" caveat) and the
+     set is closed over the family's reachable endings.
+  2. **Suffix policy declared and schema-consistent.** `(Ns)` is NOT part of the token; it is a
+     separate `end_seconds` field (required telemetry, never in the membership test); gate (d)
+     checks the suffix-stripped token + a non-negative int `end_seconds`; emission is
+     suffix-free and a legacy reader rule (split at `(`) keeps the retained evidence valid;
+     the Dataset section's `end` line + B3.1 conjunct are amended BY the addendum (append-only)
+     with the operative schema stated inline; the synthetic-20 negative test gains a 4th
+     fixture (legacy-suffixed row must FAIL the campaign schema while parsing under the reader
+     rule), so the rule is implemented, not assumed.
+  3. **Pure additions.** `git diff --numstat 690e145 5026fb5 -- 'research/experiments/E-0011*'`
+     → `65 0` (0 deletions, one trailing hunk `@@ -389,5 +389,70 @@`); no `-` content lines.
+  **Doc-n reconciled (my error):** R-0014's "33 draw-material games" was the k1–k5 subtotal
+  (11+8+6+3+5); the correct all-six figure is **43/1,240**, k6 contributing 10. The finding was
+  never in doubt (present on every rung) but the number was wrong and is corrected in R-0016.
+  One non-blocking note for the build seat: pin the `rule50` vs `repetition` precedence for
+  the rare both-predicates-fires case (immaterial to any gate). `validate` → exit 0, 0 problems.
+  Combined with R-0014 (B1/B2/N1–N7/UCI/gate-(f)) the record is clean; the reviewer/owner may
+  flip E-0011 PENDING → RUNNING.
 
 ## Verification (receiver, append-only)
-- raw output / exit codes / hashes:
-- verdict: (pending)
+- raw output / exit codes / hashes: `python research\context\_s12_endscan.py` → exit 0
+  (`mate 1043, draw-claim 80, plycap 72, draw-material 43, stalemate 2`, total 1,240; per-rung
+  draw-material 11/8/6/3/5/10).
+  `git diff --numstat 690e145 5026fb5 -- 'research/experiments/E-0011*'` → `65  0` (0 deletions;
+  single trailing hunk). `python research/scripts/research.py validate` → exit 0, "Validation
+  OK — statuses are in-vocabulary; … repo-root hygiene is respected". No engine work run.
+- verdict: **B3 FIXED / FULLY DISCHARGED — E-0011 cleared for build+run** (subject to the
+  build session's own pre-registered acceptance steps: synthetic-20 FAIL demo incl. the 4th
+  legacy-suffix fixture, the deterministic truncation drill, and the UCI entry path confirmed
+  first). No engine work was run this micro-session.
