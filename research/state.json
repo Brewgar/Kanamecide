@@ -1017,7 +1017,7 @@
       "title": "Gate 0 unrunnable: Device Guard hard-blocks kana.exe (every build, every path)"
     }
   ],
-  "generated": "2026-09-24T00:18:43",
+  "generated": "2026-09-24T00:25:25",
   "metrics": {
     "by_kind": {
       "agent_profile": 1,
@@ -1035,23 +1035,23 @@
       "profile": 4,
       "question": 8,
       "report": 13,
-      "review": 15,
+      "review": 16,
       "round_megaprompt": 1,
-      "session": 13,
+      "session": 14,
       "work": 7
     },
     "by_status": {
       "ACTIVE": 14,
-      "CLOSED": 13,
-      "COMPLETED": 21,
-      "DONE": 9,
+      "CLOSED": 14,
+      "COMPLETED": 22,
+      "DONE": 10,
       "DRAFT": 1,
       "IN_PROGRESS": 2,
       "OPEN": 30,
       "PENDING": 5,
       "RECORDED": 2,
       "REGISTERED": 8,
-      "REQUESTED": 2,
+      "REQUESTED": 1,
       "RESOLVED": 1,
       "SUPERSEDED": 4
     },
@@ -1059,10 +1059,10 @@
     "contradiction_candidates": 0,
     "dangling_ids": 7,
     "duplicate_candidates": 2,
-    "edges_total": 1830,
+    "edges_total": 1895,
     "legacy_experiments_without_pre_registration": 6,
     "open_questions": 8,
-    "records_total": 151,
+    "records_total": 153,
     "revival_candidates": 5
   },
   "questions_all": [
@@ -1442,24 +1442,6 @@
   "timeline_tail": [
     {
       "example": false,
-      "id": "Q-0005",
-      "kind": "question",
-      "rel": "questions/Q-0005-gpu-vs-cpu-inference-economics.md",
-      "status": "OPEN",
-      "title": "CPU-VNNI vs GPU batch-1 inference economics: is the RTX 5070 Ti a training device or a playing device?",
-      "when": "2026-09-19"
-    },
-    {
-      "example": false,
-      "id": "Q-0006",
-      "kind": "question",
-      "rel": "questions/Q-0006-self-play-data-pipeline.md",
-      "status": "OPEN",
-      "title": "Can the E-0011 self-play pipeline produce a deduped, provenance-carrying dataset that trains an eval that beats the hand-tuned one?",
-      "when": "2026-09-19"
-    },
-    {
-      "example": false,
       "id": "Q-0007",
       "kind": "question",
       "rel": "questions/Q-0007-pext-slider-share-and-worth.md",
@@ -1751,7 +1733,7 @@
       "id": "HO-0008",
       "kind": "handoff",
       "rel": "handoffs/HO-0008-rule-r-0014-b3-fully-discharged-e-0011-clear-for-build-run.md",
-      "status": "REQUESTED",
+      "status": "DONE",
       "title": "Rule R-0014 B3 fully discharged after the end-vocabulary addendum (E-0011 clear for build+run)",
       "when": "2026-09-23"
     },
@@ -1771,6 +1753,15 @@
       "rel": "reviews/R-0015-critique-e-0012-addenda-b1-b2-n4-null-pair-ruling.md",
       "status": "COMPLETED",
       "title": "R 0015 critique e 0012 addenda b1 b2 n4 null pair ruling",
+      "when": "2026-09-23"
+    },
+    {
+      "example": false,
+      "id": "R-0016",
+      "kind": "review",
+      "rel": "reviews/R-0016-ruling-r-0014-b3-end-vocabulary-ns-suffix.md",
+      "status": "COMPLETED",
+      "title": "R 0016 ruling r 0014 b3 end vocabulary ns suffix",
       "when": "2026-09-23"
     },
     {
@@ -1798,6 +1789,15 @@
       "rel": "sessions/S-0013-micro-r-0014-b3-fix-e-0011-end-vocabulary-ns-suffix-ho-0008-gate0-12.md",
       "status": "CLOSED",
       "title": "Micro-session: R-0014 B3 fix (end vocabulary + (Ns) suffix policy) landed verbatim in E-0011; HO-0008 full-discharge ruling requested; Gate 0 attempt #12 (OPEN); engine-free text work only",
+      "when": "2026-09-23"
+    },
+    {
+      "example": false,
+      "id": "S-0014",
+      "kind": "session",
+      "rel": "sessions/S-0014-ho-0008-r-0016-b3-fixed-e-0011-cleared-for-build-run.md",
+      "status": "CLOSED",
+      "title": "HO-0008 micro-ruling - R-0016: B3 FIXED; E-0011 cleared for build+run",
       "when": "2026-09-23"
     }
   ]

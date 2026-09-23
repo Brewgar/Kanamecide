@@ -93,6 +93,7 @@
 - [R-0013](reviews/R-0013-round2-agreement-matrix-backfill.md) — (untitled) — status=COMPLETED
 - [R-0014](reviews/R-0014-critique-e-0011-addenda-b1-b2-b3-response-ruling.md) — (untitled) — status=COMPLETED
 - [R-0015](reviews/R-0015-critique-e-0012-addenda-b1-b2-n4-null-pair-ruling.md) — (untitled) — status=COMPLETED
+- [R-0016](reviews/R-0016-ruling-r-0014-b3-end-vocabulary-ns-suffix.md) — (untitled) — status=COMPLETED
 
 ## Open Questions
 
@@ -143,7 +144,6 @@
 ## Handoffs (open)
 
 - [HO-0005](handoffs/HO-0005-verify-w-0003-round2-agreement-matrix-backfill-r-0013.md) — Verify W-0003: R-0013 (Round-2 AGREEMENT_MATRIX backfill) and the untouched matrix — status=REQUESTED
-- [HO-0008](handoffs/HO-0008-rule-r-0014-b3-fully-discharged-e-0011-clear-for-build-run.md) — Rule R-0014 B3 fully discharged after the end-vocabulary addendum (E-0011 clear for build+run) — status=REQUESTED
 
 ## Handoffs (closed)
 
@@ -153,6 +153,7 @@
 - [HO-0004](handoffs/HO-0004-critique-e-0012-pre-registration-and-offline-sprt-replay.md) — Critique the E-0012 pre-registration and its offline SPRT replay validation BEFORE any RUNNING — status=DONE
 - [HO-0006](handoffs/HO-0006-re-critique-e-0011-addenda-b1-b2-b3-before-any-running.md) — Re-critique E-0011's R-0011 addenda (B1/B2/B3 responses) before any RUNNING — status=DONE
 - [HO-0007](handoffs/HO-0007-re-critique-e-0012-addenda-b1-b2-n4-null-pair-before-any-running.md) — Re-critique E-0012's R-0012 addenda (B1/B2 responses + adopted null-pair control) before any RUNNING — status=DONE
+- [HO-0008](handoffs/HO-0008-rule-r-0014-b3-fully-discharged-e-0011-clear-for-build-run.md) — Rule R-0014 B3 fully discharged after the end-vocabulary addendum (E-0011 clear for build+run) — status=DONE
 
 ## Runs (live)
 
@@ -177,6 +178,7 @@
 - [S-0011](sessions/S-0011-r-0011-r-0012-addenda-e-0011-b1-b2-b3-e-0012-b1-b2-n4-replay-tracked-ho-0006-ho-0007-gate0-open.md) — R-0011/R-0012 blocking-findings fix session: E-0011 B1/B2/B3 + E-0012 B1/B2 + N4 adopted; replay artifacts git-tracked (16ac1ff); HO-0006/HO-0007 re-critiques out; Gate 0 OPEN (attempt #10); engine-free by design — status=CLOSED
 - [S-0012](sessions/S-0012-ho-0006-ho-0007-recritique-r-0014-partial-r-0015-clean.md) — HO-0006/HO-0007 re-critique of the R-0011/R-0012 addenda: R-0014 (E-0011 PARTIAL, 1 sentence left) + R-0015 (E-0012 CLEAN) — status=CLOSED
 - [S-0013](sessions/S-0013-micro-r-0014-b3-fix-e-0011-end-vocabulary-ns-suffix-ho-0008-gate0-12.md) — Micro-session: R-0014 B3 fix (end vocabulary + (Ns) suffix policy) landed verbatim in E-0011; HO-0008 full-discharge ruling requested; Gate 0 attempt #12 (OPEN); engine-free text work only — status=CLOSED
+- [S-0014](sessions/S-0014-ho-0008-r-0016-b3-fixed-e-0011-cleared-for-build-run.md) — HO-0008 micro-ruling - R-0016: B3 FIXED; E-0011 cleared for build+run — status=CLOSED
 
 ## Unrendered Records (bug — report this)
 
