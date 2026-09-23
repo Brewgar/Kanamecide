@@ -79,6 +79,28 @@ generator + position dataset — the prerequisite for Texel fitting (H-0013) and
   supported (130.3 plies/game ⇒ ~130k positions/1,000 games; quiet-yield proxy ≈76.9k/1,000;
   White 58.5 %). Next: researcher-architect's addendum → re-critique before `status: RUNNING`.
   E-0011 record not edited by this seat; HO-0003 closed DONE.
+- 2026-09-23 — adversarial-reviewer: HO-0006 re-critique filed as **R-0014** (COMPLETED,
+  `kind: critique`, `target: E-0011`). Verdict: **PARTIAL — B1 and B2 FULLY DISCHARGED**
+  (leakage contract is now field-enforced: `dataset_sha256`/`dataset_n_games` as a step-5
+  deliverable + `training_game_overlap = 0` machine gate with named normalization
+  `tuple(opening)+tuple(san)` + distinct-salt rule + `fitted_params_sha256`; kill window
+  [400,600], presence test = parse+schema+dense id, `.torn` quarantine + incident +
+  re-emit-under-own-id, deterministic truncation drill as a pre-registered gate-(e)
+  acceptance step, log-preservation as evidence-auditable run policy, runjob counts ruled
+  telemetry-only). **N1–N7 + Gate-0/UCI note DISCHARGED; gate (f) executed by the reviewer
+  route (0 strength-assertion lines in Results/Stat.Analysis/Interpretation/Conclusion).**
+  **B3 PARTIAL — ONE new blocking finding** from the HO-0006-ordered spot-check of the ten
+  value-level conjuncts against EV-0010's actual JSONL shape: the declared closed `end`
+  vocabulary `{mate, rule50, repetition, plycap, crash}` omits `stalemate` (k2n/k5n) and
+  `draw-material` (ALL six rungs, 33/1,240 games), and every retained emission carries an
+  `(Ns)` seconds suffix with no declared suffix policy — a legal game can have no legal label,
+  forcing a gate-(d) false FAIL or a provenance lie at emit time. Missing sentence (fix is one
+  line): extend the set to `{mate, stalemate, draw-material, rule50, repetition, plycap, crash}`
+  + declare the suffix policy (strip at emission or separate `end_seconds` field), Dataset
+  schema line in agreement. **E-0011 stays PENDING on exactly that sentence.** Gate 0 OPEN
+  (attempt #11, my own run, exit 0; piped token ran the DEFAULT perft harness — the UCI-entry
+  flag is in the record's text and remains a build-session MUST). E-0011 not edited by this
+  seat; HO-0006 closed DONE.
 
 ## Verification
 - verified_by: (a different agent than owner)
