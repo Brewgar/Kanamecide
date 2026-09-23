@@ -13,7 +13,7 @@
 
 | Role | Assigned model | Since | Notes |
 |---|---|---|---|
-| researcher-architect | (unassigned — seat occupied 2026-09-22, S-0009) | 2026-09-22 | Round 4: W-0001 step 1 (E-0011 filed) + W-0005 step 1 (E-0012 filed, offline validation PASS) DONE; critiques routed HO-0003/HO-0004 |
+| researcher-architect | (unassigned — seat occupied 2026-09-22 S-0009, 2026-09-23 S-0011) | 2026-09-23 | Round 4: W-0001 + W-0005 step 1 filed (E-0011/E-0012 PENDING, S-0009); R-0011/R-0012 addenda landed 2026-09-23 (S-0011) — re-critiques routed HO-0006/HO-0007; both stay PENDING until clean rulings |
 | systems-researcher | (unassigned) | — | Round 4: W-0001 build/run under runjob.py |
 | adversarial-reviewer | (unassigned — seat occupied 2026-09-22, S-0010) | 2026-09-22 | Round 4: HO-0003/HO-0004 critique gates closed **NOT CLEAN** (R-0011: E-0011 B1 leakage contract / B2 resume-torn-write / B3 presence-only gate (d); R-0012: E-0012 B1 untracked pre-commitment / B2 resume-durability policy) — both records stay PENDING; W-0003 backfilled as R-0013 (matrix untouched), HO-0005 to verification-auditor; W-0001/W-0005 stay OPEN |
 | implementation-engineer | (unassigned) | — | Round 4: W-0001 generator code, W-0006 hygiene |

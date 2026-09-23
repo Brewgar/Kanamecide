@@ -1,7 +1,7 @@
 # Research State (GENERATED — do not edit)
 
 Derived from the record store by `research.py state`. Regenerate after every change.
-Generated: 2026-09-23T21:23:05; schema 2.
+Generated: 2026-09-23T21:56:16; schema 2.
 Every entry is a PROJECTION of the linked records — follow them before believing.
 
 ## Current best beliefs (hypotheses with measured weight)
@@ -43,9 +43,6 @@ Every entry is a PROJECTION of the linked records — follow them before believi
 - hypothesis **H-0002-magic-stub** Magic Bitboards with PEXT Provide >=3x NPS Speedup — SUPERSEDED. No revisit condition recorded.
 
 ## Recent timeline
-- 2026-09-21 session S-0007 (CLOSED) : W-0002: E-0010 decision-rule recalibration (D-0007 solved by arithmetic; DEC-0010 ACTIVE; R-0009 addendum; HO-0002 to verification-auditor; Gate-0 re-block)
-- 2026-09-22 experiment E-0011 (PENDING) : E-0011 — Self-play data pipeline: resumable, provenance-carrying, deduplicated game dataset for Texel fitting
-- 2026-09-22 experiment E-0012 (PENDING) : E-0012 — E-SPRT-lite comparison harness (pre-registered, DEC-0010 tiers), offline-validated on retained E-0010 data
 - 2026-09-22 handoff HO-0002 (DONE) : Independently verify W-0002: D-0007 + DEC-0010 + R-0009 (E-0010 decision-rule recalibration)
 - 2026-09-22 handoff HO-0003 (DONE) : Critique the E-0011 pre-registration (W-0001 step 1) BEFORE any RUNNING
 - 2026-09-22 handoff HO-0004 (DONE) : Critique the E-0012 pre-registration and its offline SPRT replay validation BEFORE any RUNNING
@@ -58,6 +55,9 @@ Every entry is a PROJECTION of the linked records — follow them before believi
 - 2026-09-22 session S-0009 (CLOSED) : W-0001/W-0005 step 1: E-0011 + E-0012 pre-registrations filed; offline SPRT replay PASS; HO-0003/HO-0004; Gate-0 re-block
 - 2026-09-22 session S-0010 (CLOSED) : HO-0003/HO-0004 critiques (R-0011/R-0012: both NOT CLEAN) + W-0003 backfill (R-0013) + HO-0005
 - 2026-09-22 work W-0002 (DONE) : Recalibrate the E-0010 effect-size decision rule (D-0007 -> DEC-0010)
+- 2026-09-23 handoff HO-0006 (REQUESTED) : Re-critique E-0011's R-0011 addenda (B1/B2/B3 responses) before any RUNNING
+- 2026-09-23 handoff HO-0007 (REQUESTED) : Re-critique E-0012's R-0012 addenda (B1/B2 responses + adopted null-pair control) before any RUNNING
+- 2026-09-23 session S-0011 (CLOSED) : R-0011/R-0012 blocking-findings fix session: E-0011 B1/B2/B3 + E-0012 B1/B2 + N4 adopted; replay artifacts git-tracked (16ac1ff); HO-0006/HO-0007 re-critiques out; Gate 0 OPEN (attempt #10); engine-free by design
 
 ## Metrics
 ```
@@ -72,7 +72,7 @@ Every entry is a PROJECTION of the linked records — follow them before believi
     "evidence": 8,
     "experiment": 12,
     "failure": 2,
-    "handoff": 5,
+    "handoff": 7,
     "hypothesis": 17,
     "principle": 4,
     "profile": 4,
@@ -80,12 +80,12 @@ Every entry is a PROJECTION of the linked records — follow them before believi
     "report": 13,
     "review": 13,
     "round_megaprompt": 1,
-    "session": 10,
+    "session": 11,
     "work": 7
   },
   "by_status": {
     "ACTIVE": 14,
-    "CLOSED": 10,
+    "CLOSED": 11,
     "COMPLETED": 19,
     "DONE": 7,
     "DRAFT": 1,
@@ -94,7 +94,7 @@ Every entry is a PROJECTION of the linked records — follow them before believi
     "PENDING": 5,
     "RECORDED": 2,
     "REGISTERED": 8,
-    "REQUESTED": 1,
+    "REQUESTED": 3,
     "RESOLVED": 1,
     "SUPERSEDED": 4
   },
@@ -102,10 +102,10 @@ Every entry is a PROJECTION of the linked records — follow them before believi
   "contradiction_candidates": 0,
   "dangling_ids": 7,
   "duplicate_candidates": 2,
-  "edges_total": 1600,
+  "edges_total": 1676,
   "legacy_experiments_without_pre_registration": 6,
   "open_questions": 8,
-  "records_total": 143,
+  "records_total": 146,
   "revival_candidates": 5
 }
 

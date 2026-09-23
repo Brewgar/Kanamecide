@@ -141,6 +141,8 @@
 ## Handoffs (open)
 
 - [HO-0005](handoffs/HO-0005-verify-w-0003-round2-agreement-matrix-backfill-r-0013.md) — Verify W-0003: R-0013 (Round-2 AGREEMENT_MATRIX backfill) and the untouched matrix — status=REQUESTED
+- [HO-0006](handoffs/HO-0006-re-critique-e-0011-addenda-b1-b2-b3-before-any-running.md) — Re-critique E-0011's R-0011 addenda (B1/B2/B3 responses) before any RUNNING — status=REQUESTED
+- [HO-0007](handoffs/HO-0007-re-critique-e-0012-addenda-b1-b2-n4-null-pair-before-any-running.md) — Re-critique E-0012's R-0012 addenda (B1/B2 responses + adopted null-pair control) before any RUNNING — status=REQUESTED
 
 ## Handoffs (closed)
 
@@ -169,6 +171,7 @@
 - [S-0008](sessions/S-0008-ho-0002-verification-of-w-0002-verified-occupant-4-e-0010-untouched-gate-0-re-block.md) — HO-0002: independent verification of W-0002 (D-0007/DEC-0010/R-0009) — VERIFIED — occupant 4; Gate-0 re-block — status=CLOSED
 - [S-0009](sessions/S-0009-w-0001-w-0005-step-1-pre-registrations-e-0011-e-0012-filed-offline-sprt-replay-pass-ho-0003-ho-0004-gate-0-re-block.md) — W-0001/W-0005 step 1: E-0011 + E-0012 pre-registrations filed; offline SPRT replay PASS; HO-0003/HO-0004; Gate-0 re-block — status=CLOSED
 - [S-0010](sessions/S-0010-ho-0003-ho-0004-critiques-not-clean-w-0003-backfill-ho-0005.md) — HO-0003/HO-0004 critiques (R-0011/R-0012: both NOT CLEAN) + W-0003 backfill (R-0013) + HO-0005 — status=CLOSED
+- [S-0011](sessions/S-0011-r-0011-r-0012-addenda-e-0011-b1-b2-b3-e-0012-b1-b2-n4-replay-tracked-ho-0006-ho-0007-gate0-open.md) — R-0011/R-0012 blocking-findings fix session: E-0011 B1/B2/B3 + E-0012 B1/B2 + N4 adopted; replay artifacts git-tracked (16ac1ff); HO-0006/HO-0007 re-critiques out; Gate 0 OPEN (attempt #10); engine-free by design — status=CLOSED
 
 ## Unrendered Records (bug — report this)
 

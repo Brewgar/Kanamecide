@@ -485,7 +485,10 @@
         "src/movegen.cpp"
       ],
       "commits_mentioned": [
+        "16ac1ff",
+        "2a9d997",
         "300bdeb",
+        "360924c",
         "a4c6b16"
       ],
       "kind": "current_position",
@@ -499,7 +502,10 @@
         "src/search.cpp"
       ],
       "commits_mentioned": [
+        "16ac1ff",
+        "2a9d997",
         "300bdeb",
+        "360924c",
         "a4c6b16"
       ],
       "kind": "current_position",
@@ -646,7 +652,10 @@
         "src/search.cpp"
       ],
       "commits_mentioned": [
+        "16ac1ff",
+        "2a9d997",
         "300bdeb",
+        "360924c",
         "a4c6b16"
       ],
       "kind": "current_position",
@@ -1008,7 +1017,7 @@
       "title": "Gate 0 unrunnable: Device Guard hard-blocks kana.exe (every build, every path)"
     }
   ],
-  "generated": "2026-09-23T21:23:05",
+  "generated": "2026-09-23T21:56:16",
   "metrics": {
     "by_kind": {
       "agent_profile": 1,
@@ -1020,7 +1029,7 @@
       "evidence": 8,
       "experiment": 12,
       "failure": 2,
-      "handoff": 5,
+      "handoff": 7,
       "hypothesis": 17,
       "principle": 4,
       "profile": 4,
@@ -1028,12 +1037,12 @@
       "report": 13,
       "review": 13,
       "round_megaprompt": 1,
-      "session": 10,
+      "session": 11,
       "work": 7
     },
     "by_status": {
       "ACTIVE": 14,
-      "CLOSED": 10,
+      "CLOSED": 11,
       "COMPLETED": 19,
       "DONE": 7,
       "DRAFT": 1,
@@ -1042,7 +1051,7 @@
       "PENDING": 5,
       "RECORDED": 2,
       "REGISTERED": 8,
-      "REQUESTED": 1,
+      "REQUESTED": 3,
       "RESOLVED": 1,
       "SUPERSEDED": 4
     },
@@ -1050,10 +1059,10 @@
     "contradiction_candidates": 0,
     "dangling_ids": 7,
     "duplicate_candidates": 2,
-    "edges_total": 1600,
+    "edges_total": 1676,
     "legacy_experiments_without_pre_registration": 6,
     "open_questions": 8,
-    "records_total": 143,
+    "records_total": 146,
     "revival_candidates": 5
   },
   "questions_all": [
@@ -1433,33 +1442,6 @@
   "timeline_tail": [
     {
       "example": false,
-      "id": "PR-0001",
-      "kind": "principle",
-      "rel": "principles/PR-0001-measure-first.md",
-      "status": "ACTIVE",
-      "title": "Measure first; no claim without a run",
-      "when": "2026-09-19"
-    },
-    {
-      "example": false,
-      "id": "PR-0002",
-      "kind": "principle",
-      "rel": "principles/PR-0002-one-protected-home.md",
-      "status": "ACTIVE",
-      "title": "One protected home for every sacred fact",
-      "when": "2026-09-19"
-    },
-    {
-      "example": false,
-      "id": "PR-0003",
-      "kind": "principle",
-      "rel": "principles/PR-0003-honest-fail-first-class.md",
-      "status": "ACTIVE",
-      "title": "Honest FAIL is a first-class result; negative knowledge is an asset",
-      "when": "2026-09-19"
-    },
-    {
-      "example": false,
       "id": "PR-0004",
       "kind": "principle",
       "rel": "principles/PR-0004-verifier-never-owner.md",
@@ -1790,6 +1772,33 @@
       "status": "DONE",
       "title": "Recalibrate the E-0010 effect-size decision rule (D-0007 -> DEC-0010)",
       "when": "2026-09-22"
+    },
+    {
+      "example": false,
+      "id": "HO-0006",
+      "kind": "handoff",
+      "rel": "handoffs/HO-0006-re-critique-e-0011-addenda-b1-b2-b3-before-any-running.md",
+      "status": "REQUESTED",
+      "title": "Re-critique E-0011's R-0011 addenda (B1/B2/B3 responses) before any RUNNING",
+      "when": "2026-09-23"
+    },
+    {
+      "example": false,
+      "id": "HO-0007",
+      "kind": "handoff",
+      "rel": "handoffs/HO-0007-re-critique-e-0012-addenda-b1-b2-n4-null-pair-before-any-running.md",
+      "status": "REQUESTED",
+      "title": "Re-critique E-0012's R-0012 addenda (B1/B2 responses + adopted null-pair control) before any RUNNING",
+      "when": "2026-09-23"
+    },
+    {
+      "example": false,
+      "id": "S-0011",
+      "kind": "session",
+      "rel": "sessions/S-0011-r-0011-r-0012-addenda-e-0011-b1-b2-b3-e-0012-b1-b2-n4-replay-tracked-ho-0006-ho-0007-gate0-open.md",
+      "status": "CLOSED",
+      "title": "R-0011/R-0012 blocking-findings fix session: E-0011 B1/B2/B3 + E-0012 B1/B2 + N4 adopted; replay artifacts git-tracked (16ac1ff); HO-0006/HO-0007 re-critiques out; Gate 0 OPEN (attempt #10); engine-free by design",
+      "when": "2026-09-23"
     }
   ]
 }

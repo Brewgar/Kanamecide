@@ -305,5 +305,30 @@ coverage, but magnitudes (PEXT / copy-make / GPU) remain unmeasured.
   both stay PENDING. Gate 0 re-blocked (6th observation, logged).
 - Roadmap unchanged; E-0011 unlock order now precise: critique → build → (Gate 0) run.
 
+## Session update 2026-09-23 (S-0011 — R-0011/R-0012 addenda; Gate 0 OPEN; engine-free by design)
+- **Gate 0 confirmed OPEN** (state change, F-0002 blocking condition ended 2026-09-23,
+  commit 360924c): `build\Release\kana.exe` exit 0, banner + 10/10 perft, ALL TESTS
+  PASSED (attempt #10, `gate0.txt`). Piped stdin ran the DEFAULT perft harness, not
+  UCI — UCI-entry path flagged for the build session in E-0011's addendum.
+- **E-0011 addenda (answering R-0011's B1/B2/B3, original text untouched):** B1 pins
+  dataset_sha256/n_games/path + downstream leakage contract (distinct salts citing
+  |20260922−20260914|·1000003 = 8,000,024, machine gate training_game_overlap = 0,
+  fitted_params_sha256); B2 pins kill window [400,600], parse+schema+dense-id presence
+  test, torn-line `.torn` quarantine, deterministic truncation drill as a gate-(e)
+  conjunct, log-preservation run policy (no scripts/ change); B3 adds gate (d)
+  value-level conjuncts (incl. 0-based game_id, seed↔opening re-derivation) and routes
+  gate (f) to reviewer-with-evidence; N1–N7 adopted as text (measured yield 130,335 /
+  76,887 quiet per 1,000 games, 30k consequence ladder, colour diagnostic vs 58.5%).
+  HO-0006 filed; E-0011 stays PENDING.
+- **E-0012 addenda (answering R-0012's B1/B2):** B1 = .gitignore negation, replay
+  artifacts git-tracked at commit 16ac1ff matching pins from 2a9d997, validate green
+  after the change; B2 = JSONL-line-fsync→checkpoint order, JSONL authoritative +
+  resume_mismatch + ABORT-at-1e-9, FP-ordering/bound-within-1e-9 qualification,
+  split-at-every-k unit test as harness acceptance, runjob unlink/splitlines facts;
+  **N4 null-pair control ADOPTED** (stage-6 vs stage-6, cap 240, colour-corrected null
+  at White 58.5%) plus N1/N2/N3/N5 text. HO-0007 filed; E-0012 stays PENDING.
+- No threshold/tier/N changed anywhere; no engine run; no scripts/ touched
+  (selftests untouched). Next: adversarial-reviewer re-critique → build+run session.
+
 ## Last Updated
-2026-09-22
+2026-09-23
