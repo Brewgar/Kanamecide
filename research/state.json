@@ -1008,7 +1008,7 @@
       "title": "Gate 0 unrunnable: Device Guard hard-blocks kana.exe (every build, every path)"
     }
   ],
-  "generated": "2026-09-22T20:40:35",
+  "generated": "2026-09-23T17:37:53",
   "metrics": {
     "by_kind": {
       "agent_profile": 1,
@@ -1020,29 +1020,29 @@
       "evidence": 8,
       "experiment": 12,
       "failure": 2,
-      "handoff": 4,
+      "handoff": 5,
       "hypothesis": 17,
       "principle": 4,
       "profile": 4,
       "question": 8,
       "report": 13,
-      "review": 10,
+      "review": 13,
       "round_megaprompt": 1,
-      "session": 9,
+      "session": 10,
       "work": 7
     },
     "by_status": {
       "ACTIVE": 14,
-      "CLOSED": 9,
-      "COMPLETED": 16,
-      "DONE": 5,
+      "CLOSED": 10,
+      "COMPLETED": 19,
+      "DONE": 7,
       "DRAFT": 1,
-      "IN_PROGRESS": 1,
-      "OPEN": 31,
+      "IN_PROGRESS": 2,
+      "OPEN": 30,
       "PENDING": 5,
       "RECORDED": 2,
       "REGISTERED": 8,
-      "REQUESTED": 2,
+      "REQUESTED": 1,
       "RESOLVED": 1,
       "SUPERSEDED": 4
     },
@@ -1050,10 +1050,10 @@
     "contradiction_candidates": 0,
     "dangling_ids": 7,
     "duplicate_candidates": 2,
-    "edges_total": 1389,
+    "edges_total": 1600,
     "legacy_experiments_without_pre_registration": 6,
     "open_questions": 8,
-    "records_total": 138,
+    "records_total": 143,
     "revival_candidates": 5
   },
   "questions_all": [
@@ -1433,51 +1433,6 @@
   "timeline_tail": [
     {
       "example": false,
-      "id": "EV-0006",
-      "kind": "evidence",
-      "rel": "evidence/EV-0006-e0008-tactical-set.md",
-      "status": "REGISTERED",
-      "title": "E-00008 tactical test set (73 self-validated positions) + qsearch effect",
-      "when": "2026-09-19"
-    },
-    {
-      "example": false,
-      "id": "EV-0007",
-      "kind": "evidence",
-      "rel": "evidence/EV-0007-e0009-tt-id.md",
-      "status": "REGISTERED",
-      "title": "E-00009 TT + iterative-deepening vs fixed-depth (9.51x fewer nodes)",
-      "when": "2026-09-19"
-    },
-    {
-      "example": false,
-      "id": "EV-0010",
-      "kind": "evidence",
-      "rel": "evidence/EV-0010-e0010-measurement-binary.md",
-      "status": "REGISTERED",
-      "title": "E-0010 measurement binary (the current build/Release/kana.exe)",
-      "when": "2026-09-19"
-    },
-    {
-      "example": false,
-      "id": "F-0002",
-      "kind": "failure",
-      "rel": "failures/F-0002-gate-0-device-guard-hard-block.md",
-      "status": "RECORDED",
-      "title": "Gate 0 unrunnable: Device Guard hard-blocks kana.exe (every build, every path)",
-      "when": "2026-09-19"
-    },
-    {
-      "example": false,
-      "id": "HO-0001",
-      "kind": "handoff",
-      "rel": "handoffs/HO-0001-verify-dec-0011-layer.md",
-      "status": "DONE",
-      "title": "Independently verify the DEC-0011 derived-intelligence layer",
-      "when": "2026-09-19"
-    },
-    {
-      "example": false,
       "id": "PR-0001",
       "kind": "principle",
       "rel": "principles/PR-0001-measure-first.md",
@@ -1742,7 +1697,7 @@
       "id": "HO-0003",
       "kind": "handoff",
       "rel": "handoffs/HO-0003-critique-e-0011-pre-registration-before-any-running.md",
-      "status": "REQUESTED",
+      "status": "DONE",
       "title": "Critique the E-0011 pre-registration (W-0001 step 1) BEFORE any RUNNING",
       "when": "2026-09-22"
     },
@@ -1751,8 +1706,17 @@
       "id": "HO-0004",
       "kind": "handoff",
       "rel": "handoffs/HO-0004-critique-e-0012-pre-registration-and-offline-sprt-replay.md",
-      "status": "REQUESTED",
+      "status": "DONE",
       "title": "Critique the E-0012 pre-registration and its offline SPRT replay validation BEFORE any RUNNING",
+      "when": "2026-09-22"
+    },
+    {
+      "example": false,
+      "id": "HO-0005",
+      "kind": "handoff",
+      "rel": "handoffs/HO-0005-verify-w-0003-round2-agreement-matrix-backfill-r-0013.md",
+      "status": "REQUESTED",
+      "title": "Verify W-0003: R-0013 (Round-2 AGREEMENT_MATRIX backfill) and the untouched matrix",
       "when": "2026-09-22"
     },
     {
@@ -1762,6 +1726,33 @@
       "rel": "reviews/R-0010-independent-verification-w-0002-d-0007-dec-0010-r-0009-occupant-4.md",
       "status": "COMPLETED",
       "title": "R 0010 independent verification w 0002 d 0007 dec 0010 r 0009 occupant 4",
+      "when": "2026-09-22"
+    },
+    {
+      "example": false,
+      "id": "R-0011",
+      "kind": "review",
+      "rel": "reviews/R-0011-critique-e-0011-pre-registration-self-play-data-pipeline.md",
+      "status": "COMPLETED",
+      "title": "R 0011 critique e 0011 pre registration self play data pipeline",
+      "when": "2026-09-22"
+    },
+    {
+      "example": false,
+      "id": "R-0012",
+      "kind": "review",
+      "rel": "reviews/R-0012-critique-e-0012-pre-registration-and-offline-sprt-replay.md",
+      "status": "COMPLETED",
+      "title": "R 0012 critique e 0012 pre registration and offline sprt replay",
+      "when": "2026-09-22"
+    },
+    {
+      "example": false,
+      "id": "R-0013",
+      "kind": "review",
+      "rel": "reviews/R-0013-round2-agreement-matrix-backfill.md",
+      "status": "COMPLETED",
+      "title": "R 0013 round2 agreement matrix backfill",
       "when": "2026-09-22"
     },
     {
@@ -1780,6 +1771,15 @@
       "rel": "sessions/S-0009-w-0001-w-0005-step-1-pre-registrations-e-0011-e-0012-filed-offline-sprt-replay-pass-ho-0003-ho-0004-gate-0-re-block.md",
       "status": "CLOSED",
       "title": "W-0001/W-0005 step 1: E-0011 + E-0012 pre-registrations filed; offline SPRT replay PASS; HO-0003/HO-0004; Gate-0 re-block",
+      "when": "2026-09-22"
+    },
+    {
+      "example": false,
+      "id": "S-0010",
+      "kind": "session",
+      "rel": "sessions/S-0010-ho-0003-ho-0004-critiques-not-clean-w-0003-backfill-ho-0005.md",
+      "status": "CLOSED",
+      "title": "HO-0003/HO-0004 critiques (R-0011/R-0012: both NOT CLEAN) + W-0003 backfill (R-0013) + HO-0005",
       "when": "2026-09-22"
     },
     {
