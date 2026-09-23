@@ -203,3 +203,191 @@ TBD.
 - A FAIL on gates (b)–(e) routes to `research/failures/` and blocks H-0013.
 - Downstream: H-0013 Texel fit on this dataset; then the Tier-R Elo claim as a NEW
   experiment under E-0012's harness (Q-0006 closes only there).
+
+## Addendum: R-0011 B1 response, 2026-09-23
+
+> R-0011 (critique, COMPLETED): "FRESH games is an adjective, not an enforceable
+> protocol field." ACCEPTED in full. The original pre-registered text above is UNCHANGED;
+> this addendum pins the machine fields it lacked. Nothing below changes a threshold, a
+> tier, or an N — per R-0011's own verdict, no DEC-0010 re-derivation is required.
+
+**(B1.1) Dataset-identity fields — deliverable of Test Method step 5 and of W-0001's
+exit check, recorded in Results/Provenance at campaign close (not "once they exist"):**
+
+```
+dataset_sha256: <SHA-256 of the final games JSONL bytes>
+dataset_n_games: <integer, must equal gate (a) count>
+dataset_path:    <local gitignored JSONL path>
+```
+
+**(B1.2) Downstream leakage contract** — the future Tier-R experiment (Q-0006's
+"beats hand-tuned" claim) MUST satisfy all three clauses and record each in its own
+Provenance section, or its verdict is void:
+
+- (a) **Distinct salt:** its campaign salt MUST differ from BOTH E-0011's `20260922` and
+  E-0010's `20260914`. The separation of the two existing salts is arithmetic, quoted
+  from R-0011: |20260922 − 20260914| × 1,000,003 = **8,000,024** ≫ any game index in
+  either plan, so no `(salt, game_index)` pair can collide across campaigns.
+- (b) **Machine gate `training_game_overlap = 0`:** the future experiment's aggregator
+  MUST rebuild every fresh game's full move list under the SAME normalization gate (c)
+  uses (`tuple(opening) + tuple(san)`) and check every one against the pinned E-0011
+  dataset (`dataset_sha256` above); the count of fresh move-lists present in the
+  training set is `training_game_overlap`, and **= 0 is a gate** — reported in the
+  experiment record, not merely asserted. (The aggregator machinery already exists: it
+  is the dedup key.)
+- (c) **`fitted_params_sha256`:** the future experiment MUST record the SHA-256 of the
+  fitted parameter artifact (the Texel/NNUE weights actually loaded), so "retrain,
+  then retest, then report the good run" is visible as a hash change between attempts.
+
+Without (1)+(2) a later agent could satisfy every sentence of this record and still
+decide Q-0006 on games that trained the eval — R-0011's exact failure mode. This clause
+lands before `status: RUNNING` because that is when the artifact's identity becomes
+fixed; E-0011 is still PENDING.
+
+## Addendum: R-0011 B2 response, 2026-09-23
+
+> R-0011: "Resume/torn-write semantics are undefined at exactly the boundary the drill
+> must exercise." ACCEPTED in full. These definitions bind the build (step 2) and the
+> run (step 3); the original text above is unchanged.
+
+**(B2.1) Kill boundary.** The live mid-campaign kill MUST occur in the pre-registered
+window **game [400, 600] of 1,000** — chosen so the resume necessarily adds ≥ 400
+games, closing R-0011's observation that gate (e) as written FAILs if the kill
+coincides with the last game (resume adds zero). A kill outside the window is recorded
+as a protocol deviation and gate (e) is then evaluated on the deterministic drill
+alone (B2.4).
+
+**(B2.2) Presence test on resume.** A game counts as *present in the checkpoint* only
+if its trailing JSONL line (i) parses as JSON, (ii) carries EVERY mandatory Dataset
+field per gate (d)'s schema, and (iii) has a `game_id` in the dense expected range.
+"An id appears on a line" is explicitly NOT the test: a line whose id matches but
+whose schema fails counts as absent and triggers B2.3.
+
+**(B2.3) Torn-write policy — quarantine, never silent truncate.** A kill during the
+append can leave a partial trailing line. On resume the generator MUST: (i) test
+whether the file's final line parses; (ii) if not, move that partial line verbatim to
+`<games>.jsonl.torn` (sidecar, append mode across incidents) and record a
+`torn_line_quarantined` incident (recoverable game_id, byte offset, timestamp) in the
+run log; (iii) re-emit the affected game under its OWN id (per B2.2 the partial line
+never counted as present). In-place truncation is prohibited: the sidecar is the
+evidence of the incident.
+
+**(B2.4) Deterministic kill→resume drill — a pre-registered acceptance step, IN
+ADDITION to the live mid-campaign kill.** "An arbitrary point" almost never lands in
+the write window (R-0011). The drill, which gate (e) requires alongside the live kill:
+(i) copy the JSONL to a scratch path; (ii) truncate the copy mid-line at a chosen byte
+offset inside a known game record; (iii) resume against the copy; (iv) assert — torn
+line quarantined + incident logged, all pre-truncation games intact, the truncated
+game re-emitted exactly once under its own id, duplicate-move-lists = 0, and final
+valid count = pre-truncation valid count + resumed games.
+
+**(B2.5) Log-preservation rule (answers R-0011: `runjob.py launch` unlinks the old
+log).** Stated run policy, binding on step 3: **before any `runjob.py resume`, the
+operator copies the pre-resume log to `run.log.<UTC-timestamp>.preserved`** and names
+both files in the RUN record; the fresh launch log then starts empty by design. No
+`research/scripts/` change is made (selftests stay green — nothing under
+`research/scripts/` is touched by this session). Additionally, per R-0011:
+`runjob.py`'s checkpoint telemetry counts raw `splitlines()`, so a torn line inflates
+`checkpoint_lines`; **runjob counts are telemetry, never an integrity signal** — only
+`tools/e0011_check.py`'s parsed-line counts are authoritative.
+
+## Addendum: R-0011 B3 response, 2026-09-23
+
+> R-0011: "Gate (d) is presence-only … and gate (f) is not machine-checkable as
+> written." ACCEPTED in full. Gate (d) gains value-level conjuncts; gate (f) keeps its
+> place in the rule but its enforcement route changes from aggregator (impossible) to
+> reviewer. The original gate list above is unchanged; the conjuncts below ARE gates.
+
+**(B3.1) Gate (d) strengthened — presence PLUS values.** PASS additionally requires
+every one of these mechanical checks to hold over 100% of records (any failure = FAIL
+of gate (d), named per check):
+
+- `binary_sha256 ==` the campaign-pinned hash recorded at launch (today: EV-0010's
+  `504EB01A…A6DAA`; a rebuild before launch re-pins BEFORE game 1, then is immutable
+  for the campaign);
+- `src_commit ==` HEAD at launch (recorded once, asserted per game);
+- `eval_stage_a == eval_stage_b == 6`;
+- `campaign_salt == 20260922`;
+- `res ∈ {A, B, D}` and `end ∈ {mate, rule50, repetition, plycap, crash}` (the Dataset
+  section's closed vocabulary);
+- `plies > 0`;
+- `time_finished >= time_started`;
+- `a_white` boolean AND `a_white` alternates with `game_id` parity (the color
+  protocol, machine-checked);
+- `game_id` unique, dense, **0-based** (base pinned: E-0010's retained evidence is
+  0-based — a 1-based driver inheriting 0-based resume logic is a re-emission bug,
+  R-0011);
+- `opening` re-derived from `random.Random(20260922 * 1000003 + game_id)` matches the
+  recorded `opening` (the seed↔opening negative control from Sample Validity, now
+  inside gate (d) so it cannot be skipped).
+
+**(B3.2) Gate (f) gets a machine-checkable route.** The aggregator cannot read
+intent, so gate (f) is assigned to the critique/verification layer: the re-critique
+reviewer (HO-0006) and any later verifier MUST search Results / Statistical Analysis /
+Interpretation / Conclusion for Elo/LOS/CI strength assertions in this record and
+record the search command + output in their review. Gate (f) stays in the PASS list;
+its check is a named reviewer step with evidence, not an aggregator count.
+
+**Engine-free implementation check (R-0011 Proposed Experiment 2 — adopted as a build
+acceptance step):** before any live run, the build session MUST run
+`tools/e0011_check.py` over a synthetic 20-game JSONL containing (i) one torn line,
+(ii) one wrong-hash game, (iii) one duplicate id, and show the aggregator FAILing all
+three with the named conjuncts. Gate 0 is open as of 2026-09-23, but this remains
+dry-run work, not a run of this experiment: E-0011 stays PENDING until the
+re-critique clears it.
+
+## Addendum: R-0011 N1–N7 (routed text) + Gate-0 UCI-entry note, 2026-09-23
+
+Non-blocking findings, adopted as record text (R-0011's own routing):
+
+- **N1 — measured yield replaces the ASSUMED prior; consequence ladder pinned.**
+  R-0011 measured from EV-0001 (1,240 games): mean 130.3 plies/game ⇒ **130,335**
+  positions/1,000 games (+10 opening plies ⇒ ≈140k total); quiet-proxy yield **76,887
+  per 1,000 games** (59%); 5.8% of games hit the 300-ply cap. The Power section's
+  ≈120k/≥50k ASSUMED figures are therefore conservative against evidence from the same
+  harness family — the ≥500 positions/parameter sentence now rests on measurement, not
+  assumption. **Consequence ladder (pre-registered, cannot be renegotiated after the
+  run):** if the realized usable yield is **≥ 30k** positions ⇒ fit as planned; if
+  **< 30k** ⇒ the fit is scoped to the mobility/tempo sub-set E-0010's ladder motivates
+  and NO all-terms refit claim may be made from it. Parameter count stays an estimate
+  (property of `src/`, not frozen until the fit is designed) — flagged same as yield.
+- **N2 — "provenance-carrying" scoped:** the artifact is *audit- and
+  legality-reproducible from the JSONL* (gates (b)/(c)/(d) re-derive everything from
+  the record); it is **not bit-reproducible by re-running the engine** — seeded RNG
+  replays the opening, but games run under wall-clock TC with TT/ID. No field claims
+  engine replay.
+- **N3 — time control pre-registered:** the campaign TC is **100 ms + 100 ms increment
+  (O3d formula), ≤2 engine pairs** — identical to E-0010's, so the draw-regime
+  provenance of labels is stated, not implied; the aggregator asserts a single distinct
+  `tc_command` value across all games.
+- **N4 — `san` field semantics pinned:** `san` = **post-opening engine moves only**
+  (excludes the 10-ply `opening`), exactly as E-0010's retained data; the dedup key is
+  `tuple(opening) + tuple(san)` and the position yield counts `san` plies (+ separate
+  opening count). No double-counting.
+- **N5 — end-type mix reported:** the aggregator's report MUST include `end` counts
+  and a degenerate-game count (`san` ≤ 6 plies with `end=mate` — R-0011 measured
+  20/1,240 = 1.6% in the retained data). Reporting, not gating.
+- **N6 — colour-conditional score reported as a diagnostic, never a gate:** the
+  aggregator reports White's score and A-score-by-color against R-0011/R-0012's
+  measured prior (**White 58.5%** overall; k6 cells 0.783 as White vs 0.542 as Black).
+  Named action on divergence: investigate as a harness bug (arms/color bookkeeping).
+  A 50%-centred band would be an F6-class defect in reverse — explicitly prohibited as
+  a gate. H-0013's fit protocol must not treat positions as colour-exchangeable
+  without saying so (labels are strongly colour-dependent).
+- **N7 — `RUN-0001` id reservation:** validate lists `RUN-0001` as a dangling id
+  (referenced by SYSTEM.md and this record). The RUN record is created at launch;
+  the reservation is intentional and the dangling reference is transient by design.
+
+**Gate-0 / UCI-entry note (state change 2026-09-23, commit 360924c; flagged for the
+build session):** Gate 0 is OPEN — `build\Release\kana.exe` exits 0 with the perft
+suite PASS. BUT a probe this session showed that a piped token on stdin did NOT engage
+UCI mode: the binary ran its DEFAULT perft harness instead. Before any live E-0011/E-0012
+run, the build session MUST confirm the explicit UCI entry path — how
+`e0010_match2.py`/`e0011_generate.py`'s `Popen([exe, "uci"])` handshake interacts with
+this build (an init `uci` token on stdin, `runjob.py launch`'s detached spawn, or a
+CLI flag) — and record the confirmed working invocation in the RUN record. Gate 0 being
+open is engine *availability*; the critique loop (HO-0006/HO-0007) is still engine
+*permission*. E-0011 stays PENDING.
+
+
+

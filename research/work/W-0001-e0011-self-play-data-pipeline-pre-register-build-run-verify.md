@@ -49,6 +49,24 @@ generator + position dataset — the prerequisite for Texel fitting (H-0013) and
   Status stays OPEN; NOTHING ran (F-0002). Handoff HO-0003 requests adversarial-reviewer
   critique BEFORE any RUNNING. Next: implementation-engineer build + systems-researcher
   run, after critique.
+- 2026-09-22 — adversarial-reviewer (S-0010, via HO-0003): R-0011 COMPLETED, verdict
+  NOT CLEAN — three blocking findings (B1 leakage contract, B2 resume/torn-write, B3
+  gate strengthening) + N1–N7 non-blocking; E-0011 stays PENDING. (Recorded here for
+  work-log continuity; the review itself is R-0011.)
+- 2026-09-23 — researcher-architect: R-0011 addenda filed in E-0011 — "Addendum:
+  R-0011 B1 response, 2026-09-23" (dataset_sha256/n_games/path fields; downstream
+  leakage contract: distinct-salt rule citing |20260922−20260914|·1000003 = 8,000,024,
+  machine gate training_game_overlap = 0, fitted_params_sha256), "Addendum: R-0011 B2
+  response, 2026-09-23" (kill window [400,600], presence test, torn-line quarantine
+  sidecar, deterministic truncation drill, runjob log-preservation policy + telemetry
+  caveat — no research/scripts/ change), "Addendum: R-0011 B3 response, 2026-09-23"
+  (gate (d) value-level conjuncts incl. 0-based game_id pin + seed↔opening re-derivation;
+  gate (f) routed to reviewer with command evidence; synthetic-20-game aggregator
+  negative test adopted as build acceptance), "Addendum: R-0011 N1–N7 + Gate-0 UCI-entry
+  note, 2026-09-23". Original pre-registered text untouched (append-only). Gate 0 OPEN
+  (attempt #10, exit 0) but session engine-free by design; E-0011 stays PENDING.
+  HO-0006 filed for re-critique of the addenda.
+
 - 2026-09-22 — adversarial-reviewer: HO-0003 critique filed as **R-0011** (COMPLETED,
   `kind: critique`, `target: E-0011`). Verdict: **NOT CLEAN — blocking findings B1 (downstream
   leakage contract: pin `dataset_sha256` at campaign close + write the future Tier-R experiment's
