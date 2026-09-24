@@ -1,7 +1,7 @@
 # Research State (GENERATED — do not edit)
 
 Derived from the record store by `research.py state`. Regenerate after every change.
-Generated: 2026-09-24T00:25:25; schema 2.
+Generated: 2026-09-24T00:56:36; schema 2.
 Every entry is a PROJECTION of the linked records — follow them before believing.
 
 ## Current best beliefs (hypotheses with measured weight)
@@ -43,7 +43,6 @@ Every entry is a PROJECTION of the linked records — follow them before believi
 - hypothesis **H-0002-magic-stub** Magic Bitboards with PEXT Provide >=3x NPS Speedup — SUPERSEDED. No revisit condition recorded.
 
 ## Recent timeline
-- 2026-09-22 review R-0013 (COMPLETED) : R 0013 round2 agreement matrix backfill
 - 2026-09-22 session S-0008 (CLOSED) : HO-0002: independent verification of W-0002 (D-0007/DEC-0010/R-0009) — VERIFIED — occupant 4; Gate-0 re-block
 - 2026-09-22 session S-0009 (CLOSED) : W-0001/W-0005 step 1: E-0011 + E-0012 pre-registrations filed; offline SPRT replay PASS; HO-0003/HO-0004; Gate-0 re-block
 - 2026-09-22 session S-0010 (CLOSED) : HO-0003/HO-0004 critiques (R-0011/R-0012: both NOT CLEAN) + W-0003 backfill (R-0013) + HO-0005
@@ -58,6 +57,7 @@ Every entry is a PROJECTION of the linked records — follow them before believi
 - 2026-09-23 session S-0012 (CLOSED) : HO-0006/HO-0007 re-critique of the R-0011/R-0012 addenda: R-0014 (E-0011 PARTIAL, 1 sentence left) + R-0015 (E-0012 CLEAN)
 - 2026-09-23 session S-0013 (CLOSED) : Micro-session: R-0014 B3 fix (end vocabulary + (Ns) suffix policy) landed verbatim in E-0011; HO-0008 full-discharge ruling requested; Gate 0 attempt #12 (OPEN); engine-free text work only
 - 2026-09-23 session S-0014 (CLOSED) : HO-0008 micro-ruling - R-0016: B3 FIXED; E-0011 cleared for build+run
+- 2026-09-24 session S-0015 (OPEN) : E-0011/E-0012 build+acceptance; E-0011 live dataset campaign
 
 ## Metrics
 ```
@@ -80,7 +80,7 @@ Every entry is a PROJECTION of the linked records — follow them before believi
     "report": 13,
     "review": 16,
     "round_megaprompt": 1,
-    "session": 14,
+    "session": 15,
     "work": 7
   },
   "by_status": {
@@ -89,23 +89,24 @@ Every entry is a PROJECTION of the linked records — follow them before believi
     "COMPLETED": 22,
     "DONE": 10,
     "DRAFT": 1,
-    "IN_PROGRESS": 2,
+    "IN_PROGRESS": 3,
     "OPEN": 30,
-    "PENDING": 5,
+    "PENDING": 4,
     "RECORDED": 2,
     "REGISTERED": 8,
     "REQUESTED": 1,
     "RESOLVED": 1,
+    "RUNNING": 1,
     "SUPERSEDED": 4
   },
-  "code_files": 21,
+  "code_files": 25,
   "contradiction_candidates": 0,
   "dangling_ids": 7,
   "duplicate_candidates": 2,
-  "edges_total": 1895,
+  "edges_total": 1929,
   "legacy_experiments_without_pre_registration": 6,
   "open_questions": 8,
-  "records_total": 153,
+  "records_total": 154,
   "revival_candidates": 5
 }
 

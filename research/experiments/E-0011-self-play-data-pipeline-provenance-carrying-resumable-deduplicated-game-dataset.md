@@ -2,12 +2,12 @@
 id: E-0011
 type: experiment
 title: "E-0011 — Self-play data pipeline: resumable, provenance-carrying, deduplicated game dataset for Texel fitting"
-status: PENDING
+status: RUNNING
 result: null
 elo_change: null
 hypothesis: H-0013
 priority: high
-owner: null
+owner: systems-researcher
 pre_registered: 2026-09-22
 example: false
 created: 2026-09-22

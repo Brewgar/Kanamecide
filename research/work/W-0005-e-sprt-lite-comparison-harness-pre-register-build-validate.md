@@ -98,6 +98,8 @@ regression δ=5, LLR bounds ±2.944, game cap → INCONCLUSIVE. Resumable, runjo
   blocking): apply E-0011's R-0014 `end`-vocabulary fix to the harness's own records too.
   E-0012 not edited by this seat; HO-0007 closed DONE.
 
+- 2026-09-24 — S-0015 bundled implementation-engineer + systems-researcher for W-0005 step 2. Built `tools/e0012_sprt.py` at `752216c`: exact Tier-S/R/M margins/caps, ±ln(19) lite LLR, crash=loss, one-look, suffix-free end/end_seconds records, JSONL→fsync→checkpoint→fsync, JSONL-authoritative resume with `resume_mismatch` and ≤1e-9 continue/ABORT rule, bound-within-epsilon incident, N4 colour-corrected control fields, and live/replay shared core. Acceptance: retained k6 SHA-256 `9da1cfa0…fd0d227` reproduced H1 at game 179, LLR `+2.9847724800839215`; R +1.0976584432 INCONCLUSIVE; M -0.6733541385 INCONCLUSIVE. Split-at-every-k acceptance PASS for all 239 split points on a 240-game no-boundary W/D/L sequence, with no incident; cap/monotonicity/epsilon/mismatch-abort assertions PASS. E-0012 deliberately remains PENDING because no E-0012 live run started in S-0015; dataset milestone has priority.
+
 ## Verification
 
 ## Verification

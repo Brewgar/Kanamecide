@@ -4,7 +4,7 @@ type: work
 title: "E-0011 self-play data pipeline (pre-register, build, run, verify)"
 round: 4
 owner: systems-researcher
-status: OPEN
+status: IN_PROGRESS
 deliverable: "research/experiments/E-0011-*.md + resumable generator (tools/) + >=1000-game dataset (local)"
 exit_check: "generator output: >=1000 legal deduplicated games, duplicate-move-lists=0; resume-from-checkpoint adds no duplicates"
 evidence: []
@@ -137,6 +137,9 @@ generator + position dataset — the prerequisite for Texel fitting (H-0013) and
   pre-registered acceptance steps (synthetic-20 FAIL demo incl. 4th fixture, deterministic
   truncation drill, UCI entry path FIRST) remain the gates on the live campaign. E-0011 not
   edited by this seat; HO-0008 closed DONE.
+- 2026-09-24 — S-0015 bundled implementation-engineer + systems-researcher for W-0001 step 2 and W-0005 step 2. Gate 0 attempt #13 exited 0 with 10/10 perft PASS; explicit UCI path proved as `Popen([kana.exe, "uci"])` + stdin `uci` (transcript/hash in RUN-0001). `tools/e0011_generate.py`, `tools/e0011_check.py`, `tools/e0012_sprt.py`, and `tools/uci_probe.py` built at code commit `752216c`. Acceptance: synthetic-20 checker exit 1 named torn-line/wrong-hash/duplicate-ID/legacy-suffix defects; deterministic 1,000-game truncation drill PASS at kill game 500, 500 re-emissions, final dense 1,000, duplicate-move-lists=0; 6/6 live smoke legal. E-0012 retained k6 Tier-S replay PASS: H1 game 179, LLR +2.9847724801; every-k split test PASS at 239/239 points. E-0011 flipped PENDING→RUNNING, owner systems-researcher, immediately before RUN-0001 launch; W-0001 OPEN→IN_PROGRESS. No pre-registered text/threshold/N/cap changed.
+- 2026-09-24 — S-0015 live contradiction/failure recorded: RUN-0001 attempt 1 stopped at 202 complete games after two crash losses because the next readiness failure aborted instead of becoming another crash record. Failed artifacts are preserved under `m0_audit/e0011_failed_attempt1/` (JSONL SHA-256 `1a95e8dd…e76bfa`; zero duplicate move-lists). Code fixed in `7b1dda15f675b884a8bf971eec4b53a0fdf2049f`: readiness/construction failures now score crash=loss, engine pairs are explicitly recreated after crashes, and reader shutdown is deterministic. Crash unit PASS; repaired 1,000-game drill PASS at 500 with zero duplicates. Attempt 1 is excluded; replacement dataset will be wholly pinned to `7b1dda1`. No gate, N, cap, or threshold changed.
+
 
 ## Verification
 - verified_by: (a different agent than owner)
