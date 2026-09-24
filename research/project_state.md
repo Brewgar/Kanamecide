@@ -5,8 +5,8 @@
 > decisions in `research/decisions/`. Do not add unverified claims to this file.
 
 <!-- research-meta
-last_updated: 2026-09-21
-reflects: [DEC-0001, DEC-0002, DEC-0003, DEC-0004, DEC-0006, DEC-0007, DEC-0008, DEC-0009, DEC-0010, DEC-0011, E-0002, E-00003, E-00006, E-00007, E-00008, E-00009, E-0010]
+last_updated: 2026-09-24
+reflects: [DEC-0001, DEC-0002, DEC-0003, DEC-0004, DEC-0006, DEC-0007, DEC-0008, DEC-0009, DEC-0010, DEC-0011, E-0002, E-00003, E-00006, E-00007, E-00008, E-00009, E-0010, E-0011]
 not_reflected: []
 -->
 > The `research-meta` block above is machine-checked by `research.py validate`:
@@ -50,8 +50,10 @@ evaluation and learning.
   INCONCLUSIVE. E-0010 restated under this rule (R-0009): screening PASS, regression PASS,
   "≥150" not established at N=240 (decidable at ~910 games via the [100,150] zone SPRT).
   Arithmetic reproducible: `research/context/w0002_power.py`.
-- **Phase:** Phase 2 COMPLETE (O3d), Phase 3 evaluation measured (E-0010). Next: self-play
-  data pipeline (E-0011) + comparison harness with pre-registered error control (H-0010).
+- **Phase:** Phase 2 COMPLETE (O3d), Phase 3 evaluation measured (E-0010), and the
+  E-0011 self-play dataset campaign is COMPLETED/PASS for artifact gates (a)-(f). The
+  1,000-record local dataset is pinned by SHA-256 in RUN-0001; independent verification
+  is requested by HO-0009. Next: E-0012 comparison harness and H-0013 Texel fitting.
 
 ## Certified Perft Anchors (SACRED — single protected home)
 
@@ -155,6 +157,11 @@ game generator, no dataset, no labels and no model. Planned: E-0011 self-play da
   the certified /O2 baseline is the in-tree E-0002 harness (flags + self-SHA-256 logged).
 
 ## Recent Important Experiments
+- **E-0011 (COMPLETED, PASS — dataset gates only):** the replacement self-play campaign
+  produced 1,000 legal, provenance-carrying JSONL games with zero duplicate move-lists;
+  the recorded kill/resume at game 400 and truncation drill passed. Dataset SHA-256:
+  `27ea181d32a9025e0fd9cea150540b6598ce7e608bc96ca245d7c07b7ac5bb95`. This artifact result
+  makes no strength assertion; independent verification is requested by HO-0009.
 - **E-0010 (COMPLETED, verdict FAIL — honest):** tapered hand-tuned eval vs material-only.
   Gates (a) perft+legality PASS, (b) symmetry PASS (0 full-mirror violations, stages 0-6),
   (d) NPS PASS (43.25 vs 31.95 Mnps, i.e. faster). Gate (c) **FAIL on effect size only**:
@@ -186,6 +193,9 @@ below its pre-registered ≥150 bar.
 - Evaluation exists and is measured (E-0010: +116.1 Elo over material-only at LOS 100%,
   below its pre-registered ≥150 bar). Mobility and tempo are non-positive increments and
   need re-tuning (H-0013 Texel fitting), not more hand weights.
+- E-0011 now provides a local, gitignored 1,000-game self-play dataset with a pinned
+  SHA-256 and all six artifact gates PASS. W-0001 remains open only for independent
+  verification via HO-0009; no fitted parameters or downstream strength result are claimed.
 - No comparison harness with pre-registered error control (H-0010 / E-SPRT): every future
   A/B claim currently depends on ad-hoc match harnesses.
 - No persistent TT across moves (TT is cleared per `go`); no aspiration/PVS/LMR/null-move
@@ -198,18 +208,20 @@ below its pre-registered ≥150 bar.
   F-0002 stays RECORDED as a failure class against policy regression.
 
 ## Current Development Priorities
-1. **E-0011 — self-play data pipeline (next milestone):** turn the E-0010 match harness into a
-   resumable, provenance-carrying game generator + position dataset (legal-move-flushed JSONL,
-   opening diversity, dedup, holdout). Pre-registered rule + power required before it runs.
+1. **E-0011 independent verification (HO-0009):** recompute the dataset/checker/kill-resume
+   hashes and re-run the six artifact gates; W-0001 closes only after a verification review.
 2. **E-SPRT-lite — comparison harness (H-0010 + DEC-0010):** two-tier pre-registered error
    control per DEC-0010 — screening [0,+20] cap 8,000, regression [0,+5] cap 30,000,
    magnitude claims as [M−50,M] zones, LLR ±2.944, α=β=0.05, post-cap INCONCLUSIVE —
    so every later change is decided, not argued.
 3. **O3e — PVS / LMR / null-move** measured against the O3d baseline once (2) exists.
-4. **Phase 3+ — learning:** Texel-fit the hand-tuned terms (H-0013), then NNUE; self-play →
-   training pipeline (PyTorch + GPU) on top of (1).
+4. **Phase 3+ — learning:** Texel-fit the hand-tuned terms (H-0013), then NNUE; use the
+   verified E-0011 dataset only after downstream leakage checks pass.
 
 ## Last Updated
+2026-09-24 (S-0015: E-0011 replacement campaign completed 1,000-game dataset generation;
+all six artifact gates PASS; RUN-0001 terminal hashes and kill/resume evidence recorded;
+HO-0009 requested from verification-auditor; E-0012 remains PENDING)
 2026-09-21 (W-0002: E-0010's decision rule recalibrated — D-0007 RESOLVED by arithmetic
 over measured variance; DEC-0010 ACTIVE [screening/regression/magnitude tiers, LLR
 ±2.944, caps 8k/30k/8k, post-cap INCONCLUSIVE]; R-0009 restates E-0010 under the

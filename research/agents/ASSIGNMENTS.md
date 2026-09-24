@@ -13,11 +13,11 @@
 
 | Role | Assigned model | Since | Notes |
 |---|---|---|---|
-| researcher-architect | (unassigned — seat occupied 2026-09-22 S-0009, 2026-09-23 S-0011, 2026-09-23 S-0013) | 2026-09-23 | Round 4: W-0001 + W-0005 step 1 filed (E-0011/E-0012 PENDING, S-0009); R-0011/R-0012 addenda (S-0011); R-0014 B3 end-vocabulary fix landed verbatim (S-0013, +65/−0); rulings requested: HO-0006→R-0014 done (B1/B2/N discharged), HO-0007 open (R-0015 filed by reviewer), HO-0008 open (E-0011 clear-for-build-run ruling) |
-| systems-researcher | (unassigned — bundled implementation-engineer + systems-researcher seat, S-0015) | 2026-09-24 | Round 4: S-0015 bundled both seats for W-0001 step 2 + W-0005 step 2; Gate 0/UCI proved; E-0011/E-0012 tools built; live dataset has priority |
-| adversarial-reviewer | (unassigned — seat occupied 2026-09-22 S-0010, 2026-09-23 S-0012/S-0014) | 2026-09-23 | Round 4: S-0012 — **R-0015 (E-0012) CLEAN**; **R-0014 (E-0011) PARTIAL, one block**. S-0014 micro — HO-0008 ruling **R-0016: B3 FIXED → E-0011 CLEARED FOR BUILD+RUN** (end-vocabulary + (Ns) suffix addendum verified; R-0014's 33-vs-43 doc-n reconciled). Both E-0011 and E-0012 now clear; the build+run seat's first task is the UCI entry path |
-| implementation-engineer | (unassigned — bundled implementation-engineer + systems-researcher seat, S-0015) | 2026-09-24 | Round 4: S-0015 bundled both seats for W-0001 step 2 + W-0005 step 2; tool code/acceptance execution |
-| verification-auditor | (unassigned — rotating fresh-agent seat) | 2026-09-14 | Round 4: W-0004; designed for brand-new agents with zero chat history |
+| researcher-architect | (unassigned — seat occupied 2026-09-22 S-0009, 2026-09-23 S-0011, 2026-09-23 S-0013) | 2026-09-23 | Round 4: W-0001 + W-0005 step 1 filed; R-0011/R-0012 addenda; R-0014 B3 end-vocabulary fix; HO-0006→R-0014, HO-0007→R-0015, and HO-0008→R-0016 are DONE. E-0011/E-0012 were cleared for build+run. |
+| systems-researcher | (unassigned — bundled implementation-engineer + systems-researcher seat, S-0015) | 2026-09-24 | Round 4: S-0015 bundled both seats for W-0001/W-0005 step 2; Gate 0/UCI proved; E-0011/E-0012 tools built and E-0011 live dataset completed. |
+| adversarial-reviewer | (unassigned — seat occupied 2026-09-22 S-0010, 2026-09-23 S-0012/S-0014) | 2026-09-23 | Round 4: S-0012 — R-0015 (E-0012) CLEAN; S-0014 — R-0016 (E-0011) B3 FIXED and clear-for-build-run ruling. |
+| implementation-engineer | (unassigned — bundled implementation-engineer + systems-researcher seat, S-0015) | 2026-09-24 | Round 4: S-0015 bundled both seats for W-0001/W-0005 step 2; tool code/acceptance execution and E-0011 replacement campaign. |
+| verification-auditor | (unassigned — rotating fresh-agent seat; HO-0009 requested) | 2026-09-24 | Independently re-run E-0011 finalizer/gates and artifact hashes for W-0001; do not edit the owner records. |
 
 ### verification-auditor occupant log (the rotating seat; models deliberately not recorded)
 

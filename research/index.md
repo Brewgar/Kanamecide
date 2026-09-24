@@ -44,7 +44,6 @@
 - [E-00004](experiments/E-00004-gpu-batch-inference-latency-curve-rtx-5070-ti-dense-net-256-512-hidden.md) — GPU batch-inference latency curve (RTX 5070 Ti, dense net 256-512 hidden) — status=PENDING
 - [E-00005](experiments/E-00005-slider-attack-time-share-and-pext-speedup-ceiling-pre-pext-profile.md) — Slider-attack time share and PEXT speedup ceiling (pre-PEXT profile) — status=PENDING
 - [E-0001](experiments/E-0001-classical-alpha-beta-baseline-time-to-depth.md) — Classical alpha-beta baseline (time-to-depth) — status=PENDING  [EXAMPLE]
-- [E-0011](experiments/E-0011-self-play-data-pipeline-provenance-carrying-resumable-deduplicated-game-dataset.md) — E-0011 — Self-play data pipeline: resumable, provenance-carrying, deduplicated game dataset for Texel fitting — status=PENDING
 - [E-0012](experiments/E-0012-e-sprt-lite-comparison-harness-pre-registered-dec-0010-tiers.md) — E-0012 — E-SPRT-lite comparison harness (pre-registered, DEC-0010 tiers), offline-validated on retained E-0010 data — status=PENDING
 
 ## Completed Experiments
@@ -56,6 +55,7 @@
 - [E-00009](experiments/E-00009-o3d-tt-iterative-deepening-time-control-repetition-50-move-search-stack-completion.md) — O3d TT + iterative deepening + time control + repetition/50-move (search-stack completion) — status=COMPLETED  result=PASS
 - [E-0002](experiments/E-0002-bench-harness-and-o2-baseline.md) — Bench harness plus O2 build baseline (perft NPS, fixed flags) — status=COMPLETED  result=certified /O2 = 43-47 Mn
 - [E-0010](experiments/E-0010-ee-val-tapered-hand-tuned-evaluation-term-by-term-self-play-elo-attribution.md) — E-EVAL — Tapered Hand-Tuned Evaluation (term-by-term self-play Elo attribution) — status=COMPLETED  result=FAIL (pre-registered gat
+- [E-0011](experiments/E-0011-self-play-data-pipeline-provenance-carrying-resumable-deduplicated-game-dataset.md) — E-0011 — Self-play data pipeline: resumable, provenance-carrying, deduplicated game dataset for Texel fitting — status=COMPLETED  result=PASS
 
 ## Failures
 
@@ -130,7 +130,7 @@
 
 ## Work Items (open)
 
-- [W-0001](work/W-0001-e0011-self-play-data-pipeline-pre-register-build-run-verify.md) — E-0011 self-play data pipeline (pre-register, build, run, verify) — status=OPEN
+- [W-0001](work/W-0001-e0011-self-play-data-pipeline-pre-register-build-run-verify.md) — E-0011 self-play data pipeline (pre-register, build, run, verify) — status=IN_PROGRESS
 - [W-0003](work/W-0003-round2-agreement-matrix-reviewer-column-backfill.md) — Round-2 AGREEMENT_MATRIX reviewer column backfill (as an addendum review) — status=IN_PROGRESS
 - [W-0005](work/W-0005-e-sprt-lite-comparison-harness-pre-register-build-validate.md) — E-SPRT-lite comparison harness: pre-register, build, validate against known difference — status=OPEN
 - [W-0006](work/W-0006-root-scratch-debt-reduction-grandfathered-list-shrink.md) — Root-scratch debt reduction: shrink root_grandfathered.txt with itemized deletions — status=IN_PROGRESS
@@ -144,6 +144,7 @@
 ## Handoffs (open)
 
 - [HO-0005](handoffs/HO-0005-verify-w-0003-round2-agreement-matrix-backfill-r-0013.md) — Verify W-0003: R-0013 (Round-2 AGREEMENT_MATRIX backfill) and the untouched matrix — status=REQUESTED
+- [HO-0009](handoffs/HO-0009-independent-verification-run-0001-e0011.md) — Independent verification of RUN-0001 E-0011 terminal dataset and gates (a)-(f) — status=REQUESTED
 
 ## Handoffs (closed)
 
@@ -161,7 +162,7 @@
 
 ## Runs (finished)
 
-(none)
+- [RUN-0001](runs/RUN-0001-e0011-self-play-dataset-campaign.md) — E-0011 1,000-game self-play training dataset campaign — status=COMPLETED
 
 ## Sessions
 
@@ -179,6 +180,7 @@
 - [S-0012](sessions/S-0012-ho-0006-ho-0007-recritique-r-0014-partial-r-0015-clean.md) — HO-0006/HO-0007 re-critique of the R-0011/R-0012 addenda: R-0014 (E-0011 PARTIAL, 1 sentence left) + R-0015 (E-0012 CLEAN) — status=CLOSED
 - [S-0013](sessions/S-0013-micro-r-0014-b3-fix-e-0011-end-vocabulary-ns-suffix-ho-0008-gate0-12.md) — Micro-session: R-0014 B3 fix (end vocabulary + (Ns) suffix policy) landed verbatim in E-0011; HO-0008 full-discharge ruling requested; Gate 0 attempt #12 (OPEN); engine-free text work only — status=CLOSED
 - [S-0014](sessions/S-0014-ho-0008-r-0016-b3-fixed-e-0011-cleared-for-build-run.md) — HO-0008 micro-ruling - R-0016: B3 FIXED; E-0011 cleared for build+run — status=CLOSED
+- [S-0015](sessions/S-0015-e0011-e0012-build-run.md) — E-0011/E-0012 build+acceptance; E-0011 live dataset campaign — status=CLOSED
 
 ## Unrendered Records (bug — report this)
 

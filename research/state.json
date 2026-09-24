@@ -382,7 +382,9 @@
       "experiments_negative": [
         "E-0010"
       ],
-      "experiments_positive": [],
+      "experiments_positive": [
+        "E-0011"
+      ],
       "experiments_testing": [
         {
           "id": "E-0010",
@@ -395,10 +397,10 @@
         {
           "id": "E-0011",
           "rel": "experiments/E-0011-self-play-data-pipeline-provenance-carrying-resumable-deduplicated-game-dataset.md",
-          "result": "",
-          "status": "RUNNING",
+          "result": "PASS",
+          "status": "COMPLETED",
           "title": "E-0011 — Self-play data pipeline: resumable, provenance-carrying, deduplicated game dataset for Texel fitting",
-          "verdict": "unverdicted"
+          "verdict": "positive"
         }
       ],
       "falsifier": "",
@@ -740,7 +742,7 @@
       "kind": "experiment",
       "record": "E-0011",
       "rel": "experiments/E-0011-self-play-data-pipeline-provenance-carrying-resumable-deduplicated-game-dataset.md",
-      "status": "RUNNING",
+      "status": "COMPLETED",
       "title": "E-0011 — Self-play data pipeline: resumable, provenance-carrying, deduplicated game dataset for Texel fitting"
     },
     {
@@ -765,6 +767,17 @@
       "rel": "experiments/E-0012-e-sprt-lite-comparison-harness-pre-registered-dec-0010-tiers.md",
       "status": "PENDING",
       "title": "E-0012 — E-SPRT-lite comparison harness (pre-registered, DEC-0010 tiers), offline-validated on retained E-0010 data"
+    },
+    {
+      "code_files": [
+        "tools/e0011_check.py"
+      ],
+      "commits_mentioned": [],
+      "kind": "handoff",
+      "record": "HO-0009",
+      "rel": "handoffs/HO-0009-independent-verification-run-0001-e0011.md",
+      "status": "REQUESTED",
+      "title": "Independent verification of RUN-0001 E-0011 terminal dataset and gates (a)-(f)"
     },
     {
       "code_files": [
@@ -993,9 +1006,11 @@
         "tools/uci_probe.py"
       ],
       "commits_mentioned": [
+        "1a95e8d",
         "5026fb5",
         "690e145",
-        "752216c"
+        "752216c",
+        "7b1dda1"
       ],
       "kind": "work",
       "record": "W-0001",
@@ -1249,7 +1264,7 @@
       "title": "Gate 0 unrunnable: Device Guard hard-blocks kana.exe (every build, every path)"
     }
   ],
-  "generated": "2026-09-24T00:56:36",
+  "generated": "2026-09-24T20:45:08",
   "metrics": {
     "by_kind": {
       "agent_profile": 1,
@@ -1261,7 +1276,7 @@
       "evidence": 8,
       "experiment": 12,
       "failure": 2,
-      "handoff": 8,
+      "handoff": 9,
       "hypothesis": 17,
       "principle": 4,
       "profile": 4,
@@ -1274,28 +1289,27 @@
     },
     "by_status": {
       "ACTIVE": 14,
-      "CLOSED": 14,
-      "COMPLETED": 22,
+      "CLOSED": 15,
+      "COMPLETED": 23,
       "DONE": 10,
       "DRAFT": 1,
       "IN_PROGRESS": 3,
-      "OPEN": 30,
+      "OPEN": 29,
       "PENDING": 4,
       "RECORDED": 2,
       "REGISTERED": 8,
-      "REQUESTED": 1,
+      "REQUESTED": 2,
       "RESOLVED": 1,
-      "RUNNING": 1,
       "SUPERSEDED": 4
     },
     "code_files": 25,
     "contradiction_candidates": 0,
     "dangling_ids": 7,
     "duplicate_candidates": 2,
-    "edges_total": 1929,
+    "edges_total": 1951,
     "legacy_experiments_without_pre_registration": 6,
     "open_questions": 8,
-    "records_total": 154,
+    "records_total": 155,
     "revival_candidates": 5
   },
   "questions_all": [
@@ -1675,15 +1689,6 @@
   "timeline_tail": [
     {
       "example": false,
-      "id": "Q-0008",
-      "kind": "question",
-      "rel": "questions/Q-0008-learned-time-management.md",
-      "status": "OPEN",
-      "title": "Can computation be allocated by predicted value-of-search (eval variance / PV instability) rather than fixed heuristics?",
-      "when": "2026-09-19"
-    },
-    {
-      "example": false,
       "id": "R-0005",
       "kind": "review",
       "rel": "reviews/R-0005-memory-system-self-audit-and-dec-0011.md",
@@ -1807,15 +1812,6 @@
       "status": "CLOSED",
       "title": "W-0002: E-0010 decision-rule recalibration (D-0007 solved by arithmetic; DEC-0010 ACTIVE; R-0009 addendum; HO-0002 to verification-auditor; Gate-0 re-block)",
       "when": "2026-09-21"
-    },
-    {
-      "example": false,
-      "id": "E-0011",
-      "kind": "experiment",
-      "rel": "experiments/E-0011-self-play-data-pipeline-provenance-carrying-resumable-deduplicated-game-dataset.md",
-      "status": "RUNNING",
-      "title": "E-0011 — Self-play data pipeline: resumable, provenance-carrying, deduplicated game dataset for Texel fitting",
-      "when": "2026-09-22"
     },
     {
       "example": false,
@@ -2026,10 +2022,28 @@
     },
     {
       "example": false,
+      "id": "E-0011",
+      "kind": "experiment",
+      "rel": "experiments/E-0011-self-play-data-pipeline-provenance-carrying-resumable-deduplicated-game-dataset.md",
+      "status": "COMPLETED",
+      "title": "E-0011 — Self-play data pipeline: resumable, provenance-carrying, deduplicated game dataset for Texel fitting",
+      "when": "2026-09-24"
+    },
+    {
+      "example": false,
+      "id": "HO-0009",
+      "kind": "handoff",
+      "rel": "handoffs/HO-0009-independent-verification-run-0001-e0011.md",
+      "status": "REQUESTED",
+      "title": "Independent verification of RUN-0001 E-0011 terminal dataset and gates (a)-(f)",
+      "when": "2026-09-24"
+    },
+    {
+      "example": false,
       "id": "S-0015",
       "kind": "session",
       "rel": "sessions/S-0015-e0011-e0012-build-run.md",
-      "status": "OPEN",
+      "status": "CLOSED",
       "title": "E-0011/E-0012 build+acceptance; E-0011 live dataset campaign",
       "when": "2026-09-24"
     }

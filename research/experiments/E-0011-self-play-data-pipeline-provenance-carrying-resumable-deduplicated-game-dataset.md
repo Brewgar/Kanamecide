@@ -2,8 +2,8 @@
 id: E-0011
 type: experiment
 title: "E-0011 — Self-play data pipeline: resumable, provenance-carrying, deduplicated game dataset for Texel fitting"
-status: RUNNING
-result: null
+status: COMPLETED
+result: PASS
 elo_change: null
 hypothesis: H-0013
 priority: high
@@ -11,7 +11,7 @@ owner: systems-researcher
 pre_registered: 2026-09-22
 example: false
 created: 2026-09-22
-completed: null
+completed: 2026-09-24
 tags: [self-play, data-pipeline, texel, pre-registration]
 ---
 
@@ -455,4 +455,63 @@ finding stands under either count (draw-material is present on every rung); the 
 should be reconciled at the re-critique.
 
 
+
+
+## Addendum: RUN-0001 close-out (2026-09-24)
+
+RUN-0001 replacement segment is COMPLETED with `result: PASS`. This is a dataset-generation
+verdict only; no strength assertion is made. The final generator process was PID 14276
+after the recorded kill/resume, and the final checkpoint is 1,000 complete JSONL records.
+The final event is `generator_complete` with `valid_after=1000` and the run log ends with
+`COMPLETE games=1000 added=600`. The normal campaign path returns 0; the detached
+`runjob.py` supervisor records process-gone rather than retaining a long-lived child's
+OS return code, so this is the independently recorded terminal interpretation, not a
+fabricated process-exit capture. `runjob.py status` independently returned 0 with
+`FINISHED (process gone)` and a 1,000-item checkpoint.
+
+### Gate evidence (all six PASS)
+
+- (a) volume: `games=1000 min=1000`.
+- (b) JSONL parse and python-chess legality: all 1,000 lines parsed; `illegal_move_count=0`.
+- (c) duplicate move-lists: `duplicate_move_lists=0`; color balance `a_white=500`, `b_white=500`.
+- (d) provenance/schema: all mandatory fields covered 1,000/1,000; dense unique IDs 0..999;
+  named-value conjuncts pass; exactly one pinned time-control command.
+- (e) live kill/resume and truncation drill: `kill_in_400_600=True`, `resume=True`,
+  `grew=True`, `drill=True`, `torn_incidents=1`, `failures=0`, `duplicates=0`.
+- (f) no strength assertion: `strength_assertion_lines=0`.
+
+The finalizer captured checker exit `0` and `OVERALL PASS gates=6` in
+`m0_audit/e0011/check_output.txt` (SHA-256
+`9fe6b532ad08fce94890bc06b3969b35a0f625e57d94d8edd2851571876ed907`).
+
+### Terminal artifact manifest
+
+- Dataset: `C:/Users/tahae/Kanamecide/m0_audit/e0011/games.jsonl`; 1,000 rows; SHA-256
+  `27ea181d32a9025e0fd9cea150540b6598ce7e608bc96ca245d7c07b7ac5bb95`.
+- Finalizer result: `C:/Users/tahae/Kanamecide/m0_audit/e0011/finalizer_result.json`; checker
+  exit 0 and the same dataset/check-output hashes.
+- Kill/resume evidence: `C:/Users/tahae/Kanamecide/m0_audit/e0011/kill_resume_evidence_v2.json`;
+  SHA-256 `7acef0f44d75818f31e1feef184a8353efeecf1edfe3e9b6281447a0645d4bfb`.
+- Preserved pre-resume log: `m0_audit/e0011/run.log.20260924T132806Z.preserved`;
+  SHA-256 `390f4b8222570f9c5a9e9722130c9de1c16794c62a0946a07ee6c900f7879fc5`, identical to
+  the evidence's `source_log_sha256`.
+- Completed replacement log: `m0_audit/e0011/run.log`; SHA-256
+  `cdb326daa45319fe3e7a67b36022c067fbf327b589fc59c3ad7352c82abd1a56`.
+- Event sidecar: `m0_audit/e0011/games.jsonl.events.jsonl`; SHA-256
+  `573fa6765068c7e3130079c23628d6c9432a5d172f50057fd2b7e9512b6abbb3`.
+
+All 1,000 replacement rows carry binary SHA-256
+`504eb01a828770dd9bfca252ab8245a5692df51580957cb6e5553012347a6daa` and source commit
+`7b1dda15f675b884a8bf971eec4b53a0fdf2049f`. Attempt 1 remains preserved and excluded
+under `m0_audit/e0011_failed_attempt1/`; its 202-row failed segment is not mixed into the
+replacement checkpoint.
+
+### Downstream leakage readiness
+
+The pre-registered downstream leakage gate is ready but not executed here: the E-0010
+campaign salt is `20260914`, the E-0011 salt is `20260922`, and the downstream E-0012
+consumer must compute and record `training_game_overlap = 0` before using the dataset.
+`fitted_params_sha256: PENDING_H-0013` is intentionally not fabricated here; no fitted
+parameters or downstream strength result are claimed by this experiment. Independent
+verification of this close-out is requested by HO-0009.
 
