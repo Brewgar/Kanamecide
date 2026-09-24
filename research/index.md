@@ -145,6 +145,8 @@
 ## Handoffs (open)
 
 - [HO-0005](handoffs/HO-0005-verify-w-0003-round2-agreement-matrix-backfill-r-0013.md) — Verify W-0003: R-0013 (Round-2 AGREEMENT_MATRIX backfill) and the untouched matrix — status=REQUESTED
+- [HO-0010](handoffs/HO-0010-close-w-0001-after-r-0017-independent-verification.md) — Close W-0001 after R-0017 independent verification — status=REQUESTED
+- [HO-0011](handoffs/HO-0011-execute-e-0012-live-known-difference-and-null-pair-controls.md) — Execute E-0012 live known-difference and null-pair controls — status=REQUESTED
 
 ## Handoffs (closed)
 
@@ -184,6 +186,7 @@
 - [S-0015](sessions/S-0015-e0011-e0012-build-run.md) — E-0011/E-0012 build+acceptance; E-0011 live dataset campaign — status=CLOSED
 - [S-0016](sessions/S-0016-first-training-readiness-prompt-and-e-0011-downstream-routing-clarification.md) — First-training readiness prompt and E-0011 downstream-routing clarification — status=CLOSED
 - [S-0017](sessions/S-0017-ho-0009-independent-verification-e-0011-terminal-dataset.md) — HO-0009 independent verification of E-0011 terminal dataset — status=CLOSED
+- [S-0018](sessions/S-0018-post-ho-0009-owner-handoffs-and-e-0012-live-validation-routing.md) — Post-HO-0009 owner handoffs and E-0012 live-validation routing — status=CLOSED
 
 ## Unrendered Records (bug — report this)
 

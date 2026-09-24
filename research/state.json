@@ -781,6 +781,17 @@
     },
     {
       "code_files": [
+        "tools/e0012_sprt.py"
+      ],
+      "commits_mentioned": [],
+      "kind": "handoff",
+      "record": "HO-0011",
+      "rel": "handoffs/HO-0011-execute-e-0012-live-known-difference-and-null-pair-controls.md",
+      "status": "REQUESTED",
+      "title": "Execute E-0012 live known-difference and null-pair controls"
+    },
+    {
+      "code_files": [
         "src/bitboard.cpp"
       ],
       "commits_mentioned": [],
@@ -1008,6 +1019,19 @@
       "rel": "sessions/S-0014-ho-0008-r-0016-b3-fixed-e-0011-cleared-for-build-run.md",
       "status": "CLOSED",
       "title": "HO-0008 micro-ruling - R-0016: B3 FIXED; E-0011 cleared for build+run"
+    },
+    {
+      "code_files": [
+        "tools/e0012_sprt.py"
+      ],
+      "commits_mentioned": [
+        "69e874c"
+      ],
+      "kind": "session",
+      "record": "S-0018",
+      "rel": "sessions/S-0018-post-ho-0009-owner-handoffs-and-e-0012-live-validation-routing.md",
+      "status": "CLOSED",
+      "title": "Post-HO-0009 owner handoffs and E-0012 live-validation routing"
     },
     {
       "code_files": [
@@ -1275,7 +1299,7 @@
       "title": "Gate 0 unrunnable: Device Guard hard-blocks kana.exe (every build, every path)"
     }
   ],
-  "generated": "2026-09-24T22:43:18",
+  "generated": "2026-09-24T23:43:31",
   "metrics": {
     "by_kind": {
       "agent_profile": 1,
@@ -1287,7 +1311,7 @@
       "evidence": 8,
       "experiment": 12,
       "failure": 2,
-      "handoff": 9,
+      "handoff": 11,
       "hypothesis": 17,
       "principle": 4,
       "profile": 4,
@@ -1295,12 +1319,12 @@
       "report": 13,
       "review": 17,
       "round_megaprompt": 2,
-      "session": 17,
+      "session": 18,
       "work": 7
     },
     "by_status": {
       "ACTIVE": 14,
-      "CLOSED": 17,
+      "CLOSED": 18,
       "COMPLETED": 24,
       "DONE": 11,
       "DRAFT": 1,
@@ -1309,18 +1333,18 @@
       "PENDING": 4,
       "RECORDED": 2,
       "REGISTERED": 8,
-      "REQUESTED": 1,
+      "REQUESTED": 3,
       "RESOLVED": 1,
       "SUPERSEDED": 4
     },
     "code_files": 25,
     "contradiction_candidates": 0,
-    "dangling_ids": 9,
+    "dangling_ids": 11,
     "duplicate_candidates": 2,
-    "edges_total": 2043,
+    "edges_total": 2113,
     "legacy_experiments_without_pre_registration": 6,
     "open_questions": 8,
-    "records_total": 159,
+    "records_total": 162,
     "revival_candidates": 5
   },
   "questions_all": [
@@ -1712,33 +1736,6 @@
   "timeline_tail": [
     {
       "example": false,
-      "id": "S-0005",
-      "kind": "session",
-      "rel": "sessions/S-0005-round5-fixes.md",
-      "status": "CLOSED",
-      "title": "Resolve R-0006 findings G1–G5 in the DEC-0011 layer + record F-0002 (Gate-0 Device Guard block)",
-      "when": "2026-09-19"
-    },
-    {
-      "example": false,
-      "id": "R-0007",
-      "kind": "review",
-      "rel": "reviews/R-0007-re-verification-of-the-r-0006-fixes-to-the-dec-0011-layer-w-0007-occupant-3.md",
-      "status": "COMPLETED",
-      "title": "R 0007 re verification of the r 0006 fixes to the dec 0011 layer w 0007 occupant 3",
-      "when": "2026-09-20"
-    },
-    {
-      "example": false,
-      "id": "R-0008",
-      "kind": "review",
-      "rel": "reviews/R-0008-second-independent-verification-of-e-0010-fresh-agent-w-0004-occupant-3.md",
-      "status": "COMPLETED",
-      "title": "R 0008 second independent verification of e 0010 fresh agent w 0004 occupant 3",
-      "when": "2026-09-20"
-    },
-    {
-      "example": false,
       "id": "S-0006",
       "kind": "session",
       "rel": "sessions/S-0006-round-5-occupant-3-w-0007-re-verification-verified-r-0007-second-e-0010-verification-r-0008-completes-the-w-0004-deliverable-gate-0-re-block.md",
@@ -2027,6 +2024,24 @@
     },
     {
       "example": false,
+      "id": "HO-0010",
+      "kind": "handoff",
+      "rel": "handoffs/HO-0010-close-w-0001-after-r-0017-independent-verification.md",
+      "status": "REQUESTED",
+      "title": "Close W-0001 after R-0017 independent verification",
+      "when": "2026-09-24"
+    },
+    {
+      "example": false,
+      "id": "HO-0011",
+      "kind": "handoff",
+      "rel": "handoffs/HO-0011-execute-e-0012-live-known-difference-and-null-pair-controls.md",
+      "status": "REQUESTED",
+      "title": "Execute E-0012 live known-difference and null-pair controls",
+      "when": "2026-09-24"
+    },
+    {
+      "example": false,
       "id": "R-0017",
       "kind": "review",
       "rel": "reviews/R-0017-independent-verification-w-0001-e-0011-terminal-dataset-ho-0009.md",
@@ -2068,6 +2083,15 @@
       "rel": "sessions/S-0017-ho-0009-independent-verification-e-0011-terminal-dataset.md",
       "status": "CLOSED",
       "title": "HO-0009 independent verification of E-0011 terminal dataset",
+      "when": "2026-09-24"
+    },
+    {
+      "example": false,
+      "id": "S-0018",
+      "kind": "session",
+      "rel": "sessions/S-0018-post-ho-0009-owner-handoffs-and-e-0012-live-validation-routing.md",
+      "status": "CLOSED",
+      "title": "Post-HO-0009 owner handoffs and E-0012 live-validation routing",
       "when": "2026-09-24"
     }
   ]
