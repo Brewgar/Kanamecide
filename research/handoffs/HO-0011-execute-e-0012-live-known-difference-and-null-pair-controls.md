@@ -6,7 +6,7 @@ to: systems-researcher
 work_item: W-0005
 status: REQUESTED
 title: Execute E-0012 live known-difference and null-pair controls
-artifacts: ["research/work/W-0005-e-sprt-lite-comparison-harness-pre-register-build-validate.md", "research/experiments/E-0012-e-sprt-lite-comparison-harness-pre-registered-dec-0010-tiers.md", "research/reviews/R-0015-e-0012-critique.md", "research/handoffs/HO-0007-e-0012-recritique.md", "tools/e0012_sprt.py", "e0010_k6n_games.jsonl"]
+artifacts: ["research/work/W-0005-e-sprt-lite-comparison-harness-pre-register-build-validate.md", "research/experiments/E-0012-e-sprt-lite-comparison-harness-pre-registered-dec-0010-tiers.md", "research/reviews/R-0015-critique-e-0012-addenda-b1-b2-n4-null-pair-ruling.md", "research/handoffs/HO-0007-re-critique-e-0012-addenda-b1-b2-n4-null-pair-before-any-running.md", "tools/e0012_sprt.py", "e0010_k6n_games.jsonl"]
 commands: ["build\\Release\\kana.exe", "python tools/e0012_sprt.py --self-test", "python tools/e0012_sprt.py --replay e0010_k6n_games.jsonl", "python research/scripts/research.py validate"]
 acceptance: "RUN-0002 and RUN-0003 use the frozen E-0012 contract: known stage-6 vs stage-0 Tier-S validation and N4 stage-6 vs stage-6 cap-240 null control; both are run under runjob with durable resume evidence, and no training is started."
 example: false
