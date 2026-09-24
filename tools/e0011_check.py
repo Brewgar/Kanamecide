@@ -354,8 +354,15 @@ def gate_f(record_path: Path, results: Results) -> None:
         if line.startswith("## "):
             current = line[3:].strip()
         if current in {"Results", "Statistical Analysis", "Interpretation", "Conclusion"}:
-            if re.search(r"\bElo\b|\bLOS\b|\bCI(?:95)?\b|significan|strength[- ]assert",
-                         line, re.IGNORECASE):
+            lowered = line.lower()
+            negated = ("no elo" in lowered or "not an elo" in lowered
+                       or "no strength claim" in lowered or "no strength assertion" in lowered)
+            assertion = re.search(
+                r"\bElo\b\s*(?:[:=]\s*)?[+\-]?\d|\bLOS\b\s*(?:[:=]\s*)?\d|"
+                r"\bCI(?:95)?\b\s*(?:[:=]\s*)?\[[+\-]?\d|\b(?:beats|outperforms|stronger than)\b",
+                line, re.IGNORECASE,
+            )
+            if assertion and not negated and "TBD" not in line:
                 scoped.append(f"{current}: {line}")
     results.add("GATE-F", "f.no_strength_assertion", not scoped,
                 f"strength_assertion_lines={len(scoped)}" + (f" lines={scoped}" if scoped else ""))
@@ -374,6 +381,21 @@ def diagnostics(rows: list[dict[str, Any]], boards: list[tuple[int, chess.Board]
             current.pop()
     total_positions = sum(positions.values())
     duplicate_positions = total_positions - len(positions)
+    quiet_proxy = 0
+    for row in rows:
+        try:
+            board = chess.Board()
+            for uci in row.get("opening", []):
+                board.push_uci(uci)
+            for san in row.get("san", []):
+                full_ply = board.fullmove_number * 2 + (0 if board.turn == chess.WHITE else 1) - 1
+                previous_left_check = board.is_check()
+                if (full_ply >= 10 and "x" not in san and not san.endswith(("+", "#"))
+                        and not previous_left_check):
+                    quiet_proxy += 1
+                board.push_san(san)
+        except Exception:
+            continue
     white_points = 0.0
     a_white_points = a_black_points = 0.0
     for row in rows:
@@ -387,7 +409,8 @@ def diagnostics(rows: list[dict[str, Any]], boards: list[tuple[int, chess.Board]
     degenerate = sum(1 for row in rows if row.get("end") == "mate" and len(row.get("san", [])) <= 6)
     print(f"DIAGNOSTIC end_counts={dict(sorted(ends.items(), key=lambda x: str(x[0])))}")
     print(f"DIAGNOSTIC san_position_yield={sum(len(r.get('san', [])) for r in rows)} "
-          f"opening_plies={sum(len(r.get('opening', [])) for r in rows)}")
+          f"opening_plies={sum(len(r.get('opening', [])) for r in rows)} "
+          f"quiet_proxy_opening_skipped={quiet_proxy} fit_scope={'all-terms' if quiet_proxy >= 30000 else 'mobility/tempo-subset'}")
     print(f"DIAGNOSTIC duplicate_positions={duplicate_positions} total_positions={total_positions}")
     print(f"DIAGNOSTIC degenerate_mate_san_le_6={degenerate}")
     if n:

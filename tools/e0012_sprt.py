@@ -216,11 +216,32 @@ def durable_result(jsonl: Path, checkpoint: Path, incident: Path,
     return state
 
 
+def live_crash_record(game_id: int, salt: int, stage_a: int, stage_b: int,
+                      binary: str, commit: str, offender: str,
+                      incident: str) -> dict[str, Any]:
+    a_white = game_id % 2 == 0
+    opening = derive_opening(game_id)
+    return {
+        "game_id": game_id, "campaign_salt": salt,
+        "seed_int": salt * 1_000_003 + game_id, "opening": opening,
+        "a_white": a_white, "eval_stage_a": stage_a, "eval_stage_b": stage_b,
+        "binary_sha256": binary, "src_commit": commit, "tc": TC,
+        "tc_command": TC_COMMAND, "time_started": utc_now(), "time_finished": utc_now(),
+        "result": "B" if offender == "A" else "A", "end": "crash", "end_seconds": 0,
+        "plies": len(opening), "san": [], "crash_incident": True,
+        "crash_incident_text": f"{offender}:{incident}",
+    }
+
+
 def live_game(engines: tuple[Engine, Engine], game_id: int, salt: int,
               stage_a: int, stage_b: int, binary: str, commit: str) -> dict[str, Any]:
     eng_a, eng_b = engines
-    if not eng_a.prepare_game() or not eng_b.prepare_game():
-        raise RuntimeError("engine readiness failed before game start")
+    if not eng_a.prepare_game():
+        return live_crash_record(game_id, salt, stage_a, stage_b, binary, commit,
+                                 "A", "READINESS_OR_ENGINE-DIED")
+    if not eng_b.prepare_game():
+        return live_crash_record(game_id, salt, stage_a, stage_b, binary, commit,
+                                 "B", "READINESS_OR_ENGINE-DIED")
     opening = derive_opening(game_id)
     board = validate_san(opening, [])
     a_white = game_id % 2 == 0
@@ -270,6 +291,12 @@ def live_game(engines: tuple[Engine, Engine], game_id: int, salt: int,
 
 
 def run_live(args: argparse.Namespace) -> int:
+    if args.null_pair:
+        if (args.tier, args.stage_a, args.stage_b, args.cap) != ("S", 6, 6, 240):
+            raise ValueError("N4 null control is frozen to Tier S, stage 6 vs 6, cap 240")
+    elif args.validation_known:
+        if (args.tier, args.stage_a, args.stage_b, args.cap) != ("S", 6, 0, None):
+            raise ValueError("known-difference validation is frozen to Tier S, stage 6 vs 0, cap 8000")
     config = config_for(args.tier, args.magnitude, args.cap, args.salt)
     binary = sha256_file(Path(args.exe).resolve())
     commit = git_commit()
@@ -285,18 +312,36 @@ def run_live(args: argparse.Namespace) -> int:
         raise ValueError("null-pair requires identical stages")
     if not args.null_pair and args.stage_a == args.stage_b:
         raise ValueError("known-difference validation requires distinct stages")
-    engines = (Engine(Path(args.exe).resolve(), args.stage_a),
-               Engine(Path(args.exe).resolve(), args.stage_b))
+    def move_key(row: dict[str, Any]) -> tuple[str, ...]:
+        return tuple(row.get("opening", [])) + tuple(row.get("san", []))
+
+    seen_move_lists = {move_key(item) for item in rows}
+    engines: tuple[Engine, Engine] | None = None
     try:
         while state["verdict"] == "INCONCLUSIVE" and state["n"] < config["cap"]:
             game_id = state["next_game_index"]
+            if engines is None:
+                try:
+                    engines = (Engine(Path(args.exe).resolve(), args.stage_a),
+                               Engine(Path(args.exe).resolve(), args.stage_b))
+                except Exception as exc:
+                    row = live_crash_record(game_id, args.salt, args.stage_a, args.stage_b,
+                                            binary, commit, "A", f"CONSTRUCTION:{exc}")
+                    state = durable_result(jsonl, checkpoint, incident, row, config)
+                    print(f"FLUSHED n={state['n']} result={row['result']} crash=construction", flush=True)
+                    continue
             row = live_game(engines, game_id, args.salt, args.stage_a, args.stage_b, binary, commit)
+            key = move_key(row)
+            if key in seen_move_lists:
+                raise RuntimeError("precondition failed: duplicate move-list")
+            seen_move_lists.add(key)
             state = durable_result(jsonl, checkpoint, incident, row, config)
             print(f"FLUSHED n={state['n']} result={row['result']} llr={state['llr']:.12f} "
                   f"verdict={state['verdict']}", flush=True)
     finally:
-        for engine in engines:
-            engine.close()
+        if engines:
+            for engine in engines:
+                engine.close()
     summary = {"config": config, **state}
     if args.null_pair:
         white_points = 0.0
@@ -404,11 +449,18 @@ def self_test() -> int:
                       bad_case / "checkpoint.json", config, bad_case / "incidents.jsonl")
     except RuntimeError:
         mismatch_aborted = True
-    passed = monotone and capped["n"] == 5 and capped["verdict"] == "INCONCLUSIVE" and epsilon == "H1" and mismatch_aborted
+    passed = (monotone and capped["n"] == 5 and capped["verdict"] == "INCONCLUSIVE"
+              and epsilon == "H1" and mismatch_aborted)
+    crash_a = live_crash_record(0, 20260924, 6, 0, "0" * 64, "test", "A", "UNIT")
+    crash_b = live_crash_record(1, 20260924, 6, 0, "0" * 64, "test", "B", "UNIT")
+    crash_contract = (crash_a["result"] == "B" and crash_b["result"] == "A"
+                      and crash_a["end"] == crash_b["end"] == "crash")
+    passed = passed and crash_contract
     print(f"SELF_TEST split_points={len(scores) - 1} sequence_n={len(scores)} "
           f"baseline_verdict={baseline['verdict']} crossing={baseline['crossing']} "
           f"monotone={monotone} cap={capped['n']}/{capped['verdict']} "
-          f"epsilon_tie={epsilon} resume_mismatch_abort={mismatch_aborted}")
+          f"epsilon_tie={epsilon} resume_mismatch_abort={mismatch_aborted} "
+          f"crash_loss={crash_contract}")
     print(f"SELF_TEST {'PASS' if passed else 'FAIL'}")
     return 0 if passed else 1
 
@@ -427,10 +479,15 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
     parser.add_argument("--stage-a", type=int, default=6)
     parser.add_argument("--stage-b", type=int, default=0)
     parser.add_argument("--null-pair", action="store_true")
+    parser.add_argument("--validation-known", action="store_true",
+                        help="pre-registered stage-6 vs stage-0 Tier-S live validation")
     parser.add_argument("--out", type=Path)
     parser.add_argument("--checkpoint", type=Path)
     parser.add_argument("--incidents", type=Path)
-    return parser.parse_args(argv)
+    args = parser.parse_args(argv)
+    if args.null_pair and args.validation_known:
+        parser.error("--null-pair and --validation-known are mutually exclusive")
+    return args
 
 
 def main(argv: list[str] | None = None) -> int:

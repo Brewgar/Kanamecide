@@ -136,14 +136,22 @@ class Engine:
             errors="replace", bufsize=1,
         )
         self.lines = queue.Queue()
-        threading.Thread(target=self._pump, daemon=True).start()
-        if self.exchange("uci", "uciok", 8.0) is None:
-            raise RuntimeError("UCI handshake failed: no uciok")
+        self.reader = threading.Thread(target=self._pump, daemon=True)
+        self.reader.start()
+        try:
+            if self.exchange("uci", "uciok", 8.0) is None:
+                raise RuntimeError("UCI handshake failed: no uciok")
+        except BaseException:
+            self.close()
+            raise
 
     def _pump(self) -> None:
-        assert self.proc.stdout is not None
-        for line in self.proc.stdout:
-            self.lines.put(line.rstrip("\r\n"))
+        try:
+            assert self.proc.stdout is not None
+            for line in self.proc.stdout:
+                self.lines.put(line.rstrip("\r\n"))
+        except (OSError, ValueError):
+            pass
         self.lines.put(None)
 
     def send(self, command: str) -> bool:
@@ -152,7 +160,7 @@ class Engine:
             self.proc.stdin.write(command + "\n")
             self.proc.stdin.flush()
             return True
-        except (BrokenPipeError, OSError):
+        except (BrokenPipeError, OSError, ValueError):
             return False
 
     def exchange(self, command: str, sentinel: str, timeout: float) -> str | None:
@@ -209,12 +217,38 @@ class Engine:
         except subprocess.TimeoutExpired:
             self.proc.kill()
             self.proc.wait(timeout=2)
+        self.reader.join(timeout=1)
+        if self.proc.stdout is not None:
+            try:
+                self.proc.stdout.close()
+            except (OSError, ValueError):
+                pass
+
+
+def crash_record(game_id: int, binary: str, commit: str,
+                 offender: str, incident: str) -> dict[str, Any]:
+    opening = derive_opening(game_id)
+    a_white = game_id % 2 == 0
+    stamp = utc_now()
+    return {
+        "game_id": game_id, "campaign_salt": SALT,
+        "seed_int": SALT * 1_000_003 + game_id, "opening": opening,
+        "a_white": a_white, "b_white": not a_white,
+        "eval_stage_a": STAGE, "eval_stage_b": STAGE,
+        "binary_sha256": binary, "src_commit": commit, "tc": TC,
+        "tc_command": TC_COMMAND, "time_started": stamp, "time_finished": stamp,
+        "res": "B" if offender == "A" else "A", "end": "crash", "end_seconds": 0,
+        "plies": len(opening), "san": [], "crash_incident": True,
+        "crash_incident_text": f"{offender}:{incident}",
+    }
 
 
 def play_game(engines: tuple[Engine, Engine], game_id: int, binary: str, commit: str) -> dict[str, Any]:
     eng_a, eng_b = engines
-    if not eng_a.prepare_game() or not eng_b.prepare_game():
-        raise RuntimeError("engine readiness failed before game start")
+    if not eng_a.prepare_game():
+        return crash_record(game_id, binary, commit, "A", "READINESS_OR_ENGINE_DIED")
+    if not eng_b.prepare_game():
+        return crash_record(game_id, binary, commit, "B", "READINESS_OR_ENGINE_DIED")
     opening = derive_opening(game_id)
     board = validate_san(opening, [])
     a_white = game_id % 2 == 0
@@ -386,11 +420,26 @@ def run_campaign(args: argparse.Namespace) -> int:
     def worker(pair_index: int) -> None:
         engines: tuple[Engine, Engine] | None = None
         try:
-            engines = (Engine(exe, STAGE), Engine(exe, STAGE))
             for game_id in missing[pair_index::args.pairs]:
                 if errors:
                     return
-                row = play_game(engines, game_id, binary, commit)
+                if engines is None:
+                    eng_a: Engine | None = None
+                    try:
+                        eng_a = Engine(exe, STAGE)
+                        eng_b = Engine(exe, STAGE)
+                        engines = (eng_a, eng_b)
+                    except Exception as exc:
+                        offender = "B" if eng_a is not None else "A"
+                        if eng_a is not None:
+                            eng_a.close()
+                        row = crash_record(game_id, binary, commit, offender,
+                                           f"CONSTRUCTION:{exc}")
+                        engines = None
+                    else:
+                        row = play_game(engines, game_id, binary, commit)
+                else:
+                    row = play_game(engines, game_id, binary, commit)
                 append_fsync(out, row, write_lock)
                 with write_lock:
                     if game_id in emitted:
@@ -398,9 +447,18 @@ def run_campaign(args: argparse.Namespace) -> int:
                     emitted.add(game_id)
                     count = len(emitted)
                 audit.write("game_flushed", game_id=game_id, valid_after=count,
-                            end=row["end"], res=row["res"], crash_incident=row["crash_incident"])
+                            end=row["end"], res=row["res"],
+                            crash_incident=row["crash_incident"])
                 print(f"FLUSHED game_id={game_id} valid={count} end={row['end']} "
                       f"res={row['res']}", flush=True)
+                if row["end"] == "crash":
+                    audit.write("engine_pair_recreated_after_crash", game_id=game_id,
+                                incident=row["crash_incident_text"])
+                    print(f"INCIDENT engine_pair_recreated_after_crash game_id={game_id} "
+                          f"reason={row['crash_incident_text']}", flush=True)
+                    for engine in engines or ():
+                        engine.close()
+                    engines = None
         except BaseException as exc:
             errors.append(exc)
         finally:
