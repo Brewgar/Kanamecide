@@ -35,6 +35,7 @@ remain the owners of RUN-0001, E-0011, and W-0001.
    raw output has PASS for gates (a), (b), (c), (d), (e), and (f), and `OVERALL PASS`.
 3. Recompute and compare:
    - dataset SHA-256: `27ea181d32a9025e0fd9cea150540b6598ce7e608bc96ca245d7c07b7ac5bb95`
+   - finalizer-result SHA-256: `08e38be145d1829ca2d896b68bafa3e9edb39b38c97544b28a6c31fe9c629133`
    - checker-output SHA-256: `9fe6b532ad08fce94890bc06b3969b35a0f625e57d94d8edd2851571876ed907`
    - preserved pre-resume log SHA-256: `390f4b8222570f9c5a9e9722130c9de1c16794c62a0946a07ee6c900f7879fc5`
    - completed replacement log SHA-256: `cdb326daa45319fe3e7a67b36022c067fbf327b589fc59c3ad7352c82abd1a56`

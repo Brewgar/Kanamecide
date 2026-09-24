@@ -78,7 +78,8 @@ Approximately 1.3 hours and a local, gitignored JSONL dataset; raw bytes are pin
   The detached supervisor does not persist a long-lived child's OS return code; the
   recorded terminal result is therefore based on the complete normal path, not an invented
   OS-code observation.
-- 2026-09-24 14:08:13Z — FINALIZER PASS: `finalizer_result.json` captured checker exit 0,
+- 2026-09-24 14:08:13Z — FINALIZER PASS: `finalizer_result.json` (SHA-256
+  `08e38be145d1829ca2d896b68bafa3e9edb39b38c97544b28a6c31fe9c629133`) captured checker exit 0,
   dataset SHA-256 `27ea181d32a9025e0fd9cea150540b6598ce7e608bc96ca245d7c07b7ac5bb95`,
   check-output SHA-256 `9fe6b532ad08fce94890bc06b3969b35a0f625e57d94d8edd2851571876ed907`,
   and all six gates PASS.

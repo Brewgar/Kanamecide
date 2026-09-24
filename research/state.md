@@ -1,7 +1,7 @@
 # Research State (GENERATED — do not edit)
 
 Derived from the record store by `research.py state`. Regenerate after every change.
-Generated: 2026-09-24T20:45:08; schema 2.
+Generated: 2026-09-24T20:47:16; schema 2.
 Every entry is a PROJECTION of the linked records — follow them before believing.
 
 ## Current best beliefs (hypotheses with measured weight)

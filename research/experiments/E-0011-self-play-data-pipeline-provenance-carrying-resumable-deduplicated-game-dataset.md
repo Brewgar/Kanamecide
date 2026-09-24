@@ -488,8 +488,9 @@ The finalizer captured checker exit `0` and `OVERALL PASS gates=6` in
 
 - Dataset: `C:/Users/tahae/Kanamecide/m0_audit/e0011/games.jsonl`; 1,000 rows; SHA-256
   `27ea181d32a9025e0fd9cea150540b6598ce7e608bc96ca245d7c07b7ac5bb95`.
-- Finalizer result: `C:/Users/tahae/Kanamecide/m0_audit/e0011/finalizer_result.json`; checker
-  exit 0 and the same dataset/check-output hashes.
+- Finalizer result: `C:/Users/tahae/Kanamecide/m0_audit/e0011/finalizer_result.json`; SHA-256
+  `08e38be145d1829ca2d896b68bafa3e9edb39b38c97544b28a6c31fe9c629133`; checker exit 0 and
+  the same dataset/check-output hashes.
 - Kill/resume evidence: `C:/Users/tahae/Kanamecide/m0_audit/e0011/kill_resume_evidence_v2.json`;
   SHA-256 `7acef0f44d75818f31e1feef184a8353efeecf1edfe3e9b6281447a0645d4bfb`.
 - Preserved pre-resume log: `m0_audit/e0011/run.log.20260924T132806Z.preserved`;
