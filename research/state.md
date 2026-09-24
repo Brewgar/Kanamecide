@@ -1,7 +1,7 @@
 # Research State (GENERATED — do not edit)
 
 Derived from the record store by `research.py state`. Regenerate after every change.
-Generated: 2026-09-24T20:47:16; schema 2.
+Generated: 2026-09-24T22:21:45; schema 2.
 Every entry is a PROJECTION of the linked records — follow them before believing.
 
 ## Current best beliefs (hypotheses with measured weight)
@@ -43,8 +43,6 @@ Every entry is a PROJECTION of the linked records — follow them before believi
 - hypothesis **H-0002-magic-stub** Magic Bitboards with PEXT Provide >=3x NPS Speedup — SUPERSEDED. No revisit condition recorded.
 
 ## Recent timeline
-- 2026-09-22 session S-0010 (CLOSED) : HO-0003/HO-0004 critiques (R-0011/R-0012: both NOT CLEAN) + W-0003 backfill (R-0013) + HO-0005
-- 2026-09-22 work W-0002 (DONE) : Recalibrate the E-0010 effect-size decision rule (D-0007 -> DEC-0010)
 - 2026-09-23 handoff HO-0006 (DONE) : Re-critique E-0011's R-0011 addenda (B1/B2/B3 responses) before any RUNNING
 - 2026-09-23 handoff HO-0007 (DONE) : Re-critique E-0012's R-0012 addenda (B1/B2 responses + adopted null-pair control) before any RUNNING
 - 2026-09-23 handoff HO-0008 (DONE) : Rule R-0014 B3 fully discharged after the end-vocabulary addendum (E-0011 clear for build+run)
@@ -57,7 +55,9 @@ Every entry is a PROJECTION of the linked records — follow them before believi
 - 2026-09-23 session S-0014 (CLOSED) : HO-0008 micro-ruling - R-0016: B3 FIXED; E-0011 cleared for build+run
 - 2026-09-24 experiment E-0011 (COMPLETED) : E-0011 — Self-play data pipeline: resumable, provenance-carrying, deduplicated game dataset for Texel fitting
 - 2026-09-24 handoff HO-0009 (REQUESTED) : Independent verification of RUN-0001 E-0011 terminal dataset and gates (a)-(f)
+- 2026-09-24 round_megaprompt TRAINING-READINESS-PROMPT (REGISTERED) : First-training readiness — dataset verification, harness validation, and Texel pre-registration
 - 2026-09-24 session S-0015 (CLOSED) : E-0011/E-0012 build+acceptance; E-0011 live dataset campaign
+- 2026-09-24 session S-0016 (CLOSED) : First-training readiness prompt and E-0011 downstream-routing clarification
 
 ## Metrics
 ```
@@ -79,13 +79,13 @@ Every entry is a PROJECTION of the linked records — follow them before believi
     "question": 8,
     "report": 13,
     "review": 16,
-    "round_megaprompt": 1,
-    "session": 15,
+    "round_megaprompt": 2,
+    "session": 16,
     "work": 7
   },
   "by_status": {
     "ACTIVE": 14,
-    "CLOSED": 15,
+    "CLOSED": 16,
     "COMPLETED": 23,
     "DONE": 10,
     "DRAFT": 1,
@@ -100,12 +100,12 @@ Every entry is a PROJECTION of the linked records — follow them before believi
   },
   "code_files": 25,
   "contradiction_candidates": 0,
-  "dangling_ids": 7,
+  "dangling_ids": 9,
   "duplicate_candidates": 2,
-  "edges_total": 1951,
+  "edges_total": 1995,
   "legacy_experiments_without_pre_registration": 6,
   "open_questions": 8,
-  "records_total": 155,
+  "records_total": 157,
   "revival_candidates": 5
 }
 

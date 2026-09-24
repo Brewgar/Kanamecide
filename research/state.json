@@ -1264,7 +1264,7 @@
       "title": "Gate 0 unrunnable: Device Guard hard-blocks kana.exe (every build, every path)"
     }
   ],
-  "generated": "2026-09-24T20:47:16",
+  "generated": "2026-09-24T22:21:45",
   "metrics": {
     "by_kind": {
       "agent_profile": 1,
@@ -1283,13 +1283,13 @@
       "question": 8,
       "report": 13,
       "review": 16,
-      "round_megaprompt": 1,
-      "session": 15,
+      "round_megaprompt": 2,
+      "session": 16,
       "work": 7
     },
     "by_status": {
       "ACTIVE": 14,
-      "CLOSED": 15,
+      "CLOSED": 16,
       "COMPLETED": 23,
       "DONE": 10,
       "DRAFT": 1,
@@ -1304,12 +1304,12 @@
     },
     "code_files": 25,
     "contradiction_candidates": 0,
-    "dangling_ids": 7,
+    "dangling_ids": 9,
     "duplicate_candidates": 2,
-    "edges_total": 1951,
+    "edges_total": 1995,
     "legacy_experiments_without_pre_registration": 6,
     "open_questions": 8,
-    "records_total": 155,
+    "records_total": 157,
     "revival_candidates": 5
   },
   "questions_all": [
@@ -1408,14 +1408,19 @@
       "title": "CPU-VNNI vs GPU batch-1 inference economics: is the RTX 5070 Ti a training device or a playing device?"
     },
     {
-      "blocked_by": [],
+      "blocked_by": [
+        "W-0001",
+        "W-0005"
+      ],
       "created": "2026-09-19",
       "depends_on": [],
       "id": "Q-0006",
       "priority": "high",
       "rel": "questions/Q-0006-self-play-data-pipeline.md",
       "related_experiments": [
-        "E-0010"
+        "E-0010",
+        "E-0011",
+        "E-0012"
       ],
       "related_hypotheses": [
         "H-0004",
@@ -1423,7 +1428,8 @@
       ],
       "status": "OPEN",
       "suggested_experiments": [
-        "E-0011: >=1000 legal, deduplicated, provenance-carrying games; resume-from-checkpoint adds no duplicates"
+        "E-0011: >=1000 legal, deduplicated, provenance-carrying games; resume-from-checkpoint adds no duplicates",
+        "Next Texel fitting experiment (expected E-0013): use only the verified E-0011 dataset, game-split holdout, fitted_params_sha256, and fresh-game overlap=0 gate"
       ],
       "title": "Can the E-0011 self-play pipeline produce a deduped, provenance-carrying dataset that trains an eval that beats the hand-tuned one?"
     },
@@ -1566,14 +1572,19 @@
       "title": "CPU-VNNI vs GPU batch-1 inference economics: is the RTX 5070 Ti a training device or a playing device?"
     },
     {
-      "blocked_by": [],
+      "blocked_by": [
+        "W-0001",
+        "W-0005"
+      ],
       "created": "2026-09-19",
       "depends_on": [],
       "id": "Q-0006",
       "priority": "high",
       "rel": "questions/Q-0006-self-play-data-pipeline.md",
       "related_experiments": [
-        "E-0010"
+        "E-0010",
+        "E-0011",
+        "E-0012"
       ],
       "related_hypotheses": [
         "H-0004",
@@ -1581,7 +1592,8 @@
       ],
       "status": "OPEN",
       "suggested_experiments": [
-        "E-0011: >=1000 legal, deduplicated, provenance-carrying games; resume-from-checkpoint adds no duplicates"
+        "E-0011: >=1000 legal, deduplicated, provenance-carrying games; resume-from-checkpoint adds no duplicates",
+        "Next Texel fitting experiment (expected E-0013): use only the verified E-0011 dataset, game-split holdout, fitted_params_sha256, and fresh-game overlap=0 gate"
       ],
       "title": "Can the E-0011 self-play pipeline produce a deduped, provenance-carrying dataset that trains an eval that beats the hand-tuned one?"
     },
@@ -1687,24 +1699,6 @@
   ],
   "schema_version": 2,
   "timeline_tail": [
-    {
-      "example": false,
-      "id": "R-0005",
-      "kind": "review",
-      "rel": "reviews/R-0005-memory-system-self-audit-and-dec-0011.md",
-      "status": "COMPLETED",
-      "title": "R 0005 memory system self audit and dec 0011",
-      "when": "2026-09-19"
-    },
-    {
-      "example": false,
-      "id": "R-0006",
-      "kind": "review",
-      "rel": "reviews/R-0006-independent-verification-of-the-dec-0011-derived-intelligence-layer-ho-0001-w-0007.md",
-      "status": "COMPLETED",
-      "title": "R 0006 independent verification of the dec 0011 derived intelligence layer ho 0001 w 0007",
-      "when": "2026-09-19"
-    },
     {
       "example": false,
       "id": "S-0003",
@@ -2040,11 +2034,29 @@
     },
     {
       "example": false,
+      "id": "TRAINING-READINESS-PROMPT",
+      "kind": "round_megaprompt",
+      "rel": "AGENT_MEGAPROMPT_TRAINING_READINESS.md",
+      "status": "REGISTERED",
+      "title": "First-training readiness — dataset verification, harness validation, and Texel pre-registration",
+      "when": "2026-09-24"
+    },
+    {
+      "example": false,
       "id": "S-0015",
       "kind": "session",
       "rel": "sessions/S-0015-e0011-e0012-build-run.md",
       "status": "CLOSED",
       "title": "E-0011/E-0012 build+acceptance; E-0011 live dataset campaign",
+      "when": "2026-09-24"
+    },
+    {
+      "example": false,
+      "id": "S-0016",
+      "kind": "session",
+      "rel": "sessions/S-0016-first-training-readiness-prompt-and-e-0011-downstream-routing-clarification.md",
+      "status": "CLOSED",
+      "title": "First-training readiness prompt and E-0011 downstream-routing clarification",
       "when": "2026-09-24"
     }
   ]

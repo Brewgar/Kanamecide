@@ -181,6 +181,7 @@
 - [S-0013](sessions/S-0013-micro-r-0014-b3-fix-e-0011-end-vocabulary-ns-suffix-ho-0008-gate0-12.md) — Micro-session: R-0014 B3 fix (end vocabulary + (Ns) suffix policy) landed verbatim in E-0011; HO-0008 full-discharge ruling requested; Gate 0 attempt #12 (OPEN); engine-free text work only — status=CLOSED
 - [S-0014](sessions/S-0014-ho-0008-r-0016-b3-fixed-e-0011-cleared-for-build-run.md) — HO-0008 micro-ruling - R-0016: B3 FIXED; E-0011 cleared for build+run — status=CLOSED
 - [S-0015](sessions/S-0015-e0011-e0012-build-run.md) — E-0011/E-0012 build+acceptance; E-0011 live dataset campaign — status=CLOSED
+- [S-0016](sessions/S-0016-first-training-readiness-prompt-and-e-0011-downstream-routing-clarification.md) — First-training readiness prompt and E-0011 downstream-routing clarification — status=CLOSED
 
 ## Unrendered Records (bug — report this)
 

@@ -516,3 +516,19 @@ consumer must compute and record `training_game_overlap = 0` before using the da
 parameters or downstream strength result are claimed by this experiment. Independent
 verification of this close-out is requested by HO-0009.
 
+## Addendum: downstream consumer ID clarification (2026-09-24)
+
+The wording above uses “downstream E-0012 consumer” loosely. The durable routing is
+clarified here without changing the dataset result or any gate: **E-0012 is the
+E-SPRT-lite comparison-harness validation experiment** (`research/experiments/E-0012-*`),
+not the training/fitting campaign. The first training/fitting campaign should be filed
+through `research.py new-experiment` after the blocking verification and live-harness gates;
+with the records present at this addendum's date the next experiment ID is expected to be
+E-0013, but the CLI result is authoritative.
+
+That training experiment consumes the pinned E-0011 dataset and must manufacture and pin
+`fitted_params_sha256`. Any fitted candidate's fresh comparison games then run under the
+E-0012 harness; those games carry a salt distinct from E-0010, E-0011, and the training
+campaign, and their aggregator reports `training_game_overlap = 0` before the E-0012
+decision. This clarification changes no E-0011 artifact, command, hash, or verdict.
+

@@ -10,7 +10,10 @@
 1. `python research/scripts/research.py status --brief` — counters only; cheap read.
 2. `python research/scripts/research.py next` — what the project thinks is next.
 3. Read `research/project_state.md` (canonical facts), your `profile.md`, and the round
-   megaprompt named by the owner (currently `AGENT_MEGAPROMPT_ROUND4.md`).
+   megaprompt named by the owner (currently `AGENT_MEGAPROMPT_ROUND4.md`). The prepared
+   next-step plan is `AGENT_MEGAPROMPT_TRAINING_READINESS.md`; it remains inactive until
+   the Round-4 close rule and the training-readiness gates it names are discharged.
+
 4. **Gate 0 — correctness floor:** `build\Release\kana.exe` must print
    `=== ALL TESTS PASSED` (perft 10/10). The certified counts live ONLY in
    project_state.md §"Certified Perft Anchors"; if validate fails on them, STOP and
