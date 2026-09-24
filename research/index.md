@@ -94,6 +94,7 @@
 - [R-0014](reviews/R-0014-critique-e-0011-addenda-b1-b2-b3-response-ruling.md) — (untitled) — status=COMPLETED
 - [R-0015](reviews/R-0015-critique-e-0012-addenda-b1-b2-n4-null-pair-ruling.md) — (untitled) — status=COMPLETED
 - [R-0016](reviews/R-0016-ruling-r-0014-b3-end-vocabulary-ns-suffix.md) — (untitled) — status=COMPLETED
+- [R-0017](reviews/R-0017-independent-verification-w-0001-e-0011-terminal-dataset-ho-0009.md) — (untitled) — status=COMPLETED
 
 ## Open Questions
 
@@ -144,7 +145,6 @@
 ## Handoffs (open)
 
 - [HO-0005](handoffs/HO-0005-verify-w-0003-round2-agreement-matrix-backfill-r-0013.md) — Verify W-0003: R-0013 (Round-2 AGREEMENT_MATRIX backfill) and the untouched matrix — status=REQUESTED
-- [HO-0009](handoffs/HO-0009-independent-verification-run-0001-e0011.md) — Independent verification of RUN-0001 E-0011 terminal dataset and gates (a)-(f) — status=REQUESTED
 
 ## Handoffs (closed)
 
@@ -155,6 +155,7 @@
 - [HO-0006](handoffs/HO-0006-re-critique-e-0011-addenda-b1-b2-b3-before-any-running.md) — Re-critique E-0011's R-0011 addenda (B1/B2/B3 responses) before any RUNNING — status=DONE
 - [HO-0007](handoffs/HO-0007-re-critique-e-0012-addenda-b1-b2-n4-null-pair-before-any-running.md) — Re-critique E-0012's R-0012 addenda (B1/B2 responses + adopted null-pair control) before any RUNNING — status=DONE
 - [HO-0008](handoffs/HO-0008-rule-r-0014-b3-fully-discharged-e-0011-clear-for-build-run.md) — Rule R-0014 B3 fully discharged after the end-vocabulary addendum (E-0011 clear for build+run) — status=DONE
+- [HO-0009](handoffs/HO-0009-independent-verification-run-0001-e0011.md) — Independent verification of RUN-0001 E-0011 terminal dataset and gates (a)-(f) — status=DONE
 
 ## Runs (live)
 
@@ -182,6 +183,7 @@
 - [S-0014](sessions/S-0014-ho-0008-r-0016-b3-fixed-e-0011-cleared-for-build-run.md) — HO-0008 micro-ruling - R-0016: B3 FIXED; E-0011 cleared for build+run — status=CLOSED
 - [S-0015](sessions/S-0015-e0011-e0012-build-run.md) — E-0011/E-0012 build+acceptance; E-0011 live dataset campaign — status=CLOSED
 - [S-0016](sessions/S-0016-first-training-readiness-prompt-and-e-0011-downstream-routing-clarification.md) — First-training readiness prompt and E-0011 downstream-routing clarification — status=CLOSED
+- [S-0017](sessions/S-0017-ho-0009-independent-verification-e-0011-terminal-dataset.md) — HO-0009 independent verification of E-0011 terminal dataset — status=CLOSED
 
 ## Unrendered Records (bug — report this)
 

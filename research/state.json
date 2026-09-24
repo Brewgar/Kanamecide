@@ -776,7 +776,7 @@
       "kind": "handoff",
       "record": "HO-0009",
       "rel": "handoffs/HO-0009-independent-verification-run-0001-e0011.md",
-      "status": "REQUESTED",
+      "status": "DONE",
       "title": "Independent verification of RUN-0001 E-0011 terminal dataset and gates (a)-(f)"
     },
     {
@@ -913,6 +913,17 @@
       "rel": "reviews/R-0016-ruling-r-0014-b3-end-vocabulary-ns-suffix.md",
       "status": "COMPLETED",
       "title": "R 0016 ruling r 0014 b3 end vocabulary ns suffix"
+    },
+    {
+      "code_files": [
+        "tools/e0011_check.py"
+      ],
+      "commits_mentioned": [],
+      "kind": "review",
+      "record": "R-0017",
+      "rel": "reviews/R-0017-independent-verification-w-0001-e-0011-terminal-dataset-ho-0009.md",
+      "status": "COMPLETED",
+      "title": "R 0017 independent verification w 0001 e 0011 terminal dataset ho 0009"
     },
     {
       "code_files": [
@@ -1264,7 +1275,7 @@
       "title": "Gate 0 unrunnable: Device Guard hard-blocks kana.exe (every build, every path)"
     }
   ],
-  "generated": "2026-09-24T22:21:45",
+  "generated": "2026-09-24T22:43:18",
   "metrics": {
     "by_kind": {
       "agent_profile": 1,
@@ -1282,23 +1293,23 @@
       "profile": 4,
       "question": 8,
       "report": 13,
-      "review": 16,
+      "review": 17,
       "round_megaprompt": 2,
-      "session": 16,
+      "session": 17,
       "work": 7
     },
     "by_status": {
       "ACTIVE": 14,
-      "CLOSED": 16,
-      "COMPLETED": 23,
-      "DONE": 10,
+      "CLOSED": 17,
+      "COMPLETED": 24,
+      "DONE": 11,
       "DRAFT": 1,
       "IN_PROGRESS": 3,
       "OPEN": 29,
       "PENDING": 4,
       "RECORDED": 2,
       "REGISTERED": 8,
-      "REQUESTED": 2,
+      "REQUESTED": 1,
       "RESOLVED": 1,
       "SUPERSEDED": 4
     },
@@ -1306,10 +1317,10 @@
     "contradiction_candidates": 0,
     "dangling_ids": 9,
     "duplicate_candidates": 2,
-    "edges_total": 1995,
+    "edges_total": 2043,
     "legacy_experiments_without_pre_registration": 6,
     "open_questions": 8,
-    "records_total": 157,
+    "records_total": 159,
     "revival_candidates": 5
   },
   "questions_all": [
@@ -1701,24 +1712,6 @@
   "timeline_tail": [
     {
       "example": false,
-      "id": "S-0003",
-      "kind": "session",
-      "rel": "sessions/S-0003-dec-0011-derived-intelligence-layer.md",
-      "status": "CLOSED",
-      "title": "DEC-0011 derived-intelligence layer: graph, retrieval, beliefs, contradiction/revival detection, state, audit, self-tests",
-      "when": "2026-09-19"
-    },
-    {
-      "example": false,
-      "id": "S-0004",
-      "kind": "session",
-      "rel": "sessions/S-0004-ho-0001-verification-of-the-dec-0011-derived-intelligence-layer-partial-3-named-gaps.md",
-      "status": "CLOSED",
-      "title": "HO-0001: verification of the DEC-0011 derived-intelligence layer (PARTIAL - 4 named gaps)",
-      "when": "2026-09-19"
-    },
-    {
-      "example": false,
       "id": "S-0005",
       "kind": "session",
       "rel": "sessions/S-0005-round5-fixes.md",
@@ -2028,8 +2021,17 @@
       "id": "HO-0009",
       "kind": "handoff",
       "rel": "handoffs/HO-0009-independent-verification-run-0001-e0011.md",
-      "status": "REQUESTED",
+      "status": "DONE",
       "title": "Independent verification of RUN-0001 E-0011 terminal dataset and gates (a)-(f)",
+      "when": "2026-09-24"
+    },
+    {
+      "example": false,
+      "id": "R-0017",
+      "kind": "review",
+      "rel": "reviews/R-0017-independent-verification-w-0001-e-0011-terminal-dataset-ho-0009.md",
+      "status": "COMPLETED",
+      "title": "R 0017 independent verification w 0001 e 0011 terminal dataset ho 0009",
       "when": "2026-09-24"
     },
     {
@@ -2057,6 +2059,15 @@
       "rel": "sessions/S-0016-first-training-readiness-prompt-and-e-0011-downstream-routing-clarification.md",
       "status": "CLOSED",
       "title": "First-training readiness prompt and E-0011 downstream-routing clarification",
+      "when": "2026-09-24"
+    },
+    {
+      "example": false,
+      "id": "S-0017",
+      "kind": "session",
+      "rel": "sessions/S-0017-ho-0009-independent-verification-e-0011-terminal-dataset.md",
+      "status": "CLOSED",
+      "title": "HO-0009 independent verification of E-0011 terminal dataset",
       "when": "2026-09-24"
     }
   ]

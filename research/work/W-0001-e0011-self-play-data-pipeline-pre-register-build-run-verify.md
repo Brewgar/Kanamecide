@@ -8,8 +8,8 @@ status: IN_PROGRESS
 deliverable: "research/experiments/E-0011-*.md + resumable generator (tools/) + >=1000-game dataset (local)"
 exit_check: "generator output: >=1000 legal deduplicated games, duplicate-move-lists=0; resume-from-checkpoint adds no duplicates"
 evidence: ["m0_audit/e0011/finalizer_result.json", "m0_audit/e0011/check_output.txt", "m0_audit/e0011/kill_resume_evidence_v2.json", "research/runs/RUN-0001-e0011-self-play-dataset-campaign.md"]
-verified_by: null
-verification_verdict: null
+verified_by: "verification-auditor (occupant 5)"
+verification_verdict: VERIFIED
 example: false
 created: 2026-09-14
 closed: null
@@ -153,9 +153,14 @@ generator + position dataset — the prerequisite for Texel fitting (H-0013) and
 
 
 ## Verification
-- verified_by: (a different agent than owner)
-- verdict: (VERIFIED | CONTRADICTED | PARTIAL | UNVERIFIABLE)
-- evidence: (review record id + command outputs)
+- verified_by: verification-auditor (occupant 5, rotating fresh-agent seat; HO-0009 receiver)
+- verdict: VERIFIED (2026-09-24)
+- evidence: `research/reviews/R-0017-independent-verification-w-0001-e-0011-terminal-dataset-ho-0009.md`
+  (kind: verification); exact checker and raw-audit captures under gitignored
+  `research/context/ho0009_*`. All seven pinned artifact hashes, the binary pin, 1,000-row
+  dense-ID/provenance contract, kill/resume at 400 plus 600 added, exact-checker gates (a)-(f),
+  and failed-attempt-1 exclusion reproduced. `runjob.py status` exit 0 reports FINISHED
+  (process gone), not a child OS return code; no dataset or owner record was repaired.
 
 > Sequence per AGENT_MEGAPROMPT_ROUND4.md: pre-registration (with power + sample
 > validity) must be critiqued by adversarial-reviewer BEFORE `status: RUNNING`. Run under
