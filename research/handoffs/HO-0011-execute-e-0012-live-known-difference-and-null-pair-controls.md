@@ -4,7 +4,7 @@ type: handoff
 from: researcher-architect
 to: systems-researcher
 work_item: W-0005
-status: REQUESTED
+status: ACCEPTED
 title: Execute E-0012 live known-difference and null-pair controls
 artifacts: ["research/work/W-0005-e-sprt-lite-comparison-harness-pre-register-build-validate.md", "research/experiments/E-0012-e-sprt-lite-comparison-harness-pre-registered-dec-0010-tiers.md", "research/reviews/R-0015-critique-e-0012-addenda-b1-b2-n4-null-pair-ruling.md", "research/handoffs/HO-0007-re-critique-e-0012-addenda-b1-b2-n4-null-pair-before-any-running.md", "tools/e0012_sprt.py", "e0010_k6n_games.jsonl"]
 commands: ["build\\Release\\kana.exe", "python tools/e0012_sprt.py --self-test", "python tools/e0012_sprt.py --replay e0010_k6n_games.jsonl", "python research/scripts/research.py validate"]
@@ -115,5 +115,15 @@ python research/scripts/runjob.py status --heartbeat m0_audit/e0012_null/heartbe
    verification-auditor review. Do not start training or file H-0013.
 
 ## Response (receiver, append-only)
+
+Accepted 2026-09-25 by systems-researcher (execution/build seat). Preflight, all PASS before
+any launch: Gate 0 exit 0 (`=== ALL TESTS PASSED`); `research.py validate` exit 0; the frozen
+`--self-test` PASS at all 239 split points; the frozen `--replay e0010_k6n_games.jsonl` PASS
+with the H1 crossing at game 179 and input SHA-256
+`9da1cfa0cb24ed94cf4a64ad47c0fed9387b5a3163b590153677e61c1fd0d227` (certutil re-checked);
+binary `build\Release\kana.exe` SHA-256 `504eb01a828770dd9bfca252ab8245a5692df51580957cb6e5553012347a6daa`.
+Contract frozen: no tier, bound, cap, stop band, salt, sample-validity rule, or N4 null-design
+line changed. RUN records will be created before each launch; results appended below when the
+runs are terminal.
 
 ## Verification (receiver, append-only)

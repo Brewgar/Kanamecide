@@ -2,7 +2,7 @@
 id: E-0012
 type: experiment
 title: "E-0012 — E-SPRT-lite comparison harness (pre-registered, DEC-0010 tiers), offline-validated on retained E-0010 data"
-status: PENDING
+status: RUNNING
 result: null
 elo_change: null
 hypothesis: H-0010
@@ -349,5 +349,23 @@ validation. What the offline replay adds is different in kind: it tests the *pat
 **D-0007 residual wording:** R-0012's "replay half done, live half open" characteriza-
 tion is accepted as accurate — no dispute to open. W-0005 stays OPEN, which is how it
 is filed; the live half closes only with (v1)–(v4) + N4 after HO-0007's clean ruling.
+
+## Live execution log (HO-0011 receiver), 2026-09-25
+
+> Executor seat: systems-researcher. This section records the lifecycle transition and raw
+> execution evidence only; it is NOT a verdict. W-0005's close-out requires the owner plus a
+> fresh verification-auditor review of this raw evidence (HO-0011 §5). No contract line above
+> is edited by this section.
+
+- **`status: PENDING → RUNNING`**, 2026-09-25, immediately before RUN-0002's launch, under
+  HO-0011. Preconditions per this record's own text: R-0015 CLEAN and Gate 0 open — both
+  satisfied (Gate 0 exit 0, 10/10 perft anchors, this session).
+- Frozen preflight re-run by the executor: `--self-test` PASS at all 239 split points;
+  `--replay e0010_k6n_games.jsonl` PASS — H1 at game 179, LLR `+2.9847724800839215`, input
+  SHA-256 `9da1cfa0cb24ed94cf4a64ad47c0fed9387b5a3163b590153677e61c1fd0d227` (certutil match).
+- RUN-0002 (known-difference, Tier S, stage 6 vs 0, default cap 8,000, salt 20260924) and
+  RUN-0003 (N4 null pair, stage 6 vs 6, cap 240, salt 20260924) run under `runjob.py` with
+  `--retry 0`; raw results are appended below when terminal. No tier, bound, cap, stop band,
+  salt, sample-validity rule, or null-design line changed after any live result.
 
 
