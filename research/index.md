@@ -145,6 +145,7 @@
 ## Handoffs (open)
 
 - [HO-0005](handoffs/HO-0005-verify-w-0003-round2-agreement-matrix-backfill-r-0013.md) — Verify W-0003: R-0013 (Round-2 AGREEMENT_MATRIX backfill) and the untouched matrix — status=REQUESTED
+- [HO-0012](handoffs/HO-0012-independent-verification-w-0005-e-0012-live-runs-run-0002-and-run-0003.md) — Independent verification: W-0005 E-0012 live runs RUN-0002 and RUN-0003 — status=REQUESTED
 
 ## Handoffs (closed)
 
@@ -190,6 +191,7 @@
 - [S-0017](sessions/S-0017-ho-0009-independent-verification-e-0011-terminal-dataset.md) — HO-0009 independent verification of E-0011 terminal dataset — status=CLOSED
 - [S-0018](sessions/S-0018-post-ho-0009-owner-handoffs-and-e-0012-live-validation-routing.md) — Post-HO-0009 owner handoffs and E-0012 live-validation routing — status=CLOSED
 - [S-0019](sessions/S-0019-ho-0010-w-0001-close-out-and-ho-0011-e-0012-live-validation.md) — HO-0010 W-0001 close-out and HO-0011 E-0012 live validation — status=CLOSED
+- [S-0020](sessions/S-0020-route-w-0005-e-0012-live-evidence-to-fresh-verification-auditor-ho-0012.md) — Route W-0005/E-0012 live evidence to fresh verification-auditor (HO-0012) — status=CLOSED
 
 ## Unrendered Records (bug — report this)
 

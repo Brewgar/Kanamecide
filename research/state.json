@@ -792,6 +792,22 @@
     },
     {
       "code_files": [
+        "tools/e0012_sprt.py"
+      ],
+      "commits_mentioned": [
+        "504eb01",
+        "5654db6",
+        "637a9fa",
+        "7aab350"
+      ],
+      "kind": "handoff",
+      "record": "HO-0012",
+      "rel": "handoffs/HO-0012-independent-verification-w-0005-e-0012-live-runs-run-0002-and-run-0003.md",
+      "status": "REQUESTED",
+      "title": "Independent verification: W-0005 E-0012 live runs RUN-0002 and RUN-0003"
+    },
+    {
+      "code_files": [
         "src/bitboard.cpp"
       ],
       "commits_mentioned": [],
@@ -1076,6 +1092,7 @@
         "16ac1ff",
         "2a9d997",
         "752216c",
+        "7aab350",
         "94631d6",
         "9cd4040",
         "9da1cfa",
@@ -1314,7 +1331,7 @@
       "title": "Gate 0 unrunnable: Device Guard hard-blocks kana.exe (every build, every path)"
     }
   ],
-  "generated": "2026-09-25T19:09:50",
+  "generated": "2026-09-25T20:51:53",
   "metrics": {
     "by_kind": {
       "agent_profile": 1,
@@ -1326,7 +1343,7 @@
       "evidence": 8,
       "experiment": 12,
       "failure": 2,
-      "handoff": 11,
+      "handoff": 12,
       "hypothesis": 17,
       "principle": 4,
       "profile": 4,
@@ -1334,12 +1351,12 @@
       "report": 13,
       "review": 17,
       "round_megaprompt": 2,
-      "session": 19,
+      "session": 20,
       "work": 7
     },
     "by_status": {
       "ACTIVE": 14,
-      "CLOSED": 19,
+      "CLOSED": 20,
       "COMPLETED": 24,
       "DONE": 14,
       "DRAFT": 1,
@@ -1348,19 +1365,19 @@
       "PENDING": 3,
       "RECORDED": 2,
       "REGISTERED": 8,
-      "REQUESTED": 1,
+      "REQUESTED": 2,
       "RESOLVED": 1,
       "RUNNING": 1,
       "SUPERSEDED": 4
     },
     "code_files": 25,
     "contradiction_candidates": 0,
-    "dangling_ids": 12,
+    "dangling_ids": 13,
     "duplicate_candidates": 2,
-    "edges_total": 2143,
+    "edges_total": 2217,
     "legacy_experiments_without_pre_registration": 6,
     "open_questions": 8,
-    "records_total": 163,
+    "records_total": 165,
     "revival_candidates": 5
   },
   "questions_all": [
@@ -1752,24 +1769,6 @@
   "timeline_tail": [
     {
       "example": false,
-      "id": "W-0007",
-      "kind": "work",
-      "rel": "work/W-0007-derived-intelligence-layer.md",
-      "status": "DONE",
-      "title": "Derived-intelligence layer (graph, retrieval, beliefs, contradiction/revival, state, audit, self-tests)",
-      "when": "2026-09-20"
-    },
-    {
-      "example": false,
-      "id": "D-0007",
-      "kind": "debate",
-      "rel": "debates/D-0007-e0010-effect-size-decision-rule-what-is-decidable-at-achievable-n.md",
-      "status": "RESOLVED",
-      "title": "What effect-size decision rule for eval-strength deltas is decidable at achievable N on this host (E-0010 recalibration)",
-      "when": "2026-09-21"
-    },
-    {
-      "example": false,
       "id": "DEC-0010",
       "kind": "decision",
       "rel": "decisions/DEC-0010-two-tier-sprt-effect-size-decision-rule.md",
@@ -2094,11 +2093,29 @@
     },
     {
       "example": false,
+      "id": "HO-0012",
+      "kind": "handoff",
+      "rel": "handoffs/HO-0012-independent-verification-w-0005-e-0012-live-runs-run-0002-and-run-0003.md",
+      "status": "REQUESTED",
+      "title": "Independent verification: W-0005 E-0012 live runs RUN-0002 and RUN-0003",
+      "when": "2026-09-25"
+    },
+    {
+      "example": false,
       "id": "S-0019",
       "kind": "session",
       "rel": "sessions/S-0019-ho-0010-w-0001-close-out-and-ho-0011-e-0012-live-validation.md",
       "status": "CLOSED",
       "title": "HO-0010 W-0001 close-out and HO-0011 E-0012 live validation",
+      "when": "2026-09-25"
+    },
+    {
+      "example": false,
+      "id": "S-0020",
+      "kind": "session",
+      "rel": "sessions/S-0020-route-w-0005-e-0012-live-evidence-to-fresh-verification-auditor-ho-0012.md",
+      "status": "CLOSED",
+      "title": "Route W-0005/E-0012 live evidence to fresh verification-auditor (HO-0012)",
       "when": "2026-09-25"
     },
     {

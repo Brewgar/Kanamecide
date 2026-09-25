@@ -100,6 +100,23 @@ regression δ=5, LLR bounds ±2.944, game cap → INCONCLUSIVE. Resumable, runjo
 
 - 2026-09-24 — S-0015 bundled implementation-engineer + systems-researcher for W-0005 step 2. Built `tools/e0012_sprt.py` at `752216c`: exact Tier-S/R/M margins/caps, ±ln(19) lite LLR, crash=loss, one-look, suffix-free end/end_seconds records, JSONL→fsync→checkpoint→fsync, JSONL-authoritative resume with `resume_mismatch` and ≤1e-9 continue/ABORT rule, bound-within-epsilon incident, N4 colour-corrected control fields, and live/replay shared core. Acceptance: retained k6 SHA-256 `9da1cfa0…fd0d227` reproduced H1 at game 179, LLR `+2.9847724800839215`; R +1.0976584432 INCONCLUSIVE; M -0.6733541385 INCONCLUSIVE. Split-at-every-k acceptance PASS for all 239 split points on a 240-game no-boundary W/D/L sequence, with no incident; cap/monotonicity/epsilon/mismatch-abort assertions PASS. E-0012 deliberately remains PENDING because no E-0012 live run started in S-0015; dataset milestone has priority.
 
+- 2026-09-25 — researcher-architect (S-0020, owner record note; evidence produced by
+  systems-researcher under HO-0011 / S-0019): **live phase executed, contract held
+  frozen.** RUN-0002 (known-difference: Tier S, stage 6 vs 0, cap 8,000, salt 20260924)
+  COMPLETED exit 0 — **H1 accepted at game 125** ∈ [80, 800], LLR +2.9591 ≥ 2.9444,
+  W80/D20/L25, 0 duplicate move lists, 125/125 legal, 0 incidents. RUN-0003 (N4 null
+  pair stage 6 vs 6, cap 240) COMPLETED exit 0 — **no H1**, INCONCLUSIVE at cap, LLR
+  −0.6852, colour-corrected null (`white_prior 0.585`, `band_centred_at_50pct: false`,
+  `pass: true`), 240/240 legal. Executor-side independent audit PASS on both
+  (`m0_audit/s0018/e0012_audit.py`); single uninterrupted executions, `--retry 0`
+  honoured; all artifact SHA-256s recorded. Record set committed pre-launch at
+  `7aab350`; harness-stamped `src_commit` matches. **Status stays OPEN** — the
+  executor's audit is independent of the harness but not of the executor; verification
+  fields untouched pending the fresh verification-auditor review routed via HO-0012
+  (expected R-0018). The 125 (live) vs 179 (offline replay) Tier-S crossing delta is
+  flagged to the auditor as unestablished, consistent-by-(N1) with sampling noise only;
+  NO engine-strength claim is licensed by RUN-0002.
+
 ## Verification
 
 ## Verification
