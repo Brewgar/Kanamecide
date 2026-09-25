@@ -4,7 +4,7 @@ type: work
 title: "E-0011 self-play data pipeline (pre-register, build, run, verify)"
 round: 4
 owner: systems-researcher
-status: IN_PROGRESS
+status: DONE
 deliverable: "research/experiments/E-0011-*.md + resumable generator (tools/) + >=1000-game dataset (local)"
 exit_check: "generator output: >=1000 legal deduplicated games, duplicate-move-lists=0; resume-from-checkpoint adds no duplicates"
 evidence: ["m0_audit/e0011/finalizer_result.json", "m0_audit/e0011/check_output.txt", "m0_audit/e0011/kill_resume_evidence_v2.json", "research/runs/RUN-0001-e0011-self-play-dataset-campaign.md"]
@@ -12,7 +12,7 @@ verified_by: "verification-auditor (occupant 5)"
 verification_verdict: VERIFIED
 example: false
 created: 2026-09-14
-closed: null
+closed: 2026-09-25
 ---
 
 # W-0001 — E-0011 self-play data pipeline
@@ -150,6 +150,15 @@ generator + position dataset — the prerequisite for Texel fitting (H-0013) and
   excluded under `m0_audit/e0011_failed_attempt1/`. E-0011 is now COMPLETED/PASS for the
   dataset-generation contract; W-0001 remains IN_PROGRESS pending independent verification
   through HO-0009. No strength assertion is made.
+- 2026-09-25 — systems-researcher (owner) close-out via HO-0010: R-0017 independently
+  verified the terminal E-0011 dataset-generation contract (`status: COMPLETED`,
+  verdict VERIFIED; verification-auditor occupant 5 as HO-0009 receiver, raw captures
+  under `research/context/ho0009_*`, session S-0017). Owner lifecycle closed DONE.
+  This entry cites R-0017 + HO-0009 + S-0017 and is a record/status close-out only:
+  `verified_by`, `verification_verdict`, and the `## Verification` section were NOT
+  touched, and RUN-0001, E-0011, the dataset, source, and tooling were not modified.
+  No second verification; the dataset is NOT yet cleared for training consumption
+  (that remains an H-0013-gate question).
 
 
 ## Verification

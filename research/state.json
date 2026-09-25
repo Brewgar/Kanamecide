@@ -1050,7 +1050,7 @@
       "kind": "work",
       "record": "W-0001",
       "rel": "work/W-0001-e0011-self-play-data-pipeline-pre-register-build-run-verify.md",
-      "status": "IN_PROGRESS",
+      "status": "DONE",
       "title": "E-0011 self-play data pipeline (pre-register, build, run, verify)"
     },
     {
@@ -1299,7 +1299,7 @@
       "title": "Gate 0 unrunnable: Device Guard hard-blocks kana.exe (every build, every path)"
     }
   ],
-  "generated": "2026-09-24T23:44:14",
+  "generated": "2026-09-25T18:09:07",
   "metrics": {
     "by_kind": {
       "agent_profile": 1,
@@ -1323,17 +1323,18 @@
       "work": 7
     },
     "by_status": {
+      "ACCEPTED": 1,
       "ACTIVE": 14,
       "CLOSED": 18,
       "COMPLETED": 24,
-      "DONE": 11,
+      "DONE": 12,
       "DRAFT": 1,
-      "IN_PROGRESS": 3,
+      "IN_PROGRESS": 2,
       "OPEN": 29,
       "PENDING": 4,
       "RECORDED": 2,
       "REGISTERED": 8,
-      "REQUESTED": 3,
+      "REQUESTED": 2,
       "RESOLVED": 1,
       "SUPERSEDED": 4
     },
@@ -1341,7 +1342,7 @@
     "contradiction_candidates": 0,
     "dangling_ids": 11,
     "duplicate_candidates": 2,
-    "edges_total": 2113,
+    "edges_total": 2115,
     "legacy_experiments_without_pre_registration": 6,
     "open_questions": 8,
     "records_total": 162,
@@ -1736,15 +1737,6 @@
   "timeline_tail": [
     {
       "example": false,
-      "id": "S-0006",
-      "kind": "session",
-      "rel": "sessions/S-0006-round-5-occupant-3-w-0007-re-verification-verified-r-0007-second-e-0010-verification-r-0008-completes-the-w-0004-deliverable-gate-0-re-block.md",
-      "status": "CLOSED",
-      "title": "Round 5 occupant 3: W-0007 re-verification VERIFIED (R-0007); second E-0010 verification (R-0008) completes the W-0004 deliverable; Gate-0 re-block",
-      "when": "2026-09-20"
-    },
-    {
-      "example": false,
       "id": "W-0004",
       "kind": "work",
       "rel": "work/W-0004-fresh-reviewer-onboarding-proof-two-verification-reviews-of-e-0010.md",
@@ -2027,7 +2019,7 @@
       "id": "HO-0010",
       "kind": "handoff",
       "rel": "handoffs/HO-0010-close-w-0001-after-r-0017-independent-verification.md",
-      "status": "REQUESTED",
+      "status": "ACCEPTED",
       "title": "Close W-0001 after R-0017 independent verification",
       "when": "2026-09-24"
     },
@@ -2093,6 +2085,15 @@
       "status": "CLOSED",
       "title": "Post-HO-0009 owner handoffs and E-0012 live-validation routing",
       "when": "2026-09-24"
+    },
+    {
+      "example": false,
+      "id": "W-0001",
+      "kind": "work",
+      "rel": "work/W-0001-e0011-self-play-data-pipeline-pre-register-build-run-verify.md",
+      "status": "DONE",
+      "title": "E-0011 self-play data pipeline (pre-register, build, run, verify)",
+      "when": "2026-09-25"
     }
   ]
 }
