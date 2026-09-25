@@ -305,11 +305,19 @@
           "status": "COMPLETED",
           "title": "E-0012 — E-SPRT-lite comparison harness (pre-registered, DEC-0010 tiers), offline-validated on retained E-0010 data",
           "verdict": "positive"
+        },
+        {
+          "id": "E-0013",
+          "rel": "experiments/E-0013-h-0013-texel-fit-on-verified-e-0011-dataset-game-split-holdout-tier-s-sprt-vs-pinned-stage-5.md",
+          "result": "",
+          "status": "PENDING",
+          "title": "E-0013 — H-0013 Texel fit on the verified E-0011 dataset (game-split holdout + Tier-S SPRT vs pinned stage 5)",
+          "verdict": "unverdicted"
         }
       ],
       "falsifier": "",
       "id": "H-0010",
-      "n_experiments": 2,
+      "n_experiments": 3,
       "rel": "hypotheses/H-0010-sprt-based-engine-comparison-harness-is-required-before-any-version-claim-is-trustworthy.md",
       "status": "OPEN",
       "title": "SPRT-based engine comparison harness is required before any version claim is trustworthy"
@@ -402,11 +410,19 @@
           "status": "COMPLETED",
           "title": "E-0011 — Self-play data pipeline: resumable, provenance-carrying, deduplicated game dataset for Texel fitting",
           "verdict": "positive"
+        },
+        {
+          "id": "E-0013",
+          "rel": "experiments/E-0013-h-0013-texel-fit-on-verified-e-0011-dataset-game-split-holdout-tier-s-sprt-vs-pinned-stage-5.md",
+          "result": "",
+          "status": "PENDING",
+          "title": "E-0013 — H-0013 Texel fit on the verified E-0011 dataset (game-split holdout + Tier-S SPRT vs pinned stage 5)",
+          "verdict": "unverdicted"
         }
       ],
       "falsifier": "",
       "id": "H-0013",
-      "n_experiments": 2,
+      "n_experiments": 3,
       "rel": "hypotheses/H-0013-tapered-eval-plus-texel-protocol-mg-eg-interpolation-and-quiet-label-holdout-design.md",
       "status": "OPEN",
       "title": "Tapered eval plus Texel protocol - mg-eg interpolation and quiet-label holdout design"
@@ -771,6 +787,22 @@
     },
     {
       "code_files": [
+        "src/eval.cpp",
+        "src/eval.h",
+        "tools/e0011_check.py",
+        "tools/e0012_sprt.py"
+      ],
+      "commits_mentioned": [
+        "7348f89"
+      ],
+      "kind": "experiment",
+      "record": "E-0013",
+      "rel": "experiments/E-0013-h-0013-texel-fit-on-verified-e-0011-dataset-game-split-holdout-tier-s-sprt-vs-pinned-stage-5.md",
+      "status": "PENDING",
+      "title": "E-0013 — H-0013 Texel fit on the verified E-0011 dataset (game-split holdout + Tier-S SPRT vs pinned stage 5)"
+    },
+    {
+      "code_files": [
         "tools/e0011_check.py"
       ],
       "commits_mentioned": [],
@@ -806,6 +838,17 @@
       "rel": "handoffs/HO-0012-independent-verification-w-0005-e-0012-live-runs-run-0002-and-run-0003.md",
       "status": "DONE",
       "title": "Independent verification: W-0005 E-0012 live runs RUN-0002 and RUN-0003"
+    },
+    {
+      "code_files": [
+        "tools/e0012_sprt.py"
+      ],
+      "commits_mentioned": [],
+      "kind": "handoff",
+      "record": "HO-0013",
+      "rel": "handoffs/HO-0013-critique-e-0013-pre-registration-h-0013-texel-fit-contract-before-any-running.md",
+      "status": "REQUESTED",
+      "title": "Critique E-0013 pre-registration (H-0013 Texel fit contract) before any running"
     },
     {
       "code_files": [
@@ -1093,6 +1136,19 @@
     },
     {
       "code_files": [
+        "tools/e0012_sprt.py"
+      ],
+      "commits_mentioned": [
+        "7348f89"
+      ],
+      "kind": "session",
+      "record": "S-0023",
+      "rel": "sessions/S-0023-draft-e-0013-texel-pre-registration-pending-plus-ho-0013-critique-handoff.md",
+      "status": "CLOSED",
+      "title": "Draft E-0013 Texel pre-registration (PENDING) + file HO-0013 critique handoff"
+    },
+    {
+      "code_files": [
         "tools/e0011_check.py",
         "tools/e0011_generate.py",
         "tools/e0012_sprt.py",
@@ -1361,7 +1417,7 @@
       "title": "Gate 0 unrunnable: Device Guard hard-blocks kana.exe (every build, every path)"
     }
   ],
-  "generated": "2026-09-25T21:40:55",
+  "generated": "2026-09-26T01:12:25",
   "metrics": {
     "by_kind": {
       "agent_profile": 1,
@@ -1371,9 +1427,9 @@
       "decision": 11,
       "doc": 14,
       "evidence": 8,
-      "experiment": 12,
+      "experiment": 13,
       "failure": 2,
-      "handoff": 12,
+      "handoff": 13,
       "hypothesis": 17,
       "principle": 4,
       "profile": 4,
@@ -1381,21 +1437,21 @@
       "report": 13,
       "review": 18,
       "round_megaprompt": 2,
-      "session": 22,
+      "session": 23,
       "work": 7
     },
     "by_status": {
       "ACTIVE": 14,
-      "CLOSED": 22,
+      "CLOSED": 23,
       "COMPLETED": 26,
       "DONE": 16,
       "DRAFT": 1,
       "IN_PROGRESS": 2,
       "OPEN": 28,
-      "PENDING": 3,
+      "PENDING": 4,
       "RECORDED": 2,
       "REGISTERED": 8,
-      "REQUESTED": 1,
+      "REQUESTED": 2,
       "RESOLVED": 1,
       "SUPERSEDED": 4
     },
@@ -1403,10 +1459,10 @@
     "contradiction_candidates": 0,
     "dangling_ids": 12,
     "duplicate_candidates": 2,
-    "edges_total": 2330,
+    "edges_total": 2431,
     "legacy_experiments_without_pre_registration": 6,
     "open_questions": 8,
-    "records_total": 168,
+    "records_total": 171,
     "revival_candidates": 5
   },
   "questions_all": [
@@ -1798,33 +1854,6 @@
   "timeline_tail": [
     {
       "example": false,
-      "id": "HO-0003",
-      "kind": "handoff",
-      "rel": "handoffs/HO-0003-critique-e-0011-pre-registration-before-any-running.md",
-      "status": "DONE",
-      "title": "Critique the E-0011 pre-registration (W-0001 step 1) BEFORE any RUNNING",
-      "when": "2026-09-22"
-    },
-    {
-      "example": false,
-      "id": "HO-0004",
-      "kind": "handoff",
-      "rel": "handoffs/HO-0004-critique-e-0012-pre-registration-and-offline-sprt-replay.md",
-      "status": "DONE",
-      "title": "Critique the E-0012 pre-registration and its offline SPRT replay validation BEFORE any RUNNING",
-      "when": "2026-09-22"
-    },
-    {
-      "example": false,
-      "id": "HO-0005",
-      "kind": "handoff",
-      "rel": "handoffs/HO-0005-verify-w-0003-round2-agreement-matrix-backfill-r-0013.md",
-      "status": "REQUESTED",
-      "title": "Verify W-0003: R-0013 (Round-2 AGREEMENT_MATRIX backfill) and the untouched matrix",
-      "when": "2026-09-22"
-    },
-    {
-      "example": false,
       "id": "R-0010",
       "kind": "review",
       "rel": "reviews/R-0010-independent-verification-w-0002-d-0007-dec-0010-r-0009-occupant-4.md",
@@ -2155,6 +2184,33 @@
       "status": "DONE",
       "title": "E-SPRT-lite comparison harness: pre-register, build, validate against known difference",
       "when": "2026-09-25"
+    },
+    {
+      "example": false,
+      "id": "E-0013",
+      "kind": "experiment",
+      "rel": "experiments/E-0013-h-0013-texel-fit-on-verified-e-0011-dataset-game-split-holdout-tier-s-sprt-vs-pinned-stage-5.md",
+      "status": "PENDING",
+      "title": "E-0013 — H-0013 Texel fit on the verified E-0011 dataset (game-split holdout + Tier-S SPRT vs pinned stage 5)",
+      "when": "2026-09-26"
+    },
+    {
+      "example": false,
+      "id": "HO-0013",
+      "kind": "handoff",
+      "rel": "handoffs/HO-0013-critique-e-0013-pre-registration-h-0013-texel-fit-contract-before-any-running.md",
+      "status": "REQUESTED",
+      "title": "Critique E-0013 pre-registration (H-0013 Texel fit contract) before any running",
+      "when": "2026-09-26"
+    },
+    {
+      "example": false,
+      "id": "S-0023",
+      "kind": "session",
+      "rel": "sessions/S-0023-draft-e-0013-texel-pre-registration-pending-plus-ho-0013-critique-handoff.md",
+      "status": "CLOSED",
+      "title": "Draft E-0013 Texel pre-registration (PENDING) + file HO-0013 critique handoff",
+      "when": "2026-09-26"
     }
   ]
 }

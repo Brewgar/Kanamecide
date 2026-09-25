@@ -1,7 +1,7 @@
 # Research State (GENERATED — do not edit)
 
 Derived from the record store by `research.py state`. Regenerate after every change.
-Generated: 2026-09-25T21:40:55; schema 2.
+Generated: 2026-09-26T01:12:25; schema 2.
 Every entry is a PROJECTION of the linked records — follow them before believing.
 
 ## Current best beliefs (hypotheses with measured weight)
@@ -10,9 +10,9 @@ Every entry is a PROJECTION of the linked records — follow them before believi
 - **H-0005** Magic Bitboards with PEXT Provide >=3x NPS Speedup — status OPEN; confidence 0.45 (plausible); tested by E-00003 [unverdicted], E-0002 [unverdicted]. (hypotheses/H-0005-magic-bitboards-with-pext-provide-3x-nps-speedup.md)
 - **H-0006** PEXT/magic sliders raise perft NPS 1.3-2.5x (not >=3x) at O2 vs current ray-stepping — status OPEN; confidence 0.6 (likely); tested by E-00003 [unverdicted], E-00005 [unverdicted]. (hypotheses/H-0006-pext-magic-sliders-raise-perft-nps-1-3-2-5x-not-3x-at-o2-vs-current-ray-stepping.md)
 - **H-0008** Move ordering dominates raw NPS for Phase-2 time-to-depth — status OPEN; confidence 0.7 (likely); tested by E-00006 [positive], E-00007 [positive]. (hypotheses/H-0008-move-ordering-dominates-raw-nps-for-phase-2-time-to-depth.md)
-- **H-0010** SPRT-based engine comparison harness is required before any version claim is trustworthy — status OPEN; confidence 0.85 (strongly supported); tested by E-00006 [positive], E-0012 [positive]. (hypotheses/H-0010-sprt-based-engine-comparison-harness-is-required-before-any-version-claim-is-trustworthy.md)
+- **H-0010** SPRT-based engine comparison harness is required before any version claim is trustworthy — status OPEN; confidence 0.85 (strongly supported); tested by E-00006 [positive], E-0012 [positive], E-0013 [unverdicted]. (hypotheses/H-0010-sprt-based-engine-comparison-harness-is-required-before-any-version-claim-is-trustworthy.md)
 - **H-0012** Search fast-path move invariants - king-capture exclusion and promo-phantom asserts — status OPEN; confidence 0.7 (likely); tested by E-00008 [positive], E-0002 [unverdicted]. (hypotheses/H-0012-search-fast-path-move-invariants-king-capture-exclusion-and-promo-phantom-asserts.md)
-- **H-0013** Tapered eval plus Texel protocol - mg-eg interpolation and quiet-label holdout design — status OPEN; confidence 0.6 (likely); tested by E-0010 [negative], E-0011 [positive]. (hypotheses/H-0013-tapered-eval-plus-texel-protocol-mg-eg-interpolation-and-quiet-label-holdout-design.md)
+- **H-0013** Tapered eval plus Texel protocol - mg-eg interpolation and quiet-label holdout design — status OPEN; confidence 0.6 (likely); tested by E-0010 [negative], E-0011 [positive], E-0013 [unverdicted]. (hypotheses/H-0013-tapered-eval-plus-texel-protocol-mg-eg-interpolation-and-quiet-label-holdout-design.md)
 - **H-0014** Board state integrity audit - halfmove EP-key castling-rights round-trip tests — status OPEN; confidence 0.6 (likely); tested by E-0002 [unverdicted]. (hypotheses/H-0014-board-state-integrity-audit-halfmove-ep-key-castling-rights-round-trip-tests.md)
 
 ## Open questions
@@ -43,9 +43,6 @@ Every entry is a PROJECTION of the linked records — follow them before believi
 - hypothesis **H-0002-magic-stub** Magic Bitboards with PEXT Provide >=3x NPS Speedup — SUPERSEDED. No revisit condition recorded.
 
 ## Recent timeline
-- 2026-09-24 session S-0015 (CLOSED) : E-0011/E-0012 build+acceptance; E-0011 live dataset campaign
-- 2026-09-24 session S-0016 (CLOSED) : First-training readiness prompt and E-0011 downstream-routing clarification
-- 2026-09-24 session S-0017 (CLOSED) : HO-0009 independent verification of E-0011 terminal dataset
 - 2026-09-24 session S-0018 (CLOSED) : Post-HO-0009 owner handoffs and E-0012 live-validation routing
 - 2026-09-25 experiment E-0012 (COMPLETED) : E-0012 — E-SPRT-lite comparison harness (pre-registered, DEC-0010 tiers), offline-validated on retained E-0010 data
 - 2026-09-25 handoff HO-0010 (DONE) : Close W-0001 after R-0017 independent verification
@@ -58,6 +55,9 @@ Every entry is a PROJECTION of the linked records — follow them before believi
 - 2026-09-25 session S-0022 (CLOSED) : Owner close-out: W-0005 DONE after R-0018 VERIFIED; E-0012 COMPLETED
 - 2026-09-25 work W-0001 (DONE) : E-0011 self-play data pipeline (pre-register, build, run, verify)
 - 2026-09-25 work W-0005 (DONE) : E-SPRT-lite comparison harness: pre-register, build, validate against known difference
+- 2026-09-26 experiment E-0013 (PENDING) : E-0013 — H-0013 Texel fit on the verified E-0011 dataset (game-split holdout + Tier-S SPRT vs pinned stage 5)
+- 2026-09-26 handoff HO-0013 (REQUESTED) : Critique E-0013 pre-registration (H-0013 Texel fit contract) before any running
+- 2026-09-26 session S-0023 (CLOSED) : Draft E-0013 Texel pre-registration (PENDING) + file HO-0013 critique handoff
 
 ## Metrics
 ```
@@ -70,9 +70,9 @@ Every entry is a PROJECTION of the linked records — follow them before believi
     "decision": 11,
     "doc": 14,
     "evidence": 8,
-    "experiment": 12,
+    "experiment": 13,
     "failure": 2,
-    "handoff": 12,
+    "handoff": 13,
     "hypothesis": 17,
     "principle": 4,
     "profile": 4,
@@ -80,21 +80,21 @@ Every entry is a PROJECTION of the linked records — follow them before believi
     "report": 13,
     "review": 18,
     "round_megaprompt": 2,
-    "session": 22,
+    "session": 23,
     "work": 7
   },
   "by_status": {
     "ACTIVE": 14,
-    "CLOSED": 22,
+    "CLOSED": 23,
     "COMPLETED": 26,
     "DONE": 16,
     "DRAFT": 1,
     "IN_PROGRESS": 2,
     "OPEN": 28,
-    "PENDING": 3,
+    "PENDING": 4,
     "RECORDED": 2,
     "REGISTERED": 8,
-    "REQUESTED": 1,
+    "REQUESTED": 2,
     "RESOLVED": 1,
     "SUPERSEDED": 4
   },
@@ -102,10 +102,10 @@ Every entry is a PROJECTION of the linked records — follow them before believi
   "contradiction_candidates": 0,
   "dangling_ids": 12,
   "duplicate_candidates": 2,
-  "edges_total": 2330,
+  "edges_total": 2431,
   "legacy_experiments_without_pre_registration": 6,
   "open_questions": 8,
-  "records_total": 168,
+  "records_total": 171,
   "revival_candidates": 5
 }
 
