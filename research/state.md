@@ -1,7 +1,7 @@
 # Research State (GENERATED — do not edit)
 
 Derived from the record store by `research.py state`. Regenerate after every change.
-Generated: 2026-09-25T20:51:53; schema 2.
+Generated: 2026-09-25T21:17:51; schema 2.
 Every entry is a PROJECTION of the linked records — follow them before believing.
 
 ## Current best beliefs (hypotheses with measured weight)
@@ -43,8 +43,6 @@ Every entry is a PROJECTION of the linked records — follow them before believi
 - hypothesis **H-0002-magic-stub** Magic Bitboards with PEXT Provide >=3x NPS Speedup — SUPERSEDED. No revisit condition recorded.
 
 ## Recent timeline
-- 2026-09-23 session S-0014 (CLOSED) : HO-0008 micro-ruling - R-0016: B3 FIXED; E-0011 cleared for build+run
-- 2026-09-24 experiment E-0011 (COMPLETED) : E-0011 — Self-play data pipeline: resumable, provenance-carrying, deduplicated game dataset for Texel fitting
 - 2026-09-24 handoff HO-0009 (DONE) : Independent verification of RUN-0001 E-0011 terminal dataset and gates (a)-(f)
 - 2026-09-24 review R-0017 (COMPLETED) : R 0017 independent verification w 0001 e 0011 terminal dataset ho 0009
 - 2026-09-24 round_megaprompt TRAINING-READINESS-PROMPT (REGISTERED) : First-training readiness — dataset verification, harness validation, and Texel pre-registration
@@ -54,9 +52,11 @@ Every entry is a PROJECTION of the linked records — follow them before believi
 - 2026-09-24 session S-0018 (CLOSED) : Post-HO-0009 owner handoffs and E-0012 live-validation routing
 - 2026-09-25 handoff HO-0010 (DONE) : Close W-0001 after R-0017 independent verification
 - 2026-09-25 handoff HO-0011 (DONE) : Execute E-0012 live known-difference and null-pair controls
-- 2026-09-25 handoff HO-0012 (REQUESTED) : Independent verification: W-0005 E-0012 live runs RUN-0002 and RUN-0003
+- 2026-09-25 handoff HO-0012 (DONE) : Independent verification: W-0005 E-0012 live runs RUN-0002 and RUN-0003
+- 2026-09-25 review R-0018 (COMPLETED) : R 0018 independent verification w 0005 e 0012 live runs run 0002 and run 0003 ho 0012
 - 2026-09-25 session S-0019 (CLOSED) : HO-0010 W-0001 close-out and HO-0011 E-0012 live validation
 - 2026-09-25 session S-0020 (CLOSED) : Route W-0005/E-0012 live evidence to fresh verification-auditor (HO-0012)
+- 2026-09-25 session S-0021 (CLOSED) : HO-0012 independent verification of W-0005 E-0012 live runs RUN-0002 and RUN-0003
 - 2026-09-25 work W-0001 (DONE) : E-0011 self-play data pipeline (pre-register, build, run, verify)
 
 ## Metrics
@@ -78,35 +78,35 @@ Every entry is a PROJECTION of the linked records — follow them before believi
     "profile": 4,
     "question": 8,
     "report": 13,
-    "review": 17,
+    "review": 18,
     "round_megaprompt": 2,
-    "session": 20,
+    "session": 21,
     "work": 7
   },
   "by_status": {
     "ACTIVE": 14,
-    "CLOSED": 20,
-    "COMPLETED": 24,
-    "DONE": 14,
+    "CLOSED": 21,
+    "COMPLETED": 25,
+    "DONE": 15,
     "DRAFT": 1,
     "IN_PROGRESS": 2,
     "OPEN": 29,
     "PENDING": 3,
     "RECORDED": 2,
     "REGISTERED": 8,
-    "REQUESTED": 2,
+    "REQUESTED": 1,
     "RESOLVED": 1,
     "RUNNING": 1,
     "SUPERSEDED": 4
   },
   "code_files": 25,
   "contradiction_candidates": 0,
-  "dangling_ids": 13,
+  "dangling_ids": 12,
   "duplicate_candidates": 2,
-  "edges_total": 2217,
+  "edges_total": 2275,
   "legacy_experiments_without_pre_registration": 6,
   "open_questions": 8,
-  "records_total": 165,
+  "records_total": 167,
   "revival_candidates": 5
 }
 

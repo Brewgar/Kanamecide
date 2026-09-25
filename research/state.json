@@ -803,7 +803,7 @@
       "kind": "handoff",
       "record": "HO-0012",
       "rel": "handoffs/HO-0012-independent-verification-w-0005-e-0012-live-runs-run-0002-and-run-0003.md",
-      "status": "REQUESTED",
+      "status": "DONE",
       "title": "Independent verification: W-0005 E-0012 live runs RUN-0002 and RUN-0003"
     },
     {
@@ -951,6 +951,19 @@
       "rel": "reviews/R-0017-independent-verification-w-0001-e-0011-terminal-dataset-ho-0009.md",
       "status": "COMPLETED",
       "title": "R 0017 independent verification w 0001 e 0011 terminal dataset ho 0009"
+    },
+    {
+      "code_files": [
+        "tools/e0012_sprt.py"
+      ],
+      "commits_mentioned": [
+        "7aab350"
+      ],
+      "kind": "review",
+      "record": "R-0018",
+      "rel": "reviews/R-0018-independent-verification-w-0005-e-0012-live-runs-run-0002-and-run-0003-ho-0012.md",
+      "status": "COMPLETED",
+      "title": "R 0018 independent verification w 0005 e 0012 live runs run 0002 and run 0003 ho 0012"
     },
     {
       "code_files": [
@@ -1331,7 +1344,7 @@
       "title": "Gate 0 unrunnable: Device Guard hard-blocks kana.exe (every build, every path)"
     }
   ],
-  "generated": "2026-09-25T20:51:53",
+  "generated": "2026-09-25T21:17:51",
   "metrics": {
     "by_kind": {
       "agent_profile": 1,
@@ -1349,35 +1362,35 @@
       "profile": 4,
       "question": 8,
       "report": 13,
-      "review": 17,
+      "review": 18,
       "round_megaprompt": 2,
-      "session": 20,
+      "session": 21,
       "work": 7
     },
     "by_status": {
       "ACTIVE": 14,
-      "CLOSED": 20,
-      "COMPLETED": 24,
-      "DONE": 14,
+      "CLOSED": 21,
+      "COMPLETED": 25,
+      "DONE": 15,
       "DRAFT": 1,
       "IN_PROGRESS": 2,
       "OPEN": 29,
       "PENDING": 3,
       "RECORDED": 2,
       "REGISTERED": 8,
-      "REQUESTED": 2,
+      "REQUESTED": 1,
       "RESOLVED": 1,
       "RUNNING": 1,
       "SUPERSEDED": 4
     },
     "code_files": 25,
     "contradiction_candidates": 0,
-    "dangling_ids": 13,
+    "dangling_ids": 12,
     "duplicate_candidates": 2,
-    "edges_total": 2217,
+    "edges_total": 2275,
     "legacy_experiments_without_pre_registration": 6,
     "open_questions": 8,
-    "records_total": 165,
+    "records_total": 167,
     "revival_candidates": 5
   },
   "questions_all": [
@@ -1769,24 +1782,6 @@
   "timeline_tail": [
     {
       "example": false,
-      "id": "DEC-0010",
-      "kind": "decision",
-      "rel": "decisions/DEC-0010-two-tier-sprt-effect-size-decision-rule.md",
-      "status": "ACTIVE",
-      "title": "Calibrated effect-size decision rule for engine-strength comparisons (two-tier SPRT + magnitude zones)",
-      "when": "2026-09-21"
-    },
-    {
-      "example": false,
-      "id": "R-0009",
-      "kind": "review",
-      "rel": "reviews/R-0009-addendum-e0010-outcome-under-the-dec-0010-calibrated-rule.md",
-      "status": "COMPLETED",
-      "title": "R 0009 addendum e0010 outcome under the dec 0010 calibrated rule",
-      "when": "2026-09-21"
-    },
-    {
-      "example": false,
       "id": "S-0007",
       "kind": "session",
       "rel": "sessions/S-0007-w-0002-e-0010-decision-rule-recalibration-d-0007-solved-by-arithmetic-dec-0010-active-r-0009-addendum-ho-0002-to-verification-auditor-gate-0-re-block.md",
@@ -2096,8 +2091,17 @@
       "id": "HO-0012",
       "kind": "handoff",
       "rel": "handoffs/HO-0012-independent-verification-w-0005-e-0012-live-runs-run-0002-and-run-0003.md",
-      "status": "REQUESTED",
+      "status": "DONE",
       "title": "Independent verification: W-0005 E-0012 live runs RUN-0002 and RUN-0003",
+      "when": "2026-09-25"
+    },
+    {
+      "example": false,
+      "id": "R-0018",
+      "kind": "review",
+      "rel": "reviews/R-0018-independent-verification-w-0005-e-0012-live-runs-run-0002-and-run-0003-ho-0012.md",
+      "status": "COMPLETED",
+      "title": "R 0018 independent verification w 0005 e 0012 live runs run 0002 and run 0003 ho 0012",
       "when": "2026-09-25"
     },
     {
@@ -2116,6 +2120,15 @@
       "rel": "sessions/S-0020-route-w-0005-e-0012-live-evidence-to-fresh-verification-auditor-ho-0012.md",
       "status": "CLOSED",
       "title": "Route W-0005/E-0012 live evidence to fresh verification-auditor (HO-0012)",
+      "when": "2026-09-25"
+    },
+    {
+      "example": false,
+      "id": "S-0021",
+      "kind": "session",
+      "rel": "sessions/S-0021-ho-0012-independent-verification-of-w-0005-e-0012-live-runs-run-0002-and-run-0003.md",
+      "status": "CLOSED",
+      "title": "HO-0012 independent verification of W-0005 E-0012 live runs RUN-0002 and RUN-0003",
       "when": "2026-09-25"
     },
     {
