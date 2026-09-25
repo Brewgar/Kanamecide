@@ -1,7 +1,7 @@
 # Research State (GENERATED — do not edit)
 
 Derived from the record store by `research.py state`. Regenerate after every change.
-Generated: 2026-09-25T18:09:07; schema 2.
+Generated: 2026-09-25T19:09:50; schema 2.
 Every entry is a PROJECTION of the linked records — follow them before believing.
 
 ## Current best beliefs (hypotheses with measured weight)
@@ -43,20 +43,20 @@ Every entry is a PROJECTION of the linked records — follow them before believi
 - hypothesis **H-0002-magic-stub** Magic Bitboards with PEXT Provide >=3x NPS Speedup — SUPERSEDED. No revisit condition recorded.
 
 ## Recent timeline
-- 2026-09-23 session S-0011 (CLOSED) : R-0011/R-0012 blocking-findings fix session: E-0011 B1/B2/B3 + E-0012 B1/B2 + N4 adopted; replay artifacts git-tracked (16ac1ff); HO-0006/HO-0007 re-critiques out; Gate 0 OPEN (attempt #10); engine-free by design
 - 2026-09-23 session S-0012 (CLOSED) : HO-0006/HO-0007 re-critique of the R-0011/R-0012 addenda: R-0014 (E-0011 PARTIAL, 1 sentence left) + R-0015 (E-0012 CLEAN)
 - 2026-09-23 session S-0013 (CLOSED) : Micro-session: R-0014 B3 fix (end vocabulary + (Ns) suffix policy) landed verbatim in E-0011; HO-0008 full-discharge ruling requested; Gate 0 attempt #12 (OPEN); engine-free text work only
 - 2026-09-23 session S-0014 (CLOSED) : HO-0008 micro-ruling - R-0016: B3 FIXED; E-0011 cleared for build+run
 - 2026-09-24 experiment E-0011 (COMPLETED) : E-0011 — Self-play data pipeline: resumable, provenance-carrying, deduplicated game dataset for Texel fitting
 - 2026-09-24 handoff HO-0009 (DONE) : Independent verification of RUN-0001 E-0011 terminal dataset and gates (a)-(f)
-- 2026-09-24 handoff HO-0010 (ACCEPTED) : Close W-0001 after R-0017 independent verification
-- 2026-09-24 handoff HO-0011 (REQUESTED) : Execute E-0012 live known-difference and null-pair controls
 - 2026-09-24 review R-0017 (COMPLETED) : R 0017 independent verification w 0001 e 0011 terminal dataset ho 0009
 - 2026-09-24 round_megaprompt TRAINING-READINESS-PROMPT (REGISTERED) : First-training readiness — dataset verification, harness validation, and Texel pre-registration
 - 2026-09-24 session S-0015 (CLOSED) : E-0011/E-0012 build+acceptance; E-0011 live dataset campaign
 - 2026-09-24 session S-0016 (CLOSED) : First-training readiness prompt and E-0011 downstream-routing clarification
 - 2026-09-24 session S-0017 (CLOSED) : HO-0009 independent verification of E-0011 terminal dataset
 - 2026-09-24 session S-0018 (CLOSED) : Post-HO-0009 owner handoffs and E-0012 live-validation routing
+- 2026-09-25 handoff HO-0010 (DONE) : Close W-0001 after R-0017 independent verification
+- 2026-09-25 handoff HO-0011 (DONE) : Execute E-0012 live known-difference and null-pair controls
+- 2026-09-25 session S-0019 (CLOSED) : HO-0010 W-0001 close-out and HO-0011 E-0012 live validation
 - 2026-09-25 work W-0001 (DONE) : E-0011 self-play data pipeline (pre-register, build, run, verify)
 
 ## Metrics
@@ -80,33 +80,33 @@ Every entry is a PROJECTION of the linked records — follow them before believi
     "report": 13,
     "review": 17,
     "round_megaprompt": 2,
-    "session": 18,
+    "session": 19,
     "work": 7
   },
   "by_status": {
-    "ACCEPTED": 1,
     "ACTIVE": 14,
-    "CLOSED": 18,
+    "CLOSED": 19,
     "COMPLETED": 24,
-    "DONE": 12,
+    "DONE": 14,
     "DRAFT": 1,
     "IN_PROGRESS": 2,
     "OPEN": 29,
-    "PENDING": 4,
+    "PENDING": 3,
     "RECORDED": 2,
     "REGISTERED": 8,
-    "REQUESTED": 2,
+    "REQUESTED": 1,
     "RESOLVED": 1,
+    "RUNNING": 1,
     "SUPERSEDED": 4
   },
   "code_files": 25,
   "contradiction_candidates": 0,
-  "dangling_ids": 11,
+  "dangling_ids": 12,
   "duplicate_candidates": 2,
-  "edges_total": 2115,
+  "edges_total": 2143,
   "legacy_experiments_without_pre_registration": 6,
   "open_questions": 8,
-  "records_total": 162,
+  "records_total": 163,
   "revival_candidates": 5
 }
 

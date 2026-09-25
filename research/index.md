@@ -44,7 +44,7 @@
 - [E-00004](experiments/E-00004-gpu-batch-inference-latency-curve-rtx-5070-ti-dense-net-256-512-hidden.md) — GPU batch-inference latency curve (RTX 5070 Ti, dense net 256-512 hidden) — status=PENDING
 - [E-00005](experiments/E-00005-slider-attack-time-share-and-pext-speedup-ceiling-pre-pext-profile.md) — Slider-attack time share and PEXT speedup ceiling (pre-PEXT profile) — status=PENDING
 - [E-0001](experiments/E-0001-classical-alpha-beta-baseline-time-to-depth.md) — Classical alpha-beta baseline (time-to-depth) — status=PENDING  [EXAMPLE]
-- [E-0012](experiments/E-0012-e-sprt-lite-comparison-harness-pre-registered-dec-0010-tiers.md) — E-0012 — E-SPRT-lite comparison harness (pre-registered, DEC-0010 tiers), offline-validated on retained E-0010 data — status=PENDING
+- [E-0012](experiments/E-0012-e-sprt-lite-comparison-harness-pre-registered-dec-0010-tiers.md) — E-0012 — E-SPRT-lite comparison harness (pre-registered, DEC-0010 tiers), offline-validated on retained E-0010 data — status=RUNNING
 
 ## Completed Experiments
 
@@ -145,8 +145,6 @@
 ## Handoffs (open)
 
 - [HO-0005](handoffs/HO-0005-verify-w-0003-round2-agreement-matrix-backfill-r-0013.md) — Verify W-0003: R-0013 (Round-2 AGREEMENT_MATRIX backfill) and the untouched matrix — status=REQUESTED
-- [HO-0010](handoffs/HO-0010-close-w-0001-after-r-0017-independent-verification.md) — Close W-0001 after R-0017 independent verification — status=ACCEPTED
-- [HO-0011](handoffs/HO-0011-execute-e-0012-live-known-difference-and-null-pair-controls.md) — Execute E-0012 live known-difference and null-pair controls — status=REQUESTED
 
 ## Handoffs (closed)
 
@@ -158,6 +156,8 @@
 - [HO-0007](handoffs/HO-0007-re-critique-e-0012-addenda-b1-b2-n4-null-pair-before-any-running.md) — Re-critique E-0012's R-0012 addenda (B1/B2 responses + adopted null-pair control) before any RUNNING — status=DONE
 - [HO-0008](handoffs/HO-0008-rule-r-0014-b3-fully-discharged-e-0011-clear-for-build-run.md) — Rule R-0014 B3 fully discharged after the end-vocabulary addendum (E-0011 clear for build+run) — status=DONE
 - [HO-0009](handoffs/HO-0009-independent-verification-run-0001-e0011.md) — Independent verification of RUN-0001 E-0011 terminal dataset and gates (a)-(f) — status=DONE
+- [HO-0010](handoffs/HO-0010-close-w-0001-after-r-0017-independent-verification.md) — Close W-0001 after R-0017 independent verification — status=DONE
+- [HO-0011](handoffs/HO-0011-execute-e-0012-live-known-difference-and-null-pair-controls.md) — Execute E-0012 live known-difference and null-pair controls — status=DONE
 
 ## Runs (live)
 
@@ -166,6 +166,8 @@
 ## Runs (finished)
 
 - [RUN-0001](runs/RUN-0001-e0011-self-play-dataset-campaign.md) — E-0011 1,000-game self-play training dataset campaign — status=COMPLETED
+- [RUN-0002](runs/RUN-0002-e-0012-live-known-difference-validation.md) — E-0012 live known-difference validation — status=COMPLETED
+- [RUN-0003](runs/RUN-0003-e-0012-n4-null-pair-control.md) — E-0012 N4 null-pair control — status=COMPLETED
 
 ## Sessions
 
@@ -187,6 +189,7 @@
 - [S-0016](sessions/S-0016-first-training-readiness-prompt-and-e-0011-downstream-routing-clarification.md) — First-training readiness prompt and E-0011 downstream-routing clarification — status=CLOSED
 - [S-0017](sessions/S-0017-ho-0009-independent-verification-e-0011-terminal-dataset.md) — HO-0009 independent verification of E-0011 terminal dataset — status=CLOSED
 - [S-0018](sessions/S-0018-post-ho-0009-owner-handoffs-and-e-0012-live-validation-routing.md) — Post-HO-0009 owner handoffs and E-0012 live-validation routing — status=CLOSED
+- [S-0019](sessions/S-0019-ho-0010-w-0001-close-out-and-ho-0011-e-0012-live-validation.md) — HO-0010 W-0001 close-out and HO-0011 E-0012 live validation — status=CLOSED
 
 ## Unrendered Records (bug — report this)
 
