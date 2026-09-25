@@ -368,4 +368,47 @@ is filed; the live half closes only with (v1)–(v4) + N4 after HO-0007's clean 
   `--retry 0`; raw results are appended below when terminal. No tier, bound, cap, stop band,
   salt, sample-validity rule, or null-design line changed after any live result.
 
+### RUN-0002 — known-difference — terminal 2026-09-25 18:29:34 (H1 at game 125)
+- H1 **accepted at game 125**; final n=125, W=80 / D=20 / L=25, LLR `+2.9590633873412573`
+  (bound `2.9444389791664403`), verdict H1, cap 8,000 never approached. Crossing 125 is
+  inside the pre-registered [80, 800] window.
+- 0 duplicate move lists, 125/125 games legal on independent python-chess replay, and
+  `incidents.jsonl` was never created ⇒ 0 engine crashes in 125 games.
+- Executor-side independent audit `m0_audit/s0018/e0012_audit.py` (own LLR implementation +
+  legality replay, cross-checked against the harness checkpoint) → exit 0, `RESULT: PASS`,
+  `problems: {}`; recomputed LLR and crossing match the checkpoint exactly.
+- JSONL SHA-256 `637a9fa4229ee8ab54b3c8f8420731659575d6ee59dda72c4a2311198650d407`.
+- Single uninterrupted execution; no resume, no retry, no preserved pre-resume log needed.
+
+### RUN-0003 — N4 null pair — terminal 2026-09-25 19:04:22 (cap 240, no decision)
+- Ran the frozen N4 control: stage 6 vs 6, Tier S, cap 240, salt 20260924, launched only
+  after RUN-0002 was terminal (`checkpoint before launch: 0 item(s), 0 bytes`).
+- **No H1 acceptance.** Completed the full cap with verdict `INCONCLUSIVE`, `crossing: null`;
+  n=240, W=106 / D=23 / L=111, final **LLR −0.6852460784333203** — small and consistent with
+  the colour-corrected null (R-0015's drift ≈ −0.0015/game, sd ≈ 0.058/game ⇒ cumulative sd
+  ≈ 0.90 at 240 games; realized ≈ −0.76σ). **No harness-bias alarm.**
+- Harness null block: `{"band_centred_at_50pct": false, "observed_white_score":
+  0.6145833333333334, "pass": true, "white_prior": 0.585}` — the colour-corrected 58.5% prior
+  was used; the prohibited naive 50%-centred band was not.
+- Reported against R-0015's own numbers, not re-derived: realized −0.685 vs its delta-method
+  drift ≈ −0.0015/game and sd ≈ 0.058/game (⇒ ≈ −0.76σ of the cumulative LLR at 240 games);
+  sign/magnitude consistent with the colour-corrected null ⇒ **Control PASS**, no harness-bias
+  alarm. Had it accepted, this record's own rule required a harness audit first, never an
+  engine-strength claim.
+- 0 duplicate move lists, 240/240 legal, no `incidents.jsonl` (0 crashes in 240 games).
+- Executor-side independent audit `m0_audit/s0018/e0012_audit.py` → exit 0, `RESULT: PASS`,
+  `problems: {}`; recomputed LLR/verdict match the checkpoint.
+- JSONL SHA-256 `5654db6075703625fd30c633805abaf935eb584da25dc4277fa24d494693e30d`.
+
+Both live runs are therefore **honest and pre-registered-consistent**: the known-difference
+pair produced its H1 acceptance and the null pair did not. Per HO-0011 §5, **W-0005 is not
+marked DONE or VERIFIED here** — that requires the owner plus a fresh verification-auditor
+review of this raw evidence, which is the next seat's job, not the executor's.
+
+Both live arms (v1)–(v4) + N4 are now shipped and recorded. **Nothing above is a verdict on
+W-0005**: closing W-0005 still requires the owner plus a fresh verification-auditor review
+of this raw evidence (HO-0011 §5). This section is the implementation engineer's permitted
+Results/Provenance record only.
+
+
 
