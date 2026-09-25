@@ -5,8 +5,8 @@
 > decisions in `research/decisions/`. Do not add unverified claims to this file.
 
 <!-- research-meta
-last_updated: 2026-09-24
-reflects: [DEC-0001, DEC-0002, DEC-0003, DEC-0004, DEC-0006, DEC-0007, DEC-0008, DEC-0009, DEC-0010, DEC-0011, E-0002, E-00003, E-00006, E-00007, E-00008, E-00009, E-0010, E-0011]
+last_updated: 2026-09-25
+reflects: [DEC-0001, DEC-0002, DEC-0003, DEC-0004, DEC-0006, DEC-0007, DEC-0008, DEC-0009, DEC-0010, DEC-0011, E-0002, E-00003, E-00006, E-00007, E-00008, E-00009, E-0010, E-0011, E-0012]
 not_reflected: []
 -->
 > The `research-meta` block above is machine-checked by `research.py validate`:
@@ -193,11 +193,16 @@ below its pre-registered ≥150 bar.
 - Evaluation exists and is measured (E-0010: +116.1 Elo over material-only at LOS 100%,
   below its pre-registered ≥150 bar). Mobility and tempo are non-positive increments and
   need re-tuning (H-0013 Texel fitting), not more hand weights.
-- E-0011 now provides a local, gitignored 1,000-game self-play dataset with a pinned
-  SHA-256 and all six artifact gates PASS. W-0001 remains open only for independent
-  verification via HO-0009; no fitted parameters or downstream strength result are claimed.
-- No comparison harness with pre-registered error control (H-0010 / E-SPRT): every future
-  A/B claim currently depends on ad-hoc match harnesses.
+- E-0011 provides a local, gitignored 1,000-game self-play dataset with a pinned SHA-256
+  and all six artifact gates PASS; W-0001 is DONE and independently VERIFIED (R-0017,
+  2026-09-25). The dataset is consumable only under its leakage contract (distinct salt,
+  overlap-0 gate); no fitted parameters or downstream strength result are claimed yet.
+- ~~No comparison harness~~ **RESOLVED 2026-09-25 (E-0012 PASS, W-0005 DONE, VERIFIED by
+  R-0018):** the E-SPRT-lite comparison harness (`tools/e0012_sprt.py`) is built and live-
+  validated — known-difference (stage 6 vs 0) H1 accepted at game 125 ∈ pre-registered
+  [80, 800]; N4 null-pair (6 vs 6, cap 240) produced no H1 with the colour-corrected
+  null band; 0 duplicates, 365/365 games legal, contract frozen end-to-end. This licenses
+  no engine-strength claim; future A/B claims now have a pre-registered decision harness.
 - No persistent TT across moves (TT is cleared per `go`); no aspiration/PVS/LMR/null-move
   (O3e candidates).
 - **2026-09-23 — Gate 0 UNBLOCKED (F-0002 condition ended).** The owner changed the App
@@ -208,17 +213,21 @@ below its pre-registered ≥150 bar.
   F-0002 stays RECORDED as a failure class against policy regression.
 
 ## Current Development Priorities
-1. **E-0011 independent verification (HO-0009):** recompute the dataset/checker/kill-resume
-   hashes and re-run the six artifact gates; W-0001 closes only after a verification review.
-2. **E-SPRT-lite — comparison harness (H-0010 + DEC-0010):** two-tier pre-registered error
-   control per DEC-0010 — screening [0,+20] cap 8,000, regression [0,+5] cap 30,000,
-   magnitude claims as [M−50,M] zones, LLR ±2.944, α=β=0.05, post-cap INCONCLUSIVE —
-   so every later change is decided, not argued.
+1. ~~E-0011 independent verification~~ **DONE 2026-09-25:** R-0017 VERIFIED; W-0001 closed.
+2. ~~E-SPRT-lite harness~~ **DONE 2026-09-25:** E-0012 COMPLETED (result PASS — harness
+   validation), W-0005 DONE and VERIFIED by R-0018 (independent re-derivation of
+   RUN-0002/RUN-0003). The harness is now the standing decision rule for A/B claims.
 3. **O3e — PVS / LMR / null-move** measured against the O3d baseline once (2) exists.
 4. **Phase 3+ — learning:** Texel-fit the hand-tuned terms (H-0013), then NNUE; use the
    verified E-0011 dataset only after downstream leakage checks pass.
 
 ## Last Updated
+2026-09-25 (verification chain closed: R-0017 VERIFIED → W-0001 DONE (E-0011 1,000-game
+dataset); E-0012 live validation executed under HO-0011 — RUN-0002 known-difference H1 @
+game 125 ∈ [80, 800], RUN-0003 N4 null no-H1 at cap 240, colour-corrected band pass —
+independently verified by R-0018 (VERIFIED); W-0005 DONE; E-0012 COMPLETED (result: PASS,
+harness-validation scope only). No training started; H-0013 still needs its own
+pre-registration + critique gate.)
 2026-09-24 (S-0015: E-0011 replacement campaign completed 1,000-game dataset generation;
 all six artifact gates PASS; RUN-0001 terminal hashes and kill/resume evidence recorded;
 HO-0009 requested from verification-auditor; E-0012 remains PENDING)

@@ -1,7 +1,7 @@
 # Research State (GENERATED — do not edit)
 
 Derived from the record store by `research.py state`. Regenerate after every change.
-Generated: 2026-09-25T21:17:51; schema 2.
+Generated: 2026-09-25T21:40:55; schema 2.
 Every entry is a PROJECTION of the linked records — follow them before believing.
 
 ## Current best beliefs (hypotheses with measured weight)
@@ -10,7 +10,7 @@ Every entry is a PROJECTION of the linked records — follow them before believi
 - **H-0005** Magic Bitboards with PEXT Provide >=3x NPS Speedup — status OPEN; confidence 0.45 (plausible); tested by E-00003 [unverdicted], E-0002 [unverdicted]. (hypotheses/H-0005-magic-bitboards-with-pext-provide-3x-nps-speedup.md)
 - **H-0006** PEXT/magic sliders raise perft NPS 1.3-2.5x (not >=3x) at O2 vs current ray-stepping — status OPEN; confidence 0.6 (likely); tested by E-00003 [unverdicted], E-00005 [unverdicted]. (hypotheses/H-0006-pext-magic-sliders-raise-perft-nps-1-3-2-5x-not-3x-at-o2-vs-current-ray-stepping.md)
 - **H-0008** Move ordering dominates raw NPS for Phase-2 time-to-depth — status OPEN; confidence 0.7 (likely); tested by E-00006 [positive], E-00007 [positive]. (hypotheses/H-0008-move-ordering-dominates-raw-nps-for-phase-2-time-to-depth.md)
-- **H-0010** SPRT-based engine comparison harness is required before any version claim is trustworthy — status OPEN; confidence 0.85 (strongly supported); tested by E-00006 [positive], E-0012 [unverdicted]. (hypotheses/H-0010-sprt-based-engine-comparison-harness-is-required-before-any-version-claim-is-trustworthy.md)
+- **H-0010** SPRT-based engine comparison harness is required before any version claim is trustworthy — status OPEN; confidence 0.85 (strongly supported); tested by E-00006 [positive], E-0012 [positive]. (hypotheses/H-0010-sprt-based-engine-comparison-harness-is-required-before-any-version-claim-is-trustworthy.md)
 - **H-0012** Search fast-path move invariants - king-capture exclusion and promo-phantom asserts — status OPEN; confidence 0.7 (likely); tested by E-00008 [positive], E-0002 [unverdicted]. (hypotheses/H-0012-search-fast-path-move-invariants-king-capture-exclusion-and-promo-phantom-asserts.md)
 - **H-0013** Tapered eval plus Texel protocol - mg-eg interpolation and quiet-label holdout design — status OPEN; confidence 0.6 (likely); tested by E-0010 [negative], E-0011 [positive]. (hypotheses/H-0013-tapered-eval-plus-texel-protocol-mg-eg-interpolation-and-quiet-label-holdout-design.md)
 - **H-0014** Board state integrity audit - halfmove EP-key castling-rights round-trip tests — status OPEN; confidence 0.6 (likely); tested by E-0002 [unverdicted]. (hypotheses/H-0014-board-state-integrity-audit-halfmove-ep-key-castling-rights-round-trip-tests.md)
@@ -43,13 +43,11 @@ Every entry is a PROJECTION of the linked records — follow them before believi
 - hypothesis **H-0002-magic-stub** Magic Bitboards with PEXT Provide >=3x NPS Speedup — SUPERSEDED. No revisit condition recorded.
 
 ## Recent timeline
-- 2026-09-24 handoff HO-0009 (DONE) : Independent verification of RUN-0001 E-0011 terminal dataset and gates (a)-(f)
-- 2026-09-24 review R-0017 (COMPLETED) : R 0017 independent verification w 0001 e 0011 terminal dataset ho 0009
-- 2026-09-24 round_megaprompt TRAINING-READINESS-PROMPT (REGISTERED) : First-training readiness — dataset verification, harness validation, and Texel pre-registration
 - 2026-09-24 session S-0015 (CLOSED) : E-0011/E-0012 build+acceptance; E-0011 live dataset campaign
 - 2026-09-24 session S-0016 (CLOSED) : First-training readiness prompt and E-0011 downstream-routing clarification
 - 2026-09-24 session S-0017 (CLOSED) : HO-0009 independent verification of E-0011 terminal dataset
 - 2026-09-24 session S-0018 (CLOSED) : Post-HO-0009 owner handoffs and E-0012 live-validation routing
+- 2026-09-25 experiment E-0012 (COMPLETED) : E-0012 — E-SPRT-lite comparison harness (pre-registered, DEC-0010 tiers), offline-validated on retained E-0010 data
 - 2026-09-25 handoff HO-0010 (DONE) : Close W-0001 after R-0017 independent verification
 - 2026-09-25 handoff HO-0011 (DONE) : Execute E-0012 live known-difference and null-pair controls
 - 2026-09-25 handoff HO-0012 (DONE) : Independent verification: W-0005 E-0012 live runs RUN-0002 and RUN-0003
@@ -57,7 +55,9 @@ Every entry is a PROJECTION of the linked records — follow them before believi
 - 2026-09-25 session S-0019 (CLOSED) : HO-0010 W-0001 close-out and HO-0011 E-0012 live validation
 - 2026-09-25 session S-0020 (CLOSED) : Route W-0005/E-0012 live evidence to fresh verification-auditor (HO-0012)
 - 2026-09-25 session S-0021 (CLOSED) : HO-0012 independent verification of W-0005 E-0012 live runs RUN-0002 and RUN-0003
+- 2026-09-25 session S-0022 (CLOSED) : Owner close-out: W-0005 DONE after R-0018 VERIFIED; E-0012 COMPLETED
 - 2026-09-25 work W-0001 (DONE) : E-0011 self-play data pipeline (pre-register, build, run, verify)
+- 2026-09-25 work W-0005 (DONE) : E-SPRT-lite comparison harness: pre-register, build, validate against known difference
 
 ## Metrics
 ```
@@ -80,33 +80,32 @@ Every entry is a PROJECTION of the linked records — follow them before believi
     "report": 13,
     "review": 18,
     "round_megaprompt": 2,
-    "session": 21,
+    "session": 22,
     "work": 7
   },
   "by_status": {
     "ACTIVE": 14,
-    "CLOSED": 21,
-    "COMPLETED": 25,
-    "DONE": 15,
+    "CLOSED": 22,
+    "COMPLETED": 26,
+    "DONE": 16,
     "DRAFT": 1,
     "IN_PROGRESS": 2,
-    "OPEN": 29,
+    "OPEN": 28,
     "PENDING": 3,
     "RECORDED": 2,
     "REGISTERED": 8,
     "REQUESTED": 1,
     "RESOLVED": 1,
-    "RUNNING": 1,
     "SUPERSEDED": 4
   },
   "code_files": 25,
   "contradiction_candidates": 0,
   "dangling_ids": 12,
   "duplicate_candidates": 2,
-  "edges_total": 2275,
+  "edges_total": 2330,
   "legacy_experiments_without_pre_registration": 6,
   "open_questions": 8,
-  "records_total": 167,
+  "records_total": 168,
   "revival_candidates": 5
 }
 

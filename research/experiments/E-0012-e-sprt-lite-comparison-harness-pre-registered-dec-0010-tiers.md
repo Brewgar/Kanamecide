@@ -2,8 +2,8 @@
 id: E-0012
 type: experiment
 title: "E-0012 — E-SPRT-lite comparison harness (pre-registered, DEC-0010 tiers), offline-validated on retained E-0010 data"
-status: RUNNING
-result: null
+status: COMPLETED
+result: "PASS — harness validation: known-difference RUN-0002 H1 accepted at game 125 ∈ [80, 800]; N4 null-pair RUN-0003 no-H1 at cap 240 with colour-corrected band pass; live evidence VERIFIED by R-0018. Harness-validation claim only — no engine-strength claim."
 elo_change: null
 hypothesis: H-0010
 priority: high
@@ -11,7 +11,7 @@ owner: null
 pre_registered: 2026-09-22
 example: false
 created: 2026-09-22
-completed: null
+completed: 2026-09-25
 tags: [sprt, harness, pre-registration, offline-validation]
 ---
 
@@ -410,5 +410,17 @@ W-0005**: closing W-0005 still requires the owner plus a fresh verification-audi
 of this raw evidence (HO-0011 §5). This section is the implementation engineer's permitted
 Results/Provenance record only.
 
+
+## Owner close-out (researcher-architect), 2026-09-25
+
+R-0018 (fresh verification-auditor occupant via HO-0012) independently re-derived both live
+runs from the raw artifacts and returned verdict **VERIFIED** with all 6 ruling questions
+PASS. Accordingly, and only now, this record transitions `status: RUNNING → COMPLETED` with
+`result: PASS`. Scope of the verdict: this experiment establishes that the E-SPRT-lite
+harness (tools/e0012_sprt.py) meets its pre-registered validation contract — it decided the
+known-difference pair inside the frozen [80, 800] window and its N4 colour-corrected null
+control passed. It licenses **no engine-strength claim of any kind**; downstream Tier-R
+claims require their own pre-registered E-0012 runs on fresh games. The 125-vs-179
+crossing delta stands recorded as unestablished variation per R-0018 ruling Q4.
 
 

@@ -44,7 +44,6 @@
 - [E-00004](experiments/E-00004-gpu-batch-inference-latency-curve-rtx-5070-ti-dense-net-256-512-hidden.md) — GPU batch-inference latency curve (RTX 5070 Ti, dense net 256-512 hidden) — status=PENDING
 - [E-00005](experiments/E-00005-slider-attack-time-share-and-pext-speedup-ceiling-pre-pext-profile.md) — Slider-attack time share and PEXT speedup ceiling (pre-PEXT profile) — status=PENDING
 - [E-0001](experiments/E-0001-classical-alpha-beta-baseline-time-to-depth.md) — Classical alpha-beta baseline (time-to-depth) — status=PENDING  [EXAMPLE]
-- [E-0012](experiments/E-0012-e-sprt-lite-comparison-harness-pre-registered-dec-0010-tiers.md) — E-0012 — E-SPRT-lite comparison harness (pre-registered, DEC-0010 tiers), offline-validated on retained E-0010 data — status=RUNNING
 
 ## Completed Experiments
 
@@ -56,6 +55,7 @@
 - [E-0002](experiments/E-0002-bench-harness-and-o2-baseline.md) — Bench harness plus O2 build baseline (perft NPS, fixed flags) — status=COMPLETED  result=certified /O2 = 43-47 Mn
 - [E-0010](experiments/E-0010-ee-val-tapered-hand-tuned-evaluation-term-by-term-self-play-elo-attribution.md) — E-EVAL — Tapered Hand-Tuned Evaluation (term-by-term self-play Elo attribution) — status=COMPLETED  result=FAIL (pre-registered gat
 - [E-0011](experiments/E-0011-self-play-data-pipeline-provenance-carrying-resumable-deduplicated-game-dataset.md) — E-0011 — Self-play data pipeline: resumable, provenance-carrying, deduplicated game dataset for Texel fitting — status=COMPLETED  result=PASS
+- [E-0012](experiments/E-0012-e-sprt-lite-comparison-harness-pre-registered-dec-0010-tiers.md) — E-0012 — E-SPRT-lite comparison harness (pre-registered, DEC-0010 tiers), offline-validated on retained E-0010 data — status=COMPLETED  result=PASS — harness validatio
 
 ## Failures
 
@@ -133,7 +133,6 @@
 ## Work Items (open)
 
 - [W-0003](work/W-0003-round2-agreement-matrix-reviewer-column-backfill.md) — Round-2 AGREEMENT_MATRIX reviewer column backfill (as an addendum review) — status=IN_PROGRESS
-- [W-0005](work/W-0005-e-sprt-lite-comparison-harness-pre-register-build-validate.md) — E-SPRT-lite comparison harness: pre-register, build, validate against known difference — status=OPEN
 - [W-0006](work/W-0006-root-scratch-debt-reduction-grandfathered-list-shrink.md) — Root-scratch debt reduction: shrink root_grandfathered.txt with itemized deletions — status=IN_PROGRESS
 
 ## Work Items (closed)
@@ -141,6 +140,7 @@
 - [W-0001](work/W-0001-e0011-self-play-data-pipeline-pre-register-build-run-verify.md) — E-0011 self-play data pipeline (pre-register, build, run, verify) — status=DONE
 - [W-0002](work/W-0002-recalibrate-e0010-effect-size-decision-rule-d-0007-dec-0010.md) — Recalibrate the E-0010 effect-size decision rule (D-0007 -> DEC-0010) — status=DONE
 - [W-0004](work/W-0004-fresh-reviewer-onboarding-proof-two-verification-reviews-of-e-0010.md) — Fresh-reviewer onboarding proof: two independent verification reviews of E-0010 — status=DONE
+- [W-0005](work/W-0005-e-sprt-lite-comparison-harness-pre-register-build-validate.md) — E-SPRT-lite comparison harness: pre-register, build, validate against known difference — status=DONE
 - [W-0007](work/W-0007-derived-intelligence-layer.md) — Derived-intelligence layer (graph, retrieval, beliefs, contradiction/revival, state, audit, self-tests) — status=DONE
 
 ## Handoffs (open)
@@ -194,6 +194,7 @@
 - [S-0019](sessions/S-0019-ho-0010-w-0001-close-out-and-ho-0011-e-0012-live-validation.md) — HO-0010 W-0001 close-out and HO-0011 E-0012 live validation — status=CLOSED
 - [S-0020](sessions/S-0020-route-w-0005-e-0012-live-evidence-to-fresh-verification-auditor-ho-0012.md) — Route W-0005/E-0012 live evidence to fresh verification-auditor (HO-0012) — status=CLOSED
 - [S-0021](sessions/S-0021-ho-0012-independent-verification-of-w-0005-e-0012-live-runs-run-0002-and-run-0003.md) — HO-0012 independent verification of W-0005 E-0012 live runs RUN-0002 and RUN-0003 — status=CLOSED
+- [S-0022](sessions/S-0022-owner-close-out-w-0005-done-after-r-0018-verified-e-0012-completed.md) — Owner close-out: W-0005 DONE after R-0018 VERIFIED; E-0012 COMPLETED — status=CLOSED
 
 ## Unrendered Records (bug — report this)
 

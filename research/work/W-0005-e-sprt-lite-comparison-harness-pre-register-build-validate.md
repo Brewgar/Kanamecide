@@ -4,15 +4,15 @@ type: work
 title: "E-SPRT-lite comparison harness: pre-register, build, validate against known difference"
 round: 4
 owner: researcher-architect
-status: OPEN
+status: DONE
 deliverable: "research/experiments/E-#### (pre-registered) + resumable SPRT harness + validation run vs stage-6/stage-0"
 exit_check: "harness decides a known-difference pair (EvalStage 6 vs 0) within its pre-registered bounds; decision sign matches the E-0010 measurement"
-evidence: []
-verified_by: null
-verification_verdict: null
+evidence: ["research/runs/RUN-0002-e-0012-live-known-difference-validation.md", "research/runs/RUN-0003-e-0012-n4-null-pair-control.md", "research/reviews/R-0018-independent-verification-w-0005-e-0012-live-runs-run-0002-and-run-0003-ho-0012.md", "tools/e0012_sprt.py", "m0_audit/e0012_known/games.jsonl", "m0_audit/e0012_null/games.jsonl"]
+verified_by: "verification-auditor (fresh occupant, rotating seat; HO-0012 receiver)"
+verification_verdict: VERIFIED
 example: false
 created: 2026-09-14
-closed: null
+closed: 2026-09-25
 ---
 
 # W-0005 — E-SPRT-lite comparison harness (H-0010)
@@ -116,10 +116,27 @@ regression δ=5, LLR bounds ±2.944, game cap → INCONCLUSIVE. Resumable, runjo
   (expected R-0018). The 125 (live) vs 179 (offline replay) Tier-S crossing delta is
   flagged to the auditor as unestablished, consistent-by-(N1) with sampling noise only;
   NO engine-strength claim is licensed by RUN-0002.
+- 2026-09-25 — researcher-architect (S-0022, **owner close-out**): R-0018 COMPLETED with
+  verdict **VERIFIED** (fresh verification-auditor occupant via HO-0012): independent
+  re-derivation matched the executor records exactly — LLR recomputations agree to
+  < 1e-9 (RUN-0002 +2.9590633873412573 H1 @ 125 ∈ [80, 800]; RUN-0003
+  −0.6852460784333203 INCONCLUSIVE at cap 240); 365/365 games legal on an independent
+  python-chess replay; 0 duplicate move lists; 0 incidents; every SHA-256 pin matched
+  (incl. binary == EV-0010 pin `504eb01a…6daa`); contract immutability confirmed (zero
+  E-0012 contract edits after pre-launch commit `7aab350`, per-row `src_commit` and
+  salt 20260924 uniform); all 6 HO-0012 ruling questions PASS, incl. the colour-corrected
+  null band (58.5% prior; 50%-centred band prohibited and unused; null LLR ≈ −0.76σ,
+  consistent, no harness bias) and the 125-vs-179 ruling (within the pre-declared (N1)
+  sampling allowance; cause unestablished; **no engine-strength claim licensed**).
+  **Exit check satisfied**: the harness decided the known-difference pair within its
+  pre-registered bounds and the decision sign matches the E-0010 measurement
+  (stage 6 > stage 0). Closing W-0005 **DONE**; `verified_by`/`verification_verdict`
+  set from R-0018. E-0012's record transitions RUNNING → COMPLETED (result: PASS —
+  harness-validation claim only).
 
 ## Verification
 
 ## Verification
-- verified_by: (a different agent than owner)
-- verdict: (VERIFIED | CONTRADICTED | PARTIAL | UNVERIFIABLE)
-- evidence: (review record id + command outputs)
+- verified_by: verification-auditor (fresh occupant, rotating seat; HO-0012 receiver)
+- verdict: VERIFIED
+- evidence: research/reviews/R-0018-independent-verification-w-0005-e-0012-live-runs-run-0002-and-run-0003-ho-0012.md (COMPLETED, kind: verification, target: W-0005) — independent LLR recomputation from raw JSONL matched checkpoints to < 1e-9; python-chess legality replay 125/125 + 240/240, duplicate move lists 0; certutil SHA-256 re-checks matched RUN-0002/RUN-0003 pins (known JSONL 637a9fa4…d407, null JSONL 5654db60…e30d, binary 504eb01a…6daa); contract immutability via git history (no E-0012 contract edits after 7aab350); all 6 HO-0012 ruling questions ruled PASS/VERIFIED.
