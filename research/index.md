@@ -100,6 +100,7 @@
 - [R-0017](reviews/R-0017-independent-verification-w-0001-e-0011-terminal-dataset-ho-0009.md) — (untitled) — status=COMPLETED
 - [R-0018](reviews/R-0018-independent-verification-w-0005-e-0012-live-runs-run-0002-and-run-0003-ho-0012.md) — (untitled) — status=COMPLETED
 - [R-0019](reviews/R-0019-e-0013-pre-registration-critique-h-0013-texel-fit-contract-ho-0013-six-question-ruling.md) — (untitled) — status=COMPLETED
+- [R-0020](reviews/R-0020-re-critique-of-the-e-0013-addendum-vs-r-0019-b1-b7-discharge-verification-only-ho-0014.md) — (untitled) — status=COMPLETED
 
 ## Open Questions
 
@@ -150,7 +151,6 @@
 ## Handoffs (open)
 
 - [HO-0005](handoffs/HO-0005-verify-w-0003-round2-agreement-matrix-backfill-r-0013.md) — Verify W-0003: R-0013 (Round-2 AGREEMENT_MATRIX backfill) and the untouched matrix — status=REQUESTED
-- [HO-0014](handoffs/HO-0014-re-critique-e-0013-addendum-vs-r-0019-findings-b1-b7-discharge-verification-only.md) — Re-critique E-0013 addendum vs R-0019 findings B1-B7 (discharge verification only) — status=REQUESTED
 - [HO-0015](handoffs/HO-0015-execute-e-0014-train-only-feasibility-pass-measurement-not-training.md) — Execute E-00014: TRAIN-ONLY feasibility pass (measurement, not training) — status=REQUESTED
 - [HO-0016](handoffs/HO-0016-execute-e-0015-count-only-realized-yield-pass-measurement-not-training.md) — Execute E-00015: count-only realized usable quiet yield pass (measurement, not training) — status=REQUESTED
 
@@ -168,6 +168,7 @@
 - [HO-0011](handoffs/HO-0011-execute-e-0012-live-known-difference-and-null-pair-controls.md) — Execute E-0012 live known-difference and null-pair controls — status=DONE
 - [HO-0012](handoffs/HO-0012-independent-verification-w-0005-e-0012-live-runs-run-0002-and-run-0003.md) — Independent verification: W-0005 E-0012 live runs RUN-0002 and RUN-0003 — status=DONE
 - [HO-0013](handoffs/HO-0013-critique-e-0013-pre-registration-h-0013-texel-fit-contract-before-any-running.md) — Critique E-0013 pre-registration (H-0013 Texel fit contract) before any running — status=DONE
+- [HO-0014](handoffs/HO-0014-re-critique-e-0013-addendum-vs-r-0019-findings-b1-b7-discharge-verification-only.md) — Re-critique E-0013 addendum vs R-0019 findings B1-B7 (discharge verification only) — status=DONE
 
 ## Runs (live)
 
@@ -207,6 +208,7 @@
 - [S-0024](sessions/S-0024-ho-0013-r-0019-e-0013-texel-pre-registration-critique-not-clean-seven-blocking-findings.md) — HO-0013 / R-0019 — critique of the E-0013 Texel pre-registration: NOT CLEAN, seven blocking findings, E-0013 stays PENDING — status=CLOSED
 - [S-0025](sessions/S-0025-e-0013-addendum-discharging-r-0019-b1-b7-shrink-branch-e-00014-e-00015-pre-registered-ho-0014-15-16.md) — E-0013 addendum discharging R-0019 B1-B7 (SHRINK branch) + E-00014/E-00015 pre-registered + HO-0014/15/16 — status=CLOSED
 - [S-0026](sessions/S-0026-mechanical-repair-of-ho-0014-15-16-section-stranding-and-two-cut-sentences.md) — Mechanical repair of HO-0014/15/16 section stranding and two cut sentences — status=CLOSED
+- [S-0027](sessions/S-0027-ho-0014-re-critique-of-the-e-0013-addendum-vs-r-0019-b1-b7-not-clean-on-two-new-blocking-findings-x1-truncated-interleaved-addendum-x2-false-parameter-count-rationale-all-three-integrity-properties-hold.md) — HO-0014 re-critique of the E-0013 addendum vs R-0019 B1-B7 - NOT CLEAN on two new blocking findings (X1 truncated/interleaved addendum, X2 false parameter-count rationale); all three integrity properties HOLD — status=CLOSED
 
 ## Unrendered Records (bug — report this)
 

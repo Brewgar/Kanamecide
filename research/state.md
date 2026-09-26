@@ -1,7 +1,7 @@
 # Research State (GENERATED — do not edit)
 
 Derived from the record store by `research.py state`. Regenerate after every change.
-Generated: 2026-09-26T12:07:47; schema 2.
+Generated: 2026-09-26T15:04:27; schema 2.
 Every entry is a PROJECTION of the linked records — follow them before believing.
 
 ## Current best beliefs (hypotheses with measured weight)
@@ -43,21 +43,21 @@ Every entry is a PROJECTION of the linked records — follow them before believi
 - hypothesis **H-0002-magic-stub** Magic Bitboards with PEXT Provide >=3x NPS Speedup — SUPERSEDED. No revisit condition recorded.
 
 ## Recent timeline
-- 2026-09-25 session S-0022 (CLOSED) : Owner close-out: W-0005 DONE after R-0018 VERIFIED; E-0012 COMPLETED
-- 2026-09-25 work W-0001 (DONE) : E-0011 self-play data pipeline (pre-register, build, run, verify)
 - 2026-09-25 work W-0005 (DONE) : E-SPRT-lite comparison harness: pre-register, build, validate against known difference
 - 2026-09-26 experiment E-00014 (PENDING) : E-00014 - TRAIN-ONLY feasibility pass for E-0013 (measure delta_star and s_d_inner; MEASUREMENT, not training)
 - 2026-09-26 experiment E-00015 (PENDING) : E-00015 - count-only realized usable quiet yield pass for E-0013 (MEASUREMENT, not training)
 - 2026-09-26 experiment E-0013 (PENDING) : E-0013 — H-0013 Texel fit on the verified E-0011 dataset (game-split holdout + Tier-S SPRT vs pinned stage 5)
 - 2026-09-26 handoff HO-0013 (DONE) : Critique E-0013 pre-registration (H-0013 Texel fit contract) before any running
-- 2026-09-26 handoff HO-0014 (REQUESTED) : Re-critique E-0013 addendum vs R-0019 findings B1-B7 (discharge verification only)
+- 2026-09-26 handoff HO-0014 (DONE) : Re-critique E-0013 addendum vs R-0019 findings B1-B7 (discharge verification only)
 - 2026-09-26 handoff HO-0015 (REQUESTED) : Execute E-00014: TRAIN-ONLY feasibility pass (measurement, not training)
 - 2026-09-26 handoff HO-0016 (REQUESTED) : Execute E-00015: count-only realized usable quiet yield pass (measurement, not training)
 - 2026-09-26 review R-0019 (COMPLETED) : R 0019 e 0013 pre registration critique h 0013 texel fit contract ho 0013 six question ruling
+- 2026-09-26 review R-0020 (COMPLETED) : R 0020 re critique of the e 0013 addendum vs r 0019 b1 b7 discharge verification only ho 0014
 - 2026-09-26 session S-0023 (CLOSED) : Draft E-0013 Texel pre-registration (PENDING) + file HO-0013 critique handoff
 - 2026-09-26 session S-0024 (CLOSED) : HO-0013 / R-0019 — critique of the E-0013 Texel pre-registration: NOT CLEAN, seven blocking findings, E-0013 stays PENDING
 - 2026-09-26 session S-0025 (CLOSED) : E-0013 addendum discharging R-0019 B1-B7 (SHRINK branch) + E-00014/E-00015 pre-registered + HO-0014/15/16
 - 2026-09-26 session S-0026 (CLOSED) : Mechanical repair of HO-0014/15/16 section stranding and two cut sentences
+- 2026-09-26 session S-0027 (CLOSED) : HO-0014 re-critique of the E-0013 addendum vs R-0019 B1-B7 - NOT CLEAN on two new blocking findings (X1 truncated/interleaved addendum, X2 false parameter-count rationale); all three integrity properties HOLD
 
 ## Metrics
 ```
@@ -78,23 +78,23 @@ Every entry is a PROJECTION of the linked records — follow them before believi
     "profile": 4,
     "question": 8,
     "report": 13,
-    "review": 19,
+    "review": 20,
     "round_megaprompt": 2,
-    "session": 26,
+    "session": 27,
     "work": 7
   },
   "by_status": {
     "ACTIVE": 14,
-    "CLOSED": 26,
-    "COMPLETED": 27,
-    "DONE": 17,
+    "CLOSED": 27,
+    "COMPLETED": 28,
+    "DONE": 18,
     "DRAFT": 1,
     "IN_PROGRESS": 2,
     "OPEN": 28,
     "PENDING": 6,
     "RECORDED": 2,
     "REGISTERED": 8,
-    "REQUESTED": 4,
+    "REQUESTED": 3,
     "RESOLVED": 1,
     "SUPERSEDED": 4
   },
@@ -102,10 +102,10 @@ Every entry is a PROJECTION of the linked records — follow them before believi
   "contradiction_candidates": 0,
   "dangling_ids": 11,
   "duplicate_candidates": 2,
-  "edges_total": 2781,
+  "edges_total": 2886,
   "legacy_experiments_without_pre_registration": 6,
   "open_questions": 8,
-  "records_total": 180,
+  "records_total": 182,
   "revival_candidates": 5
 }
 
