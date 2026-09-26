@@ -1637,7 +1637,7 @@
       "title": "Gate 0 unrunnable: Device Guard hard-blocks kana.exe (every build, every path)"
     }
   ],
-  "generated": "2026-09-26T18:04:22",
+  "generated": "2026-09-26T19:12:56",
   "metrics": {
     "by_kind": {
       "agent_profile": 1,
@@ -1655,7 +1655,7 @@
       "profile": 4,
       "question": 8,
       "report": 13,
-      "review": 22,
+      "review": 23,
       "round_megaprompt": 2,
       "session": 31,
       "work": 7
@@ -1663,7 +1663,7 @@
     "by_status": {
       "ACTIVE": 14,
       "CLOSED": 31,
-      "COMPLETED": 30,
+      "COMPLETED": 31,
       "DONE": 18,
       "DRAFT": 1,
       "IN_PROGRESS": 2,
@@ -1679,10 +1679,10 @@
     "contradiction_candidates": 0,
     "dangling_ids": 11,
     "duplicate_candidates": 2,
-    "edges_total": 3208,
+    "edges_total": 3229,
     "legacy_experiments_without_pre_registration": 6,
     "open_questions": 8,
-    "records_total": 188,
+    "records_total": 189,
     "revival_candidates": 5
   },
   "questions_all": [
@@ -2074,15 +2074,6 @@
   "timeline_tail": [
     {
       "example": false,
-      "id": "S-0014",
-      "kind": "session",
-      "rel": "sessions/S-0014-ho-0008-r-0016-b3-fixed-e-0011-cleared-for-build-run.md",
-      "status": "CLOSED",
-      "title": "HO-0008 micro-ruling - R-0016: B3 FIXED; E-0011 cleared for build+run",
-      "when": "2026-09-23"
-    },
-    {
-      "example": false,
       "id": "E-0011",
       "kind": "experiment",
       "rel": "experiments/E-0011-self-play-data-pipeline-provenance-carrying-resumable-deduplicated-game-dataset.md",
@@ -2349,6 +2340,15 @@
       "rel": "reviews/R-0022-r-0022-independent-verification-of-s-0030-all-four-r-0021-findings-applied-the-10-residue-does-not-block-one-new-non-blocking-pointer-defect-y1-in-the-repair-section-s-own-x4-pointers.md",
       "status": "COMPLETED",
       "title": "R 0022 r 0022 independent verification of s 0030 all four r 0021 findings applied the 10 residue does not block one new non blocking pointer defect y1 in the repair section s own x4 pointers",
+      "when": "2026-09-26"
+    },
+    {
+      "example": false,
+      "id": "R-0023",
+      "kind": "review",
+      "rel": "reviews/R-0023-r-0023-append-only-contract-re-specification-and-r-0022-old-l-row-disposition.md",
+      "status": "COMPLETED",
+      "title": "R 0023 r 0023 append only contract re specification and r 0022 old l row disposition",
       "when": "2026-09-26"
     },
     {

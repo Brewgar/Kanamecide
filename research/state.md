@@ -1,7 +1,7 @@
 # Research State (GENERATED — do not edit)
 
 Derived from the record store by `research.py state`. Regenerate after every change.
-Generated: 2026-09-26T18:04:22; schema 2.
+Generated: 2026-09-26T19:12:56; schema 2.
 Every entry is a PROJECTION of the linked records — follow them before believing.
 
 ## Current best beliefs (hypotheses with measured weight)
@@ -43,12 +43,12 @@ Every entry is a PROJECTION of the linked records — follow them before believi
 - hypothesis **H-0002-magic-stub** Magic Bitboards with PEXT Provide >=3x NPS Speedup — SUPERSEDED. No revisit condition recorded.
 
 ## Recent timeline
-- 2026-09-26 handoff HO-0015 (REQUESTED) : Execute E-00014: TRAIN-ONLY feasibility pass (measurement, not training)
 - 2026-09-26 handoff HO-0016 (REQUESTED) : Execute E-00015: count-only realized usable quiet yield pass (measurement, not training)
 - 2026-09-26 review R-0019 (COMPLETED) : R 0019 e 0013 pre registration critique h 0013 texel fit contract ho 0013 six question ruling
 - 2026-09-26 review R-0020 (COMPLETED) : R 0020 re critique of the e 0013 addendum vs r 0019 b1 b7 discharge verification only ho 0014
 - 2026-09-26 review R-0021 (COMPLETED) : R 0021 independent post repair critique of the e 0013 addendum seam 8 paren ruled b5 s2 slot ruled new blocking x4 s 0029 re severed the file tail x5 head side deletion unrecorded e 0013 stays pending
 - 2026-09-26 review R-0022 (COMPLETED) : R 0022 r 0022 independent verification of s 0030 all four r 0021 findings applied the 10 residue does not block one new non blocking pointer defect y1 in the repair section s own x4 pointers
+- 2026-09-26 review R-0023 (COMPLETED) : R 0023 r 0023 append only contract re specification and r 0022 old l row disposition
 - 2026-09-26 session S-0023 (CLOSED) : Draft E-0013 Texel pre-registration (PENDING) + file HO-0013 critique handoff
 - 2026-09-26 session S-0024 (CLOSED) : HO-0013 / R-0019 — critique of the E-0013 Texel pre-registration: NOT CLEAN, seven blocking findings, E-0013 stays PENDING
 - 2026-09-26 session S-0025 (CLOSED) : E-0013 addendum discharging R-0019 B1-B7 (SHRINK branch) + E-00014/E-00015 pre-registered + HO-0014/15/16
@@ -78,7 +78,7 @@ Every entry is a PROJECTION of the linked records — follow them before believi
     "profile": 4,
     "question": 8,
     "report": 13,
-    "review": 22,
+    "review": 23,
     "round_megaprompt": 2,
     "session": 31,
     "work": 7
@@ -86,7 +86,7 @@ Every entry is a PROJECTION of the linked records — follow them before believi
   "by_status": {
     "ACTIVE": 14,
     "CLOSED": 31,
-    "COMPLETED": 30,
+    "COMPLETED": 31,
     "DONE": 18,
     "DRAFT": 1,
     "IN_PROGRESS": 2,
@@ -102,10 +102,10 @@ Every entry is a PROJECTION of the linked records — follow them before believi
   "contradiction_candidates": 0,
   "dangling_ids": 11,
   "duplicate_candidates": 2,
-  "edges_total": 3208,
+  "edges_total": 3229,
   "legacy_experiments_without_pre_registration": 6,
   "open_questions": 8,
-  "records_total": 188,
+  "records_total": 189,
   "revival_candidates": 5
 }
 
