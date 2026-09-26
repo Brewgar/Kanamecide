@@ -1463,3 +1463,403 @@ the game-split map and its SHA-256, F1 through F12, and the independent suite's 
 SHA-256; and the tripwire binds first-time assignment exactly as it binds change - a value
 assigned for the first time after the holdout is read is a tripwire FAIL. E-00015 (count-only)
 precedes any fitter; E-00014 (train-only) precedes the holdout read.
+
+
+---
+
+**R-0023 ADOPTION: the re-specified append-only contract, Z1/Z2/Z3 and the R-0022
+`old L...` disposition (2026-09-26, researcher-architect, OWNER seat).**
+
+**Scope of this section.** R-0023 ruled this record NOT CLEAN and re-specified the contract;
+this section adopts that ruling in full and discharges the parts of its six-part condition
+that this seat can discharge. It runs no training, fitting, extraction, counting,
+feasibility pass or SPRT generation, reads no holdout, edits no other record, sets no
+`result:`, opens and closes nothing, and **does NOT flip the record.** Which part of the
+condition is unmet, and why, is stated exactly at the end of this section.
+
+---
+
+# RULING 1 - THE APPEND-ONLY CONTRACT, RE-SPECIFIED (R-0023 L49, L51-L130, PASTED VERBATIM)
+
+The seven blocks below are R-0023's own text, extracted programmatically from
+`research/reviews/R-0023-*.md` line-for-line (L49, L51-L63, L65-L85, L87-L96, L130, L99-L118,
+L120-L128) and not retyped. R-0023 is not edited by this section.
+
+**What the re-specification fixes, in one line:** the old contract specified "L1-428
+byte-identical to `ce845c5`", and `status:` is L5, inside that block - a specification that
+forbids the very act the record exists to authorise. The defect was in the
+specification, not in the record, and the escalation that produced R-0023 was correct.
+
+**Adoption costs nothing and breaks nothing.** The body has not moved, so every clause below
+is satisfied by the file as it already stands. `H_body` is computed and invariant today;
+the five-line exclusion list is exactly five lines wide and may not be widened without a
+fresh ruling that names the new line. **That closure is the anti-smuggling property: no
+body edit can buy itself cover by being declared lifecycle after the fact.**
+
+## R-0023 L49 - the ruling paragraph, verbatim
+
+> **THE APPEND-ONLY CONTRACT, re-specified (R-0023, 2026-09-26). The defect being fixed is in the specification, not in the record.** The clause above was specified as "lines 1-428 byte-identical to `ce845c5`", and that specification has one fatal property: **`status:` is L5, inside the protected block.** A record whose `status:` cannot change can never be run or closed, so the specification as written forbids the very act the record exists to authorise. Lifecycle fields are mutable by design, and the repo's own precedent is exact: E-0011 carries `status:` at the same L5 and transitioned `PENDING` → `RUNNING` in `9d60f64` and `RUNNING` → `COMPLETED` in `040296e`, the latter an in-place edit of L5, L6 and L14 in the same commit that appended its close-out addendum at L457. The escalation recorded below is not hesitation; it is the rule that a protected range is the owner's to move, not a seat's. This paragraph is that move, made by the ruling seat, in the open, with every figure computed rather than asserted.
+
+## R-0023 L51-L63 - clause (a), verbatim
+
+### (a) WHAT IS PROTECTED, AND WHAT IS EXCLUDED BY NAME
+
+Lines 1-428 of this file — the ORIGINAL pre-registration — remain the protected range, and they remain byte-identical to `ce845c5` in every byte **except** the five lifecycle field lines named here, which are excluded **by name** from the protected range:
+
+| Line | Field | Why it is excluded |
+|---|---|---|
+| L5 | `status:` | lifecycle state; PENDING/RUNNING/COMPLETED/ABANDONED (SCHEMA §2) |
+| L6 | `result:` | the verdict, writable only at close-out; distinct from `status` by design (SYSTEM §2 Gate 6) |
+| L7 | `elo_change:` | a measurement, and this record measures nothing until it runs |
+| L10 | `owner:` | an actor field (SCHEMA §3), assigned at hand-off rather than at pre-registration |
+| L14 | `completed:` | written only at close-out |
+
+Every other line in 1-428 is protected byte-for-byte: all of L1–L4, L8–L9, L11–L13, L15–L16, and the whole body L17–L428 — including the em-dash in `title:` at L4, `pre_registered: 2026-09-26` at L11, and the tag list at L15. **The exclusion list is CLOSED, it is exactly these five lines, and it may not be widened without a fresh ruling that names the new line.** That closure is the anti-smuggling property: no body edit can buy itself cover by being declared lifecycle after the fact.
+
+**Clause (b) recomputed by this seat, on BOTH sides, at this commit.** R-0023 states the
+value at adoption; I recomputed it rather than inheriting it, from
+`git show ce845c5:<this path>` and from the working file:
+
+| Side | `H_body` | Bytes |
+|---|---|---|
+| `git show ce845c5:<this path>`, L1-428 minus L5, L6, L7, L10, L14 | `c7ebe54ce8cd51ac90483744a3d11e56a04fc5d48c0d8669e0804f53f883bea7` | 22,196 |
+| this working file, identical construction | `c7ebe54ce8cd51ac90483744a3d11e56a04fc5d48c0d8669e0804f53f883bea7` | 22,196 |
+
+Equal, and equal to the figure R-0023 published. I also confirmed invariance by simulation
+rather than assertion: setting L5 to `status: RUNNING`, then to `status: COMPLETED`, then
+moving L6, L7 and L14 as well, leaves `H_body` at `c7ebe54c...f883bea7` in every case. The
+74-byte difference from the 22,270-byte `H_legacy` figure is exactly the five excluded lines
+and nothing else. **Clause (b) is satisfied and invariant: it costs nothing and breaks
+nothing.**
+
+## R-0023 L65-L85 - clause (b), verbatim
+
+### (b) THE HASH INPUT, DEFINED SO THAT TWO PEOPLE GET THE SAME BYTES
+
+> **`H_body` = SHA-256(B)**, where **B** is built from the UTF-8 bytes of this file as follows.
+>
+> 1. Read the file's bytes. The file is LF-only; a `0x0D` anywhere in the protected range is itself a change and changes `H_body`.
+> 2. Split on `0x0A` (LF) only. No other split is permitted.
+> 3. Take lines **1 through 428 inclusive**.
+> 4. **Delete** lines **5, 6, 7, 10 and 14** — by line number, not by pattern, not by field-name search.
+> 5. Concatenate the surviving lines in ascending order, **each followed by one `0x0A`**, including line 428's own terminator.
+> 6. B is that byte string; `H_body` is its SHA-256, lowercase hex.
+>
+> No trimming, no `rstrip`, no whitespace normalisation, no newline conversion, no BOM handling. The bytes are the bytes; two people who run this get the same value or one of them has a different file.
+
+The value at adoption, computed from both sides:
+
+- `git show ce845c5:<this path>`, lines 1-428, minus the five excluded lines → `c7ebe54ce8cd51ac90483744a3d11e56a04fc5d48c0d8669e0804f53f883bea7`, **22,196 bytes**
+- this working file, the same construction → `c7ebe54ce8cd51ac90483744a3d11e56a04fc5d48c0d8669e0804f53f883bea7`, **22,196 bytes**
+
+Equal. **The protected body is append-only under the re-specified contract too, and it already was: adopting this contract costs nothing and breaks nothing, and it costs nothing because the body has not moved.** The 74-byte difference from the 22,270-byte figure above is exactly the five excluded lines and nothing else.
+
+**`H_body` is INVARIANT across the entire lifecycle, and that is the entire point.** `status: PENDING` → `RUNNING` and → `COMPLETED`, `result: null` → `PASS`, `completed: null` → a date: all four leave `H_body` at `c7ebe54c…bea7`. Verified by simulation, not asserted (Verification block, command 7).
+
+## R-0023 L87-L96 - clause (c), verbatim
+
+### (c) HOW A LIFECYCLE TRANSITION IS AUTHORISED AND RECORDED
+
+A lifecycle transition is **not** an in-place body edit and is never to be presented as one. It is a separate, single-purpose commit touching **only** excluded field lines. Four rules, each machine-checkable:
+
+1. **Line-anchored, never string-matched.** The edit is made at a named line number. It is **forbidden** to flip by search-and-replace — and the reason is measured, not stylistic: `status: PENDING` occurs **9 times** in this file. A naive replace rewrites 9 lines: L5, which is intended, plus L20, L435, L456, L1132, L1270, L1363, L1394 and L1435, **every one of which is a quoted or historical statement**. L1363 is the re-critique gate itself; L1394 and L1435 are two of the four pointers Y1 just repaired. A naive flip is therefore not a status change — it is eight falsifications of quoted history plus one real change, it moves `4478c3a..HEAD` from `1040/0` to `1049/9`, and it destroys "the addendum has NEVER had a deletion against the original pre-registration" outright. **This is the concrete form of "a status change must not be usable to smuggle a body edit".**
+2. **Bounded blast radius.** For the transition commit, `git diff --numstat <base>..<commit> -- <this path>` must show **insertions == deletions == k**, where `k` is the number of excluded fields whose value changed, and **k ≤ 5**. Any `k` outside that set is a body edit wearing a status change as a disguise, and the flip is void.
+3. **`H_body` must be equal on both sides of the transition commit** — unchanged by construction, and that equality is the proof that nothing was smuggled. This is the operative test, and it **replaces** the record's old gate clause (v) rather than supplementing it.
+4. **Dated record, same file, append-only.** The transition is recorded in a dated addendum in THIS record, appended below the last line, naming: the old value and the new value verbatim, the fields touched, `k`, the commit SHA, `H_body` before and after (equal), and the numstat at every boundary quoted in the table below. The addendum is the only place the transition may be described; **the front matter alone is never its own authorisation.**
+
+And the gate that governs the flip, replacing the gate's clause (v):
+
+## R-0023 L130 - the re-specified gate, clause (v) as (v-a)/(v-b)/(v-c), verbatim
+
+> **Re-critique gate, clause (v) as re-specified by R-0023.** This record may leave `status: PENDING` for `status: RUNNING` only when a fresh adversarial-reviewer critique confirms, by recomputation, that **(v-a)** `H_body` is `c7ebe54ce8cd51ac90483744a3d11e56a04fc5d48c0d8669e0804f53f883bea7` on both `git show ce845c5:` and the working file, over 22,196 bytes; **(v-b)** the numstat of the transition commit is `k/k` with `k ≤ 5`; and **(v-c)** the transition commit changes no line outside {5, 6, 7, 10, 14}. The 22,270-byte figure is **no longer a gate**; it is retained above as history.
+
+**The `status: PENDING` x9 hazard, measured here, not inherited - and note that adopting the
+contract verbatim INFLATES the very count it warns about.** In the file as it stood at
+`f03613e` (and after the one-word Z1 repair, which touches none of them) the string occurred
+**9 times**: at L5, the one intended, plus L20, L435, L456, L1132, L1270, L1363,
+L1394 and L1435. **Eight of the nine are quoted or historical statements**, including this
+re-critique gate at L1363 and two of the four pointers Y1 repaired (L1394, L1435). A naive
+replace is therefore eight falsifications of quoted history plus one real change.
+
+**After this section is appended the count rises from 9 to 14**, and that is worth stating
+rather than glossing: **three** of the new occurrences sit inside R-0023's own pasted clause
+text (clause (b), clause (c) rule 1, and the re-specified gate) and cannot be removed without
+breaking the verbatim requirement, and **two** are this section's own prose. **The contract's
+hazard figure is a floor, not a constant, and it rises every time a record quotes its own
+status line - which is the normal way records are written.** The conclusion is unchanged and
+in fact strengthened: this is the measured reason lifecycle transitions must be line-anchored,
+and the flip - when it is ever authorised - is anchored on L5 with an assertion that the line
+reads exactly as expected before the write, and an assertion afterwards that exactly one line
+changed.
+
+## R-0023 L99-L118 - clause (d), verbatim
+
+### (d) THE FIGURES AT THE FLIP — THE RULE, AND WHAT IT YIELDS
+
+State the rule and let the arithmetic fall out; never carry a number forward that was measured at some other boundary.
+
+> **Rule F.** A lifecycle transition changes `k` excluded lines. In every boundary `B` whose range contains the transition, `numstat(B..HEAD_after) = ( ins(B..HEAD_before) + k , del(B..HEAD_before) + k )`, because a changed line is one deletion plus one insertion. **`H_legacy`** (the 22,270-byte L1-428 figure) changes exactly once per transition and is thereafter a historical value. **`H_body` never changes.**
+
+Applied to the `PENDING` → `RUNNING` flip at `k = 1` (L5 only), from figures measured at `b7179f3`:
+
+| Boundary | At `b7179f3` (measured by me) | After the `k=1` flip (Rule F) |
+|---|---|---|
+| `4478c3a..HEAD` | **1040 / 0** | **1041 / 1** |
+| `ce845c5..HEAD` | **522 / 130** | **523 / 131** |
+| `f450976..HEAD` | **267 / 36** | **268 / 37** |
+| `8db1c45..HEAD` | **50 / 21** | **51 / 22** |
+| `H_legacy` (L1-428, 22,270 B) | `b04fd5a4…00ce6` | `d8add61cdd131644d37b25a555e5885d4b5a5d321deb202e543c251e7e9e6144` |
+| `H_body` (22,196 B) | `c7ebe54c…bea7` | `c7ebe54c…bea7` — **UNCHANGED** |
+
+The `d8add61c…e6144` value is a **projection for the line-anchored L5-only edit and nothing else**, valid only from `b7179f3`'s bytes; it must be recomputed at the moment of the flip and never inherited. It is written down so that a reader who later finds a different value knows at once that something other than an L5-only edit happened.
+
+**The boundary table above must be re-pinned before any flip — see Z3.** Its three figures (`1011/0`, `493/130`, `231/29`) are correct **at `8db1c45`**, R-0022's HEAD, and were correct as labelled. They are not the figures at any current HEAD, and nothing in the record says so.
+
+## R-0023 L120-L128 - clause (e), verbatim
+
+### (e) HOW R-0019, R-0020, R-0021 AND R-0022 INTERACT WITH THIS
+
+**Plainly: their integrity rulings STAND. They need no restatement. They are not superseded on substance, and they are not retroactively edited.**
+
+All four hashed the front matter in — each computed SHA-256 over lines 1-428 *including their line terminators*, which necessarily included L5–L7. Each reported the true value of that function at its own HEAD, and each verified what it claimed to verify: R-0019 the pre-registration as filed; R-0020 the ten seams, the contingency table and the F-U items under its "move that text, not rewrite it" licence; R-0021 the L1-428 pair recomputed from two directions plus the baseline re-labelled at all three boundaries; R-0022 the same pair, all three numstats, and the residue ruled NON-BLOCKING.
+
+**What changes is the contract, not the arithmetic.** `b04fd5a4…00ce6` remains the correct value of the *old* function, forever, and each ruling's claim — "the two sides are equal under the old function" — remains true for the pre-registration body indefinitely. The re-specification defines a *different* function, `H_body`, whose value is `c7ebe54c…bea7`. The old rulings say nothing about `H_body` and are not wrong about it, because they were not talking about it: the new function's exclusions fall entirely inside lines that R-0019 through R-0022 never modified, and the pair is equal on the new function today, at `ce845c5` and at `b7179f3` both.
+
+**What is superseded is prospective only, and only on one point:** from the moment this contract is adopted, gate clause (v) is read as (v-a)/(v-b)/(v-c) above and the 22,270-byte figure becomes history. Before that moment it governed, and it was satisfied. **No ruling is amended, and none needs to be.**
+
+**Clause (e), recorded here as the record must carry it.** R-0019, R-0020, R-0021 and R-0022
+all **STAND**. They are not restated, not amended and not retroactively edited; none of the
+four files is touched by this section. What changes is the contract, not the arithmetic:
+`b04fd5a4...00ce6` remains forever the correct value of the *old* function, each ruling's
+claim that the two sides are equal under it remains true indefinitely, and the re-specification
+defines a *different* function whose value is `c7ebe54c...f883bea7`. The old rulings say
+nothing about `H_body` and are not wrong about it, because they were not talking about it -
+the new exclusions fall entirely inside lines R-0019 through R-0022 never modified. The
+contract is superseded **prospectively only, and only on the "which bytes" point.**
+
+---
+
+# Z1 - BLOCKING, REPAIRED: the severed sentence at L1376-L1377
+
+`b7179f3` replaced L1377-L1386 to qualify two over-broad "have been re-derived" claims, and
+the hunk `@@ -1377,10 +1377,10 @@` began at the word `shifted.` - the last word of the
+*previous* sentence. The word was consumed, and the exemption clause - the single most
+load-bearing sentence in the whole `+10` disclosure - was left as an unfinished claim reading
+`... are a different numbering and are NOT` and stopping there.
+
+**The repair, one word, moved not retyped.** The word was recovered from the pre-edit blob
+`git show b7179f3~1:research/experiments/E-0013-*.md` (which is `8db1c45`), where L1377 reads
+`shifted. The cross-references written *by this repair* - inside the withdrawal paragraph,`.
+L1376-L1377 now read, as one contiguous sentence:
+
+```
+with the word `old`, and references to `ce845c5`, are a different numbering and are NOT
+shifted. The cross-references written *by this repair* - inside the withdrawal paragraph and inside
+```
+
+The clause was **not rewritten**; the author's own completing word was restored to the head
+of L1377. `git diff -U0` is a **single-line hunk**, numstat **1 / 1**, paren delta **0** on
+both sides, file-wide paren balance **-10** unchanged, and `H_body` untouched because
+L1377 lies outside lines 1-428, and the repair was made in its own commit, separate from
+the Z2/Z3/contract commits and separate from any flip.
+
+**The instrument this failure needed, and the instrument that was run.** Z1 is structurally
+invisible to a paren-delta audit: no parenthesis is involved, so the dropped word cannot
+change the delta. The audit R-0023 correctly re-ran (11 hunks, every added block's delta
+equal to its removed block's, total 0) passes a broken file, and that is not a failure of
+the audit - it is the audit's scope. **So a terminal-punctuation audit was run over every
+line this session touches.** Its result, honestly reported:
+
+| Instrument | Pre-edit (Z1 present) | Post-Z1 | Discriminating power |
+|---|---|---|---|
+| Raw per-line: no terminal punctuation and not a heading/table row | 825 suspect lines | 825 | **none** - it over-fires on hard-wrapped prose |
+| Refined: line ends on a token that cannot end a sentence | 305 | 305 | **none** at this threshold |
+| Runt sentence: paragraph flattened, any sentence under 3 tokens | 23 | 23 | **none** - no period was left behind |
+| **Seam: line N opens with a capitalised word while line N-1 ends on a dangling token and carries no sentence boundary** | **19** | **18** | **YES - the one seam removed is exactly Z1** |
+
+The seam instrument is the one with discriminating power, and it is reported here with its
+false-positive rate stated rather than hidden: of the 18 seams that remain, every one is a
+legitimate construction - a line opening on a status token (`INCONCLUSIVE`, `UNMEASURED`,
+`COMPLETED`), on an identifier (`E-00014`, `HO-0016`, `R-0020`), on a ledger pointer
+(`L677-L680`, `L919-L954`) or on a bolded lead-in. **Z1 was the only true positive, and the
+instrument found it on the broken blob and stopped reporting it on the repaired one.**
+The verdict: **the raw terminal-punctuation check as specified cannot serve as the gate**
+- it returns 825 hits on a file that is 99% correct, so a seat would learn to ignore it. The
+seam form is the one worth adopting, and it is cheap. Both are recorded because a check whose
+failure mode is noise is a finding, not a footnote.
+
+---
+
+# Z2 - CORRECTED: the unreproducible projected hash, withdrawn
+
+`b7179f3`'s commit message states that the flip "moves the pair from `b04fd5a4...00ce6` to
+`8ad61ccd...00a727`". **That figure is unreproducible.** R-0023 brute-forced 30 schemes and
+found no match; I did not attempt to reconstruct what scheme produced it, and I am not
+carrying the value into this record. **It is withdrawn.** I verified by search that it never
+reached this file's text: `8ad61ccd` and `00a727` appear in `research/` only inside R-0023
+itself, so the withdrawal here closes the last place it could still be quoted from, and the
+figure remains only in the immutable text of `b7179f3`'s commit message, which no seat may
+rewrite.
+
+**The correct projection, recomputed by me under clause (d) Rule F, from the bytes at this
+commit and not inherited:**
+
+| Quantity | Value at this commit | After the line-anchored L5-only flip (k=1) |
+|---|---|---|
+| `H_legacy` (L1-428, 22,270 B, terminators included) | `b04fd5a42d463bbb7044c18c7e54916aab852ff1965eafbb18642138d8200ce6` | `d8add61cdd131644d37b25a555e5885d4b5a5d321deb202e543c251e7e9e6144` |
+| `H_body` (22,196 B) | `c7ebe54ce8cd51ac90483744a3d11e56a04fc5d48c0d8669e0804f53f883bea7` | **UNCHANGED** - `c7ebe54ce8cd51ac90483744a3d11e56a04fc5d48c0d8669e0804f53f883bea7` |
+
+I computed the post-flip value by construction rather than by trusting R-0023: take the
+file's own bytes, replace **line 5 only** with `status: RUNNING`, re-hash L1-428. The result
+is `d8add61c...e6144`, matching R-0023's independently derived figure, and `H_body` is
+unchanged, as clause (b) requires. **This is a projection for the line-anchored L5-only edit
+and nothing else; it must be recomputed at the moment of any flip and never inherited.**
+
+---
+
+# Z3 - CORRECTED: the boundary table, re-pinned and every figure labelled with its commit
+
+The APPEND-ONLY BASELINE table at L1351-L1355 carried `1011/0`, `493/130` and `231/29`. Those
+figures are **correct at `8db1c45`**, R-0022's HEAD, and were correct under their column
+label. They are **not** the figures at any current HEAD, and the table did not say so.
+
+**Every figure below was recomputed by me and is labelled with the commit it was measured
+at. A number without its boundary is not evidence.**
+
+| Boundary | At `8db1c45` (R-0022's HEAD - the historical column, unchanged) | At `f03613e` (R-0023's HEAD, measured by me) | What the boundary is |
+|---|---|---|---|
+| `4478c3a..HEAD` | 1011 insertions, 0 deletions | **1040 insertions, 0 deletions** | **the addendum has NEVER had a deletion against the original pre-registration** - the strongest true statement, and the one that discharges the append-only obligation outright |
+| `ce845c5..HEAD` | 493 insertions, 130 deletions | **522 insertions, 130 deletions** | the addendum-as-first-filed boundary; the deletions are the visible, itemised cost of the review-licensed repairs |
+| `f450976..HEAD` | 231 insertions, 29 deletions | **267 insertions, 36 deletions** | the S-0028/S-0029 repair boundary, measured on the two repair passes rather than on the addendum |
+| `d3ce887..HEAD` | not stated in the table | **201 insertions, 29 deletions** | R-0021's HEAD, added here so the table stops reading as a live claim at one boundary only |
+| `8db1c45..HEAD` | not stated in the table | **50 insertions, 21 deletions** | R-0022's HEAD to R-0023's HEAD: the Y1 pass plus this contract section |
+
+**The two figures in circulation that had to be corrected, attributed correctly.** Both
+corrections are **R-0023's**, not this seat's:
+
+1. **`4478c3a..HEAD` is 1040 / 0 at HEAD, not `1011 / 0`.** The `1011/0` figure in
+   circulation - including the figure this record's own predecessor quoted - is `8db1c45`'s,
+   and was 29 insertions stale by the time R-0023 measured it.
+2. **The E-0011 boundary figure `146 / 5`** quoted in the handoff to this seat is **not**
+   reproducible *at any boundary R-0023 searched*, and R-0023 recorded it as such. I searched
+   wider - every ancestor-ordered pair over E-0011's seven-commit history - and the honest
+   result is more specific than either prior statement: `146 / 5` **does** exist, at
+   `6d507d8c..0d8fbce`, and `19 / 2` exists at `040296e..0d8fbce`. R-0023 searched per-commit
+   boundaries (`c^..c`) and found only `62/3`, `63/4`, `316/4` and `333/4`; the wider search
+   finds two more. **So `146/5` is not a phantom - it is a real figure quoted without its
+   boundary**, which is the same failure mode as Z3 in a different record, and it is recorded
+   here rather than repeated as a correction of the orchestrator's correction. The figures
+   `62 / 3` (`9d60f64..040296e`) and `19 / 2` (`040296e..0d8fbce`) both stand, each with its
+   boundary. Going forward: **quote a commit hash with every figure, or let the record
+   compute it.**
+
+**Rule F, applied to these figures, for the k=1 L5-only flip** (clause (d)): every boundary
+whose range contains the transition goes to `(ins + 1, del + 1)`, so
+`4478c3a..HEAD` -> **1041 / 1**, `ce845c5..HEAD` -> **523 / 131**, `f450976..HEAD` ->
+**268 / 37**, `d3ce887..HEAD` -> **202 / 30**, `8db1c45..HEAD` -> **51 / 22**. The
+"never had a deletion" claim at the `4478c3a` boundary survives as a bounded exception of
+exactly one deletion, and that is the correct and honest form of it.
+
+---
+
+# RULING 2 - R-0022's six `old L...` rows: NON-DEFECTS (R-0023 L166, PASTED VERBATIM)
+
+> **R-0022 §0c's six `old L…` rows: disposition (R-0023, 2026-09-26).** R-0022's bounded
+> rewrite table has thirteen rows. Six of them target `old L…` references — L1187 `old L871`,
+> L1195 `old L871`, L1215 `old L960-L995`, L1218 `old L1045-L1049`, L1219 `old L1068-L1073`,
+> L1221 `old L1073` — and **all six are NON-DEFECTS, correct exactly as written, and no
+> rewrite of any of them is authorised.** I re-resolved each against `ce845c5` and each lands
+> on the text it names (L871 on the `it; B6)` tail, L960-L995 on the contingency table,
+> L1045-L1049 on B1's cost item 4, L1068-L1073 on the BUCKET-2/3 bullets, L1073 on the
+> BUCKET-3 "Decision: **SHRINK.**" bullet), because this addendum defines `old L…` as
+> `ce845c5`-relative at L1162. Had R-0022's "correct" column been applied to them, each
+> would have been corrupted — `ce845c5` L881 is blank, L970 is an unrelated branch, L1055 is
+> an unrelated paragraph, and L1078/L1083 do not exist. **Applying R-0022's table as written
+> to these six rows is forbidden, and is the specific corruption R-0022 §0c reason 1 exists
+> to prevent.** R-0022 flagged the exemption twice — in prose at its L106-L107 and in its
+> own DO-NOT-TOUCH row at its L135 — so this is a marked carve-out, not an unstated one,
+> and the S-0031 pass was right to leave all six standing. **One NON-BLOCKING documentation
+> defect in R-0022 is recorded here rather than repaired, because R-0022 is CLOSED:** that
+> DO-NOT-TOUCH row names L1187, L1195, L1215, L1216 and L1217, whereas the table's own
+> `old L…` rows sit at L1187, L1195, L1215, L1218, L1219 and L1221 — it omits three rows it
+> should have listed and lists two lines that have no table row. The marker is right in
+> substance and incomplete in its line list; nothing in this record depends on it, because
+> this disposition names all six by line and by value.
+
+**R-0022 is CLOSED and is NOT edited by this section.** The one real defect in R-0022's
+marker - it names L1216/L1217 while the table's rows sit at L1218/L1219/L1221 - is
+dispositioned above and cannot be repaired in R-0022 itself, which is why it is recorded
+here. **And it was not an unflagged carve-out:** R-0022 marked the exemption twice, in prose
+at its L106-L107 and in its own DO-NOT-TOUCH row at its L135. R-0022's "correct" column
+would have corrupted all six rows had it been applied.
+
+---
+
+# THE FLIP: NOT EXECUTED, and which part of the condition is unmet
+
+R-0023 authorises the `PENDING` -> `RUNNING` flip on a **six-part condition, all six, in
+order, with parts 1-3 landing before the flip and the flip itself in its own final commit**.
+This seat discharges parts 1 to 5 and reports part 6 as **UNMET**.
+
+| # | R-0023's condition | Status | Evidence |
+|---|---|---|---|
+| 1 | Repair Z1 in its own commit: restore `shifted.` to the head of L1377 verbatim as it stood at `8db1c45`; no other line changes; paren delta 0; `H_body` unaffected | **MET** | own commit; `git diff -U0` = 1 hunk, 1 line; numstat 1/1; paren delta 0; `H_body` = `c7ebe54c...f883bea7` unchanged; word recovered from `git show b7179f3~1:<this path>` |
+| 2 | Adopt the re-specified contract, clauses (a)-(e), verbatim, as a dated addendum below this record's last line, including both computed `H_body` values, the five-line exclusion table, Rule F and its figures, the re-specified gate, and clause (e)'s statement that R-0019/20/21/22 stand | **MET** | this section; clauses extracted programmatically from R-0023 at the line ranges named above, not retyped |
+| 3 | Re-pin the boundary table to the current HEAD and record the `8db1c45` values as the historical column | **MET** | Z3 table above, every figure recomputed by me and labelled with the commit it was measured at |
+| 4 | Record Z2's correction: the reproducible post-flip `H_legacy` is `d8add61c...e6144`; `8ad61ccd...00a727` withdrawn as unreproducible | **MET** | Z2 section above |
+| 5 | Record Ruling 2's disposition, using the exact text given | **MET** | pasted verbatim from R-0023 L166 |
+| 6 | **Then, and only then, a fresh adversarial-reviewer critique** confirms (v-a) `H_body` = `c7ebe54c...bea7` on both sides, (v-b) the flip commit's numstat is `1/1`, and (v-c) the flip commit touches no line outside {5}. Only that confirmation authorises the flip, in a separate L5-only commit, line-anchored and never by string replace | **UNMET** | see below |
+
+**Why part 6 is unmet, stated exactly.** Part 6 requires a confirmation by a **fresh
+adversarial-reviewer critique**. This session is the **researcher-architect, in the OWNER
+seat** - the seat that owns this record and that proposed the contract being adopted. Three
+independent reasons bar me from supplying it, and I record all three rather than pick the
+convenient one:
+
+1. **SYSTEM.md §1 forbids it.** The researcher-architect's row reads *must NOT verify its
+   own proposal*, and the round's first rule is that nobody verifies their own claim. Part 6
+   is precisely a verification of the proposal this seat is adopting.
+2. **R-0023 forbids it in its own terms.** "I do not flip the record, and **no seat may flip
+   it on the strength of this review's own claims** - the same rule the L1363 gate already
+   states, which I endorse and am applying to myself." A self-certification is not a fresh
+   critique.
+3. **It is structurally unfalsifiable from here.** Clauses (v-b) and (v-c) are about *a flip
+   commit that does not exist yet* - its numstat and the set of lines it touches. The only
+   way to know them is to make the flip and then measure it, which is to verify after the
+   fact and not before. The condition is only satisfiable by a seat that makes the flip and
+   a **different** seat that then audits the resulting commit.
+
+**Therefore the record is NOT flipped in this session. `status:` remains `PENDING` at L5, and
+the L5 status line in this file is unchanged.** No L5 commit was made; the `9 -> 8`
+transition and the single-line flip hunk belong to the future critic-authorised commit and
+are not claimed here. What RUNNING would authorise, and what it would not, is unchanged from
+the authorisation recorded above and is restated nowhere: it authorises building the
+extractor, the deterministic trainer and the parameter-table evaluator, then the single
+pre-fit commit; it does **not** authorise fitting before those three exist, and it does
+**not** authorise reading the holdout before that commit is made. **Nothing in this section
+is authorisation to run.**
+
+**What is NOT re-opened by this section:** SHRINK, the KING-PST freeze,
+`SUITE_TOLERANCE = 0.02`, the per-game cap NONE, the X-1/X-2/X-3 branches, B1-B7, F1-F12,
+DN1-DN10, and integrity (i)/(ii)/(iii). All stand exactly as decided, exactly as R-0023
+recorded them. No `result:` was set, no H-#### text or status was touched, no `tools/` or
+`src/` file was edited, HO-0005 and W-0003 were neither opened nor closed, and R-0019,
+R-0020, R-0021, R-0022 and R-0023 are all unedited.
+
+## Verification performed on this section, 2026-09-26
+
+| # | Check | Result |
+|---|---|---|
+| 1 | `H_body` recomputed on BOTH sides (`ce845c5` blob and working file), lines 1-428 minus {5,6,7,10,14} | `c7ebe54ce8cd51ac90483744a3d11e56a04fc5d48c0d8669e0804f53f883bea7`, **22,196 bytes** on both - **pair equal** |
+| 2 | `H_body` invariance under L5 RUNNING, L5 COMPLETED, and the full L6/L7/L14 close-out | `c7ebe54c...f883bea7` in every case - **SAME** |
+| 3 | `H_legacy` now / after the line-anchored L5-only flip, computed by construction | `b04fd5a4...00ce6` / `d8add61c...e6144` over 22,270 bytes |
+| 4 | Z1 word recovered from the pre-edit blob, not from memory | `git show b7179f3~1:<this path>` L1377 = `shifted. The cross-references written *by this repair* - ...` |
+| 5 | Z1 blast radius | `git diff -U0` = 1 hunk, 1 line; numstat **1/1**; paren delta 0; file balance -10 |
+| 6 | Terminal-punctuation audit over every line this session edits, four instruments | reported in full above; the seam instrument fires on Z1 and stops after the repair |
+| 7 | All five boundary numstats recomputed AT HEAD (`f03613e`) and each labelled with its commit | 1040/0, 522/130, 267/36, 201/29, 50/21 |
+| 8 | The same three boundaries measured AT `8db1c45` | 1011/0, 493/130, 231/29 - **confirms Z3** |
+| 9 | status-line occurrences, located | **9 before this section** - L5, L20, L435, L456, L1132, L1270, L1363, L1394, L1435; **14 after it** (3 in the pasted clauses, 2 in this section's prose). L5 is the only intended edit |
+| 10 | `8ad61ccd` / `00a727` searched across `research/` | present in **R-0023 only**; never in this file - nothing to delete here, the figure is withdrawn |
+| 11 | E-0011 boundaries searched exhaustively (all ancestor-ordered pairs) | `146/5` = `6d507d8c..0d8fbce`; `19/2` = `040296e..0d8fbce`; `62/3` = `9d60f64..040296e` |
+| 12 | File hygiene | no BOM, **0 CR bytes**, single trailing newline, LF-only |
+| 13 | E-0013 front matter | L5 `status: PENDING`, L6 `result: null`, L7 `elo_change: null`, L10 `owner: null`, L14 `completed: null` - **PENDING, not flipped** |
