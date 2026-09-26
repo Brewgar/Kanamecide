@@ -1651,7 +1651,7 @@
       "title": "Gate 0 unrunnable: Device Guard hard-blocks kana.exe (every build, every path)"
     }
   ],
-  "generated": "2026-09-27T00:16:00",
+  "generated": "2026-09-27T00:34:24",
   "metrics": {
     "by_kind": {
       "agent_profile": 1,
@@ -1669,15 +1669,15 @@
       "profile": 4,
       "question": 8,
       "report": 13,
-      "review": 24,
+      "review": 25,
       "round_megaprompt": 2,
-      "session": 34,
+      "session": 35,
       "work": 7
     },
     "by_status": {
       "ACTIVE": 14,
-      "CLOSED": 34,
-      "COMPLETED": 32,
+      "CLOSED": 35,
+      "COMPLETED": 33,
       "DONE": 18,
       "DRAFT": 1,
       "IN_PROGRESS": 2,
@@ -1694,10 +1694,10 @@
     "contradiction_candidates": 0,
     "dangling_ids": 11,
     "duplicate_candidates": 2,
-    "edges_total": 3478,
+    "edges_total": 3540,
     "legacy_experiments_without_pre_registration": 6,
     "open_questions": 8,
-    "records_total": 194,
+    "records_total": 196,
     "revival_candidates": 5
   },
   "questions_all": [
@@ -2089,24 +2089,6 @@
   "timeline_tail": [
     {
       "example": false,
-      "id": "S-0016",
-      "kind": "session",
-      "rel": "sessions/S-0016-first-training-readiness-prompt-and-e-0011-downstream-routing-clarification.md",
-      "status": "CLOSED",
-      "title": "First-training readiness prompt and E-0011 downstream-routing clarification",
-      "when": "2026-09-24"
-    },
-    {
-      "example": false,
-      "id": "S-0017",
-      "kind": "session",
-      "rel": "sessions/S-0017-ho-0009-independent-verification-e-0011-terminal-dataset.md",
-      "status": "CLOSED",
-      "title": "HO-0009 independent verification of E-0011 terminal dataset",
-      "when": "2026-09-24"
-    },
-    {
-      "example": false,
       "id": "S-0018",
       "kind": "session",
       "rel": "sessions/S-0018-post-ho-0009-owner-handoffs-and-e-0012-live-validation-routing.md",
@@ -2440,11 +2422,29 @@
     },
     {
       "example": false,
+      "id": "R-0025",
+      "kind": "review",
+      "rel": "reviews/R-0025-independent-audit-of-the-e-0013-l5-only-lifecycle-flip-under-r-0024-q1-q8-ho-0017.md",
+      "status": "COMPLETED",
+      "title": "R 0025 independent audit of the e 0013 l5 only lifecycle flip under r 0024 q1 q8 ho 0017",
+      "when": "2026-09-27"
+    },
+    {
+      "example": false,
       "id": "S-0034",
       "kind": "session",
       "rel": "sessions/S-0034-e0013-l5-flip-r0024-q1-q8-to-verifier.md",
       "status": "CLOSED",
       "title": "E-0013 L5-only flip PENDING -> RUNNING under R-0024 (6a6eb0a); Z4 header fixed separately (f2b627c); Q1-Q8 handed to the verification-auditor via HO-0017",
+      "when": "2026-09-27"
+    },
+    {
+      "example": false,
+      "id": "S-0035",
+      "kind": "session",
+      "rel": "sessions/S-0035-ho-0017-independent-audit-of-the-e-0013-l5-flip-r-0025-verified-q1-q8-no-revert.md",
+      "status": "CLOSED",
+      "title": "ho-0017-independent-audit-of-the-e-0013-l5-flip-r-0025-verified-q1-q8-no-revert",
       "when": "2026-09-27"
     }
   ]

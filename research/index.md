@@ -105,6 +105,7 @@
 - [R-0022](reviews/R-0022-r-0022-independent-verification-of-s-0030-all-four-r-0021-findings-applied-the-10-residue-does-not-block-one-new-non-blocking-pointer-defect-y1-in-the-repair-section-s-own-x4-pointers.md) — (untitled) — status=COMPLETED
 - [R-0023](reviews/R-0023-r-0023-append-only-contract-re-specification-and-r-0022-old-l-row-disposition.md) — (untitled) — status=COMPLETED
 - [R-0024](reviews/R-0024-confirmation-of-the-contract-repair-and-the-flip-authorisation-part-6-is-unsatisfiable-as-written-and-is-re-specified.md) — (untitled) — status=COMPLETED
+- [R-0025](reviews/R-0025-independent-audit-of-the-e-0013-l5-only-lifecycle-flip-under-r-0024-q1-q8-ho-0017.md) — (untitled) — status=COMPLETED
 
 ## Open Questions
 
@@ -221,6 +222,7 @@
 - [S-0032](sessions/S-0032-r-0023-adopted-z1-repaired-contract-a-e-verbatim-z2-withdrawn-z3-re-pinned-flip-not-executed-e-0013-stays-pending.md) — R-0023 adopted - Z1 repaired (one word), contract (a)-(e) verbatim, Z2 withdrawn, Z3 re-pinned, Ruling 2 recorded; FLIP NOT EXECUTED - condition part 6 unmet (fresh adversarial critique required, owner seat may not self-verify); E-0013 stays PENDING — status=CLOSED
 - [S-0033](sessions/S-0033-two-stale-evidence-lines-in-e-0013-revised-in-place-withdrawn-figure-4x-in-z2-record-only.md) — Two stale evidence lines in E-0013 REVISED in place (Z2 prose + condition row 10) - the withdrawn figure 8ad61ccd/00a727 occurs 4x, all inside the Z2 withdrawal record, in NO live claim; orchestrator count; seam 22, 0 new; E-0013 stays PENDING — status=CLOSED
 - [S-0034](sessions/S-0034-e0013-l5-flip-r0024-q1-q8-to-verifier.md) — E-0013 L5-only flip PENDING -> RUNNING under R-0024 (6a6eb0a); Z4 header fixed separately (f2b627c); Q1-Q8 handed to the verification-auditor via HO-0017 — status=CLOSED
+- [S-0035](sessions/S-0035-ho-0017-independent-audit-of-the-e-0013-l5-flip-r-0025-verified-q1-q8-no-revert.md) — ho-0017-independent-audit-of-the-e-0013-l5-flip-r-0025-verified-q1-q8-no-revert — status=CLOSED
 
 ## Unrendered Records (bug — report this)
 
