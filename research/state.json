@@ -1637,7 +1637,7 @@
       "title": "Gate 0 unrunnable: Device Guard hard-blocks kana.exe (every build, every path)"
     }
   ],
-  "generated": "2026-09-26T17:39:24",
+  "generated": "2026-09-26T18:04:22",
   "metrics": {
     "by_kind": {
       "agent_profile": 1,
@@ -1657,12 +1657,12 @@
       "report": 13,
       "review": 22,
       "round_megaprompt": 2,
-      "session": 30,
+      "session": 31,
       "work": 7
     },
     "by_status": {
       "ACTIVE": 14,
-      "CLOSED": 30,
+      "CLOSED": 31,
       "COMPLETED": 30,
       "DONE": 18,
       "DRAFT": 1,
@@ -1679,10 +1679,10 @@
     "contradiction_candidates": 0,
     "dangling_ids": 11,
     "duplicate_candidates": 2,
-    "edges_total": 3147,
+    "edges_total": 3208,
     "legacy_experiments_without_pre_registration": 6,
     "open_questions": 8,
-    "records_total": 187,
+    "records_total": 188,
     "revival_candidates": 5
   },
   "questions_all": [
@@ -2074,15 +2074,6 @@
   "timeline_tail": [
     {
       "example": false,
-      "id": "S-0013",
-      "kind": "session",
-      "rel": "sessions/S-0013-micro-r-0014-b3-fix-e-0011-end-vocabulary-ns-suffix-ho-0008-gate0-12.md",
-      "status": "CLOSED",
-      "title": "Micro-session: R-0014 B3 fix (end vocabulary + (Ns) suffix policy) landed verbatim in E-0011; HO-0008 full-discharge ruling requested; Gate 0 attempt #12 (OPEN); engine-free text work only",
-      "when": "2026-09-23"
-    },
-    {
-      "example": false,
       "id": "S-0014",
       "kind": "session",
       "rel": "sessions/S-0014-ho-0008-r-0016-b3-fixed-e-0011-cleared-for-build-run.md",
@@ -2430,6 +2421,15 @@
       "rel": "sessions/S-0030-r-0021-repair-of-the-e-0013-addendum-x4-tail-rejoined-seam-8-paren-closed-b5-s2-heading-withdrawn-x5-recorded-append-only-baseline-re-labelled-e-0013-stays-pending.md",
       "status": "CLOSED",
       "title": "R-0021 repair of the E-0013 addendum: X4 tail rejoined, seam-8 paren closed, B5 s2 heading withdrawn, X5 recorded, append-only baseline re-labelled; E-0013 stays PENDING",
+      "when": "2026-09-26"
+    },
+    {
+      "example": false,
+      "id": "S-0031",
+      "kind": "session",
+      "rel": "sessions/S-0031-y1-fix-r-0022-four-pointers-bounded-10-pointer-rewrite-7-in-band-rows-6-old-ref-rows-exempt-running-authorisation-recorded-but-not-executed-status-is-l5-inside-the-hash-proved-l1-428-block.md",
+      "status": "CLOSED",
+      "title": "Y1 fix (R-0022 four pointers) + bounded +10 pointer rewrite (7 in-band rows; 6 old-ref rows exempt) + RUNNING authorisation recorded but NOT executed (status is L5, inside the hash-proved L1-428 block)",
       "when": "2026-09-26"
     }
   ]

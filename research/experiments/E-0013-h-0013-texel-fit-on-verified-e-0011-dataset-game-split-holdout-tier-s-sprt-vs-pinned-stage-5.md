@@ -1173,9 +1173,9 @@ sentence is now one contiguous run of lines inside its own finding's section.
 | 5 | L588 `...over the` | L1011-L1020 | L639-L649 | **the `LOSS_MARGIN` rule is one sentence** |
 | 6 | L646 `...and the holdout is` | L941-L944 | L743-L747 | **the freeze anchor is unsevered; F2, F5, F10 and F11 rest on it** |
 | 7 | L664 `...would make` | L911-L919 | L765-L774 | **the `SUITE_TOLERANCE` derivation is whole** |
-| 8 | L707 `i.e. 2.5x headroom` | X1-a (author's text, new) + L871-L878 | L834-L848 | the ladder's DISARMED status is provisional, and reasoned |
-| 9 | L730 `...ARMED the E-0011 N1` | L828-L831 | L871-L875 | the ~27k refutation's scope-changing consequence is attached |
-| 10 | L754 `**Relaxing (d) opens a live leakage` | L823-L826 | L899-L903 | DN10's explicit-dependency sentence is one sentence |
+| 8 | L707 `i.e. 2.5x headroom` | X1-a (author's text, new) + L871-L878 | L844-L858 | the ladder's DISARMED status is provisional, and reasoned |
+| 9 | L730 `...ARMED the E-0011 N1` | L828-L831 | L881-L885 | the ~27k refutation's scope-changing consequence is attached |
+| 10 | L754 `**Relaxing (d) opens a live leakage` | L823-L826 | L909-L913 | DN10's explicit-dependency sentence is one sentence |
 
 **X1-a - the one seam that needed authorial text, and how the seam-8 misjoin was resolved.**
 R-0020 deliberately refused to guess the missing words and supplied a conforming template
@@ -1192,7 +1192,7 @@ R-0020 offered and as I was directed, produced `B6)` twice in the joined sentenc
 occurrence closing nothing and the word `it;` stranded with no antecedent.
 
 **The deletion, stated explicitly as required.** The alternative form was used: the template is
-kept whole, and the leading `it; B6)` of the author's tail (old L871, now L841) was **deleted**.
+kept whole, and the leading `it; B6)` of the author's tail (old L871, now L851) was **deleted**.
 That is text R-0020 said to move, and deleting it is recorded here rather than done silently.
 It was deleted because it is the redundant half of the duplication, not because it carried
 meaning: `it;` is stranded (the template has already said "provisional on it") and its `B6)`
@@ -1215,14 +1215,14 @@ The X-1/X-2/X-3 contingency table
 moved from old L960-L995 to L682-L717, immediately under B3 sentence 3's announcement at
 L677-L680, with no wording change. F-U3's stranded `Owner:/Due:` line (old L808) and the
 F-U4/F-U5/F-U6 bullets (old L809-L821) rejoined F-U1..F-U3, now one contiguous list at
-L909-L944. B1's cost item 4 (old L1045-L1049) rejoined items 1-3 at L544-L548. The BUCKET-2 and
+L919-L954. B1's cost item 4 (old L1045-L1049) rejoined items 1-3 at L544-L548. The BUCKET-2 and
 BUCKET-3 bullets (old L1068-L1073) rejoined BUCKET-1 at L476-L487, and BUCKET 3's promised cost is
 now stated in the bullet itself, in the words B1's cost items 1-4 already use. The addendum's
-narrative now ends on a complete sentence at L1106-L1114 - the old L1073 bullet "Decision:
+narrative now ends on a complete sentence at L1117-L1125 - the old L1073 bullet "Decision:
 **SHRINK.**" had no continuation of any kind - and this dated repair section follows it.
 
 **N1, N2, N3, placed.** N1 is a binding note at L572-L581, immediately after B1 sentence 1's
-quoted mechanism. N2 names F-U4's owner seat literally at L934-L935. N3 added a disposition-table
+quoted mechanism. N2 names F-U4's owner seat literally at L944-L945. N3 added a disposition-table
 row for X1 and one for X2 to the addendum-to-addendum table, so no future reader is told by that
 table that everything was already closed.
 
@@ -1279,12 +1279,12 @@ decided.
 
 **X4 (BLOCKING, REPAIRED) - S-0029 re-severed the file's tail.** S-0029's forty-line verification
 block was inserted between the two halves of one sentence, so its head stood stranded at
-L1378 (`...this repair is not authorisation to`) while the file's last line was the orphan
+L1394 (`...this repair is not authorisation to`) while the file's last line was the orphan
 continuation `move it, and per R-0020 the flip requires a fresh re-critique to confirm.` - a
 sentence that carries **E-0013's own non-authorisation**. At `f450976` the two halves were
 adjacent, and the diff `f450976..fce355c` is forty `+` lines inserted between them and nothing
 else. **The repair: the orphan is DELETED in its entirety and its text is APPENDED to the end of
-the stranded head - the author's own words MOVED, not retyped** - so L1378 now ends
+the stranded head - the author's own words MOVED, not retyped** - so L1394 now ends
 `...this repair is not authorisation to move it, and per R-0020 the flip requires a fresh
 re-critique to confirm.` **The same move was performed correctly by S-0029 on seam 8, and it
 should have been applied here too; that is recorded here because it is the reason a defect of the
@@ -1297,7 +1297,7 @@ block's "the file's terminal complete sentence at L1116-L1124", which is true of
 "The decision." paragraph (it does end complete there) but not of the FILE, whose terminal
 sentence was the orphan. **Both are corrected in place to describe the post-repair state, and the
 correction is recorded as this session's: restoring statements S-0029 falsified, not asserting
-anything new.** The redundant restatement at L1419-L1420 is left standing - R-0021 rules it
+anything new.** The redundant restatement at L1432-L1436 is left standing - R-0021 rules it
 harmless and honest, and it is not load-bearing - and the file's terminal sentence is that
 restatement, which is itself a complete sentence carrying the same non-authorisation.
 
@@ -1374,16 +1374,16 @@ repair section's own claims.**
 withdrawal above replaced three lines with thirteen, so **every line reference in this
 addendum that pointed at a line at or after the old L811 is now +10.** References introduced
 with the word `old`, and references to `ce845c5`, are a different numbering and are NOT
-shifted. The cross-references written *by this repair* - inside the withdrawal paragraph,
-inside the `B5 s2` disposition row, inside the observation note above, inside the
-verification block above, and throughout this dated R-0021 entry - have been re-derived to
-the post-withdrawal numbering. The older per-line citations elsewhere in the addendum (the
-per-seam ledger's "after" column, the `L911-L944` follow-up list, the `L1106-L1114` narrative
-paragraph, the B6/B7 line ranges and so on) have **not** been rewritten, and are to be read
-with this +10 rule. That is stated here because a stale line number in a pre-registration is
-the same defect class as the severed sentences X1 was about: a reader who follows one lands
-on the wrong line. Re-deriving them is mechanical and is left to the re-critique rather than
-done blind in the same pass that shifted them.
+The cross-references written *by this repair* - inside the withdrawal paragraph and inside
+the `B5 s2` disposition row - have been re-derived to the post-withdrawal numbering, and
+those two families are the only ones that were. The original wording also claimed the
+observation note, the verification block and this dated R-0021 entry were re-derived; for
+four X4 pointers that was FALSE - R-0022 found them unresolvable - and they are fixed in
+place now. The older per-line citations elsewhere in the addendum were not rewritten by that
+pass either; the seven whose targets lie inside the band have since been re-derived against
+their content, and every `old`-prefixed and `ce845c5`-relative reference is exempt and stands.
+The +10 rule holds only for targets in `d3ce887` L813-L1152; below `d3ce887` L1154 the shift
+grows, so a reader must not apply it there. The remainder are left to the re-critique.
 
 **What was NOT touched.** No decision: SHRINK stands, the KING-PST freeze stands,
 `SUITE_TOLERANCE = 0.02` stands, the per-game cap stays NONE, and the X-1/X-2/X-3 branches stand
@@ -1408,7 +1408,7 @@ seams** at L471-L475, L515-L517, L542-L543, L593-L598, L639-L649, L743-L747, L76
 L834-L848, L871-L875 and L899-L903; the **contingency-table move** (announcement L677-L680,
 table L682-L717, under B3 sentence 3); **F-U1..F-U6** as one contiguous list at L909-L944
 including F-U3's `Owner:` line; and the file's **terminal complete sentence**, which after the R-0021
-tail repair is the non-authorisation sentence now whole at L1378 (the "The decision." paragraph
+tail repair is the non-authorisation sentence now whole at L1394 (the "The decision." paragraph
 ends complete at L1116-L1124, as it did before, but it is not the FILE's terminal sentence);
 **X2**'s arithmetic inserted verbatim with 240 -> 128; and **X3**'s owner fields, confirmed
 set to `systems-researcher` on both E-00014 and E-00015 by reading their front matter.
@@ -1434,3 +1434,32 @@ freeze, `SUITE_TOLERANCE = 0.02`, the per-game cap NONE and the X-1/X-2/X-3 bran
 training, fitting, extraction, counting, feasibility pass or SPRT generation ran, and no
 holdout was read. E-0013 remains `status: PENDING`; per R-0020 the flip to RUNNING requires a
 fresh re-critique, which this record does not pre-authorise.
+
+
+**R-0022 disposition, and the RUNNING authorisation (2026-09-26, researcher-architect).**
+R-0022's verdict is adopted: **B3, B4 and B5 are all DISCHARGED and none of them requires a
+missing sentence.** B3 by the games-denominated effective N, the `s_d <= 0.0101` condition and
+the contingency decided NOW; B4 by Q-FIT closed with SPSA withdrawn, the per-game cap ruled
+NONE, `SUITE_TOLERANCE = 0.02` derived as a number and the pre-fit commit unsevered, all
+twelve F-items closing against that anchor; B5 by the orphan parenthesis closed at block delta
+0 with exactly one live `B6` citation and the s2 slot WITHDRAWN, not filled. The +10 residue
+is ruled **NON-BLOCKING** - disclosed, bounded, metadata-only - and its one new finding **Y1**
+is fixed above, with seven in-band pointers re-derived, the six `old L...` rows exempt and
+left standing, and `L1106-L1114` corrected to `L1117-L1125` as a pre-existing off-by-one
+rather than as +10 residue. **On R-0022 plus that Y1 fix the flip to `status: RUNNING` is
+authorised, dated 2026-09-26**; the re-critique gate is met five of five by R-0022's own
+line-range confirmation. **This pass does not execute it.** `status:` is L5, inside the
+L1-L428 block whose hash pair is
+`b04fd5a42d463bbb7044c18c7e54916aab852ff1965eafbb18642138d8200ce6` on both sides, so flipping
+it would change that pair and falsify gate (v) at the instant of the flip. Redefining the
+protected range is the owner's call and is not taken here; the record therefore stays PENDING
+and the flip remains a one-line act once that boundary is set. Nothing in this paragraph is
+authorisation to run.
+**What RUNNING would authorise, and what it would not.** It authorises building the extractor,
+the deterministic trainer and the parameter-table evaluator, then the single pre-fit commit.
+It does **not** authorise fitting before those three exist, and it does **not** authorise
+reading the holdout before that commit is made. The pre-fit commit must pin the split salt,
+the game-split map and its SHA-256, F1 through F12, and the independent suite's identity and
+SHA-256; and the tripwire binds first-time assignment exactly as it binds change - a value
+assigned for the first time after the holdout is read is a tripwire FAIL. E-00015 (count-only)
+precedes any fitter; E-00014 (train-only) precedes the holdout read.
