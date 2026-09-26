@@ -1,7 +1,7 @@
 # Research State (GENERATED — do not edit)
 
 Derived from the record store by `research.py state`. Regenerate after every change.
-Generated: 2026-09-26T16:39:09; schema 2.
+Generated: 2026-09-26T17:11:41; schema 2.
 Every entry is a PROJECTION of the linked records — follow them before believing.
 
 ## Current best beliefs (hypotheses with measured weight)
@@ -43,7 +43,6 @@ Every entry is a PROJECTION of the linked records — follow them before believi
 - hypothesis **H-0002-magic-stub** Magic Bitboards with PEXT Provide >=3x NPS Speedup — SUPERSEDED. No revisit condition recorded.
 
 ## Recent timeline
-- 2026-09-26 experiment E-0013 (PENDING) : E-0013 — H-0013 Texel fit on the verified E-0011 dataset (game-split holdout + Tier-S SPRT vs pinned stage 5)
 - 2026-09-26 handoff HO-0013 (DONE) : Critique E-0013 pre-registration (H-0013 Texel fit contract) before any running
 - 2026-09-26 handoff HO-0014 (DONE) : Re-critique E-0013 addendum vs R-0019 findings B1-B7 (discharge verification only)
 - 2026-09-26 handoff HO-0015 (REQUESTED) : Execute E-00014: TRAIN-ONLY feasibility pass (measurement, not training)
@@ -58,6 +57,7 @@ Every entry is a PROJECTION of the linked records — follow them before believi
 - 2026-09-26 session S-0027 (CLOSED) : HO-0014 re-critique of the E-0013 addendum vs R-0019 B1-B7 - NOT CLEAN on two new blocking findings (X1 truncated/interleaved addendum, X2 false parameter-count rationale); all three integrity properties HOLD
 - 2026-09-26 session S-0028 (CLOSED) : R-0020 repair of the E-0013 addendum: 10 seams joined, contingency table moved, F-U1..F-U6 rejoined, X2 arithmetic inserted, X3 owners set; E-0013 stays PENDING
 - 2026-09-26 session S-0029 (CLOSED) : R-0020 repair second pass: seam 8 misjoin fixed (duplicate B6 citation removed), B5 s2 empty slot named and dispositioned, verification recorded; E-0013 stays PENDING
+- 2026-09-26 session S-0030 (CLOSED) : R-0021 repair of the E-0013 addendum: X4 tail rejoined, seam-8 paren closed, B5 s2 heading withdrawn, X5 recorded, append-only baseline re-labelled; E-0013 stays PENDING
 
 ## Metrics
 ```
@@ -80,12 +80,12 @@ Every entry is a PROJECTION of the linked records — follow them before believi
     "report": 13,
     "review": 21,
     "round_megaprompt": 2,
-    "session": 29,
+    "session": 30,
     "work": 7
   },
   "by_status": {
     "ACTIVE": 14,
-    "CLOSED": 29,
+    "CLOSED": 30,
     "COMPLETED": 29,
     "DONE": 18,
     "DRAFT": 1,
@@ -102,10 +102,10 @@ Every entry is a PROJECTION of the linked records — follow them before believi
   "contradiction_candidates": 0,
   "dangling_ids": 11,
   "duplicate_candidates": 2,
-  "edges_total": 3054,
+  "edges_total": 3114,
   "legacy_experiments_without_pre_registration": 6,
   "open_questions": 8,
-  "records_total": 185,
+  "records_total": 186,
   "revival_candidates": 5
 }
 

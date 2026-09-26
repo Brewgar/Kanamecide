@@ -808,8 +808,18 @@ most-cited OPEN in the record). Pinned value, with the reasoning that produced i
 
 *(Editorial, 2026-09-26, under R-0020's licence: the final clause of the sentence above - the one that read "Freezing is the lower-variance choice and the one that keeps the fitted-parameter count defensible against E-0011 N1's '>= 500 positions/parameter' standard" - was FALSE and has been DELETED and REPLACED, and "240 extra free parameters" in the same quoted block has been corrected to **128** (or 64 under `pst[s] == pst[mirror(s)]`). The replacement text is R-0020's own, inserted verbatim. Nothing else in the quoted block was touched, and the freeze DECISION is unchanged. The "(240 params)" in the F3 row of the F1-F12 table is R-0019's own item label and is left as quoted.)*
 
-**B5 sentence 2 (the ladder's citation, corrected - IN THIS RECORD ONLY):**
-
+**B5 sentence 2 (the ladder's citation, corrected - IN THIS RECORD ONLY): WITHDRAWN
+2026-09-26, body never established.** This heading announced a quoted sentence that does not
+exist. Its slot was empty in the addendum as first filed (`ce845c5`, L684 heading with L685-L686
+blank) and no body for it has been located in any revision; the correction it announced is
+already stated, once and in full, as the dated correction note under B5 sentence 3
+(L832-L858) and again as B6 sentence 1's second quoted block (L1042-L1051). The heading is
+therefore **withdrawn rather than filled**: filling it would require inventing normative text on
+another seat's behalf, which this record does not do. **No normative content is lost by this
+withdrawal and none is invented to replace it** - the backwards-citation correction, the
+`k4-k3 = -3.7` / `k6-k5 = -11.5` recomputation, the DISARMED-and-provisional status and obligation
+F-U4 all stand as written at L832-L858. This withdrawal closes the slot; it re-opens no
+decision and changes no gate.
 
 **B5 sentence 3 - DATED CORRECTION NOTE, and why it lives here and not in E-0011.** The
 mis-citation sits in the text of E-0011 (N1) and is inherited by W-0001. **E-0011 is
@@ -834,7 +844,7 @@ error, and a follow-up obligation is filed against E-0013's close-out:
 > yield is 75,600 to 76,587 against a 30,000 floor, i.e. 2.5x headroom
 > (E-00015 measures the realized count; until that count exists this band remains an
 > arithmetic bound on already-measured quantities and is NOT a measurement of this
-> record's own filter, and the ladder's DISARMED status is provisional on it. If the count
+> record's own filter, and the ladder's DISARMED status is provisional on it). If the count
 > nevertheless arms the ladder, the fallback scope it would apply is not the
 > mobility/tempo sub-set named in E-0011 N1, and the sub-set is re-derived and
 > re-registered under its own critique before any use (mobility/tempo scope; B6)
@@ -961,9 +971,9 @@ finding, and where a finding is only partly discharged, the row says so and says
 | **B7** | **DISCHARGED (text)** | Q-0006 readiness gate 7 quoted verbatim into the record and given teeth: a verification-auditor handoff on any terminal verdict, carrying the artifact hash, the pre-fit commit hash, the split-map hash and the E-00014/E-00015 numbers. Q-0006 is now cited (also DN7). | The handoff is filed at close-out (F-U5); the gate's CONTENT is discharged now. |
 | **F1-F12 freeze-audit gap** | **DISCHARGED item by item** | Each of F1-F12 is closed in the B4 s5 table with either a VALUE (F1, F3, F4-partial, F6-partial, F7, F8, F9, F10, F12) or an explicit "derived from <pinned input>" pointer to the single pre-fit commit (F2, F4-identity, F5, F11). No item is left as a bare first-time assignment. | Pointer-closed items are closed by the ANCHOR (the pre-fit commit), which is the mechanism R-0019 itself prescribed, not by me deferring them again. |
 | **DN1-DN10** | **RECORDED, non-blocking; 5 discharged (DN3, DN5, DN7, DN8, DN10), 4 recorded/routed (DN1, DN2, DN4, DN6), 1 recorded + carried (DN9)** | Each has a disposition row. None silently dropped. | DN6 is not this seat's file (routed). DN9's routing attaches to the deferred strength contract and is preserved in F-U2 so it is not lost. |
-| **X1 (R-0020)** | **DISCHARGED - in-place text repair of THIS addendum, 2026-09-26, under R-0020's licence** | R-0020 found this addendum to be a truncated, interleaved document: ten sentences severed at a block boundary with their continuations relocated far away, ONE continuation absent from the file, the X-1/X-2/X-3 contingency table ~340 lines from the sentence announcing it, the follow-up obligations split across this table, and the file ending mid-bullet. All ten seams are now joined as single contiguous sentences inside their own finding's section; the absent continuation is supplied as X1-a; the contingency table now sits immediately under B3 sentence 3's announcement; F-U1..F-U6 (including F-U3's stranded `Owner:/Due:` line) are one contiguous list; cost item 4 is contiguous with items 1-3; the BUCKET-1/2/3 list is restored to one place; and the file ends on a complete sentence. | The repair is a MOVE, not a rewrite: no sentence was deleted and no continuation was retyped, and every move is listed line-by-line in the dated repair section at the end of this addendum. Consequence stated rather than hidden: this ADDENDUM is therefore NOT purely additive to itself. The ORIGINAL pre-registration (L1-L428) is append-only and provably so, by hash - see the same repair section. |
+| **X1 (R-0020)** | **DISCHARGED - in-place text repair of THIS addendum, 2026-09-26, under R-0020's licence** | R-0020 found this addendum to be a truncated, interleaved document: ten sentences severed at a block boundary with their continuations relocated far away, ONE continuation absent from the file, the X-1/X-2/X-3 contingency table ~340 lines from the sentence announcing it, the follow-up obligations split across this table, and the file ending mid-bullet. All ten seams are now joined as single contiguous sentences inside their own finding's section; the absent continuation is supplied as X1-a; the contingency table now sits immediately under B3 sentence 3's announcement; F-U1..F-U6 (including F-U3's stranded `Owner:/Due:` line) are one contiguous list; cost item 4 is contiguous with items 1-3; the BUCKET-1/2/3 list is restored to one place; and the file ends on a complete sentence. **Corrected under R-0021: that last clause was true at `f450976` and FALSE from `fce355c`, because S-0029 inserted its verification block between the two halves of the tail sentence. That was X4; the tail is rejoined and the file again ends on a complete sentence.** | The repair is a MOVE, not a rewrite: no sentence was deleted and no continuation was retyped, and every move is listed line-by-line in the dated repair section at the end of this addendum - with ONE recorded exception to the no-deletion rule, the seam-8 head fragment (X5 below), which was deleted because keeping it would have produced a second duplication. Consequence stated rather than hidden: this ADDENDUM is therefore NOT purely additive to itself. The ORIGINAL pre-registration (L1-L428) is append-only and provably so, by hash - see the same repair section. |
 | **X2 (R-0020)** | **DISCHARGED - the false clause DELETED, the arithmetic INSERTED** | B5 sentence 1's recorded rationale claimed that freezing "keeps the fitted-parameter count defensible against E-0011 N1's '>= 500 positions/parameter' standard". That is false: 683 free scalars against at most 76,587 realized positions is ~112 positions per parameter (~89 train-side), about 4.46x short of 500, and freezing moves 94 -> 112, not to 500. The clause is deleted and replaced with R-0020's own arithmetic, and "240 extra free parameters" reads **128** (or 64 under `pst[s] == pst[mirror(s)]`). | The freeze DECISION is unchanged and is NOT re-opened by this correction. 4.46x short is now recorded as a STATED LIMITATION of the all-terms scope, not as a solved one; the binding constraints on stage (a) remain E-0011 N1's label/systematic bias and the game-clustered `s_d` that E-00014 measures. |
-| **B5 s2 (pre-existing)** | **RECORDED, body UNESTABLISHED - not moved, not filled** | B5 sentence 2's heading at L811 ("the ladder's citation, corrected - IN THIS RECORD ONLY") announces quoted text, but its slot is EMPTY: L812-L813 are blank and B5 sentence 3's heading is at L814. The same hole exists in `ce845c5` (L684 heading, L685-L686 blank, B5 sentence 3 at L687), so it is PRE-EXISTING and was not introduced by the R-0020 repair. | **The announced body is NOT established to be the correction-note block now at L822-L848, and this row does not claim it is:** that block is introduced by B5 sentence 3, whose preamble ends in a colon at L820 and is immediately followed by it, so it is already spoken for. B5 s2 therefore has no located body anywhere in the file, and whether its text was lost, never written, or is the note under another name is UNESTABLISHED - not guessed. (The earlier note at L1202 that this text "sits far away under B6 sentence 1" describes the `ce845c5` geometry, in which this material ran to old L871 near B6 s1; after the repair the note is at L822-L848 under B5 s3 and B6 s1 is at L1016.) This is the same interleaving class as X1 - a heading whose body lives elsewhere - which is why it was hard to detect. Deciding whether to relocate anything is a CONTENT judgement for the next reviewer; this seat's job was to make the hole visible and named. |
+| **B5 s2 (pre-existing)** | **WITHDRAWN 2026-09-26 under R-0021 - not moved, not filled, not invented** | B5 sentence 2's heading at L811 ("the ladder's citation, corrected - IN THIS RECORD ONLY") announced quoted text and its slot was EMPTY: L812-L822 were blank and B5 sentence 3's heading was at L824. The same hole exists in `ce845c5` (L684 heading, L685-L686 blank, B5 sentence 3 at L687), so it is PRE-EXISTING and was not introduced by the R-0020 repair. **The heading and its two blank lines have now been REPLACED by R-0021's withdrawal paragraph; nothing was relocated and no body was invented.** | **The announced body is NOT established to be the correction-note block at L832-L858, and this row does not claim it is:** that block is introduced by B5 sentence 3, whose preamble ends in a colon at L830 and is immediately followed by it, so it is already spoken for. B5 s2 has no located body anywhere in the file, and whether its text was lost, never written, or is the note under another name is UNESTABLISHED - not guessed, and not guessed at here either. (The earlier note that this text "sits far away under B6 sentence 1" described the `ce845c5` geometry, in which this material ran to old L871 near B6 s1; after the R-0020 repair the note is at L832-L858 under B5 s3 and B6 s1 is at L1026. That note is now corrected and points at the withdrawal.) This is the same interleaving class as X1 - a heading whose body lives elsewhere - which is why it was hard to detect. **The disposition question is settled: R-0021 ruled that `UNESTABLISHED` names the defect without dispositioning it, and that a heading announcing text the record does not contain is a live misstatement, so the heading is WITHDRAWN rather than filled - a withdrawn heading asserts nothing, an invented body would assert something. "Flagged for the next reviewer" was the deferral that produced the finding; the next reviewer was R-0021, and this row now points at the withdrawal.** |
 
 **What is explicitly NOT claimed by this addendum.** It does not claim B1's strength
 question is answered; it does not claim a fitted artifact exists; it does not claim any
@@ -1150,7 +1160,8 @@ and that B2's side-to-move frame and DN10 both depend on. N2: F-U4's owner seat 
 literally (`systems-researcher`). N3: this disposition table gained rows for X1 and X2.
 
 **Per-seam ledger.** "before" is the `ce845c5` line numbering R-0020 cited; "after" is this
-file's current numbering. Every continuation was MOVED byte-for-byte, not retyped; each joined
+file's current numbering. Every CONTINUATION was MOVED byte-for-byte, not retyped - the one
+recorded exception is the seam-8 head fragment, see the X5 entry below; each joined
 sentence is now one contiguous run of lines inside its own finding's section.
 
 | # | Head (before) | Continuation (before) | The one sentence now occupies | What that unblocks |
@@ -1189,14 +1200,18 @@ duplicates the citation the template's own parenthetical already makes. The alte
 chosen over trimming the template's `B6)` because trimming it would delete the very string
 R-0020's condition (c) mandates and would leave the count of `mobility/tempo scope; B6)` at 0,
 falsifying the verbatim-adoption claim recorded in this same section. The cost is stated rather
-than hidden: **the head's opening paren `(E-00015 measures` is now left unclosed**, because
+than hidden: **the head's opening paren `(E-00015 measures` was left unclosed**, because
 R-0020's template consumed the tail's `)` and supplied a self-closing parenthetical of its own.
 Both candidate forms leave that paren orphaned (delta +1); the pre-fix text was balanced only
 because the duplicated citation accidentally supplied a second `)`. This is a defect inherited
-from the template, it is flagged here for the re-critique, and it is **not** repaired here
-because closing it would require inventing a closing token R-0020 did not supply.
+from the template. **SUPERSEDED under R-0021, 2026-09-26: the orphan IS now closed** - a single
+closing parenthesis inserted after `provisional on it` in the seam-8 note, so the B5/B6 block's
+paren delta is 0. S-0029's reason for leaving it - that closing it "would require inventing a
+closing token R-0020 did not supply" - is **withdrawn as WRONG**: the template bounds the span,
+so that closer is not an invented token. R-0021 ruled against that reason; this seat concurs.
 
-**Other moves, same rule - nothing deleted, nothing retyped.** The X-1/X-2/X-3 contingency table
+**Other moves, same rule - nothing deleted, nothing retyped, with ONE recorded exception.**
+The X-1/X-2/X-3 contingency table
 moved from old L960-L995 to L682-L717, immediately under B3 sentence 3's announcement at
 L677-L680, with no wording change. F-U3's stranded `Owner:/Due:` line (old L808) and the
 F-U4/F-U5/F-U6 bullets (old L809-L821) rejoined F-U1..F-U3, now one contiguous list at
@@ -1217,10 +1232,13 @@ note at L809 records that this was an in-place replacement of quoted text, quote
 and states that the freeze DECISION is unchanged. The "(240 params)" in the F3 row of the F1-F12
 table is R-0019's own item label and is left as quoted, for the same reason E-0011 is not edited.
 
-**One observation recorded, not acted on.** "B5 sentence 2 (the ladder's citation, corrected)"
-at L811 announces quoted text that sits far away under B6 sentence 1. R-0020 did not enumerate
-this as a seam, and the paragraph it points at is complete rather than severed, so it was left
-exactly as found and is flagged here for the next reviewer rather than silently moved.
+**One observation, now DISPOSITIONED under R-0021 (2026-09-26) - the heading is WITHDRAWN.**
+"B5 sentence 2 (the ladder's citation, corrected)" at L811 announced quoted text, and its
+slot was empty. **This note's location claim was stale and is corrected here:** the material does
+not "sit far away under B6 sentence 1" - that described the `ce845c5` geometry. After the R-0020
+repair the correction note is at L832-L858 **under B5 s3**, B6 s1 is at L1026, and the
+heading itself has been **withdrawn, not filled** (see the withdrawal paragraph at L811 and
+the R-0021 entry below). Nothing was relocated; no body was invented.
 
 **The append-only contract, proved by hash rather than asserted.** Lines 1-428 of this file -
 the original pre-registration, above the addendum - are byte-identical to the same lines at
@@ -1233,15 +1251,139 @@ the original pre-registration, above the addendum - are byte-identical to the sa
 
 Equal. **The ORIGINAL is append-only and provably so. The ADDENDUM was found corrupt by review
 and repaired IN PLACE under that review's licence** (R-0020: "move that text, not rewrite it";
-"delete the false clause and replace it"). That is why the historical `648 additions / 0
-deletions` numstat over `ce845c5..HEAD` no longer reads zero-deletions. That is stated here
-rather than papered over, and the distinction is the point: the append-only rule protects the
-pre-registration, and the addendum was corrupt inside the very document the review examined.
+"delete the false clause and replace it"). That is why a numstat taken at the addendum's
+first-filed boundary no longer reads zero-deletions, rather than one taken at the original's
+boundary, which still reads zero. That is stated here rather than papered over, and the
+distinction is the point: the append-only rule protects the pre-registration, not the corrupt
+addendum. (Corrected under R-0021: `648 additions / 0 deletions` is the numstat of
+`4478c3a..ce845c5`, not of `ce845c5..HEAD`; all three figures are stated in the R-0021 entry below.)
 
 **A note on the append-only check itself.** `git diff --numstat HEAD -- <E-0013 path>` returns
 EMPTY on a clean tree and therefore cannot distinguish "add-only" from "nothing changed". Any
 append-only evidence line must name a baseline commit - here `ce845c5` for the pre-repair
 addendum, or `4478c3a` for the pre-addendum file.
+
+### Dated repair of THIS addendum under R-0021 - 2026-09-26 (round 4, same seat; all four findings mechanical)
+
+**Why this section exists.** R-0021 (adversarial-reviewer, independent post-repair critique) ruled
+**NOT CLEAN** on this addendum after S-0028's and S-0029's passes, and left E-0013 at
+`status: PENDING`. It confirmed the substance sound by its own recomputation - all ten seams
+joined including the four normatively critical ones, the contingency table under B3 s3,
+F-U1..F-U6 contiguous, the `B6)` duplication fixed, the freeze anchor unsevered with all twelve
+F-items closing against it, X2's arithmetic correct in every figure, no surviving compliance claim
+and X3's owners set - and ruled **B3 DISCHARGED, B4 DISCHARGED, B5 still PARTIALLY**. It raised
+**two new findings, both introduced by the repair passes themselves**, and required two further
+repairs inside B5. **No decision is re-opened:** SHRINK, the KING-PST freeze,
+`SUITE_TOLERANCE = 0.02`, the per-game cap NONE and the X-1/X-2/X-3 branches all stand exactly as
+decided.
+
+**X4 (BLOCKING, REPAIRED) - S-0029 re-severed the file's tail.** S-0029's forty-line verification
+block was inserted between the two halves of one sentence, so its head stood stranded at
+L1378 (`...this repair is not authorisation to`) while the file's last line was the orphan
+continuation `move it, and per R-0020 the flip requires a fresh re-critique to confirm.` - a
+sentence that carries **E-0013's own non-authorisation**. At `f450976` the two halves were
+adjacent, and the diff `f450976..fce355c` is forty `+` lines inserted between them and nothing
+else. **The repair: the orphan is DELETED in its entirety and its text is APPENDED to the end of
+the stranded head - the author's own words MOVED, not retyped** - so L1378 now ends
+`...this repair is not authorisation to move it, and per R-0020 the flip requires a fresh
+re-critique to confirm.` **The same move was performed correctly by S-0029 on seam 8, and it
+should have been applied here too; that is recorded here because it is the reason a defect of the
+very class this pass claimed to eliminate survived the pass.**
+
+**The two statements X4 falsified, and this session's restoration of them.** S-0029's insertion
+made two claims in this file false: the X1 disposition row's "the file ends on a complete
+sentence" - true at `f450976`, false from `fce355c` until the repair above - and this verification
+block's "the file's terminal complete sentence at L1116-L1124", which is true of the *narrative*
+"The decision." paragraph (it does end complete there) but not of the FILE, whose terminal
+sentence was the orphan. **Both are corrected in place to describe the post-repair state, and the
+correction is recorded as this session's: restoring statements S-0029 falsified, not asserting
+anything new.** The redundant restatement at L1419-L1420 is left standing - R-0021 rules it
+harmless and honest, and it is not load-bearing - and the file's terminal sentence is that
+restatement, which is itself a complete sentence carrying the same non-authorisation.
+
+**X5 (NON-BLOCKING, NOW RECORDED) - an unrecorded head-side deletion at seam 8.** The two claims
+"Every continuation was MOVED byte-for-byte, not retyped" and "Other moves, same rule - nothing
+deleted, nothing retyped", both in this section, are **false as general claims about the seam**.
+They hold of the *continuations* and were broken on the *head*. At `ce845c5` **L707** the head
+ended `...i.e. 2.5x headroom (E-00015 measures` - **four words of the author's original text**.
+S-0028 deleted those four words and **did not record doing so**; the count of `(E-00015 measures`
+in the file went 1 -> 2, the second being the template's own opening. **The deletion was
+SUBSTANTIVELY CORRECT AND NECESSARY:** R-0020's own template opens with `(E-00015 measures`, so
+keeping the fragment would have produced `(E-00015 measures (E-00015 measures ...` and a second
+duplication. The defect was the silence, not the deletion - which is precisely why X5 is
+non-blocking. **Both claims are QUALIFIED in place rather than deleted: the exception now stands
+on the record, and that is the whole point of X5.**
+
+**The seam-8 orphan parenthesis, CLOSED (R-0021 section 2(c)).** R-0021 ruled the joined seam-8
+sentence **defective as typography and correct as normative text**: the obligation - re-derive and
+re-register under its own critique before use - sits in the main clause, is syntactically
+independent of the parenthetical, and is stated three more times in this file, so only a citation
+*label* could be mis-scoped, and B6 is 130 lines away and intact. It is therefore a cleanliness
+fix, not a semantic emergency. **The repair is one character: a `)` inserted after `provisional on
+it` in the seam-8 note, at the boundary R-0020's own template already specifies.** Post-repair the
+B5/B6 block's paren delta is **0** (it was +1) and the seam carries **exactly one `B6)` citation**.
+
+**Agreement with the reviewer, against the earlier same-seat reasoning.** S-0029 recorded that
+the orphan "is **not** repaired here because closing it would require inventing a closing token
+R-0020 did not supply". **That sentence is withdrawn as WRONG and is struck in place above.**
+R-0021 disagreed with that reason; this seat concurs with R-0021, because the template does bound
+the span and the `)` is a closer rather than an invented token. S-0029 was right that the defect
+was inherited and wrong that it was unfixable. **The disagreement is on the record and is resolved
+in favour of the reviewer.**
+
+**B5 sentence 2 - the heading is WITHDRAWN, not filled (R-0021 section 3).** S-0029's
+disposition `UNESTABLISHED` named the defect and left it standing. R-0021 ruled that a heading
+announcing a correction the record does not contain is a live misstatement - it invites a reader
+either to double-count B5 s3's correction note as a second finding, or to conclude a correction is
+missing - and that **a withdrawn heading asserts nothing, while an invented body would assert
+something**, so withdrawal is the only option that cannot mislead. The heading and its two blank
+lines are replaced by R-0021's own withdrawal paragraph at L811, which names where the
+correction actually lives and states explicitly that no normative content is lost by the
+withdrawal and none is invented to replace it. **Nothing was relocated and no normative text was
+composed here.** The two pointers the withdrawal supersedes - the note at L1235 above, which
+described the `ce845c5` geometry, and the closing sentence of the `B5 s2` disposition row - now
+point at the withdrawal instead.
+
+**The APPEND-ONLY BASELINE, corrected and correctly labelled (R-0021 section 5c).** The
+characterisation above is honest but attached its numstat to the wrong commit. All three figures
+are now stated explicitly, each against the boundary it actually describes:
+
+| Boundary | Numstat at `d3ce887` (R-0021's HEAD) | Numstat after this R-0021 repair | What the boundary is |
+|---|---|---|---|
+| `4478c3a..HEAD` | 868 insertions, 0 deletions | **1011 insertions, 0 deletions** | **the addendum has NEVER had a deletion against the original pre-registration** - the strongest true statement, and the one that discharges the append-only obligation outright |
+| `ce845c5..HEAD` | 347 insertions, 127 deletions | **493 insertions, 130 deletions** | the addendum-as-first-filed boundary, correctly labelled this time; the deletions are the visible, itemised cost of the review-licensed repairs, and this repair adds 3 of them |
+| `f450976..HEAD` | 71 insertions, 12 deletions (S-0029's pass alone) | **231 insertions, 29 deletions** | the S-0028/S-0029 repair boundary, measured on the two repair passes rather than on the addendum |
+
+**The `288/127` figure in circulation was the `f450976` boundary mislabelled as `ce845c5`, and
+that correction is R-0021's, not this seat's** - it is recorded here as such. The sentence above
+that attached `648 additions / 0 deletions` to `ce845c5..HEAD` is corrected in place: `648 / 0` is
+the numstat of `4478c3a..ce845c5`, the ORIGINAL addendum pre-repair, and is correct at that
+boundary.
+
+**Re-critique gate (added 2026-09-26 under R-0021).** This record may leave `status: PENDING` for
+`status: RUNNING` only when a fresh adversarial-reviewer critique confirms, by line-range read,
+that (i) the file ends on a complete sentence, (ii) the parenthesis opened at the seam-8
+correction note is closed and exactly one `B6)` citation remains, (iii) the B5 sentence-2 slot is
+withdrawn rather than filled, (iv) every deletion made in any repair pass is itemised in the dated
+repair section, and (v) lines 1-428 still hash to
+`b04fd5a42d463bbb7044c18c7e54916aab852ff1965eafbb18642138d8200ce6` on both sides. **The repair
+section is not authorisation to run, and no seat may flip this record on the strength of the
+repair section's own claims.**
+
+**A line-number shift this repair causes, stated rather than left silent.** The B5 s2
+withdrawal above replaced three lines with thirteen, so **every line reference in this
+addendum that pointed at a line at or after the old L811 is now +10.** References introduced
+with the word `old`, and references to `ce845c5`, are a different numbering and are NOT
+shifted. The cross-references written *by this repair* - inside the withdrawal paragraph,
+inside the `B5 s2` disposition row, inside the observation note above, inside the
+verification block above, and throughout this dated R-0021 entry - have been re-derived to
+the post-withdrawal numbering. The older per-line citations elsewhere in the addendum (the
+per-seam ledger's "after" column, the `L911-L944` follow-up list, the `L1106-L1114` narrative
+paragraph, the B6/B7 line ranges and so on) have **not** been rewritten, and are to be read
+with this +10 rule. That is stated here because a stale line number in a pre-registration is
+the same defect class as the severed sentences X1 was about: a reader who follows one lands
+on the wrong line. Re-deriving them is mechanical and is left to the re-critique rather than
+done blind in the same pass that shifted them.
 
 **What was NOT touched.** No decision: SHRINK stands, the KING-PST freeze stands,
 `SUITE_TOLERANCE = 0.02` stands, the per-game cap stays NONE, and the X-1/X-2/X-3 branches stand
@@ -1249,7 +1391,7 @@ exactly as decided. Nothing above L429 was edited. R-0019, R-0020, HO-0013, HO-0
 E-0012, W-0001, W-0005, RUN-0002, RUN-0003, R-0017 and R-0018 are untouched, as is every H-####
 text and status; no `tools/` or `src/` file was edited (N1 is a text note about a script, not a
 change to it); no training, fitting, extraction, counting, feasibility pass or SPRT generation
-ran; no holdout was read. E-0013 remains `status: PENDING` - this repair is not authorisation to
+ran; no holdout was read. E-0013 remains `status: PENDING` - this repair is not authorisation to move it, and per R-0020 the flip requires a fresh re-critique to confirm.
 
 **Verification performed ON this repair, 2026-09-26 (second pass, same seat, after an
 independent re-read).** The repair recorded above was not taken on trust. The L1-L428
@@ -1265,7 +1407,9 @@ Each claim above was then re-checked **by line-range read**, not by assertion: t
 seams** at L471-L475, L515-L517, L542-L543, L593-L598, L639-L649, L743-L747, L765-L774,
 L834-L848, L871-L875 and L899-L903; the **contingency-table move** (announcement L677-L680,
 table L682-L717, under B3 sentence 3); **F-U1..F-U6** as one contiguous list at L909-L944
-including F-U3's `Owner:` line; the file's **terminal complete sentence** at L1106-L1114;
+including F-U3's `Owner:` line; and the file's **terminal complete sentence**, which after the R-0021
+tail repair is the non-authorisation sentence now whole at L1378 (the "The decision." paragraph
+ends complete at L1116-L1124, as it did before, but it is not the FILE's terminal sentence);
 **X2**'s arithmetic inserted verbatim with 240 -> 128; and **X3**'s owner fields, confirmed
 set to `systems-researcher` on both E-00014 and E-00015 by reading their front matter.
 
@@ -1290,4 +1434,3 @@ freeze, `SUITE_TOLERANCE = 0.02`, the per-game cap NONE and the X-1/X-2/X-3 bran
 training, fitting, extraction, counting, feasibility pass or SPRT generation ran, and no
 holdout was read. E-0013 remains `status: PENDING`; per R-0020 the flip to RUNNING requires a
 fresh re-critique, which this record does not pre-authorise.
-move it, and per R-0020 the flip requires a fresh re-critique to confirm.
