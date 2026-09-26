@@ -444,6 +444,17 @@ TBD.
 > correction is recorded HERE as a dated correction note plus a follow-up obligation
 > (see B5 and the Follow-Up section), never as an edit to that record.
 
+> **REPAIR NOTICE (2026-09-26, under R-0020's licence).** Review found THIS ADDENDUM to be
+> a truncated, interleaved document and it has been REPAIRED IN PLACE: ten severed
+> sentences re-joined as contiguous text, one absent continuation supplied (X1-a), the
+> X-1/X-2/X-3 contingency table moved under B3 sentence 3, the follow-up obligations
+> re-joined into one list, one false clause replaced with its arithmetic (X2), and
+> disposition rows for X1 and X2 added to the table below. The addendum is therefore NOT
+> purely additive TO ITSELF, and the 'PURE ADDITIONS' line above governs only what lies
+> ABOVE this addendum. Nothing in the ORIGINAL pre-registration (L1-L428) has been edited,
+> and that is provable by hash, not by assertion - see the dated repair section at the end
+> of this record. No decision was re-opened; E-0013 remains `status: PENDING`.
+
 ### Adopted rulings carried into this addendum (from R-0019, unchanged by me)
 
 | Ruling | Disposition here |
@@ -458,6 +469,22 @@ TBD.
 ### How the findings are sorted (stated up front, so the disposition table is auditable)
 
 - **BUCKET 1 - discharged by addendum text in this document:** B1 (as a branch
+  DECISION, below), B2 sentence 1 + the unmeasured-gain acknowledgement, B3
+  sentences 1-2 + the contingency decided now, B4 sentences 1-3 + the pinned suite
+  tolerance + the freeze anchor, B5 sentences 1-2, B6's rule text, B7, the whole
+  F1-F12 freeze-audit gap, and the ten doc-nits (non-blocking).
+- **BUCKET 2 - PRE-REGISTERED, NOT RUN.** Two measurement passes, filed as their own
+  PENDING records with their own inputs, pre-registered output fields and abort
+  conditions: **E-00014** (train-only feasibility pass; the measurement half of B2/B3)
+  and **E-00015** (count-only realized-yield pass; the measurement half of B6). They
+  are executed by another seat under **HO-0015** and **HO-0016**.
+- **BUCKET 3 - BRANCH DECISION, stated with its cost:** B1. Decision: **SHRINK.**
+  Its cost, stated rather than netted against the benefit, is B1's cost items 1-4 above:
+  H-0013's second limb is left **UNANSWERED** by this run, the B1 defect is **deferred, not
+  dissolved** (obligation F-U2), and a UCI parameter-hash surface is
+  **considered-and-rejected** with its reversal condition named. No strength claim is
+  licensed by this decision, and the decision may not be re-opened after the holdout is
+  read.
 
 ---
 
@@ -486,6 +513,8 @@ and accepts only `Hash` and `EvalStage`; `src/main.cpp:133-147` parses and appli
 `(key, value)` pair but **emits no echo and no parameter hash**; and `EvalCoeffs` is a
 compiled-in static initialized in `src/eval.cpp:174-234` with no runtime loader.
 `--stage-a 5 --stage-b 5` is therefore the W-0001 stage-6 self-collision this record
+names and forbids, and `--stage-a 6 --stage-b 5` compares the hand-tuned eval against
+itself minus tempo.
 
 **Cost, stated honestly and not netted against the benefit.** SHRINK is not free:
 
@@ -511,6 +540,12 @@ compiled-in static initialized in `src/eval.cpp:174-234` with no runtime loader.
    It is recorded as considered-and-rejected, with the condition that would reverse the
    decision: if the deferred contract elects a single binary with a runtime loader
    instead of two binaries, the parameter-hash surface becomes mandatory and the loader
+   plus the surface must be pre-registered and critiqued before any strength game.
+4. **What SHRINK does buy, stated as the benefit, not as an argument.** The unexecutable
+   mandate is removed rather than re-pointed; no `src/` change and no harness change is
+   needed for THIS run; the coefficient-regeneration mechanism it needs already exists
+   and was used to produce E-0010's rungs; and no fitted artifact can be mistaken for a
+   strength result, because this run never produces one.
 
 **B1 sentence 1 (the mechanism that actually replaces S-1), as the mechanism in force:**
 
@@ -534,6 +569,17 @@ compiled-in static initialized in `src/eval.cpp:174-234` with no runtime loader.
 > `tools/e0012_sprt.py:297-299` raises unless
 > `(tier, stage_a, stage_b, cap) == (\"S\", 6, 0, None)`."
 
+**B1 sentence 1 addendum (coefficient-regeneration scope; R-0020 nit N1, 2026-09-26) -
+BINDING on the mechanism above:**
+
+> **Coefficient regeneration substitutes the coefficient block ONLY.** It must not re-run
+> a stage generator, because `write_eval_p5.py:87` emits the unsigned `score += C.tempo;`
+> while the live `src/eval.cpp:356` carries the E-0010 side-to-move-signed fix, and
+> regressing that line would break the colour-symmetry invariant that conjunct (d) gates
+> on and that B2's side-to-move frame and DN10 both depend on. `write_eval_p5.py` and
+> `src/eval.cpp` are CITED by this note and are NOT edited by it: this is a text note
+> about a script, not a change to it.
+
 **B1 sentence 2 (the stage index, which is load-bearing for gate (c)):**
 
 > "**Stage index S\\*.** `S* = 6`, pinned HERE, in this pre-registration, and not at
@@ -545,6 +591,11 @@ compiled-in static initialized in `src/eval.cpp:174-234` with no runtime loader.
 > hand-tuned artifact is the compiled-in table of `src/eval.cpp:174-234` at the pinned
 > `src/` commit. Consequence, stated so it cannot be discovered later: at S\\* = 6 the
 > `tempo` entry IS read and IS scored, so `tempo` is NOT 'NOT SCORED at S\\*' and remains
+> in the fitted set; conversely, a strength comparison against a stage-5 opponent would
+> leave `tempo` inert, which is one of the reasons the strength comparison is deferred
+> rather than run here (cost item 1 above). No claim about the fitted `tempo` value's
+> playing-strength effect may be made by this record at ANY stage, because this record
+> runs no games."
 
 ---
 
@@ -586,6 +637,16 @@ here; this is the rule that consumes its output):**
 > pre-registered, **TRAIN-ONLY** feasibility pass E-00014 MUST measure, on a game-split
 > inner partition carved from TRAIN and never touching the holdout: the attainable
 > holdout-style loss improvement `delta_star` of the adopted optimizer over the
+> hand-tuned floor under the adopted label construction, plus the per-game cluster SD
+> `s_d`, each with its own pinned seed, iteration budget and regularization. E-00014's
+> inputs, pre-registered output fields, abort conditions and executor seat are in that
+> record; the executor is another seat under HO-0015. **This record does not run
+> E-00014, does not estimate `delta_star` or `s_d` by any means, and does not read the
+> holdout to obtain either quantity.** `LOSS_MARGIN := max(0.002, 0.5 * delta_star)`, so
+> the margin can only be made more conservative than 0.002, never less. If `delta_star`
+> cannot be measured because the optimizer does not beat the floor on the inner
+> partition, the stage-(a) verdict is **INCONCLUSIVE-BY-DESIGN** and is labelled as
+> such - never FAIL, and never 'no achievement = FAIL'."
 
 ---
 
@@ -618,6 +679,42 @@ part that must not be chosen after `s_d_inner` is known. Three mutually exclusiv
 outcomes of E-00014 are each assigned a named verdict NOW, by name, in this
 pre-registration, with no discretion left to the session that reads the number:
 
+> "**Contingency table for '0.002 is undecidable at the measured `s_d`'. DECIDED HERE,
+> 2026-09-26, BEFORE E-00014 RUNS. The three branches are exhaustive and mutually
+> exclusive on the two measured quantities; no fourth branch exists and no branch may
+> be chosen later.**
+>
+> **(X-1) `s_d_inner <= 0.0101` AND `delta_star` measurable.** Then 0.002 is decidable
+> and conjunct (c) is evaluated as written against `LOSS_MARGIN = max(0.002, 0.5 *
+> delta_star)`. A CI excluding 0 at or above the margin = PASS of (c). A CI including 0
+> = **FAIL of (c)** (anti-apathetic, quality-scoped). No INCONCLUSIVE is available in
+> this branch.
+>
+> **(X-2) `s_d_inner > 0.0101` (the margin is undecidable at this dispersion) AND
+> `delta_star` measurable.** The stage-(a) verdict is **INCONCLUSIVE-BY-POWER** - a
+> named verdict, distinct from INCONCLUSIVE-BY-DESIGN, and it publishes the measured
+> `s_d_inner`, `delta_star`, the inner-partition game count, and the achieved power at
+> the 0.002 margin. It is **not** FAIL, because a power failure is not an apathetic fit;
+> it is **not** PASS, and the margin is **not** widened to manufacture decidability. The
+> fitted artifact may still be reported as PRODUCED, but the run's licensed claim is
+> limited to 'a fitted artifact exists whose holdout loss difference was not separable
+> from 0 at G ~ 200 with the measured dispersion', and conjunction (c) is recorded
+> INCONCLUSIVE-BY-POWER. Follow-up obligation F-U3 routes X-2 to a named re-decision
+> (either a larger holdout game count, or a paired design with lower `s_d`, or an
+> explicitly widened margin with its own power derivation) under a NEW
+> pre-registration - never by editing this one.
+>
+> **(X-3) `delta_star` NOT measurable, i.e. the adopted optimizer does not beat the
+> hand-tuned floor on the inner partition.** Then the attainable gain is below the
+> margin by construction and conjunct (c) is **INCONCLUSIVE-BY-DESIGN**, per B2
+> sentence 2b. Never FAIL, never 'no achievement = FAIL', never a silent re-run with a
+> different optimizer to obtain a measurable `delta_star`. The gate is **not weakened
+> silently**: X-3 is a pre-declared dead end whose only exits are (a) a new
+> pre-registration with a different label construction - which would require a new data
+> campaign and is out of scope here - or (b) a FAIL of H-0013 recorded as such at
+> E-0013 close-out. **The anti-apathetic clause is not weakened in any branch:** a fit
+> that is measurably worse than the floor, or that ties it at a feasible `s_d`, is
+> still FAIL under X-1."
 
 ---
 
@@ -644,6 +741,10 @@ once), verbatim per R-0019 with the anchor made explicit:**
 > iteration budget / clipping, the stage index S\\*, and the tactical-suite identity, N,
 > metric and **TOLERANCE (a number, not a placeholder)** - is assigned ONCE and committed
 > with its SHA-256 in the SAME pre-fit commit as the game-split map, and the holdout is
+> not read before that commit exists. A value assigned for the first time after the
+> holdout has been read is a tripwire FAIL exactly like a changed value; the existing
+> clause 'Any threshold, salt, cap, suite, or margin changed after seeing data = FAIL'
+> is extended by 'or assigned for the first time after the holdout is read'."
 
 **B4 sentence 4 (the suite tolerance is a NUMBER here, not a placeholder - the single
 most-cited OPEN in the record). Pinned value, with the reasoning that produced it:**
@@ -662,6 +763,15 @@ most-cited OPEN in the record). Pinned value, with the reasoning that produced i
 > at N = 200 the binomial standard error of a paired solution-rate difference is bounded
 > by `0.5 / sqrt(200) = 0.0354`; a tolerance at or below the noise floor would make
 > conjunct (f) a coin flip rather than a gate, and a tolerance far above it would make
+> the conjunct decorative. 0.02 sits at roughly 0.6x the worst-case paired binomial SE,
+> so a genuine large regression trips the gate and ordinary sampling variation does not;
+> a suite whose measured paired SE is materially smaller than 0.0354 makes the gate
+> STRICTER, never looser. This value may be revised ONLY by a dated addendum filed
+> BEFORE the suite is committed; after the pre-fit commit it is frozen, and any later
+> change is a tripwire FAIL. The suite IDENTITY (the FEN list and its SHA-256) is
+> assigned in the pre-fit commit per B4 sentence 2, must be independent of this
+> project's own records and of the E-0011 dataset, and must be committed with the hash
+> BEFORE any fitting job runs."
 
 ---
 
@@ -675,11 +785,28 @@ most-cited OPEN in the record). Pinned value, with the reasoning that produced i
 > `eg_pst[5][64]` tables plus items 1 and 3-6 of the free-parameter list. The clause
 > 'final choice pinned at execution preflight' is superseded by this pre-registration
 > and may not be re-opened after the holdout is read. Freezing rationale (recorded so
-> the owner does not re-litigate it): 240 extra free parameters on ~1,000 games of
+> the owner does not re-litigate it): 128 extra free parameters on ~1,000 games of
 > stage-6 self-play is the least identifiable block in the set, and E-0010 attributes
 > the positional block's +26.8 Elo to a single rung at N=200 whose CI half-width is 51.4
-> Elo. Freezing is the lower-variance choice and the one that keeps the fitted-parameter
-> count defensible against E-0011 N1's '>= 500 positions/parameter' standard."
+> Elo. Freezing is the lower-variance choice. It does NOT, however, bring the
+> fitted-parameter count within E-0011 N1's '>= 500 positions/parameter' standard, and
+> this record does not claim it does: with the KING PSTs frozen the fitted set is 683 free
+> scalars (10 non-king mg_value/eg_value, 640 from the five non-king PST tables, 20
+> pawn-structure, 2 mobility, 10 positional/king, 1 tempo) against a realized usable yield
+> of at most 76,587 positions, i.e. about 112 positions/parameter overall and about 89 on
+> the TRAIN side - roughly 4.5x short of 500, and 4.5x short is a stated limitation of the
+> all-terms scope adopted here, not a solved one. Freezing the KING PSTs (128 free
+> scalars, or 64 under the record's own `pst[s] == pst[mirror(s)]` constraint - not 240)
+> raises that ratio from about 94 to about 112; it does not reach the standard. E-0011 N1
+> derived the standard from an 'O(10^2) parameters' assumption and explicitly declined to
+> freeze the parameter count (E-0011:352-353), so the standard's premise, not this
+> record's arithmetic, is what the all-terms scope does not satisfy. The binding
+> constraint on stage (a) therefore remains the label/systematic bias E-0011 N1 already
+> named, together with the game-clustered dispersion `s_d` that E-00014 measures - not the
+> parameter count. The freeze decision itself is unaffected and is not re-opened by this
+> correction."
+
+*(Editorial, 2026-09-26, under R-0020's licence: the final clause of the sentence above - the one that read "Freezing is the lower-variance choice and the one that keeps the fitted-parameter count defensible against E-0011 N1's '>= 500 positions/parameter' standard" - was FALSE and has been DELETED and REPLACED, and "240 extra free parameters" in the same quoted block has been corrected to **128** (or 64 under `pst[s] == pst[mirror(s)]`). The replacement text is R-0020's own, inserted verbatim. Nothing else in the quoted block was touched, and the freeze DECISION is unchanged. The "(240 params)" in the F3 row of the F1-F12 table is R-0019's own item label and is left as quoted.)*
 
 **B5 sentence 2 (the ladder's citation, corrected - IN THIS RECORD ONLY):**
 
@@ -704,7 +831,21 @@ error, and a follow-up obligation is filed against E-0013's close-out:
 > disposition of a defect found in a verified historical record is a dated note in the
 > inheriting record plus an obligation, not a retroactive edit. **Status of the ladder
 > here:** the ladder is currently DISARMED - the honest band for the realized usable
-> yield is 75,600 to 76,587 against a 30,000 floor, i.e. 2.5x headroom (E-00015 measures
+> yield is 75,600 to 76,587 against a 30,000 floor, i.e. 2.5x headroom
+> (E-00015 measures the realized count; until that count exists this band remains an
+> arithmetic bound on already-measured quantities and is NOT a measurement of this
+> record's own filter, and the ladder's DISARMED status is provisional on it. If the count
+> nevertheless arms the ladder, the fallback scope it would apply is not the
+> mobility/tempo sub-set named in E-0011 N1, and the sub-set is re-derived and
+> re-registered under its own critique before any use (mobility/tempo scope; B6)
+> it; B6) - so the backwards fallback is a latent trap rather than an active error, and
+> this addendum converts it from an auto-applying rule into a rule that CANNOT auto-apply:
+> if the ladder arms, the scope is re-derived and re-registered under its own critique
+> before it is used. **Follow-up obligation F-U4:** at E-0013's close-out, the owner
+> files an addendum to E-0011 (by the seat that owns E-0011, not by the author of
+> E-0013) recording the mis-citation and superseding the fallback sentence by name, with
+> R-0019 and this note cross-referenced, so the correction is visibly downstream of the
+> ruling rather than a quiet edit."
 
 **B6 sentence 2 (the supersession, quoted verbatim so the correction is visible):**
 
@@ -728,6 +869,10 @@ error, and a follow-up obligation is filed against E-0013's close-out:
 > dataset's quiet-proxy yield; the measured per-ply figure is 76,593 and the measured
 > distinct-FEN projection is ~75,600. This matters beyond accuracy: 27,000 sits BELOW
 > the 30,000 scope floor, so adopting it would have silently ARMED the E-0011 N1
+> consequence ladder and auto-scoped the fit to the mobility/tempo subset - the subset
+> whose own cited attribution (B5) says those are the two worst terms. A figure that
+> would have quietly triggered a scope change is recorded here as refuted, with that
+> consequence named, so the next reader cannot reinstate it as a conservative estimate."
 
 ---
 
@@ -752,6 +897,10 @@ error, and a follow-up obligation is filed against E-0013's close-out:
 > colour-flipped transposition is a different normalized FEN, so the gate misses it. This
 > is sound ONLY while conjunct (d) enforces eval colour-symmetry (mirror `s ^ 56`, 0
 > full-mirror violations over 1,000 positions). **Relaxing (d) opens a live leakage
+> channel**, because the B2 side-to-move target frame plus an asymmetric eval would let a
+> colour-flipped relative carry opposite labels across the split. Conjunct (d) is
+> therefore load-bearing for leakage, not only for quality, and may not be relaxed
+> without a new leakage analysis."
 
 ---
 
@@ -779,6 +928,20 @@ error, and a follow-up obligation is filed against E-0013's close-out:
   the achieved power published in the open. Candidate re-designs (larger holdout game
   count; a paired design with lower `s_d`; an explicitly widened margin with its own
   power derivation) each require a NEW pre-registration - never an edit to this one.
+  Owner: researcher-architect. Due: at E-0013 close-out.
+- **F-U4 - the E-0011 N1 backwards-citation correction (see B5 sentence 3).** Filed as
+  an addendum to E-0011 **by the seat that owns E-0011**, at E-0013's close-out, naming
+  R-0019 and B5. E-0011 and W-0001 are NOT edited by this record. Owner: **systems-researcher**
+  (the seat named as `owner:` in E-0011's front matter). Due: E-0013 close-out.
+- **F-U5 - Q-0006 readiness gate 7 (see B7).** On any terminal verdict this record files
+  a handoff to **verification-auditor** (never the owner, never the seat that ran the
+  fit) carrying `fitted_params_sha256`, the pre-fit commit hash, the split-map hash, the
+  E-00014 and E-00015 numbers, and the full command/exit-code ledger. No adoption,
+  promotion or strength citation before VERIFIED. Owner: the E-0013 execution seat.
+  Due: at E-0013 close-out.
+- **F-U6 - DN6 routing.** Flag DEC-0010:186-187's stale "Pending: independent
+  verification" line to the DEC-0010 owner. Non-blocking, no effect on this record.
+  Owner: the DEC-0010 owner seat. Due: next DEC-0010 touch.
 
 ---
 
@@ -798,37 +961,14 @@ finding, and where a finding is only partly discharged, the row says so and says
 | **B7** | **DISCHARGED (text)** | Q-0006 readiness gate 7 quoted verbatim into the record and given teeth: a verification-auditor handoff on any terminal verdict, carrying the artifact hash, the pre-fit commit hash, the split-map hash and the E-00014/E-00015 numbers. Q-0006 is now cited (also DN7). | The handoff is filed at close-out (F-U5); the gate's CONTENT is discharged now. |
 | **F1-F12 freeze-audit gap** | **DISCHARGED item by item** | Each of F1-F12 is closed in the B4 s5 table with either a VALUE (F1, F3, F4-partial, F6-partial, F7, F8, F9, F10, F12) or an explicit "derived from <pinned input>" pointer to the single pre-fit commit (F2, F4-identity, F5, F11). No item is left as a bare first-time assignment. | Pointer-closed items are closed by the ANCHOR (the pre-fit commit), which is the mechanism R-0019 itself prescribed, not by me deferring them again. |
 | **DN1-DN10** | **RECORDED, non-blocking; 5 discharged (DN3, DN5, DN7, DN8, DN10), 4 recorded/routed (DN1, DN2, DN4, DN6), 1 recorded + carried (DN9)** | Each has a disposition row. None silently dropped. | DN6 is not this seat's file (routed). DN9's routing attaches to the deferred strength contract and is preserved in F-U2 so it is not lost. |
+| **X1 (R-0020)** | **DISCHARGED - in-place text repair of THIS addendum, 2026-09-26, under R-0020's licence** | R-0020 found this addendum to be a truncated, interleaved document: ten sentences severed at a block boundary with their continuations relocated far away, ONE continuation absent from the file, the X-1/X-2/X-3 contingency table ~340 lines from the sentence announcing it, the follow-up obligations split across this table, and the file ending mid-bullet. All ten seams are now joined as single contiguous sentences inside their own finding's section; the absent continuation is supplied as X1-a; the contingency table now sits immediately under B3 sentence 3's announcement; F-U1..F-U6 (including F-U3's stranded `Owner:/Due:` line) are one contiguous list; cost item 4 is contiguous with items 1-3; the BUCKET-1/2/3 list is restored to one place; and the file ends on a complete sentence. | The repair is a MOVE, not a rewrite: no sentence was deleted and no continuation was retyped, and every move is listed line-by-line in the dated repair section at the end of this addendum. Consequence stated rather than hidden: this ADDENDUM is therefore NOT purely additive to itself. The ORIGINAL pre-registration (L1-L428) is append-only and provably so, by hash - see the same repair section. |
+| **X2 (R-0020)** | **DISCHARGED - the false clause DELETED, the arithmetic INSERTED** | B5 sentence 1's recorded rationale claimed that freezing "keeps the fitted-parameter count defensible against E-0011 N1's '>= 500 positions/parameter' standard". That is false: 683 free scalars against at most 76,587 realized positions is ~112 positions per parameter (~89 train-side), about 4.46x short of 500, and freezing moves 94 -> 112, not to 500. The clause is deleted and replaced with R-0020's own arithmetic, and "240 extra free parameters" reads **128** (or 64 under `pst[s] == pst[mirror(s)]`). | The freeze DECISION is unchanged and is NOT re-opened by this correction. 4.46x short is now recorded as a STATED LIMITATION of the all-terms scope, not as a solved one; the binding constraints on stage (a) remain E-0011 N1's label/systematic bias and the game-clustered `s_d` that E-00014 measures. |
 
 **What is explicitly NOT claimed by this addendum.** It does not claim B1's strength
 question is answered; it does not claim a fitted artifact exists; it does not claim any
 number from E-00014 or E-00015; it does not edit R-0019, HO-0013, or any CLOSED/VERIFIED
 record; it does not flip E-0013 to RUNNING; it does not change any H-#### status; and it
 does not touch `tools/e0012_sprt.py` or any engine source file.
-
-  Owner: researcher-architect. Due: at E-0013 close-out.
-- **F-U4 - the E-0011 N1 backwards-citation correction (see B5 sentence 3).** Filed as
-  an addendum to E-0011 **by the seat that owns E-0011**, at E-0013's close-out, naming
-  R-0019 and B5. E-0011 and W-0001 are NOT edited by this record. Owner: the E-0011
-  owner seat. Due: E-0013 close-out.
-- **F-U5 - Q-0006 readiness gate 7 (see B7).** On any terminal verdict this record files
-  a handoff to **verification-auditor** (never the owner, never the seat that ran the
-  fit) carrying `fitted_params_sha256`, the pre-fit commit hash, the split-map hash, the
-  E-00014 and E-00015 numbers, and the full command/exit-code ledger. No adoption,
-  promotion or strength citation before VERIFIED. Owner: the E-0013 execution seat.
-  Due: at E-0013 close-out.
-- **F-U6 - DN6 routing.** Flag DEC-0010:186-187's stale "Pending: independent
-  verification" line to the DEC-0010 owner. Non-blocking, no effect on this record.
-  Owner: the DEC-0010 owner seat. Due: next DEC-0010 touch.
-
-> channel**, because the B2 side-to-move target frame plus an asymmetric eval would let a
-> colour-flipped relative carry opposite labels across the split. Conjunct (d) is
-> therefore load-bearing for leakage, not only for quality, and may not be relaxed
-> without a new leakage analysis."
-
-> consequence ladder and auto-scoped the fit to the mobility/tempo subset - the subset
-> whose own cited attribution (B5) says those are the two worst terms. A figure that
-> would have quietly triggered a scope change is recorded here as refuted, with that
-> consequence named, so the next reader cannot reinstate it as a conservative estimate."
 
 **B6 sentence 4 (the pre-registered rule for what the measured count DOES to the scope
 floor - decided now, so the floor is not renegotiable once the number exists):**
@@ -868,15 +1008,6 @@ floor - decided now, so the floor is not renegotiable once the number exists):**
 > Follow-Up obligation, F-U5; Q-0006 is hereby CITED by this record (also discharging
 > doc-nit DN7)."
 
-> it; B6) - so the backwards fallback is a latent trap rather than an active error, and
-> this addendum converts it from an auto-applying rule into a rule that CANNOT auto-apply:
-> if the ladder arms, the scope is re-derived and re-registered under its own critique
-> before it is used. **Follow-up obligation F-U4:** at E-0013's close-out, the owner
-> files an addendum to E-0011 (by the seat that owns E-0011, not by the author of
-> E-0013) recording the mis-citation and superseding the fallback sentence by name, with
-> R-0019 and this note cross-referenced, so the correction is visibly downstream of the
-> ruling rather than a quiet edit."
-
 ---
 
 ### B6 - The yield: the "measured" label was applied to a number measured for a different filter
@@ -908,16 +1039,6 @@ pre-registered in E-00015, not run here), verbatim per R-0019:**
 > mobility/tempo subset on this citation; it MUST be re-derived and re-registered under
 > its own critique before it is applied."
 
-> the conjunct decorative. 0.02 sits at roughly 0.6x the worst-case paired binomial SE,
-> so a genuine large regression trips the gate and ordinary sampling variation does not;
-> a suite whose measured paired SE is materially smaller than 0.0354 makes the gate
-> STRICTER, never looser. This value may be revised ONLY by a dated addendum filed
-> BEFORE the suite is committed; after the pre-fit commit it is frozen, and any later
-> change is a tripwire FAIL. The suite IDENTITY (the FEN list and its SHA-256) is
-> assigned in the pre-fit commit per B4 sentence 2, must be independent of this
-> project's own records and of the E-0011 dataset, and must be committed with the hash
-> BEFORE any fitting job runs."
-
 **B4 sentence 5 (the freeze-audit gap, closed item by item - F1-F12).** R-0019's central
 structural point is adopted verbatim: the existing tripwire binds *changes* and does not
 bind *first-time assignments*, and every value in F1-F10 is a first-time assignment.
@@ -938,11 +1059,6 @@ Each is closed here with a value or an explicit pointer to a pinned input:
 | F11 | `LOSS_MARGIN = 0.002` attainability | **POINTER**: E-00014, plus the B3 contingency table X-1/X-2/X-3 decided in advance. The NUMBER stays 0.002 as the floor; only its attainability is measured. |
 | F12 | Per-game position cap | **VALUE: NONE** (B4 s3), closed and not re-openable. |
 
-> not read before that commit exists. A value assigned for the first time after the
-> holdout has been read is a tripwire FAIL exactly like a changed value; the existing
-> clause 'Any threshold, salt, cap, suite, or margin changed after seeing data = FAIL'
-> is extended by 'or assigned for the first time after the holdout is read'."
-
 **B4 sentence 3 (Q-SUITE: substitution path closed; the critic's cap answer), verbatim
 per R-0019:**
 
@@ -957,43 +1073,6 @@ per R-0019:**
 > overlap-0 gate already carry the entire leakage obligation. This answer closes the
 > clause 'If the critic requires a cap' and may not be re-opened."
 
-> "**Contingency table for '0.002 is undecidable at the measured `s_d`'. DECIDED HERE,
-> 2026-09-26, BEFORE E-00014 RUNS. The three branches are exhaustive and mutually
-> exclusive on the two measured quantities; no fourth branch exists and no branch may
-> be chosen later.**
->
-> **(X-1) `s_d_inner <= 0.0101` AND `delta_star` measurable.** Then 0.002 is decidable
-> and conjunct (c) is evaluated as written against `LOSS_MARGIN = max(0.002, 0.5 *
-> delta_star)`. A CI excluding 0 at or above the margin = PASS of (c). A CI including 0
-> = **FAIL of (c)** (anti-apathetic, quality-scoped). No INCONCLUSIVE is available in
-> this branch.
->
-> **(X-2) `s_d_inner > 0.0101` (the margin is undecidable at this dispersion) AND
-> `delta_star` measurable.** The stage-(a) verdict is **INCONCLUSIVE-BY-POWER** - a
-> named verdict, distinct from INCONCLUSIVE-BY-DESIGN, and it publishes the measured
-> `s_d_inner`, `delta_star`, the inner-partition game count, and the achieved power at
-> the 0.002 margin. It is **not** FAIL, because a power failure is not an apathetic fit;
-> it is **not** PASS, and the margin is **not** widened to manufacture decidability. The
-> fitted artifact may still be reported as PRODUCED, but the run's licensed claim is
-> limited to 'a fitted artifact exists whose holdout loss difference was not separable
-> from 0 at G ~ 200 with the measured dispersion', and conjunction (c) is recorded
-> INCONCLUSIVE-BY-POWER. Follow-up obligation F-U3 routes X-2 to a named re-decision
-> (either a larger holdout game count, or a paired design with lower `s_d`, or an
-> explicitly widened margin with its own power derivation) under a NEW
-> pre-registration - never by editing this one.
->
-> **(X-3) `delta_star` NOT measurable, i.e. the adopted optimizer does not beat the
-> hand-tuned floor on the inner partition.** Then the attainable gain is below the
-> margin by construction and conjunct (c) is **INCONCLUSIVE-BY-DESIGN**, per B2
-> sentence 2b. Never FAIL, never 'no achievement = FAIL', never a silent re-run with a
-> different optimizer to obtain a measurable `delta_star`. The gate is **not weakened
-> silently**: X-3 is a pre-declared dead end whose only exits are (a) a new
-> pre-registration with a different label construction - which would require a new data
-> campaign and is out of scope here - or (b) a FAIL of H-0013 recorded as such at
-> E-0013 close-out. **The anti-apathetic clause is not weakened in any branch:** a fit
-> that is measurably worse than the floor, or that ties it at a feasible `s_d`, is
-> still FAIL under X-1."
-
 **B3 sentence 4 (the clause in the Power And Sample Size section that must not survive
 beside B3 - quoted verbatim and superseded):**
 
@@ -1007,23 +1086,6 @@ beside B3 - quoted verbatim and superseded):**
 > 'the verdict is FAIL ... not INCONCLUSIVE' is withdrawn because it converts a POWER
 > failure into an apathetic-fit rejection it was not. The margin itself is NOT lowered
 > and the band is NOT widened."
-
-> hand-tuned floor under the adopted label construction, plus the per-game cluster SD
-> `s_d`, each with its own pinned seed, iteration budget and regularization. E-00014's
-> inputs, pre-registered output fields, abort conditions and executor seat are in that
-> record; the executor is another seat under HO-0015. **This record does not run
-> E-00014, does not estimate `delta_star` or `s_d` by any means, and does not read the
-> holdout to obtain either quantity.** `LOSS_MARGIN := max(0.002, 0.5 * delta_star)`, so
-> the margin can only be made more conservative than 0.002, never less. If `delta_star`
-> cannot be measured because the optimizer does not beat the floor on the inner
-> partition, the stage-(a) verdict is **INCONCLUSIVE-BY-DESIGN** and is labelled as
-> such - never FAIL, and never 'no achievement = FAIL'."
-
-> in the fitted set; conversely, a strength comparison against a stage-5 opponent would
-> leave `tempo` inert, which is one of the reasons the strength comparison is deferred
-> rather than run here (cost item 1 above). No claim about the fitted `tempo` value's
-> playing-strength effect may be made by this record at ANY stage, because this record
-> runs no games."
 
 **B1 sentence 3 (the verdict vocabulary of the amended record, so nothing is dropped
 silently):**
@@ -1041,16 +1103,6 @@ silently):**
 > kind, which trivially satisfies (h) and is the reason (h) is retained rather than
 > dropped."
 
-   plus the surface must be pre-registered and critiqued before any strength game.
-4. **What SHRINK does buy, stated as the benefit, not as an argument.** The unexecutable
-   mandate is removed rather than re-pointed; no `src/` change and no harness change is
-   needed for THIS run; the coefficient-regeneration mechanism it needs already exists
-   and was used to produce E-0010's rungs; and no fitted artifact can be mistaken for a
-   strength result, because this run never produces one.
-
-names and forbids, and `--stage-a 6 --stage-b 5` compares the hand-tuned eval against
-itself minus tempo.
-
 **The decision.** This record's first training run is **fit-quality-only**. In this
 record's own stage vocabulary: stage (a) (the frozen-holdout logistic-loss comparison)
 and the quality-conservation gates RUN; **stage (b), the Tier-S strength SPRT, does NOT
@@ -1061,13 +1113,122 @@ deferred.) Conjunct (e) is therefore re-designated NOT-EVALUATED-IN-THIS-RUN -
 explicitly, by name, below - and no outcome of this run may be reported as a strength
 result.
 
-  DECISION, below), B2 sentence 1 + the unmeasured-gain acknowledgement, B3
-  sentences 1-2 + the contingency decided now, B4 sentences 1-3 + the pinned suite
-  tolerance + the freeze anchor, B5 sentences 1-2, B6's rule text, B7, the whole
-  F1-F12 freeze-audit gap, and the ten doc-nits (non-blocking).
-- **BUCKET 2 - PRE-REGISTERED, NOT RUN.** Two measurement passes, filed as their own
-  PENDING records with their own inputs, pre-registered output fields and abort
-  conditions: **E-00014** (train-only feasibility pass; the measurement half of B2/B3)
-  and **E-00015** (count-only realized-yield pass; the measurement half of B6). They
-  are executed by another seat under **HO-0015** and **HO-0016**.
-- **BUCKET 3 - BRANCH DECISION, stated with its cost:** B1. Decision: **SHRINK.**
+---
+
+### Dated repair of THIS addendum under R-0020 - 2026-09-26 (in-place; the original is untouched)
+
+**Why this section exists.** R-0020 (adversarial-reviewer, HO-0014) ruled **NOT CLEAN** on this
+addendum and left E-0013 at `status: PENDING`. Its substance largely held and no decision was
+re-opened; its two blocking findings were defects of this document's TEXT, and this section
+records what was found and what was done about it.
+
+**X1 - the addendum was a truncated, interleaved document.** Ten sentences were severed at a
+block boundary, each ending mid-clause with its continuation relocated far away; ONE
+continuation was absent from the file entirely; the X-1/X-2/X-3 contingency table sat ~340
+lines from the sentence that announces it; the F-U1..F-U6 obligations were split across the
+disposition table; and the file ended mid-bullet. Four of the seams sat on normatively critical
+text: B1 sentence 2's `tempo` conclusion, B2 sentence 2b's `LOSS_MARGIN` rule, B4 sentence 2's
+freeze anchor (the instrument F2, F5, F10 and F11 close against) and B4 sentence 4's
+`SUITE_TOLERANCE` derivation.
+
+**X2 - B5's freezing rationale was arithmetically false.** The claim that freezing "keeps the
+fitted-parameter count defensible against E-0011 N1's '>= 500 positions/parameter' standard" is
+false by a factor of ~4.46, and "240 extra free parameters" is not the KING-PST count. The false
+clause was deleted, R-0020's own arithmetic was inserted verbatim, and 240 reads 128. The freeze
+DECISION is untouched.
+
+**X3 - ownership.** `owner: systems-researcher` set on E-00014 and E-00015, the seat HO-0015 and
+HO-0016 dispatch to. One front-matter line each.
+
+**Nits.** N1 (R-0020's nit, a regression hazard rather than cosmetics): a binding note was added
+to B1 sentence 1 that coefficient regeneration substitutes the coefficient block ONLY and must
+not re-run a stage generator, because `write_eval_p5.py:87` emits the unsigned
+`score += C.tempo;` while the live `src/eval.cpp:356` carries the E-0010 side-to-move-signed
+fix - regressing that line would break the colour-symmetry invariant that conjunct (d) gates on
+and that B2's side-to-move frame and DN10 both depend on. N2: F-U4's owner seat is now named
+literally (`systems-researcher`). N3: this disposition table gained rows for X1 and X2.
+
+**Per-seam ledger.** "before" is the `ce845c5` line numbering R-0020 cited; "after" is this
+file's current numbering. Every continuation was MOVED byte-for-byte, not retyped; each joined
+sentence is now one contiguous run of lines inside its own finding's section.
+
+| # | Head (before) | Continuation (before) | The one sentence now occupies | What that unblocks |
+|---|---|---|---|---|
+| 1 | L460 `B1 (as a branch` | L1064-L1067 | L471-L475 | the three-bucket list is one list again, at L471-L487 |
+| 2 | L488 `...this record` | L1051-L1052 | L515-L517 | B1's self-collision diagnosis parses in place |
+| 3 | L513 `...and the loader` | L1044 | L542-L543 | the UCI-surface reversal condition is complete |
+| 4 | L547 `...and remains` | L1022-L1026 | L593-L598 | **the S\* conclusion has an object again** |
+| 5 | L588 `...over the` | L1011-L1020 | L639-L649 | **the `LOSS_MARGIN` rule is one sentence** |
+| 6 | L646 `...and the holdout is` | L941-L944 | L743-L747 | **the freeze anchor is unsevered; F2, F5, F10 and F11 rest on it** |
+| 7 | L664 `...would make` | L911-L919 | L765-L774 | **the `SUITE_TOLERANCE` derivation is whole** |
+| 8 | L707 `i.e. 2.5x headroom` | X1-a (author's text, new) + L871-L878 | L834-L848 | the ladder's DISARMED status is provisional, and reasoned |
+| 9 | L730 `...ARMED the E-0011 N1` | L828-L831 | L871-L875 | the ~27k refutation's scope-changing consequence is attached |
+| 10 | L754 `**Relaxing (d) opens a live leakage` | L823-L826 | L899-L903 | DN10's explicit-dependency sentence is one sentence |
+
+**X1-a - the one seam that needed authorial text.** R-0020 deliberately refused to guess it and
+supplied a conforming template instead. **I ADOPTED THAT TEMPLATE VERBATIM** (R-0020:696-701)
+rather than rewriting it in my own words, and it satisfies all three of R-0020's stated
+conditions: (a) it finishes the sentence begun at old L707 by naming **E-00015** as the pass
+that measures the realized count and by stating that the ladder's DISARMED status is
+**provisional on** that count; (b) it says explicitly that the band "is NOT a measurement of this
+record's own filter"; (c) it ends on the parenthetical "... (mobility/tempo scope; B6)", whose
+referent is the fallback scope, and so leads grammatically into the existing tail at old L871
+("it; B6) - so the backwards fallback is a latent trap..."). The head's dangling
+"(E-00015 measures" was the opening of that same parenthetical, so the template absorbed it
+rather than duplicating it.
+
+**Other moves, same rule - nothing deleted, nothing retyped.** The X-1/X-2/X-3 contingency table
+moved from old L960-L995 to L682-L717, immediately under B3 sentence 3's announcement at
+L677-L680, with no wording change. F-U3's stranded `Owner:/Due:` line (old L808) and the
+F-U4/F-U5/F-U6 bullets (old L809-L821) rejoined F-U1..F-U3, now one contiguous list at
+L909-L944. B1's cost item 4 (old L1045-L1049) rejoined items 1-3 at L544-L548. The BUCKET-2 and
+BUCKET-3 bullets (old L1068-L1073) rejoined BUCKET-1 at L476-L487, and BUCKET 3's promised cost is
+now stated in the bullet itself, in the words B1's cost items 1-4 already use. The addendum's
+narrative now ends on a complete sentence at L1106-L1114 - the old L1073 bullet "Decision:
+**SHRINK.**" had no continuation of any kind - and this dated repair section follows it.
+
+**N1, N2, N3, placed.** N1 is a binding note at L572-L581, immediately after B1 sentence 1's
+quoted mechanism. N2 names F-U4's owner seat literally at L934-L935. N3 added a disposition-table
+row for X1 and one for X2 to the addendum-to-addendum table, so no future reader is told by that
+table that everything was already closed.
+
+**X2, placed.** The false clause was deleted and R-0020's replacement inserted at L791-L807; the
+"240 extra free parameters" in the same quoted block reads **128** at L788; and a dated editorial
+note at L809 records that this was an in-place replacement of quoted text, quotes the old wording,
+and states that the freeze DECISION is unchanged. The "(240 params)" in the F3 row of the F1-F12
+table is R-0019's own item label and is left as quoted, for the same reason E-0011 is not edited.
+
+**One observation recorded, not acted on.** "B5 sentence 2 (the ladder's citation, corrected)"
+at L811 announces quoted text that sits far away under B6 sentence 1. R-0020 did not enumerate
+this as a seam, and the paragraph it points at is complete rather than severed, so it was left
+exactly as found and is flagged here for the next reviewer rather than silently moved.
+
+**The append-only contract, proved by hash rather than asserted.** Lines 1-428 of this file -
+the original pre-registration, above the addendum - are byte-identical to the same lines at
+`ce845c5`. SHA-256 over lines 1..428 including their line terminators, UTF-8, 22,270 bytes:
+
+- `git show ce845c5:research/experiments/E-0013-h-0013-...-stage-5.md`, lines 1-428 ->
+  `b04fd5a42d463bbb7044c18c7e54916aab852ff1965eafbb18642138d8200ce6`
+- this working file, lines 1-428 ->
+  `b04fd5a42d463bbb7044c18c7e54916aab852ff1965eafbb18642138d8200ce6`
+
+Equal. **The ORIGINAL is append-only and provably so. The ADDENDUM was found corrupt by review
+and repaired IN PLACE under that review's licence** (R-0020: "move that text, not rewrite it";
+"delete the false clause and replace it"). That is why the historical `648 additions / 0
+deletions` numstat over `ce845c5..HEAD` no longer reads zero-deletions. That is stated here
+rather than papered over, and the distinction is the point: the append-only rule protects the
+pre-registration, and the addendum was corrupt inside the very document the review examined.
+
+**A note on the append-only check itself.** `git diff --numstat HEAD -- <E-0013 path>` returns
+EMPTY on a clean tree and therefore cannot distinguish "add-only" from "nothing changed". Any
+append-only evidence line must name a baseline commit - here `ce845c5` for the pre-repair
+addendum, or `4478c3a` for the pre-addendum file.
+
+**What was NOT touched.** No decision: SHRINK stands, the KING-PST freeze stands,
+`SUITE_TOLERANCE = 0.02` stands, the per-game cap stays NONE, and the X-1/X-2/X-3 branches stand
+exactly as decided. Nothing above L429 was edited. R-0019, R-0020, HO-0013, HO-0014, E-0011,
+E-0012, W-0001, W-0005, RUN-0002, RUN-0003, R-0017 and R-0018 are untouched, as is every H-####
+text and status; no `tools/` or `src/` file was edited (N1 is a text note about a script, not a
+change to it); no training, fitting, extraction, counting, feasibility pass or SPRT generation
+ran; no holdout was read. E-0013 remains `status: PENDING` - this repair is not authorisation to
+move it, and per R-0020 the flip requires a fresh re-critique to confirm.

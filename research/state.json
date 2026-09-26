@@ -843,7 +843,9 @@
         "tools/e0012_sprt.py"
       ],
       "commits_mentioned": [
-        "7348f89"
+        "4478c3a",
+        "7348f89",
+        "ce845c5"
       ],
       "kind": "experiment",
       "record": "E-0013",
@@ -1350,6 +1352,20 @@
     },
     {
       "code_files": [
+        "src/eval.cpp"
+      ],
+      "commits_mentioned": [
+        "4478c3a",
+        "ce845c5"
+      ],
+      "kind": "session",
+      "record": "S-0028",
+      "rel": "sessions/S-0028-r-0020-repair-of-the-e-0013-addendum-10-seams-joined-contingency-table-moved-f-u1-f-u6-rejoined-x2-arithmetic-inserted-x3-owners-set-e-0013-stays-pending.md",
+      "status": "CLOSED",
+      "title": "R-0020 repair of the E-0013 addendum: 10 seams joined, contingency table moved, F-U1..F-U6 rejoined, X2 arithmetic inserted, X3 owners set; E-0013 stays PENDING"
+    },
+    {
+      "code_files": [
         "tools/e0011_check.py",
         "tools/e0011_generate.py",
         "tools/e0012_sprt.py",
@@ -1618,7 +1634,7 @@
       "title": "Gate 0 unrunnable: Device Guard hard-blocks kana.exe (every build, every path)"
     }
   ],
-  "generated": "2026-09-26T15:04:27",
+  "generated": "2026-09-26T15:40:07",
   "metrics": {
     "by_kind": {
       "agent_profile": 1,
@@ -1638,12 +1654,12 @@
       "report": 13,
       "review": 20,
       "round_megaprompt": 2,
-      "session": 27,
+      "session": 28,
       "work": 7
     },
     "by_status": {
       "ACTIVE": 14,
-      "CLOSED": 27,
+      "CLOSED": 28,
       "COMPLETED": 28,
       "DONE": 18,
       "DRAFT": 1,
@@ -1660,10 +1676,10 @@
     "contradiction_candidates": 0,
     "dangling_ids": 11,
     "duplicate_candidates": 2,
-    "edges_total": 2886,
+    "edges_total": 2956,
     "legacy_experiments_without_pre_registration": 6,
     "open_questions": 8,
-    "records_total": 182,
+    "records_total": 183,
     "revival_candidates": 5
   },
   "questions_all": [
@@ -2055,15 +2071,6 @@
   "timeline_tail": [
     {
       "example": false,
-      "id": "R-0014",
-      "kind": "review",
-      "rel": "reviews/R-0014-critique-e-0011-addenda-b1-b2-b3-response-ruling.md",
-      "status": "COMPLETED",
-      "title": "R 0014 critique e 0011 addenda b1 b2 b3 response ruling",
-      "when": "2026-09-23"
-    },
-    {
-      "example": false,
       "id": "R-0015",
       "kind": "review",
       "rel": "reviews/R-0015-critique-e-0012-addenda-b1-b2-n4-null-pair-ruling.md",
@@ -2411,6 +2418,15 @@
       "rel": "sessions/S-0027-ho-0014-re-critique-of-the-e-0013-addendum-vs-r-0019-b1-b7-not-clean-on-two-new-blocking-findings-x1-truncated-interleaved-addendum-x2-false-parameter-count-rationale-all-three-integrity-properties-hold.md",
       "status": "CLOSED",
       "title": "HO-0014 re-critique of the E-0013 addendum vs R-0019 B1-B7 - NOT CLEAN on two new blocking findings (X1 truncated/interleaved addendum, X2 false parameter-count rationale); all three integrity properties HOLD",
+      "when": "2026-09-26"
+    },
+    {
+      "example": false,
+      "id": "S-0028",
+      "kind": "session",
+      "rel": "sessions/S-0028-r-0020-repair-of-the-e-0013-addendum-10-seams-joined-contingency-table-moved-f-u1-f-u6-rejoined-x2-arithmetic-inserted-x3-owners-set-e-0013-stays-pending.md",
+      "status": "CLOSED",
+      "title": "R-0020 repair of the E-0013 addendum: 10 seams joined, contingency table moved, F-U1..F-U6 rejoined, X2 arithmetic inserted, X3 owners set; E-0013 stays PENDING",
       "when": "2026-09-26"
     }
   ]

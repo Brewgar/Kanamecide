@@ -7,7 +7,7 @@ result: null
 elo_change: null
 hypothesis: H-0013
 priority: high
-owner: null
+owner: systems-researcher
 pre_registered: 2026-09-26
 example: false
 created: 2026-09-26

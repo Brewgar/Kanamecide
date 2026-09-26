@@ -209,6 +209,7 @@
 - [S-0025](sessions/S-0025-e-0013-addendum-discharging-r-0019-b1-b7-shrink-branch-e-00014-e-00015-pre-registered-ho-0014-15-16.md) — E-0013 addendum discharging R-0019 B1-B7 (SHRINK branch) + E-00014/E-00015 pre-registered + HO-0014/15/16 — status=CLOSED
 - [S-0026](sessions/S-0026-mechanical-repair-of-ho-0014-15-16-section-stranding-and-two-cut-sentences.md) — Mechanical repair of HO-0014/15/16 section stranding and two cut sentences — status=CLOSED
 - [S-0027](sessions/S-0027-ho-0014-re-critique-of-the-e-0013-addendum-vs-r-0019-b1-b7-not-clean-on-two-new-blocking-findings-x1-truncated-interleaved-addendum-x2-false-parameter-count-rationale-all-three-integrity-properties-hold.md) — HO-0014 re-critique of the E-0013 addendum vs R-0019 B1-B7 - NOT CLEAN on two new blocking findings (X1 truncated/interleaved addendum, X2 false parameter-count rationale); all three integrity properties HOLD — status=CLOSED
+- [S-0028](sessions/S-0028-r-0020-repair-of-the-e-0013-addendum-10-seams-joined-contingency-table-moved-f-u1-f-u6-rejoined-x2-arithmetic-inserted-x3-owners-set-e-0013-stays-pending.md) — R-0020 repair of the E-0013 addendum: 10 seams joined, contingency table moved, F-U1..F-U6 rejoined, X2 arithmetic inserted, X3 owners set; E-0013 stays PENDING — status=CLOSED
 
 ## Unrendered Records (bug — report this)
 
