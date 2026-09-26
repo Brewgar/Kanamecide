@@ -1,7 +1,7 @@
 # Research State (GENERATED — do not edit)
 
 Derived from the record store by `research.py state`. Regenerate after every change.
-Generated: 2026-09-26T01:12:25; schema 2.
+Generated: 2026-09-26T10:12:03; schema 2.
 Every entry is a PROJECTION of the linked records — follow them before believing.
 
 ## Current best beliefs (hypotheses with measured weight)
@@ -43,8 +43,6 @@ Every entry is a PROJECTION of the linked records — follow them before believi
 - hypothesis **H-0002-magic-stub** Magic Bitboards with PEXT Provide >=3x NPS Speedup — SUPERSEDED. No revisit condition recorded.
 
 ## Recent timeline
-- 2026-09-24 session S-0018 (CLOSED) : Post-HO-0009 owner handoffs and E-0012 live-validation routing
-- 2026-09-25 experiment E-0012 (COMPLETED) : E-0012 — E-SPRT-lite comparison harness (pre-registered, DEC-0010 tiers), offline-validated on retained E-0010 data
 - 2026-09-25 handoff HO-0010 (DONE) : Close W-0001 after R-0017 independent verification
 - 2026-09-25 handoff HO-0011 (DONE) : Execute E-0012 live known-difference and null-pair controls
 - 2026-09-25 handoff HO-0012 (DONE) : Independent verification: W-0005 E-0012 live runs RUN-0002 and RUN-0003
@@ -56,8 +54,10 @@ Every entry is a PROJECTION of the linked records — follow them before believi
 - 2026-09-25 work W-0001 (DONE) : E-0011 self-play data pipeline (pre-register, build, run, verify)
 - 2026-09-25 work W-0005 (DONE) : E-SPRT-lite comparison harness: pre-register, build, validate against known difference
 - 2026-09-26 experiment E-0013 (PENDING) : E-0013 — H-0013 Texel fit on the verified E-0011 dataset (game-split holdout + Tier-S SPRT vs pinned stage 5)
-- 2026-09-26 handoff HO-0013 (REQUESTED) : Critique E-0013 pre-registration (H-0013 Texel fit contract) before any running
+- 2026-09-26 handoff HO-0013 (DONE) : Critique E-0013 pre-registration (H-0013 Texel fit contract) before any running
+- 2026-09-26 review R-0019 (COMPLETED) : R 0019 e 0013 pre registration critique h 0013 texel fit contract ho 0013 six question ruling
 - 2026-09-26 session S-0023 (CLOSED) : Draft E-0013 Texel pre-registration (PENDING) + file HO-0013 critique handoff
+- 2026-09-26 session S-0024 (CLOSED) : HO-0013 / R-0019 — critique of the E-0013 Texel pre-registration: NOT CLEAN, seven blocking findings, E-0013 stays PENDING
 
 ## Metrics
 ```
@@ -78,34 +78,34 @@ Every entry is a PROJECTION of the linked records — follow them before believi
     "profile": 4,
     "question": 8,
     "report": 13,
-    "review": 18,
+    "review": 19,
     "round_megaprompt": 2,
-    "session": 23,
+    "session": 24,
     "work": 7
   },
   "by_status": {
     "ACTIVE": 14,
-    "CLOSED": 23,
-    "COMPLETED": 26,
-    "DONE": 16,
+    "CLOSED": 24,
+    "COMPLETED": 27,
+    "DONE": 17,
     "DRAFT": 1,
     "IN_PROGRESS": 2,
     "OPEN": 28,
     "PENDING": 4,
     "RECORDED": 2,
     "REGISTERED": 8,
-    "REQUESTED": 2,
+    "REQUESTED": 1,
     "RESOLVED": 1,
     "SUPERSEDED": 4
   },
   "code_files": 25,
   "contradiction_candidates": 0,
-  "dangling_ids": 12,
+  "dangling_ids": 11,
   "duplicate_candidates": 2,
-  "edges_total": 2431,
+  "edges_total": 2557,
   "legacy_experiments_without_pre_registration": 6,
   "open_questions": 8,
-  "records_total": 171,
+  "records_total": 173,
   "revival_candidates": 5
 }
 

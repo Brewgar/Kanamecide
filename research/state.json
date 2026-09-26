@@ -841,13 +841,17 @@
     },
     {
       "code_files": [
+        "src/eval.h",
+        "src/main.cpp",
         "tools/e0012_sprt.py"
       ],
-      "commits_mentioned": [],
+      "commits_mentioned": [
+        "d9efffd"
+      ],
       "kind": "handoff",
       "record": "HO-0013",
       "rel": "handoffs/HO-0013-critique-e-0013-pre-registration-h-0013-texel-fit-contract-before-any-running.md",
-      "status": "REQUESTED",
+      "status": "DONE",
       "title": "Critique E-0013 pre-registration (H-0013 Texel fit contract) before any running"
     },
     {
@@ -1024,6 +1028,23 @@
     },
     {
       "code_files": [
+        "src/_write_eval.py",
+        "src/eval.cpp",
+        "src/eval.h",
+        "src/main.cpp",
+        "tools/e0011_check.py",
+        "tools/e0011_generate.py",
+        "tools/e0012_sprt.py"
+      ],
+      "commits_mentioned": [],
+      "kind": "review",
+      "record": "R-0019",
+      "rel": "reviews/R-0019-e-0013-pre-registration-critique-h-0013-texel-fit-contract-ho-0013-six-question-ruling.md",
+      "status": "COMPLETED",
+      "title": "R 0019 e 0013 pre registration critique h 0013 texel fit contract ho 0013 six question ruling"
+    },
+    {
+      "code_files": [
         "tools/e0011_check.py",
         "tools/e0011_generate.py",
         "tools/e0012_sprt.py"
@@ -1146,6 +1167,23 @@
       "rel": "sessions/S-0023-draft-e-0013-texel-pre-registration-pending-plus-ho-0013-critique-handoff.md",
       "status": "CLOSED",
       "title": "Draft E-0013 Texel pre-registration (PENDING) + file HO-0013 critique handoff"
+    },
+    {
+      "code_files": [
+        "src/_write_eval.py",
+        "src/eval.h",
+        "src/main.cpp",
+        "tools/e0011_check.py",
+        "tools/e0012_sprt.py"
+      ],
+      "commits_mentioned": [
+        "d9efffd"
+      ],
+      "kind": "session",
+      "record": "S-0024",
+      "rel": "sessions/S-0024-ho-0013-r-0019-e-0013-texel-pre-registration-critique-not-clean-seven-blocking-findings.md",
+      "status": "CLOSED",
+      "title": "HO-0013 / R-0019 — critique of the E-0013 Texel pre-registration: NOT CLEAN, seven blocking findings, E-0013 stays PENDING"
     },
     {
       "code_files": [
@@ -1417,7 +1455,7 @@
       "title": "Gate 0 unrunnable: Device Guard hard-blocks kana.exe (every build, every path)"
     }
   ],
-  "generated": "2026-09-26T01:12:25",
+  "generated": "2026-09-26T10:12:03",
   "metrics": {
     "by_kind": {
       "agent_profile": 1,
@@ -1435,34 +1473,34 @@
       "profile": 4,
       "question": 8,
       "report": 13,
-      "review": 18,
+      "review": 19,
       "round_megaprompt": 2,
-      "session": 23,
+      "session": 24,
       "work": 7
     },
     "by_status": {
       "ACTIVE": 14,
-      "CLOSED": 23,
-      "COMPLETED": 26,
-      "DONE": 16,
+      "CLOSED": 24,
+      "COMPLETED": 27,
+      "DONE": 17,
       "DRAFT": 1,
       "IN_PROGRESS": 2,
       "OPEN": 28,
       "PENDING": 4,
       "RECORDED": 2,
       "REGISTERED": 8,
-      "REQUESTED": 2,
+      "REQUESTED": 1,
       "RESOLVED": 1,
       "SUPERSEDED": 4
     },
     "code_files": 25,
     "contradiction_candidates": 0,
-    "dangling_ids": 12,
+    "dangling_ids": 11,
     "duplicate_candidates": 2,
-    "edges_total": 2431,
+    "edges_total": 2557,
     "legacy_experiments_without_pre_registration": 6,
     "open_questions": 8,
-    "records_total": 171,
+    "records_total": 173,
     "revival_candidates": 5
   },
   "questions_all": [
@@ -1854,24 +1892,6 @@
   "timeline_tail": [
     {
       "example": false,
-      "id": "R-0010",
-      "kind": "review",
-      "rel": "reviews/R-0010-independent-verification-w-0002-d-0007-dec-0010-r-0009-occupant-4.md",
-      "status": "COMPLETED",
-      "title": "R 0010 independent verification w 0002 d 0007 dec 0010 r 0009 occupant 4",
-      "when": "2026-09-22"
-    },
-    {
-      "example": false,
-      "id": "R-0011",
-      "kind": "review",
-      "rel": "reviews/R-0011-critique-e-0011-pre-registration-self-play-data-pipeline.md",
-      "status": "COMPLETED",
-      "title": "R 0011 critique e 0011 pre registration self play data pipeline",
-      "when": "2026-09-22"
-    },
-    {
-      "example": false,
       "id": "R-0012",
       "kind": "review",
       "rel": "reviews/R-0012-critique-e-0012-pre-registration-and-offline-sprt-replay.md",
@@ -2199,8 +2219,17 @@
       "id": "HO-0013",
       "kind": "handoff",
       "rel": "handoffs/HO-0013-critique-e-0013-pre-registration-h-0013-texel-fit-contract-before-any-running.md",
-      "status": "REQUESTED",
+      "status": "DONE",
       "title": "Critique E-0013 pre-registration (H-0013 Texel fit contract) before any running",
+      "when": "2026-09-26"
+    },
+    {
+      "example": false,
+      "id": "R-0019",
+      "kind": "review",
+      "rel": "reviews/R-0019-e-0013-pre-registration-critique-h-0013-texel-fit-contract-ho-0013-six-question-ruling.md",
+      "status": "COMPLETED",
+      "title": "R 0019 e 0013 pre registration critique h 0013 texel fit contract ho 0013 six question ruling",
       "when": "2026-09-26"
     },
     {
@@ -2210,6 +2239,15 @@
       "rel": "sessions/S-0023-draft-e-0013-texel-pre-registration-pending-plus-ho-0013-critique-handoff.md",
       "status": "CLOSED",
       "title": "Draft E-0013 Texel pre-registration (PENDING) + file HO-0013 critique handoff",
+      "when": "2026-09-26"
+    },
+    {
+      "example": false,
+      "id": "S-0024",
+      "kind": "session",
+      "rel": "sessions/S-0024-ho-0013-r-0019-e-0013-texel-pre-registration-critique-not-clean-seven-blocking-findings.md",
+      "status": "CLOSED",
+      "title": "HO-0013 / R-0019 — critique of the E-0013 Texel pre-registration: NOT CLEAN, seven blocking findings, E-0013 stays PENDING",
       "when": "2026-09-26"
     }
   ]

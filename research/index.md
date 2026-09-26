@@ -97,6 +97,7 @@
 - [R-0016](reviews/R-0016-ruling-r-0014-b3-end-vocabulary-ns-suffix.md) — (untitled) — status=COMPLETED
 - [R-0017](reviews/R-0017-independent-verification-w-0001-e-0011-terminal-dataset-ho-0009.md) — (untitled) — status=COMPLETED
 - [R-0018](reviews/R-0018-independent-verification-w-0005-e-0012-live-runs-run-0002-and-run-0003-ho-0012.md) — (untitled) — status=COMPLETED
+- [R-0019](reviews/R-0019-e-0013-pre-registration-critique-h-0013-texel-fit-contract-ho-0013-six-question-ruling.md) — (untitled) — status=COMPLETED
 
 ## Open Questions
 
@@ -147,7 +148,6 @@
 ## Handoffs (open)
 
 - [HO-0005](handoffs/HO-0005-verify-w-0003-round2-agreement-matrix-backfill-r-0013.md) — Verify W-0003: R-0013 (Round-2 AGREEMENT_MATRIX backfill) and the untouched matrix — status=REQUESTED
-- [HO-0013](handoffs/HO-0013-critique-e-0013-pre-registration-h-0013-texel-fit-contract-before-any-running.md) — Critique E-0013 pre-registration (H-0013 Texel fit contract) before any running — status=REQUESTED
 
 ## Handoffs (closed)
 
@@ -162,6 +162,7 @@
 - [HO-0010](handoffs/HO-0010-close-w-0001-after-r-0017-independent-verification.md) — Close W-0001 after R-0017 independent verification — status=DONE
 - [HO-0011](handoffs/HO-0011-execute-e-0012-live-known-difference-and-null-pair-controls.md) — Execute E-0012 live known-difference and null-pair controls — status=DONE
 - [HO-0012](handoffs/HO-0012-independent-verification-w-0005-e-0012-live-runs-run-0002-and-run-0003.md) — Independent verification: W-0005 E-0012 live runs RUN-0002 and RUN-0003 — status=DONE
+- [HO-0013](handoffs/HO-0013-critique-e-0013-pre-registration-h-0013-texel-fit-contract-before-any-running.md) — Critique E-0013 pre-registration (H-0013 Texel fit contract) before any running — status=DONE
 
 ## Runs (live)
 
@@ -198,6 +199,7 @@
 - [S-0021](sessions/S-0021-ho-0012-independent-verification-of-w-0005-e-0012-live-runs-run-0002-and-run-0003.md) — HO-0012 independent verification of W-0005 E-0012 live runs RUN-0002 and RUN-0003 — status=CLOSED
 - [S-0022](sessions/S-0022-owner-close-out-w-0005-done-after-r-0018-verified-e-0012-completed.md) — Owner close-out: W-0005 DONE after R-0018 VERIFIED; E-0012 COMPLETED — status=CLOSED
 - [S-0023](sessions/S-0023-draft-e-0013-texel-pre-registration-pending-plus-ho-0013-critique-handoff.md) — Draft E-0013 Texel pre-registration (PENDING) + file HO-0013 critique handoff — status=CLOSED
+- [S-0024](sessions/S-0024-ho-0013-r-0019-e-0013-texel-pre-registration-critique-not-clean-seven-blocking-findings.md) — HO-0013 / R-0019 — critique of the E-0013 Texel pre-registration: NOT CLEAN, seven blocking findings, E-0013 stays PENDING — status=CLOSED
 
 ## Unrendered Records (bug — report this)
 
