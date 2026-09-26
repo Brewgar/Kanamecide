@@ -1726,7 +1726,7 @@ label. They are **not** the figures at any current HEAD, and the table did not s
 **Every figure below was recomputed by me and is labelled with the commit it was measured
 at. A number without its boundary is not evidence.**
 
-| Boundary | At `8db1c45` (R-0022's HEAD - the historical column, unchanged) | At `f03613e` (R-0023's HEAD, measured by me) | What the boundary is |
+| Boundary | At commit `8db1c45` (pinned: R-0022's commit, the historical column, unchanged) | At commit `f03613e` (pinned: R-0023's commit, measured by me - NOT a live HEAD figure) | What the boundary is |
 |---|---|---|---|
 | `4478c3a..HEAD` | 1011 insertions, 0 deletions | **1040 insertions, 0 deletions** | **the addendum has NEVER had a deletion against the original pre-registration** - the strongest true statement, and the one that discharges the append-only obligation outright |
 | `ce845c5..HEAD` | 493 insertions, 130 deletions | **522 insertions, 130 deletions** | the addendum-as-first-filed boundary; the deletions are the visible, itemised cost of the review-licensed repairs |
@@ -1759,6 +1759,44 @@ whose range contains the transition goes to `(ins + 1, del + 1)`, so
 **268 / 37**, `d3ce887..HEAD` -> **202 / 30**, `8db1c45..HEAD` -> **51 / 22**. The
 "never had a deletion" claim at the `4478c3a` boundary survives as a bounded exception of
 exactly one deletion, and that is the correct and honest form of it.
+
+## Z4 - the HEAD inside a committed column header (CORRECTED, S-0034)
+
+**Z4 is R-0024's finding, not mine, and R-0024 ruled it NON-BLOCKING and
+explicitly not required before the flip - which is why it is corrected here, in its
+own commit after the L5-only flip `6a6eb0a`, and not inside it.** It is the same
+class of defect Z3 was raised to fix - a boundary figure that does not say which
+boundary - one level down.
+
+The Z3 table header above read "At `f03613e` (R-0023's HEAD, measured by me)".
+The figures in that column were correctly pinned to `f03613e`, but the word HEAD
+inside a committed column header denotes whatever HEAD is when a reader looks, not
+what it was at `f03613e`. A reader who took the table at face value would have read
+`4478c3a..HEAD` as 1040 insertions and been wrong by 400 at `f86801a`, and by 401
+after the flip.
+
+**The fix is the header, and the header alone.** Both parentheticals on that line
+now name the commit they were measured at, and the `f03613e` column says in terms
+that it is not a current-HEAD figure. The reading rule for this table is therefore:
+**the row labels such as `4478c3a..HEAD` are range NAMES, and HEAD inside a row
+label means the commit named in that column's header - never the reader's HEAD.**
+No figure in the table was recomputed, because none of them needed it: each is
+already labelled by the commit that fixes it, and the flip commit `6a6eb0a` did not
+touch this table.
+
+**What was deliberately NOT changed, and why.** Three related items were observed
+while fixing this one and are recorded here rather than absorbed into this fix,
+because Z4's authorised scope is the `f03613e` column header only:
+
+- the older APPEND-ONLY BASELINE table's header at L1351, "Numstat at `d3ce887`
+  (R-0021's HEAD)", carries the same moving-label word;
+- R-0024's companion note that the seam table's Post-Z1 column should read
+  `8c30f32` rather than an unqualified Post-Z1;
+- no current-commit column was added to the Z3 table. R-0024 offered that as an
+  alternative to renaming the header; the rename was taken instead, and the
+  post-flip boundary figures are recorded with their commit in the S-0034 addendum
+  below rather than in this historical table, which is a record of what was true at
+  two named commits.
 
 ---
 
