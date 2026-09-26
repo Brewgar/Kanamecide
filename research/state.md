@@ -1,7 +1,7 @@
 # Research State (GENERATED — do not edit)
 
 Derived from the record store by `research.py state`. Regenerate after every change.
-Generated: 2026-09-26T20:06:38; schema 2.
+Generated: 2026-09-26T20:27:50; schema 2.
 Every entry is a PROJECTION of the linked records — follow them before believing.
 
 ## Current best beliefs (hypotheses with measured weight)
@@ -43,10 +43,10 @@ Every entry is a PROJECTION of the linked records — follow them before believi
 - hypothesis **H-0002-magic-stub** Magic Bitboards with PEXT Provide >=3x NPS Speedup — SUPERSEDED. No revisit condition recorded.
 
 ## Recent timeline
-- 2026-09-26 review R-0020 (COMPLETED) : R 0020 re critique of the e 0013 addendum vs r 0019 b1 b7 discharge verification only ho 0014
 - 2026-09-26 review R-0021 (COMPLETED) : R 0021 independent post repair critique of the e 0013 addendum seam 8 paren ruled b5 s2 slot ruled new blocking x4 s 0029 re severed the file tail x5 head side deletion unrecorded e 0013 stays pending
 - 2026-09-26 review R-0022 (COMPLETED) : R 0022 r 0022 independent verification of s 0030 all four r 0021 findings applied the 10 residue does not block one new non blocking pointer defect y1 in the repair section s own x4 pointers
 - 2026-09-26 review R-0023 (COMPLETED) : R 0023 r 0023 append only contract re specification and r 0022 old l row disposition
+- 2026-09-26 review R-0024 (COMPLETED) : R 0024 confirmation of the contract repair and the flip authorisation part 6 is unsatisfiable as written and is re specified
 - 2026-09-26 session S-0023 (CLOSED) : Draft E-0013 Texel pre-registration (PENDING) + file HO-0013 critique handoff
 - 2026-09-26 session S-0024 (CLOSED) : HO-0013 / R-0019 — critique of the E-0013 Texel pre-registration: NOT CLEAN, seven blocking findings, E-0013 stays PENDING
 - 2026-09-26 session S-0025 (CLOSED) : E-0013 addendum discharging R-0019 B1-B7 (SHRINK branch) + E-00014/E-00015 pre-registered + HO-0014/15/16
@@ -78,7 +78,7 @@ Every entry is a PROJECTION of the linked records — follow them before believi
     "profile": 4,
     "question": 8,
     "report": 13,
-    "review": 23,
+    "review": 24,
     "round_megaprompt": 2,
     "session": 33,
     "work": 7
@@ -86,7 +86,7 @@ Every entry is a PROJECTION of the linked records — follow them before believi
   "by_status": {
     "ACTIVE": 14,
     "CLOSED": 33,
-    "COMPLETED": 31,
+    "COMPLETED": 32,
     "DONE": 18,
     "DRAFT": 1,
     "IN_PROGRESS": 2,
@@ -102,10 +102,10 @@ Every entry is a PROJECTION of the linked records — follow them before believi
   "contradiction_candidates": 0,
   "dangling_ids": 11,
   "duplicate_candidates": 2,
-  "edges_total": 3355,
+  "edges_total": 3378,
   "legacy_experiments_without_pre_registration": 6,
   "open_questions": 8,
-  "records_total": 191,
+  "records_total": 192,
   "revival_candidates": 5
 }
 

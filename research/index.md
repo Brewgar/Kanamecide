@@ -104,6 +104,7 @@
 - [R-0021](reviews/R-0021-independent-post-repair-critique-of-the-e-0013-addendum-seam-8-paren-ruled-b5-s2-slot-ruled-new-blocking-x4-s-0029-re-severed-the-file-tail-x5-head-side-deletion-unrecorded-e-0013-stays-pending.md) — (untitled) — status=COMPLETED
 - [R-0022](reviews/R-0022-r-0022-independent-verification-of-s-0030-all-four-r-0021-findings-applied-the-10-residue-does-not-block-one-new-non-blocking-pointer-defect-y1-in-the-repair-section-s-own-x4-pointers.md) — (untitled) — status=COMPLETED
 - [R-0023](reviews/R-0023-r-0023-append-only-contract-re-specification-and-r-0022-old-l-row-disposition.md) — (untitled) — status=COMPLETED
+- [R-0024](reviews/R-0024-confirmation-of-the-contract-repair-and-the-flip-authorisation-part-6-is-unsatisfiable-as-written-and-is-re-specified.md) — (untitled) — status=COMPLETED
 
 ## Open Questions
 
