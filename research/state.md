@@ -1,7 +1,7 @@
 # Research State (GENERATED — do not edit)
 
 Derived from the record store by `research.py state`. Regenerate after every change.
-Generated: 2026-09-26T20:27:50; schema 2.
+Generated: 2026-09-27T00:16:00; schema 2.
 Every entry is a PROJECTION of the linked records — follow them before believing.
 
 ## Current best beliefs (hypotheses with measured weight)
@@ -43,8 +43,6 @@ Every entry is a PROJECTION of the linked records — follow them before believi
 - hypothesis **H-0002-magic-stub** Magic Bitboards with PEXT Provide >=3x NPS Speedup — SUPERSEDED. No revisit condition recorded.
 
 ## Recent timeline
-- 2026-09-26 review R-0021 (COMPLETED) : R 0021 independent post repair critique of the e 0013 addendum seam 8 paren ruled b5 s2 slot ruled new blocking x4 s 0029 re severed the file tail x5 head side deletion unrecorded e 0013 stays pending
-- 2026-09-26 review R-0022 (COMPLETED) : R 0022 r 0022 independent verification of s 0030 all four r 0021 findings applied the 10 residue does not block one new non blocking pointer defect y1 in the repair section s own x4 pointers
 - 2026-09-26 review R-0023 (COMPLETED) : R 0023 r 0023 append only contract re specification and r 0022 old l row disposition
 - 2026-09-26 review R-0024 (COMPLETED) : R 0024 confirmation of the contract repair and the flip authorisation part 6 is unsatisfiable as written and is re specified
 - 2026-09-26 session S-0023 (CLOSED) : Draft E-0013 Texel pre-registration (PENDING) + file HO-0013 critique handoff
@@ -58,6 +56,8 @@ Every entry is a PROJECTION of the linked records — follow them before believi
 - 2026-09-26 session S-0031 (CLOSED) : Y1 fix (R-0022 four pointers) + bounded +10 pointer rewrite (7 in-band rows; 6 old-ref rows exempt) + RUNNING authorisation recorded but NOT executed (status is L5, inside the hash-proved L1-428 block)
 - 2026-09-26 session S-0032 (CLOSED) : R-0023 adopted - Z1 repaired (one word), contract (a)-(e) verbatim, Z2 withdrawn, Z3 re-pinned, Ruling 2 recorded; FLIP NOT EXECUTED - condition part 6 unmet (fresh adversarial critique required, owner seat may not self-verify); E-0013 stays PENDING
 - 2026-09-26 session S-0033 (CLOSED) : Two stale evidence lines in E-0013 REVISED in place (Z2 prose + condition row 10) - the withdrawn figure 8ad61ccd/00a727 occurs 4x, all inside the Z2 withdrawal record, in NO live claim; orchestrator count; seam 22, 0 new; E-0013 stays PENDING
+- 2026-09-27 handoff HO-0017 (REQUESTED) : Independently verify the E-0013 L5-only lifecycle flip (R-0024 Q1-Q8)
+- 2026-09-27 session S-0034 (CLOSED) : E-0013 L5-only flip PENDING -> RUNNING under R-0024 (6a6eb0a); Z4 header fixed separately (f2b627c); Q1-Q8 handed to the verification-auditor via HO-0017
 
 ## Metrics
 ```
@@ -72,7 +72,7 @@ Every entry is a PROJECTION of the linked records — follow them before believi
     "evidence": 8,
     "experiment": 15,
     "failure": 2,
-    "handoff": 16,
+    "handoff": 17,
     "hypothesis": 17,
     "principle": 4,
     "profile": 4,
@@ -80,32 +80,33 @@ Every entry is a PROJECTION of the linked records — follow them before believi
     "report": 13,
     "review": 24,
     "round_megaprompt": 2,
-    "session": 33,
+    "session": 34,
     "work": 7
   },
   "by_status": {
     "ACTIVE": 14,
-    "CLOSED": 33,
+    "CLOSED": 34,
     "COMPLETED": 32,
     "DONE": 18,
     "DRAFT": 1,
     "IN_PROGRESS": 2,
     "OPEN": 28,
-    "PENDING": 6,
+    "PENDING": 5,
     "RECORDED": 2,
     "REGISTERED": 8,
-    "REQUESTED": 3,
+    "REQUESTED": 4,
     "RESOLVED": 1,
+    "RUNNING": 1,
     "SUPERSEDED": 4
   },
   "code_files": 25,
   "contradiction_candidates": 0,
   "dangling_ids": 11,
   "duplicate_candidates": 2,
-  "edges_total": 3378,
+  "edges_total": 3478,
   "legacy_experiments_without_pre_registration": 6,
   "open_questions": 8,
-  "records_total": 192,
+  "records_total": 194,
   "revival_candidates": 5
 }
 

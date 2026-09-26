@@ -318,7 +318,7 @@
           "id": "E-0013",
           "rel": "experiments/E-0013-h-0013-texel-fit-on-verified-e-0011-dataset-game-split-holdout-tier-s-sprt-vs-pinned-stage-5.md",
           "result": "",
-          "status": "PENDING",
+          "status": "RUNNING",
           "title": "E-0013 — H-0013 Texel fit on the verified E-0011 dataset (game-split holdout + Tier-S SPRT vs pinned stage 5)",
           "verdict": "unverdicted"
         }
@@ -439,7 +439,7 @@
           "id": "E-0013",
           "rel": "experiments/E-0013-h-0013-texel-fit-on-verified-e-0011-dataset-game-split-holdout-tier-s-sprt-vs-pinned-stage-5.md",
           "result": "",
-          "status": "PENDING",
+          "status": "RUNNING",
           "title": "E-0013 — H-0013 Texel fit on the verified E-0011 dataset (game-split holdout + Tier-S SPRT vs pinned stage 5)",
           "verdict": "unverdicted"
         }
@@ -845,8 +845,10 @@
       "commits_mentioned": [
         "040296e",
         "4478c3a",
+        "6a6eb0a",
         "7348f89",
         "8ad61cc",
+        "8c30f32",
         "8db1c45",
         "9d60f64",
         "b04fd5a",
@@ -856,13 +858,16 @@
         "d3ce887",
         "d8add61",
         "f03613e",
+        "f2b627c",
         "f450976",
+        "f86801a",
+        "f883bea",
         "fce355c"
       ],
       "kind": "experiment",
       "record": "E-0013",
       "rel": "experiments/E-0013-h-0013-texel-fit-on-verified-e-0011-dataset-game-split-holdout-tier-s-sprt-vs-pinned-stage-5.md",
-      "status": "PENDING",
+      "status": "RUNNING",
       "title": "E-0013 — H-0013 Texel fit on the verified E-0011 dataset (game-split holdout + Tier-S SPRT vs pinned stage 5)"
     },
     {
@@ -1646,7 +1651,7 @@
       "title": "Gate 0 unrunnable: Device Guard hard-blocks kana.exe (every build, every path)"
     }
   ],
-  "generated": "2026-09-26T20:27:50",
+  "generated": "2026-09-27T00:16:00",
   "metrics": {
     "by_kind": {
       "agent_profile": 1,
@@ -1658,7 +1663,7 @@
       "evidence": 8,
       "experiment": 15,
       "failure": 2,
-      "handoff": 16,
+      "handoff": 17,
       "hypothesis": 17,
       "principle": 4,
       "profile": 4,
@@ -1666,32 +1671,33 @@
       "report": 13,
       "review": 24,
       "round_megaprompt": 2,
-      "session": 33,
+      "session": 34,
       "work": 7
     },
     "by_status": {
       "ACTIVE": 14,
-      "CLOSED": 33,
+      "CLOSED": 34,
       "COMPLETED": 32,
       "DONE": 18,
       "DRAFT": 1,
       "IN_PROGRESS": 2,
       "OPEN": 28,
-      "PENDING": 6,
+      "PENDING": 5,
       "RECORDED": 2,
       "REGISTERED": 8,
-      "REQUESTED": 3,
+      "REQUESTED": 4,
       "RESOLVED": 1,
+      "RUNNING": 1,
       "SUPERSEDED": 4
     },
     "code_files": 25,
     "contradiction_candidates": 0,
     "dangling_ids": 11,
     "duplicate_candidates": 2,
-    "edges_total": 3378,
+    "edges_total": 3478,
     "legacy_experiments_without_pre_registration": 6,
     "open_questions": 8,
-    "records_total": 192,
+    "records_total": 194,
     "revival_candidates": 5
   },
   "questions_all": [
@@ -2083,24 +2089,6 @@
   "timeline_tail": [
     {
       "example": false,
-      "id": "TRAINING-READINESS-PROMPT",
-      "kind": "round_megaprompt",
-      "rel": "AGENT_MEGAPROMPT_TRAINING_READINESS.md",
-      "status": "REGISTERED",
-      "title": "First-training readiness — dataset verification, harness validation, and Texel pre-registration",
-      "when": "2026-09-24"
-    },
-    {
-      "example": false,
-      "id": "S-0015",
-      "kind": "session",
-      "rel": "sessions/S-0015-e0011-e0012-build-run.md",
-      "status": "CLOSED",
-      "title": "E-0011/E-0012 build+acceptance; E-0011 live dataset campaign",
-      "when": "2026-09-24"
-    },
-    {
-      "example": false,
       "id": "S-0016",
       "kind": "session",
       "rel": "sessions/S-0016-first-training-readiness-prompt-and-e-0011-downstream-routing-clarification.md",
@@ -2248,7 +2236,7 @@
       "id": "E-0013",
       "kind": "experiment",
       "rel": "experiments/E-0013-h-0013-texel-fit-on-verified-e-0011-dataset-game-split-holdout-tier-s-sprt-vs-pinned-stage-5.md",
-      "status": "PENDING",
+      "status": "RUNNING",
       "title": "E-0013 — H-0013 Texel fit on the verified E-0011 dataset (game-split holdout + Tier-S SPRT vs pinned stage 5)",
       "when": "2026-09-26"
     },
@@ -2440,6 +2428,24 @@
       "status": "CLOSED",
       "title": "Two stale evidence lines in E-0013 REVISED in place (Z2 prose + condition row 10) - the withdrawn figure 8ad61ccd/00a727 occurs 4x, all inside the Z2 withdrawal record, in NO live claim; orchestrator count; seam 22, 0 new; E-0013 stays PENDING",
       "when": "2026-09-26"
+    },
+    {
+      "example": false,
+      "id": "HO-0017",
+      "kind": "handoff",
+      "rel": "handoffs/HO-0017-audit-e0013-l5-flip-q1-q8.md",
+      "status": "REQUESTED",
+      "title": "Independently verify the E-0013 L5-only lifecycle flip (R-0024 Q1-Q8)",
+      "when": "2026-09-27"
+    },
+    {
+      "example": false,
+      "id": "S-0034",
+      "kind": "session",
+      "rel": "sessions/S-0034-e0013-l5-flip-r0024-q1-q8-to-verifier.md",
+      "status": "CLOSED",
+      "title": "E-0013 L5-only flip PENDING -> RUNNING under R-0024 (6a6eb0a); Z4 header fixed separately (f2b627c); Q1-Q8 handed to the verification-auditor via HO-0017",
+      "when": "2026-09-27"
     }
   ]
 }

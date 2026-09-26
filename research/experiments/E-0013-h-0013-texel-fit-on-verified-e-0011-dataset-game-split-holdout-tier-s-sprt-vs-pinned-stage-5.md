@@ -1900,4 +1900,168 @@ R-0020, R-0021, R-0022 and R-0023 are all unedited.
 | 10 | `8ad61ccd` / `00a727` searched across `research/` | **REVISED (S-0033).** Present in **R-0023**, and in this file at **L1696, L1699, L1809 and this row only - all four inside the Z2 withdrawal record**, in **NO live claim**. The earlier "never in this file" result was true at `f03613e` and was made stale by the Z2 withdrawal itself; the corrected reading is the one in the Z2 section above, on the orchestrator's count, not a new defect. Disposition UNCHANGED: the figure is **withdrawn, not asserted**, so there is still nothing to delete |
 | 11 | E-0011 boundaries searched exhaustively (all ancestor-ordered pairs) | `146/5` = `6d507d8c..0d8fbce`; `19/2` = `040296e..0d8fbce`; `62/3` = `9d60f64..040296e` |
 | 12 | File hygiene | no BOM, **0 CR bytes**, single trailing newline, LF-only |
-| 13 | E-0013 front matter | L5 `status: PENDING`, L6 `result: null`, L7 `elo_change: null`, L10 `owner: null`, L14 `completed: null` - **PENDING, not flipped** |
+| 13 | E-0013 front matter | **SUPERSEDED (S-0034).** As written this row read L5 `status: PENDING` with L6/L7/L10/L14 null and **PENDING, not flipped** - true at `f03613e`, and made stale **by the flip itself**, which is the moment it stopped being the operative claim. Now, after the authorised L5-only flip in `6a6eb0a` (2026-09-27): L5 `status: RUNNING`, L6/L7/L10/L14 still `null`. **RUNNING is not COMPLETED and no `result:` is set.** The verdict of the contract - that L5 is writable and the body is not - is unaffected |
+
+---
+
+# S-0034 ADDENDUM, 2026-09-27 — the L5-only flip, executed under R-0024
+
+> This section is the record's own account of a change made to it. It is appended, not
+> substituted: nothing above this line was rewritten except one cell, identified below,
+> that the flip itself made false.
+
+## 1. The authorisation, and whose it is
+
+**R-0024 (`research/reviews/R-0024-...-part-6-is-unsatisfiable-as-written-and-is-re-specified.md`)
+AUTHORISED this flip. R-0024 did not perform it, and no seat may flip on the strength of
+R-0024's own claims — R-0024 applied that rule to itself.** I am the owner seat
+(`researcher-architect`) and I made the flip as owner, on the strength of the
+**pre-condition P1–P5**, which is what R-0024's Ruling 2 re-specified. The authorisation
+is P1–P5; the audit is how the authorisation is *evidenced*, and the audit is not mine to
+perform.
+
+R-0024 also **ruled R-0023's condition part 6 UNSATISFIABLE as written** — its (v-b)/(v-c)
+conjuncts are properties of a commit that does not yet exist, so the clause demanded its
+own confirmation before the act it gated — and re-specified it. R-0023's parts 1–5 are
+unchanged and remain MET. The flip is authorised by the re-specified condition, and
+R-0023 is not edited by it.
+
+**The flip's date: 2026-09-27.** The flip commit is `6a6eb0a`; R-0024 (2026-09-26) was the
+authorisation state at `f86801a`, and was verified by me independently before the write.
+
+## 2. Pre-write assertions, all satisfied BEFORE the write
+
+Each was checked by a script that refuses to write if any of them fails. The write was
+therefore conditional, not merely claimed.
+
+| # | Assertion | Observed | Verdict |
+|---|---|---|---|
+| (a) | L5 is **exactly** `status: PENDING`, by byte equality — not a prefix match, not a regex, not a string search | `L5 = b'status: PENDING'`, `len = 15` bytes, `L5 == b'status: PENDING'` → `True` | **PASS** |
+| (b) | `status: PENDING` occurs **14** times and **exactly ONE** of them is being changed; the other 13 are quoted history | count = 14, at L5, 20, 435, 456, 1132, 1270, 1363, 1394, 1435, 1557, 1565, 1574, 1576, 1865. Changing one. A string-matched rewrite would have yielded numstat **14/14**; it was **forbidden and not used** — the edit was by line index, with a byte-range guard | **PASS** |
+| (c) | No other lifecycle field is touched | L6 `result: null`, L7 `elo_change: null`, L10 `owner: null`, L14 `completed: null` — all unchanged, none written | **PASS** |
+
+**R-0024's pre-conditions P1–P5, recomputed by me at `f86801a`, all hold:**
+
+| # | Pre-condition | Observed | Verdict |
+|---|---|---|---|
+| P1 | `H_body` = `c7ebe54c…f883bea7` / 22,196 B on **BOTH** the `ce845c5` blob and the working file | `ce845c5` blob: `c7ebe54ce8cd51ac90483744a3d11e56a04fc5d48c0d8669e0804f53f883bea7` / 22,196 B. Working file: **the same** / 22,196 B | **PASS** |
+| P2 | `H_legacy` = `b04fd5a4…00ce6` / 22,270 B, unchanged | both sides `b04fd5a42d463bbb7044c18c7e54916aab852ff1965eafbb18642138d8200ce6` / 22,270 B | **PASS** |
+| P3 | Z1 absent | L1376 ends `are NOT`, L1377 opens `shifted.` — one contiguous sentence; `git show 8c30f32 -U0` = 1 hunk, 1 removed line, 1 added line | **PASS** |
+| P4 | Z2's `8ad61ccd` / `00a727` withdrawn, every occurrence inside the withdrawal record | occurrences at L1696, L1699, L1809, L1862 — all four inside the Z2 withdrawal record | **PASS** |
+| P5 | BOM-free, LF-only, L5 exactly `status: PENDING` | first byte `0x2D` (no BOM), **0** CR bytes, single trailing `0x0A`, L5 as asserted | **PASS** |
+
+The exclusion arithmetic also closes exactly: 22,270 − 22,196 = **74 B**, and the five
+excluded lines with their terminators are 16 + 13 + 17 + 12 + 16 = **74 B**. Zero bytes
+unaccounted for.
+
+## 3. The write
+
+One line, by line index, 15 bytes replaced by 15 bytes, nothing else touched. The file's
+length did not change: 145,308 B before, 145,308 B after. Committed alone, as `6a6eb0a`.
+
+
+## 4. Post-write assertions, all recomputed AFTER the write
+
+| # | Assertion | Observed | Verdict |
+|---|---|---|---|
+| (d) | `git diff -U0 HEAD` shows **exactly one hunk** and **exactly one changed line** | one `@@ -5 +5 @@` hunk, 1 `−` line, 1 `+` line, **1 file**. `git diff --numstat HEAD` = `1<TAB>1<TAB>research/experiments/E-0013-…md` | **PASS** |
+| (e) | The changed line is the old `status: PENDING` and the new `status: RUNNING` | removed `-status: PENDING`; added `+status: RUNNING` | **PASS** |
+| (f) | `status: PENDING` count is now **13** | 13, at L20, 435, 456, 1132, 1270, 1363, 1394, 1435, 1557, 1565, 1574, 1576, 1865 — the 13 quoted occurrences, byte-identical and unmoved | **PASS** |
+| (g) | `H_body` **UNCHANGED**, recomputed and not assumed | `c7ebe54ce8cd51ac90483744a3d11e56a04fc5d48c0d8669e0804f53f883bea7` / **22,196 B** | **PASS** |
+| (h) | `H_legacy` **MOVES**, as projected, with the length invariant | `d8add61cdd131644d37b25a555e5885d4b5a5d321deb202e543c251e7e9e6144` / **22,270 B**. `status: PENDING` = 15 B and `status: RUNNING` = 15 B, **delta 0**, so the length is invariant and only the digest moves | **PASS** |
+| (j) | Per-hunk paren audit: the flip introduces no parenthesis | removed-line balance 0, added-line balance 0, **delta 0** | **PASS** |
+| (i) | Boundary figures | see §5 | **PASS, with one correction of the expected form — see §5** |
+
+**A census caveat, recorded so the next seat is not misled by its own arithmetic.** Writing
+the count of `status: PENDING` into this record *creates new occurrences of the string it
+counts*. At `f86801a` the census was 14 and after the flip it was 13 — those two figures
+are **labelled with the commit they were measured at** and are correct as of those points.
+A reader running the census on the file **now** will get a larger number again, because
+this very addendum quotes `status: PENDING` in rows (a), (b) and (f) and in Q4. **That is
+the self-invalidating evidence line, one level up from S-0033:** a record that reports a
+count of a string must either pin the count to a commit (done here) or accept that its own
+report moves the number it reports. **The invariant that actually matters is not the raw
+count but the positional one: the 13 quoted occurrences listed in (f) are byte-identical and
+unmoved, and L5 is the only line in the file that was ever written.**
+
+**(g) is the load-bearing assertion and it is worth saying why.** `H_body` is the only
+quantity in this record that is invariant under exactly the legal transitions and sensitive
+to exactly the illegal ones. It reads **22,196 B**, not 22,270 B, which is positive proof
+that the edit fell **inside** the five-field exclusion {5, 6, 7, 10, 14} and that the
+protected body did not move. Had L5 been edited outside the exclusion, the protected range
+would have changed and `H_body` would have moved with it.
+
+## 5. Before and after, each labelled with the commit it was measured at
+
+Every figure below is **file-scoped to this record** and is labelled with its commit.
+Whole-tree totals are given separately, because a boundary figure without its scope is the
+very defect Z3 and Z4 exist to prevent.
+
+| Boundary (E-0013 only) | at `f86801a` (pre-flip) | at `6a6eb0a` (the flip) | at `f2b627c` (Z4) |
+|---|---|---|---|
+| `4478c3a..` | 1440 / 0 | **1441 / 1** | 1479 / 1 |
+| `ce845c5..` | 922 / 130 | **923 / 131** | 961 / 131 |
+| `f450976..` | 667 / 36 | 668 / 37 | 706 / 37 |
+| `d3ce887..` | 601 / 29 | 602 / 30 | 640 / 30 |
+| `8db1c45..` | 450 / 21 | 451 / 22 | 489 / 22 |
+
+| Quantity | before (`f86801a`) | after (`6a6eb0a`) |
+|---|---|---|
+| `H_body` (L1–428 − {5,6,7,10,14}) | `c7ebe54c…f883bea7` / 22,196 B | `c7ebe54c…f883bea7` / 22,196 B — **UNCHANGED** |
+| `H_legacy` (L1–428) | `b04fd5a4…00ce6` / 22,270 B | `d8add61c…e6144` / 22,270 B — **MOVED, same length** |
+
+## 6. The post-conditions are BINDING ON A DIFFERENT SEAT — I have not certified them
+
+**R-0024's Q1–Q8 are binding on the `verification-auditor` seat and are NOT discharged by
+me. I have written no verdict on any of them.** I am the seat that performed the act;
+SYSTEM.md §1 forbids the owner verifying its own proposal, R-0024 applied the same rule to
+itself, and **a condition cannot be discharged by the seat that performed the act.** My
+assertions (a)–(j) above are the *author's* account of what was done — evidence about the
+act, and **not** the independent verification of it.
+
+| # | Assertion owed by another seat | Expected |
+|---|---|---|
+| Q1 | `H_body` on both the `ce845c5` blob and the post-flip file | `c7ebe54c…f883bea7`, **22,196 bytes both** — and 22,196, not 22,270 |
+| Q2 | `git show 6a6eb0a --numstat -- <path>` | exactly `1 1` |
+| Q3 | `git show 6a6eb0a -U0 -- <path>` | exactly one `@@ -5 +5 @@` hunk; the `+` line exactly `status: RUNNING` |
+| Q4 | every other `status: PENDING` occurrence | all **13** unchanged and byte-identical |
+| Q5 | `H_legacy` post-flip | `d8add61c…e6144` / 22,270 bytes |
+| Q6 | `4478c3a..6a6eb0a` numstat | **1441 / 1** — the zero-deletion claim as a bounded exception |
+| Q7 | `git diff --check` on the commit | exit 0, empty |
+| Q8 | any file other than this one in commit `6a6eb0a` | **none** |
+
+**The handoff is filed to `verification-auditor`** as a machine-readable handoff, carrying
+the commands and the expected values above. If any of Q1–Q6 fails, the flip is **reversed by
+the same line-anchored procedure**, this record returns to `status: PENDING`, and the
+failure is reported in a dated addendum naming the clause that failed.
+
+**No seat may proceed to the build, the extractor, the trainer or the parameter-table
+evaluator, and no holdout may be read, while any of Q1–Q6 is unverified.** A flip that has
+not been audited may not be relied on; it is not thereby unauthorised.
+
+## 7. What I did NOT do
+
+Ran **no** training, fitting, extraction, counting, feasibility pass or SPRT generation. Read
+**no** holdout. Set **no** `result:`. Changed **no** H-#### text or status. Did not open or
+close HO-0005 or W-0003. Did not edit R-0019…R-0024 or any CLOSED/VERIFIED record. Did not
+touch `tools/` or `src/`. Did not hand-edit `research/state.md` or `state.json` (GENERATED —
+only via `state --write`). Touched no line in 1–428 except L5, in its own commit, and
+touched lines 1–428 in no other commit at all.
+
+**E-0013 is now `RUNNING`. It is not `COMPLETED`, and nothing has been measured.**
+
+| `4478c3a..` numstat | 1440 / 0 | 1441 / 1 |
+
+### On the deletion count — a correction, not a pass
+
+**Insertions rose by exactly 1, as projected. Deletions became 1, not 0.** I report the
+measurement rather than the tidier number. The zero-deletion property **cannot** survive a
+lifecycle flip of a line that is itself inside the compared range: replacing L5 *is* one
+deletion and one insertion at that boundary, and no line-anchored edit of L5 could produce
+otherwise. The correct and honest form of the claim is the one this record's own Rule F
+already states and R-0024's Q6 projects: **the zero-deletion invariant survives as a
+bounded exception of exactly one deletion, and that deletion is the flip itself.** Nothing
+else moved: no pre-existing line of the addendum was deleted at any boundary.
+
+Whole-tree `4478c3a..HEAD` totals, for completeness and **not** comparable with the
+file-scoped figures above: 7,321 insertions, 214 deletions.
