@@ -1637,7 +1637,7 @@
       "title": "Gate 0 unrunnable: Device Guard hard-blocks kana.exe (every build, every path)"
     }
   ],
-  "generated": "2026-09-26T17:11:41",
+  "generated": "2026-09-26T17:39:24",
   "metrics": {
     "by_kind": {
       "agent_profile": 1,
@@ -1655,7 +1655,7 @@
       "profile": 4,
       "question": 8,
       "report": 13,
-      "review": 21,
+      "review": 22,
       "round_megaprompt": 2,
       "session": 30,
       "work": 7
@@ -1663,7 +1663,7 @@
     "by_status": {
       "ACTIVE": 14,
       "CLOSED": 30,
-      "COMPLETED": 29,
+      "COMPLETED": 30,
       "DONE": 18,
       "DRAFT": 1,
       "IN_PROGRESS": 2,
@@ -1679,10 +1679,10 @@
     "contradiction_candidates": 0,
     "dangling_ids": 11,
     "duplicate_candidates": 2,
-    "edges_total": 3114,
+    "edges_total": 3147,
     "legacy_experiments_without_pre_registration": 6,
     "open_questions": 8,
-    "records_total": 186,
+    "records_total": 187,
     "revival_candidates": 5
   },
   "questions_all": [
@@ -2074,15 +2074,6 @@
   "timeline_tail": [
     {
       "example": false,
-      "id": "S-0012",
-      "kind": "session",
-      "rel": "sessions/S-0012-ho-0006-ho-0007-recritique-r-0014-partial-r-0015-clean.md",
-      "status": "CLOSED",
-      "title": "HO-0006/HO-0007 re-critique of the R-0011/R-0012 addenda: R-0014 (E-0011 PARTIAL, 1 sentence left) + R-0015 (E-0012 CLEAN)",
-      "when": "2026-09-23"
-    },
-    {
-      "example": false,
       "id": "S-0013",
       "kind": "session",
       "rel": "sessions/S-0013-micro-r-0014-b3-fix-e-0011-end-vocabulary-ns-suffix-ho-0008-gate0-12.md",
@@ -2358,6 +2349,15 @@
       "rel": "reviews/R-0021-independent-post-repair-critique-of-the-e-0013-addendum-seam-8-paren-ruled-b5-s2-slot-ruled-new-blocking-x4-s-0029-re-severed-the-file-tail-x5-head-side-deletion-unrecorded-e-0013-stays-pending.md",
       "status": "COMPLETED",
       "title": "R 0021 independent post repair critique of the e 0013 addendum seam 8 paren ruled b5 s2 slot ruled new blocking x4 s 0029 re severed the file tail x5 head side deletion unrecorded e 0013 stays pending",
+      "when": "2026-09-26"
+    },
+    {
+      "example": false,
+      "id": "R-0022",
+      "kind": "review",
+      "rel": "reviews/R-0022-r-0022-independent-verification-of-s-0030-all-four-r-0021-findings-applied-the-10-residue-does-not-block-one-new-non-blocking-pointer-defect-y1-in-the-repair-section-s-own-x4-pointers.md",
+      "status": "COMPLETED",
+      "title": "R 0022 r 0022 independent verification of s 0030 all four r 0021 findings applied the 10 residue does not block one new non blocking pointer defect y1 in the repair section s own x4 pointers",
       "when": "2026-09-26"
     },
     {
