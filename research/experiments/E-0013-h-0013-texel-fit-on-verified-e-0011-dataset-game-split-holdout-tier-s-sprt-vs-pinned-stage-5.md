@@ -1374,7 +1374,7 @@ repair section's own claims.**
 withdrawal above replaced three lines with thirteen, so **every line reference in this
 addendum that pointed at a line at or after the old L811 is now +10.** References introduced
 with the word `old`, and references to `ce845c5`, are a different numbering and are NOT
-The cross-references written *by this repair* - inside the withdrawal paragraph and inside
+shifted. The cross-references written *by this repair* - inside the withdrawal paragraph and inside
 the `B5 s2` disposition row - have been re-derived to the post-withdrawal numbering, and
 those two families are the only ones that were. The original wording also claimed the
 observation note, the verification block and this dated R-0021 entry were re-derived; for
