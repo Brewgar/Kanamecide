@@ -44,6 +44,8 @@
 - [E-00004](experiments/E-00004-gpu-batch-inference-latency-curve-rtx-5070-ti-dense-net-256-512-hidden.md) — GPU batch-inference latency curve (RTX 5070 Ti, dense net 256-512 hidden) — status=PENDING
 - [E-00005](experiments/E-00005-slider-attack-time-share-and-pext-speedup-ceiling-pre-pext-profile.md) — Slider-attack time share and PEXT speedup ceiling (pre-PEXT profile) — status=PENDING
 - [E-0001](experiments/E-0001-classical-alpha-beta-baseline-time-to-depth.md) — Classical alpha-beta baseline (time-to-depth) — status=PENDING  [EXAMPLE]
+- [E-00014](experiments/E-00014-e-0014-train-only-feasibility-pass-for-e-0013-delta-star-and-s-d-inner-measurement-not-training.md) — E-00014 - TRAIN-ONLY feasibility pass for E-0013 (measure delta_star and s_d_inner; MEASUREMENT, not training) — status=PENDING
+- [E-00015](experiments/E-00015-e-0015-count-only-realized-usable-quiet-yield-pass-for-e-0013-measurement-not-training.md) — E-00015 - count-only realized usable quiet yield pass for E-0013 (MEASUREMENT, not training) — status=PENDING
 - [E-0013](experiments/E-0013-h-0013-texel-fit-on-verified-e-0011-dataset-game-split-holdout-tier-s-sprt-vs-pinned-stage-5.md) — E-0013 — H-0013 Texel fit on the verified E-0011 dataset (game-split holdout + Tier-S SPRT vs pinned stage 5) — status=PENDING
 
 ## Completed Experiments
@@ -148,6 +150,9 @@
 ## Handoffs (open)
 
 - [HO-0005](handoffs/HO-0005-verify-w-0003-round2-agreement-matrix-backfill-r-0013.md) — Verify W-0003: R-0013 (Round-2 AGREEMENT_MATRIX backfill) and the untouched matrix — status=REQUESTED
+- [HO-0014](handoffs/HO-0014-re-critique-e-0013-addendum-vs-r-0019-findings-b1-b7-discharge-verification-only.md) — Re-critique E-0013 addendum vs R-0019 findings B1-B7 (discharge verification only) — status=REQUESTED
+- [HO-0015](handoffs/HO-0015-execute-e-0014-train-only-feasibility-pass-measurement-not-training.md) — Execute E-00014: TRAIN-ONLY feasibility pass (measurement, not training) — status=REQUESTED
+- [HO-0016](handoffs/HO-0016-execute-e-0015-count-only-realized-yield-pass-measurement-not-training.md) — Execute E-00015: count-only realized usable quiet yield pass (measurement, not training) — status=REQUESTED
 
 ## Handoffs (closed)
 
@@ -200,6 +205,7 @@
 - [S-0022](sessions/S-0022-owner-close-out-w-0005-done-after-r-0018-verified-e-0012-completed.md) — Owner close-out: W-0005 DONE after R-0018 VERIFIED; E-0012 COMPLETED — status=CLOSED
 - [S-0023](sessions/S-0023-draft-e-0013-texel-pre-registration-pending-plus-ho-0013-critique-handoff.md) — Draft E-0013 Texel pre-registration (PENDING) + file HO-0013 critique handoff — status=CLOSED
 - [S-0024](sessions/S-0024-ho-0013-r-0019-e-0013-texel-pre-registration-critique-not-clean-seven-blocking-findings.md) — HO-0013 / R-0019 — critique of the E-0013 Texel pre-registration: NOT CLEAN, seven blocking findings, E-0013 stays PENDING — status=CLOSED
+- [S-0025](sessions/S-0025-e-0013-addendum-discharging-r-0019-b1-b7-shrink-branch-e-00014-e-00015-pre-registered-ho-0014-15-16.md) — E-0013 addendum discharging R-0019 B1-B7 (SHRINK branch) + E-00014/E-00015 pre-registered + HO-0014/15/16 — status=CLOSED
 
 ## Unrendered Records (bug — report this)
 

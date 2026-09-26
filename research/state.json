@@ -299,6 +299,14 @@
           "verdict": "positive"
         },
         {
+          "id": "E-00014",
+          "rel": "experiments/E-00014-e-0014-train-only-feasibility-pass-for-e-0013-delta-star-and-s-d-inner-measurement-not-training.md",
+          "result": "",
+          "status": "PENDING",
+          "title": "E-00014 - TRAIN-ONLY feasibility pass for E-0013 (measure delta_star and s_d_inner; MEASUREMENT, not training)",
+          "verdict": "unverdicted"
+        },
+        {
           "id": "E-0012",
           "rel": "experiments/E-0012-e-sprt-lite-comparison-harness-pre-registered-dec-0010-tiers.md",
           "result": "PASS — harness validation: known-difference RUN-0002 H1 accepted at game 125 ∈ [80, 800]; N4 null-pair RUN-0003 no-H1 at cap 240 with colour-corrected band pass",
@@ -317,7 +325,7 @@
       ],
       "falsifier": "",
       "id": "H-0010",
-      "n_experiments": 3,
+      "n_experiments": 4,
       "rel": "hypotheses/H-0010-sprt-based-engine-comparison-harness-is-required-before-any-version-claim-is-trustworthy.md",
       "status": "OPEN",
       "title": "SPRT-based engine comparison harness is required before any version claim is trustworthy"
@@ -396,6 +404,22 @@
       ],
       "experiments_testing": [
         {
+          "id": "E-00014",
+          "rel": "experiments/E-00014-e-0014-train-only-feasibility-pass-for-e-0013-delta-star-and-s-d-inner-measurement-not-training.md",
+          "result": "",
+          "status": "PENDING",
+          "title": "E-00014 - TRAIN-ONLY feasibility pass for E-0013 (measure delta_star and s_d_inner; MEASUREMENT, not training)",
+          "verdict": "unverdicted"
+        },
+        {
+          "id": "E-00015",
+          "rel": "experiments/E-00015-e-0015-count-only-realized-usable-quiet-yield-pass-for-e-0013-measurement-not-training.md",
+          "result": "",
+          "status": "PENDING",
+          "title": "E-00015 - count-only realized usable quiet yield pass for E-0013 (MEASUREMENT, not training)",
+          "verdict": "unverdicted"
+        },
+        {
           "id": "E-0010",
           "rel": "experiments/E-0010-ee-val-tapered-hand-tuned-evaluation-term-by-term-self-play-elo-attribution.md",
           "result": "FAIL (pre-registered gate (c) effect size; direction significantly positive). Gates (a),(b),(d) PASS. gate (c): stage-6 (full tapered eval) beats stage-0 (mater",
@@ -422,7 +446,7 @@
       ],
       "falsifier": "",
       "id": "H-0013",
-      "n_experiments": 3,
+      "n_experiments": 5,
       "rel": "hypotheses/H-0013-tapered-eval-plus-texel-protocol-mg-eg-interpolation-and-quiet-label-holdout-design.md",
       "status": "OPEN",
       "title": "Tapered eval plus Texel protocol - mg-eg interpolation and quiet-label holdout design"
@@ -733,6 +757,31 @@
     {
       "code_files": [
         "src/eval.cpp",
+        "src/eval.h"
+      ],
+      "commits_mentioned": [
+        "7348f89"
+      ],
+      "kind": "experiment",
+      "record": "E-00014",
+      "rel": "experiments/E-00014-e-0014-train-only-feasibility-pass-for-e-0013-delta-star-and-s-d-inner-measurement-not-training.md",
+      "status": "PENDING",
+      "title": "E-00014 - TRAIN-ONLY feasibility pass for E-0013 (measure delta_star and s_d_inner; MEASUREMENT, not training)"
+    },
+    {
+      "code_files": [
+        "tools/e0011_check.py"
+      ],
+      "commits_mentioned": [],
+      "kind": "experiment",
+      "record": "E-00015",
+      "rel": "experiments/E-00015-e-0015-count-only-realized-usable-quiet-yield-pass-for-e-0013-measurement-not-training.md",
+      "status": "PENDING",
+      "title": "E-00015 - count-only realized usable quiet yield pass for E-0013 (MEASUREMENT, not training)"
+    },
+    {
+      "code_files": [
+        "src/eval.cpp",
         "src/eval.h",
         "src/main.cpp",
         "src/search.cpp"
@@ -789,6 +838,7 @@
       "code_files": [
         "src/eval.cpp",
         "src/eval.h",
+        "src/main.cpp",
         "tools/e0011_check.py",
         "tools/e0012_sprt.py"
       ],
@@ -853,6 +903,45 @@
       "rel": "handoffs/HO-0013-critique-e-0013-pre-registration-h-0013-texel-fit-contract-before-any-running.md",
       "status": "DONE",
       "title": "Critique E-0013 pre-registration (H-0013 Texel fit contract) before any running"
+    },
+    {
+      "code_files": [
+        "src/eval.cpp",
+        "src/eval.h",
+        "src/main.cpp",
+        "tools/e0011_check.py",
+        "tools/e0012_sprt.py"
+      ],
+      "commits_mentioned": [],
+      "kind": "handoff",
+      "record": "HO-0014",
+      "rel": "handoffs/HO-0014-re-critique-e-0013-addendum-vs-r-0019-findings-b1-b7-discharge-verification-only.md",
+      "status": "REQUESTED",
+      "title": "Re-critique E-0013 addendum vs R-0019 findings B1-B7 (discharge verification only)"
+    },
+    {
+      "code_files": [
+        "tools/e0011_check.py",
+        "tools/e0012_sprt.py"
+      ],
+      "commits_mentioned": [],
+      "kind": "handoff",
+      "record": "HO-0015",
+      "rel": "handoffs/HO-0015-execute-e-0014-train-only-feasibility-pass-measurement-not-training.md",
+      "status": "REQUESTED",
+      "title": "Execute E-00014: TRAIN-ONLY feasibility pass (measurement, not training)"
+    },
+    {
+      "code_files": [
+        "tools/e0011_check.py",
+        "tools/e0012_sprt.py"
+      ],
+      "commits_mentioned": [],
+      "kind": "handoff",
+      "record": "HO-0016",
+      "rel": "handoffs/HO-0016-execute-e-0015-count-only-realized-yield-pass-measurement-not-training.md",
+      "status": "REQUESTED",
+      "title": "Execute E-00015: count-only realized usable quiet yield pass (measurement, not training)"
     },
     {
       "code_files": [
@@ -1187,6 +1276,20 @@
     },
     {
       "code_files": [
+        "src/eval.cpp",
+        "src/main.cpp",
+        "tools/e0011_check.py",
+        "tools/e0012_sprt.py"
+      ],
+      "commits_mentioned": [],
+      "kind": "session",
+      "record": "S-0025",
+      "rel": "sessions/S-0025-e-0013-addendum-discharging-r-0019-b1-b7-shrink-branch-e-00014-e-00015-pre-registered-ho-0014-15-16.md",
+      "status": "CLOSED",
+      "title": "E-0013 addendum discharging R-0019 B1-B7 (SHRINK branch) + E-00014/E-00015 pre-registered + HO-0014/15/16"
+    },
+    {
+      "code_files": [
         "tools/e0011_check.py",
         "tools/e0011_generate.py",
         "tools/e0012_sprt.py",
@@ -1455,7 +1558,7 @@
       "title": "Gate 0 unrunnable: Device Guard hard-blocks kana.exe (every build, every path)"
     }
   ],
-  "generated": "2026-09-26T10:12:03",
+  "generated": "2026-09-26T11:34:48",
   "metrics": {
     "by_kind": {
       "agent_profile": 1,
@@ -1465,9 +1568,9 @@
       "decision": 11,
       "doc": 14,
       "evidence": 8,
-      "experiment": 13,
+      "experiment": 15,
       "failure": 2,
-      "handoff": 13,
+      "handoff": 16,
       "hypothesis": 17,
       "principle": 4,
       "profile": 4,
@@ -1475,32 +1578,32 @@
       "report": 13,
       "review": 19,
       "round_megaprompt": 2,
-      "session": 24,
+      "session": 25,
       "work": 7
     },
     "by_status": {
       "ACTIVE": 14,
-      "CLOSED": 24,
+      "CLOSED": 25,
       "COMPLETED": 27,
       "DONE": 17,
       "DRAFT": 1,
       "IN_PROGRESS": 2,
       "OPEN": 28,
-      "PENDING": 4,
+      "PENDING": 6,
       "RECORDED": 2,
       "REGISTERED": 8,
-      "REQUESTED": 1,
+      "REQUESTED": 4,
       "RESOLVED": 1,
       "SUPERSEDED": 4
     },
     "code_files": 25,
     "contradiction_candidates": 0,
-    "dangling_ids": 11,
+    "dangling_ids": 14,
     "duplicate_candidates": 2,
-    "edges_total": 2557,
+    "edges_total": 2723,
     "legacy_experiments_without_pre_registration": 6,
     "open_questions": 8,
-    "records_total": 173,
+    "records_total": 179,
     "revival_candidates": 5
   },
   "questions_all": [
@@ -1892,60 +1995,6 @@
   "timeline_tail": [
     {
       "example": false,
-      "id": "R-0012",
-      "kind": "review",
-      "rel": "reviews/R-0012-critique-e-0012-pre-registration-and-offline-sprt-replay.md",
-      "status": "COMPLETED",
-      "title": "R 0012 critique e 0012 pre registration and offline sprt replay",
-      "when": "2026-09-22"
-    },
-    {
-      "example": false,
-      "id": "R-0013",
-      "kind": "review",
-      "rel": "reviews/R-0013-round2-agreement-matrix-backfill.md",
-      "status": "COMPLETED",
-      "title": "R 0013 round2 agreement matrix backfill",
-      "when": "2026-09-22"
-    },
-    {
-      "example": false,
-      "id": "S-0008",
-      "kind": "session",
-      "rel": "sessions/S-0008-ho-0002-verification-of-w-0002-verified-occupant-4-e-0010-untouched-gate-0-re-block.md",
-      "status": "CLOSED",
-      "title": "HO-0002: independent verification of W-0002 (D-0007/DEC-0010/R-0009) — VERIFIED — occupant 4; Gate-0 re-block",
-      "when": "2026-09-22"
-    },
-    {
-      "example": false,
-      "id": "S-0009",
-      "kind": "session",
-      "rel": "sessions/S-0009-w-0001-w-0005-step-1-pre-registrations-e-0011-e-0012-filed-offline-sprt-replay-pass-ho-0003-ho-0004-gate-0-re-block.md",
-      "status": "CLOSED",
-      "title": "W-0001/W-0005 step 1: E-0011 + E-0012 pre-registrations filed; offline SPRT replay PASS; HO-0003/HO-0004; Gate-0 re-block",
-      "when": "2026-09-22"
-    },
-    {
-      "example": false,
-      "id": "S-0010",
-      "kind": "session",
-      "rel": "sessions/S-0010-ho-0003-ho-0004-critiques-not-clean-w-0003-backfill-ho-0005.md",
-      "status": "CLOSED",
-      "title": "HO-0003/HO-0004 critiques (R-0011/R-0012: both NOT CLEAN) + W-0003 backfill (R-0013) + HO-0005",
-      "when": "2026-09-22"
-    },
-    {
-      "example": false,
-      "id": "W-0002",
-      "kind": "work",
-      "rel": "work/W-0002-recalibrate-e0010-effect-size-decision-rule-d-0007-dec-0010.md",
-      "status": "DONE",
-      "title": "Recalibrate the E-0010 effect-size decision rule (D-0007 -> DEC-0010)",
-      "when": "2026-09-22"
-    },
-    {
-      "example": false,
       "id": "HO-0006",
       "kind": "handoff",
       "rel": "handoffs/HO-0006-re-critique-e-0011-addenda-b1-b2-b3-before-any-running.md",
@@ -2207,6 +2256,24 @@
     },
     {
       "example": false,
+      "id": "E-00014",
+      "kind": "experiment",
+      "rel": "experiments/E-00014-e-0014-train-only-feasibility-pass-for-e-0013-delta-star-and-s-d-inner-measurement-not-training.md",
+      "status": "PENDING",
+      "title": "E-00014 - TRAIN-ONLY feasibility pass for E-0013 (measure delta_star and s_d_inner; MEASUREMENT, not training)",
+      "when": "2026-09-26"
+    },
+    {
+      "example": false,
+      "id": "E-00015",
+      "kind": "experiment",
+      "rel": "experiments/E-00015-e-0015-count-only-realized-usable-quiet-yield-pass-for-e-0013-measurement-not-training.md",
+      "status": "PENDING",
+      "title": "E-00015 - count-only realized usable quiet yield pass for E-0013 (MEASUREMENT, not training)",
+      "when": "2026-09-26"
+    },
+    {
+      "example": false,
       "id": "E-0013",
       "kind": "experiment",
       "rel": "experiments/E-0013-h-0013-texel-fit-on-verified-e-0011-dataset-game-split-holdout-tier-s-sprt-vs-pinned-stage-5.md",
@@ -2221,6 +2288,33 @@
       "rel": "handoffs/HO-0013-critique-e-0013-pre-registration-h-0013-texel-fit-contract-before-any-running.md",
       "status": "DONE",
       "title": "Critique E-0013 pre-registration (H-0013 Texel fit contract) before any running",
+      "when": "2026-09-26"
+    },
+    {
+      "example": false,
+      "id": "HO-0014",
+      "kind": "handoff",
+      "rel": "handoffs/HO-0014-re-critique-e-0013-addendum-vs-r-0019-findings-b1-b7-discharge-verification-only.md",
+      "status": "REQUESTED",
+      "title": "Re-critique E-0013 addendum vs R-0019 findings B1-B7 (discharge verification only)",
+      "when": "2026-09-26"
+    },
+    {
+      "example": false,
+      "id": "HO-0015",
+      "kind": "handoff",
+      "rel": "handoffs/HO-0015-execute-e-0014-train-only-feasibility-pass-measurement-not-training.md",
+      "status": "REQUESTED",
+      "title": "Execute E-00014: TRAIN-ONLY feasibility pass (measurement, not training)",
+      "when": "2026-09-26"
+    },
+    {
+      "example": false,
+      "id": "HO-0016",
+      "kind": "handoff",
+      "rel": "handoffs/HO-0016-execute-e-0015-count-only-realized-yield-pass-measurement-not-training.md",
+      "status": "REQUESTED",
+      "title": "Execute E-00015: count-only realized usable quiet yield pass (measurement, not training)",
       "when": "2026-09-26"
     },
     {
@@ -2248,6 +2342,15 @@
       "rel": "sessions/S-0024-ho-0013-r-0019-e-0013-texel-pre-registration-critique-not-clean-seven-blocking-findings.md",
       "status": "CLOSED",
       "title": "HO-0013 / R-0019 — critique of the E-0013 Texel pre-registration: NOT CLEAN, seven blocking findings, E-0013 stays PENDING",
+      "when": "2026-09-26"
+    },
+    {
+      "example": false,
+      "id": "S-0025",
+      "kind": "session",
+      "rel": "sessions/S-0025-e-0013-addendum-discharging-r-0019-b1-b7-shrink-branch-e-00014-e-00015-pre-registered-ho-0014-15-16.md",
+      "status": "CLOSED",
+      "title": "E-0013 addendum discharging R-0019 B1-B7 (SHRINK branch) + E-00014/E-00015 pre-registered + HO-0014/15/16",
       "when": "2026-09-26"
     }
   ]
