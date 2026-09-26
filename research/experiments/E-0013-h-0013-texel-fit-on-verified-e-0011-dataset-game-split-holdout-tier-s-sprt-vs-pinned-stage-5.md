@@ -2,7 +2,7 @@
 id: E-0013
 type: experiment
 title: "E-0013 — H-0013 Texel fit on the verified E-0011 dataset (game-split holdout + Tier-S SPRT vs pinned stage 5)"
-status: PENDING
+status: RUNNING
 result: null
 elo_change: null
 hypothesis: H-0013
