@@ -1695,11 +1695,11 @@ failure mode is noise is a finding, not a footnote.
 `b7179f3`'s commit message states that the flip "moves the pair from `b04fd5a4...00ce6` to
 `8ad61ccd...00a727`". **That figure is unreproducible.** R-0023 brute-forced 30 schemes and
 found no match; I did not attempt to reconstruct what scheme produced it, and I am not
-carrying the value into this record. **It is withdrawn.** I verified by search that it never
-reached this file's text: `8ad61ccd` and `00a727` appear in `research/` only inside R-0023
-itself, so the withdrawal here closes the last place it could still be quoted from, and the
-figure remains only in the immutable text of `b7179f3`'s commit message, which no seat may
-rewrite.
+carrying the value into this record as a live claim. **It is withdrawn.** The strings
+`8ad61ccd` and `00a727` appear in `research/` only inside R-0023 and, in this file, only
+inside this Z2 withdrawal record itself, at L1696, L1699, L1809 and L1862 - so no live
+claim in `research/` carries it. That "never in this file" result was true at `f03613e`,
+stale since this withdrawal; the corrected reading is the one here, on the orchestrator's count.
 
 **The correct projection, recomputed by me under clause (d) Rule F, from the bytes at this
 commit and not inherited:**
@@ -1859,7 +1859,7 @@ R-0020, R-0021, R-0022 and R-0023 are all unedited.
 | 7 | All five boundary numstats recomputed AT HEAD (`f03613e`) and each labelled with its commit | 1040/0, 522/130, 267/36, 201/29, 50/21 |
 | 8 | The same three boundaries measured AT `8db1c45` | 1011/0, 493/130, 231/29 - **confirms Z3** |
 | 9 | status-line occurrences, located | **9 before this section** - L5, L20, L435, L456, L1132, L1270, L1363, L1394, L1435; **14 after it** (3 in the pasted clauses, 2 in this section's prose). L5 is the only intended edit |
-| 10 | `8ad61ccd` / `00a727` searched across `research/` | present in **R-0023 only**; never in this file - nothing to delete here, the figure is withdrawn |
+| 10 | `8ad61ccd` / `00a727` searched across `research/` | **REVISED (S-0033).** Present in **R-0023**, and in this file at **L1696, L1699, L1809 and this row only - all four inside the Z2 withdrawal record**, in **NO live claim**. The earlier "never in this file" result was true at `f03613e` and was made stale by the Z2 withdrawal itself; the corrected reading is the one in the Z2 section above, on the orchestrator's count, not a new defect. Disposition UNCHANGED: the figure is **withdrawn, not asserted**, so there is still nothing to delete |
 | 11 | E-0011 boundaries searched exhaustively (all ancestor-ordered pairs) | `146/5` = `6d507d8c..0d8fbce`; `19/2` = `040296e..0d8fbce`; `62/3` = `9d60f64..040296e` |
 | 12 | File hygiene | no BOM, **0 CR bytes**, single trailing newline, LF-only |
 | 13 | E-0013 front matter | L5 `status: PENDING`, L6 `result: null`, L7 `elo_change: null`, L10 `owner: null`, L14 `completed: null` - **PENDING, not flipped** |
