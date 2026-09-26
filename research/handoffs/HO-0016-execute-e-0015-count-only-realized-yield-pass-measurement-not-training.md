@@ -54,6 +54,19 @@ belongs to E-0013, not to you.
 
 **If branch 2 fires (TRAIN-side count below 30,000),** the reduced scope is explicitly
 **NOT** the mobility/tempo subset. E-0013's B5 correction note records that E-0010:344
+attributes the two WORST marginal contributions (mobility -3.7 Elo, tempo -11.5 Elo) to
+exactly those terms, so the ladder's fallback citation is backwards. A reduced scope must
+be re-derived and re-registered under its own critique. Report the count; do not choose a
+replacement scope.
+
+**Specifically NOT authorised:**
+- Reading any label field.
+- Changing the predicate, the dedup order (global-before-split, per F9), the split salt,
+  the split map, the 30,000 floor, or the band after seeing the count.
+- Any fitting, any game generation, any engine pair, any SPRT activity.
+- Editing `tools/e0011_check.py`, `tools/e0012_sprt.py`, or any engine source file. If
+  you need a counting tool, write a new one; do not modify the verified checker.
+- Flipping E-00015 or E-0013 to RUNNING, or changing any H-#### status.
 
 ## Artifacts To Read (paths)
 
@@ -105,23 +118,10 @@ contents, and state the discrepancy in your response if the file and the status 
 30,000. A count below the floor is a legitimate and useful result: it converts a latent
 trap into a known state, and E-0013's rule already says what happens then.
 
+
 ## Response (receiver, append-only)
 - 2026-09-26 - (role) - ...
 
 ## Verification (receiver, append-only)
 - raw output / exit codes / hashes:
 - verdict: ...
-
-attributes the two WORST marginal contributions (mobility -3.7 Elo, tempo -11.5 Elo) to
-exactly those terms, so the ladder's fallback citation is backwards. A reduced scope must
-be re-derived and re-registered under its own critique. Report the count; do not choose a
-replacement scope.
-
-**Specifically NOT authorised:**
-- Reading any label field.
-- Changing the predicate, the dedup order (global-before-split, per F9), the split salt,
-  the split map, the 30,000 floor, or the band after seeing the count.
-- Any fitting, any game generation, any engine pair, any SPRT activity.
-- Editing `tools/e0011_check.py`, `tools/e0012_sprt.py`, or any engine source file. If
-  you need a counting tool, write a new one; do not modify the verified checker.
-- Flipping E-00015 or E-0013 to RUNNING, or changing any H-#### status.

@@ -1290,6 +1290,19 @@
     },
     {
       "code_files": [
+        "tools/e0011_check.py"
+      ],
+      "commits_mentioned": [
+        "930d837"
+      ],
+      "kind": "session",
+      "record": "S-0026",
+      "rel": "sessions/S-0026-mechanical-repair-of-ho-0014-15-16-section-stranding-and-two-cut-sentences.md",
+      "status": "CLOSED",
+      "title": "Mechanical repair of HO-0014/15/16 section stranding and two cut sentences"
+    },
+    {
+      "code_files": [
         "tools/e0011_check.py",
         "tools/e0011_generate.py",
         "tools/e0012_sprt.py",
@@ -1558,7 +1571,7 @@
       "title": "Gate 0 unrunnable: Device Guard hard-blocks kana.exe (every build, every path)"
     }
   ],
-  "generated": "2026-09-26T11:34:48",
+  "generated": "2026-09-26T12:07:47",
   "metrics": {
     "by_kind": {
       "agent_profile": 1,
@@ -1578,12 +1591,12 @@
       "report": 13,
       "review": 19,
       "round_megaprompt": 2,
-      "session": 25,
+      "session": 26,
       "work": 7
     },
     "by_status": {
       "ACTIVE": 14,
-      "CLOSED": 25,
+      "CLOSED": 26,
       "COMPLETED": 27,
       "DONE": 17,
       "DRAFT": 1,
@@ -1598,12 +1611,12 @@
     },
     "code_files": 25,
     "contradiction_candidates": 0,
-    "dangling_ids": 14,
+    "dangling_ids": 11,
     "duplicate_candidates": 2,
-    "edges_total": 2723,
+    "edges_total": 2781,
     "legacy_experiments_without_pre_registration": 6,
     "open_questions": 8,
-    "records_total": 179,
+    "records_total": 180,
     "revival_candidates": 5
   },
   "questions_all": [
@@ -1995,15 +2008,6 @@
   "timeline_tail": [
     {
       "example": false,
-      "id": "HO-0006",
-      "kind": "handoff",
-      "rel": "handoffs/HO-0006-re-critique-e-0011-addenda-b1-b2-b3-before-any-running.md",
-      "status": "DONE",
-      "title": "Re-critique E-0011's R-0011 addenda (B1/B2/B3 responses) before any RUNNING",
-      "when": "2026-09-23"
-    },
-    {
-      "example": false,
       "id": "HO-0007",
       "kind": "handoff",
       "rel": "handoffs/HO-0007-re-critique-e-0012-addenda-b1-b2-n4-null-pair-before-any-running.md",
@@ -2351,6 +2355,15 @@
       "rel": "sessions/S-0025-e-0013-addendum-discharging-r-0019-b1-b7-shrink-branch-e-00014-e-00015-pre-registered-ho-0014-15-16.md",
       "status": "CLOSED",
       "title": "E-0013 addendum discharging R-0019 B1-B7 (SHRINK branch) + E-00014/E-00015 pre-registered + HO-0014/15/16",
+      "when": "2026-09-26"
+    },
+    {
+      "example": false,
+      "id": "S-0026",
+      "kind": "session",
+      "rel": "sessions/S-0026-mechanical-repair-of-ho-0014-15-16-section-stranding-and-two-cut-sentences.md",
+      "status": "CLOSED",
+      "title": "Mechanical repair of HO-0014/15/16 section stranding and two cut sentences",
       "when": "2026-09-26"
     }
   ]

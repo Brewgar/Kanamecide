@@ -95,14 +95,6 @@ contents, and state the discrepancy in your response if the file and the status 
 any verdict that flatters E-0013. The honest null is worth more than a lucky number, and
 branch X-3 (the optimizer does not beat the floor) is a perfectly good outcome to report.
 
-## Response (receiver, append-only)
-- 2026-09-26 - (role) - ...
-
-## Verification (receiver, append-only)
-- raw output / exit codes / hashes:
-- verdict: ...
-
-
 **Specifically NOT authorised:**
 - Running the holdout evaluation. That is E-0013's own run, later, under its own
   pre-registration.
@@ -112,3 +104,10 @@ branch X-3 (the optimizer does not beat the floor) is a perfectly good outcome t
 - Flipping E-00014 or E-0013 to RUNNING, or changing any H-#### status. E-00014's status
   is flipped by the owner seat when the pre-conditions are met, not by the executor.
 - Any game generation, engine pair, or SPRT activity.
+
+## Response (receiver, append-only)
+- 2026-09-26 - (role) - ...
+
+## Verification (receiver, append-only)
+- raw output / exit codes / hashes:
+- verdict: ...

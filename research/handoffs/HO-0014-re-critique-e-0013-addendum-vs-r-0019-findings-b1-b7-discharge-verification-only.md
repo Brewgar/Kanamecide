@@ -55,6 +55,18 @@ already made.
      that actually exists. **You are not asked whether the chosen branch is the better
      engineering choice** - that call was the owner's to make and its cost is written into
      the record. You are asked whether that branch actually discharges the defect the way
+   R-0019's B1 put it, not merely whether the addendum says
+     it claims to.
+   - **(iii) NOTHING WAS MEASURED, FITTED, COUNTED OR RUN.** No training, no fitting, no
+     extraction, no counting, no feasibility pass, no SPRT game generation. No holdout
+     read. E-0013 must still be `status: PENDING`; no H-#### status may have changed;
+     no CLOSED/VERIFIED record may have been edited.
+4. **The BUCKET-2 conversion, specifically:** the addendum delegates two MEASUREMENTS to
+   two PENDING records (E-00014, E-00015). Check that the delegation is honest - that
+   the addendum does not claim those numbers, does not let the holdout be read to obtain
+   them, and does not use the delegation as a way to discharge a finding that only
+   addendum text could have discharged. A finding discharged by "someone will measure it
+   later" is NOT DISCHARGED unless the measurement is what the finding actually asked for.
 
 **What you are NOT being asked to do, and should decline to do:**
 
@@ -97,6 +109,13 @@ costs it the experiment.
   its attribution) - to check the backwards-citation claim arithmetically. **Neither is
   edited by this work and neither may be edited by you.**
 - `tools/e0012_sprt.py` (lines 293-345, 471-490) and `tools/e0011_check.py` (lines
+  371-398) - to check the B1 mechanism and the B6 per-ply-count claim against the actual
+  surface. **Cited read-only; no seat may edit them.**
+- `src/eval.cpp` (`eval_init` 174-234; the `stage>=6` tempo line at 356), `src/eval.h`
+  (the `EvalCoeffs` struct), `src/main.cpp` (103-114 UCI options, 124-147 the `setoption`
+  parser) - to check the B1 mechanism is achievable and the `S* = 6` claim.
+- `research/work/W-0001-*.md` and `research/reviews/R-0017-*.md` - the VERIFIED records
+  the B5 correction note deliberately does not touch.
 
 ## Commands To Run
 
@@ -151,23 +170,3 @@ who likes this addendum and a reviewer who does not should both be able to sign 
 ## Verification (receiver, append-only)
 - raw output / exit codes / hashes:
 - verdict: ...
-
-  371-398) - to check the B1 mechanism and the B6 per-ply-count claim against the actual
-  surface. **Cited read-only; no seat may edit them.**
-- `src/eval.cpp` (`eval_init` 174-234; the `stage>=6` tempo line at 356), `src/eval.h`
-  (the `EvalCoeffs` struct), `src/main.cpp` (103-114 UCI options, 124-147 the `setoption`
-  parser) - to check the B1 mechanism is achievable and the `S* = 6` claim.
-- `research/work/W-0001-*.md` and `research/reviews/R-0017-*.md` - the VERIFIED records
-  the B5 correction note deliberately does not touch.
-
-     it claims to.
-   - **(iii) NOTHING WAS MEASURED, FITTED, COUNTED OR RUN.** No training, no fitting, no
-     extraction, no counting, no feasibility pass, no SPRT game generation. No holdout
-     read. E-0013 must still be `status: PENDING`; no H-#### status may have changed;
-     no CLOSED/VERIFIED record may have been edited.
-4. **The BUCKET-2 conversion, specifically:** the addendum delegates two MEASUREMENTS to
-   two PENDING records (E-00014, E-00015). Check that the delegation is honest - that
-   the addendum does not claim those numbers, does not let the holdout be read to obtain
-   them, and does not use the delegation as a way to discharge a finding that only
-   addendum text could have discharged. A finding discharged by "someone will measure it
-   later" is NOT DISCHARGED unless the measurement is what the finding actually asked for.

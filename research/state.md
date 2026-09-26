@@ -1,7 +1,7 @@
 # Research State (GENERATED — do not edit)
 
 Derived from the record store by `research.py state`. Regenerate after every change.
-Generated: 2026-09-26T11:34:48; schema 2.
+Generated: 2026-09-26T12:07:47; schema 2.
 Every entry is a PROJECTION of the linked records — follow them before believing.
 
 ## Current best beliefs (hypotheses with measured weight)
@@ -43,7 +43,6 @@ Every entry is a PROJECTION of the linked records — follow them before believi
 - hypothesis **H-0002-magic-stub** Magic Bitboards with PEXT Provide >=3x NPS Speedup — SUPERSEDED. No revisit condition recorded.
 
 ## Recent timeline
-- 2026-09-25 session S-0021 (CLOSED) : HO-0012 independent verification of W-0005 E-0012 live runs RUN-0002 and RUN-0003
 - 2026-09-25 session S-0022 (CLOSED) : Owner close-out: W-0005 DONE after R-0018 VERIFIED; E-0012 COMPLETED
 - 2026-09-25 work W-0001 (DONE) : E-0011 self-play data pipeline (pre-register, build, run, verify)
 - 2026-09-25 work W-0005 (DONE) : E-SPRT-lite comparison harness: pre-register, build, validate against known difference
@@ -58,6 +57,7 @@ Every entry is a PROJECTION of the linked records — follow them before believi
 - 2026-09-26 session S-0023 (CLOSED) : Draft E-0013 Texel pre-registration (PENDING) + file HO-0013 critique handoff
 - 2026-09-26 session S-0024 (CLOSED) : HO-0013 / R-0019 — critique of the E-0013 Texel pre-registration: NOT CLEAN, seven blocking findings, E-0013 stays PENDING
 - 2026-09-26 session S-0025 (CLOSED) : E-0013 addendum discharging R-0019 B1-B7 (SHRINK branch) + E-00014/E-00015 pre-registered + HO-0014/15/16
+- 2026-09-26 session S-0026 (CLOSED) : Mechanical repair of HO-0014/15/16 section stranding and two cut sentences
 
 ## Metrics
 ```
@@ -80,12 +80,12 @@ Every entry is a PROJECTION of the linked records — follow them before believi
     "report": 13,
     "review": 19,
     "round_megaprompt": 2,
-    "session": 25,
+    "session": 26,
     "work": 7
   },
   "by_status": {
     "ACTIVE": 14,
-    "CLOSED": 25,
+    "CLOSED": 26,
     "COMPLETED": 27,
     "DONE": 17,
     "DRAFT": 1,
@@ -100,12 +100,12 @@ Every entry is a PROJECTION of the linked records — follow them before believi
   },
   "code_files": 25,
   "contradiction_candidates": 0,
-  "dangling_ids": 14,
+  "dangling_ids": 11,
   "duplicate_candidates": 2,
-  "edges_total": 2723,
+  "edges_total": 2781,
   "legacy_experiments_without_pre_registration": 6,
   "open_questions": 8,
-  "records_total": 179,
+  "records_total": 180,
   "revival_candidates": 5
 }
 

@@ -206,6 +206,7 @@
 - [S-0023](sessions/S-0023-draft-e-0013-texel-pre-registration-pending-plus-ho-0013-critique-handoff.md) — Draft E-0013 Texel pre-registration (PENDING) + file HO-0013 critique handoff — status=CLOSED
 - [S-0024](sessions/S-0024-ho-0013-r-0019-e-0013-texel-pre-registration-critique-not-clean-seven-blocking-findings.md) — HO-0013 / R-0019 — critique of the E-0013 Texel pre-registration: NOT CLEAN, seven blocking findings, E-0013 stays PENDING — status=CLOSED
 - [S-0025](sessions/S-0025-e-0013-addendum-discharging-r-0019-b1-b7-shrink-branch-e-00014-e-00015-pre-registered-ho-0014-15-16.md) — E-0013 addendum discharging R-0019 B1-B7 (SHRINK branch) + E-00014/E-00015 pre-registered + HO-0014/15/16 — status=CLOSED
+- [S-0026](sessions/S-0026-mechanical-repair-of-ho-0014-15-16-section-stranding-and-two-cut-sentences.md) — Mechanical repair of HO-0014/15/16 section stranding and two cut sentences — status=CLOSED
 
 ## Unrendered Records (bug — report this)
 
