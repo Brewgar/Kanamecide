@@ -843,10 +843,19 @@
         "tools/e0012_sprt.py"
       ],
       "commits_mentioned": [
+        "040296e",
         "4478c3a",
         "7348f89",
+        "8ad61cc",
+        "8db1c45",
+        "9d60f64",
+        "b04fd5a",
+        "b7179f3",
+        "c7ebe54",
         "ce845c5",
         "d3ce887",
+        "d8add61",
+        "f03613e",
         "f450976",
         "fce355c"
       ],
@@ -1637,7 +1646,7 @@
       "title": "Gate 0 unrunnable: Device Guard hard-blocks kana.exe (every build, every path)"
     }
   ],
-  "generated": "2026-09-26T19:12:56",
+  "generated": "2026-09-26T19:38:27",
   "metrics": {
     "by_kind": {
       "agent_profile": 1,
@@ -1657,12 +1666,12 @@
       "report": 13,
       "review": 23,
       "round_megaprompt": 2,
-      "session": 31,
+      "session": 32,
       "work": 7
     },
     "by_status": {
       "ACTIVE": 14,
-      "CLOSED": 31,
+      "CLOSED": 32,
       "COMPLETED": 31,
       "DONE": 18,
       "DRAFT": 1,
@@ -1679,10 +1688,10 @@
     "contradiction_candidates": 0,
     "dangling_ids": 11,
     "duplicate_candidates": 2,
-    "edges_total": 3229,
+    "edges_total": 3294,
     "legacy_experiments_without_pre_registration": 6,
     "open_questions": 8,
-    "records_total": 189,
+    "records_total": 190,
     "revival_candidates": 5
   },
   "questions_all": [
@@ -2074,15 +2083,6 @@
   "timeline_tail": [
     {
       "example": false,
-      "id": "E-0011",
-      "kind": "experiment",
-      "rel": "experiments/E-0011-self-play-data-pipeline-provenance-carrying-resumable-deduplicated-game-dataset.md",
-      "status": "COMPLETED",
-      "title": "E-0011 — Self-play data pipeline: resumable, provenance-carrying, deduplicated game dataset for Texel fitting",
-      "when": "2026-09-24"
-    },
-    {
-      "example": false,
       "id": "HO-0009",
       "kind": "handoff",
       "rel": "handoffs/HO-0009-independent-verification-run-0001-e0011.md",
@@ -2430,6 +2430,15 @@
       "rel": "sessions/S-0031-y1-fix-r-0022-four-pointers-bounded-10-pointer-rewrite-7-in-band-rows-6-old-ref-rows-exempt-running-authorisation-recorded-but-not-executed-status-is-l5-inside-the-hash-proved-l1-428-block.md",
       "status": "CLOSED",
       "title": "Y1 fix (R-0022 four pointers) + bounded +10 pointer rewrite (7 in-band rows; 6 old-ref rows exempt) + RUNNING authorisation recorded but NOT executed (status is L5, inside the hash-proved L1-428 block)",
+      "when": "2026-09-26"
+    },
+    {
+      "example": false,
+      "id": "S-0032",
+      "kind": "session",
+      "rel": "sessions/S-0032-r-0023-adopted-z1-repaired-one-word-contract-a-e-verbatim-z2-withdrawn-z3-re-pinned-ruling-2-recorded-flip-not-executed-condition-part-6-unmet-fresh-adversarial-critique-required-owner-seat-may-not-self-verify-e-0013-stays-pending.md",
+      "status": "CLOSED",
+      "title": "R-0023 adopted - Z1 repaired (one word), contract (a)-(e) verbatim, Z2 withdrawn, Z3 re-pinned, Ruling 2 recorded; FLIP NOT EXECUTED - condition part 6 unmet (fresh adversarial critique required, owner seat may not self-verify); E-0013 stays PENDING",
       "when": "2026-09-26"
     }
   ]

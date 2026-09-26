@@ -1,7 +1,7 @@
 # Research State (GENERATED — do not edit)
 
 Derived from the record store by `research.py state`. Regenerate after every change.
-Generated: 2026-09-26T19:12:56; schema 2.
+Generated: 2026-09-26T19:38:27; schema 2.
 Every entry is a PROJECTION of the linked records — follow them before believing.
 
 ## Current best beliefs (hypotheses with measured weight)
@@ -43,7 +43,6 @@ Every entry is a PROJECTION of the linked records — follow them before believi
 - hypothesis **H-0002-magic-stub** Magic Bitboards with PEXT Provide >=3x NPS Speedup — SUPERSEDED. No revisit condition recorded.
 
 ## Recent timeline
-- 2026-09-26 handoff HO-0016 (REQUESTED) : Execute E-00015: count-only realized usable quiet yield pass (measurement, not training)
 - 2026-09-26 review R-0019 (COMPLETED) : R 0019 e 0013 pre registration critique h 0013 texel fit contract ho 0013 six question ruling
 - 2026-09-26 review R-0020 (COMPLETED) : R 0020 re critique of the e 0013 addendum vs r 0019 b1 b7 discharge verification only ho 0014
 - 2026-09-26 review R-0021 (COMPLETED) : R 0021 independent post repair critique of the e 0013 addendum seam 8 paren ruled b5 s2 slot ruled new blocking x4 s 0029 re severed the file tail x5 head side deletion unrecorded e 0013 stays pending
@@ -58,6 +57,7 @@ Every entry is a PROJECTION of the linked records — follow them before believi
 - 2026-09-26 session S-0029 (CLOSED) : R-0020 repair second pass: seam 8 misjoin fixed (duplicate B6 citation removed), B5 s2 empty slot named and dispositioned, verification recorded; E-0013 stays PENDING
 - 2026-09-26 session S-0030 (CLOSED) : R-0021 repair of the E-0013 addendum: X4 tail rejoined, seam-8 paren closed, B5 s2 heading withdrawn, X5 recorded, append-only baseline re-labelled; E-0013 stays PENDING
 - 2026-09-26 session S-0031 (CLOSED) : Y1 fix (R-0022 four pointers) + bounded +10 pointer rewrite (7 in-band rows; 6 old-ref rows exempt) + RUNNING authorisation recorded but NOT executed (status is L5, inside the hash-proved L1-428 block)
+- 2026-09-26 session S-0032 (CLOSED) : R-0023 adopted - Z1 repaired (one word), contract (a)-(e) verbatim, Z2 withdrawn, Z3 re-pinned, Ruling 2 recorded; FLIP NOT EXECUTED - condition part 6 unmet (fresh adversarial critique required, owner seat may not self-verify); E-0013 stays PENDING
 
 ## Metrics
 ```
@@ -80,12 +80,12 @@ Every entry is a PROJECTION of the linked records — follow them before believi
     "report": 13,
     "review": 23,
     "round_megaprompt": 2,
-    "session": 31,
+    "session": 32,
     "work": 7
   },
   "by_status": {
     "ACTIVE": 14,
-    "CLOSED": 31,
+    "CLOSED": 32,
     "COMPLETED": 31,
     "DONE": 18,
     "DRAFT": 1,
@@ -102,10 +102,10 @@ Every entry is a PROJECTION of the linked records — follow them before believi
   "contradiction_candidates": 0,
   "dangling_ids": 11,
   "duplicate_candidates": 2,
-  "edges_total": 3229,
+  "edges_total": 3294,
   "legacy_experiments_without_pre_registration": 6,
   "open_questions": 8,
-  "records_total": 189,
+  "records_total": 190,
   "revival_candidates": 5
 }
 
