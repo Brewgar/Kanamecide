@@ -1,7 +1,7 @@
 # Research State (GENERATED — do not edit)
 
 Derived from the record store by `research.py state`. Regenerate after every change.
-Generated: 2026-09-26T16:05:15; schema 2.
+Generated: 2026-09-26T16:39:09; schema 2.
 Every entry is a PROJECTION of the linked records — follow them before believing.
 
 ## Current best beliefs (hypotheses with measured weight)
@@ -43,7 +43,6 @@ Every entry is a PROJECTION of the linked records — follow them before believi
 - hypothesis **H-0002-magic-stub** Magic Bitboards with PEXT Provide >=3x NPS Speedup — SUPERSEDED. No revisit condition recorded.
 
 ## Recent timeline
-- 2026-09-26 experiment E-00015 (PENDING) : E-00015 - count-only realized usable quiet yield pass for E-0013 (MEASUREMENT, not training)
 - 2026-09-26 experiment E-0013 (PENDING) : E-0013 — H-0013 Texel fit on the verified E-0011 dataset (game-split holdout + Tier-S SPRT vs pinned stage 5)
 - 2026-09-26 handoff HO-0013 (DONE) : Critique E-0013 pre-registration (H-0013 Texel fit contract) before any running
 - 2026-09-26 handoff HO-0014 (DONE) : Re-critique E-0013 addendum vs R-0019 findings B1-B7 (discharge verification only)
@@ -51,6 +50,7 @@ Every entry is a PROJECTION of the linked records — follow them before believi
 - 2026-09-26 handoff HO-0016 (REQUESTED) : Execute E-00015: count-only realized usable quiet yield pass (measurement, not training)
 - 2026-09-26 review R-0019 (COMPLETED) : R 0019 e 0013 pre registration critique h 0013 texel fit contract ho 0013 six question ruling
 - 2026-09-26 review R-0020 (COMPLETED) : R 0020 re critique of the e 0013 addendum vs r 0019 b1 b7 discharge verification only ho 0014
+- 2026-09-26 review R-0021 (COMPLETED) : R 0021 independent post repair critique of the e 0013 addendum seam 8 paren ruled b5 s2 slot ruled new blocking x4 s 0029 re severed the file tail x5 head side deletion unrecorded e 0013 stays pending
 - 2026-09-26 session S-0023 (CLOSED) : Draft E-0013 Texel pre-registration (PENDING) + file HO-0013 critique handoff
 - 2026-09-26 session S-0024 (CLOSED) : HO-0013 / R-0019 — critique of the E-0013 Texel pre-registration: NOT CLEAN, seven blocking findings, E-0013 stays PENDING
 - 2026-09-26 session S-0025 (CLOSED) : E-0013 addendum discharging R-0019 B1-B7 (SHRINK branch) + E-00014/E-00015 pre-registered + HO-0014/15/16
@@ -78,7 +78,7 @@ Every entry is a PROJECTION of the linked records — follow them before believi
     "profile": 4,
     "question": 8,
     "report": 13,
-    "review": 20,
+    "review": 21,
     "round_megaprompt": 2,
     "session": 29,
     "work": 7
@@ -86,7 +86,7 @@ Every entry is a PROJECTION of the linked records — follow them before believi
   "by_status": {
     "ACTIVE": 14,
     "CLOSED": 29,
-    "COMPLETED": 28,
+    "COMPLETED": 29,
     "DONE": 18,
     "DRAFT": 1,
     "IN_PROGRESS": 2,
@@ -102,10 +102,10 @@ Every entry is a PROJECTION of the linked records — follow them before believi
   "contradiction_candidates": 0,
   "dangling_ids": 11,
   "duplicate_candidates": 2,
-  "edges_total": 3014,
+  "edges_total": 3054,
   "legacy_experiments_without_pre_registration": 6,
   "open_questions": 8,
-  "records_total": 184,
+  "records_total": 185,
   "revival_candidates": 5
 }
 

@@ -101,6 +101,7 @@
 - [R-0018](reviews/R-0018-independent-verification-w-0005-e-0012-live-runs-run-0002-and-run-0003-ho-0012.md) — (untitled) — status=COMPLETED
 - [R-0019](reviews/R-0019-e-0013-pre-registration-critique-h-0013-texel-fit-contract-ho-0013-six-question-ruling.md) — (untitled) — status=COMPLETED
 - [R-0020](reviews/R-0020-re-critique-of-the-e-0013-addendum-vs-r-0019-b1-b7-discharge-verification-only-ho-0014.md) — (untitled) — status=COMPLETED
+- [R-0021](reviews/R-0021-independent-post-repair-critique-of-the-e-0013-addendum-seam-8-paren-ruled-b5-s2-slot-ruled-new-blocking-x4-s-0029-re-severed-the-file-tail-x5-head-side-deletion-unrecorded-e-0013-stays-pending.md) — (untitled) — status=COMPLETED
 
 ## Open Questions
 
