@@ -838,7 +838,7 @@ error, and a follow-up obligation is filed against E-0013's close-out:
 > nevertheless arms the ladder, the fallback scope it would apply is not the
 > mobility/tempo sub-set named in E-0011 N1, and the sub-set is re-derived and
 > re-registered under its own critique before any use (mobility/tempo scope; B6)
-> it; B6) - so the backwards fallback is a latent trap rather than an active error, and
+> - so the backwards fallback is a latent trap rather than an active error, and
 > this addendum converts it from an auto-applying rule into a rule that CANNOT auto-apply:
 > if the ladder arms, the scope is re-derived and re-registered under its own critique
 > before it is used. **Follow-up obligation F-U4:** at E-0013's close-out, the owner
@@ -963,6 +963,7 @@ finding, and where a finding is only partly discharged, the row says so and says
 | **DN1-DN10** | **RECORDED, non-blocking; 5 discharged (DN3, DN5, DN7, DN8, DN10), 4 recorded/routed (DN1, DN2, DN4, DN6), 1 recorded + carried (DN9)** | Each has a disposition row. None silently dropped. | DN6 is not this seat's file (routed). DN9's routing attaches to the deferred strength contract and is preserved in F-U2 so it is not lost. |
 | **X1 (R-0020)** | **DISCHARGED - in-place text repair of THIS addendum, 2026-09-26, under R-0020's licence** | R-0020 found this addendum to be a truncated, interleaved document: ten sentences severed at a block boundary with their continuations relocated far away, ONE continuation absent from the file, the X-1/X-2/X-3 contingency table ~340 lines from the sentence announcing it, the follow-up obligations split across this table, and the file ending mid-bullet. All ten seams are now joined as single contiguous sentences inside their own finding's section; the absent continuation is supplied as X1-a; the contingency table now sits immediately under B3 sentence 3's announcement; F-U1..F-U6 (including F-U3's stranded `Owner:/Due:` line) are one contiguous list; cost item 4 is contiguous with items 1-3; the BUCKET-1/2/3 list is restored to one place; and the file ends on a complete sentence. | The repair is a MOVE, not a rewrite: no sentence was deleted and no continuation was retyped, and every move is listed line-by-line in the dated repair section at the end of this addendum. Consequence stated rather than hidden: this ADDENDUM is therefore NOT purely additive to itself. The ORIGINAL pre-registration (L1-L428) is append-only and provably so, by hash - see the same repair section. |
 | **X2 (R-0020)** | **DISCHARGED - the false clause DELETED, the arithmetic INSERTED** | B5 sentence 1's recorded rationale claimed that freezing "keeps the fitted-parameter count defensible against E-0011 N1's '>= 500 positions/parameter' standard". That is false: 683 free scalars against at most 76,587 realized positions is ~112 positions per parameter (~89 train-side), about 4.46x short of 500, and freezing moves 94 -> 112, not to 500. The clause is deleted and replaced with R-0020's own arithmetic, and "240 extra free parameters" reads **128** (or 64 under `pst[s] == pst[mirror(s)]`). | The freeze DECISION is unchanged and is NOT re-opened by this correction. 4.46x short is now recorded as a STATED LIMITATION of the all-terms scope, not as a solved one; the binding constraints on stage (a) remain E-0011 N1's label/systematic bias and the game-clustered `s_d` that E-00014 measures. |
+| **B5 s2 (pre-existing)** | **RECORDED, body UNESTABLISHED - not moved, not filled** | B5 sentence 2's heading at L811 ("the ladder's citation, corrected - IN THIS RECORD ONLY") announces quoted text, but its slot is EMPTY: L812-L813 are blank and B5 sentence 3's heading is at L814. The same hole exists in `ce845c5` (L684 heading, L685-L686 blank, B5 sentence 3 at L687), so it is PRE-EXISTING and was not introduced by the R-0020 repair. | **The announced body is NOT established to be the correction-note block now at L822-L848, and this row does not claim it is:** that block is introduced by B5 sentence 3, whose preamble ends in a colon at L820 and is immediately followed by it, so it is already spoken for. B5 s2 therefore has no located body anywhere in the file, and whether its text was lost, never written, or is the note under another name is UNESTABLISHED - not guessed. (The earlier note at L1202 that this text "sits far away under B6 sentence 1" describes the `ce845c5` geometry, in which this material ran to old L871 near B6 s1; after the repair the note is at L822-L848 under B5 s3 and B6 s1 is at L1016.) This is the same interleaving class as X1 - a heading whose body lives elsewhere - which is why it was hard to detect. Deciding whether to relocate anything is a CONTENT judgement for the next reviewer; this seat's job was to make the hole visible and named. |
 
 **What is explicitly NOT claimed by this addendum.** It does not claim B1's strength
 question is answered; it does not claim a fitted artifact exists; it does not claim any
@@ -1165,17 +1166,35 @@ sentence is now one contiguous run of lines inside its own finding's section.
 | 9 | L730 `...ARMED the E-0011 N1` | L828-L831 | L871-L875 | the ~27k refutation's scope-changing consequence is attached |
 | 10 | L754 `**Relaxing (d) opens a live leakage` | L823-L826 | L899-L903 | DN10's explicit-dependency sentence is one sentence |
 
-**X1-a - the one seam that needed authorial text.** R-0020 deliberately refused to guess it and
-supplied a conforming template instead. **I ADOPTED THAT TEMPLATE VERBATIM** (R-0020:696-701)
-rather than rewriting it in my own words, and it satisfies all three of R-0020's stated
-conditions: (a) it finishes the sentence begun at old L707 by naming **E-00015** as the pass
-that measures the realized count and by stating that the ladder's DISARMED status is
-**provisional on** that count; (b) it says explicitly that the band "is NOT a measurement of this
-record's own filter"; (c) it ends on the parenthetical "... (mobility/tempo scope; B6)", whose
-referent is the fallback scope, and so leads grammatically into the existing tail at old L871
-("it; B6) - so the backwards fallback is a latent trap..."). The head's dangling
-"(E-00015 measures" was the opening of that same parenthetical, so the template absorbed it
-rather than duplicating it.
+**X1-a - the one seam that needed authorial text, and how the seam-8 misjoin was resolved.**
+R-0020 deliberately refused to guess the missing words and supplied a conforming template
+instead. **I ADOPTED THAT TEMPLATE VERBATIM** (R-0020:696-701) rather than rewriting it in my
+own words, and it satisfies R-0020's conditions (a) and (b): it names **E-00015** as the pass
+that measures the realized count and states that the ladder's DISARMED status is **provisional
+on** that count, and it says explicitly that the band "is NOT a measurement of this record's own
+filter". Condition (c) - that the inserted text end on the parenthetical "... (mobility/tempo
+scope; B6)" and lead grammatically into the tail at old L871 - is the source of a defect in the
+**ruling, not in this repair**: R-0020 quoted that same tail as beginning `it; B6) -`
+(R-0020:676) while also requiring the inserted text to end `... (mobility/tempo scope; B6)`
+(R-0020:690-691, 696-701). The two instructions overlap, and adopting the template verbatim, as
+R-0020 offered and as I was directed, produced `B6)` twice in the joined sentence, the second
+occurrence closing nothing and the word `it;` stranded with no antecedent.
+
+**The deletion, stated explicitly as required.** The alternative form was used: the template is
+kept whole, and the leading `it; B6)` of the author's tail (old L871, now L841) was **deleted**.
+That is text R-0020 said to move, and deleting it is recorded here rather than done silently.
+It was deleted because it is the redundant half of the duplication, not because it carried
+meaning: `it;` is stranded (the template has already said "provisional on it") and its `B6)`
+duplicates the citation the template's own parenthetical already makes. The alternative was
+chosen over trimming the template's `B6)` because trimming it would delete the very string
+R-0020's condition (c) mandates and would leave the count of `mobility/tempo scope; B6)` at 0,
+falsifying the verbatim-adoption claim recorded in this same section. The cost is stated rather
+than hidden: **the head's opening paren `(E-00015 measures` is now left unclosed**, because
+R-0020's template consumed the tail's `)` and supplied a self-closing parenthetical of its own.
+Both candidate forms leave that paren orphaned (delta +1); the pre-fix text was balanced only
+because the duplicated citation accidentally supplied a second `)`. This is a defect inherited
+from the template, it is flagged here for the re-critique, and it is **not** repaired here
+because closing it would require inventing a closing token R-0020 did not supply.
 
 **Other moves, same rule - nothing deleted, nothing retyped.** The X-1/X-2/X-3 contingency table
 moved from old L960-L995 to L682-L717, immediately under B3 sentence 3's announcement at
@@ -1231,4 +1250,44 @@ E-0012, W-0001, W-0005, RUN-0002, RUN-0003, R-0017 and R-0018 are untouched, as 
 text and status; no `tools/` or `src/` file was edited (N1 is a text note about a script, not a
 change to it); no training, fitting, extraction, counting, feasibility pass or SPRT generation
 ran; no holdout was read. E-0013 remains `status: PENDING` - this repair is not authorisation to
+
+**Verification performed ON this repair, 2026-09-26 (second pass, same seat, after an
+independent re-read).** The repair recorded above was not taken on trust. The L1-L428
+append-only hash pair was **independently recomputed** by the orchestrator from two
+directions - `git show ce845c5:<this path>` and the working file - and the two line ranges
+were also compared directly with a unified diff, which returned **0 lines**. Both sides hash
+to `b04fd5a42d463bbb7044c18c7e54916aab852ff1965eafbb18642138d8200ce6` over 22,270 bytes
+(UTF-8, line terminators included). **That hash pair is unchanged by this second pass:**
+nothing in this session touched lines 1-428, and the pre-registration remains provably
+append-only.
+
+Each claim above was then re-checked **by line-range read**, not by assertion: the **ten
+seams** at L471-L475, L515-L517, L542-L543, L593-L598, L639-L649, L743-L747, L765-L774,
+L834-L848, L871-L875 and L899-L903; the **contingency-table move** (announcement L677-L680,
+table L682-L717, under B3 sentence 3); **F-U1..F-U6** as one contiguous list at L909-L944
+including F-U3's `Owner:` line; the file's **terminal complete sentence** at L1106-L1114;
+**X2**'s arithmetic inserted verbatim with 240 -> 128; and **X3**'s owner fields, confirmed
+set to `systems-researcher` on both E-00014 and E-00015 by reading their front matter.
+
+**That re-read found one defect in the repair: seam 8 was misjoined.** The joined sentence
+carried `B6)` twice, the second occurrence closing nothing. It is repaired in the X1-a
+paragraph above, and the cause is **the ruling's own template/tail overlap, not this repair**
+- see that paragraph for the explicit deletion record. Post-repair counts on the joined
+seam-8 string: `mobility/tempo scope; B6)` = **1**, a bare `) - so the backwards fallback` =
+**1**, and `B6)` = **1** (it was 2). The honest parenthesis balance is reported there and
+is **+1**, an orphan inherited from R-0020's template; the duplicate-citation count, not
+balance, is the operative test.
+
+**B5 sentence 2's empty slot** was found on the same pass and is now named in the
+addendum-to-addendum disposition table above as `B5 s2 (pre-existing)` rather than left as
+an unremarked gap. It was left exactly as found - not moved, not filled - because whether to
+relocate it is a content judgement for the next reviewer, and because the block it might have
+belonged to is already introduced by B5 sentence 3, so its body is recorded as UNESTABLISHED
+rather than guessed at.
+
+**Still not claimed.** Nothing in this second pass re-opens any decision: SHRINK, the KING-PST
+freeze, `SUITE_TOLERANCE = 0.02`, the per-game cap NONE and the X-1/X-2/X-3 branches stand. No
+training, fitting, extraction, counting, feasibility pass or SPRT generation ran, and no
+holdout was read. E-0013 remains `status: PENDING`; per R-0020 the flip to RUNNING requires a
+fresh re-critique, which this record does not pre-authorise.
 move it, and per R-0020 the flip requires a fresh re-critique to confirm.
