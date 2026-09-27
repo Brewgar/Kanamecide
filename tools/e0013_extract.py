@@ -586,7 +586,17 @@ def run(args: argparse.Namespace) -> int:
         "split_map_sha256": sha256_bytes(map_bytes),
     }
 
-    if not args.dry_run:
+    # The overlap-0 gate is checked BEFORE anything is written. It is a blocking gate, and a
+    # gate that aborts after the artifacts exist is not a gate: `positions.jsonl` would sit on
+    # disk, complete and loadable, for any later step to consume - which is precisely what
+    # "FAIL before fitting" forbids. On FAIL the counts are still printed below, so the
+    # measurement is reported as measured rather than being lost with the abort.
+    if not gates["overlap_zero"]:
+        gate_failed = True
+    else:
+        gate_failed = False
+
+    if not args.dry_run and not gate_failed:
         write_bytes(out_dir / "positions.jsonl", positions_bytes)
         write_bytes(out_dir / "split_map.json", map_bytes)
         write_bytes(out_dir / "report.json", canonical_json(report))
@@ -608,12 +618,13 @@ def run(args: argparse.Namespace) -> int:
     print(f"scope_floor={json.dumps(report['scope_floor'], sort_keys=True)}")
     print(f"positions_sha256={report['artifacts']['positions_sha256']}")
     print(f"split_map_sha256={report['artifacts']['split_map_sha256']}")
-    if not args.dry_run:
+    if not args.dry_run and not gate_failed:
         print(f"report_sha256={sha256_file(out_dir / 'report.json')}")
-    if not gates["overlap_zero"]:
+    if gate_failed:
         abort(
             f"overlap-0 gate FAILED (game_level={gates['game_level_overlap']}, "
-            f"normalized_fen={gates['normalized_fen_overlap']}) - FAIL before fitting"
+            f"normalized_fen={gates['normalized_fen_overlap']}) - FAIL before fitting; "
+            f"no artifact was written"
         )
     return 0
 
@@ -802,21 +813,33 @@ def selftest() -> int:
             check("dirty set aborts on the overlap gate", False, "no abort raised")
         except SystemExit as exc:
             check("dirty set aborts on the overlap gate", exc.code == 2, f"code={exc.code}")
-        rep_dirty = json.loads((tmp_path / "out_dirty" / "report.json").read_text(encoding="utf-8"))
+        # The gate is checked BEFORE the write, so an aborting run leaves NO artifact behind.
+        # Asserting that is the point: a blocking gate that aborts after writing positions.jsonl
+        # would leave exactly the data it exists to withhold, loadable by any later step.
+        out_dirty = tmp_path / "out_dirty"
+        for name in ("positions.jsonl", "split_map.json", "report.json"):
+            check(f"dirty: {name} is NOT written when the gate aborts",
+                  not (out_dirty / name).exists(), "artifact leaked past the gate")
+
+        # The gate verdicts and counts are re-derived here by calling extract() directly, because
+        # the run correctly refused to publish them. What the gate SAW is still pinned: a real
+        # blocking gate must not be satisfied by declining to report.
+        cnt_dirty = Counters()
+        kept_dirty, _ = extract([json.loads(line) for line in
+                                 dirty.read_text(encoding="utf-8").splitlines() if line],
+                                False, cnt_dirty)
+        g_dirty = run_gates(kept_dirty, {int(r["game_id"]): r for r in dirty_rows}, s40)
         check("dirty: the game-level overlap is detected",
-              rep_dirty["gates"]["game_level_overlap"] >= 1, str(rep_dirty["gates"]))
-        # The normalized-FEN overlap is 0 HERE BY CONSTRUCTION, and that is the F9
-        # invariant, not a miss: the GLOBAL exact-FEN dedup removed game b's copies before
-        # the split, so the surviving copy is the train one and the two position sets share
-        # nothing. The gate exists to verify this holds; the clock-only case it can catch on
-        # its own (exact FEN differs, normalized FEN does not) is unit-tested above.
+              g_dirty["game_level_overlap"] >= 1, str(g_dirty))
+        check("dirty: overlap_zero is False", g_dirty["overlap_zero"] is False, str(g_dirty))
+        # The normalized-FEN overlap is 0 HERE BY CONSTRUCTION, and that is the F9 invariant, not a
+        # miss: the GLOBAL exact-FEN dedup removed game b's copies before the split, so the
+        # surviving copy is the train one and the two position sets share nothing.
         check("dirty: the normalized-FEN invariant holds BECAUSE the dedup ran first",
-              rep_dirty["gates"]["normalized_fen_overlap"] == 0, str(rep_dirty["gates"]))
+              g_dirty["normalized_fen_overlap"] == 0, str(g_dirty))
         check("dirty: dedup removed the copied game's positions",
-              rep_dirty["counts"]["duplicates_removed_by_dedup"] >= 1,
-              f"removed={rep_dirty['counts']['duplicates_removed_by_dedup']} copied_plies={copy_plies}")
-        check("dirty: the survivor rule is published, not implied",
-              rep_dirty["extraction_pin"]["dedup_survivor_rule"].startswith("first occurrence"))
+              cnt_dirty.duplicates_removed_by_dedup >= 1,
+              f"removed={cnt_dirty.duplicates_removed_by_dedup} copied_plies={copy_plies}")
 
         # (c) count-only mode reads no label at all.
         co_rows = [synthetic_row(g, 12, "plycap", res="A", a_white=True) for g in range(8)]
