@@ -1438,6 +1438,26 @@
     {
       "code_files": [
         "tools/e0011_check.py",
+        "tools/e0012_sprt.py",
+        "tools/e0013_extract.py"
+      ],
+      "commits_mentioned": [
+        "1a2dff7",
+        "9f6574c",
+        "bb079a4",
+        "d4ada1e",
+        "da93d9c",
+        "ff56c41"
+      ],
+      "kind": "session",
+      "record": "S-0038",
+      "rel": "sessions/S-0038-e0013-normalized-fen-dedup-key-f-u7-f-u13.md",
+      "status": "CLOSED",
+      "title": "e0013-normalized-fen-dedup-key-f-u7-f-u13"
+    },
+    {
+      "code_files": [
+        "tools/e0011_check.py",
         "tools/e0011_generate.py",
         "tools/e0012_sprt.py",
         "tools/uci_probe.py"
@@ -1705,7 +1725,7 @@
       "title": "Gate 0 unrunnable: Device Guard hard-blocks kana.exe (every build, every path)"
     }
   ],
-  "generated": "2026-09-27T18:19:33",
+  "generated": "2026-09-27T18:35:24",
   "metrics": {
     "by_kind": {
       "agent_profile": 1,
@@ -1725,12 +1745,12 @@
       "report": 13,
       "review": 25,
       "round_megaprompt": 2,
-      "session": 37,
+      "session": 38,
       "work": 7
     },
     "by_status": {
       "ACTIVE": 14,
-      "CLOSED": 37,
+      "CLOSED": 38,
       "COMPLETED": 33,
       "DONE": 18,
       "DRAFT": 1,
@@ -1746,12 +1766,12 @@
     },
     "code_files": 27,
     "contradiction_candidates": 0,
-    "dangling_ids": 12,
+    "dangling_ids": 11,
     "duplicate_candidates": 2,
-    "edges_total": 3692,
+    "edges_total": 3726,
     "legacy_experiments_without_pre_registration": 6,
     "open_questions": 8,
-    "records_total": 200,
+    "records_total": 201,
     "revival_candidates": 5
   },
   "questions_all": [
@@ -2143,15 +2163,6 @@
   "timeline_tail": [
     {
       "example": false,
-      "id": "HO-0012",
-      "kind": "handoff",
-      "rel": "handoffs/HO-0012-independent-verification-w-0005-e-0012-live-runs-run-0002-and-run-0003.md",
-      "status": "DONE",
-      "title": "Independent verification: W-0005 E-0012 live runs RUN-0002 and RUN-0003",
-      "when": "2026-09-25"
-    },
-    {
-      "example": false,
       "id": "R-0018",
       "kind": "review",
       "rel": "reviews/R-0018-independent-verification-w-0005-e-0012-live-runs-run-0002-and-run-0003-ho-0012.md",
@@ -2499,6 +2510,15 @@
       "rel": "sessions/S-0037-e0013-leakage-ruling-normalized-fen-dedup-key.md",
       "status": "CLOSED",
       "title": "e0013-leakage-ruling-normalized-fen-dedup-key",
+      "when": "2026-09-27"
+    },
+    {
+      "example": false,
+      "id": "S-0038",
+      "kind": "session",
+      "rel": "sessions/S-0038-e0013-normalized-fen-dedup-key-f-u7-f-u13.md",
+      "status": "CLOSED",
+      "title": "e0013-normalized-fen-dedup-key-f-u7-f-u13",
       "when": "2026-09-27"
     }
   ]
