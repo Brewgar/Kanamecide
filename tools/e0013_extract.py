@@ -12,7 +12,9 @@ Contract this tool implements (read-only citations; none of those records is edi
                       and full_ply >= 10
       (2) crash exclusion:    end == "crash"                      -> game excluded
       (3) degenerate exclusion: end == "mate" and len(san) <= 6    -> game excluded
-      (4) GLOBAL-before-split exact-FEN dedup (E-0013 F9)
+      (4) GLOBAL-before-split dedup on the NORMALIZED FEN - side to move, piece placement,
+          castling/EP rights; the halfmove clock and the fullmove number are NOT part of a
+          position's identity (E-0013 F9, as strengthened by the S-0037 leakage ruling)
     `full_ply = board.fullmove_number * 2 + (0 if turn == WHITE else 1) - 1`, and the
     `opening` segment is NEVER a candidate (only the `san` segment is).
   * E-0013 "Split discipline": SPLIT_SALT = 20260926, one `random.Random(
@@ -21,7 +23,9 @@ Contract this tool implements (read-only citations; none of those records is edi
     fitting job reads the data.
   * E-0013 F9: dedup is GLOBAL and happens BEFORE the split; the surviving copy's
     `game_id` determines the split, and the normalized-FEN overlap-0 gate then
-    verifies that invariant.
+    verifies that invariant. Since the S-0037 leakage ruling the dedup key and the
+    gate's comparison key are the SAME key, so the gate holds by construction and is
+    a blocking regression check on this code rather than a hope about the data.
   * E-0013 B2: fit target is the side-to-move frame -
     `y = white_score` if side to move is WHITE else `1 - white_score`, with
     `white_score in {1, 0.5, 0}` obtained from `res` and `a_white`. `label_frame_uniform`
@@ -73,6 +77,16 @@ MIN_FULL_PLY = 10
 PRIOR_SALTS = (20260914, 20260922, 20260924)
 SALT_DISTANCE_FACTOR = 1000003
 SPLIT_MAP_FORMAT = "kana-e0013-splitmap-v1"
+# F-U9 PRE-REGISTERED INVARIANCE ASSERTION. `split_map()` is a pure function of
+# (SPLIT_SALT, game_id) computed over the dataset's game rows BEFORE and independently of the
+# dedup result, and the hashed object {format, split_salt, train_fraction, rule, map} contains
+# no dedup-derived quantity. So this digest is INVARIANT under the F-U7 dedup-key change and
+# must be byte-identical before and after it. Measured under the old key and under the new
+# key: identical. A MOVED digest would mean the salt, the fraction or the rule had moved -
+# which the S-0037 ruling does not authorise - so it is an ABORT, never a new baseline.
+# Asserted only against the real pinned dataset; the self-test runs on small synthetic row
+# sets whose maps are legitimately different.
+SPLIT_MAP_SHA256_EXPECTED = "bb079a41630161bcd33a3a5df7890546dfe0c8329cc6bfed5ee35a83d4ada1ea"
 POSITIONS_FORMAT = "kana-e0013-positions-v1"
 REPORT_FORMAT = "kana-e0013-extract-report-v1"
 
@@ -249,6 +263,58 @@ def replay_san_positions(row: dict[str, Any]) -> tuple[list[chess.Board], list[s
     return boards, sans, undecodable
 
 
+def dedup_identity(pos: "Position") -> str:
+    """The dedup identity of a position: its NORMALIZED FEN.
+
+    F-U7 (E-0013 S-0037 addendum). This is a named seam on purpose, not an inline
+    `pos.norm_fen`, for two reasons that both concern honesty rather than style:
+
+    1. It makes the key legible at the point of use. The single most important fact about
+       stage 4 is that this is the SAME key the overlap-0 gate compares; a reader who has to
+       find that out by diffing two lines is being asked to do the work the name does.
+    2. It gives the self-test a way to run the SUPERSEDED exact-FEN key over identical input
+       and demonstrate that the clock-only fixture is RED under it. A regression test that
+       has never been seen red does not establish that it would catch the regression.
+
+    The halfmove clock and the fullmove number are deliberately NOT part of this identity.
+    They record how a game arrived at a position, not what the position is, and two records
+    that differ only in them are the same position - which is exactly what the pre-registered
+    normalized-FEN gate has always compared, and what the 27 cross-split leaks were.
+    """
+    return pos.norm_fen
+
+
+def dedup_on(positions: Iterable["Position"], key) -> list["Position"]:
+    """Stage 4's dedup with an INJECTED key, keeping the survivor rule identical.
+
+    Used by the self-test only, so the old and new keys can be compared over the same
+    candidate list with the same survivor rule (first occurrence in iteration order) and the
+    key is the ONLY variable. The production path in `extract()` calls `dedup_identity`.
+    """
+    seen: set[str] = set()
+    kept: list[Position] = []
+    for pos in positions:
+        identity = key(pos)
+        if identity in seen:
+            continue
+        seen.add(identity)
+        kept.append(pos)
+    return kept
+
+
+def cross_split_overlap(kept: Iterable["Position"], smap: dict[str, str]) -> int:
+    """How many normalized FENs appear on BOTH sides among `kept` - the gate's own count.
+
+    Computed from the survivor list and the split map alone, so a test can evaluate the
+    quantity the gate evaluates without having to route through the gate itself.
+    """
+    train: set[str] = set()
+    hold: set[str] = set()
+    for pos in kept:
+        (train if smap[str(pos.game_id)] == "train" else hold).add(pos.norm_fen)
+    return len(train & hold)
+
+
 def extract(
     rows: list[dict[str, Any]],
     count_only: bool,
@@ -319,16 +385,32 @@ def extract(
             )
 
 
-    # Stage 4 - GLOBAL exact-FEN dedup, before the split. The survivor is the FIRST
-    # occurrence in (game_id, ply_index) order; that pin is what makes "the surviving
+    # Stage 4 - GLOBAL dedup on the NORMALIZED FEN, before the split. The survivor is the
+    # FIRST occurrence in (game_id, ply_index) order; that pin is what makes "the surviving
     # copy's game_id determines the split" deterministic rather than merely stated, and it
     # is published in the report so it is visible instead of implied.
+    #
+    # F-U7 (E-0013 S-0037 addendum). This key was `pos.fen` - the exact six-field FEN, clocks
+    # INCLUDED - while the overlap-0 gate compares `normalize_fen`, the four-field FEN. A
+    # dedup key strictly FINER than the gate's comparison key cannot entail the invariant the
+    # gate verifies, so the gate could only ever pass by coincidence; K+R vs K endgames, with
+    # a small reachable-position space, supplied the coincidence's failure (27 collisions).
+    # Keying on `pos.norm_fen` is the SAME key the gate compares, which is what makes the gate
+    # true BY CONSTRUCTION rather than by luck.
+    #
+    # The halfmove clock and the fullmove number are NOT part of a position's identity: they
+    # are bookkeeping about how the game got there, not about what the position IS. Excluding
+    # them is what the pre-registered normalization already says, and making the dedup key and
+    # the gate agree is the whole point of this change. The gate itself is UNCHANGED - it is
+    # still blocking, still at both pre-registered levels, and is now a regression test on
+    # this code rather than a hope about the data.
     seen: set[str] = set()
     kept: list[Position] = []
     for pos in bare:
-        if pos.fen in seen:
+        identity = dedup_identity(pos)
+        if identity in seen:
             continue
-        seen.add(pos.fen)
+        seen.add(identity)
         kept.append(pos)
     counters.count_usable_distinct = len(kept)
     counters.duplicates_removed_by_dedup = counters.count_after_degenerate_excl - len(kept)
@@ -347,10 +429,13 @@ def run_gates(
     Game level: `tuple(opening) + tuple(san)` of every holdout game against the train
     game set - this catches *duplicated game content* across the split, which a game-id
     split alone cannot catch.
-    Normalized-FEN level: the position-relative / threefold-cluster leakage check. It is
-    STRICTER than the dedup, because the dedup is on exact-FEN (clock included) while this
-    gate is on the 4-field normalized FEN. A non-zero count here is a FAIL before fitting,
-    reported as measured - never absorbed by re-running with a different normalization.
+    Normalized-FEN level: the position-relative / threefold-cluster leakage check. Since
+    F-U7 the dedup key IS this normalization, so the check is no longer stricter than the
+    dedup: global-before-split dedup on the same key leaves at most one survivor per
+    normalized FEN in the corpus, and that survivor's game_id alone decides the split, so a
+    non-zero count here is a FAILURE OF THE IMPLEMENTATION rather than a property of the
+    data. It is retained as a blocking regression check and is reported as measured - never
+    absorbed by re-running with a different normalization.
     """
     train_games: set[int] = set()
     holdout_games: set[int] = set()
@@ -432,14 +517,21 @@ def build_report(
                 "QUIET(not check on the position BEFORE the move; no 'x'; no '+'/'#' suffix; full_ply >= 10)",
                 "exclude end == 'crash'",
                 "exclude end == 'mate' and len(san) <= 6",
-                "GLOBAL exact-FEN dedup, before the split (F9)",
+                "GLOBAL dedup on the NORMALIZED FEN, before the split (F9)",
             ],
             "candidate_segment": "san only; the opening segment is never a candidate",
             "full_ply_formula": "board.fullmove_number * 2 + (0 if WHITE else 1) - 1",
             "split_salt": SPLIT_SALT,
             "split_rule": "random.Random(SPLIT_SALT * 1000003 + game_id).random() < 0.8",
             "train_fraction": TRAIN_FRACTION,
-            "dedup_key": "exact FEN (all six fields; the clock is part of the identity)",
+            # F-U7: the dedup identity of a position is its NORMALIZED FEN. The clock is
+            # NOT part of that identity - it says how the game reached the position, not
+            # what the position is. This is the same key `overlap_gate_key` names, which is
+            # what makes the normalized-FEN gate true by construction instead of by luck.
+            "dedup_key": "normalized FEN (side to move + piece placement + castling/EP; the halfmove clock and the fullmove number are NOT part of the identity)",
+            "dedup_key_fields": ["side to move", "piece placement", "castling rights", "EP square"],
+            "dedup_key_excludes": ["halfmove clock", "fullmove number"],
+            "dedup_key_equals_gate_key": True,
             "dedup_order": "GLOBAL, before the split",
             "dedup_survivor_rule": "first occurrence in (game_id, ply_index) order",
             "overlap_gate_key": "normalized FEN = placement + side to move + castling + EP",
@@ -580,11 +672,34 @@ def run(args: argparse.Namespace) -> int:
         "map": smap,
     }
     map_bytes = canonical_json(map_obj)
+    map_sha = sha256_bytes(map_bytes)
     report["artifacts"] = {
         "positions_lines": len(lines),
         "positions_sha256": sha256_bytes(positions_bytes),
-        "split_map_sha256": sha256_bytes(map_bytes),
+        "split_map_sha256": map_sha,
     }
+
+    # F-U9: the pre-registered split-map INVARIANCE assertion. This is checked on the real
+    # pinned dataset only. The self-test passes small synthetic row sets whose game ids do
+    # not span the pinned corpus, so their maps are legitimately different digests and the
+    # assertion would be meaningless there.
+    split_map_invariant: bool | None = None
+    if not args.allow_synthetic:
+        split_map_invariant = map_sha == SPLIT_MAP_SHA256_EXPECTED
+        report["split_map_invariance"] = {
+            "expected_sha256": SPLIT_MAP_SHA256_EXPECTED,
+            "measured_sha256": map_sha,
+            "unchanged": split_map_invariant,
+            "asserted_by": "F-U9; the map is a pure function of (SPLIT_SALT, game_id) and its "
+                           "hashed object contains no dedup-derived quantity",
+        }
+        if not split_map_invariant:
+            abort(
+                f"split_map_sha256 INVARIANCE VIOLATED: measured {map_sha}, "
+                f"pre-registered {SPLIT_MAP_SHA256_EXPECTED}. The salt, the train fraction or "
+                f"the assignment rule has moved, which the S-0037 ruling does not authorise. "
+                f"This is a FINDING to report, not a new baseline to adopt"
+            )
 
     # The overlap-0 gate is checked BEFORE anything is written. It is a blocking gate, and a
     # gate that aborts after the artifacts exist is not a gate: `positions.jsonl` would sit on
@@ -618,6 +733,9 @@ def run(args: argparse.Namespace) -> int:
     print(f"scope_floor={json.dumps(report['scope_floor'], sort_keys=True)}")
     print(f"positions_sha256={report['artifacts']['positions_sha256']}")
     print(f"split_map_sha256={report['artifacts']['split_map_sha256']}")
+    if split_map_invariant is not None:
+        print(f"split_map_invariance_unchanged={split_map_invariant} "
+              f"(expected {SPLIT_MAP_SHA256_EXPECTED})")
     if not args.dry_run and not gate_failed:
         print(f"report_sha256={sha256_file(out_dir / 'report.json')}")
     if gate_failed:
@@ -687,6 +805,77 @@ def synthetic_row(game_id: int, n_plies: int, end: str, res: str = "D",
         "res": res, "end": end, "end_seconds": 60.0, "plies": len(opening) + len(san),
         "san": san, "crash_incident": False, "crash_incident_text": "",
     }
+
+
+def clock_only_row(game_id: int, extra_shuffles: int) -> dict[str, Any]:
+    """A synthetic row whose positions are reachable at DIFFERENT plies than its twin's.
+
+    F-U8's permanent regression fixture. Two rows built with different `extra_shuffles` play
+    the same normalized positions but reach them at different plies, so the two copies of
+    each shared position agree in placement, side to move, castling and EP square and differ
+    ONLY in the halfmove clock and the fullmove number.
+
+    That is the exact shape of the 27 cross-split leaks S-0036 found in `K+R vs K` endgames,
+    and it is the shape the pre-fix self-test could not express: its duplicate copies were
+    byte-identical including clocks, so the old finer key caught them by luck. Here the old
+    key cannot see them at all, and the new key removes them structurally.
+
+    The `Nf3/Nf6/Ng1/Ng8` shuffle is a legal four-ply cycle: it returns to the identical
+    position with a different clock, which is what manufactures the clock-only duplicate
+    without inventing an illegal or impossible game.
+
+    The extra cycles go in the OPENING, not the san, for one decisive reason: the opening
+    segment is never a candidate (E-0011 N4 semantics), so a twin with extra opening cycles
+    begins its san segment on the SAME board but at a different ply. Had the cycles gone in
+    the san instead, the two games would share an identical prefix and their first copies
+    would be byte-identical - which is precisely the blind spot this fixture exists to avoid,
+    and the reason an earlier draft of it wrongly failed.
+    """
+    opening = ["e2e4", "e7e5", "d2d4", "d7d5", "h2h3", "h7h6",
+               "g2g3", "g7g6", "f1g2", "f8g7"]
+    # The opening segment is replayed as UCI (`replay_san_positions`); the san segment as SAN.
+    # The knight cycle is chosen over a rook cycle because rook shuffles DESTROY castling
+    # rights, which would change the normalized FEN and silently defeat the fixture.
+    shuffle_uci = ["g1f3", "g8f6", "f3g1", "f6g8"]
+    shuffle = ["Nf3", "Nf6", "Ng1", "Ng8"]
+    tail = ["Nc3", "Nc6", "Nf3", "Nf6"]
+    san = shuffle + tail
+    full_opening = opening + shuffle_uci * extra_shuffles
+    return {
+        "game_id": game_id, "campaign_salt": 20260922, "seed_int": game_id,
+        "opening": full_opening, "a_white": True, "b_white": False,
+        "eval_stage_a": 6, "eval_stage_b": 6, "binary_sha256": "0" * 64,
+        "src_commit": "0" * 40, "tc": "100ms+100ms inc",
+        "tc_command": "go wtime 1500 btime 1500 winc 100 binc 100",
+        "time_started": "2026-09-24T00:00:00.000000Z",
+        "time_finished": "2026-09-24T00:01:00.000000Z",
+        "res": "D", "end": "plycap", "end_seconds": 60.0,
+        "plies": len(full_opening) + len(san),
+        "san": san, "crash_incident": False, "crash_incident_text": "",
+    }
+
+
+def candidate_positions(rows: list[dict[str, Any]]) -> list[Position]:
+    """The stage-1..3 candidates for `rows`, WITHOUT the stage-4 dedup.
+
+    Exposed so a test can hand the identical candidate list to two different dedup keys and
+    attribute any difference in outcome to the key alone. Replaying here rather than
+    reaching into `extract()` keeps the production path free of test-only branches.
+    """
+    out: list[Position] = []
+    for row in rows:
+        boards, sans, _ = replay_san_positions(row)
+        for ply_index, (board, san) in enumerate(zip(boards, sans)):
+            if not is_quiet(board, san):
+                continue
+            out.append(Position(
+                game_id=int(row["game_id"]),
+                ply_index=ply_index,
+                fen=board.fen(),
+                norm_fen=normalize_fen(board),
+                stm="w" if board.turn == chess.WHITE else "b",
+            ))
+    return out
 
 
 def selftest() -> int:
@@ -832,14 +1021,141 @@ def selftest() -> int:
         check("dirty: the game-level overlap is detected",
               g_dirty["game_level_overlap"] >= 1, str(g_dirty))
         check("dirty: overlap_zero is False", g_dirty["overlap_zero"] is False, str(g_dirty))
-        # The normalized-FEN overlap is 0 HERE BY CONSTRUCTION, and that is the F9 invariant, not a
-        # miss: the GLOBAL exact-FEN dedup removed game b's copies before the split, so the
-        # surviving copy is the train one and the two position sets share nothing.
-        check("dirty: the normalized-FEN invariant holds BECAUSE the dedup ran first",
+        # F-U8 REPAIR. The old assertion here read "the normalized-FEN invariant holds BECAUSE
+        # the dedup ran first". That was FALSE IN GENERAL: it passed only because this
+        # fixture's duplicate copies are byte-identical INCLUDING the clocks, so the old
+        # finer key caught them by luck rather than by construction. Under F-U7 the dedup key
+        # and the gate's comparison key are the SAME key, so the overlap is 0 for a reason
+        # that is now structural rather than lucky - and the claim is stated as such. The
+        # clock-only fixture below is the case the old one could not see, and it is the case
+        # the real dataset's 27 leaks were made of.
+        check("dirty: the normalized-FEN overlap is 0 BY CONSTRUCTION (dedup key == gate key)",
               g_dirty["normalized_fen_overlap"] == 0, str(g_dirty))
+        check("dirty: the dedup key IS the gate key, not a refinement of it",
+              rep["extraction_pin"]["dedup_key_equals_gate_key"] is True,
+              str(rep["extraction_pin"]["dedup_key"]))
+        check("dirty: the published dedup_key excludes both clocks",
+              rep["extraction_pin"]["dedup_key_excludes"] == ["halfmove clock", "fullmove number"],
+              str(rep["extraction_pin"]["dedup_key_excludes"]))
         check("dirty: dedup removed the copied game's positions",
               cnt_dirty.duplicates_removed_by_dedup >= 1,
               f"removed={cnt_dirty.duplicates_removed_by_dedup} copied_plies={copy_plies}")
+
+        # (b2) F-U8 REGRESSION: the CLOCK-ONLY duplicate - the case the superseded exact-FEN
+        # key was structurally blind to, and the case the real dataset's 27 leaks were made
+        # of. Two games play the same normalized positions but reach them at different plies,
+        # so the copies agree in placement/side/castling/EP and differ ONLY in the halfmove
+        # clock and the fullmove number. Under the old key each copy was a distinct datum and
+        # BOTH sides of the split kept one; under the new key the second is removed before
+        # the split. This fixture is permanent: it is the test that would have caught the
+        # defect, and the test that keeps catching it if the key is ever widened again.
+        clock_rows = [dict(synthetic_row(g, 12 + (g % 7), "plycap")) for g in range(40)]
+        clock_rows[a] = clock_only_row(a, 0)
+        clock_rows[b] = clock_only_row(b, 2)
+        clock_path = tmp_path / "clock_only.jsonl"
+        write_rows(clock_path, clock_rows)
+
+        # 1. The fixture is what it claims to be. A fixture that quietly degenerates into
+        #    the byte-identical case is exactly how the old test passed for the wrong reason,
+        #    so the CLOCK-ONLY property is asserted directly rather than assumed.
+        cand = candidate_positions([clock_rows[a], clock_rows[b]])
+        a_fens = {p.fen for p in cand if p.game_id == a}
+        b_fens = {p.fen for p in cand if p.game_id == b}
+        shared_norms = {p.norm_fen for p in cand if p.game_id == a} & \
+                       {p.norm_fen for p in cand if p.game_id == b}
+        fens_of = {}
+        for p in cand:
+            fens_of.setdefault(p.norm_fen, set()).add(p.fen)
+        clock_only_norms = {n for n, fs in fens_of.items() if len(fs) > 1 and n in shared_norms}
+        check("clock-only: the two games share normalized positions", len(shared_norms) >= 4,
+              f"shared={len(shared_norms)}")
+        check("clock-only: the shared positions come in CLOCK-ONLY copies (distinct FENs)",
+              len(clock_only_norms) >= 4, f"clock_only={len(clock_only_norms)}")
+
+        # 2. RED under the superseded key. Both keyings run over the IDENTICAL candidate set
+        #    with the IDENTICAL survivor rule, so the key is the only variable. The old key
+        #    keeps every copy, one per side, and the gate WOULD FIRE.
+        old_kept = dedup_on(cand, lambda p: p.fen)
+        new_kept = dedup_on(cand, lambda p: p.norm_fen)
+        old_overlap = cross_split_overlap(old_kept, smap40 := split_map(range(40)))
+        check("clock-only: RED under the OLD exact-FEN key - it keeps EVERY copy",
+              len(old_kept) == len(cand), f"old_kept={len(old_kept)} of {len(cand)} candidates")
+        check("clock-only: RED under the OLD key - the gate WOULD FIRE (overlap == shared)",
+              old_overlap == len(shared_norms),
+              f"old_overlap={old_overlap} shared={len(shared_norms)}")
+
+        # 3. GREEN under the new key: one survivor per normalized FEN, and no cross-split
+        #    overlap, because the survivor's game_id alone decides the split.
+        check("clock-only: GREEN under the NEW key - one survivor per normalized FEN",
+              len(new_kept) == len({p.norm_fen for p in cand}),
+              f"new_kept={len(new_kept)} distinct_norms={len({p.norm_fen for p in cand})}")
+        check("clock-only: GREEN under the NEW key - cross-split overlap is 0",
+              cross_split_overlap(new_kept, smap40) == 0,
+              f"overlap={cross_split_overlap(new_kept, smap40)}")
+        check("clock-only: the survivor rule is UNCHANGED (first occurrence in (game_id, ply))",
+              [p.game_id for p in new_kept].index(a) == 0,
+              f"first_survivor_game={new_kept[0].game_id} (train game is {a})")
+
+        # 4. The same corpus end to end: the run passes and the gate is silent.
+        check("clock-only: run_on exits 0 under the NEW key",
+              run_on(clock_path, "out_clock", True) == 0)
+        rep_clock = json.loads((tmp_path / "out_clock" / "report.json").read_text(encoding="utf-8"))
+        check("clock-only: the gate is SILENT under the NEW key",
+              rep_clock["gates"]["normalized_fen_overlap"] == 0
+              and rep_clock["gates"]["overlap_zero"] is True, str(rep_clock["gates"]))
+        check("clock-only: the run removed exactly the clock-only duplicates",
+              rep_clock["counts"]["duplicates_removed_by_dedup"] == len(cand) - len(new_kept),
+              f"removed={rep_clock['counts']['duplicates_removed_by_dedup']} expected={len(cand) - len(new_kept)}")
+
+        # (b3) F-U8 NEGATIVE CONTROL. Everything above shows the gate PASSING, which is only
+        #      half of a tested gate: a gate silently broken into always-passing would look
+        #      identical from here. So the gate is now handed a corpus that genuinely SHOULD
+        #      fail and is required to FIRE. This is what makes the passing meaningful.
+        #
+        #      The leak is injected at the one point that can still produce one after F-U7.
+        #      A pure clock-only duplicate can no longer do it - that is exactly what F-U7
+        #      fixed - so the control drives the gate DIRECTLY with a cross-split normalized
+        #      FEN that the dedup is not in the path of, and then separately drives the
+        #      end-to-end abort path with a corpus whose split map is forced to straddle it.
+        leak_a = Position(a, 3, "8/1R6/8/8/8/2K5/8/k7 w - - 0 91",
+                          "8/1R6/8/8/8/2K5/8/k7 w - -", "w")
+        leak_b = Position(b, 7, "8/1R6/8/8/8/2K5/8/k7 w - - 33 124",
+                          "8/1R6/8/8/8/2K5/8/k7 w - -", "w")
+        check("negative control: the two leaked copies are CLOCK-ONLY (same norm_fen, different FEN)",
+              leak_a.norm_fen == leak_b.norm_fen and leak_a.fen != leak_b.fen,
+              f"{leak_a.fen} vs {leak_b.fen}")
+        g_neg = run_gates([leak_a, leak_b], {}, {str(a): "train", str(b): "holdout"})
+        check("negative control: the gate FIRES on a genuine cross-split clock-only leak",
+              g_neg["normalized_fen_overlap"] == 1, str(g_neg))
+        check("negative control: overlap_zero is False, so the run must abort",
+              g_neg["overlap_zero"] is False, str(g_neg))
+        neg_path = tmp_path / "negative.jsonl"
+        write_rows(neg_path, clock_rows)
+        out_neg = tmp_path / "out_neg"
+        real_identity = dedup_identity
+        try:
+            globals()["dedup_identity"] = lambda pos: pos.fen
+            try:
+                run_on(neg_path, "out_neg", True)
+                check("negative control: the end-to-end run ABORTS under the OLD key", False,
+                      "no abort raised")
+            except SystemExit as exc:
+                check("negative control: the end-to-end run ABORTS under the OLD key (exit 2)",
+                      exc.code == 2, f"code={exc.code}")
+        finally:
+            globals()["dedup_identity"] = real_identity
+        for name in ("positions.jsonl", "split_map.json", "report.json"):
+            check(f"negative control: {name} is NOT written when the gate aborts",
+                  not (out_neg / name).exists(), "artifact leaked past the gate")
+        # And with the real key restored, the IDENTICAL corpus passes and DOES write. The
+        # failing and passing cases must be the same input; otherwise the control proves
+        # something about the fixture rather than about the key.
+        check("negative control: the SAME corpus passes and writes once the key is restored",
+              run_on(neg_path, "out_neg_ok", True) == 0
+              and (tmp_path / "out_neg_ok" / "positions.jsonl").exists(),
+              "the passing case and the failing case must be the same input")
+
+
 
         # (c) count-only mode reads no label at all.
         co_rows = [synthetic_row(g, 12, "plycap", res="A", a_white=True) for g in range(8)]
