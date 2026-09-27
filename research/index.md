@@ -159,6 +159,8 @@
 - [HO-0015](handoffs/HO-0015-execute-e-0014-train-only-feasibility-pass-measurement-not-training.md) — Execute E-00014: TRAIN-ONLY feasibility pass (measurement, not training) — status=REQUESTED
 - [HO-0016](handoffs/HO-0016-execute-e-0015-count-only-realized-yield-pass-measurement-not-training.md) — Execute E-00015: count-only realized usable quiet yield pass (measurement, not training) — status=REQUESTED
 - [HO-0017](handoffs/HO-0017-audit-e0013-l5-flip-q1-q8.md) — Independently verify the E-0013 L5-only lifecycle flip (R-0024 Q1-Q8) — status=REQUESTED
+- [HO-0018](handoffs/HO-0018-implement-f-u7-f-u13-normalized-fen-dedup-key.md) — Implement the E-0013 Option-(1) leakage remediation F-U7..F-U13: the dedup key is the normalized FEN — status=REQUESTED
+- [HO-0019](handoffs/HO-0019-verify-e0013-s0037-leakage-ruling.md) — Independently verify the E-0013 leakage ruling (S-0037 addendum): was option (1) chosen on the contract's own terms? — status=REQUESTED
 
 ## Handoffs (closed)
 

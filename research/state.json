@@ -971,6 +971,28 @@
     },
     {
       "code_files": [
+        "tools/e0013_extract.py"
+      ],
+      "commits_mentioned": [],
+      "kind": "handoff",
+      "record": "HO-0018",
+      "rel": "handoffs/HO-0018-implement-f-u7-f-u13-normalized-fen-dedup-key.md",
+      "status": "REQUESTED",
+      "title": "Implement the E-0013 Option-(1) leakage remediation F-U7..F-U13: the dedup key is the normalized FEN"
+    },
+    {
+      "code_files": [
+        "tools/e0013_extract.py"
+      ],
+      "commits_mentioned": [],
+      "kind": "handoff",
+      "record": "HO-0019",
+      "rel": "handoffs/HO-0019-verify-e0013-s0037-leakage-ruling.md",
+      "status": "REQUESTED",
+      "title": "Independently verify the E-0013 leakage ruling (S-0037 addendum): was option (1) chosen on the contract's own terms?"
+    },
+    {
+      "code_files": [
         "src/bitboard.cpp"
       ],
       "commits_mentioned": [],
@@ -1683,7 +1705,7 @@
       "title": "Gate 0 unrunnable: Device Guard hard-blocks kana.exe (every build, every path)"
     }
   ],
-  "generated": "2026-09-27T17:44:11",
+  "generated": "2026-09-27T18:19:33",
   "metrics": {
     "by_kind": {
       "agent_profile": 1,
@@ -1695,7 +1717,7 @@
       "evidence": 8,
       "experiment": 15,
       "failure": 2,
-      "handoff": 17,
+      "handoff": 19,
       "hypothesis": 17,
       "principle": 4,
       "profile": 4,
@@ -1717,19 +1739,19 @@
       "PENDING": 5,
       "RECORDED": 2,
       "REGISTERED": 8,
-      "REQUESTED": 4,
+      "REQUESTED": 6,
       "RESOLVED": 1,
       "RUNNING": 1,
       "SUPERSEDED": 4
     },
     "code_files": 27,
     "contradiction_candidates": 0,
-    "dangling_ids": 11,
+    "dangling_ids": 12,
     "duplicate_candidates": 2,
-    "edges_total": 3643,
+    "edges_total": 3692,
     "legacy_experiments_without_pre_registration": 6,
     "open_questions": 8,
-    "records_total": 198,
+    "records_total": 200,
     "revival_candidates": 5
   },
   "questions_all": [
@@ -2121,24 +2143,6 @@
   "timeline_tail": [
     {
       "example": false,
-      "id": "HO-0010",
-      "kind": "handoff",
-      "rel": "handoffs/HO-0010-close-w-0001-after-r-0017-independent-verification.md",
-      "status": "DONE",
-      "title": "Close W-0001 after R-0017 independent verification",
-      "when": "2026-09-25"
-    },
-    {
-      "example": false,
-      "id": "HO-0011",
-      "kind": "handoff",
-      "rel": "handoffs/HO-0011-execute-e-0012-live-known-difference-and-null-pair-controls.md",
-      "status": "DONE",
-      "title": "Execute E-0012 live known-difference and null-pair controls",
-      "when": "2026-09-25"
-    },
-    {
-      "example": false,
       "id": "HO-0012",
       "kind": "handoff",
       "rel": "handoffs/HO-0012-independent-verification-w-0005-e-0012-live-runs-run-0002-and-run-0003.md",
@@ -2432,6 +2436,24 @@
       "rel": "handoffs/HO-0017-audit-e0013-l5-flip-q1-q8.md",
       "status": "REQUESTED",
       "title": "Independently verify the E-0013 L5-only lifecycle flip (R-0024 Q1-Q8)",
+      "when": "2026-09-27"
+    },
+    {
+      "example": false,
+      "id": "HO-0018",
+      "kind": "handoff",
+      "rel": "handoffs/HO-0018-implement-f-u7-f-u13-normalized-fen-dedup-key.md",
+      "status": "REQUESTED",
+      "title": "Implement the E-0013 Option-(1) leakage remediation F-U7..F-U13: the dedup key is the normalized FEN",
+      "when": "2026-09-27"
+    },
+    {
+      "example": false,
+      "id": "HO-0019",
+      "kind": "handoff",
+      "rel": "handoffs/HO-0019-verify-e0013-s0037-leakage-ruling.md",
+      "status": "REQUESTED",
+      "title": "Independently verify the E-0013 leakage ruling (S-0037 addendum): was option (1) chosen on the contract's own terms?",
       "when": "2026-09-27"
     },
     {

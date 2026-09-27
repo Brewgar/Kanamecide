@@ -1,7 +1,7 @@
 # Research State (GENERATED — do not edit)
 
 Derived from the record store by `research.py state`. Regenerate after every change.
-Generated: 2026-09-27T17:44:11; schema 2.
+Generated: 2026-09-27T18:19:33; schema 2.
 Every entry is a PROJECTION of the linked records — follow them before believing.
 
 ## Current best beliefs (hypotheses with measured weight)
@@ -43,8 +43,6 @@ Every entry is a PROJECTION of the linked records — follow them before believi
 - hypothesis **H-0002-magic-stub** Magic Bitboards with PEXT Provide >=3x NPS Speedup — SUPERSEDED. No revisit condition recorded.
 
 ## Recent timeline
-- 2026-09-26 session S-0025 (CLOSED) : E-0013 addendum discharging R-0019 B1-B7 (SHRINK branch) + E-00014/E-00015 pre-registered + HO-0014/15/16
-- 2026-09-26 session S-0026 (CLOSED) : Mechanical repair of HO-0014/15/16 section stranding and two cut sentences
 - 2026-09-26 session S-0027 (CLOSED) : HO-0014 re-critique of the E-0013 addendum vs R-0019 B1-B7 - NOT CLEAN on two new blocking findings (X1 truncated/interleaved addendum, X2 false parameter-count rationale); all three integrity properties HOLD
 - 2026-09-26 session S-0028 (CLOSED) : R-0020 repair of the E-0013 addendum: 10 seams joined, contingency table moved, F-U1..F-U6 rejoined, X2 arithmetic inserted, X3 owners set; E-0013 stays PENDING
 - 2026-09-26 session S-0029 (CLOSED) : R-0020 repair second pass: seam 8 misjoin fixed (duplicate B6 citation removed), B5 s2 empty slot named and dispositioned, verification recorded; E-0013 stays PENDING
@@ -53,6 +51,8 @@ Every entry is a PROJECTION of the linked records — follow them before believi
 - 2026-09-26 session S-0032 (CLOSED) : R-0023 adopted - Z1 repaired (one word), contract (a)-(e) verbatim, Z2 withdrawn, Z3 re-pinned, Ruling 2 recorded; FLIP NOT EXECUTED - condition part 6 unmet (fresh adversarial critique required, owner seat may not self-verify); E-0013 stays PENDING
 - 2026-09-26 session S-0033 (CLOSED) : Two stale evidence lines in E-0013 REVISED in place (Z2 prose + condition row 10) - the withdrawn figure 8ad61ccd/00a727 occurs 4x, all inside the Z2 withdrawal record, in NO live claim; orchestrator count; seam 22, 0 new; E-0013 stays PENDING
 - 2026-09-27 handoff HO-0017 (REQUESTED) : Independently verify the E-0013 L5-only lifecycle flip (R-0024 Q1-Q8)
+- 2026-09-27 handoff HO-0018 (REQUESTED) : Implement the E-0013 Option-(1) leakage remediation F-U7..F-U13: the dedup key is the normalized FEN
+- 2026-09-27 handoff HO-0019 (REQUESTED) : Independently verify the E-0013 leakage ruling (S-0037 addendum): was option (1) chosen on the contract's own terms?
 - 2026-09-27 review R-0025 (COMPLETED) : R 0025 independent audit of the e 0013 l5 only lifecycle flip under r 0024 q1 q8 ho 0017
 - 2026-09-27 session S-0034 (CLOSED) : E-0013 L5-only flip PENDING -> RUNNING under R-0024 (6a6eb0a); Z4 header fixed separately (f2b627c); Q1-Q8 handed to the verification-auditor via HO-0017
 - 2026-09-27 session S-0035 (CLOSED) : ho-0017-independent-audit-of-the-e-0013-l5-flip-r-0025-verified-q1-q8-no-revert
@@ -72,7 +72,7 @@ Every entry is a PROJECTION of the linked records — follow them before believi
     "evidence": 8,
     "experiment": 15,
     "failure": 2,
-    "handoff": 17,
+    "handoff": 19,
     "hypothesis": 17,
     "principle": 4,
     "profile": 4,
@@ -94,19 +94,19 @@ Every entry is a PROJECTION of the linked records — follow them before believi
     "PENDING": 5,
     "RECORDED": 2,
     "REGISTERED": 8,
-    "REQUESTED": 4,
+    "REQUESTED": 6,
     "RESOLVED": 1,
     "RUNNING": 1,
     "SUPERSEDED": 4
   },
   "code_files": 27,
   "contradiction_candidates": 0,
-  "dangling_ids": 11,
+  "dangling_ids": 12,
   "duplicate_candidates": 2,
-  "edges_total": 3643,
+  "edges_total": 3692,
   "legacy_experiments_without_pre_registration": 6,
   "open_questions": 8,
-  "records_total": 198,
+  "records_total": 200,
   "revival_candidates": 5
 }
 
