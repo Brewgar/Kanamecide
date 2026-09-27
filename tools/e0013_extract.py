@@ -2,6 +2,30 @@
 """E-0013 quiet-position extractor: filtered positions, GLOBAL-before-split dedup,
 committed game-split map, overlap-0 gates, and the E-00015 count-only field set.
 
+RETIRED INSTRUMENTS - read this before reading a number out of a report.
+The yield band `75,600..76,587` is **RETIRED** by E-0013's Addendum 2 (S-0039, Ruling 1
+/ F-U10). It is gone from this tool: there is no `band` key in the report, no `lo`/`hi`
+constant in this file, and no comparison printed. The band was a yield-plausibility
+cross-check on the pipeline (`is_pass_criterion: false`), both its endpoints were
+functions of the OLD dedup key's expected output, and it had already misfired under that
+old key too (76,593 measured against a `hi` of 76,587), so no measurement of this corpus
+ever landed inside it. **It is not replaced by a re-derived band.** A band a key change
+can pass by luck is a coincidence detector, and a permanently-red instrument teaches
+readers to ignore red lights.
+
+What stands in its place introduces no new number at all:
+  1. the directly measured `count_usable_distinct`, with
+     `duplicates_removed_by_dedup` beside it;
+  2. the **UNCHANGED 30,000 scope floor** on the TRAIN side (`SCOPE_FLOOR` below) - this
+     is the only magnitude threshold in the contract that gates anything, it is NOT
+     renegotiable, and it is reported with its headroom;
+  3. the blocking overlap-0 gates, at 0;
+  4. the **exact accounting identities** published under `accounting_identities`, which
+     are arithmetic rather than projection and therefore cannot rot.
+E-00015's own pre-registration still carries the band at L133-137/L152-153/L245-248 and
+needs a dated amendment by its own executor seat; this tool simply stops emitting the
+retired field so that no future run can produce one.
+
 Contract this tool implements (read-only citations; none of those records is edited):
 
   * E-0013 "Dataset / Quiet-position filter (EXECUTABLE predicate spec)" - the four
@@ -35,15 +59,27 @@ Contract this tool implements (read-only citations; none of those records is edi
   * E-00015 "Test Method" step 3: the stage-by-stage field names below are emitted
     verbatim, plus E-00015's abort conditions 1-7.
 
-Two modes, deliberately kept apart:
+Two modes, deliberately kept apart, and each mode is now named in the report exactly as
+it is used - `count-only` or `labelled` - so no reader has to guess which mode produced a
+digest:
 
-  --count-only   E-00015's pass. No label field is read at all: `res` and `a_white` are
-                 DELETED from every parsed row before any further use, and the tool
-                 refuses to write any label-derived output field (E-00015 abort 3).
-                 It still reports `label_frame_uniform` as `null` with the reason, so
-                 no pre-registered field is silently dropped (E-00015 abort 7).
-  (default)      Full extraction: positions + labels + the split map, for the fitter and
-                 the parameter-table evaluator.
+  --count-only   E-00015's pass. `count-only`. No label field is read at all: `res` and
+                  `a_white` are DELETED from every parsed row before any further use,
+                  and the tool refuses to write any label-derived output field (E-00015
+                  abort 3). It still reports `label_frame_uniform` as `null` with the
+                  reason, so no pre-registered field is silently dropped (E-00015
+                  abort 7). **The `positions.jsonl` this mode writes is NOT the fitter's
+                  corpus**: every row's `y` is null, so
+                  `report["corpus"]["fitter_corpus_sha256"]` is `null` and the file's
+                  digest is published under the name count-only-pass digest. That is
+                  ASSERTED at write time, not described in prose.
+  (default)      Full extraction: `labelled`. Positions + labels + the split map, for the
+                  fitter and the parameter-table evaluator. Only a `labelled` artifact's
+                  digest may be read as the fitter's corpus digest.
+
+  LABEL CONSTRUCTION is a separate step and it now exists: `tools/e0013_label.py`
+  builds the TRAIN-ONLY labelled corpus out of this tool's pinned artifacts and owns
+  the per-game constancy and wrong-side enforcement that this tool does not perform.
 
 This tool READS the dataset but NEVER an engine: no binary is invoked, no Gate-0 build is
 required, and `tools/e0011_check.py` is CITED, never edited.
@@ -54,6 +90,7 @@ import argparse
 import hashlib
 import json
 import random
+import re
 import subprocess
 import sys
 from dataclasses import dataclass, field
@@ -95,6 +132,40 @@ END_VOCABULARY = {"mate", "stalemate", "draw-material", "rule50", "repetition", 
 # The two keys the count-only pass must never read (E-00015 abort 3).
 LABEL_KEYS = ("res", "a_white")
 
+# --- the scope floor: UNCHANGED, and not renegotiable -------------------------------
+# E-0013 conjunct (a) / B6 sentence 4 / E-00015 rules 1-2. This is the ONLY magnitude
+# threshold in the contract that gates anything, and it is NOT the retired band. The band
+# was a yield-plausibility cross-check on the pipeline (`is_pass_criterion: false`) whose
+# endpoints came from a projection; this is a pre-registered quality/scope rule on the
+# TRAIN side. S-0039 retired the band and left this untouched, it holds at 59,892, and
+# nothing in this tool may move it.
+SCOPE_FLOOR = 30000
+
+# --- the two modes, named as they are used -------------------------------------------
+# These strings are the report's `mode` value and the suffix of
+# `artifacts.positions_sha256_kind`. A count-only artifact is a MEASUREMENT and a
+# labelled artifact is a CORPUS; they have different digests, so publishing one digest
+# under one bare name is how a reader comes to treat a measurement as the thing a fitter
+# read. Both names are asserted against the bytes about to be written.
+MODE_COUNT_ONLY = "count-only"
+MODE_LABELLED = "labelled"
+FITTER_CORPUS_KIND = "fitter-corpus"
+COUNT_ONLY_PASS_KIND = "count-only-pass"
+
+# This file as a repo-relative path, for the write-time provenance assertion.
+TOOL_REL = "tools/e0013_extract.py"
+# What a synthetic (`--allow-synthetic`) run publishes instead of a commit pin. The
+# self-test's temporary corpora must not depend on this repository's working tree being
+# clean, and a real-looking hash that happened to be true would be a worse answer than a
+# sentinel that is obviously not a commit.
+SYNTHETIC_PROVENANCE = {
+    "asserted": False,
+    "src_commit": "SYNTHETIC-NOT-A-COMMIT",
+    "asserted_by": "--allow-synthetic: the self-test runs on temporary corpora, so no "
+                   "commit pin is asserted",
+    "why_not_asserted": "a synthetic run's provenance is its fixture, not this repository",
+}
+
 
 def sha256_bytes(data: bytes) -> str:
     return hashlib.sha256(data).hexdigest()
@@ -118,10 +189,76 @@ def canonical_json(obj: Any) -> bytes:
     return (json.dumps(obj, sort_keys=True, separators=(",", ":"), ensure_ascii=True) + "\n").encode("utf-8")
 
 
-def git_commit() -> str:
-    return subprocess.check_output(
-        ["git", "rev-parse", "HEAD"], cwd=ROOT, text=True, encoding="utf-8"
-    ).strip()
+def src_provenance(repo: Path = ROOT, tool_rel: str = TOOL_REL) -> dict[str, Any]:
+    """ASSERT that the running code is the COMMITTED code, then return the pin.
+
+    E-0013 Addendum 2 (S-0039) section 9, and the defect Ruling 2 acts on: the artifact on
+    disk carried `src_commit = 9f6574c`, the PARENT of `da93d9c`. The extraction had been run
+    against a working tree whose changes were not yet committed, so the artifact's
+    provenance pointed at a commit that does not contain the code that produced it. The
+    bytes were right and the attribution was stale, which is the worst shape a defect takes.
+
+    So this does not read a commit and call it a pin. `git rev-parse HEAD` reports where the
+    branch points; it says nothing about whether the code in the working tree is in that
+    commit. What makes it a pin is comparing the blob the RUNNING file has against the blob
+    the SAME commit has for the SAME path. Equal means the executing code is byte-for-byte
+    the code that commit contains, and that commit is therefore the provenance. Unequal
+    means the output would be attributed to code that is in no commit at all, and the only
+    honest answer is to ABORT - an artifact whose provenance is a guess is worse than no
+    artifact, because it looks loadable.
+
+    Two properties this is built to have:
+      * it is asserted at WRITE time. `run()` calls it before any artifact exists, so there
+        is no window in which a stale value is written and later read back;
+      * it is NOT read from a field. No previously written `report.json` is ever opened by
+        this tool, so a stale `src_commit` in an existing report cannot be inherited.
+
+    Known sharp edge, stated rather than hidden: if the repository ever gains a
+    `.gitattributes` that applies text conversion to this path, the working-tree blob would
+    differ from the committed blob for a reason that has nothing to do with the code, and
+    this would fire. That is a loud false positive, which is the right side to err on: the
+    alternative is a silent false pin.
+    """
+    def git(*argv: str) -> str:
+        try:
+            return subprocess.check_output(
+                ["git", *argv], cwd=repo, text=True, encoding="utf-8",
+                stderr=subprocess.DEVNULL,
+            ).strip()
+        except (subprocess.CalledProcessError, FileNotFoundError) as exc:
+            abort(f"git {' '.join(argv)} failed in {repo} ({exc!r}); the provenance of this "
+                  f"run cannot be established, so no artifact is written")
+
+    commit = git("rev-parse", "HEAD")
+    if len(commit) != 40 or any(c not in "0123456789abcdef" for c in commit):
+        abort(f"git rev-parse HEAD returned {commit!r}, which is not a 40-hex commit id")
+    committed_blob = git("rev-parse", f"HEAD:{tool_rel}")
+    if len(committed_blob) != 40:
+        abort(f"no blob for {tool_rel} at commit {commit}; that commit does not contain this "
+              f"tool, so it cannot be this run's provenance")
+    worktree = repo / tool_rel
+    if not worktree.is_file():
+        abort(f"{worktree} does not exist; the running code has no committed counterpart")
+    running_blob = git("hash-object", str(worktree))
+    if running_blob != committed_blob:
+        abort(
+            f"SRC-COMMIT PIN VIOLATED: the running {tool_rel} hashes to {running_blob}, but "
+            f"commit {commit} contains {committed_blob} for that path. The code that is "
+            f"running is not the code that is committed, so writing src_commit={commit} "
+            f"would attribute this artifact to a commit that does not produce it - the "
+            f"S-0039 section 9 defect, reproduced. Commit the code first, or run from a "
+            f"clean checkout; nothing is written"
+        )
+    return {
+        "asserted": True,
+        "src_commit": commit,
+        "tool_path": tool_rel,
+        "committed_blob": committed_blob,
+        "running_blob": running_blob,
+        "asserted_by": "tools/e0013_extract.py:src_provenance() - the running file's blob is "
+                       "compared with the same path's blob at HEAD, so src_commit names a "
+                       "commit that CONTAINS the code that produced this artifact",
+    }
 
 
 def abort(reason: str) -> "NoReturn":  # type: ignore[name-defined]
@@ -472,14 +609,121 @@ def salt_distances() -> dict[str, int]:
     return {str(prior): abs(SPLIT_SALT - prior) * SALT_DISTANCE_FACTOR for prior in PRIOR_SALTS}
 
 
-def band_comparison(value: int, lo: int, hi: int) -> str:
-    """E-00015's band is a sanity check, not a pass criterion: the count is reported as-is
-    wherever it lands, and an outside-the-band count is routed, never adjusted."""
-    if value < lo:
-        return "below"
-    if value > hi:
-        return "above"
-    return "inside"
+def scope_floor_verdict(train_count: int, floor: int = SCOPE_FLOOR) -> dict[str, Any]:
+    """The 30,000 scope floor, evaluated mechanically on the TRAIN-side count.
+
+    E-0013 conjunct (a) / B6 sentence 4 / E-00015 rules 1-2. Both branches are returned as
+    DATA, not as an exit code, because recording the verdict in a record is the owner seat's
+    act and this tool only computes it. The headroom is published alongside the branch so a
+    reader can see how close the call came - which is the sensitivity the band retirement
+    actually cost, stated as a number rather than as a reassurance.
+
+    `floor` is a parameter so the self-test can demonstrate both branches and the boundary
+    with no route to moving the real value: `SCOPE_FLOOR` is a module constant, the report
+    publishes it as `scope_floor.floor`, and nothing else in this file writes it.
+    """
+    return {
+        "floor": floor,
+        "count_usable_distinct_train": train_count,
+        "headroom": train_count - floor,
+        "holds": train_count >= floor,
+        "rule_output": ("all-terms-scope-stands" if train_count >= floor
+                        else "all-terms-claim-WITHDRAWN"),
+    }
+
+
+def accounting_identities(counters: Counters, splits: dict[str, int],
+                          distinct_norm_fens: int) -> dict[str, bool]:
+    """The EXACT identities that stand in place of the retired band.
+
+    Every one of these is arithmetic between quantities this run measured, so none of them
+    rots when the dedup key changes and none can be satisfied by luck. That is the whole
+    reason they replace the band: the band's diagnostic power came from its endpoints being
+    derived from quantities INDEPENDENT of the number being checked, and the identities get
+    the same kind of power from being exact instead of estimated. They introduce no
+    threshold and therefore no new number to be wrong about.
+
+    `one_survivor_per_normalized_fen` answers the question Ruling 1 says was lost: it ties
+    the survivor count to the distinctness of the dedup key rather than to any expected
+    magnitude, so a future key change that quietly stops deduplicating is caught at once
+    instead of waiting for a magnitude cross-check to notice.
+    """
+    return {
+        "usable_equals_after_degenerate_minus_dedup":
+            counters.count_after_degenerate_excl - counters.duplicates_removed_by_dedup
+            == counters.count_usable_distinct,
+        "usable_equals_train_plus_holdout":
+            splits["train"] + splits["holdout"] == counters.count_usable_distinct,
+        "stages_monotone_non_increasing":
+            counters.count_bare_ply >= counters.count_after_crash_excl
+            >= counters.count_after_degenerate_excl >= counters.count_usable_distinct,
+        "dedup_removed_at_least_zero": counters.duplicates_removed_by_dedup >= 0,
+        "one_survivor_per_normalized_fen":
+            distinct_norm_fens == counters.count_usable_distinct,
+    }
+
+
+def identities_hold(identities: dict[str, bool]) -> bool:
+    return all(identities.values())
+
+
+def corpus_block(mode: str, positions_sha: str, rows: int, null_y_rows: int,
+                 label_frame_uniform: bool | None) -> dict[str, Any]:
+    """WHICH mode produced this artifact, and therefore WHICH digest is a corpus digest.
+
+    S-0039 Ruling 2, second weakness: the artifact on disk was a `--count-only` run whose
+    rows carry `y: null`, so its SHA-256 was one specific number (`ac8c92f0...`) that must
+    never be presented as the digest of the corpus a fitter will read. The full extraction
+    is a DIFFERENT file with a DIFFERENT digest, so the fix is not to publish one digest
+    more carefully - it is to give the corpus digest its own field and leave it `null`, with
+    a reason, whenever the bytes cannot be a corpus at all.
+    """
+    labelled = mode == MODE_LABELLED
+    return {
+        "mode": mode,
+        "is_fitter_corpus": labelled,
+        "fitter_corpus_sha256": positions_sha if labelled else None,
+        "fitter_corpus_null_reason": None if labelled else
+            "count-only pass: no label field was read (E-00015 abort 3), so every row's y is "
+            "null and this file is NOT the corpus a fitter may read",
+        "positions_sha256_kind": FITTER_CORPUS_KIND if labelled else COUNT_ONLY_PASS_KIND,
+        "rows": rows,
+        "rows_with_null_y": null_y_rows,
+        "y_values_are_labels": labelled,
+        "label_frame_uniform": label_frame_uniform,
+        "read_this_before_quoting_a_digest":
+            "in count-only mode positions_sha256 is the digest of a MEASUREMENT; only a "
+            "labelled artifact's digest is the fitter's corpus digest",
+    }
+
+
+def assert_mode_matches_bytes(mode: str, kept: list["Position"],
+                              label_frame_uniform: bool | None) -> int:
+    """The mode label must be TRUE OF THE BYTES. Checked at write time, not described.
+
+    A report that says `labelled` while every `y` is null would publish a corpus digest over
+    a file that cannot be fitted. A report that says `count-only` while some `y` is populated
+    would leak a label into a measurement pass, which is E-00015 abort 3. And a labelled run
+    whose frame is not uniform is a FAIL of conjunct (c) under B2 sentence 1, which must not
+    be published as a fitter corpus under any circumstances. A description that can be false
+    is worse than no description, so this is a gate, and it returns the measured null count.
+    """
+    nulls = sum(1 for pos in kept if pos.y is None)
+    if mode == MODE_COUNT_ONLY:
+        if nulls != len(kept):
+            abort(f"declared mode is {mode} but {len(kept) - nulls} of {len(kept)} rows carry "
+                  f"a label; E-00015 abort 3 forbids publishing a label from the count-only "
+                  f"pass, and a digest over labelled bytes must not be presented as a "
+                  f"measurement")
+        return nulls
+    if nulls:
+        abort(f"declared mode is {mode} but {nulls} of {len(kept)} rows carry a null label; "
+              f"a partially labelled corpus cannot be fitted and must not be pinned as one")
+    if label_frame_uniform is not True:
+        abort("declared mode is labelled but the side-to-move frame is not uniform (B2 "
+              "sentence 1); a mixed frame is a FAIL of conjunct (c) and must not be "
+              "published as a fitter corpus")
+    return nulls
 
 
 def build_report(
@@ -495,13 +739,23 @@ def build_report(
     side_counts: dict[str, int],
     label_frame_uniform: bool | None,
     label_reason: str | None,
+    provenance: dict[str, Any],
+    identities: dict[str, bool],
+    mode: str,
+    scope_floor: int = SCOPE_FLOOR,
 ) -> dict[str, Any]:
     train = splits["train"]
     report: dict[str, Any] = {
         "format": REPORT_FORMAT,
         "tool": "tools/e0013_extract.py",
-        "mode": "count-only" if args.count_only else "extract",
-        "src_commit": git_commit(),
+        "mode": mode,
+        # The commit that CONTAINS the code that produced this report, asserted at write
+        # time by comparing the running file's blob with the same path's blob at HEAD. It is
+        # not `git rev-parse HEAD` on its own, which is how the previous artifact came to
+        # name `9f6574c` - the parent of the commit holding the key change it was produced
+        # with. See src_provenance() and the `provenance` block below.
+        "src_commit": provenance["src_commit"],
+        "provenance": provenance,
         "python": sys.version.split()[0],
         "python_chess": chess.__version__,
         "dataset": {
@@ -566,25 +820,59 @@ def build_report(
             "null_reason": label_reason,
             "count_positions_white_to_move": side_counts["w"],
             "count_positions_black_to_move": side_counts["b"],
+            "label_construction_step": "tools/e0013_label.py - the separate TRAIN-ONLY step "
+                                       "that builds the labelled corpus out of these pinned "
+                                       "artifacts, and that enforces per-game constancy and "
+                                       "the side-to-move frame, which this tool does not",
+            "label_is_result_only": True,
+            "label_is_result_only": True,
+            "label_is_game_constant": True,
         },
         "gates": gates,
-        # E-00015's band is a sanity check, not a pass criterion: outside the band the count
-        # is reported as-is and routed, never adjusted or re-run to land inside.
-        "band": {
-            "lo": 75600,
-            "hi": 76587,
-            "comparison": band_comparison(counters.count_usable_distinct, 75600, 76587),
-            "is_pass_criterion": False,
-        },
+        # THE BAND IS GONE, not renamed, not re-derived, and not nulled in place. The key is
+        # ABSENT on purpose: a consumer that does `report["band"]["lo"]` gets a KeyError and
+        # is forced to notice, and one that does `report.get("band")` gets None rather than a
+        # dict-shaped object that reads as live. The retirement itself is recorded below.
+        "retired_instruments": [
+            {
+                "name": "yield band",
+                "retired_by": "E-0013 Addendum 2 (S-0039), Ruling 1 / F-U10",
+                "retired_on": "2026-09-27",
+                "what_it_was": "lo 75600 / hi 76587, a per-run comparison, "
+                               "is_pass_criterion false",
+                "why": "a yield-plausibility cross-check on the pipeline, NOT a quality "
+                       "threshold; both endpoints were functions of the OLD dedup key's "
+                       "expected output; it misfired under the old key too (76,593 against "
+                       "hi 76,587), so no measurement of this corpus ever landed inside it",
+                "replaced_by": "the directly measured count_usable_distinct with "
+                               "duplicates_removed_by_dedup beside it; the UNCHANGED 30,000 "
+                               "scope floor with its headroom; the blocking overlap-0 gates; "
+                               "and the exact accounting_identities - none of which is a "
+                               "band, and none of which introduces a new number",
+                "is_live": False,
+            }
+        ],
         # E-0013 conjunct (a) / B6 sentence 4 / E-00015 rule 1-2. The rule is APPLIED here
         # mechanically so it is auditable; recording the verdict in a record remains the
-        # owner's act, not this tool's.
-        "scope_floor": {
-            "floor": 30000,
-            "evaluated_on": "count_usable_distinct_train (outer TRAIN side)",
-            "rule_output": "all-terms-scope-stands" if train >= 30000 else "all-terms-claim-WITHDRAWN",
-            "applied_by": "E-0013's owner seat; this tool reports the branch, it does not decide",
-        },
+        # owner's act, not this tool's. This floor is NOT the retired band: it is the
+        # pre-registered quality/scope rule on the TRAIN side, it is not renegotiable, and
+        # its headroom is published so a reader can see how close the call came.
+        "scope_floor": dict(
+            # `scope_floor` is the pinned SCOPE_FLOOR on every real run. It is a parameter
+            # only so the self-test can drive the OTHER branch of the rule end to end - a
+            # floor that has only ever been seen passing has not been tested. The command
+            # line has no flag that reaches it: `parse_args` does not define one, and the
+            # self-test asserts that, so there is no route from a run to moving the value.
+            scope_floor_verdict(train, scope_floor),
+            evaluated_on="count_usable_distinct_train (outer TRAIN side)",
+            applied_by="E-0013's owner seat; this tool reports the branch, it does not decide",
+            not_renegotiable=True,
+            is_the_retired_band=False,
+        ),
+        # What replaced the band: exact arithmetic, checked and published, never a
+        # projection. A false identity is a reportable finding, so `run()` gates on it.
+        "accounting_identities": identities,
+        "accounting_identities_hold": identities_hold(identities),
     }
     return report
 
@@ -599,6 +887,17 @@ def write_bytes(path: Path, data: bytes) -> str:
 
 
 def run(args: argparse.Namespace) -> int:
+    # The mode, resolved ONCE and used everywhere, so the string in the report, the string
+    # in the digest's name and the string the write-time gate checks are the same object.
+    mode = MODE_COUNT_ONLY if args.count_only else MODE_LABELLED
+
+    # PROVENANCE, asserted BEFORE anything is written. A synthetic (`--allow-synthetic`) run
+    # publishes an explicit sentinel instead: the self-test's temporary corpora must not
+    # depend on this repository's working tree being clean, and a real-looking hash that
+    # happened to be true would be a worse answer than a sentinel that is obviously not a
+    # commit. Everything else pins, and pins or aborts.
+    provenance = dict(SYNTHETIC_PROVENANCE) if args.allow_synthetic else src_provenance()
+
     dataset = Path(args.dataset)
     if not dataset.exists():
         abort(f"dataset not found: {dataset}")
@@ -644,9 +943,36 @@ def run(args: argparse.Namespace) -> int:
 
     gates = run_gates(kept, rows_by_id, smap)
 
+    # The exact accounting identities are a GATE, not a decoration. They are what replaced
+    # the retired band, and an instrument that reports a failure without acting on it is the
+    # permanently-red instrument problem all over again. A false identity is a FINDING to
+    # report, never a new baseline to adopt.
+    identities = accounting_identities(
+        counters, splits, len({pos.norm_fen for pos in kept})
+    )
+    if not identities_hold(identities):
+        abort(
+            "EXACT ACCOUNTING IDENTITIES VIOLATED: "
+            + json.dumps(identities, sort_keys=True)
+            + " - the stage counts do not close, which means a counter or the dedup has "
+              "moved. This is a FINDING to report, not a baseline to re-derive, and no "
+              "artifact is written"
+        )
+
+    # The mode label is checked against the bytes, before the digest is published. A
+    # `count-only` pass whose rows carry labels, or a `labelled` pass whose rows do not, is
+    # exactly the confusion this gate exists to make impossible.
+    null_y_rows = assert_mode_matches_bytes(mode, kept, label_frame_uniform)
+
+    # The floor the report will evaluate. On every real run this is `SCOPE_FLOOR`; the
+    # attribute is absent from anything `parse_args` produces, and the self-test asserts
+    # that, so no command line can move the non-negotiable value. It exists only so the
+    # self-test can reach the STAND branch of the rule.
+    scope_floor = getattr(args, "scope_floor", None) or SCOPE_FLOOR
     report = build_report(
         args, rows, counters, kept, smap, gates, dataset_sha256, dataset_bytes,
         splits, side_counts, label_frame_uniform, label_reason,
+        provenance, identities, mode, scope_floor,
     )
     report["exclusion_verdict_counts"] = {
         k: sum(1 for v in verdict.values() if v == k) for k in ("used", "crash", "degenerate")
@@ -673,13 +999,23 @@ def run(args: argparse.Namespace) -> int:
     }
     map_bytes = canonical_json(map_obj)
     map_sha = sha256_bytes(map_bytes)
+    positions_sha = sha256_bytes(positions_bytes)
     report["artifacts"] = {
         "positions_lines": len(lines),
-        "positions_sha256": sha256_bytes(positions_bytes),
+        "positions_sha256": positions_sha,
+        # The name of the digest says what the digest is OF. In count-only mode this is a
+        # measurement's digest, and saying so in the key is what stops a reader from
+        # promoting it to "the corpus" by accident.
+        "positions_sha256_kind": (FITTER_CORPUS_KIND if mode == MODE_LABELLED
+                                  else COUNT_ONLY_PASS_KIND),
         "split_map_sha256": map_sha,
+        "split_map_sha256_is_mode_independent": True,
     }
-
-    # F-U9: the pre-registered split-map INVARIANCE assertion. This is checked on the real
+    # The corpus block answers the only question a digest cannot answer about itself: is this
+    # the thing a fitter reads? See corpus_block()'s docstring for why the count-only digest
+    # is published at all and the corpus digest is not.
+    report["corpus"] = corpus_block(mode, positions_sha, len(lines), null_y_rows,
+                                    label_frame_uniform)
     # pinned dataset only. The self-test passes small synthetic row sets whose game ids do
     # not span the pinned corpus, so their maps are legitimately different digests and the
     # assertion would be meaningless there.
@@ -729,9 +1065,15 @@ def run(args: argparse.Namespace) -> int:
         print(f"{key}={c[key]}")
     print(f"label_frame_uniform={label_frame_uniform} w={side_counts['w']} b={side_counts['b']}")
     print(f"gates={json.dumps(gates, sort_keys=True)}")
-    print(f"band={json.dumps(report['band'], sort_keys=True)}")
+    # No `band=` line. The band was retired, and printing a retired field is how a retired
+    # field keeps being read. What replaced it is printed by name instead.
+    print(f"retired_instruments="
+          f"{json.dumps([r['name'] for r in report['retired_instruments']], sort_keys=True)}")
+    print(f"accounting_identities={json.dumps(identities, sort_keys=True)}")
     print(f"scope_floor={json.dumps(report['scope_floor'], sort_keys=True)}")
-    print(f"positions_sha256={report['artifacts']['positions_sha256']}")
+    print(f"corpus={json.dumps(report['corpus'], sort_keys=True)}")
+    print(f"positions_sha256={report['artifacts']['positions_sha256']} "
+          f"({report['artifacts']['positions_sha256_kind']})")
     print(f"split_map_sha256={report['artifacts']['split_map_sha256']}")
     if split_map_invariant is not None:
         print(f"split_map_invariance_unchanged={split_map_invariant} "
@@ -926,12 +1268,94 @@ def selftest() -> int:
     check("F10: every prior salt clears the 1,999 floor", all(v > 1999 for v in distances.values()), str(distances))
     check("F10: distance to 20260924 == 2,000,006", distances["20260924"] == 2000006)
 
-    # --- band and scope-floor arithmetic ----------------------------------------------
-    check("band: below", band_comparison(100, 75600, 76587) == "below")
-    check("band: inside", band_comparison(76000, 75600, 76587) == "inside")
-    check("band: above", band_comparison(99999, 75600, 76587) == "above")
-
-    # --- gate logic, on hand-built positions ------------------------------------------
+    # --- the RETIRED band, and the floor that was NOT retired --------------------------
+    # The band's ABSENCE is itself under test. A retired instrument that can reappear is
+    # not retired, so (a) the endpoints are checked to be absent from this tool's SOURCE,
+    # (b) no report key named `band` is constructed anywhere in it, and (c) the helper that
+    # computed the comparison is checked to be gone. All three are cheap and all three can
+    # fail, which is what stops a later edit from quietly reintroducing a red light.
+    source_text = Path(__file__).read_text(encoding="utf-8")
+    # The two retired endpoints, written so that THIS CHECK IS NOT ITSELF A MATCH. A
+    # self-test that searches its own source for a literal it contains can only ever fail,
+    # and a test that can only fail is a decoration.
+    #
+    # The search is deliberately NOT "these digits appear nowhere": the retirement
+    # tombstone in the report has to be able to say what it retired, or it is a claim with
+    # no content. So the rule is the sharper one - the endpoints may appear inside the
+    # tombstone and NOWHERE ELSE, which is what stops a re-derived band from being quietly
+    # added back as a constant, a threshold, or a default argument.
+    retired_endpoints = ("756" + "00", "765" + "87")
+    tomb_start = source_text.find('"retired_instruments"')
+    tomb_end = source_text.find('"scope_floor": dict(')
+    tombstone = source_text[tomb_start:tomb_end] if 0 <= tomb_start < tomb_end else ""
+    outside_tombstone = source_text[:tomb_start] + source_text[tomb_end:]
+    check("band: the retirement tombstone is present and names the retired band",
+          tombstone != "" and all(e in tombstone for e in retired_endpoints),
+          f"tombstone slice found={bool(tombstone)}")
+    check("band: the retired endpoints appear NOWHERE OUTSIDE the tombstone",
+          re.search(r"(?<![0-9.,])(" + "|".join(retired_endpoints) + r")(?![0-9])",
+                    outside_tombstone) is None,
+          f"a retired band endpoint is live somewhere in this tool: {retired_endpoints}")
+    check("band: no report key named 'band' is constructed anywhere in this tool",
+          re.search(r"""["']band["']\s*:""", source_text) is None,
+          "a consumer could still read a retired field as live")
+    check("band: the comparison helper is no longer defined",
+          "band_comparison" not in globals())
+    check("band: the module docstring records the retirement",
+          "RETIRED INSTRUMENTS" in source_text and "F-U10" in source_text)
+    check("floor: the floor constant is 30,000 and it is the module's own",
+          SCOPE_FLOOR == 30000, str(SCOPE_FLOOR))
+    # The floor's two branches and its boundary, on the real constant. Both branches are
+    # required by the ruling: the band is gone, the floor is not, and an instrument that is
+    # only ever exercised on the branch it takes proves nothing about the other one.
+    floor_breach = scope_floor_verdict(SCOPE_FLOOR - 1)
+    floor_exact = scope_floor_verdict(SCOPE_FLOOR)
+    floor_clear = scope_floor_verdict(59892)
+    check("floor: a count one below 30,000 BREACHES and withdraws the all-terms claim",
+          floor_breach["holds"] is False
+          and floor_breach["rule_output"] == "all-terms-claim-WITHDRAWN"
+          and floor_breach["headroom"] == -1, str(floor_breach))
+    check("floor: exactly 30,000 STANDS (the rule is >=, not >)",
+          floor_exact["holds"] is True and floor_exact["headroom"] == 0, str(floor_exact))
+    check("floor: the measured 59,892 stands with 29,892 of headroom",
+          floor_clear["holds"] is True and floor_clear["headroom"] == 29892
+          and floor_clear["rule_output"] == "all-terms-scope-stands", str(floor_clear))
+    check("floor: the pinned constant cannot be moved through the test parameter",
+          scope_floor_verdict(59892, floor=1)["holds"] is True and SCOPE_FLOOR == 30000,
+          "the parameter exists for the test; the constant does not move")
+    # The exact identities, on hand-built counters, including two deliberately broken ones.
+    ident_ok = accounting_identities(
+        Counters(count_bare_ply=100, count_after_crash_excl=90,
+                 count_after_degenerate_excl=80, count_usable_distinct=70,
+                 duplicates_removed_by_dedup=10),
+        {"train": 50, "holdout": 20}, 70)
+    check("identities: a consistent run satisfies every identity",
+          identities_hold(ident_ok), str(ident_ok))
+    ident_dedup = accounting_identities(
+        Counters(count_bare_ply=100, count_after_crash_excl=90,
+                 count_after_degenerate_excl=80, count_usable_distinct=70,
+                 duplicates_removed_by_dedup=9),
+        {"train": 50, "holdout": 20}, 70)
+    check("identities: a dedup that does not close is CAUGHT",
+          identities_hold(ident_dedup) is False
+          and ident_dedup["usable_equals_after_degenerate_minus_dedup"] is False,
+          str(ident_dedup))
+    ident_dupes = accounting_identities(
+        Counters(count_bare_ply=100, count_after_crash_excl=90,
+                 count_after_degenerate_excl=80, count_usable_distinct=70,
+                 duplicates_removed_by_dedup=10),
+        {"train": 50, "holdout": 20}, 69)
+    check("identities: a key that stopped deduplicating is CAUGHT (69 distinct of 70 rows)",
+          identities_hold(ident_dupes) is False
+          and ident_dupes["one_survivor_per_normalized_fen"] is False, str(ident_dupes))
+    ident_split = accounting_identities(
+        Counters(count_bare_ply=100, count_after_crash_excl=90,
+                 count_after_degenerate_excl=80, count_usable_distinct=70,
+                 duplicates_removed_by_dedup=10),
+        {"train": 50, "holdout": 19}, 70)
+    check("identities: a train/holdout sum that does not close is CAUGHT",
+          identities_hold(ident_split) is False
+          and ident_split["usable_equals_train_plus_holdout"] is False, str(ident_split))
     p_train = Position(0, 0, "PLACEMENT w KQkq - 4 4", "PLACEMENT w KQkq -", "w")
     p_hold = Position(1, 0, "PLACEMENT w KQkq - 0 9", "PLACEMENT w KQkq -", "w")
     g = run_gates([p_train, p_hold], {}, {"0": "train", "1": "holdout"})
@@ -942,16 +1366,80 @@ def selftest() -> int:
     g2 = run_gates([p_train], {}, {"0": "train"})
     check("gate: single-sided set passes", g2["overlap_zero"] is True)
 
+    # --- the write-time src_commit pin, against THROWAWAY repositories -----------------
+    # Exercised in temp directories and never against this repository. The pin must ABORT
+    # when the working tree has moved, so a test that depended on the developer's tree
+    # state would be untestable exactly when it matters. The real repository's own answer is
+    # available on demand as `python tools/e0013_extract.py --assert-src-commit`.
+    with tempfile.TemporaryDirectory() as prov_tmp:
+        prov_root = Path(prov_tmp) / "repo"
+        prov_root.mkdir(parents=True, exist_ok=True)
+
+        def pgit(*argv: str) -> str:
+            return subprocess.check_output(["git", *argv], cwd=prov_root, text=True,
+                                          encoding="utf-8", stderr=subprocess.DEVNULL).strip()
+
+        pgit("init", "-q")
+        pgit("config", "user.email", "selftest@example.invalid")
+        pgit("config", "user.name", "e0013 selftest")
+        prov_tool = prov_root / TOOL_REL
+        prov_tool.parent.mkdir(parents=True, exist_ok=True)
+        pinned_bytes = b"print('pinned tool')\n"
+        prov_tool.write_bytes(pinned_bytes)
+        pgit("add", "-A")
+        pgit("commit", "-qm", "pin the tool")
+        pinned_commit = pgit("rev-parse", "HEAD")
+
+        prov = src_provenance(prov_root, TOOL_REL)
+        check("provenance: a clean checkout pins the commit that CONTAINS the running code",
+              prov["asserted"] is True and prov["src_commit"] == pinned_commit
+              and prov["committed_blob"] == prov["running_blob"],
+              json.dumps(prov, sort_keys=True))
+        # THE S-0039 DEFECT, REPRODUCED. The code moves, the commit does not: this is
+        # exactly the 9f6574c / da93d9c situation, and the pin must ABORT rather than name a
+        # commit that does not contain the running code.
+        prov_tool.write_bytes(b"print('pinned tool')\nprint('the code moved')\n")
+        try:
+            src_provenance(prov_root, TOOL_REL)
+            check("provenance: ABORTS when the running code is not the committed code",
+                  False, "no abort raised")
+        except SystemExit as exc:
+            check("provenance: ABORTS when the running code is not the committed code",
+                  exc.code == 2, f"code={exc.code}")
+        prov_tool.write_bytes(pinned_bytes)
+        check("provenance: the SAME repository pins again once the code is restored",
+              src_provenance(prov_root, TOOL_REL)["src_commit"] == pinned_commit)
+        # A commit that does not contain the tool at all cannot be its provenance, whatever
+        # the working tree looks like.
+        pgit("rm", "-q", TOOL_REL)
+        pgit("commit", "-qm", "drop the tool")
+        prov_tool.parent.mkdir(parents=True, exist_ok=True)
+        prov_tool.write_bytes(pinned_bytes)  # present in the worktree, in no commit
+        try:
+            src_provenance(prov_root, TOOL_REL)
+            check("provenance: ABORTS when no commit contains the tool",
+                  False, "no abort raised")
+        except SystemExit as exc:
+            check("provenance: ABORTS when no commit contains the tool",
+                  exc.code == 2, f"code={exc.code}")
+
+    # The command line must have NO route to moving the non-negotiable floor. The
+    # self-test's own `run_on` passes one, which is why this assertion is worth having.
+    check("floor: the command line cannot move the 30,000 floor",
+          not hasattr(parse_args([]), "scope_floor"),
+          "parse_args must not define a scope_floor option")
+
     # --- end-to-end runs over synthetic datasets, in a temp directory ------------------
     with tempfile.TemporaryDirectory() as tmp:
         tmp_path = Path(tmp)
-
-        def run_on(path: Path, out_name: str, count_only: bool, pin: str | None = None) -> int:
+        def run_on(path: Path, out_name: str, count_only: bool, pin: str | None = None,
+                   floor: int | None = None) -> int:
             return run(argparse.Namespace(
                 dataset=str(path),
                 expected_dataset_sha256=pin if pin is not None else sha256_file(path),
                 out_dir=str(tmp_path / out_name), count_only=count_only,
                 dry_run=False, allow_synthetic=True,
+                **({} if floor is None else {"scope_floor": floor}),
             ))
 
         def write_rows(path: Path, rows: list[dict[str, Any]]) -> None:
@@ -984,9 +1472,62 @@ def selftest() -> int:
         check("hygiene: no CR bytes (LF-only)", b"\r" not in pos_bytes)
         check("split map: the published hash is reproducible from the file",
               rep["artifacts"]["split_map_sha256"] == sha256_bytes((out_clean / "split_map.json").read_bytes()))
-        check("report: band and scope floor are present as named fields",
-              rep["band"]["is_pass_criterion"] is False and rep["scope_floor"]["floor"] == 30000)
-
+        # The retired band, at the level a CONSUMER sees it. `rep["band"]` must raise and
+        # `rep.get("band")` must be None: a consumer that quietly falls back to a default
+        # is exactly the reader the retirement is meant to stop.
+        check("report: the retired band key is ABSENT, not null (a direct read raises)",
+              "band" not in rep and rep.get("band") is None, str(sorted(rep)))
+        check("report: the retirement is recorded as a tombstone with is_live False",
+              any(r["name"] == "yield band" and r["is_live"] is False
+                  and "F-U10" in r["retired_by"] for r in rep["retired_instruments"]),
+              json.dumps(rep.get("retired_instruments"), sort_keys=True))
+        check("report: the scope floor is published, at 30,000, with its headroom",
+              rep["scope_floor"]["floor"] == 30000
+              and rep["scope_floor"]["headroom"]
+              == rep["counts"]["count_usable_distinct_train"] - 30000,
+              json.dumps(rep["scope_floor"], sort_keys=True))
+        check("report: the scope floor says it is not the retired band",
+              rep["scope_floor"]["is_the_retired_band"] is False
+              and rep["scope_floor"]["not_renegotiable"] is True)
+        # The exact identities, end to end, on a corpus that is consistent by construction.
+        check("report: the exact accounting identities hold on the clean run",
+              rep["accounting_identities_hold"] is True,
+              json.dumps(rep["accounting_identities"], sort_keys=True))
+        check("report: the one-survivor-per-normalized-FEN identity is published and true",
+              rep["accounting_identities"]["one_survivor_per_normalized_fen"] is True)
+        # FLOOR, end to end, on the BREACH branch. The synthetic corpus is tiny, so this run
+        # really does fall below 30,000 and really does withdraw the claim. A floor that has
+        # only ever been seen passing has not been tested.
+        check("floor, end to end: this corpus BREACHES 30,000 and the claim is WITHDRAWN",
+              rep["scope_floor"]["holds"] is False
+              and rep["scope_floor"]["rule_output"] == "all-terms-claim-WITHDRAWN"
+              and rep["scope_floor"]["headroom"] < 0,
+              json.dumps(rep["scope_floor"], sort_keys=True))
+        # FLOOR, end to end, on the STAND branch, by pinning the floor DOWN for one run only.
+        # The pinned value is never touched: the run is told to evaluate at 1 instead, which
+        # is how a test reaches the other branch without a route to moving the constant.
+        small = run_on(clean, "out_floor_ok", True, floor=1)
+        rep_floor_ok = json.loads(
+            (tmp_path / "out_floor_ok" / "report.json").read_text(encoding="utf-8"))
+        check("floor, end to end: the SAME corpus STANDS the floor when it is not breached",
+              small == 0 and rep_floor_ok["scope_floor"]["holds"] is True
+              and rep_floor_ok["scope_floor"]["rule_output"] == "all-terms-scope-stands"
+              and rep_floor_ok["scope_floor"]["headroom"]
+              == rep_floor_ok["counts"]["count_usable_distinct_train"] - 1,
+              json.dumps(rep_floor_ok["scope_floor"], sort_keys=True))
+        check("floor: the pinned constant is still 30,000 after both branches ran",
+              SCOPE_FLOOR == 30000 and rep["scope_floor"]["floor"] == 30000)
+        # CORPUS / MODE. The two modes write different bytes, so the digest a reader could
+        # quote means different things in each; the report has to say which.
+        check("corpus: the labelled run's digest IS published as the fitter's corpus digest",
+              rep["mode"] == "labelled" and rep["corpus"]["is_fitter_corpus"] is True
+              and rep["corpus"]["fitter_corpus_sha256"]
+              == rep["artifacts"]["positions_sha256"]
+              and rep["artifacts"]["positions_sha256_kind"] == "fitter-corpus",
+              json.dumps(rep["corpus"], sort_keys=True))
+        check("corpus: a labelled report has no null-reason, because it has no null to explain",
+              rep["corpus"]["fitter_corpus_null_reason"] is None
+              and rep["corpus"]["rows_with_null_y"] == 0)
         # (b) duplicate game CONTENT straddling the split: dedup and both gates must react.
         s40 = split_map(range(40))
         a = int(next(g for g, s in s40.items() if s == "train"))
@@ -1168,6 +1709,51 @@ def selftest() -> int:
         check("count-only: every emitted y is null",
               all(json.loads(l)["y"] is None
                   for l in (tmp_path / "out_co" / "positions.jsonl").read_text(encoding="utf-8").splitlines()))
+        # CORPUS / MODE, the count-only side. S-0039 Ruling 2's second weakness is exactly
+        # this: a count-only artifact whose digest could be mistaken for the corpus a fitter
+        # reads. The corpus digest must be null WITH a reason, and the file's own digest must
+        # be published under a name that says what it is a digest OF.
+        check("corpus: the count-only run publishes NO fitter corpus digest",
+              rep_co["mode"] == "count-only" and rep_co["corpus"]["is_fitter_corpus"] is False
+              and rep_co["corpus"]["fitter_corpus_sha256"] is None
+              and bool(rep_co["corpus"]["fitter_corpus_null_reason"]),
+              json.dumps(rep_co["corpus"], sort_keys=True))
+        check("corpus: the count-only digest is named count-only-pass, never corpus",
+              rep_co["artifacts"]["positions_sha256_kind"] == "count-only-pass"
+              and rep_co["artifacts"]["positions_sha256"] is not None,
+              json.dumps(rep_co["artifacts"], sort_keys=True))
+        check("corpus: a count-only artifact cannot read as a corpus even by accident",
+              rep_co["corpus"]["rows_with_null_y"] == rep_co["corpus"]["rows"]
+              and rep_co["corpus"]["y_values_are_labels"] is False
+              and rep_co["corpus"]["rows"] > 0)
+        # The two modes are DIFFERENT BYTES, which is the entire reason the names matter. If
+        # these digests were equal the ambiguity would be harmless; asserting they differ is
+        # what makes the distinction load-bearing rather than decorative.
+        check("corpus: the labelled and count-only digests are DIFFERENT files",
+              rep["artifacts"]["positions_sha256"] != rep_co["artifacts"]["positions_sha256"],
+              f"labelled={rep['artifacts']['positions_sha256'][:16]} "
+              f"count_only={rep_co['artifacts']['positions_sha256'][:16]}")
+        # PROVENANCE, and the stale-field case specifically. A previous report carrying a
+        # bogus src_commit is planted in the output directory; the next run must not read it.
+        poisoned_dir = tmp_path / "out_poison"
+        poisoned_dir.mkdir(parents=True, exist_ok=True)
+        (poisoned_dir / "report.json").write_bytes(canonical_json({
+            "format": REPORT_FORMAT, "src_commit": "0" * 40, "mode": "labelled",
+            "positions_sha256": "f" * 64,
+        }))
+        run_on(clean, "out_poison", True)
+        rep_poison = json.loads(
+            (poisoned_dir / "report.json").read_text(encoding="utf-8"))
+        check("provenance: a previous report's src_commit is NEVER read back",
+              rep_poison["src_commit"] == SYNTHETIC_PROVENANCE["src_commit"]
+              and rep_poison["src_commit"] != "0" * 40,
+              f"got {rep_poison['src_commit']!r}")
+        check("provenance: the poisoned digest is overwritten, not inherited",
+              rep_poison["corpus"]["fitter_corpus_sha256"] != "f" * 64)
+        check("provenance: a synthetic run says plainly that no commit pin is asserted",
+              rep_poison["provenance"]["asserted"] is False
+              and bool(rep_poison["provenance"]["why_not_asserted"]),
+              json.dumps(rep_poison["provenance"], sort_keys=True))
         # Assert against the extractor's own view of the rows: `run()` re-parses the file, so
         # the writer's copies are not the objects the pass mutated.
         probe = [dict(r) for r in co_rows]
@@ -1221,6 +1807,11 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
                         help="skip the 1,000-row assert (self-test only)")
     parser.add_argument("--selftest", action="store_true",
                         help="run the synthetic checks; the real dataset is not touched")
+    parser.add_argument("--assert-src-commit", action="store_true",
+                        help="assert ONLY that the running code is the code the named commit "
+                             "contains, then exit 0 or 2. Reads no dataset, writes nothing. "
+                             "This is the S-0039 provenance check on its own, so it can be "
+                             "run before any pass and after any edit")
     return parser.parse_args(argv)
 
 
@@ -1228,6 +1819,18 @@ def main(argv: list[str] | None = None) -> int:
     args = parse_args(argv)
     if args.selftest:
         return selftest()
+    if args.assert_src_commit:
+        # The commit is computed here, at the moment of asking, and never read from a
+        # previously written report. If the working tree's copy of this file is not the
+        # committed copy, src_provenance() aborts with exit 2 and prints nothing, which is
+        # the whole point: the answer must not be available when it is false.
+        provenance = src_provenance()
+        print(f"src_commit={provenance['src_commit']} "
+              f"tool={provenance['tool_path']} "
+              f"committed_blob={provenance['committed_blob']} "
+              f"running_blob={provenance['running_blob']} "
+              f"asserted={provenance['asserted']}")
+        return 0
     return run(args)
 
 

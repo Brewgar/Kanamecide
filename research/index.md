@@ -229,6 +229,7 @@
 - [S-0037](sessions/S-0037-e0013-leakage-ruling-normalized-fen-dedup-key.md) — e0013-leakage-ruling-normalized-fen-dedup-key — status=CLOSED
 - [S-0038](sessions/S-0038-e0013-normalized-fen-dedup-key-f-u7-f-u13.md) — e0013-normalized-fen-dedup-key-f-u7-f-u13 — status=CLOSED
 - [S-0039](sessions/S-0039-e0013-band-retired-artifacts-pinned-ruling-correction.md) — e0013-band-retired-artifacts-pinned-ruling-correction — status=CLOSED
+- [S-0040](sessions/S-0040-e0013-band-retired-provenance-pinned-label-step-built.md) — e0013-band-retired-provenance-pinned-label-step-built — status=CLOSED
 
 ## Unrendered Records (bug — report this)
 

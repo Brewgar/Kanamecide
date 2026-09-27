@@ -1,7 +1,7 @@
 # Research State (GENERATED — do not edit)
 
 Derived from the record store by `research.py state`. Regenerate after every change.
-Generated: 2026-09-27T20:42:54; schema 2.
+Generated: 2026-09-27T23:11:37; schema 2.
 Every entry is a PROJECTION of the linked records — follow them before believing.
 
 ## Current best beliefs (hypotheses with measured weight)
@@ -43,7 +43,6 @@ Every entry is a PROJECTION of the linked records — follow them before believi
 - hypothesis **H-0002-magic-stub** Magic Bitboards with PEXT Provide >=3x NPS Speedup — SUPERSEDED. No revisit condition recorded.
 
 ## Recent timeline
-- 2026-09-26 session S-0029 (CLOSED) : R-0020 repair second pass: seam 8 misjoin fixed (duplicate B6 citation removed), B5 s2 empty slot named and dispositioned, verification recorded; E-0013 stays PENDING
 - 2026-09-26 session S-0030 (CLOSED) : R-0021 repair of the E-0013 addendum: X4 tail rejoined, seam-8 paren closed, B5 s2 heading withdrawn, X5 recorded, append-only baseline re-labelled; E-0013 stays PENDING
 - 2026-09-26 session S-0031 (CLOSED) : Y1 fix (R-0022 four pointers) + bounded +10 pointer rewrite (7 in-band rows; 6 old-ref rows exempt) + RUNNING authorisation recorded but NOT executed (status is L5, inside the hash-proved L1-428 block)
 - 2026-09-26 session S-0032 (CLOSED) : R-0023 adopted - Z1 repaired (one word), contract (a)-(e) verbatim, Z2 withdrawn, Z3 re-pinned, Ruling 2 recorded; FLIP NOT EXECUTED - condition part 6 unmet (fresh adversarial critique required, owner seat may not self-verify); E-0013 stays PENDING
@@ -58,6 +57,7 @@ Every entry is a PROJECTION of the linked records — follow them before believi
 - 2026-09-27 session S-0037 (CLOSED) : e0013-leakage-ruling-normalized-fen-dedup-key
 - 2026-09-27 session S-0038 (CLOSED) : e0013-normalized-fen-dedup-key-f-u7-f-u13
 - 2026-09-27 session S-0039 (CLOSED) : e0013-band-retired-artifacts-pinned-ruling-correction
+- 2026-09-27 session S-0040 (CLOSED) : e0013-band-retired-provenance-pinned-label-step-built
 
 ## Metrics
 ```
@@ -80,12 +80,12 @@ Every entry is a PROJECTION of the linked records — follow them before believi
     "report": 13,
     "review": 25,
     "round_megaprompt": 2,
-    "session": 39,
+    "session": 40,
     "work": 7
   },
   "by_status": {
     "ACTIVE": 14,
-    "CLOSED": 39,
+    "CLOSED": 40,
     "COMPLETED": 33,
     "DONE": 18,
     "DRAFT": 1,
@@ -99,14 +99,14 @@ Every entry is a PROJECTION of the linked records — follow them before believi
     "RUNNING": 1,
     "SUPERSEDED": 4
   },
-  "code_files": 27,
+  "code_files": 29,
   "contradiction_candidates": 0,
   "dangling_ids": 11,
   "duplicate_candidates": 2,
-  "edges_total": 3803,
+  "edges_total": 3838,
   "legacy_experiments_without_pre_registration": 6,
   "open_questions": 8,
-  "records_total": 202,
+  "records_total": 203,
   "revival_candidates": 5
 }
 

@@ -1,0 +1,48 @@
+{
+  "format": "kana-e0013-pins-v1",
+  "record": "E-0013",
+  "ruled_by": "E-0013 Addendum 2 (S-0039), Ruling 2 / F-U9 - hash-pin in research/, do not commit the artifacts",
+  "written": "2026-09-27",
+  "written_at_commit": "99844a3e05d0fd3efce0c5452828d6235f11b5c0",
+  "written_by": "implementation-engineer",
+  "read_time_check": "python tools/e0013_pins.py --verify   (re-hashes every artifact below and aborts on any mismatch; a consuming job calls `read_corpus()` INSTEAD of opening positions.jsonl)",
+  "why_this_file_is_the_control": "A hash pin is only as good as the discipline around it. S-0039 Ruling 2 names two disciplines: the pin must be committed BEFORE the read it protects, and somebody must re-hash AT READ TIME. This manifest plus tools/e0013_pins.py discharge the second. Without the re-hash the pin is a comment with a hexadecimal shape.",
+  "artifacts_out_of_git": "positions.jsonl is 13,004,718 B, derived, and regenerable from the pinned dataset + tool commit + split salt. Per Ruling 2 it is NOT committed; this manifest is the pin. build/ and m0_audit/ are gitignored, so these paths exist only on the machine that ran the pass.",
+  "artifacts": {
+    "positions.jsonl": {
+      "path": "build/s41/extract_new/positions.jsonl",
+      "sha256": "ac8c92f05026646dc376deb9dbcc3205d0b324c815333d92d02bfba46040bf15",
+      "bytes": 13004718,
+      "rows": 74452,
+      "kind": "count-only-pass",
+      "mode": "count-only",
+      "is_fitter_corpus": false,
+      "role": "the E-0013 count-only measurement. Every row's y is null. This digest is the digest of a MEASUREMENT and is NOT, and must never be quoted as, the fitter's corpus digest."
+    },
+    "split_map.json": {
+      "path": "build/s41/extract_new/split_map.json",
+      "sha256": "bb079a41630161bcd33a3a5df7890546dfe0c8329cc6bfed5ee35a83d4ada1ea",
+      "bytes": 14463,
+      "kind": "split-map",
+      "mode": "mode-independent",
+      "is_fitter_corpus": true,
+      "role": "the game->split assignment. A pure function of (SPLIT_SALT, game_id), so this digest is INVARIANT under the F-U7 dedup-key change and is the pin for conjunct (b) whichever mode produced the positions."
+    },
+    "report.json": {
+      "path": "build/s41/extract_new/report.json",
+      "sha256": "8d8d949e7105c41f151a700c026bb66e16e3df0474450a657064dcc153f81a00",
+      "bytes": 3573,
+      "kind": "count-only-pass",
+      "mode": "count-only",
+      "is_fitter_corpus": false,
+      "schema_predates_the_2026_09_27_fixes": true,
+      "role": "the provenance record for the count-only pass. SUPERSEDED IN TWO RESPECTS, both recorded here so no reader inherits them unknowingly: (1) its src_commit reads 9f6574c, the PARENT of da93d9c, so its attribution is stale - the S-0039 section 9 defect; (2) it carries a `band` key for an instrument retired by S-0039 Ruling 1, and it has no `corpus` or `provenance` block at all, both added by this session's fixes. It is pinned as WHAT IT IS - a pre-fix measurement record - not as a current one. The digest is still a control: these bytes are the ones E-00015's executor will be reconciling against, and `tools/e0013_pins.py --modes` reports the schema gap as a NAMED state rather than passing it silently."
+    }
+  },
+  "fitter_corpus": {
+    "sha256": null,
+    "null_reason": "NOT YET PINNED, and this null is the honest state rather than a gap. The full-mode (labelled) extraction has not been re-emitted: doing so is a run of the extractor on the pinned real dataset, which is outside this job's scope and is a separate seat's pass. Until it is, no fitter corpus digest exists and read_corpus() REFUSES rather than handing back a count-only hash. The count-only digest ac8c92f0... is a MEASUREMENT's digest and is not a substitute.",
+    "required_before": "any fitter or the E-00014 feasibility pass may read TRAIN",
+    "how_to_produce": "run tools/e0013_extract.py at a clean commit (it now asserts its own src_commit at write time), then record the resulting positions_sha256 here with is_fitter_corpus true and mode labelled"
+  }
+}
