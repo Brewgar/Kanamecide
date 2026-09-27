@@ -228,6 +228,7 @@
 - [S-0036](sessions/S-0036-e0013-parameter-table-evaluator-built-and-transcription-verified-overlap-0-gate-fails-27-on-the-real-dataset.md) — e0013-parameter-table-evaluator-built-and-transcription-verified-overlap-0-gate-fails-27-on-the-real-dataset — status=CLOSED
 - [S-0037](sessions/S-0037-e0013-leakage-ruling-normalized-fen-dedup-key.md) — e0013-leakage-ruling-normalized-fen-dedup-key — status=CLOSED
 - [S-0038](sessions/S-0038-e0013-normalized-fen-dedup-key-f-u7-f-u13.md) — e0013-normalized-fen-dedup-key-f-u7-f-u13 — status=CLOSED
+- [S-0039](sessions/S-0039-e0013-band-retired-artifacts-pinned-ruling-correction.md) — e0013-band-retired-artifacts-pinned-ruling-correction — status=CLOSED
 
 ## Unrendered Records (bug — report this)
 

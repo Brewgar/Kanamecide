@@ -2351,3 +2351,430 @@ leakage contract belongs to the owning seat, not to the seat holding the extract
 was left firing, no artifact was written, nothing was fitted, and the finding was escalated
 rather than absorbed. That is the whole discipline working, and it is recorded here as a
 **result, not as a delay**.
+
+---
+
+## Addendum 2: S-0039 OWNER RULINGS - the F-U10 band is RETIRED, the F-U9 artifacts are HASH-PINNED, and a CORRECTION to the S-0037 ruling - 2026-09-27
+
+> Filed by **researcher-architect**, 2026-09-27, as the OWNING seat for E-0013's leakage
+> contract, ruling on the three matters that the S-0037 addendum below L2069 left open and
+> that **S-0038** (implementation-engineer) escalated rather than decide.
+>
+> **APPEND-ONLY, on the review-licensed side.** Everything above this line is untouched,
+> including the S-0037 addendum at L2069-L2353. Lines 1-428 are not edited, reworded, or
+> reordered. `status:` remains `RUNNING` and no `result:` is set here. No H-#### text or
+> status is changed. No R-00xx and no CLOSED/VERIFIED record is edited. HO-0005 and W-0003
+> are not opened or closed. `tools/`, `src/`, and the GENERATED `research/state.md` /
+> `state.json` are not touched by this addendum.
+>
+> **What I ran, and what I did not.** I did NOT run the extractor in any mode, including
+> `--selftest` and `--count-only`. I did NOT fit anything, read the holdout, or read any
+> label field. I did NOT change `SPLIT_SALT`, the dedup order, the survivor rule, the
+> 30,000 floor, or the band. I did NOT edit E-00015 or E-00014: each has its own executor
+> seat, and this seat does not edit another seat's record to deliver its own ruling. What I
+> DID do is read the on-disk artifacts and re-derive every figure I rule on from those bytes
+> myself, rather than inheriting S-0038's. Section 9 is that re-derivation, recorded so a
+> reader can check these rulings against the same bytes I did.
+
+### 9. What I verified myself before ruling (spot-check, not inheritance)
+
+| quantity | S-0038 reported | my own re-derivation from the artifact bytes | agrees |
+|---|---|---|---|
+| `positions.jsonl` | 74,452 rows | 13,004,718 B, 74,452 lines, SHA-256 `ac8c92f0...` recomputed from the file | yes |
+| the key change is real | dedup on `norm_fen` | parsed all 74,452 rows: **74,452 DISTINCT `norm_fen`, 0 with more than one row** | yes |
+| `normalized_fen_overlap` | 27 -> 0 | report gates: `game_level_overlap 0`, `normalized_fen_overlap 0`, `overlap_zero true` | yes |
+| `split_map_sha256` | unchanged, `bb079a41...` | recomputed SHA-256 of the 14,463 B `split_map.json` = `bb079a41...d4ada1ea` = the tool's `SPLIT_MAP_SHA256_EXPECTED` | yes |
+| yield / train / holdout | 74,452 / 59,892 / 14,560 | same; and 59,892 + 14,560 = 74,452 exactly | yes |
+| 30,000 floor | holds | `rule_output = all-terms-scope-stands`; 59,892 >= 30,000 | yes |
+| band | `below` | report `band = {lo 75600, hi 76587, comparison "below", is_pass_criterion false}` | yes |
+| old-key baseline | 76,593 / 61,598 / 14,995 / 0 dups / gate 27 | `build/s41/baseline_old_key.txt`: same, `EXITCODE=2`, and its `split_map_sha256` is the SAME `bb079a41...` | yes |
+| self-test deltas | 59 -> 79, 1 removed, 21 added | diffed both captured check-name sets: removed **exactly 1** (`dirty: the normalized-FEN invariant holds BECAUSE the dedup ran first`), added 21, kept 58 | yes |
+| the assertion fires | rc 2 under a perturbed salt | `assertion_fires.txt`: measured `58c7be4c...` vs pre-registered `bb079a41...`, `EXITCODE=2` | yes |
+
+The arithmetic, recomputed by me: `76,593 - 2,141 = 74,452`. The band's stated floor of
+`75,600` sits **1,148** above the realized `74,452`; the gap between the removals actually
+made (`2,141`) and the removals the old arithmetic projected (`~997`) is `1,144`, leaving a
+residual of `4`. **The entire miss is accounted for by the duplication projection having
+been computed under the old key**, to within the rounding in the pre-registered figure
+itself.
+
+**One further fact I checked that bears on Ruling 1, and it is not in S-0038.** The band
+was **already violated under the OLD key**: that run reported `count_usable_distinct =
+76,593` against a `hi` of `76,587`, with `comparison: "above"`. So no measurement of this
+corpus has ever landed inside this band, under either key. The band was never a
+well-calibrated instrument even before the key change; it was an estimate that the first
+real run falsified by 6 positions, and the key change falsified it by 1,148.
+
+**One new finding, also not in S-0038, and it bears on Ruling 2.** The report's own
+`src_commit` field reads `9f6574c`, which is the **parent** of `da93d9c`, the commit that
+contains the key change. The extraction was therefore run against a working tree whose
+changes were not yet committed, and the artifact's provenance field points at a commit
+that does not contain the code that produced it. The bytes are right; the *attribution* is
+stale. Any artifact to be pinned as the corpus a fitter reads must be re-emitted at a
+clean commit, or this field must be corrected by the engineer who owns the tool.
+
+### 10. RULING 1 (F-U10) - the band is RETIRED, as a pre-key-change artifact
+
+**The band `75,600..76,587` is RETIRED. Not re-derived, not kept-frozen.** It is
+superseded in full; nothing replaces it as a band; and the directly measured `74,452`
+becomes the only yield figure of record.
+
+**What the band was FOR, stated first because the whole ruling turns on it.** The band was
+a **yield-plausibility cross-check on the extraction pipeline**, and nothing else. In
+E-00015's own words (L130-137) it was "computed by the owner from already-measured
+quantities and stated here so the executor can sanity-check without it being a target", and
+"**The band is a sanity check, not a pass criterion**: a count outside the band is reported
+as-is and routed, never adjusted, re-run to land inside, or discarded." The tool says the
+same in its own output: `is_pass_criterion: false`. So the band answers exactly one
+question: *did the code produce roughly what the pre-change arithmetic said it would?* It
+is a tripwire on the **pipeline**, and its diagnostic power comes entirely from its
+endpoints being derived from quantities **independent of the number being checked**.
+
+**It is not a quality threshold, and this is the load-bearing distinction.** Nothing about
+corpus quality, sufficiency, or fitness for a fit was ever carried by this band. The
+quality/scope decision is the **30,000 floor on the TRAIN side**, which is a separate,
+pre-registered, non-negotiable rule, and which holds at `59,892 >= 30,000`. A yield that
+falls below the band is not thereby a corpus too small to fit; it is a corpus whose size
+disagrees with a stale projection. That reading is what makes the failure benign, and I
+state it as a reading rather than as a reassurance.
+
+**Why it cannot survive a key change, mechanically.** Both endpoints are functions of the
+OLD key's expected output. The upper bound `76,587` is `76,593` minus at most 6 positions
+for the single degenerate game and zero for crash games. The lower bound `75,600` is
+`76,593` minus ~997 projected cross-game duplicates, from the measured
+`1705/130930 = 1.302%` **exact-FEN** duplication rate. That rate is **blind by
+construction** to clock-only duplicates, which are precisely the class the normalized-FEN
+key removes and precisely the class the 27 cross-split leaks were. The band's lower
+endpoint and the quantity it was checking are therefore no longer the same kind of object,
+and no amount of care can re-derive one from the other.
+
+**Why I did not choose "re-derive and record both", which is the option that looks most
+careful.** Because under the new key the projection **is** the measurement. The only
+available figure for the new key's duplication volume is `duplicates_removed_by_dedup =
+2,141`, and that is an output of the very run the band is meant to check. A band whose
+lower endpoint is computed from the number it is supposed to test has **zero diagnostic
+power**: it cannot fail, so it is not a check. It would look like rigour and be
+indistinguishable, to any later reader, from a check. I am not going to install a
+decorative instrument in a contract whose entire purpose is that its instruments are real.
+For the same reason I decline to invent a fresh band from a projection of my own: any such
+number would be an estimate manufactured after the fact and then used to grade the
+measurement that has already happened.
+
+**Why I did not choose "keep it frozen and record the failure as an expected divergence."
+** Because a permanently-red instrument is worse than no instrument. Every future run
+would emit `comparison: "below"` against a bound nobody believes, and the first thing
+training teaches a reader is to ignore a red light. A recorded expected divergence is only
+honest while the instrument still means something; this one no longer does. Section 9 makes
+that concrete: the band was already red under the old key too, so "expected divergence"
+was never going to be a stable description of it.
+
+**ORDERING, stated explicitly, because it is the condition on which this ruling is
+legitimate.** The band is retired **in this dated section, before E-00015 runs, before
+E-00014 runs, before any fitter exists, and before the 30,000 floor is evaluated on any
+number that arms or disarms a scope claim.** The pre-registration that F-U10 demanded is
+therefore discharged in the required order: the disposition of the band is fixed while the
+pass it governs has not yet produced its own result. And the ruling rests on the band's
+**provenance**, not on where the number landed: the argument above is a statement about
+which inputs the band was built from, and it is unchanged if the new key's yield had come
+out at `76,000` and sat comfortably inside the band. Had it done so, the band would still
+have to be retired, because a band that a key change can pass by luck is a coincidence
+detector. The `74,452` corroborates the diagnosis; it is not the premise of the decision.
+**I do not claim blindness**: the number was already measured when I ruled, and I say so
+rather than pretending otherwise. What I claim is the weaker and sufficient thing, that
+the decision is invariant to the number and was made before the number could have any
+downstream consequence.
+
+**What replaces the band - and note that it introduces no new number at all.**
+1. The **directly measured** `count_usable_distinct = 74,452` under the new key, recorded
+   as a measurement, with `duplicates_removed_by_dedup = 2,141` beside it.
+2. The **unchanged 30,000 floor** on `count_usable_distinct_train`, the only
+   magnitude threshold in this contract that gates anything. `59,892 >= 30,000`.
+3. The **blocking overlap-0 gates**, at 0.
+4. A set of **exact accounting identities** that are key-independent and therefore cannot
+   rot: `count_bare_ply = count_after_crash_excl = count_after_degenerate_excl = 76,593`
+   (stages 1-3 are untouched by the dedup key, and this is the pre-dedup pool);
+   `count_usable_distinct = count_after_degenerate_excl - duplicates_removed_by_dedup`;
+   and `count_usable_distinct_train + count_usable_distinct_holdout =
+   count_usable_distinct`. An identity is a **stronger** pipeline tripwire than a band,
+   because it is exact and it is not a projection. It cannot be satisfied by luck.
+
+**The cost of this ruling, stated rather than netted.** We lose the band's *downward*
+tripwire: nothing now catches a future change that quietly removes positions, except the
+30,000 floor, which at `59,892` has `29,892` of headroom and would only fire below a loss
+of roughly half the corpus. That is a coarser instrument than the band was, and it is a
+real reduction in sensitivity. I accept it, because the alternative is an instrument that
+has already been demonstrated to be wrong about this corpus, by 6 positions under the old
+key and by 1,148 under the new one, and a tripwire known to misfire is not a tripwire.
+
+**Consequences that are obligations on other seats, and are not discharged here.**
+- The band constants are **still live in the code**: `tools/e0013_extract.py:574-576`
+  (`"lo": 75600`, `"hi": 76587`, and the `band_comparison(...)` call) and the self-test
+  checks at L930-932. The emitted `comparison: "below"` is now known to be meaningless.
+  Removing them is **the implementation-engineer's edit**; I may not make it and did not.
+- **E-00015's own pre-registration** carries the band at L133-137, L152-153, and L245-248,
+  and its decision rule 3 routes an out-of-band count to "a named re-decision". With the
+  band retired, that rule has no object. It must be amended, dated, in E-00015, by that
+  record's own executor seat, **before the pass runs**. This section is the ruling that
+  the amendment implements; it is not itself the amendment.
+
+### 11. RULING 2 (F-U9) - the artifacts are HASH-PINNED in `research/`, and deliberately NOT committed
+
+**F-U9's instruction to "commit the map, `positions.jsonl` and the report" is UNSATISFIABLE
+as written, and I rule it unsatisfiable rather than pretending otherwise.** I verified the
+facts rather than accepting the escalation: `1a2dff7` added only
+`tools/e0013_extract.py`; `git ls-files` matches nothing for a split map, a positions file
+or a report; `git log --all --name-only -- '*split_map*' '*positions.jsonl'` returns
+nothing, so no such artifact has **ever** been committed in this repository. `build/` and
+`m0_audit/` are both gitignored (`.gitignore` lines 2 and 45).
+
+**Ruling: option (b), hash-pin plus a manifest in `research/`, with a deliberate
+consequence recorded - the positions file stays out of git.** Stated as a rule about each
+artifact, because the artifacts do different jobs and the rule should follow the job.
+
+| artifact | size | job | ruling |
+|---|---|---|---|
+| `positions.jsonl` | 13,004,718 B, 74,452 rows | the corpus the fitter reads | **NOT committed.** Hash-pinned. |
+| `split_map.json` | 14,463 B | the pre-registration pin for the split | **Hash-pinned**, and pinned *before* the fit by the pre-fit commit. |
+| `report.json` | 3,573 B | the provenance record | **Hash-pinned.** |
+
+**Why the 13 MB file does not go into git.** It is a **derived** artifact, fully
+regenerable from a pinned dataset (`27ea181d...`), a pinned tool commit, and a pinned
+salt. Git would buy no integrity that its SHA-256 does not already buy, and it would cost
+13 MB in every clone forever, **and it would cost 13 MB again on every future key change**,
+so the cost is recurring rather than one-off. It also contradicts this repository's own
+settled convention, stated at E-0010:360-363: the raw measurement artifacts, 1.31 MB in
+that case, were deliberately kept local and gitignored under the Round-3 rule that
+"evidence stays local, out of git history". Consistency with our own precedent is worth
+something, and I am not overturning it for a file the extractor can rebuild.
+
+**The tradeoff, stated honestly, because hash-pinning has a real weakness.** A hash pin is
+only as good as the discipline around it, and there are exactly two disciplines that make
+it a control rather than a comment:
+1. **The pin must be committed BEFORE the read it protects.** A digest recorded after the
+   fact certifies nothing. This is why the manifest must land in the pre-fit commit and
+   not in a session record.
+2. **Somebody must re-hash at read time.** The consuming job must verify the digest before
+   it reads the file and abort on mismatch. Without a verifying reader, a hash pin is a
+   comment with a hexadecimal shape.
+Both are obligations, not hopes, and I am recording them as such. If discipline 2 is not
+implemented, this ruling is worth materially less than it looks, and the honest fallback is
+that the corpus is *claimed* rather than *pinned*.
+
+**A second weakness, specific to this corpus, which I will not paper over.** The artifact
+currently on disk is a **`--count-only`** run: the rows carry `"y": null`, because that
+mode deletes `res` and `a_white` before anything else sees them. The full extraction that
+a fitter will actually read is a **different file with a different SHA-256**. So
+`ac8c92f0...` is not, and must not be presented as, the digest of the fitter's corpus. The
+manifest must therefore pin the **full-mode** artifact, re-emitted at a clean commit (see
+section 9's `src_commit` finding), and the count-only digest is recorded as what it is: the
+digest of the count-only pass.
+
+**What I did not do, and what is therefore owed.** I did not edit `.gitignore`, did not
+un-ignore any directory, did not create a manifest record, and did not commit any
+artifact. `.gitignore` is repo hygiene and an evidence-placement act; neither is this
+seat's to perform under the role table, and doing it inside a ruling session would also
+blur which commit is the ruling and which is the implementation. The `.gitignore` change,
+the manifest record, and the full-mode re-emission are **the implementation-engineer's**,
+under a handoff, and they are **obligations, not options**.
+
+**One consequence I want on the record because it is a live risk, not a hypothetical.**
+E-0013's clause at L140-142 and conjunct (b) at L269-272 require the split map to be
+"committed BEFORE any fitting job reads the data". Under this ruling, at the moment of
+writing, **no committed split map exists and none ever has**. That requirement is therefore
+**UNMET**, and it is unmet in a way that a reader of the S-0037 addendum would not expect,
+because that addendum speaks of re-committing a map that was never committed. See
+section 12.
+
+### 12. RULING 3 - CORRECTION to my own S-0037 ruling, annotated not edited
+
+**The S-0037 addendum refers throughout to "the committed split map" and to "its committed
+SHA-256". NO SUCH FILE HAS EVER BEEN COMMITTED IN THIS REPOSITORY.** The premise is false,
+I verified it directly (section 11's commands), and the false premise entered the ruling
+from the **ORCHESTRATOR's instruction to me**, which asserted it. I repeated it into a
+contract ruling without checking it against the repository. That is my error and I record
+it as mine, not as a defect in the referral's author.
+
+The affected sentences are, in the S-0037 addendum: the section 4 heading "The committed
+split map: INVALIDATED" (L2183); "The ruling: the committed split map is invalid and must
+be re-derived and re-committed" (L2185); "the map that is committed today is the map that
+the **old** key's survivors were assigned under" (L2188-2189); "its SHA-256 is expected to
+be UNCHANGED from the committed one" (L2215-2217); cost item 6 (L2174-2175); the F-U9
+obligation "commit the map, `positions.jsonl` and the report" (L2276); and "**What
+genuinely must be re-committed**" (L2283-2285). **I am annotating them here and editing
+none of them.** The record is append-only and the correction is a dated section, exactly
+as the rest of this addendum is.
+
+**What is UNAFFECTED, and I want this stated as firmly as the correction.** The invariance
+claim itself stands in full. `split_map()` is a pure function of `(SPLIT_SALT, game_id)`,
+computed over the dataset's game rows at `e0013_extract.py:532` before and independently of
+the dedup, and the hashed object `{format, split_salt, train_fraction, rule, map}` at
+L575-582 contains no dedup-derived quantity. That is a claim about the **code**, and it is
+verified against the code. It never depended on a committed file, and its confirmation
+between the two keys is a real measurement of two real runs: the old-key run's
+`split_map_sha256` and the new-key run's are both `bb079a41...d4ada1ea`, and I recomputed
+the digest from the map's own bytes rather than trusting either report.
+
+**What the baseline actually was.** The comparison the engineer made was against the
+**OLD-KEY MEASUREMENT taken in S-0038 minutes before the new run** -
+`build/s41/baseline_old_key.txt`, produced at commit `d8ce4aa` with the gate firing at 27
+and `EXITCODE=2` - and not against any committed artifact. That is a legitimate
+old-run-versus-new-run invariance check on this dataset and this code, and it is what the
+S-0037 section 4 argument actually needed. It is **not** the same check as "matches a
+committed pin", and I was wrong to imply it was.
+
+**What is actually STRONGER than it was.** `da93d9c` promoted the digest from a comparison
+a human was asked to make into `SPLIT_MAP_SHA256_EXPECTED`, a machine assertion that
+**aborts** when the digest moves, with the abort demonstrated firing under a perturbed
+salt (`58c7be4c...` measured against `bb079a41...` pre-registered, `EXITCODE=2`). A
+committed file could have been edited; an assertion that aborts cannot be moved without a
+visible code change. So the correction removes a false claim about a **pin** and, in the
+same breath, records a **stronger** pin than the false claim described.
+
+**Why this matters operationally, and not merely for tidiness.** F-U9's obligation was
+"re-derive and **re**-commit", which presupposed something to re-commit. There was
+nothing. So the obligation was not merely hard to satisfy, it was **incoherent**, and an
+implementer following it literally would have had to invent a prior state. The engineer
+escalated instead of inventing one, which is the correct behaviour and is why this
+correction is cheap to make now rather than expensive to make later. The obligation is
+replaced by Ruling 2, and E-0013's "committed split map" requirement is recorded in
+section 11 as **currently unmet**.
+
+**The scope of the correction, so it cannot be over- or under-read.** It is a correction to
+a **statement about the repository's history**, and to nothing else. It does not disturb:
+the Option-(1) ruling itself; the rejection of Option (2) on p-hacking grounds; the
+rejection of Option (3); the survivor rule; the dedup order; the gates; the 30,000 floor;
+the E-00015 WAIT; or the `H_body` invariance proof, which is a hash of *this file's* first
+428 lines and never referenced any committed artifact at all. A reader who takes from this
+section only one thing should take: **the invariance claim is sound, the pin is now
+stronger, and the word "committed" in the S-0037 addendum describes a file that does not
+exist.**
+
+### 13. GO / NO-GO on the two pending measurement passes
+
+**Both are NO-GO. The owner's prior ruling that E-00015 must WAIT STANDS and I do not lift
+it.** Below is exactly what each needs, in the order it needs it.
+
+#### E-00015 (count-only) - NO-GO, and the wait is not yet discharged
+
+The wait is **not** lifted. What has happened since S-0037 is that the *key* now exists and
+is measured; what has **not** happened is that the pass's own pre-registration has been
+brought into correspondence with it. E-00015's `pre_registered: 2026-09-26` text still
+describes the world in which the answer is 76,593. Specifically stale, by line:
+
+| E-00015 clause | what it says | status now |
+|---|---|---|
+| L133-137 Games/Samples | band `75,600..76,587`, derived from the `1.302%` exact-FEN rate | **RETIRED** by Ruling 1 |
+| L152-153 Power | "the uncertainty in the expected figure lives entirely in the pre-registered band" | **VOID**: the band is retired, so the uncertainty it carried has to be re-described, not deleted silently |
+| L245-248 Decision rule 3 | out-of-band count routes to "a named re-decision" | **NO OBJECT**: with no band there is nothing to be out of |
+| L261 filter stage 4 | "GLOBAL-before-split **exact-FEN** dedup (F9)" | **SUPERSEDED**: stage 4 is the normalized-FEN key |
+| L110 Test Method 2 | "Verify E-0013's split-map hash exists and is recorded. Absent = ABORT" | **CANNOT BE SATISFIED TODAY** by a committed artifact (Ruling 2); satisfiable by the tool's machine assertion plus the pre-fit manifest, once the manifest exists |
+| L169-171 Sample Validity | dedup key normalization | **STILL CORRECT**, and now load-bearing twice over |
+| L235-244 rules 1-2 | the 30,000 floor on the TRAIN count | **UNCHANGED**; the value is not renegotiable and the new count satisfies it |
+
+**What E-00015 needs before it may run.** (1) A **dated amendment to E-00015** - to that
+record, not to this one - replacing the band clause, voiding the Power sentence's reliance
+on it, replacing decision rule 3 with the identity checks from Ruling 1, and restating
+stage 4 as the normalized-FEN key. Filed by its own executor seat, dated, and **filed
+before the pass**, because a count measured under a superseded description is exactly the
+"number that looks authoritative and is wrong" the S-0037 ruling warned about. (2) The
+**split-map pin** to exist in a committed form: either the manifest lands first, or the
+pass's abort condition 2 is amended to cite the tool's machine assertion explicitly rather
+than the word "committed". (3) The **band constants removed from the tool** by its owner,
+so no future run emits a retired `comparison: "below"`. (4) Nothing else. It does **not**
+need the trainer, and it does not need a fit.
+
+**And the trap, named.** E-00015's headline number and the engineer's `--count-only` run
+are the **same quantity and will agree to the digit**. That makes it very easy to treat
+S-0038's run as "E-00015 already ran". **It has not.** E-00015 is a separate record with
+its own pre-registration, its own provenance block, its own command, and its own executor
+seat, and a number produced under someone else's handoff cannot be laundered into it by
+being equal. If E-00015 is later closed on the strength of `74,452` without its own pass,
+the record will read as complete and will be hollow. I record that now, while it is cheap
+to prevent.
+
+#### E-00014 (train-only) - NO-GO, and it is further away than E-00015
+
+E-00014 is `status: PENDING`, `pre_registered: 2026-09-26`, owner systems-researcher, and
+it needs the trainer, which does not exist yet. Its own text is stale in the same way:
+**L68** describes the corpus as the one produced by "the GLOBAL-before-split **exact-FEN**
+dedup (F9)", and its `s_d_inner`, `delta_star` and contingency figures were measured on
+the old corpus and are superseded.
+
+**What E-00014 needs before it may run.** (1) A **dated amendment to E-00014** naming the
+new key at L68 - the same re-registration duty as E-00015, on a separate record with a
+separate executor seat. (2) **F-U11 discharged**: the inner partition re-derived from the
+new corpus, with its own partition-integrity check (zero normalized-FEN overlap with the
+holdout, E-00014 abort 3) now holding structurally rather than hopefully. (3) The
+**trainer built and verified** - the single largest remaining engineering item, and
+nothing in this session moved it. (4) The **split-map pin** per Ruling 2, because E-00014
+consumes the map read-only and carves from it. (5) It must run **after** E-00015, per
+E-0013 L1464-1465 ("E-00015 (count-only) precedes any fitter; E-00014 (train-only) precedes
+the holdout read") - E-00014 is a measurement on TRAIN and is upstream of any holdout read.
+
+**One thing E-00014 does NOT need, which is worth saying because it is easy to assume:** it
+does not need the tactical suite, and it does not need the pre-fit commit to be *finished*,
+because it reads TRAIN only and never the holdout. What it must not do is run before its
+own key is corrected, because a feasibility number measured on the superseded corpus would
+be the second authoritative-looking wrong number in this contract.
+
+### 14. The PRE-FIT COMMIT - can it be assembled now? **No.**
+
+E-0013 L1461-1463 requires the pre-fit commit to pin four things. Status of each, checked
+rather than assumed:
+
+| required element | status | blocking? |
+|---|---|---|
+| the split salt | **READY.** `SPLIT_SALT = 20260926` at `e0013_extract.py:72`; F10's distances are computed in-tool and were not disturbed by the key change | no |
+| the game-split map **and its SHA-256** | **NOT READY.** The map exists (14,463 B) and its digest is machine-asserted and I re-derived it independently, but **no committed map exists** (Ruling 2, section 12). The manifest that would pin it does not exist | **YES** |
+| F1 through F12 | **SUBSTANTIALLY READY, with one gap.** The twelve items are closed as VALUES/POINTERS in this record at L1060-1071, so the commit can carry them by reference. But **F9's text in the protected body does not state the dedup key** - it fixes the *scope* (global before the split) and leaves the key to the addendum. The pre-fit commit must therefore cite F-U7 explicitly, or it will pin a contract that does not say which key it pins | no, if cited |
+| the independent suite's identity **and SHA-256** | **NOT READY, and this is the hard blocker.** The only tactical suite that exists is `tactics_set.py` with **73** positions (I parsed it: `POSITIONS` has 73 entries, 73 distinct names), which is **below E-0013's own N >= 200 floor** at L292; it is **gitignored** (`.gitignore` line 73); and its own evidence record **EV-0006 carries `sha256: null`**. E-0013's conjunct (f) requires a pre-registered FEN list with a hash, and R-0019's Q-SUITE **closed the substitution path**, so a substitute cannot be swapped in later | **YES** |
+
+**So: three of four elements are ready or one step away, and the fourth does not exist in a
+conforming form.** The pre-fit commit is blocked on (a) committing the split-map pin per
+Ruling 2 and (b) building an independent tactical suite of at least 200 positions, pinning
+its list and its hash, which no one has started. I record the second as a **new, named
+obligation** rather than as a footnote, because it is not in F-U1..F-U13 and it was not in
+S-0038's escalation list: **F-U14 - build and hash-pin the independent tactical suite
+(N >= 200), or record explicitly that conjunct (f) is not evaluable.** A conjunct that
+cannot be evaluated is not a conjunct that passes, and R-0019 already ruled that a
+placeholder where a number belongs makes the conjunct decorative. I am not going to let
+that happen a second time by leaving it implicit.
+
+### 15. Integrity assertions for this addendum
+
+- **`H_body` is UNCHANGED by this addendum**: `c7ebe54ce8cd51ac90483744a3d11e56a04fc5d48c0d8669e0804f53f883bea7`
+  over **22,196 bytes**, recomputed **after** this edit under clause (b) exactly as
+  specified (lines 1-428, minus lines 5, 6, 7, 10, 14, each followed by one `0x0A`). This
+  addendum begins below line 2353 and therefore cannot touch the protected range. The value
+  is **recomputed, not asserted**; it is also equal to the same construction taken from
+  `git show ce845c5:`, which is the independent check that the construction is the intended
+  one and not one fitted to the answer.
+- The file remains **LF-only and BOM-free** after the append (`CR_count = 0`, first bytes
+  `45,45,45`), and carries **no trailing blank line**, so `git diff --check` is clean.
+- `status:` remains `RUNNING`; no `result:` is set. No lifecycle transition is made or
+  authorised here.
+- The three rulings above are **not self-certifying**. Like the S-0037 ruling they correct
+  and annotate, they are a contract change and they go to **HO-0019**
+  (verification-auditor, `REQUESTED`, not yet discharged) together with S-0038's
+  implementation. No seat may treat this section as discharging Gate 3 for either.
+
+### 16. What I did NOT do
+
+Did **not** edit `tools/e0013_extract.py`, `tools/e0013_eval.py`, or anything under `src/`
+- so the band constants at L574-576 and the self-test at L930-932 are still live and still
+wrong, and the `src_commit` staleness in section 9 is still live. Did **not** run the
+extractor in any mode, including `--selftest`. Did **not** run E-00014 or E-00015. Did
+**not** fit anything, read the holdout, or read any label field. Did **not** change
+`SPLIT_SALT`, the dedup order, the survivor rule, the 30,000 floor, or the band. Did
+**not** edit E-0013's `status:` or any `result:`, any H-####, any R-00xx, any CLOSED or
+VERIFIED record, HO-0005, or W-0003. Did **not** edit E-00014 or E-00015 - their required
+amendments are named above and are their executor seats' to file. Did **not** edit
+`.gitignore`, un-ignore any path, create a manifest, or commit any artifact. Did **not**
+hand-edit `research/state.md` or `state.json` (GENERATED - only via `state --write`).
+Did **not** touch the S-0037 addendum's own text; section 12 annotates it and changes
+nothing in it.
+
+**Nothing in this addendum was produced by running the extractor.** Every number in
+section 9 was recomputed by me from the artifact bytes already on disk, and the commands
+that produced them are named there so that a reader can reproduce them without trusting
+S-0038 or me.

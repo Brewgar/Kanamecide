@@ -1,7 +1,7 @@
 # Research State (GENERATED — do not edit)
 
 Derived from the record store by `research.py state`. Regenerate after every change.
-Generated: 2026-09-27T18:35:24; schema 2.
+Generated: 2026-09-27T20:42:54; schema 2.
 Every entry is a PROJECTION of the linked records — follow them before believing.
 
 ## Current best beliefs (hypotheses with measured weight)
@@ -43,7 +43,6 @@ Every entry is a PROJECTION of the linked records — follow them before believi
 - hypothesis **H-0002-magic-stub** Magic Bitboards with PEXT Provide >=3x NPS Speedup — SUPERSEDED. No revisit condition recorded.
 
 ## Recent timeline
-- 2026-09-26 session S-0028 (CLOSED) : R-0020 repair of the E-0013 addendum: 10 seams joined, contingency table moved, F-U1..F-U6 rejoined, X2 arithmetic inserted, X3 owners set; E-0013 stays PENDING
 - 2026-09-26 session S-0029 (CLOSED) : R-0020 repair second pass: seam 8 misjoin fixed (duplicate B6 citation removed), B5 s2 empty slot named and dispositioned, verification recorded; E-0013 stays PENDING
 - 2026-09-26 session S-0030 (CLOSED) : R-0021 repair of the E-0013 addendum: X4 tail rejoined, seam-8 paren closed, B5 s2 heading withdrawn, X5 recorded, append-only baseline re-labelled; E-0013 stays PENDING
 - 2026-09-26 session S-0031 (CLOSED) : Y1 fix (R-0022 four pointers) + bounded +10 pointer rewrite (7 in-band rows; 6 old-ref rows exempt) + RUNNING authorisation recorded but NOT executed (status is L5, inside the hash-proved L1-428 block)
@@ -58,6 +57,7 @@ Every entry is a PROJECTION of the linked records — follow them before believi
 - 2026-09-27 session S-0036 (CLOSED) : e0013-parameter-table-evaluator-built-and-transcription-verified-overlap-0-gate-fails-27-on-the-real-dataset
 - 2026-09-27 session S-0037 (CLOSED) : e0013-leakage-ruling-normalized-fen-dedup-key
 - 2026-09-27 session S-0038 (CLOSED) : e0013-normalized-fen-dedup-key-f-u7-f-u13
+- 2026-09-27 session S-0039 (CLOSED) : e0013-band-retired-artifacts-pinned-ruling-correction
 
 ## Metrics
 ```
@@ -80,12 +80,12 @@ Every entry is a PROJECTION of the linked records — follow them before believi
     "report": 13,
     "review": 25,
     "round_megaprompt": 2,
-    "session": 38,
+    "session": 39,
     "work": 7
   },
   "by_status": {
     "ACTIVE": 14,
-    "CLOSED": 38,
+    "CLOSED": 39,
     "COMPLETED": 33,
     "DONE": 18,
     "DRAFT": 1,
@@ -103,10 +103,10 @@ Every entry is a PROJECTION of the linked records — follow them before believi
   "contradiction_candidates": 0,
   "dangling_ids": 11,
   "duplicate_candidates": 2,
-  "edges_total": 3726,
+  "edges_total": 3803,
   "legacy_experiments_without_pre_registration": 6,
   "open_questions": 8,
-  "records_total": 201,
+  "records_total": 202,
   "revival_candidates": 5
 }
 

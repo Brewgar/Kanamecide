@@ -846,6 +846,7 @@
       ],
       "commits_mentioned": [
         "040296e",
+        "1a2dff7",
         "4478c3a",
         "6a6eb0a",
         "7348f89",
@@ -853,12 +854,15 @@
         "8c30f32",
         "8db1c45",
         "9d60f64",
+        "9f6574c",
         "b04fd5a",
         "b7179f3",
         "c7ebe54",
         "ce845c5",
         "d3ce887",
         "d8add61",
+        "d8ce4aa",
+        "da93d9c",
         "f03613e",
         "f2b627c",
         "f450976",
@@ -1457,6 +1461,25 @@
     },
     {
       "code_files": [
+        "tools/e0013_eval.py",
+        "tools/e0013_extract.py"
+      ],
+      "commits_mentioned": [
+        "1a2dff7",
+        "9f6574c",
+        "c7ebe54",
+        "ce845c5",
+        "da93d9c",
+        "f12f1ce"
+      ],
+      "kind": "session",
+      "record": "S-0039",
+      "rel": "sessions/S-0039-e0013-band-retired-artifacts-pinned-ruling-correction.md",
+      "status": "CLOSED",
+      "title": "e0013-band-retired-artifacts-pinned-ruling-correction"
+    },
+    {
+      "code_files": [
         "tools/e0011_check.py",
         "tools/e0011_generate.py",
         "tools/e0012_sprt.py",
@@ -1725,7 +1748,7 @@
       "title": "Gate 0 unrunnable: Device Guard hard-blocks kana.exe (every build, every path)"
     }
   ],
-  "generated": "2026-09-27T18:35:24",
+  "generated": "2026-09-27T20:42:54",
   "metrics": {
     "by_kind": {
       "agent_profile": 1,
@@ -1745,12 +1768,12 @@
       "report": 13,
       "review": 25,
       "round_megaprompt": 2,
-      "session": 38,
+      "session": 39,
       "work": 7
     },
     "by_status": {
       "ACTIVE": 14,
-      "CLOSED": 38,
+      "CLOSED": 39,
       "COMPLETED": 33,
       "DONE": 18,
       "DRAFT": 1,
@@ -1768,10 +1791,10 @@
     "contradiction_candidates": 0,
     "dangling_ids": 11,
     "duplicate_candidates": 2,
-    "edges_total": 3726,
+    "edges_total": 3803,
     "legacy_experiments_without_pre_registration": 6,
     "open_questions": 8,
-    "records_total": 201,
+    "records_total": 202,
     "revival_candidates": 5
   },
   "questions_all": [
@@ -2163,15 +2186,6 @@
   "timeline_tail": [
     {
       "example": false,
-      "id": "R-0018",
-      "kind": "review",
-      "rel": "reviews/R-0018-independent-verification-w-0005-e-0012-live-runs-run-0002-and-run-0003-ho-0012.md",
-      "status": "COMPLETED",
-      "title": "R 0018 independent verification w 0005 e 0012 live runs run 0002 and run 0003 ho 0012",
-      "when": "2026-09-25"
-    },
-    {
-      "example": false,
       "id": "S-0019",
       "kind": "session",
       "rel": "sessions/S-0019-ho-0010-w-0001-close-out-and-ho-0011-e-0012-live-validation.md",
@@ -2519,6 +2533,15 @@
       "rel": "sessions/S-0038-e0013-normalized-fen-dedup-key-f-u7-f-u13.md",
       "status": "CLOSED",
       "title": "e0013-normalized-fen-dedup-key-f-u7-f-u13",
+      "when": "2026-09-27"
+    },
+    {
+      "example": false,
+      "id": "S-0039",
+      "kind": "session",
+      "rel": "sessions/S-0039-e0013-band-retired-artifacts-pinned-ruling-correction.md",
+      "status": "CLOSED",
+      "title": "e0013-band-retired-artifacts-pinned-ruling-correction",
       "when": "2026-09-27"
     }
   ]
