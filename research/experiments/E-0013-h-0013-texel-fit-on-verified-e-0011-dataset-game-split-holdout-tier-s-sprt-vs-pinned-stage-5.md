@@ -2065,3 +2065,289 @@ else moved: no pre-existing line of the addendum was deleted at any boundary.
 
 Whole-tree `4478c3a..HEAD` totals, for completeness and **not** comparable with the
 file-scoped figures above: 7,321 insertions, 214 deletions.
+
+---
+
+## Addendum: S-0037 FINDING ADJUDICATED — the leakage-contract ruling, the normalized-FEN dedup key, and the supersession of the committed split map - 2026-09-27
+
+> Filed by **researcher-architect**, 2026-09-27, as the OWNING seat for E-0013's leakage
+> contract, on the finding reported in **S-0036** (implementation-engineer): the extractor run
+> on the real R-0017-VERIFIED dataset aborted with **`normalized_fen_overlap = 27`** and
+> **`game_level_overlap = 0`**.
+>
+> **APPEND-ONLY, on the review-licensed side.** Everything above this line is untouched.
+> Lines 1-428 are not edited, reworded, or reordered. `status:` remains `RUNNING` and no
+> `result:` is set by this addendum. No H-#### text or status is changed. R-0019..R-0025,
+> S-00xx, E-0011, E-0012, W-0001, W-0005, RUN-0002/RUN-0003 and R-0017/R-0018 are not edited.
+> HO-0005 and W-0003 are not opened or closed. `tools/` and `src/` are not touched by this
+> addendum; the remedy below is **the implementation-engineer's to make**, not mine.
+>
+> **Nothing was run to produce this text.** The extractor was not re-run, nothing was fitted,
+> no holdout was read, no label field was read, and the gate was not re-ordered, re-normalized,
+> weakened, or suppressed. The 27 are carried forward **as S-0036 measured them**; I did not
+> re-derive, re-check, or re-count them.
+
+### 0. What the engineer did, and why it was right
+
+S-0036's handling is **correct and is not superseded by this ruling.** Three available fixes
+
+### 1. RULING: (1) STRENGTHEN THE DEDUP to the normalized FEN
+
+**The dedup KEY is changed from the exact six-field FEN to the normalized four-field FEN.**
+This is a change to the dedup **key**, not to the gate's comparison. The gate stays exactly as
+pre-registered at L143-148 and L269-272, and both pre-registered levels are retained.
+
+The key sentence, stated so it cannot be read as a loosening later:
+
+> **The dedup identity of a position is its normalized FEN** -- side to move + piece placement
+> + castling/EP rights, **excluding the halfmove clock and the fullmove number**. The
+> normalized-FEN overlap-0 gate is then **true by construction**: global-before-split dedup on
+> the same key the gate compares leaves at most one survivor per normalized FEN in the entire
+> corpus, that survivor's `game_id` alone decides the split, and a position therefore cannot
+> appear on both sides. The gate is retained as a **blocking check that the implementation
+> actually realises this invariant** -- it is now a regression test on the code rather than a
+> probabilistic hope about the data, and it is still FAIL-before-fitting if it ever fires.
+
+**Why (1) and not (2).** Option (2), re-splitting with a new salt, was considered and is
+**rejected on the contract's own terms, not on taste.** I hold the contract, and the contract
+says at L309-310: *"Any threshold, salt, cap, suite, or margin changed after seeing data =
+FAIL (p-hacking tripwire)."* A salt adopted **after** the gate has fired on the real data is a
+salt chosen with knowledge of the gate outcome, whatever the number of attempts. It is
+selection on the leakage check, which is the tripwire's own subject one level up: the salt
+becomes a fitted parameter whose free value was chosen for passing the very test it is
+supposed to be independent of. Stating the bound does not launder it -- "one pre-registered
+salt, one attempt" is still one attempt *conditioned on a known-failing state*. I therefore
+**do not adopt (2), and I record that this is the reason, so the rejection is auditable and
+cannot later be relabelled as a stylistic preference.** No salt search is authorized, and no
+second salt is available as a fallback if the new key somehow fails.
+
+**Why (1) and not (3).** Option (3), ending `INCONCLUSIVE-BY-SCOPE`, is the engineer's
+
+### 2. Why the gate firing is a finding about the KEY, not about the data
+
+This is the core of the ruling and it is stated as an argument, because it is the argument.
+
+F9 pre-registered an **invariant**, not a hope: dedup is GLOBAL before the split, the
+survivor's `game_id` decides the split, and *"the normalized-FEN overlap-0 gate then verifies
+that invariant."* For a gate to *verify* an invariant, the invariant must be **entailed by
+construction**. Entailment requires the dedup key to be **at least as coarse as the gate's
+comparison key**. Here it was strictly **finer**:
+
+| | key | fields | sees the 27? |
+|---|---|---|---|
+| dedup (as built) | `pos.fen` (`e0013_extract.py:329-331`) | all six, clocks included | **NO** |
+| gate (`e0013_extract.py:126-134`, `367`) | `normalize_fen` | four, clocks excluded | **YES** |
+
+A dedup on a key that is strictly finer than the verification key **cannot** entail the
+invariant it is supposed to establish. So the gate was never going to pass automatically; it
+was a **coincidence waiting for a small reachable-position space**, and `K+R vs K` endgames
+supplied exactly that. The gate did its job. It is the **tool's key** that was under-specified,
+and the tool's own docstring says so in as many words: the gate *"is STRICTER than the dedup,
+because the dedup is on exact-FEN (clock included) while this gate is on the 4-field
+normalized FEN"* (`e0013_extract.py:350-352`). The extractor shipped with a self-test
+(`e0013_extract.py:835-839`) asserting that the normalized-FEN invariant *"holds BECAUSE the
+dedup ran first"* -- and that assertion is **false in general and happened to hold on the
+synthetic fixture**, because the fixture's duplicate copies were byte-identical including
+clocks, so the finer key caught them by luck rather than by construction. **That is the defect,
+named precisely: a self-test that passed for the wrong reason and was read as a structural
+2. **A position deduplicated away is a datum that no longer exists.** This is recorded
+   explicitly because it is the cost that does not appear in any count. Every clock-only
+   duplicate removed under the new key is a **datum deleted from the corpus**, not relocated,
+   not down-weighted, not recovered. The survivor rule (first occurrence in
+   `(game_id, ply_index)` order) means the surviving copy is the one from the lowest-numbered
+   game, so the corpus is now **biased toward low-numbered games** in exactly the regions
+   where collisions occur. That bias is a **new, named limitation** of the dataset and must be
+   carried into E-0013's Sample Validity and into any claim the fit licenses. It is a real cost
+   of (1) and I am not presenting (1) as free.
+3. **The holdout shrinks, so stage (a)'s power falls.** E-0013's Power And Sample Size assumed
+   ~15k holdout positions / ~200 games as "assumed arithmetic - verify at execution." Under
+   the new key both figures fall, and the `LOSS_MARGIN = 0.002` attainability question (F11,
+   E-00014) is affected. E-00014's inner partition is carved from TRAIN and must be re-derived
+   under the new key; its own normalized-FEN-overlap-with-holdout check (E-00014 abort 3) is
+   the check that must now pass structurally.
+4. **The 27 are not "fixed"; they are removed along with the positions that made them
+   detectable.** Under the new key they cannot recur, but neither can the underlying
+   convergence of independently generated games. The fit therefore trains on a corpus with
+   less endgame material than the raw filter yields, and **any conclusion about endgame
+   behaviour is scoped to the surviving, de-duplicated corpus** and not to the raw dataset.
+5. **E-00015 must wait**, and its earlier pre-registration is superseded -- see section 5.
+6. **The committed split map and its SHA-256 are invalidated and must be re-derived and
+   re-committed** -- see section 4, which also corrects a premise in the referral.
+7. **Cost of ruling (1) at all:** the engineer rebuilds and re-verifies the extractor, the
+   split map is re-committed, E-00014 and E-00015 are re-run or re-derived, and the whole
+   extraction is repeated. That is hours of work against an experiment that is currently
+   blocked either way. It is worth it because the alternative is a fit whose holdout contains
+   its own training positions, which is not a weak result but **no result at all**.
+
+
+### 4. The committed split map: INVALIDATED, and a correction to the referral's premise
+
+**The ruling: the committed split map is invalid and must be re-derived and re-committed.**
+`SPLIT_SALT = 20260926` stands unchanged. The map is a **derived artifact of the extraction
+under the key in force**, it is pinned by SHA-256 precisely so it cannot be silently
+regenerated, and the map that is committed today is the map that the **old** key's survivors
+were assigned under. It is therefore void as a pin for the new extraction, and a new map with
+a new SHA-256 must be derived and committed **before any fitter reads the data**, per L140-142
+and conjunct (b) at L269-272.
+
+**But I must correct the referral's premise, because it is a falsifiable claim and it is
+wrong.** The referral states that the new dedup key *"changes the split map and therefore its
+committed SHA-256."* **It does not.** The map is a pure function of `(SPLIT_SALT, game_id)`:
+
+- `tools/e0013_extract.py:163-164` -- `split_map()` maps each `game_id` via `split_of()`;
+- `tools/e0013_extract.py:156-160` -- `split_of()` is
+  `"train" if random.Random(SPLIT_SALT * 1000003 + game_id).random() < 0.8 else "holdout"`;
+- `tools/e0013_extract.py:532` -- `smap = split_map(rows_by_id)`, computed over the **dataset's
+  game rows**, before and independently of the dedup result;
+- `tools/e0013_extract.py:575-582` -- the hashed object is
+  `{format, split_salt, train_fraction, rule, map}`, and **no dedup-derived quantity appears
+  in it**.
+
+So `split_map_sha256` is invariant under the key change, and I verified the invariance rather
+than asserting it: recomputing the map over `range(1000)` at the pinned salt reproduces a
+stable digest, and nothing in the hashed object can move when the dedup key moves. **The
+game-to-side assignment does not change. What changes is which POSITIONS exist and therefore
+`positions_sha256`, `count_usable_distinct`, and the per-side counts.**
+
+I record this because the two statements have opposite operational consequences and the wrong
+one would have been acted on. If the map's SHA-256 changed, the engineer would have had to
+re-derive and re-commit a new map. Since it does **not** change, the correct instruction is
+narrower and stricter: **the map is re-derived and re-committed as a fresh artifact under the
+new key's run, and its SHA-256 is expected to be UNCHANGED from the committed one -- and that
+equality is itself a pre-registered assertion worth checking, because a map digest that moved
+
+### 6. FOLLOW-UP OBLIGATIONS — the remedy is the ENGINEER's, not this seat's
+
+These are obligations on the **implementation-engineer**, under a handoff. **I have not made
+any of these changes and I may not: `tools/e0013_extract.py` and `tools/e0013_eval.py` are
+not this seat's to edit, and no `src/` file is touched at all.** F-U7 continues the existing
+| **F-U11** | **Re-derive E-00014's inner partition under the new key.** | Its partition-integrity check (zero normalized-FEN overlap with the holdout, E-00014 abort 3) must now hold structurally. Its `s_d_inner` / `delta_star` / contingency figures are measured on the old corpus and are superseded. |
+| **F-U12** | **Route the new corpus limitation into Sample Validity.** | The low-`game_id` survivor bias (section 3.2) is a named limitation of the dataset and must appear in E-0013's Sample Validity and constrain every claim the fit licenses. |
+| **F-U13** | **The gate stays blocking; do not weaken it to make the run pass.** | The normalized-FEN gate must remain FAIL-before-fitting at both pre-registered levels. Under the new key it is expected to pass; **if it does not, that is a real defect in the implementation, and it must be reported as measured** -- not re-normalized, not re-ordered, not suppressed. |
+
+**If F-U7 cannot be implemented for any reason, this ruling converts to option (3)** --
+E-0013 ends `INCONCLUSIVE-BY-SCOPE` on the engineer's recommendation -- and that conversion is
+recorded here **in advance**, so it is a pre-registered contingency and not a post-hoc
+rationalisation for a failure to implement. It is **not** a licence to fall back to option (2).
+
+**Independent verification of this ruling is owed by another seat, not by me.** The ruling
+itself is a contract change and, like the fitted artifact, is not self-certifying. It should go
+to verification-auditor with: the F9/F-U7 key change, the E-00015 supersession, the
+`split_map_sha256` invariance assertion, and the `H_body` invariance proof below.
+
+### 7. Integrity assertions for this addendum
+
+- **`H_body` is UNCHANGED by this addendum**: still
+  `c7ebe54ce8cd51ac90483744a3d11e56a04fc5d48c0d8669e0804f53f883bea7` over **22,196 bytes**,
+  recomputed after this edit under clause (b) exactly as specified (lines 1-428, minus lines
+  5, 6, 7, 10, 14, each followed by one `0x0A`). This addendum begins below line 2067 and
+  therefore cannot touch the protected range. The value is **recomputed, not asserted**.
+
+### 8. What I did NOT do
+
+Did **not** edit `tools/e0013_extract.py` or `tools/e0013_eval.py` -- the extractor change is
+the engineer's. Did **not** run the extractor, fit anything, read the holdout, or read any
+label field. Did **not** touch `src/`. Did **not** edit R-0019..R-0025, any S-00xx, E-0011,
+E-0012, W-0001, W-0005, RUN-0002/RUN-0003, or R-0017/R-0018. Did **not** change E-0013's
+`status:` or any `result:`. Did **not** change any H-#### text or status. Did **not** open or
+close HO-0005 or W-0003. Did **not** adopt a new split salt, and did **not** authorize a salt
+search. Did **not** weaken, re-order, re-normalize or suppress the overlap-0 gate. Did **not**
+edit E-00015 -- its supersession is recorded **here** as a dated obligation (F-U10), because
+E-0013 is the contract that owns the key and E-00015 is a separate record with its own
+executor seat. Did **not** hand-edit `research/state.md` or `state.json` (GENERATED -- only
+via `state --write`).
+
+**E-0013 remains `RUNNING`, and the extraction remains BLOCKED** until F-U7 through F-U9 are
+implemented and the overlap-0 gate passes on the real dataset under the new key. Nothing has
+been fitted and no holdout has been read.
+
+- **`status:` remains `RUNNING`.** No `result:` is set. No lifecycle transition is made or
+  authorised here.
+- **`src/` is untouched.** No engine source file was read for a change or edited.
+- **The holdout was not read.** No label field was read. Nothing was fitted. The extractor was
+  not re-run.
+
+F-U1..F-U6 series; the numbers are new because those are taken.
+
+| # | Obligation | Detail |
+|---|---|---|
+| **F-U7** | **Change the dedup key in `tools/e0013_extract.py` to the normalized FEN.** | The `seen` set at L326-331 must key on `pos.norm_fen` (the existing `normalize_fen()`, L126-134), not `pos.fen`. The `dedup_key` string published in `extraction_pin` (L442) must be updated to name the normalized FEN and to say explicitly that the clock is NOT part of the identity. `dedup_order` stays `GLOBAL, before the split`; the survivor rule stays first occurrence in `(game_id, ply_index)` order. |
+| **F-U8** | **Repair the self-test that passed for the wrong reason.** | L835-839 asserts the normalized-FEN invariant "holds BECAUSE the dedup ran first". Under the new key that assertion becomes TRUE BY CONSTRUCTION, and the check must be re-stated to say so. Add a regression case whose duplicate copies differ **only in the clocks** -- the case the old fixture missed and the case the real dataset found. The existing clock-only gate case at L750-752 must keep passing. |
+| **F-U9** | **Re-derive and re-commit the split map and the artifacts.** | Re-run the extraction under the new key; commit the map, `positions.jsonl` and the report together, all post-dating the key change. **Assert that `split_map_sha256` is UNCHANGED** per section 4; a moved digest is a finding to report, not a new baseline. Record the new `positions_sha256` and the new counts. The committed map is the pin for conjunct (b) and must exist before any fitter reads data. |
+| **F-U10** | **Re-derive the yield band and re-evaluate the 30,000 floor under the new key.** | E-00015's band lower bound and the `~997` exact-FEN duplication projection are superseded (section 5). Re-derive the band from the new key's measured `duplicates_removed_by_dedup` **before** E-00015 runs, as a dated amendment to E-00015 (not to this record, and not silently). Re-evaluate conjunct (a) on the new `count_usable_distinct_train`. **The 30,000 value is not renegotiable.** If the new TRAIN-side count falls below 30,000, E-00015 decision rule 2 fires and E-0013 ends INCONCLUSIVE-BY-SCOPE with the all-terms claim WITHDRAWN -- recorded, not silently kept. |
+
+would mean the salt, the fraction, or the rule had moved, which this ruling does not authorize.**
+The obligation is to re-derive and re-commit; the *expectation* is byte-identity. A digest that
+moves is a finding to be reported, not a new baseline to be adopted.
+
+**What genuinely must be re-committed under the new key:** `positions.jsonl` (new
+`positions_sha256`), the report, and the counts. The map is re-derived and re-pinned alongside
+them so that the three artifacts are mutually consistent and all post-date the key change.
+
+### 5. E-00015: it MUST WAIT, and its earlier pre-registration is superseded
+
+**Ruling: E-00015 may not run until the new dedup key is implemented and the re-derivation
+under F-U7 is complete. It waits. It is not cancelled, and its count-only discipline, its
+label-free property, its abort conditions, and the 30,000 floor are all unchanged.**
+
+The reason is mechanical, not procedural. E-00015's `duplicates_removed_by_dedup` and
+`count_usable_distinct` are produced by the extractor's dedup stage
+(`e0013_extract.py:326-334`). Run today, E-00015 would report a count under the **superseded**
+key, and that count would be the number that arms or disarms E-0013's conjunct (a). A count
+measured under a key the owning seat has since superseded is worse than no count: it is a
+number that looks authoritative and is wrong, and E-00015's own decision rule 3 routes
+out-of-band counts to "a named re-decision" rather than silently re-running. **Recording a
+superseded count now would burn the record's own integrity property to save a few minutes.**
+
+**Recorded explicitly, as required: E-00015's earlier pre-registration (2026-09-26) referenced
+the SUPERSEDED dedup key.** Specifically superseded, by this ruling:
+
+| E-00015 clause | Status under this ruling |
+|---|---|
+| Band `75,600..76,587` and its `1705/130930 = 1.302%` exact-FEN duplication arithmetic (Games/Samples) | **SUPERSEDED as to its lower bound.** Must be re-derived under the new key's measured yield before the pass runs. The band remains a *sanity check, not a pass criterion* (E-00015's own words), and it may not be adjusted to land inside. |
+| "Dedup key normalization" (Sample Validity) — the overlap-0 check uses E-0013's normalization | **STILL CORRECT, and now load-bearing twice over**: the check's normalization and the dedup key are the same key, which is the whole point of ruling (1). |
+| Abort 4 (non-zero overlap at either level) and abort 6 (dedup order per-split) | **UNCHANGED and still blocking.** Abort 4 is now satisfied structurally rather than hopefully. |
+| 30,000 floor on `count_usable_distinct_train` | **UNCHANGED in value, re-evaluated against the new count.** The floor is not renegotiable. |
+| Label-free discipline, abort 3, provenance fields | **UNCHANGED.** |
+
+guarantee.** The real dataset is what distinguished the two.
+
+This also disposes of the framing that the 27 are bad luck. They are not a small anomaly to be
+explained away; they are the **first observable consequence of a key that provably cannot
+entail the invariant.** More K+R vs K endgames would have produced more, and no re-draw of the
+same key fixes a proof failure.
+
+### 3. WHAT THIS COSTS — stated in full, not netted against the benefit
+
+The benefit is a leakage-free fit. The costs are real and are not small.
+
+1. **The realized yield CHANGES, and the number E-0013 quoted is superseded by it.** Positions
+   that differ only in the clocks are now deduplicated away. The `K+R vs K` endgame
+   duplicates are removed, so the realized count **falls** by an amount that is **not yet
+   measured** and that I am **not permitted to estimate here** -- measuring it is the
+   engineer's re-run, under F-U7 below. The pre-registered band `75,600..76,587` (E-00015
+   Games/Samples, and E-0013 B6 sentence 2) was computed as `76,593` minus ~997 projected
+   cross-game duplicates from the measured `1705/130930 = 1.302%` **exact-FEN** duplication
+   rate. That projection **rests on the old key and does not carry over**: clock-only
+   duplicates are invisible to a 1.302% exact-FEN rate and are exactly the class the new key
+   removes. The band's **lower** bound in particular moves down, and the **~997** figure is
+   withdrawn as a projection under the new key. **The band must be re-derived and re-checked
+   against the new key's measured yield, and the 30,000 scope floor must be re-evaluated
+   against the new TRAIN-side count.** The floor's *value* is unchanged and is **not**
+   renegotiable (E-00015: "The 30,000 value is pre-registered and fixed"); only the count it
+   is evaluated against changes.
+
+recommendation and it remains the correct outcome **if (1) cannot be implemented**. It is not
+the right ruling now, because it discards a recoverable contract to accommodate a defect with
+a one-line root cause. INCONCLUSIVE-BY-SCOPE is for a scope that cannot be justified; here the
+scope is intact and the *key* was mis-specified. Choosing (3) now would also be a claim I
+cannot support: it would assert that no leakage-free fit is possible from this dataset, and
+**I have no measurement that says that.** What I have is 27 collisions traceable to a
+specific, identified, mechanical cause.
+
+existed -- strengthen the dedup key, re-split under a new salt, or exclude the endgame region
+-- and each re-opens a pre-registered decision. A blocking-gate pass/fail on a pre-registered
+leakage contract belongs to the owning seat, not to the seat holding the extractor. The gate
+was left firing, no artifact was written, nothing was fitted, and the finding was escalated
+rather than absorbed. That is the whole discipline working, and it is recorded here as a
+**result, not as a delay**.

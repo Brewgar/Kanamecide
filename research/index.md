@@ -223,6 +223,8 @@
 - [S-0033](sessions/S-0033-two-stale-evidence-lines-in-e-0013-revised-in-place-withdrawn-figure-4x-in-z2-record-only.md) — Two stale evidence lines in E-0013 REVISED in place (Z2 prose + condition row 10) - the withdrawn figure 8ad61ccd/00a727 occurs 4x, all inside the Z2 withdrawal record, in NO live claim; orchestrator count; seam 22, 0 new; E-0013 stays PENDING — status=CLOSED
 - [S-0034](sessions/S-0034-e0013-l5-flip-r0024-q1-q8-to-verifier.md) — E-0013 L5-only flip PENDING -> RUNNING under R-0024 (6a6eb0a); Z4 header fixed separately (f2b627c); Q1-Q8 handed to the verification-auditor via HO-0017 — status=CLOSED
 - [S-0035](sessions/S-0035-ho-0017-independent-audit-of-the-e-0013-l5-flip-r-0025-verified-q1-q8-no-revert.md) — ho-0017-independent-audit-of-the-e-0013-l5-flip-r-0025-verified-q1-q8-no-revert — status=CLOSED
+- [S-0036](sessions/S-0036-e0013-parameter-table-evaluator-built-and-transcription-verified-overlap-0-gate-fails-27-on-the-real-dataset.md) — e0013-parameter-table-evaluator-built-and-transcription-verified-overlap-0-gate-fails-27-on-the-real-dataset — status=CLOSED
+- [S-0037](sessions/S-0037-e0013-leakage-ruling-normalized-fen-dedup-key.md) — e0013-leakage-ruling-normalized-fen-dedup-key — status=CLOSED
 
 ## Unrendered Records (bug — report this)
 

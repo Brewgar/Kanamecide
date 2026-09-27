@@ -1,7 +1,7 @@
 # Research State (GENERATED — do not edit)
 
 Derived from the record store by `research.py state`. Regenerate after every change.
-Generated: 2026-09-27T17:12:02; schema 2.
+Generated: 2026-09-27T17:44:11; schema 2.
 Every entry is a PROJECTION of the linked records — follow them before believing.
 
 ## Current best beliefs (hypotheses with measured weight)
@@ -43,7 +43,6 @@ Every entry is a PROJECTION of the linked records — follow them before believi
 - hypothesis **H-0002-magic-stub** Magic Bitboards with PEXT Provide >=3x NPS Speedup — SUPERSEDED. No revisit condition recorded.
 
 ## Recent timeline
-- 2026-09-26 session S-0024 (CLOSED) : HO-0013 / R-0019 — critique of the E-0013 Texel pre-registration: NOT CLEAN, seven blocking findings, E-0013 stays PENDING
 - 2026-09-26 session S-0025 (CLOSED) : E-0013 addendum discharging R-0019 B1-B7 (SHRINK branch) + E-00014/E-00015 pre-registered + HO-0014/15/16
 - 2026-09-26 session S-0026 (CLOSED) : Mechanical repair of HO-0014/15/16 section stranding and two cut sentences
 - 2026-09-26 session S-0027 (CLOSED) : HO-0014 re-critique of the E-0013 addendum vs R-0019 B1-B7 - NOT CLEAN on two new blocking findings (X1 truncated/interleaved addendum, X2 false parameter-count rationale); all three integrity properties HOLD
@@ -58,6 +57,7 @@ Every entry is a PROJECTION of the linked records — follow them before believi
 - 2026-09-27 session S-0034 (CLOSED) : E-0013 L5-only flip PENDING -> RUNNING under R-0024 (6a6eb0a); Z4 header fixed separately (f2b627c); Q1-Q8 handed to the verification-auditor via HO-0017
 - 2026-09-27 session S-0035 (CLOSED) : ho-0017-independent-audit-of-the-e-0013-l5-flip-r-0025-verified-q1-q8-no-revert
 - 2026-09-27 session S-0036 (CLOSED) : e0013-parameter-table-evaluator-built-and-transcription-verified-overlap-0-gate-fails-27-on-the-real-dataset
+- 2026-09-27 session S-0037 (CLOSED) : e0013-leakage-ruling-normalized-fen-dedup-key
 
 ## Metrics
 ```
@@ -80,12 +80,12 @@ Every entry is a PROJECTION of the linked records — follow them before believi
     "report": 13,
     "review": 25,
     "round_megaprompt": 2,
-    "session": 36,
+    "session": 37,
     "work": 7
   },
   "by_status": {
     "ACTIVE": 14,
-    "CLOSED": 36,
+    "CLOSED": 37,
     "COMPLETED": 33,
     "DONE": 18,
     "DRAFT": 1,
@@ -103,10 +103,10 @@ Every entry is a PROJECTION of the linked records — follow them before believi
   "contradiction_candidates": 0,
   "dangling_ids": 11,
   "duplicate_candidates": 2,
-  "edges_total": 3563,
+  "edges_total": 3643,
   "legacy_experiments_without_pre_registration": 6,
   "open_questions": 8,
-  "records_total": 197,
+  "records_total": 198,
   "revival_candidates": 5
 }
 

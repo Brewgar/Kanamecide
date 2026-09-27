@@ -840,7 +840,9 @@
         "src/eval.h",
         "src/main.cpp",
         "tools/e0011_check.py",
-        "tools/e0012_sprt.py"
+        "tools/e0012_sprt.py",
+        "tools/e0013_eval.py",
+        "tools/e0013_extract.py"
       ],
       "commits_mentioned": [
         "040296e",
@@ -1399,6 +1401,20 @@
     },
     {
       "code_files": [
+        "tools/e0013_eval.py",
+        "tools/e0013_extract.py"
+      ],
+      "commits_mentioned": [
+        "c7ebe54"
+      ],
+      "kind": "session",
+      "record": "S-0037",
+      "rel": "sessions/S-0037-e0013-leakage-ruling-normalized-fen-dedup-key.md",
+      "status": "CLOSED",
+      "title": "e0013-leakage-ruling-normalized-fen-dedup-key"
+    },
+    {
+      "code_files": [
         "tools/e0011_check.py",
         "tools/e0011_generate.py",
         "tools/e0012_sprt.py",
@@ -1667,7 +1683,7 @@
       "title": "Gate 0 unrunnable: Device Guard hard-blocks kana.exe (every build, every path)"
     }
   ],
-  "generated": "2026-09-27T17:12:02",
+  "generated": "2026-09-27T17:44:11",
   "metrics": {
     "by_kind": {
       "agent_profile": 1,
@@ -1687,12 +1703,12 @@
       "report": 13,
       "review": 25,
       "round_megaprompt": 2,
-      "session": 36,
+      "session": 37,
       "work": 7
     },
     "by_status": {
       "ACTIVE": 14,
-      "CLOSED": 36,
+      "CLOSED": 37,
       "COMPLETED": 33,
       "DONE": 18,
       "DRAFT": 1,
@@ -1710,10 +1726,10 @@
     "contradiction_candidates": 0,
     "dangling_ids": 11,
     "duplicate_candidates": 2,
-    "edges_total": 3563,
+    "edges_total": 3643,
     "legacy_experiments_without_pre_registration": 6,
     "open_questions": 8,
-    "records_total": 197,
+    "records_total": 198,
     "revival_candidates": 5
   },
   "questions_all": [
@@ -2105,15 +2121,6 @@
   "timeline_tail": [
     {
       "example": false,
-      "id": "E-0012",
-      "kind": "experiment",
-      "rel": "experiments/E-0012-e-sprt-lite-comparison-harness-pre-registered-dec-0010-tiers.md",
-      "status": "COMPLETED",
-      "title": "E-0012 — E-SPRT-lite comparison harness (pre-registered, DEC-0010 tiers), offline-validated on retained E-0010 data",
-      "when": "2026-09-25"
-    },
-    {
-      "example": false,
       "id": "HO-0010",
       "kind": "handoff",
       "rel": "handoffs/HO-0010-close-w-0001-after-r-0017-independent-verification.md",
@@ -2461,6 +2468,15 @@
       "rel": "sessions/S-0036-e0013-parameter-table-evaluator-built-and-transcription-verified-overlap-0-gate-fails-27-on-the-real-dataset.md",
       "status": "CLOSED",
       "title": "e0013-parameter-table-evaluator-built-and-transcription-verified-overlap-0-gate-fails-27-on-the-real-dataset",
+      "when": "2026-09-27"
+    },
+    {
+      "example": false,
+      "id": "S-0037",
+      "kind": "session",
+      "rel": "sessions/S-0037-e0013-leakage-ruling-normalized-fen-dedup-key.md",
+      "status": "CLOSED",
+      "title": "e0013-leakage-ruling-normalized-fen-dedup-key",
       "when": "2026-09-27"
     }
   ]
