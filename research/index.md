@@ -81,6 +81,8 @@
 - [FND-0013](findings/FND-0013-f-u6-dn6-routing-flag-dec-0010-186-187-s-stale-pending-independent.md) — F-U6 DN6 routing.** Flag DEC-0010:186-187's stale "Pending: independent — status=OPEN
 - [FND-0027](findings/FND-0027-f-u11-re-derive-e-00014-s-inner-partition-under-the-new-key.md) — F-U11 Re-derive E-00014's inner partition under the new key — status=OPEN
 - [FND-0028](findings/FND-0028-f-u12-route-the-new-corpus-limitation-into-sample-validity.md) — F-U12 Route the new corpus limitation into Sample Validity — status=OPEN
+- [FND-0032](findings/FND-0032-dec-0012-declares-the-findings-status-vocabulary-open-closed-the-implementation-uses-open-resolved-and-close-writes-resolved.md) — DEC-0012 declares the findings status vocabulary OPEN|CLOSED; the implementation uses OPEN|RESOLVED and --close writes RESOLVED — status=OPEN
+- [FND-0033](findings/FND-0033-f-u14-build-and-hash-pin-the-independent-tactical-suite-n-200-is-absent-from-the-findings-ledger.md) — F-U14 (build and hash-pin the independent tactical suite, N >= 200) is absent from the findings ledger — status=OPEN
 
 ## Findings (closed)
 
@@ -277,6 +279,7 @@
 - [S-0039](sessions/S-0039-e0013-band-retired-artifacts-pinned-ruling-correction.md) — e0013-band-retired-artifacts-pinned-ruling-correction — status=CLOSED
 - [S-0040](sessions/S-0040-e0013-band-retired-provenance-pinned-label-step-built.md) — e0013-band-retired-provenance-pinned-label-step-built — status=CLOSED
 - [S-0041](sessions/S-0041-e-0013-fnd-ledger-closure-12-blocking-rows-f-u7-f-u13-migration-and-ho-0019-independent-verification-v1-v7.md) — E-0013 FND ledger closure (12 blocking rows), F-U7..F-U13 migration, and HO-0019 independent verification (V1-V7) — status=CLOSED
+- [S-0042](sessions/S-0042-ledger-tail-round-six-open-majors-fnd-0008-fnd-0013-dispositioned-open-with-gap-file-fnd-0032-fnd-0033-finding-template-vocab-hunk.md) — Ledger-tail round: six OPEN majors (FND-0008..FND-0013) dispositioned OPEN-with-gap; file FND-0032/FND-0033; finding template vocab hunk — status=CLOSED
 
 ## Unrendered Records (bug — report this)
 

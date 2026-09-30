@@ -906,6 +906,17 @@
     },
     {
       "code_files": [
+        "tools/e0012_sprt.py"
+      ],
+      "commits_mentioned": [],
+      "kind": "finding",
+      "record": "FND-0009",
+      "rel": "findings/FND-0009-f-u2-the-deferred-strength-contract-the-cost-of-the-b1-shrink-decision.md",
+      "status": "OPEN",
+      "title": "F-U2 the deferred strength contract (the cost of the B1 SHRINK decision).**"
+    },
+    {
+      "code_files": [
         "tools/e0013_extract.py"
       ],
       "commits_mentioned": [],
@@ -1889,7 +1900,7 @@
       "title": "Gate 0 unrunnable: Device Guard hard-blocks kana.exe (every build, every path)"
     }
   ],
-  "generated": "2026-09-30T16:16:48",
+  "generated": "2026-09-30T23:43:28",
   "metrics": {
     "by_kind": {
       "agent_profile": 1,
@@ -1902,7 +1913,7 @@
       "evidence": 8,
       "experiment": 15,
       "failure": 2,
-      "finding": 31,
+      "finding": 33,
       "handoff": 20,
       "hypothesis": 17,
       "principle": 4,
@@ -1911,17 +1922,17 @@
       "report": 13,
       "review": 26,
       "round_megaprompt": 2,
-      "session": 41,
+      "session": 42,
       "work": 7
     },
     "by_status": {
       "ACTIVE": 15,
-      "CLOSED": 41,
+      "CLOSED": 42,
       "COMPLETED": 34,
       "DONE": 20,
       "DRAFT": 1,
       "IN_PROGRESS": 2,
-      "OPEN": 39,
+      "OPEN": 41,
       "PENDING": 5,
       "RECORDED": 2,
       "REGISTERED": 8,
@@ -1932,12 +1943,12 @@
     },
     "code_files": 29,
     "contradiction_candidates": 0,
-    "dangling_ids": 11,
+    "dangling_ids": 12,
     "duplicate_candidates": 2,
-    "edges_total": 4180,
+    "edges_total": 4268,
     "legacy_experiments_without_pre_registration": 6,
     "open_questions": 8,
-    "records_total": 242,
+    "records_total": 245,
     "revival_candidates": 5
   },
   "questions_all": [
@@ -2329,33 +2340,6 @@
   "timeline_tail": [
     {
       "example": false,
-      "id": "S-0040",
-      "kind": "session",
-      "rel": "sessions/S-0040-e0013-band-retired-provenance-pinned-label-step-built.md",
-      "status": "CLOSED",
-      "title": "e0013-band-retired-provenance-pinned-label-step-built",
-      "when": "2026-09-27"
-    },
-    {
-      "example": false,
-      "id": "CLM-0001",
-      "kind": "claim",
-      "rel": "claims/CLM-0001-texel-fit-of-the-tapered-eval-terms-beats-the-hand-tuned-stage-6.md",
-      "status": "OPEN",
-      "title": "Texel fit of the tapered eval terms beats the hand-tuned stage 6",
-      "when": "2026-09-29"
-    },
-    {
-      "example": false,
-      "id": "CLM-0002",
-      "kind": "claim",
-      "rel": "claims/CLM-0002-quiet-label-choice-determines-the-fit-target-s-attainable-gain.md",
-      "status": "OPEN",
-      "title": "Quiet-label choice determines the fit target's attainable gain",
-      "when": "2026-09-29"
-    },
-    {
-      "example": false,
       "id": "CLM-0003",
       "kind": "claim",
       "rel": "claims/CLM-0003-fresh-game-overlap-must-be-zero-before-a-fitted-artifact-is-consumed.md",
@@ -2653,6 +2637,24 @@
     },
     {
       "example": false,
+      "id": "FND-0032",
+      "kind": "finding",
+      "rel": "findings/FND-0032-dec-0012-declares-the-findings-status-vocabulary-open-closed-the-implementation-uses-open-resolved-and-close-writes-resolved.md",
+      "status": "OPEN",
+      "title": "DEC-0012 declares the findings status vocabulary OPEN|CLOSED; the implementation uses OPEN|RESOLVED and --close writes RESOLVED",
+      "when": "2026-09-30"
+    },
+    {
+      "example": false,
+      "id": "FND-0033",
+      "kind": "finding",
+      "rel": "findings/FND-0033-f-u14-build-and-hash-pin-the-independent-tactical-suite-n-200-is-absent-from-the-findings-ledger.md",
+      "status": "OPEN",
+      "title": "F-U14 (build and hash-pin the independent tactical suite, N >= 200) is absent from the findings ledger",
+      "when": "2026-09-30"
+    },
+    {
+      "example": false,
       "id": "HO-0019",
       "kind": "handoff",
       "rel": "handoffs/HO-0019-verify-e0013-s0037-leakage-ruling.md",
@@ -2685,6 +2687,15 @@
       "rel": "sessions/S-0041-e-0013-fnd-ledger-closure-12-blocking-rows-f-u7-f-u13-migration-and-ho-0019-independent-verification-v1-v7.md",
       "status": "CLOSED",
       "title": "E-0013 FND ledger closure (12 blocking rows), F-U7..F-U13 migration, and HO-0019 independent verification (V1-V7)",
+      "when": "2026-09-30"
+    },
+    {
+      "example": false,
+      "id": "S-0042",
+      "kind": "session",
+      "rel": "sessions/S-0042-ledger-tail-round-six-open-majors-fnd-0008-fnd-0013-dispositioned-open-with-gap-file-fnd-0032-fnd-0033-finding-template-vocab-hunk.md",
+      "status": "CLOSED",
+      "title": "Ledger-tail round: six OPEN majors (FND-0008..FND-0013) dispositioned OPEN-with-gap; file FND-0032/FND-0033; finding template vocab hunk",
       "when": "2026-09-30"
     }
   ]

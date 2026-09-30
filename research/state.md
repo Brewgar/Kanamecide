@@ -1,7 +1,7 @@
 # Research State (GENERATED — do not edit)
 
 Derived from the record store by `research.py state`. Regenerate after every change.
-Generated: 2026-09-30T16:16:48; schema 2.
+Generated: 2026-09-30T23:43:28; schema 2.
 Every entry is a PROJECTION of the linked records — follow them before believing.
 
 ## Current best beliefs (hypotheses with measured weight)
@@ -43,9 +43,6 @@ Every entry is a PROJECTION of the linked records — follow them before believi
 - hypothesis **H-0002-magic-stub** Magic Bitboards with PEXT Provide >=3x NPS Speedup — SUPERSEDED. No revisit condition recorded.
 
 ## Recent timeline
-- 2026-09-29 finding FND-0022 (RESOLVED) : Z4 the HEAD inside a committed column header (CORRECTED, S-0034)
-- 2026-09-30 decision DEC-0012 (ACTIVE) : Claim/finding ledger (CLM/FND record kinds) with a deterministic severity-vocabulary lint gate, built as a derived intelligence layer
-- 2026-09-30 finding FND-0023 (RESOLVED) : F-U7 Change the dedup key in tools/e0013_extract.py to the normalized FEN
 - 2026-09-30 finding FND-0024 (RESOLVED) : F-U8 Repair the self-test that passed for the wrong reason
 - 2026-09-30 finding FND-0025 (RESOLVED) : F-U9 Re-derive and re-commit the split map and the artifacts
 - 2026-09-30 finding FND-0026 (RESOLVED) : F-U10 Re-derive the yield band and re-evaluate the 30,000 floor under the new key
@@ -54,10 +51,13 @@ Every entry is a PROJECTION of the linked records — follow them before believi
 - 2026-09-30 finding FND-0029 (RESOLVED) : F-U13 The gate stays blocking; do not weaken it to make the run pass
 - 2026-09-30 finding FND-0030 (RESOLVED) : X1-CLASS: the S-0037 leakage addendum (E-0013 L2069+) is truncated and interleaved - sentences severed mid-clause at block boundaries
 - 2026-09-30 finding FND-0031 (RESOLVED) : Z2-P4: the Z2 withdrawal record's own verification row P4 is stale and self-referential - it claims four occurrences of the withdrawn hash and names two line numbers that no longer hold any
+- 2026-09-30 finding FND-0032 (OPEN) : DEC-0012 declares the findings status vocabulary OPEN|CLOSED; the implementation uses OPEN|RESOLVED and --close writes RESOLVED
+- 2026-09-30 finding FND-0033 (OPEN) : F-U14 (build and hash-pin the independent tactical suite, N >= 200) is absent from the findings ledger
 - 2026-09-30 handoff HO-0019 (DONE) : Independently verify the E-0013 leakage ruling (S-0037 addendum): was option (1) chosen on the contract's own terms?
 - 2026-09-30 handoff HO-0020 (DONE) : Owner repair: the S-0037 leakage addendum on E-0013 is truncated/interleaved (FND-0030, blocking) and Z2's own proof row P4 is stale and self-referential (FND-0031, minor)
 - 2026-09-30 review R-0026 (COMPLETED) : R 0026 independent verification of the e 0013 s 0037 leakage ruling under ho 0019 v1 v7 gate 3
 - 2026-09-30 session S-0041 (CLOSED) : E-0013 FND ledger closure (12 blocking rows), F-U7..F-U13 migration, and HO-0019 independent verification (V1-V7)
+- 2026-09-30 session S-0042 (CLOSED) : Ledger-tail round: six OPEN majors (FND-0008..FND-0013) dispositioned OPEN-with-gap; file FND-0032/FND-0033; finding template vocab hunk
 
 ## Metrics
 ```
@@ -73,7 +73,7 @@ Every entry is a PROJECTION of the linked records — follow them before believi
     "evidence": 8,
     "experiment": 15,
     "failure": 2,
-    "finding": 31,
+    "finding": 33,
     "handoff": 20,
     "hypothesis": 17,
     "principle": 4,
@@ -82,17 +82,17 @@ Every entry is a PROJECTION of the linked records — follow them before believi
     "report": 13,
     "review": 26,
     "round_megaprompt": 2,
-    "session": 41,
+    "session": 42,
     "work": 7
   },
   "by_status": {
     "ACTIVE": 15,
-    "CLOSED": 41,
+    "CLOSED": 42,
     "COMPLETED": 34,
     "DONE": 20,
     "DRAFT": 1,
     "IN_PROGRESS": 2,
-    "OPEN": 39,
+    "OPEN": 41,
     "PENDING": 5,
     "RECORDED": 2,
     "REGISTERED": 8,
@@ -103,12 +103,12 @@ Every entry is a PROJECTION of the linked records — follow them before believi
   },
   "code_files": 29,
   "contradiction_candidates": 0,
-  "dangling_ids": 11,
+  "dangling_ids": 12,
   "duplicate_candidates": 2,
-  "edges_total": 4180,
+  "edges_total": 4268,
   "legacy_experiments_without_pre_registration": 6,
   "open_questions": 8,
-  "records_total": 242,
+  "records_total": 245,
   "revival_candidates": 5
 }
 
