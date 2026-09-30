@@ -6,7 +6,7 @@ severity: {{SEVERITY}}
 target: {{TARGET}}
 raised_by: {{RAISED_BY}}
 review: {{REVIEW}}
-status: OPEN
+status: OPEN  # OPEN | RESOLVED  (imem.py finding --close writes RESOLVED)
 resolution: ""
 resolved_by: ""
 verified_by: ""
