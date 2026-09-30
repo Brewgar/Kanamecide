@@ -1,7 +1,7 @@
 # Research State (GENERATED — do not edit)
 
 Derived from the record store by `research.py state`. Regenerate after every change.
-Generated: 2026-09-30T13:14:34; schema 2.
+Generated: 2026-09-30T14:58:37; schema 2.
 Every entry is a PROJECTION of the linked records — follow them before believing.
 
 ## Current best beliefs (hypotheses with measured weight)
@@ -43,9 +43,8 @@ Every entry is a PROJECTION of the linked records — follow them before believi
 - hypothesis **H-0002-magic-stub** Magic Bitboards with PEXT Provide >=3x NPS Speedup — SUPERSEDED. No revisit condition recorded.
 
 ## Recent timeline
-- 2026-09-29 finding FND-0020 (RESOLVED) : Z2 CORRECTED: the unreproducible projected hash, withdrawn
-- 2026-09-29 finding FND-0021 (RESOLVED) : Z3 CORRECTED: the boundary table, re-pinned and every figure labelled wit
 - 2026-09-29 finding FND-0022 (RESOLVED) : Z4 the HEAD inside a committed column header (CORRECTED, S-0034)
+- 2026-09-30 decision DEC-0012 (ACTIVE) : Claim/finding ledger (CLM/FND record kinds) with a deterministic severity-vocabulary lint gate, built as a derived intelligence layer
 - 2026-09-30 finding FND-0023 (RESOLVED) : F-U7 Change the dedup key in tools/e0013_extract.py to the normalized FEN
 - 2026-09-30 finding FND-0024 (RESOLVED) : F-U8 Repair the self-test that passed for the wrong reason
 - 2026-09-30 finding FND-0025 (RESOLVED) : F-U9 Re-derive and re-commit the split map and the artifacts
@@ -56,6 +55,7 @@ Every entry is a PROJECTION of the linked records — follow them before believi
 - 2026-09-30 finding FND-0030 (OPEN) : X1-CLASS: the S-0037 leakage addendum (E-0013 L2069+) is truncated and interleaved - sentences severed mid-clause at block boundaries
 - 2026-09-30 finding FND-0031 (OPEN) : Z2-P4: the Z2 withdrawal record's own verification row P4 is stale and self-referential - it claims four occurrences of the withdrawn hash and names two line numbers that no longer hold any
 - 2026-09-30 handoff HO-0019 (DONE) : Independently verify the E-0013 leakage ruling (S-0037 addendum): was option (1) chosen on the contract's own terms?
+- 2026-09-30 handoff HO-0020 (REQUESTED) : Owner repair: the S-0037 leakage addendum on E-0013 is truncated/interleaved (FND-0030, blocking) and Z2's own proof row P4 is stale and self-referential (FND-0031, minor)
 - 2026-09-30 review R-0026 (COMPLETED) : R 0026 independent verification of the e 0013 s 0037 leakage ruling under ho 0019 v1 v7 gate 3
 - 2026-09-30 session S-0041 (CLOSED) : E-0013 FND ledger closure (12 blocking rows), F-U7..F-U13 migration, and HO-0019 independent verification (V1-V7)
 
@@ -68,13 +68,13 @@ Every entry is a PROJECTION of the linked records — follow them before believi
     "claim": 3,
     "current_position": 5,
     "debate": 7,
-    "decision": 11,
+    "decision": 12,
     "doc": 15,
     "evidence": 8,
     "experiment": 15,
     "failure": 2,
     "finding": 31,
-    "handoff": 19,
+    "handoff": 20,
     "hypothesis": 17,
     "principle": 4,
     "profile": 4,
@@ -86,7 +86,7 @@ Every entry is a PROJECTION of the linked records — follow them before believi
     "work": 7
   },
   "by_status": {
-    "ACTIVE": 14,
+    "ACTIVE": 15,
     "CLOSED": 41,
     "COMPLETED": 34,
     "DONE": 19,
@@ -96,19 +96,19 @@ Every entry is a PROJECTION of the linked records — follow them before believi
     "PENDING": 5,
     "RECORDED": 2,
     "REGISTERED": 8,
-    "REQUESTED": 5,
+    "REQUESTED": 6,
     "RESOLVED": 22,
     "RUNNING": 1,
     "SUPERSEDED": 4
   },
   "code_files": 29,
   "contradiction_candidates": 0,
-  "dangling_ids": 12,
+  "dangling_ids": 11,
   "duplicate_candidates": 2,
-  "edges_total": 4114,
+  "edges_total": 4168,
   "legacy_experiments_without_pre_registration": 6,
   "open_questions": 8,
-  "records_total": 240,
+  "records_total": 242,
   "revival_candidates": 5
 }
 

@@ -1888,7 +1888,7 @@
       "title": "Gate 0 unrunnable: Device Guard hard-blocks kana.exe (every build, every path)"
     }
   ],
-  "generated": "2026-09-30T13:14:34",
+  "generated": "2026-09-30T14:58:37",
   "metrics": {
     "by_kind": {
       "agent_profile": 1,
@@ -1896,13 +1896,13 @@
       "claim": 3,
       "current_position": 5,
       "debate": 7,
-      "decision": 11,
+      "decision": 12,
       "doc": 15,
       "evidence": 8,
       "experiment": 15,
       "failure": 2,
       "finding": 31,
-      "handoff": 19,
+      "handoff": 20,
       "hypothesis": 17,
       "principle": 4,
       "profile": 4,
@@ -1914,7 +1914,7 @@
       "work": 7
     },
     "by_status": {
-      "ACTIVE": 14,
+      "ACTIVE": 15,
       "CLOSED": 41,
       "COMPLETED": 34,
       "DONE": 19,
@@ -1924,19 +1924,19 @@
       "PENDING": 5,
       "RECORDED": 2,
       "REGISTERED": 8,
-      "REQUESTED": 5,
+      "REQUESTED": 6,
       "RESOLVED": 22,
       "RUNNING": 1,
       "SUPERSEDED": 4
     },
     "code_files": 29,
     "contradiction_candidates": 0,
-    "dangling_ids": 12,
+    "dangling_ids": 11,
     "duplicate_candidates": 2,
-    "edges_total": 4114,
+    "edges_total": 4168,
     "legacy_experiments_without_pre_registration": 6,
     "open_questions": 8,
-    "records_total": 240,
+    "records_total": 242,
     "revival_candidates": 5
   },
   "questions_all": [
@@ -2328,24 +2328,6 @@
   "timeline_tail": [
     {
       "example": false,
-      "id": "S-0038",
-      "kind": "session",
-      "rel": "sessions/S-0038-e0013-normalized-fen-dedup-key-f-u7-f-u13.md",
-      "status": "CLOSED",
-      "title": "e0013-normalized-fen-dedup-key-f-u7-f-u13",
-      "when": "2026-09-27"
-    },
-    {
-      "example": false,
-      "id": "S-0039",
-      "kind": "session",
-      "rel": "sessions/S-0039-e0013-band-retired-artifacts-pinned-ruling-correction.md",
-      "status": "CLOSED",
-      "title": "e0013-band-retired-artifacts-pinned-ruling-correction",
-      "when": "2026-09-27"
-    },
-    {
-      "example": false,
       "id": "S-0040",
       "kind": "session",
       "rel": "sessions/S-0040-e0013-band-retired-provenance-pinned-label-step-built.md",
@@ -2580,6 +2562,15 @@
     },
     {
       "example": false,
+      "id": "DEC-0012",
+      "kind": "decision",
+      "rel": "decisions/DEC-0012-claim-finding-ledger-and-deterministic-lint-gate.md",
+      "status": "ACTIVE",
+      "title": "Claim/finding ledger (CLM/FND record kinds) with a deterministic severity-vocabulary lint gate, built as a derived intelligence layer",
+      "when": "2026-09-30"
+    },
+    {
+      "example": false,
       "id": "FND-0023",
       "kind": "finding",
       "rel": "findings/FND-0023-f-u7-change-the-dedup-key-in-tools-e0013-extract-py-to-the-normalized-fen.md",
@@ -2666,6 +2657,15 @@
       "rel": "handoffs/HO-0019-verify-e0013-s0037-leakage-ruling.md",
       "status": "DONE",
       "title": "Independently verify the E-0013 leakage ruling (S-0037 addendum): was option (1) chosen on the contract's own terms?",
+      "when": "2026-09-30"
+    },
+    {
+      "example": false,
+      "id": "HO-0020",
+      "kind": "handoff",
+      "rel": "handoffs/HO-0020-owner-repair-truncated-s-0037-leakage-addendum-fnd-0030-and-stale-z2-p4-fnd-0031.md",
+      "status": "REQUESTED",
+      "title": "Owner repair: the S-0037 leakage addendum on E-0013 is truncated/interleaved (FND-0030, blocking) and Z2's own proof row P4 is stale and self-referential (FND-0031, minor)",
       "when": "2026-09-30"
     },
     {

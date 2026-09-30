@@ -121,6 +121,7 @@
 - [DEC-0009](decisions/DEC-0009-research-system-verification-and-coordination-layer.md) — Verification and coordination layer for the research system (amends DEC-0007) — status=ACTIVE
 - [DEC-0010](decisions/DEC-0010-two-tier-sprt-effect-size-decision-rule.md) — Calibrated effect-size decision rule for engine-strength comparisons (two-tier SPRT + magnitude zones) — status=ACTIVE
 - [DEC-0011](decisions/DEC-0011-derived-intelligence-layer.md) — Derived-intelligence layer for the research memory (graph, retrieval, state, audit, questions, evidence, principles) — status=ACTIVE
+- [DEC-0012](decisions/DEC-0012-claim-finding-ledger-and-deterministic-lint-gate.md) — Claim/finding ledger (CLM/FND record kinds) with a deterministic severity-vocabulary lint gate, built as a derived intelligence layer — status=ACTIVE
 
 ## Reviews
 
@@ -204,6 +205,7 @@
 - [HO-0016](handoffs/HO-0016-execute-e-0015-count-only-realized-yield-pass-measurement-not-training.md) — Execute E-00015: count-only realized usable quiet yield pass (measurement, not training) — status=REQUESTED
 - [HO-0017](handoffs/HO-0017-audit-e0013-l5-flip-q1-q8.md) — Independently verify the E-0013 L5-only lifecycle flip (R-0024 Q1-Q8) — status=REQUESTED
 - [HO-0018](handoffs/HO-0018-implement-f-u7-f-u13-normalized-fen-dedup-key.md) — Implement the E-0013 Option-(1) leakage remediation F-U7..F-U13: the dedup key is the normalized FEN — status=REQUESTED
+- [HO-0020](handoffs/HO-0020-owner-repair-truncated-s-0037-leakage-addendum-fnd-0030-and-stale-z2-p4-fnd-0031.md) — Owner repair: the S-0037 leakage addendum on E-0013 is truncated/interleaved (FND-0030, blocking) and Z2's own proof row P4 is stale and self-referential (FND-0031, minor) — status=REQUESTED
 
 ## Handoffs (closed)
 
