@@ -2,16 +2,16 @@
 id: FND-0018
 type: finding
 title: "X5 DISCHARGED.**"
-status: OPEN
+status: RESOLVED
 example: false
 created: 2026-09-29
 target: E-0013
 severity: blocking
 raised_by: chief-architect (extraction; original raisers in source)
 review: R-0022-r-0022-independent-verification-of-s-0030
-resolution: 
-resolved_by: 
-verified_by: 
+resolution: X5 (an unrecorded head-side deletion at seam 8): DISCHARGED. The deletion is now RECORDED as a dated entry at E-0013 L1304 with the ce845c5 evidence and the judgement that the deletion was substantively correct and necessary.
+resolved_by: verification-auditor (round-5 FND-closure seat)
+verified_by: verification-auditor (round-5 FND-closure seat)
 ---
 
 # FND-0018

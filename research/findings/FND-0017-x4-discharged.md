@@ -2,16 +2,16 @@
 id: FND-0017
 type: finding
 title: "X4 DISCHARGED.**"
-status: OPEN
+status: RESOLVED
 example: false
 created: 2026-09-29
 target: E-0013
 severity: blocking
 raised_by: chief-architect (extraction; original raisers in source)
 review: R-0022-r-0022-independent-verification-of-s-0030
-resolution: 
-resolved_by: 
-verified_by: 
+resolution: X4 (S-0029 re-severed the file tail; an orphaned head fragment at the block boundary): DISCHARGED. Verified mechanically this session - zero lines in E-0013 now begin with the orphan head 'move it, and per R-0020', and the tail is rejoined into the L1288-L1289 sentence.
+resolved_by: verification-auditor (round-5 FND-closure seat)
+verified_by: verification-auditor (round-5 FND-closure seat)
 ---
 
 # FND-0017

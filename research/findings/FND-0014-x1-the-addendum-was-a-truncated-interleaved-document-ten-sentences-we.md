@@ -2,16 +2,16 @@
 id: FND-0014
 type: finding
 title: "X1 the addendum was a truncated, interleaved document.** Ten sentences we"
-status: OPEN
+status: RESOLVED
 example: false
 created: 2026-09-29
 target: E-0013
 severity: blocking
 raised_by: chief-architect (extraction; original raisers in source)
 review: E-0013-h-0013-texel-fit-on-verified-e-0011-datas
-resolution: 
-resolved_by: 
-verified_by: 
+resolution: X1 (the addendum was a truncated, interleaved document; ten sentences severed at block boundaries, one continuation absent): DISCHARGED. I re-ran a mechanical contiguity check over all ten seams in the current file - every one is a contiguous run with no blank-line or heading break.
+resolved_by: verification-auditor (round-5 FND-closure seat)
+verified_by: verification-auditor (round-5 FND-closure seat)
 ---
 
 # FND-0014
