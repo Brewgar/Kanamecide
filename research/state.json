@@ -502,6 +502,20 @@
   "codemap": [
     {
       "code_files": [
+        "tools/e0013_extract.py"
+      ],
+      "commits_mentioned": [
+        "2f31549",
+        "6a6eb0a"
+      ],
+      "kind": "doc",
+      "record": "AGENT_MEGAPROMPT_E0013_FND_CLOSURE",
+      "rel": "AGENT_MEGAPROMPT_E0013_FND_CLOSURE.md",
+      "status": "—",
+      "title": "AGENT_MEGAPROMPT_E0013_FND_CLOSURE"
+    },
+    {
+      "code_files": [
         "src/main.cpp",
         "src/movegen.cpp"
       ],
@@ -1769,18 +1783,20 @@
       "title": "Gate 0 unrunnable: Device Guard hard-blocks kana.exe (every build, every path)"
     }
   ],
-  "generated": "2026-09-27T23:11:37",
+  "generated": "2026-09-30T10:07:50",
   "metrics": {
     "by_kind": {
       "agent_profile": 1,
       "beliefs": 1,
+      "claim": 3,
       "current_position": 5,
       "debate": 7,
       "decision": 11,
-      "doc": 14,
+      "doc": 15,
       "evidence": 8,
       "experiment": 15,
       "failure": 2,
+      "finding": 22,
       "handoff": 19,
       "hypothesis": 17,
       "principle": 4,
@@ -1799,7 +1815,7 @@
       "DONE": 18,
       "DRAFT": 1,
       "IN_PROGRESS": 2,
-      "OPEN": 28,
+      "OPEN": 53,
       "PENDING": 5,
       "RECORDED": 2,
       "REGISTERED": 8,
@@ -1810,12 +1826,12 @@
     },
     "code_files": 29,
     "contradiction_candidates": 0,
-    "dangling_ids": 11,
+    "dangling_ids": 12,
     "duplicate_candidates": 2,
-    "edges_total": 3838,
+    "edges_total": 3936,
     "legacy_experiments_without_pre_registration": 6,
     "open_questions": 8,
-    "records_total": 203,
+    "records_total": 229,
     "revival_candidates": 5
   },
   "questions_all": [
@@ -2207,231 +2223,6 @@
   "timeline_tail": [
     {
       "example": false,
-      "id": "S-0020",
-      "kind": "session",
-      "rel": "sessions/S-0020-route-w-0005-e-0012-live-evidence-to-fresh-verification-auditor-ho-0012.md",
-      "status": "CLOSED",
-      "title": "Route W-0005/E-0012 live evidence to fresh verification-auditor (HO-0012)",
-      "when": "2026-09-25"
-    },
-    {
-      "example": false,
-      "id": "S-0021",
-      "kind": "session",
-      "rel": "sessions/S-0021-ho-0012-independent-verification-of-w-0005-e-0012-live-runs-run-0002-and-run-0003.md",
-      "status": "CLOSED",
-      "title": "HO-0012 independent verification of W-0005 E-0012 live runs RUN-0002 and RUN-0003",
-      "when": "2026-09-25"
-    },
-    {
-      "example": false,
-      "id": "S-0022",
-      "kind": "session",
-      "rel": "sessions/S-0022-owner-close-out-w-0005-done-after-r-0018-verified-e-0012-completed.md",
-      "status": "CLOSED",
-      "title": "Owner close-out: W-0005 DONE after R-0018 VERIFIED; E-0012 COMPLETED",
-      "when": "2026-09-25"
-    },
-    {
-      "example": false,
-      "id": "W-0001",
-      "kind": "work",
-      "rel": "work/W-0001-e0011-self-play-data-pipeline-pre-register-build-run-verify.md",
-      "status": "DONE",
-      "title": "E-0011 self-play data pipeline (pre-register, build, run, verify)",
-      "when": "2026-09-25"
-    },
-    {
-      "example": false,
-      "id": "W-0005",
-      "kind": "work",
-      "rel": "work/W-0005-e-sprt-lite-comparison-harness-pre-register-build-validate.md",
-      "status": "DONE",
-      "title": "E-SPRT-lite comparison harness: pre-register, build, validate against known difference",
-      "when": "2026-09-25"
-    },
-    {
-      "example": false,
-      "id": "E-00014",
-      "kind": "experiment",
-      "rel": "experiments/E-00014-e-0014-train-only-feasibility-pass-for-e-0013-delta-star-and-s-d-inner-measurement-not-training.md",
-      "status": "PENDING",
-      "title": "E-00014 - TRAIN-ONLY feasibility pass for E-0013 (measure delta_star and s_d_inner; MEASUREMENT, not training)",
-      "when": "2026-09-26"
-    },
-    {
-      "example": false,
-      "id": "E-00015",
-      "kind": "experiment",
-      "rel": "experiments/E-00015-e-0015-count-only-realized-usable-quiet-yield-pass-for-e-0013-measurement-not-training.md",
-      "status": "PENDING",
-      "title": "E-00015 - count-only realized usable quiet yield pass for E-0013 (MEASUREMENT, not training)",
-      "when": "2026-09-26"
-    },
-    {
-      "example": false,
-      "id": "E-0013",
-      "kind": "experiment",
-      "rel": "experiments/E-0013-h-0013-texel-fit-on-verified-e-0011-dataset-game-split-holdout-tier-s-sprt-vs-pinned-stage-5.md",
-      "status": "RUNNING",
-      "title": "E-0013 — H-0013 Texel fit on the verified E-0011 dataset (game-split holdout + Tier-S SPRT vs pinned stage 5)",
-      "when": "2026-09-26"
-    },
-    {
-      "example": false,
-      "id": "HO-0013",
-      "kind": "handoff",
-      "rel": "handoffs/HO-0013-critique-e-0013-pre-registration-h-0013-texel-fit-contract-before-any-running.md",
-      "status": "DONE",
-      "title": "Critique E-0013 pre-registration (H-0013 Texel fit contract) before any running",
-      "when": "2026-09-26"
-    },
-    {
-      "example": false,
-      "id": "HO-0014",
-      "kind": "handoff",
-      "rel": "handoffs/HO-0014-re-critique-e-0013-addendum-vs-r-0019-findings-b1-b7-discharge-verification-only.md",
-      "status": "DONE",
-      "title": "Re-critique E-0013 addendum vs R-0019 findings B1-B7 (discharge verification only)",
-      "when": "2026-09-26"
-    },
-    {
-      "example": false,
-      "id": "HO-0015",
-      "kind": "handoff",
-      "rel": "handoffs/HO-0015-execute-e-0014-train-only-feasibility-pass-measurement-not-training.md",
-      "status": "REQUESTED",
-      "title": "Execute E-00014: TRAIN-ONLY feasibility pass (measurement, not training)",
-      "when": "2026-09-26"
-    },
-    {
-      "example": false,
-      "id": "HO-0016",
-      "kind": "handoff",
-      "rel": "handoffs/HO-0016-execute-e-0015-count-only-realized-yield-pass-measurement-not-training.md",
-      "status": "REQUESTED",
-      "title": "Execute E-00015: count-only realized usable quiet yield pass (measurement, not training)",
-      "when": "2026-09-26"
-    },
-    {
-      "example": false,
-      "id": "R-0019",
-      "kind": "review",
-      "rel": "reviews/R-0019-e-0013-pre-registration-critique-h-0013-texel-fit-contract-ho-0013-six-question-ruling.md",
-      "status": "COMPLETED",
-      "title": "R 0019 e 0013 pre registration critique h 0013 texel fit contract ho 0013 six question ruling",
-      "when": "2026-09-26"
-    },
-    {
-      "example": false,
-      "id": "R-0020",
-      "kind": "review",
-      "rel": "reviews/R-0020-re-critique-of-the-e-0013-addendum-vs-r-0019-b1-b7-discharge-verification-only-ho-0014.md",
-      "status": "COMPLETED",
-      "title": "R 0020 re critique of the e 0013 addendum vs r 0019 b1 b7 discharge verification only ho 0014",
-      "when": "2026-09-26"
-    },
-    {
-      "example": false,
-      "id": "R-0021",
-      "kind": "review",
-      "rel": "reviews/R-0021-independent-post-repair-critique-of-the-e-0013-addendum-seam-8-paren-ruled-b5-s2-slot-ruled-new-blocking-x4-s-0029-re-severed-the-file-tail-x5-head-side-deletion-unrecorded-e-0013-stays-pending.md",
-      "status": "COMPLETED",
-      "title": "R 0021 independent post repair critique of the e 0013 addendum seam 8 paren ruled b5 s2 slot ruled new blocking x4 s 0029 re severed the file tail x5 head side deletion unrecorded e 0013 stays pending",
-      "when": "2026-09-26"
-    },
-    {
-      "example": false,
-      "id": "R-0022",
-      "kind": "review",
-      "rel": "reviews/R-0022-r-0022-independent-verification-of-s-0030-all-four-r-0021-findings-applied-the-10-residue-does-not-block-one-new-non-blocking-pointer-defect-y1-in-the-repair-section-s-own-x4-pointers.md",
-      "status": "COMPLETED",
-      "title": "R 0022 r 0022 independent verification of s 0030 all four r 0021 findings applied the 10 residue does not block one new non blocking pointer defect y1 in the repair section s own x4 pointers",
-      "when": "2026-09-26"
-    },
-    {
-      "example": false,
-      "id": "R-0023",
-      "kind": "review",
-      "rel": "reviews/R-0023-r-0023-append-only-contract-re-specification-and-r-0022-old-l-row-disposition.md",
-      "status": "COMPLETED",
-      "title": "R 0023 r 0023 append only contract re specification and r 0022 old l row disposition",
-      "when": "2026-09-26"
-    },
-    {
-      "example": false,
-      "id": "R-0024",
-      "kind": "review",
-      "rel": "reviews/R-0024-confirmation-of-the-contract-repair-and-the-flip-authorisation-part-6-is-unsatisfiable-as-written-and-is-re-specified.md",
-      "status": "COMPLETED",
-      "title": "R 0024 confirmation of the contract repair and the flip authorisation part 6 is unsatisfiable as written and is re specified",
-      "when": "2026-09-26"
-    },
-    {
-      "example": false,
-      "id": "S-0023",
-      "kind": "session",
-      "rel": "sessions/S-0023-draft-e-0013-texel-pre-registration-pending-plus-ho-0013-critique-handoff.md",
-      "status": "CLOSED",
-      "title": "Draft E-0013 Texel pre-registration (PENDING) + file HO-0013 critique handoff",
-      "when": "2026-09-26"
-    },
-    {
-      "example": false,
-      "id": "S-0024",
-      "kind": "session",
-      "rel": "sessions/S-0024-ho-0013-r-0019-e-0013-texel-pre-registration-critique-not-clean-seven-blocking-findings.md",
-      "status": "CLOSED",
-      "title": "HO-0013 / R-0019 — critique of the E-0013 Texel pre-registration: NOT CLEAN, seven blocking findings, E-0013 stays PENDING",
-      "when": "2026-09-26"
-    },
-    {
-      "example": false,
-      "id": "S-0025",
-      "kind": "session",
-      "rel": "sessions/S-0025-e-0013-addendum-discharging-r-0019-b1-b7-shrink-branch-e-00014-e-00015-pre-registered-ho-0014-15-16.md",
-      "status": "CLOSED",
-      "title": "E-0013 addendum discharging R-0019 B1-B7 (SHRINK branch) + E-00014/E-00015 pre-registered + HO-0014/15/16",
-      "when": "2026-09-26"
-    },
-    {
-      "example": false,
-      "id": "S-0026",
-      "kind": "session",
-      "rel": "sessions/S-0026-mechanical-repair-of-ho-0014-15-16-section-stranding-and-two-cut-sentences.md",
-      "status": "CLOSED",
-      "title": "Mechanical repair of HO-0014/15/16 section stranding and two cut sentences",
-      "when": "2026-09-26"
-    },
-    {
-      "example": false,
-      "id": "S-0027",
-      "kind": "session",
-      "rel": "sessions/S-0027-ho-0014-re-critique-of-the-e-0013-addendum-vs-r-0019-b1-b7-not-clean-on-two-new-blocking-findings-x1-truncated-interleaved-addendum-x2-false-parameter-count-rationale-all-three-integrity-properties-hold.md",
-      "status": "CLOSED",
-      "title": "HO-0014 re-critique of the E-0013 addendum vs R-0019 B1-B7 - NOT CLEAN on two new blocking findings (X1 truncated/interleaved addendum, X2 false parameter-count rationale); all three integrity properties HOLD",
-      "when": "2026-09-26"
-    },
-    {
-      "example": false,
-      "id": "S-0028",
-      "kind": "session",
-      "rel": "sessions/S-0028-r-0020-repair-of-the-e-0013-addendum-10-seams-joined-contingency-table-moved-f-u1-f-u6-rejoined-x2-arithmetic-inserted-x3-owners-set-e-0013-stays-pending.md",
-      "status": "CLOSED",
-      "title": "R-0020 repair of the E-0013 addendum: 10 seams joined, contingency table moved, F-U1..F-U6 rejoined, X2 arithmetic inserted, X3 owners set; E-0013 stays PENDING",
-      "when": "2026-09-26"
-    },
-    {
-      "example": false,
-      "id": "S-0029",
-      "kind": "session",
-      "rel": "sessions/S-0029-r-0020-repair-second-pass-seam-8-misjoin-fixed-duplicate-b6-citation-removed-b5-s2-empty-slot-named-and-dispositioned-verification-recorded-e-0013-stays-pending.md",
-      "status": "CLOSED",
-      "title": "R-0020 repair second pass: seam 8 misjoin fixed (duplicate B6 citation removed), B5 s2 empty slot named and dispositioned, verification recorded; E-0013 stays PENDING",
-      "when": "2026-09-26"
-    },
-    {
-      "example": false,
       "id": "S-0030",
       "kind": "session",
       "rel": "sessions/S-0030-r-0021-repair-of-the-e-0013-addendum-x4-tail-rejoined-seam-8-paren-closed-b5-s2-heading-withdrawn-x5-recorded-append-only-baseline-re-labelled-e-0013-stays-pending.md",
@@ -2564,6 +2355,231 @@
       "status": "CLOSED",
       "title": "e0013-band-retired-provenance-pinned-label-step-built",
       "when": "2026-09-27"
+    },
+    {
+      "example": false,
+      "id": "CLM-0001",
+      "kind": "claim",
+      "rel": "claims/CLM-0001-texel-fit-of-the-tapered-eval-terms-beats-the-hand-tuned-stage-6.md",
+      "status": "OPEN",
+      "title": "Texel fit of the tapered eval terms beats the hand-tuned stage 6",
+      "when": "2026-09-29"
+    },
+    {
+      "example": false,
+      "id": "CLM-0002",
+      "kind": "claim",
+      "rel": "claims/CLM-0002-quiet-label-choice-determines-the-fit-target-s-attainable-gain.md",
+      "status": "OPEN",
+      "title": "Quiet-label choice determines the fit target's attainable gain",
+      "when": "2026-09-29"
+    },
+    {
+      "example": false,
+      "id": "CLM-0003",
+      "kind": "claim",
+      "rel": "claims/CLM-0003-fresh-game-overlap-must-be-zero-before-a-fitted-artifact-is-consumed.md",
+      "status": "OPEN",
+      "title": "Fresh-game overlap must be zero before a fitted artifact is consumed",
+      "when": "2026-09-29"
+    },
+    {
+      "example": false,
+      "id": "FND-0001",
+      "kind": "finding",
+      "rel": "findings/FND-0001-b1-branch-decision-shrink-option-i-with-its-cost-written-down.md",
+      "status": "OPEN",
+      "title": "B1 BRANCH DECISION: **SHRINK** (option (i)), with its cost written down",
+      "when": "2026-09-29"
+    },
+    {
+      "example": false,
+      "id": "FND-0002",
+      "kind": "finding",
+      "rel": "findings/FND-0002-b2-q-label-the-fit-target-s-colour-frame-and-the-label-s-attainable-gai.md",
+      "status": "OPEN",
+      "title": "B2 Q-LABEL: the fit target's colour frame, and the label's attainable gai",
+      "when": "2026-09-29"
+    },
+    {
+      "example": false,
+      "id": "FND-0003",
+      "kind": "finding",
+      "rel": "findings/FND-0003-b3-the-0-002-margin-has-no-derivation-and-the-power-justification-offere.md",
+      "status": "OPEN",
+      "title": "B3 The 0.002 margin has no derivation, and the power justification offere",
+      "when": "2026-09-29"
+    },
+    {
+      "example": false,
+      "id": "FND-0004",
+      "kind": "finding",
+      "rel": "findings/FND-0004-b4-q-fit-and-the-suite-tolerance-were-open-the-named-spsa-alternative-le.md",
+      "status": "OPEN",
+      "title": "B4 Q-FIT and the suite tolerance were OPEN, the named SPSA alternative le",
+      "when": "2026-09-29"
+    },
+    {
+      "example": false,
+      "id": "FND-0005",
+      "kind": "finding",
+      "rel": "findings/FND-0005-b5-q-scope-the-king-pst-choice-was-deferred-and-the-consequence-ladder.md",
+      "status": "OPEN",
+      "title": "B5 Q-SCOPE: the KING-PST choice was deferred, and the consequence ladder",
+      "when": "2026-09-29"
+    },
+    {
+      "example": false,
+      "id": "FND-0006",
+      "kind": "finding",
+      "rel": "findings/FND-0006-b6-the-yield-the-measured-label-was-applied-to-a-number-measured-for-a.md",
+      "status": "OPEN",
+      "title": "B6 The yield: the \"measured\" label was applied to a number measured for a",
+      "when": "2026-09-29"
+    },
+    {
+      "example": false,
+      "id": "FND-0007",
+      "kind": "finding",
+      "rel": "findings/FND-0007-b7-q-0006-s-official-readiness-gate-7-was-missing-from-e-0013.md",
+      "status": "OPEN",
+      "title": "B7 Q-0006's official readiness gate 7 was missing from E-0013",
+      "when": "2026-09-29"
+    },
+    {
+      "example": false,
+      "id": "FND-0008",
+      "kind": "finding",
+      "rel": "findings/FND-0008-f-u1-p0-deferred-by-r-0019-unchanged-here-the-h-0013-dataset-discrepa.md",
+      "status": "OPEN",
+      "title": "F-U1 P0 (deferred by R-0019, unchanged here).** The H-0013 dataset-discrepa",
+      "when": "2026-09-29"
+    },
+    {
+      "example": false,
+      "id": "FND-0009",
+      "kind": "finding",
+      "rel": "findings/FND-0009-f-u2-the-deferred-strength-contract-the-cost-of-the-b1-shrink-decision.md",
+      "status": "OPEN",
+      "title": "F-U2 the deferred strength contract (the cost of the B1 SHRINK decision).**",
+      "when": "2026-09-29"
+    },
+    {
+      "example": false,
+      "id": "FND-0010",
+      "kind": "finding",
+      "rel": "findings/FND-0010-f-u3-contingency-routing-for-b3-branch-x-2-inconclusive-by-power-route.md",
+      "status": "OPEN",
+      "title": "F-U3 contingency routing for B3 branch X-2 (INCONCLUSIVE-BY-POWER).** Route",
+      "when": "2026-09-29"
+    },
+    {
+      "example": false,
+      "id": "FND-0011",
+      "kind": "finding",
+      "rel": "findings/FND-0011-f-u4-the-e-0011-n1-backwards-citation-correction-see-b5-sentence-3-fil.md",
+      "status": "OPEN",
+      "title": "F-U4 the E-0011 N1 backwards-citation correction (see B5 sentence 3).** Fil",
+      "when": "2026-09-29"
+    },
+    {
+      "example": false,
+      "id": "FND-0012",
+      "kind": "finding",
+      "rel": "findings/FND-0012-f-u5-q-0006-readiness-gate-7-see-b7-on-any-terminal-verdict-this-recor.md",
+      "status": "OPEN",
+      "title": "F-U5 Q-0006 readiness gate 7 (see B7).** On any terminal verdict this recor",
+      "when": "2026-09-29"
+    },
+    {
+      "example": false,
+      "id": "FND-0013",
+      "kind": "finding",
+      "rel": "findings/FND-0013-f-u6-dn6-routing-flag-dec-0010-186-187-s-stale-pending-independent.md",
+      "status": "OPEN",
+      "title": "F-U6 DN6 routing.** Flag DEC-0010:186-187's stale \"Pending: independent",
+      "when": "2026-09-29"
+    },
+    {
+      "example": false,
+      "id": "FND-0014",
+      "kind": "finding",
+      "rel": "findings/FND-0014-x1-the-addendum-was-a-truncated-interleaved-document-ten-sentences-we.md",
+      "status": "OPEN",
+      "title": "X1 the addendum was a truncated, interleaved document.** Ten sentences we",
+      "when": "2026-09-29"
+    },
+    {
+      "example": false,
+      "id": "FND-0015",
+      "kind": "finding",
+      "rel": "findings/FND-0015-x2-b5-s-freezing-rationale-was-arithmetically-false-the-claim-that-fre.md",
+      "status": "OPEN",
+      "title": "X2 B5's freezing rationale was arithmetically false.** The claim that fre",
+      "when": "2026-09-29"
+    },
+    {
+      "example": false,
+      "id": "FND-0016",
+      "kind": "finding",
+      "rel": "findings/FND-0016-x3-ownership-owner-systems-researcher-set-on-e-00014-and-e-00015-t.md",
+      "status": "OPEN",
+      "title": "X3 ownership.** `owner: systems-researcher` set on E-00014 and E-00015, t",
+      "when": "2026-09-29"
+    },
+    {
+      "example": false,
+      "id": "FND-0017",
+      "kind": "finding",
+      "rel": "findings/FND-0017-x4-discharged.md",
+      "status": "OPEN",
+      "title": "X4 DISCHARGED.**",
+      "when": "2026-09-29"
+    },
+    {
+      "example": false,
+      "id": "FND-0018",
+      "kind": "finding",
+      "rel": "findings/FND-0018-x5-discharged.md",
+      "status": "OPEN",
+      "title": "X5 DISCHARGED.**",
+      "when": "2026-09-29"
+    },
+    {
+      "example": false,
+      "id": "FND-0019",
+      "kind": "finding",
+      "rel": "findings/FND-0019-z1-blocking-repaired-the-severed-sentence-at-l1376-l1377.md",
+      "status": "OPEN",
+      "title": "Z1 BLOCKING, REPAIRED: the severed sentence at L1376-L1377",
+      "when": "2026-09-29"
+    },
+    {
+      "example": false,
+      "id": "FND-0020",
+      "kind": "finding",
+      "rel": "findings/FND-0020-z2-corrected-the-unreproducible-projected-hash-withdrawn.md",
+      "status": "OPEN",
+      "title": "Z2 CORRECTED: the unreproducible projected hash, withdrawn",
+      "when": "2026-09-29"
+    },
+    {
+      "example": false,
+      "id": "FND-0021",
+      "kind": "finding",
+      "rel": "findings/FND-0021-z3-corrected-the-boundary-table-re-pinned-and-every-figure-labelled-wit.md",
+      "status": "OPEN",
+      "title": "Z3 CORRECTED: the boundary table, re-pinned and every figure labelled wit",
+      "when": "2026-09-29"
+    },
+    {
+      "example": false,
+      "id": "FND-0022",
+      "kind": "finding",
+      "rel": "findings/FND-0022-z4-the-head-inside-a-committed-column-header-corrected-s-0034.md",
+      "status": "OPEN",
+      "title": "Z4 the HEAD inside a committed column header (CORRECTED, S-0034)",
+      "when": "2026-09-29"
     }
   ]
 }

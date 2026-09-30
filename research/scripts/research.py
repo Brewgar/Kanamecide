@@ -38,8 +38,10 @@ RUN_DIR = RESEARCH_DIR / "runs"
 SES_DIR = RESEARCH_DIR / "sessions"
 QUESTIONS_DIR = RESEARCH_DIR / "questions"
 PRINCIPLES_DIR = RESEARCH_DIR / "principles"
-EVIDENCE_DIR = RESEARCH_DIR / "evidence"
+CLAIM_DIR = RESEARCH_DIR / "claims"
+FINDING_DIR = RESEARCH_DIR / "findings"
 PROJECT_STATE = RESEARCH_DIR / "project_state.md"
+EVIDENCE_DIR = RESEARCH_DIR / "evidence"
 
 # --- Closed status vocabularies (DEC-0009: an unknown status is a LOUD error) ---
 # `status` is the LIFECYCLE field; the scientific verdict of an experiment lives in
@@ -60,6 +62,10 @@ STATUS_VOCAB = {
     "question": {"OPEN", "INVESTIGATING", "ANSWERED", "BLOCKED", "ABANDONED", "SUPERSEDED"},
     "principle": {"ACTIVE", "REVISED", "RETIRED"},
     "evidence": {"REGISTERED", "SUPERSEDED", "LOST"},
+    # DEC-0012: atomic claim + closeable finding records.
+    "claim": {"OPEN", "SUPPORTED", "REJECTED", "INCONCLUSIVE", "SUPERSEDED", "UNTESTED",
+              "DISPUTED"},
+    "finding": {"OPEN", "RESOLVED", "DISPUTED", "WITHDRAWN", "SUPERSEDED"},
 }
 QUESTION_OPEN = {"OPEN", "INVESTIGATING", "BLOCKED"}
 # Verdict prefixes accepted in an experiment's `result` (free-form text may follow).
@@ -513,6 +519,8 @@ def cmd_debates(_args): _list("Debates", DEB_DIR, "debate")
 def cmd_decisions(_args): _list("Decisions", DEC_DIR, "decision")
 def cmd_experiments(_args): _list("Experiments", EXP_DIR, "experiment")
 def cmd_failures(_args): _list("Failures", FAIL_DIR, "failure")
+def cmd_claims(_args): _list("Claims", CLAIM_DIR, "claim")
+def cmd_findings(_args): _list("Findings", FINDING_DIR, "finding")
 
 
 def _scaffold(kind_dir: Path, prefix: str, width: int, tpl: str, args_title, extra=None):
@@ -531,6 +539,11 @@ def cmd_new_debate(a): _scaffold(DEB_DIR, "D-", 4, "debate.md", a.title)
 def cmd_new_decision(a): _scaffold(DEC_DIR, "DEC-", 4, "decision.md", a.title)
 def cmd_new_experiment(a): _scaffold(EXP_DIR, "E-", 5, "experiment.md", a.title)
 def cmd_new_failure(a): _scaffold(FAIL_DIR, "F-", 4, "failure.md", a.title)
+def cmd_new_claim(a): _scaffold(CLAIM_DIR, "CLM-", 4, "claim.md", a.title)
+def cmd_new_finding(a):
+    _scaffold(FINDING_DIR, "FND-", 4, "finding.md", a.title,
+              {"TARGET": a.target or "", "RAISED_BY": a.raised_by or "",
+               "SEVERITY": a.severity or "major", "REVIEW": a.review or ""})
 
 
 def cmd_new_review(a):
@@ -678,6 +691,10 @@ def _index_lines() -> list:
     section("Pending / Running Experiments", EXP_DIR, "experiment", EXP_PENDING | EXP_RUNNING)
     section("Completed Experiments", EXP_DIR, "experiment", {"COMPLETED", "ABANDONED"})
     section("Failures", FAIL_DIR, "failure")
+    section("Atomic Claims", CLAIM_DIR, "claim")
+    section("Findings (open)", FINDING_DIR, "finding", {"OPEN", "DISPUTED"})
+    section("Findings (closed)", FINDING_DIR, "finding",
+            {"RESOLVED", "WITHDRAWN", "SUPERSEDED"})
     section("Decisions", DEC_DIR, "decision")
     section("Reviews", REV_DIR, "review")
     section("Open Questions", QUESTIONS_DIR, "question", QUESTION_OPEN)
@@ -699,6 +716,7 @@ def _index_lines() -> list:
                             (EXP_DIR, "experiment"), (FAIL_DIR, "failure"), (REV_DIR, "review"),
                             (QUESTIONS_DIR, "question"), (PRINCIPLES_DIR, "principle"),
                             (EVIDENCE_DIR, "evidence"),
+                            (CLAIM_DIR, "claim"), (FINDING_DIR, "finding"),
                             (WORK_DIR, "work"), (HO_DIR, "handoff"), (RUN_DIR, "run"),
                             (SES_DIR, "session")):
         all_records.extend(scan(directory, kind))
@@ -845,6 +863,8 @@ def cmd_validate(_args):
         (QUESTIONS_DIR, "question", {"status", "created"}),
         (PRINCIPLES_DIR, "principle", {"status", "created"}),
         (EVIDENCE_DIR, "evidence", {"status", "created", "path"}),
+        (CLAIM_DIR, "claim", {"status", "created"}),
+        (FINDING_DIR, "finding", {"status", "created", "target"}),
     ]
     for directory, kind, required in specs:
         problems.extend(_record_problems(directory, kind, required, seen, warnings))
@@ -1321,6 +1341,8 @@ def build_parser():
     sub.add_parser("decisions").set_defaults(func=cmd_decisions)
     sub.add_parser("experiments").set_defaults(func=cmd_experiments)
     sub.add_parser("failures").set_defaults(func=cmd_failures)
+    sub.add_parser("claims").set_defaults(func=cmd_claims)
+    sub.add_parser("findings").set_defaults(func=cmd_findings)
     sub.add_parser("work").set_defaults(func=cmd_work)
     sub.add_parser("handoffs").set_defaults(func=cmd_handoffs)
     sub.add_parser("runs").set_defaults(func=cmd_runs)
@@ -1336,10 +1358,18 @@ def build_parser():
 
     for name, dest in (("new-hypothesis", "cmd_new_hypothesis"), ("new-debate", "cmd_new_debate"),
                        ("new-decision", "cmd_new_decision"), ("new-experiment", "cmd_new_experiment"),
-                       ("new-failure", "cmd_new_failure")):
+                       ("new-failure", "cmd_new_failure"), ("new-claim", "cmd_new_claim")):
         sp = sub.add_parser(name)
         sp.add_argument("--title", "-t")
         sp.set_defaults(func=globals()[dest])
+
+    sf = sub.add_parser("new-finding")
+    sf.add_argument("--title", "-t")
+    sf.add_argument("--target")
+    sf.add_argument("--raised-by", default="")
+    sf.add_argument("--severity", default="major")
+    sf.add_argument("--review", default="")
+    sf.set_defaults(func=cmd_new_finding)
 
     sw = sub.add_parser("new-work")
     sw.add_argument("--title", "-t")

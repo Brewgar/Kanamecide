@@ -60,6 +60,7 @@ SCHEMA_VERSION = 2
 LAYERS = {
     "evidence": 0, "run": 1, "work": 1, "handoff": 1, "session": 1, "experiment": 1,
     "hypothesis": 2, "debate": 2, "decision": 2, "review": 2, "failure": 2,
+    "claim": 2, "finding": 2,
     "question": 3, "principle": 4, "report": 5, "doc": 6,
 }
 
@@ -68,6 +69,8 @@ STATUS_VOCAB.update({
     "question": {"OPEN", "INVESTIGATING", "ANSWERED", "BLOCKED", "ABANDONED", "SUPERSEDED"},
     "principle": {"ACTIVE", "REVISED", "RETIRED"},
     "evidence": {"REGISTERED", "SUPERSEDED", "LOST"},
+    "claim": set(R.STATUS_VOCAB["claim"]),
+    "finding": set(R.STATUS_VOCAB["finding"]),
 })
 
 # front-matter field -> edge kind (src record -> dst record)
@@ -159,6 +162,7 @@ def _guess_kind(relpath: str, fm: dict) -> str:
              "experiments": "experiment", "failures": "failure", "reviews": "review",
              "work": "work", "handoffs": "handoff", "questions": "question",
              "principles": "principle", "evidence": "evidence",
+             "claims": "claim", "findings": "finding",
              "sessions": "session", "runs": "run"}
     for part in relpath.replace("\\", "/").split("/")[:-1]:
         if part in guess:

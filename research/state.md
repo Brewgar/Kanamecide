@@ -1,7 +1,7 @@
 # Research State (GENERATED — do not edit)
 
 Derived from the record store by `research.py state`. Regenerate after every change.
-Generated: 2026-09-27T23:11:37; schema 2.
+Generated: 2026-09-30T10:07:50; schema 2.
 Every entry is a PROJECTION of the linked records — follow them before believing.
 
 ## Current best beliefs (hypotheses with measured weight)
@@ -43,21 +43,21 @@ Every entry is a PROJECTION of the linked records — follow them before believi
 - hypothesis **H-0002-magic-stub** Magic Bitboards with PEXT Provide >=3x NPS Speedup — SUPERSEDED. No revisit condition recorded.
 
 ## Recent timeline
-- 2026-09-26 session S-0030 (CLOSED) : R-0021 repair of the E-0013 addendum: X4 tail rejoined, seam-8 paren closed, B5 s2 heading withdrawn, X5 recorded, append-only baseline re-labelled; E-0013 stays PENDING
-- 2026-09-26 session S-0031 (CLOSED) : Y1 fix (R-0022 four pointers) + bounded +10 pointer rewrite (7 in-band rows; 6 old-ref rows exempt) + RUNNING authorisation recorded but NOT executed (status is L5, inside the hash-proved L1-428 block)
-- 2026-09-26 session S-0032 (CLOSED) : R-0023 adopted - Z1 repaired (one word), contract (a)-(e) verbatim, Z2 withdrawn, Z3 re-pinned, Ruling 2 recorded; FLIP NOT EXECUTED - condition part 6 unmet (fresh adversarial critique required, owner seat may not self-verify); E-0013 stays PENDING
-- 2026-09-26 session S-0033 (CLOSED) : Two stale evidence lines in E-0013 REVISED in place (Z2 prose + condition row 10) - the withdrawn figure 8ad61ccd/00a727 occurs 4x, all inside the Z2 withdrawal record, in NO live claim; orchestrator count; seam 22, 0 new; E-0013 stays PENDING
-- 2026-09-27 handoff HO-0017 (REQUESTED) : Independently verify the E-0013 L5-only lifecycle flip (R-0024 Q1-Q8)
-- 2026-09-27 handoff HO-0018 (REQUESTED) : Implement the E-0013 Option-(1) leakage remediation F-U7..F-U13: the dedup key is the normalized FEN
-- 2026-09-27 handoff HO-0019 (REQUESTED) : Independently verify the E-0013 leakage ruling (S-0037 addendum): was option (1) chosen on the contract's own terms?
-- 2026-09-27 review R-0025 (COMPLETED) : R 0025 independent audit of the e 0013 l5 only lifecycle flip under r 0024 q1 q8 ho 0017
-- 2026-09-27 session S-0034 (CLOSED) : E-0013 L5-only flip PENDING -> RUNNING under R-0024 (6a6eb0a); Z4 header fixed separately (f2b627c); Q1-Q8 handed to the verification-auditor via HO-0017
-- 2026-09-27 session S-0035 (CLOSED) : ho-0017-independent-audit-of-the-e-0013-l5-flip-r-0025-verified-q1-q8-no-revert
-- 2026-09-27 session S-0036 (CLOSED) : e0013-parameter-table-evaluator-built-and-transcription-verified-overlap-0-gate-fails-27-on-the-real-dataset
-- 2026-09-27 session S-0037 (CLOSED) : e0013-leakage-ruling-normalized-fen-dedup-key
-- 2026-09-27 session S-0038 (CLOSED) : e0013-normalized-fen-dedup-key-f-u7-f-u13
-- 2026-09-27 session S-0039 (CLOSED) : e0013-band-retired-artifacts-pinned-ruling-correction
-- 2026-09-27 session S-0040 (CLOSED) : e0013-band-retired-provenance-pinned-label-step-built
+- 2026-09-29 finding FND-0008 (OPEN) : F-U1 P0 (deferred by R-0019, unchanged here).** The H-0013 dataset-discrepa
+- 2026-09-29 finding FND-0009 (OPEN) : F-U2 the deferred strength contract (the cost of the B1 SHRINK decision).**
+- 2026-09-29 finding FND-0010 (OPEN) : F-U3 contingency routing for B3 branch X-2 (INCONCLUSIVE-BY-POWER).** Route
+- 2026-09-29 finding FND-0011 (OPEN) : F-U4 the E-0011 N1 backwards-citation correction (see B5 sentence 3).** Fil
+- 2026-09-29 finding FND-0012 (OPEN) : F-U5 Q-0006 readiness gate 7 (see B7).** On any terminal verdict this recor
+- 2026-09-29 finding FND-0013 (OPEN) : F-U6 DN6 routing.** Flag DEC-0010:186-187's stale "Pending: independent
+- 2026-09-29 finding FND-0014 (OPEN) : X1 the addendum was a truncated, interleaved document.** Ten sentences we
+- 2026-09-29 finding FND-0015 (OPEN) : X2 B5's freezing rationale was arithmetically false.** The claim that fre
+- 2026-09-29 finding FND-0016 (OPEN) : X3 ownership.** `owner: systems-researcher` set on E-00014 and E-00015, t
+- 2026-09-29 finding FND-0017 (OPEN) : X4 DISCHARGED.**
+- 2026-09-29 finding FND-0018 (OPEN) : X5 DISCHARGED.**
+- 2026-09-29 finding FND-0019 (OPEN) : Z1 BLOCKING, REPAIRED: the severed sentence at L1376-L1377
+- 2026-09-29 finding FND-0020 (OPEN) : Z2 CORRECTED: the unreproducible projected hash, withdrawn
+- 2026-09-29 finding FND-0021 (OPEN) : Z3 CORRECTED: the boundary table, re-pinned and every figure labelled wit
+- 2026-09-29 finding FND-0022 (OPEN) : Z4 the HEAD inside a committed column header (CORRECTED, S-0034)
 
 ## Metrics
 ```
@@ -65,13 +65,15 @@ Every entry is a PROJECTION of the linked records — follow them before believi
   "by_kind": {
     "agent_profile": 1,
     "beliefs": 1,
+    "claim": 3,
     "current_position": 5,
     "debate": 7,
     "decision": 11,
-    "doc": 14,
+    "doc": 15,
     "evidence": 8,
     "experiment": 15,
     "failure": 2,
+    "finding": 22,
     "handoff": 19,
     "hypothesis": 17,
     "principle": 4,
@@ -90,7 +92,7 @@ Every entry is a PROJECTION of the linked records — follow them before believi
     "DONE": 18,
     "DRAFT": 1,
     "IN_PROGRESS": 2,
-    "OPEN": 28,
+    "OPEN": 53,
     "PENDING": 5,
     "RECORDED": 2,
     "REGISTERED": 8,
@@ -101,12 +103,12 @@ Every entry is a PROJECTION of the linked records — follow them before believi
   },
   "code_files": 29,
   "contradiction_candidates": 0,
-  "dangling_ids": 11,
+  "dangling_ids": 12,
   "duplicate_candidates": 2,
-  "edges_total": 3838,
+  "edges_total": 3936,
   "legacy_experiments_without_pre_registration": 6,
   "open_questions": 8,
-  "records_total": 203,
+  "records_total": 229,
   "revival_candidates": 5
 }
 
