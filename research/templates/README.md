@@ -9,6 +9,8 @@ these templates and fills in the `{{ID}}`, `{{TITLE}}`, `{{AGENT}}`, `{{ROLE}}`,
 | Template | Used by | Lives in |
 |---|---|---|
 | hypothesis.md | `new-hypothesis` | `research/hypotheses/` |
+| claim.md | `new-claim` | `research/claims/` |
+| finding.md | `new-finding` | `research/findings/` |
 | debate.md | `new-debate` | `research/debates/` |
 | decision.md | `new-decision` | `research/decisions/` |
 | experiment.md | `new-experiment` | `research/experiments/` |

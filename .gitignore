@@ -148,3 +148,6 @@ e0010_smk_games.jsonl
 e0010_waiter_*.txt
 e0010_ALL_done.txt
 _chtest.py
+# DEC-0012 imem: derived index cache (disposable; rebuild via imem.py index) + task scratch.
+research/_index/
+_obs/
