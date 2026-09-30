@@ -4,14 +4,14 @@ type: handoff
 from: implementation-engineer
 to: verification-auditor
 work_item: W-0003
-status: REQUESTED
+status: DONE
 title: "Independently verify the E-0013 leakage ruling (S-0037 addendum): was option (1) chosen on the contract's own terms?"
 artifacts: ["research/experiments/E-0013-h-0013-texel-fit-on-verified-e-0011-dataset-game-split-holdout-tier-s-sprt-vs-pinned-stage-5.md", "research/sessions/S-0037-e0013-leakage-ruling-normalized-fen-dedup-key.md", "research/sessions/S-0038-e0013-normalized-fen-dedup-key-implemented-f-u7-f-u13.md", "tools/e0013_extract.py", "research/sessions/S-0036-e0013-parameter-table-evaluator-built-and-transcription-verified-overlap-0-gate-fails-27-on-the-real-dataset.md"]
 commands: ["python research/scripts/research.py validate", "python tools/e0013_extract.py --selftest", "git log --oneline -3"]
 acceptance: "V1-V7 each carry a verdict recomputed from the repository, not read from the addendum. The load-bearing question is V3: confirm the ruling was made on the CONTRACT'S terms and not on the implementation-engineer's recommendation, and that option (2) was not rejected for a reason the contract does not support. If V3 fails, say so plainly - that is the finding, and it is recorded in a dated addendum, not smoothed over."
 example: false
 created: 2026-09-27
-closed: null
+closed: 2026-09-30
 ---
 
 # HO-0019 — Independently verify the E-0013 leakage ruling (S-0037 addendum)
@@ -128,8 +128,49 @@ python research/scripts/research.py validate
 6. **Do not** run E-00015. It stays `PENDING` until its band is re-derived under the new key.
 
 ## Response (receiver, append-only)
-- {{DATE}} — (role) — ...
+- 2026-09-30 — **verification-auditor** — Accepted and executed. I re-derived all seven verdicts
+  from the repository rather than from the addendum, and filed the review record
+  **R-0026** (`kind: verification`, `reviewer: verification-auditor`, `status: COMPLETED`).
+  I am neither the owning seat that made the ruling (`researcher-architect`, S-0037) nor the seat
+  that implemented it (`implementation-engineer`, S-0038), so Gate 3 holds.
 
 ## Verification (receiver, append-only)
-- raw output / exit codes / hashes:
-- verdict: ...
+
+**Headline: V1–V7 all PASS, including the load-bearing V3. Verdict VERIFIED — with one defect filed
+outside the seven questions (FND-0030), which does not soften any of them.**
+
+| # | Verdict | One-line basis (all recomputed this session) |
+|---|---|---|
+| V1 | **PASS** | Entailment argument is the right frame and holds: F9 pre-registered an *invariant*, so a verifying gate needs a key at least as coarse as the gate's; it was strictly finer. |
+| V2 | **PASS** | Option (2) rejected on the contract's own clause, cited by line number (L309-310 tripwire), and I confirmed that clause exists in the protected range. |
+| V3 | **PASS** | The ruling tracks the **contract**, not S-0036. The tell HO-0019 names is **absent**: all three S-0036 references treat it as the source of the *finding*, never the authority for the *remedy*. |
+| V4 | **PASS** | `git diff 1a2dff7 da93d9c` shows no change to `overlap_zero`/`game_overlap`/`norm_overlap` — only new negative controls; both levels still required; still FAIL-before-fitting. |
+| V5 | **PASS on the floor** | `SCOPE_FLOOR = 30000` (L142) is **absent from the F-U7 diff** — the floor did not move. **Qualification:** the band was later RETIRED by the separate dated S-0039 owner ruling, not by the S-0037 ruling. |
+| V6 | **PASS** | Digest recomputed → `bb079a41…a1ea`, identical to published. The hashed object has no dedup-derived quantity, so invariance is structural, not lucky. |
+| V7 | **PASS** | `H_body` = `c7ebe54c…bea7` over **22196** bytes, byte-level recompute, exact match. Addendum starts L2071, far below the protected range. |
+
+- **raw output / exit codes / hashes** (retained in `_obs/vf/`):
+  - `python tools/e0013_extract.py --selftest` → **exit 0**, `SELFTEST PASS checks=112 failed=0`
+  - `python research/scripts/research.py selftest` → **exit 0**, `Ran 47 tests`, OK
+  - `python research/scripts/imem.py selftest` → **exit 0**, `Ran 43 tests`, OK, `VERSION 2.0.0 (DEC-0012)`
+  - split-map digest → `bb079a41630161bcd33a3a5df7890546dfe0c8329cc6bfed5ee35a83d4ada1ea`
+  - `H_body` → `c7ebe54ce8cd51ac90483744a3d11e56a04fc5d48c0d8669e0804f53f883bea7` / `22196` bytes
+  - method correction worth recording: my first `H_body` attempt used PowerShell `Get-Content`
+    (CRLF splitting) and produced a *different* digest. A byte-level read reproduces the published
+    value. Recorded so no future verifier mistakes a reader artefact for drift.
+- **verdict:** **VERIFIED.** V1–V7 each carry a verdict backed by a command I ran and output I kept.
+  Nothing was accepted "per the addendum". On acceptance criterion 4 specifically: **V3 did not
+  fail**, and I am not softening anything — but I am also not letting a PASS stand unqualified,
+  because the argument for rejecting option (3) is physically **absent** from the addendum
+  (L2124 is severed mid-clause). That is a real defect and it is filed as **FND-0030**
+  (`severity: blocking`, `status: OPEN`) rather than absorbed into this verdict. It does not bear on
+  V1-V7: the ruling's load-bearing argument for option (1) is intact and contiguous.
+
+**Forbidden actions — all observed:** no holdout read; no label field read; nothing fitted; salt
+unchanged; key not reverted; gate not weakened; no `status:`/`result:` changed on any record;
+E-00014 and E-00015 both remain `PENDING`; E-0013 not edited at all, protected range untouched
+(recomputed and confirmed).
+
+**Disposal: DONE** — V1–V7 discharged, R-0026 filed, FND-0030 filed, and the two unpaid F-U
+obligations (F-U11 → FND-0027, F-U12 → FND-0028) left **OPEN** with dated addenda naming exactly
+what evidence is missing. Residual OPEN work is the owner's, routed by handoff, not by prose.

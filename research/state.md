@@ -1,7 +1,7 @@
 # Research State (GENERATED — do not edit)
 
 Derived from the record store by `research.py state`. Regenerate after every change.
-Generated: 2026-09-30T10:07:50; schema 2.
+Generated: 2026-09-30T13:14:34; schema 2.
 Every entry is a PROJECTION of the linked records — follow them before believing.
 
 ## Current best beliefs (hypotheses with measured weight)
@@ -43,21 +43,21 @@ Every entry is a PROJECTION of the linked records — follow them before believi
 - hypothesis **H-0002-magic-stub** Magic Bitboards with PEXT Provide >=3x NPS Speedup — SUPERSEDED. No revisit condition recorded.
 
 ## Recent timeline
-- 2026-09-29 finding FND-0008 (OPEN) : F-U1 P0 (deferred by R-0019, unchanged here).** The H-0013 dataset-discrepa
-- 2026-09-29 finding FND-0009 (OPEN) : F-U2 the deferred strength contract (the cost of the B1 SHRINK decision).**
-- 2026-09-29 finding FND-0010 (OPEN) : F-U3 contingency routing for B3 branch X-2 (INCONCLUSIVE-BY-POWER).** Route
-- 2026-09-29 finding FND-0011 (OPEN) : F-U4 the E-0011 N1 backwards-citation correction (see B5 sentence 3).** Fil
-- 2026-09-29 finding FND-0012 (OPEN) : F-U5 Q-0006 readiness gate 7 (see B7).** On any terminal verdict this recor
-- 2026-09-29 finding FND-0013 (OPEN) : F-U6 DN6 routing.** Flag DEC-0010:186-187's stale "Pending: independent
-- 2026-09-29 finding FND-0014 (OPEN) : X1 the addendum was a truncated, interleaved document.** Ten sentences we
-- 2026-09-29 finding FND-0015 (OPEN) : X2 B5's freezing rationale was arithmetically false.** The claim that fre
-- 2026-09-29 finding FND-0016 (OPEN) : X3 ownership.** `owner: systems-researcher` set on E-00014 and E-00015, t
-- 2026-09-29 finding FND-0017 (OPEN) : X4 DISCHARGED.**
-- 2026-09-29 finding FND-0018 (OPEN) : X5 DISCHARGED.**
-- 2026-09-29 finding FND-0019 (OPEN) : Z1 BLOCKING, REPAIRED: the severed sentence at L1376-L1377
-- 2026-09-29 finding FND-0020 (OPEN) : Z2 CORRECTED: the unreproducible projected hash, withdrawn
-- 2026-09-29 finding FND-0021 (OPEN) : Z3 CORRECTED: the boundary table, re-pinned and every figure labelled wit
-- 2026-09-29 finding FND-0022 (OPEN) : Z4 the HEAD inside a committed column header (CORRECTED, S-0034)
+- 2026-09-29 finding FND-0020 (RESOLVED) : Z2 CORRECTED: the unreproducible projected hash, withdrawn
+- 2026-09-29 finding FND-0021 (RESOLVED) : Z3 CORRECTED: the boundary table, re-pinned and every figure labelled wit
+- 2026-09-29 finding FND-0022 (RESOLVED) : Z4 the HEAD inside a committed column header (CORRECTED, S-0034)
+- 2026-09-30 finding FND-0023 (RESOLVED) : F-U7 Change the dedup key in tools/e0013_extract.py to the normalized FEN
+- 2026-09-30 finding FND-0024 (RESOLVED) : F-U8 Repair the self-test that passed for the wrong reason
+- 2026-09-30 finding FND-0025 (RESOLVED) : F-U9 Re-derive and re-commit the split map and the artifacts
+- 2026-09-30 finding FND-0026 (RESOLVED) : F-U10 Re-derive the yield band and re-evaluate the 30,000 floor under the new key
+- 2026-09-30 finding FND-0027 (OPEN) : F-U11 Re-derive E-00014's inner partition under the new key
+- 2026-09-30 finding FND-0028 (OPEN) : F-U12 Route the new corpus limitation into Sample Validity
+- 2026-09-30 finding FND-0029 (RESOLVED) : F-U13 The gate stays blocking; do not weaken it to make the run pass
+- 2026-09-30 finding FND-0030 (OPEN) : X1-CLASS: the S-0037 leakage addendum (E-0013 L2069+) is truncated and interleaved - sentences severed mid-clause at block boundaries
+- 2026-09-30 finding FND-0031 (OPEN) : Z2-P4: the Z2 withdrawal record's own verification row P4 is stale and self-referential - it claims four occurrences of the withdrawn hash and names two line numbers that no longer hold any
+- 2026-09-30 handoff HO-0019 (DONE) : Independently verify the E-0013 leakage ruling (S-0037 addendum): was option (1) chosen on the contract's own terms?
+- 2026-09-30 review R-0026 (COMPLETED) : R 0026 independent verification of the e 0013 s 0037 leakage ruling under ho 0019 v1 v7 gate 3
+- 2026-09-30 session S-0041 (CLOSED) : E-0013 FND ledger closure (12 blocking rows), F-U7..F-U13 migration, and HO-0019 independent verification (V1-V7)
 
 ## Metrics
 ```
@@ -73,31 +73,31 @@ Every entry is a PROJECTION of the linked records — follow them before believi
     "evidence": 8,
     "experiment": 15,
     "failure": 2,
-    "finding": 22,
+    "finding": 31,
     "handoff": 19,
     "hypothesis": 17,
     "principle": 4,
     "profile": 4,
     "question": 8,
     "report": 13,
-    "review": 25,
+    "review": 26,
     "round_megaprompt": 2,
-    "session": 40,
+    "session": 41,
     "work": 7
   },
   "by_status": {
     "ACTIVE": 14,
-    "CLOSED": 40,
-    "COMPLETED": 33,
-    "DONE": 18,
+    "CLOSED": 41,
+    "COMPLETED": 34,
+    "DONE": 19,
     "DRAFT": 1,
     "IN_PROGRESS": 2,
-    "OPEN": 53,
+    "OPEN": 41,
     "PENDING": 5,
     "RECORDED": 2,
     "REGISTERED": 8,
-    "REQUESTED": 6,
-    "RESOLVED": 1,
+    "REQUESTED": 5,
+    "RESOLVED": 22,
     "RUNNING": 1,
     "SUPERSEDED": 4
   },
@@ -105,10 +105,10 @@ Every entry is a PROJECTION of the linked records — follow them before believi
   "contradiction_candidates": 0,
   "dangling_ids": 12,
   "duplicate_candidates": 2,
-  "edges_total": 3936,
+  "edges_total": 4114,
   "legacy_experiments_without_pre_registration": 6,
   "open_questions": 8,
-  "records_total": 229,
+  "records_total": 240,
   "revival_candidates": 5
 }
 

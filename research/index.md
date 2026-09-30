@@ -73,32 +73,40 @@
 
 ## Findings (open)
 
-- [FND-0001](findings/FND-0001-b1-branch-decision-shrink-option-i-with-its-cost-written-down.md) — B1 BRANCH DECISION: **SHRINK** (option (i)), with its cost written down — status=OPEN
-- [FND-0002](findings/FND-0002-b2-q-label-the-fit-target-s-colour-frame-and-the-label-s-attainable-gai.md) — B2 Q-LABEL: the fit target's colour frame, and the label's attainable gai — status=OPEN
-- [FND-0003](findings/FND-0003-b3-the-0-002-margin-has-no-derivation-and-the-power-justification-offere.md) — B3 The 0.002 margin has no derivation, and the power justification offere — status=OPEN
-- [FND-0004](findings/FND-0004-b4-q-fit-and-the-suite-tolerance-were-open-the-named-spsa-alternative-le.md) — B4 Q-FIT and the suite tolerance were OPEN, the named SPSA alternative le — status=OPEN
-- [FND-0005](findings/FND-0005-b5-q-scope-the-king-pst-choice-was-deferred-and-the-consequence-ladder.md) — B5 Q-SCOPE: the KING-PST choice was deferred, and the consequence ladder — status=OPEN
-- [FND-0006](findings/FND-0006-b6-the-yield-the-measured-label-was-applied-to-a-number-measured-for-a.md) — B6 The yield: the "measured" label was applied to a number measured for a — status=OPEN
-- [FND-0007](findings/FND-0007-b7-q-0006-s-official-readiness-gate-7-was-missing-from-e-0013.md) — B7 Q-0006's official readiness gate 7 was missing from E-0013 — status=OPEN
 - [FND-0008](findings/FND-0008-f-u1-p0-deferred-by-r-0019-unchanged-here-the-h-0013-dataset-discrepa.md) — F-U1 P0 (deferred by R-0019, unchanged here).** The H-0013 dataset-discrepa — status=OPEN
 - [FND-0009](findings/FND-0009-f-u2-the-deferred-strength-contract-the-cost-of-the-b1-shrink-decision.md) — F-U2 the deferred strength contract (the cost of the B1 SHRINK decision).** — status=OPEN
 - [FND-0010](findings/FND-0010-f-u3-contingency-routing-for-b3-branch-x-2-inconclusive-by-power-route.md) — F-U3 contingency routing for B3 branch X-2 (INCONCLUSIVE-BY-POWER).** Route — status=OPEN
 - [FND-0011](findings/FND-0011-f-u4-the-e-0011-n1-backwards-citation-correction-see-b5-sentence-3-fil.md) — F-U4 the E-0011 N1 backwards-citation correction (see B5 sentence 3).** Fil — status=OPEN
 - [FND-0012](findings/FND-0012-f-u5-q-0006-readiness-gate-7-see-b7-on-any-terminal-verdict-this-recor.md) — F-U5 Q-0006 readiness gate 7 (see B7).** On any terminal verdict this recor — status=OPEN
 - [FND-0013](findings/FND-0013-f-u6-dn6-routing-flag-dec-0010-186-187-s-stale-pending-independent.md) — F-U6 DN6 routing.** Flag DEC-0010:186-187's stale "Pending: independent — status=OPEN
-- [FND-0014](findings/FND-0014-x1-the-addendum-was-a-truncated-interleaved-document-ten-sentences-we.md) — X1 the addendum was a truncated, interleaved document.** Ten sentences we — status=OPEN
-- [FND-0015](findings/FND-0015-x2-b5-s-freezing-rationale-was-arithmetically-false-the-claim-that-fre.md) — X2 B5's freezing rationale was arithmetically false.** The claim that fre — status=OPEN
-- [FND-0016](findings/FND-0016-x3-ownership-owner-systems-researcher-set-on-e-00014-and-e-00015-t.md) — X3 ownership.** `owner: systems-researcher` set on E-00014 and E-00015, t — status=OPEN
-- [FND-0017](findings/FND-0017-x4-discharged.md) — X4 DISCHARGED.** — status=OPEN
-- [FND-0018](findings/FND-0018-x5-discharged.md) — X5 DISCHARGED.** — status=OPEN
-- [FND-0019](findings/FND-0019-z1-blocking-repaired-the-severed-sentence-at-l1376-l1377.md) — Z1 BLOCKING, REPAIRED: the severed sentence at L1376-L1377 — status=OPEN
-- [FND-0020](findings/FND-0020-z2-corrected-the-unreproducible-projected-hash-withdrawn.md) — Z2 CORRECTED: the unreproducible projected hash, withdrawn — status=OPEN
-- [FND-0021](findings/FND-0021-z3-corrected-the-boundary-table-re-pinned-and-every-figure-labelled-wit.md) — Z3 CORRECTED: the boundary table, re-pinned and every figure labelled wit — status=OPEN
-- [FND-0022](findings/FND-0022-z4-the-head-inside-a-committed-column-header-corrected-s-0034.md) — Z4 the HEAD inside a committed column header (CORRECTED, S-0034) — status=OPEN
+- [FND-0027](findings/FND-0027-f-u11-re-derive-e-00014-s-inner-partition-under-the-new-key.md) — F-U11 Re-derive E-00014's inner partition under the new key — status=OPEN
+- [FND-0028](findings/FND-0028-f-u12-route-the-new-corpus-limitation-into-sample-validity.md) — F-U12 Route the new corpus limitation into Sample Validity — status=OPEN
+- [FND-0030](findings/FND-0030-x1-class-the-s-0037-leakage-addendum-e-0013-l2069-is-truncated-and-interleaved-sentences-severed-mid-clause-at-block-boundaries.md) — X1-CLASS: the S-0037 leakage addendum (E-0013 L2069+) is truncated and interleaved - sentences severed mid-clause at block boundaries — status=OPEN
+- [FND-0031](findings/FND-0031-z2-p4-the-z2-withdrawal-record-s-own-verification-row-p4-is-stale-and-self-referential-it-claims-four-occurrences-of-the-withdrawn-hash-and-names-two-line-numbers-that-no-longer-hold-any.md) — Z2-P4: the Z2 withdrawal record's own verification row P4 is stale and self-referential - it claims four occurrences of the withdrawn hash and names two line numbers that no longer hold any — status=OPEN
 
 ## Findings (closed)
 
-(none)
+- [FND-0001](findings/FND-0001-b1-branch-decision-shrink-option-i-with-its-cost-written-down.md) — B1 BRANCH DECISION: **SHRINK** (option (i)), with its cost written down — status=RESOLVED
+- [FND-0002](findings/FND-0002-b2-q-label-the-fit-target-s-colour-frame-and-the-label-s-attainable-gai.md) — B2 Q-LABEL: the fit target's colour frame, and the label's attainable gai — status=RESOLVED
+- [FND-0003](findings/FND-0003-b3-the-0-002-margin-has-no-derivation-and-the-power-justification-offere.md) — B3 The 0.002 margin has no derivation, and the power justification offere — status=RESOLVED
+- [FND-0004](findings/FND-0004-b4-q-fit-and-the-suite-tolerance-were-open-the-named-spsa-alternative-le.md) — B4 Q-FIT and the suite tolerance were OPEN, the named SPSA alternative le — status=RESOLVED
+- [FND-0005](findings/FND-0005-b5-q-scope-the-king-pst-choice-was-deferred-and-the-consequence-ladder.md) — B5 Q-SCOPE: the KING-PST choice was deferred, and the consequence ladder — status=RESOLVED
+- [FND-0006](findings/FND-0006-b6-the-yield-the-measured-label-was-applied-to-a-number-measured-for-a.md) — B6 The yield: the "measured" label was applied to a number measured for a — status=RESOLVED
+- [FND-0007](findings/FND-0007-b7-q-0006-s-official-readiness-gate-7-was-missing-from-e-0013.md) — B7 Q-0006's official readiness gate 7 was missing from E-0013 — status=RESOLVED
+- [FND-0014](findings/FND-0014-x1-the-addendum-was-a-truncated-interleaved-document-ten-sentences-we.md) — X1 the addendum was a truncated, interleaved document.** Ten sentences we — status=RESOLVED
+- [FND-0015](findings/FND-0015-x2-b5-s-freezing-rationale-was-arithmetically-false-the-claim-that-fre.md) — X2 B5's freezing rationale was arithmetically false.** The claim that fre — status=RESOLVED
+- [FND-0016](findings/FND-0016-x3-ownership-owner-systems-researcher-set-on-e-00014-and-e-00015-t.md) — X3 ownership.** `owner: systems-researcher` set on E-00014 and E-00015, t — status=RESOLVED
+- [FND-0017](findings/FND-0017-x4-discharged.md) — X4 DISCHARGED.** — status=RESOLVED
+- [FND-0018](findings/FND-0018-x5-discharged.md) — X5 DISCHARGED.** — status=RESOLVED
+- [FND-0019](findings/FND-0019-z1-blocking-repaired-the-severed-sentence-at-l1376-l1377.md) — Z1 BLOCKING, REPAIRED: the severed sentence at L1376-L1377 — status=RESOLVED
+- [FND-0020](findings/FND-0020-z2-corrected-the-unreproducible-projected-hash-withdrawn.md) — Z2 CORRECTED: the unreproducible projected hash, withdrawn — status=RESOLVED
+- [FND-0021](findings/FND-0021-z3-corrected-the-boundary-table-re-pinned-and-every-figure-labelled-wit.md) — Z3 CORRECTED: the boundary table, re-pinned and every figure labelled wit — status=RESOLVED
+- [FND-0022](findings/FND-0022-z4-the-head-inside-a-committed-column-header-corrected-s-0034.md) — Z4 the HEAD inside a committed column header (CORRECTED, S-0034) — status=RESOLVED
+- [FND-0023](findings/FND-0023-f-u7-change-the-dedup-key-in-tools-e0013-extract-py-to-the-normalized-fen.md) — F-U7 Change the dedup key in tools/e0013_extract.py to the normalized FEN — status=RESOLVED
+- [FND-0024](findings/FND-0024-f-u8-repair-the-self-test-that-passed-for-the-wrong-reason.md) — F-U8 Repair the self-test that passed for the wrong reason — status=RESOLVED
+- [FND-0025](findings/FND-0025-f-u9-re-derive-and-re-commit-the-split-map-and-the-artifacts.md) — F-U9 Re-derive and re-commit the split map and the artifacts — status=RESOLVED
+- [FND-0026](findings/FND-0026-f-u10-re-derive-the-yield-band-and-re-evaluate-the-30-000-floor-under-the-new-key.md) — F-U10 Re-derive the yield band and re-evaluate the 30,000 floor under the new key — status=RESOLVED
+- [FND-0029](findings/FND-0029-f-u13-the-gate-stays-blocking-do-not-weaken-it-to-make-the-run-pass.md) — F-U13 The gate stays blocking; do not weaken it to make the run pass — status=RESOLVED
 
 ## Decisions
 
@@ -141,6 +149,7 @@
 - [R-0023](reviews/R-0023-r-0023-append-only-contract-re-specification-and-r-0022-old-l-row-disposition.md) — (untitled) — status=COMPLETED
 - [R-0024](reviews/R-0024-confirmation-of-the-contract-repair-and-the-flip-authorisation-part-6-is-unsatisfiable-as-written-and-is-re-specified.md) — (untitled) — status=COMPLETED
 - [R-0025](reviews/R-0025-independent-audit-of-the-e-0013-l5-only-lifecycle-flip-under-r-0024-q1-q8-ho-0017.md) — (untitled) — status=COMPLETED
+- [R-0026](reviews/R-0026-independent-verification-of-the-e-0013-s-0037-leakage-ruling-under-ho-0019-v1-v7-gate-3.md) — (untitled) — status=COMPLETED
 
 ## Open Questions
 
@@ -195,7 +204,6 @@
 - [HO-0016](handoffs/HO-0016-execute-e-0015-count-only-realized-yield-pass-measurement-not-training.md) — Execute E-00015: count-only realized usable quiet yield pass (measurement, not training) — status=REQUESTED
 - [HO-0017](handoffs/HO-0017-audit-e0013-l5-flip-q1-q8.md) — Independently verify the E-0013 L5-only lifecycle flip (R-0024 Q1-Q8) — status=REQUESTED
 - [HO-0018](handoffs/HO-0018-implement-f-u7-f-u13-normalized-fen-dedup-key.md) — Implement the E-0013 Option-(1) leakage remediation F-U7..F-U13: the dedup key is the normalized FEN — status=REQUESTED
-- [HO-0019](handoffs/HO-0019-verify-e0013-s0037-leakage-ruling.md) — Independently verify the E-0013 leakage ruling (S-0037 addendum): was option (1) chosen on the contract's own terms? — status=REQUESTED
 
 ## Handoffs (closed)
 
@@ -212,6 +220,7 @@
 - [HO-0012](handoffs/HO-0012-independent-verification-w-0005-e-0012-live-runs-run-0002-and-run-0003.md) — Independent verification: W-0005 E-0012 live runs RUN-0002 and RUN-0003 — status=DONE
 - [HO-0013](handoffs/HO-0013-critique-e-0013-pre-registration-h-0013-texel-fit-contract-before-any-running.md) — Critique E-0013 pre-registration (H-0013 Texel fit contract) before any running — status=DONE
 - [HO-0014](handoffs/HO-0014-re-critique-e-0013-addendum-vs-r-0019-findings-b1-b7-discharge-verification-only.md) — Re-critique E-0013 addendum vs R-0019 findings B1-B7 (discharge verification only) — status=DONE
+- [HO-0019](handoffs/HO-0019-verify-e0013-s0037-leakage-ruling.md) — Independently verify the E-0013 leakage ruling (S-0037 addendum): was option (1) chosen on the contract's own terms? — status=DONE
 
 ## Runs (live)
 
@@ -265,6 +274,7 @@
 - [S-0038](sessions/S-0038-e0013-normalized-fen-dedup-key-f-u7-f-u13.md) — e0013-normalized-fen-dedup-key-f-u7-f-u13 — status=CLOSED
 - [S-0039](sessions/S-0039-e0013-band-retired-artifacts-pinned-ruling-correction.md) — e0013-band-retired-artifacts-pinned-ruling-correction — status=CLOSED
 - [S-0040](sessions/S-0040-e0013-band-retired-provenance-pinned-label-step-built.md) — e0013-band-retired-provenance-pinned-label-step-built — status=CLOSED
+- [S-0041](sessions/S-0041-e-0013-fnd-ledger-closure-12-blocking-rows-f-u7-f-u13-migration-and-ho-0019-independent-verification-v1-v7.md) — E-0013 FND ledger closure (12 blocking rows), F-U7..F-U13 migration, and HO-0019 independent verification (V1-V7) — status=CLOSED
 
 ## Unrendered Records (bug — report this)
 
