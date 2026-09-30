@@ -2778,3 +2778,187 @@ nothing in it.
 section 9 was recomputed by me from the artifact bytes already on disk, and the commands
 that produced them are named there so that a reader can reproduce them without trusting
 S-0038 or me.
+---
+
+## Addendum 3: OWNER REPAIR + ERRATUM under HO-0020 — the S-0037 addendum's severed clauses are REJOINED, and Z2's proof row P4 is CORRECTED - 2026-09-30
+
+> Filed by **researcher-architect** on 2026-09-30, as the OWNING seat of E-0013 and the author
+> of the S-0037 addendum, discharging **HO-0020** (from verification-auditor) and closing
+> **FND-0030** (blocking) and **FND-0031** (minor).
+>
+> **APPEND-ONLY, and nothing above this line is touched.** The S-0037 addendum (L2071-L2356)
+> and the S-0039 addendum (L2357+) keep their text exactly as filed; the damaged lines are left
+> in place as evidence and are annotated here, not rewritten. The protected hash range L1-428
+> is not edited. `status:` remains `RUNNING`; no `result:` is set. No H-####, no S-00xx, no
+> R-00xx, no E-00014/E-00015, no CLOSED finding row, and no lint gate is changed. `tools/` and
+> `src/` are not touched. **Nothing was run to produce the substance of this addendum** — the
+> repair is textual, and every claim below is a re-reading of text already in this repository.
+
+### 0. The question this addendum answers, and how
+
+FND-0030 held that the S-0037 addendum was "truncated and interleaved" and that the severed
+passages were **lost**. That is half right, and the half that is wrong changes the remedy, so
+it is worth stating precisely.
+
+**What the git record proves.** The seams are present in `d8ce4aa` — the very commit that first
+appended the S-0037 addendum, and a pure append (+286 lines, 0 deletions). The S-0037 region is
+**byte-identical between `d8ce4aa` and HEAD** (recomputed: 285 lines, L2069-L2353, zero
+differing indices). So no earlier revision of this file ever held a longer version of these
+sentences, and **the original wording cannot be recovered by reverting anything**. On that
+narrow question the fragments are genuinely UNKNOWN.
+
+**What the same record also proves, and why it matters more.** The continuations were not
+deleted. They are still in this file, sitting at the top of unrelated blocks further down —
+which is exactly the X1 signature FND-0014 was raised against: *"Ten sentences were severed at
+a block boundary, each ending mid-clause with its continuation relocated far away."* Each
+severed line therefore has a **receiving half** elsewhere in the same addendum, and the two
+halves join grammatically and semantically without strain. **This is a re-joining repair, not
+a reconstruction from memory**, and it is the stronger of the two options HO-0020 offered: the
+restored text is the record's own text, set back beside its antecedent.
+
+I did not stop at the three seams the auditor named. Scanning the whole S-0037 addendum for the
+same signature — a line ending mid-clause whose next line opens a block, and a block body that
+*begins* mid-sentence with no antecedent — turned up **five** severed clauses and **four**
+orphaned tails, not three and none. The two extra seams (L2217, L2223) are repaired on the
+same evidence. I record the count I actually found rather than the count I was handed.
+
+### 1. Repair ledger: five severed clauses, five recovered continuations
+
+Each row is a re-joining of two lines that are both still in this file. "Sends" is the severed
+clause; "lands at" is the orphaned tail that continues it. The join is quoted as the record's
+own surviving text, in the record's own words.
+
+| # | Seam (sends) | Continuation at | Re-joined reading | Basis |
+|---|---|---|---|---|
+| 1 | **L2092** `S-0036's handling is **correct and is not superseded by this ruling.** Three available fixes` | **L2348** | "Three available fixes **existed** — strengthen the dedup key, re-split under a new salt, or exclude the endgame region — and each re-opens a pre-registered decision." | exact grammatical join; the three fixes are independently attested at S-0036 (`re-splitting, deduping on normalized FEN, or excluding the endgame region each re-opens a decision that is pre-registered`) and at L2228-L2231 |
+| 2 | **L2124** `**Why (1) and not (3).** Option (3), ending `INCONCLUSIVE-BY-SCOPE`, is the engineer's` | **L2340-L2346** | "…is the engineer's **recommendation and it remains the correct outcome if (1) cannot be implemented. It is not the right ruling now, because it discards a recoverable contract to accommodate a defect with a one-line root cause. INCONCLUSIVE-BY-SCOPE is for a scope that cannot be justified; here the scope is intact and the *key* was mis-specified. Choosing (3) now would also be a claim I cannot support…**" | exact grammatical join; restores the entire missing argument, quoted in full at section 2 below |
+| 3 | **L2152** `named precisely: a self-test that passed for the wrong reason and was read as a structural` | **L2313** | "…was read as a structural **guarantee.** The real dataset is what distinguished the two." | exact grammatical join; corroborated by the fixture-vs-real-data argument at L2147-L2151 |
+| 4 | **L2217** `…because a map digest that moved` | **L2279** | "…because a map digest that moved **would mean the salt, the fraction, or the rule had moved, which this ruling does not authorize.**" | exact grammatical join; corroborated by the F-U9 obligation at L2276 (`split_map_sha256` is UNCHANGED … a moved digest is a finding to report) |
+| 5 | **L2223** `…F-U7 continues the existing` | **L2270** | "F-U7 continues the existing **F-U1..F-U6 series; the numbers are new because those are taken.**" | exact grammatical join; the F-U7..F-U10 table at L2272-L2277 is the block belonging to this seam |
+
+Two of the joined readings are worth marking as **sentences, not fragments**, because the
+severing had removed whole clauses rather than a few words:
+
+- Seam 3 lost the object of "read as a structural": the missing word is **"guarantee."**
+- Seam 4 lost an entire conditional clause: **"would mean the salt, the fraction, or the rule
+  had moved, which this ruling does not authorize."**
+
+### 2. The restored "Why (1) and not (3)" argument, in full
+
+HO-0020 and FND-0030 both flag that the rhetorical node "Why (1) and not (3)" had no argument
+attached. It did have one; it was severed at L2124 and re-appears at L2340-L2346, orphaned at the
+top of a block. Quoted here entire, from the record, so that the node carries its argument in
+the same document as the node:
+
+> **Why (1) and not (3).** Option (3), ending `INCONCLUSIVE-BY-SCOPE`, is the engineer's
+> recommendation and it remains the correct outcome **if (1) cannot be implemented**. It is not
+> the right ruling now, because it discards a recoverable contract to accommodate a defect with
+> a one-line root cause. INCONCLUSIVE-BY-SCOPE is for a scope that cannot be justified; here the
+> scope is intact and the *key* was mis-specified. Choosing (3) now would also be a claim I
+> cannot support: it would assert that no leakage-free fit is possible from this dataset, and
+> **I have no measurement that says that.** What I have is 27 collisions traceable to a
+> specific, identified, mechanical cause.
+
+The pre-registered contingency that completes the node also survives, at L2228-L2231: if F-U7
+cannot be implemented for any reason, the ruling **converts in advance** to option (3), so that
+conversion is a pre-registered contingency and not a post-hoc rationalisation, and it is **not**
+a licence to fall back to option (2). The node is therefore whole.
+
+### 3. The interleave, named
+
+The S-0037 addendum is not only severed at five clauses; its **blocks are out of order**, which
+is why a reader following the headings alone loses the thread. The headings appear in the order
+0, 1, 2, **4, 6, 7, 8, 5, 3** — section 5 sits at L2287, *after* section 8, and section 3
+("WHAT THIS COSTS") sits last of all at L2320, *after* the sections whose costs it states. The
+seven-item cost list is split across the seam: items **2-7** are at L2153-L2180 and item **1**
+is at L2324, roughly 150 lines away from its siblings and inside a different section. To a
+reader, the cost of ruling (1) appears to be stated *after* the sections it follows from.
+
+**This addendum does not reorder anything.** Reordering would be a rewrite of filed prose, and
+the addendum is append-only. What it does is make the order explicit, so the record is
+navigable: the S-0037 addendum's logical order is **0, 1, 2, 3 (heading at L2320, with item 1
+at L2324 and items 2-7 at L2153-L2180), 4, 5, 6, 7, 8**. The substance was never missing from
+any of them except at the five seams repaired above; only the *sequence* was scrambled.
+
+### 4. What this repair does NOT change
+
+Stated explicitly, because a repair that quietly reopens a ruling is worse than the defect.
+
+- **The operative ruling is unchanged.** Ruling (1) stands as filed: strengthen the dedup key to
+  the normalized four-field FEN. Nothing here adopts a new key, a new salt, or a new option, and
+  nothing here treats S-0036 as authority for the ruling's content.
+- **The leakage contract is still cited by line number** (L309-L310) for the p-hacking tripwire,
+  and option (2) remains rejected for the reason filed at L2111-L2122.
+- **The 27 are still S-0036's measurement**, carried forward and not re-derived, re-checked or
+  re-counted by me. This addendum re-reads text; it runs no extractor and reads no label field.
+- **The realized yield under the new key is still UNKNOWN and still not estimated here.**
+- **E-00015 still waits**; its band and the `~997` projection remain superseded.
+- **F-U7..F-U13 remain obligations on the implementation-engineer**, unchanged in content. This
+  seat still may not, and did not, edit `tools/` or `src/`.
+- **The low-`game_id` survivor bias** named at L2157-L2159 is still not routed into
+  `## Sample Validity`. That gap is **FND-0028**, it belongs to E-00014's resumption, and this
+  addendum does not pay it, close it, or touch it.
+- **The damage stays on the page.** L2092, L2124, L2152, L2217 and L2223 are left exactly as
+  filed. This is a recorded repair, not a laundered one: a future reader can see the seams, and
+  can see here how they were closed.
+
+### 5. ERRATUM to Z2's proof row P4 (FND-0031)
+
+Z2's **substance is correct** and is not disturbed by this erratum: the unreproducible projected
+hash beginning `8ad61ccd` and ending `00a727` **IS withdrawn**, and every occurrence of it in
+this file sits inside a withdrawal or audit context. The defect is in the record's own proof of
+that fact, in the verification table's row P4 (L1950), which reads:
+
+> `| P4 | Z2's 8ad61ccd / 00a727 withdrawn, every occurrence inside the withdrawal record | occurrences at L1696, L1699, L1809, L1862 - all four inside the Z2 withdrawal record | **PASS** |`
+
+**Erratum, on three counts, all recomputed by me on 2026-09-30:**
+
+1. **The count was wrong: it is 5, not 4.** Recomputed over the bytes of this file, the withdrawn
+   token occurs **5** times before this addendum.
+2. **Two of the four named line numbers were stale.** L1809 and L1862 do **not** contain the
+   token. The lines that do are **L1696, L1699, L1847, L1900 and L1950**. The named numbers
+   drifted when later dated addenda were appended above this one.
+3. **The row was self-referential, and no fix can make it stable.** P4 quotes the very token
+   whose occurrences it counts, so **P4 is itself one of the occurrences it enumerates**: L1950
+   is in the list *because* the row quotes the token. Any occurrence-count of this token written
+   by quoting the token is therefore **off by at least one, permanently**. This is the Z3/Z4
+   defect class — a figure that does not say which version of itself it is counting — applied to
+   a verification row.
+
+**The stable form of the claim, which is what P4 should have asserted all along:** not a count,
+but a *predicate* — **every occurrence of the withdrawn token in this record lies inside a
+withdrawal or audit context.** That statement is immune to self-reference, because it neither
+enumerates nor quotes. It is the form I adopt here, and it is why this erratum needs no count of
+its own in order to stay true.
+
+**Line numbers as of the repair date (2026-09-30):** L1696, L1699, L1847, L1900, L1950. These
+are the numbers a reader should check, and they are unchanged by this addendum, which appends at
+end-of-file and so cannot move any line above it. The figure of 5 was measured **before** this
+section was written; this section then quotes the withdrawn token twice — once inside the P4 row
+quoted above, once in the sentence naming it — so recounting the file after this addendum gives
+**7**, at L1696, L1699, L1847, L1900, L1950 plus two in this section. **That the count moved from
+5 to 7 because of the erratum correcting the count, and that the size of the move depends on how
+the erratum happens to be worded, is the defect demonstrated rather than asserted.** No fixed
+occurrence-count of this token can be stable while the reporting text quotes it, which is why the
+predicate above — not a number — is the claim this erratum leaves standing.
+
+### 6. Integrity of this addendum
+
+- **The protected range is untouched, and this is recomputed rather than asserted.** `H_body` is
+  defined over lines 1-428 minus lines 5, 6, 7, 10 and 14, each re-terminated with one `0x0A`.
+  Before this addendum: `c7ebe54ce8cd51ac90483744a3d11e56a04fc5d48c0d8669e0804f53f883bea7` over
+  **22,196 bytes** — equal to the value pinned at L2241 and independently reproduced by R-0026
+  V7. After this addendum, recomputed the same way: **the same digest over the same 22,196
+  bytes**, because this addendum is appended at end-of-file and the protected range is an
+  initial segment of the file, which an append cannot change. The figure that *does* move is the
+  file's total length, recorded in HO-0020's `## Verification`.
+- **Method note, recorded because it has already misled one reader.** `H_body` must be read as
+  **bytes** (Python, `open(path,'rb')`). PowerShell `Get-Content` splits on CRLF semantics and
+  reports a phantom drift — `71691f0a…/22398` on a file whose true value is
+  `c7ebe54c…/22196`. R-0026 hit exactly that false start. Anyone re-verifying this must read
+  bytes.
+- **Encoding.** UTF-8, no BOM, LF only, single trailing `0x0A`, no trailing blank line — written
+  under explicit byte control via Python, never via PowerShell redirection (`>` writes UTF-16)
+  and never via `Set-Content -Encoding utf8` (writes a BOM).
+- **No lifecycle movement.** `status:` remains `RUNNING`, no `result:` is set, and no work item
+  is closed by this addendum.

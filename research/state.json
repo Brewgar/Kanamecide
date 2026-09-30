@@ -863,6 +863,7 @@
         "1a2dff7",
         "4478c3a",
         "6a6eb0a",
+        "71691f0",
         "7348f89",
         "8ad61cc",
         "8c30f32",
@@ -1888,7 +1889,7 @@
       "title": "Gate 0 unrunnable: Device Guard hard-blocks kana.exe (every build, every path)"
     }
   ],
-  "generated": "2026-09-30T14:58:37",
+  "generated": "2026-09-30T16:16:48",
   "metrics": {
     "by_kind": {
       "agent_profile": 1,
@@ -1917,15 +1918,15 @@
       "ACTIVE": 15,
       "CLOSED": 41,
       "COMPLETED": 34,
-      "DONE": 19,
+      "DONE": 20,
       "DRAFT": 1,
       "IN_PROGRESS": 2,
-      "OPEN": 41,
+      "OPEN": 39,
       "PENDING": 5,
       "RECORDED": 2,
       "REGISTERED": 8,
-      "REQUESTED": 6,
-      "RESOLVED": 22,
+      "REQUESTED": 5,
+      "RESOLVED": 24,
       "RUNNING": 1,
       "SUPERSEDED": 4
     },
@@ -1933,7 +1934,7 @@
     "contradiction_candidates": 0,
     "dangling_ids": 11,
     "duplicate_candidates": 2,
-    "edges_total": 4168,
+    "edges_total": 4180,
     "legacy_experiments_without_pre_registration": 6,
     "open_questions": 8,
     "records_total": 242,
@@ -2637,7 +2638,7 @@
       "id": "FND-0030",
       "kind": "finding",
       "rel": "findings/FND-0030-x1-class-the-s-0037-leakage-addendum-e-0013-l2069-is-truncated-and-interleaved-sentences-severed-mid-clause-at-block-boundaries.md",
-      "status": "OPEN",
+      "status": "RESOLVED",
       "title": "X1-CLASS: the S-0037 leakage addendum (E-0013 L2069+) is truncated and interleaved - sentences severed mid-clause at block boundaries",
       "when": "2026-09-30"
     },
@@ -2646,7 +2647,7 @@
       "id": "FND-0031",
       "kind": "finding",
       "rel": "findings/FND-0031-z2-p4-the-z2-withdrawal-record-s-own-verification-row-p4-is-stale-and-self-referential-it-claims-four-occurrences-of-the-withdrawn-hash-and-names-two-line-numbers-that-no-longer-hold-any.md",
-      "status": "OPEN",
+      "status": "RESOLVED",
       "title": "Z2-P4: the Z2 withdrawal record's own verification row P4 is stale and self-referential - it claims four occurrences of the withdrawn hash and names two line numbers that no longer hold any",
       "when": "2026-09-30"
     },
@@ -2664,7 +2665,7 @@
       "id": "HO-0020",
       "kind": "handoff",
       "rel": "handoffs/HO-0020-owner-repair-truncated-s-0037-leakage-addendum-fnd-0030-and-stale-z2-p4-fnd-0031.md",
-      "status": "REQUESTED",
+      "status": "DONE",
       "title": "Owner repair: the S-0037 leakage addendum on E-0013 is truncated/interleaved (FND-0030, blocking) and Z2's own proof row P4 is stale and self-referential (FND-0031, minor)",
       "when": "2026-09-30"
     },

@@ -81,8 +81,6 @@
 - [FND-0013](findings/FND-0013-f-u6-dn6-routing-flag-dec-0010-186-187-s-stale-pending-independent.md) — F-U6 DN6 routing.** Flag DEC-0010:186-187's stale "Pending: independent — status=OPEN
 - [FND-0027](findings/FND-0027-f-u11-re-derive-e-00014-s-inner-partition-under-the-new-key.md) — F-U11 Re-derive E-00014's inner partition under the new key — status=OPEN
 - [FND-0028](findings/FND-0028-f-u12-route-the-new-corpus-limitation-into-sample-validity.md) — F-U12 Route the new corpus limitation into Sample Validity — status=OPEN
-- [FND-0030](findings/FND-0030-x1-class-the-s-0037-leakage-addendum-e-0013-l2069-is-truncated-and-interleaved-sentences-severed-mid-clause-at-block-boundaries.md) — X1-CLASS: the S-0037 leakage addendum (E-0013 L2069+) is truncated and interleaved - sentences severed mid-clause at block boundaries — status=OPEN
-- [FND-0031](findings/FND-0031-z2-p4-the-z2-withdrawal-record-s-own-verification-row-p4-is-stale-and-self-referential-it-claims-four-occurrences-of-the-withdrawn-hash-and-names-two-line-numbers-that-no-longer-hold-any.md) — Z2-P4: the Z2 withdrawal record's own verification row P4 is stale and self-referential - it claims four occurrences of the withdrawn hash and names two line numbers that no longer hold any — status=OPEN
 
 ## Findings (closed)
 
@@ -107,6 +105,8 @@
 - [FND-0025](findings/FND-0025-f-u9-re-derive-and-re-commit-the-split-map-and-the-artifacts.md) — F-U9 Re-derive and re-commit the split map and the artifacts — status=RESOLVED
 - [FND-0026](findings/FND-0026-f-u10-re-derive-the-yield-band-and-re-evaluate-the-30-000-floor-under-the-new-key.md) — F-U10 Re-derive the yield band and re-evaluate the 30,000 floor under the new key — status=RESOLVED
 - [FND-0029](findings/FND-0029-f-u13-the-gate-stays-blocking-do-not-weaken-it-to-make-the-run-pass.md) — F-U13 The gate stays blocking; do not weaken it to make the run pass — status=RESOLVED
+- [FND-0030](findings/FND-0030-x1-class-the-s-0037-leakage-addendum-e-0013-l2069-is-truncated-and-interleaved-sentences-severed-mid-clause-at-block-boundaries.md) — X1-CLASS: the S-0037 leakage addendum (E-0013 L2069+) is truncated and interleaved - sentences severed mid-clause at block boundaries — status=RESOLVED
+- [FND-0031](findings/FND-0031-z2-p4-the-z2-withdrawal-record-s-own-verification-row-p4-is-stale-and-self-referential-it-claims-four-occurrences-of-the-withdrawn-hash-and-names-two-line-numbers-that-no-longer-hold-any.md) — Z2-P4: the Z2 withdrawal record's own verification row P4 is stale and self-referential - it claims four occurrences of the withdrawn hash and names two line numbers that no longer hold any — status=RESOLVED
 
 ## Decisions
 
@@ -205,7 +205,6 @@
 - [HO-0016](handoffs/HO-0016-execute-e-0015-count-only-realized-yield-pass-measurement-not-training.md) — Execute E-00015: count-only realized usable quiet yield pass (measurement, not training) — status=REQUESTED
 - [HO-0017](handoffs/HO-0017-audit-e0013-l5-flip-q1-q8.md) — Independently verify the E-0013 L5-only lifecycle flip (R-0024 Q1-Q8) — status=REQUESTED
 - [HO-0018](handoffs/HO-0018-implement-f-u7-f-u13-normalized-fen-dedup-key.md) — Implement the E-0013 Option-(1) leakage remediation F-U7..F-U13: the dedup key is the normalized FEN — status=REQUESTED
-- [HO-0020](handoffs/HO-0020-owner-repair-truncated-s-0037-leakage-addendum-fnd-0030-and-stale-z2-p4-fnd-0031.md) — Owner repair: the S-0037 leakage addendum on E-0013 is truncated/interleaved (FND-0030, blocking) and Z2's own proof row P4 is stale and self-referential (FND-0031, minor) — status=REQUESTED
 
 ## Handoffs (closed)
 
@@ -223,6 +222,7 @@
 - [HO-0013](handoffs/HO-0013-critique-e-0013-pre-registration-h-0013-texel-fit-contract-before-any-running.md) — Critique E-0013 pre-registration (H-0013 Texel fit contract) before any running — status=DONE
 - [HO-0014](handoffs/HO-0014-re-critique-e-0013-addendum-vs-r-0019-findings-b1-b7-discharge-verification-only.md) — Re-critique E-0013 addendum vs R-0019 findings B1-B7 (discharge verification only) — status=DONE
 - [HO-0019](handoffs/HO-0019-verify-e0013-s0037-leakage-ruling.md) — Independently verify the E-0013 leakage ruling (S-0037 addendum): was option (1) chosen on the contract's own terms? — status=DONE
+- [HO-0020](handoffs/HO-0020-owner-repair-truncated-s-0037-leakage-addendum-fnd-0030-and-stale-z2-p4-fnd-0031.md) — Owner repair: the S-0037 leakage addendum on E-0013 is truncated/interleaved (FND-0030, blocking) and Z2's own proof row P4 is stale and self-referential (FND-0031, minor) — status=DONE
 
 ## Runs (live)
 
