@@ -2,16 +2,17 @@
 id: FND-0032
 type: finding
 title: "DEC-0012 declares the findings status vocabulary OPEN|CLOSED; the implementation uses OPEN|RESOLVED and --close writes RESOLVED"
-status: OPEN
+status: RESOLVED
 example: false
 created: 2026-09-30
 severity: minor
 target: DEC-0012#decision
 raised_by: verification-auditor (round-5 ledger-tail seat; found during the finding.md vocabulary premise check)
 review: DEC-0012
-resolution: 
-resolved_by: 
-verified_by: 
+resolution: Owner erratum: dated addendum appended to DEC-0012 (its Addendum 2026-09-30) correcting the findings status vocabulary; authoritative vocabulary is imem_core.py STATUS_VOCAB_EXTRA['finding'] = {OPEN,RESOLVED,DISPUTED,WITHDRAWN,SUPERSEDED}; --close writes RESOLVED (imem.py L395).
+resolved_by: chief-architect (DEC-0012 record author, erratum under own authority; evidence: DEC-0012 Addendum 2026-09-30)
+verified_by: chief-architect (evidence of the defect is the implementation lines themselves, re-read at close: imem_core.py STATUS_VOCAB_EXTRA["finding"] and imem.py L395; DEC-0012 erratum addendum present)
+closed: 2026-09-30
 ---
 
 # FND-0032

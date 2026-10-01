@@ -93,3 +93,17 @@ defects, demote the lint to advisory and mark this SUPERSEDED; the records remai
 > record; closures/dispositions are attributable acts recorded in the rows themselves,
 > and independently verified per Gate 3 (R-0026). See `research/templates/claim.md`,
 > `research/templates/finding.md`, `research/SYSTEM.md` §12.
+
+## Addendum 2026-09-30 — erratum: status vocabularies are implementation-defined (FND-0032)
+
+Item 1 of the Decision section states the findings status vocabulary as `OPEN|CLOSED`.
+That token is **stale**: the vocabulary of record is the implementation —
+`research/scripts/imem_core.py` `STATUS_VOCAB_EXTRA["finding"]` =
+`{OPEN, RESOLVED, DISPUTED, WITHDRAWN, SUPERSEDED}`, and
+`research/scripts/imem.py` `finding --close` writes `status: RESOLVED` (L395).
+`research/templates/finding.md` was annotated to match (7ff12b9). The Decision line
+stands verbatim as the record of what was written; the implementation line governs.
+The same rule applies to the `claims/` line: for both kinds, the implementation —
+not this record's prose — is the vocabulary of record. Raised by the
+verification-auditor as FND-0032 (round-5 ledger-tail premise check); corrected by
+the record author. DEC-0012 remains ACTIVE and is otherwise unchanged.

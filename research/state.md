@@ -1,7 +1,7 @@
 # Research State (GENERATED — do not edit)
 
 Derived from the record store by `research.py state`. Regenerate after every change.
-Generated: 2026-09-30T23:43:28; schema 2.
+Generated: 2026-10-01T17:00:20; schema 2.
 Every entry is a PROJECTION of the linked records — follow them before believing.
 
 ## Current best beliefs (hypotheses with measured weight)
@@ -51,7 +51,7 @@ Every entry is a PROJECTION of the linked records — follow them before believi
 - 2026-09-30 finding FND-0029 (RESOLVED) : F-U13 The gate stays blocking; do not weaken it to make the run pass
 - 2026-09-30 finding FND-0030 (RESOLVED) : X1-CLASS: the S-0037 leakage addendum (E-0013 L2069+) is truncated and interleaved - sentences severed mid-clause at block boundaries
 - 2026-09-30 finding FND-0031 (RESOLVED) : Z2-P4: the Z2 withdrawal record's own verification row P4 is stale and self-referential - it claims four occurrences of the withdrawn hash and names two line numbers that no longer hold any
-- 2026-09-30 finding FND-0032 (OPEN) : DEC-0012 declares the findings status vocabulary OPEN|CLOSED; the implementation uses OPEN|RESOLVED and --close writes RESOLVED
+- 2026-09-30 finding FND-0032 (RESOLVED) : DEC-0012 declares the findings status vocabulary OPEN|CLOSED; the implementation uses OPEN|RESOLVED and --close writes RESOLVED
 - 2026-09-30 finding FND-0033 (OPEN) : F-U14 (build and hash-pin the independent tactical suite, N >= 200) is absent from the findings ledger
 - 2026-09-30 handoff HO-0019 (DONE) : Independently verify the E-0013 leakage ruling (S-0037 addendum): was option (1) chosen on the contract's own terms?
 - 2026-09-30 handoff HO-0020 (DONE) : Owner repair: the S-0037 leakage addendum on E-0013 is truncated/interleaved (FND-0030, blocking) and Z2's own proof row P4 is stale and self-referential (FND-0031, minor)
@@ -92,12 +92,12 @@ Every entry is a PROJECTION of the linked records — follow them before believi
     "DONE": 20,
     "DRAFT": 1,
     "IN_PROGRESS": 2,
-    "OPEN": 41,
+    "OPEN": 40,
     "PENDING": 5,
     "RECORDED": 2,
     "REGISTERED": 8,
     "REQUESTED": 5,
-    "RESOLVED": 24,
+    "RESOLVED": 25,
     "RUNNING": 1,
     "SUPERSEDED": 4
   },
@@ -105,7 +105,7 @@ Every entry is a PROJECTION of the linked records — follow them before believi
   "contradiction_candidates": 0,
   "dangling_ids": 12,
   "duplicate_candidates": 2,
-  "edges_total": 4268,
+  "edges_total": 4269,
   "legacy_experiments_without_pre_registration": 6,
   "open_questions": 8,
   "records_total": 245,
