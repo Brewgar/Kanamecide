@@ -179,3 +179,87 @@ def velocity(records: dict) -> dict:
         "open_blocking_findings": len(open_blocking),
         "oldest_open_blocking_days": max(ages) if ages else None,
     }
+
+
+# --- freshness: which live records are aging without movement (advisory) ---------
+
+# Per-kind day thresholds for a LIVE (non-terminal) record to stop being "fresh".
+# Deterministic and visible: the policy values are the system, listed here so every
+# reader can audit them. Diagnosed by date parsing of the last activity timestamp
+# (last_updated, closed, completed, or created, in that order of preference).
+FRESHNESS_POLICY_DAYS = {
+    "work": 14,
+    "handoff": 7,
+    "question": 21,
+    "hypothesis": 30,
+    "claim": 21,
+    "finding": 14,
+    "debate": 21,
+    "experiment": 14,
+}
+# Non-terminal statuses per kind — a terminal record is history, not stale debt.
+_LIVE_STATUS = {
+    "work": {"OPEN", "IN_PROGRESS", "BLOCKED"},
+    "handoff": {"REQUESTED", "ACCEPTED"},
+    "question": {"OPEN", "INVESTIGATING", "BLOCKED"},
+    "hypothesis": {"OPEN", "TESTING"},
+    "claim": {"OPEN", "UNTESTED", "DISPUTED"},
+    "finding": {"OPEN", "DISPUTED"},
+    "debate": {"OPEN", "ROUTED"},
+    "experiment": {"PENDING", "RUNNING"},
+}
+
+
+def _record_activity_date(rec):
+    """Most recent authored timestamp on the record, or None. Deterministic: ties to
+    the front-matter the corpus carries, not to file mtimes (which are checkout-noisy)."""
+    from datetime import date
+    for field in ("last_updated", "closed", "completed", "created"):
+        raw = str(rec.fm.get(field) or "")[:10]
+        if len(raw) == 10 and raw[4] == "-" and raw[7] == "-":
+            try:
+                return date.fromisoformat(raw)
+            except ValueError:
+                continue
+    return None
+
+
+def freshness_rows(records: dict, today=None, policy: dict = None) -> list:
+    """[{id, type, status, age_days, last_activity, window, rel}] for every LIVE record
+    older than its kind's freshness window. Advisory only: a stale record is a review
+    flag, never an error; kinds with no live statuses (decisions, principles) are
+    structurally durable and are never flagged by this report."""
+    from datetime import date as _date
+    today = today or _date.today()
+    policy = dict(FRESHNESS_POLICY_DAYS if policy is None else policy)
+    rows = []
+    for rec in sorted(records.values(), key=lambda r: (r.type, r.id)):
+        if rec.fm.get("example"):
+            continue
+        live = _LIVE_STATUS.get(rec.type)
+        if not live:
+            continue
+        status = str(rec.fm.get("status") or "")
+        if status not in live:
+            continue
+        last = _record_activity_date(rec)
+        if last is None:
+            continue
+        age = (today - last).days
+        window = policy.get(rec.type, 21)
+        if age > window:
+            rows.append({"id": rec.id, "type": rec.type, "status": status,
+                         "age_days": age, "last_activity": last.isoformat(),
+                         "window_days": window, "rel": rec.key,
+                         "why": (f"live {rec.type} ({status}) untouched for {age} days "
+                                 f"(window {window})")})
+    rows.sort(key=lambda r: (-r["age_days"], r["id"]))
+    return rows
+
+
+def freshness_report(records: dict, today=None) -> dict:
+    rows = freshness_rows(records, today=today)
+    return {"stale_records": rows, "n_stale": len(rows),
+            "advisory": ("Freshness rows are review flags, not errors; a live record "
+                         "older than its window deserves a dated addendum, a routing "
+                         "handoff, or an explicit keep-open note — not silence.")}

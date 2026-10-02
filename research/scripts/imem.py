@@ -4,13 +4,15 @@
 Every command is read-only unless its name says otherwise (repin/repair/write/new):
   records & links:  index, lint, anchors, repin, repair-links, graph, links
   retrieval:        ask, search, similar, beliefs, chain, provenance
-  science:          contradictions, duplicates, revivals, priority, questions,
+  science:          contradictions, duplicates, revivals, novelty, priority, questions,
                     evidence, prereg, promote, findings, finding
-  agents & process: agents, blind, handoff, brief, meta, velocity, codemap
+  agents & process: agents, blind, handoff, brief, meta, pathologies, velocity,
+                    freshness, codemap
   system:           snapshot, metrics, new-claim, new-finding, audit, selftest, version
 
 Output is human text by default, `--json` for machines. Exit codes: 0 ok; 1 problems
-found (lint/audit) or command failed; 2 usage error. Deterministic everywhere.
+found (lint/audit, or `novelty --strict`) or command failed; 2 usage error.
+Deterministic everywhere.
 """
 from __future__ import annotations
 
@@ -30,7 +32,7 @@ import imem_prior as PR  # noqa: E402
 import imem_retrieve as RT  # noqa: E402
 import imem_text as TX  # noqa: E402
 
-VERSION = "2.0.0 (DEC-0012)"
+VERSION = "2.1.0 (DEC-0012 + freshness/novelty)"
 
 
 def emit(obj, as_json: bool):
@@ -452,6 +454,42 @@ def cmd_velocity(args):
     records, _w = load_all(args)
     emit(MT.velocity(records), args.json)
     return 0
+
+
+def cmd_freshness(args):
+    """Live records that have aged past their kind's window (advisory, never an error).
+
+    Exit 0 always: staleness is a review flag, not a gate. --max-age sets an ad-hoc
+    window for every kind so an agent can ask a narrower/looser question without
+    editing the policy."""
+    records, _w = load_all(args)
+    policy = None
+    if getattr(args, "max_age", None) is not None:
+        policy = {k: int(args.max_age) for k in MT.FRESHNESS_POLICY_DAYS}
+    out = MT.freshness_report(records, today=None) if policy is None else {
+        "stale_records": MT.freshness_rows(records, today=None, policy=policy),
+        "n_stale": len(MT.freshness_rows(records, today=None, policy=policy)),
+        "policy_override_days": int(args.max_age)}
+    emit(out, args.json)
+    return 0
+
+
+def cmd_novelty(args):
+    """Is this (id or free text) already in the project? Candidates with their basis.
+
+    Read-only: never merges, never writes. Advisory exit 0; --strict exits 1 when any
+    candidate is at or above the semantic/lexical thresholds, so a filing script can
+    gate on it without parsing output."""
+    records, _w = load_all(args)
+    embed = load_embed(records, args)
+    out = CL.novelty_report(records, args.query, embed=embed,
+                            limit=getattr(args, "limit", 8))
+    emit(out, args.json)
+    if getattr(args, "strict", False) and out.get("candidates"):
+        return 1
+    return 0
+
+
 def cmd_codemap(args):
     records, _w = load_all(args)
     idx = CD.symbol_index()
@@ -671,6 +709,14 @@ def build_parser():
     add("meta", cmd_meta, "process metrics (overhead vs research)")
     add("pathologies", cmd_pathologies, "named pathologies with fixes")
     add("velocity", cmd_velocity, "research velocity + finding age")
+    fr = add("freshness", cmd_freshness, "live records aged past their window (advisory)")
+    fr.add_argument("--max-age", type=int, default=None,
+                    help="ad-hoc window (days) applied to every kind")
+    nv = add("novelty", cmd_novelty, "candidates already close to a proposed claim")
+    nv.add_argument("query", help="a record id or free text")
+    nv.add_argument("--limit", "-n", type=int, default=8)
+    nv.add_argument("--strict", action="store_true",
+                    help="exit 1 when any candidate is found")
     cs = add("codemap", cmd_codemap, "code traceability")
     cs.add_argument("--symbol", default="")
     add("snapshot", cmd_snapshot, "write the JSON snapshot under _index/")

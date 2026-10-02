@@ -536,6 +536,86 @@ class TestMetaAndCode(unittest.TestCase):
             tmp.cleanup()
 
 
+class TestFreshnessAndNovelty(unittest.TestCase):
+    """freshness_rows / novelty_candidates — the advisory aging + novelty surfaces
+    added with the freshness/novelty commands (imem 2.1.0). All deterministic."""
+
+    def setUp(self):
+        self.tmp = tempfile.TemporaryDirectory()
+        self.root = Path(self.tmp.name) / "research"
+        self._saved = C.RESEARCH_DIR
+        C.RESEARCH_DIR = self.root
+
+    def tearDown(self):
+        C.RESEARCH_DIR = self._saved
+        self.tmp.cleanup()
+
+    def load(self):
+        return C.load_corpus()[0]
+
+    def test_freshness_flags_stale_live_records_only(self):
+        from datetime import date
+        fixture(self.root, "hypotheses/H-0001-stale.md", "H-0001", "hypothesis",
+                "# H-0001\n", status="OPEN", last_updated="2026-01-01")
+        fixture(self.root, "hypotheses/H-0002-closed.md", "H-0002", "hypothesis",
+                "# H-0002\n", status="SUPPORTED", created="2026-01-01")
+        fixture(self.root, "findings/FND-0001-a.md", "FND-0001", "finding",
+                "# FND-0001\n", status="OPEN", created="2026-01-01")
+        fixture(self.root, "findings/FND-0002-r.md", "FND-0002", "finding",
+                "# FND-0002\n", status="RESOLVED", created="2026-01-01")
+        rows = MT.freshness_rows(self.load(), today=date(2026, 3, 1))
+        ids = [r["id"] for r in rows]
+        self.assertIn("H-0001", ids)
+        self.assertIn("FND-0001", ids)
+        self.assertNotIn("H-0002", ids)   # terminal status is history, not staleness
+        self.assertNotIn("FND-0002", ids)
+        for r in rows:
+            self.assertIn("why", r)
+            self.assertIn("window_days", r)
+
+    def test_freshness_policy_override_changes_the_window(self):
+        from datetime import date
+        fixture(self.root, "questions/Q-0001-a.md", "Q-0001", "question",
+                "# Q-0001\n", status="OPEN", last_updated="2026-02-20")
+        recs = self.load()
+        short = {k: 7 for k in MT.FRESHNESS_POLICY_DAYS}
+        long_ = {k: 3650 for k in MT.FRESHNESS_POLICY_DAYS}
+        self.assertTrue(MT.freshness_rows(recs, today=date(2026, 3, 1), policy=short))
+        self.assertFalse(MT.freshness_rows(recs, today=date(2026, 3, 1), policy=long_))
+
+    def test_freshness_never_errors_without_dates(self):
+        fixture(self.root, "hypotheses/H-0007-nodate.md", "H-0007", "hypothesis",
+                "# H-0007\n", status="OPEN")  # no last_updated/created at all
+        recs = self.load()
+        # must not raise; date-less records are skipped silently-advisory
+        out = MT.freshness_report(recs)
+        self.assertIn("advisory", out)
+
+    def test_novelty_finds_a_lexical_near_duplicate(self):
+        fixture(self.root, "claims/CLM-0001-a.md", "CLM-0001", "claim", "# CLM-0001\n",
+                domain="search",
+                statement="quiescence delta pruning bounds the leaf search gain")
+        recs = self.load()
+        rows = CL.novelty_candidates(
+            recs, "delta pruning in quiescence bounds the leaf gain", embed=None)
+        exact = [r for r in rows if r["id"] == "CLM-0001"]
+        self.assertTrue(exact, "token-identical near-paraphrase must surface")
+        self.assertTrue(any("lexical" in b for b in exact[0]["basis"]))
+
+    def test_novelty_report_resolves_ids_and_text(self):
+        fixture(self.root, "claims/CLM-0009-t.md", "CLM-0009", "claim", "# CLM-0009\n",
+                domain="evaluation",
+                statement="tempo contributes ~11 Elo at this corpus")
+        recs = self.load()
+        by_id = CL.novelty_report(recs, "CLM-0009", embed=None)
+        self.assertEqual(by_id["resolved_record"], "CLM-0009")
+        self.assertEqual(by_id["candidates"], [])  # self excluded, nothing else exists
+        by_text = CL.novelty_report(recs, "a completely unrelated proposal about "
+                                          "zucchini", embed=None)
+        self.assertIsNone(by_text["resolved_record"])
+        self.assertIn("advisory", by_text)
+
+
 class TestRealCorpusInvariants(unittest.TestCase):
     """Structural promises the live store must keep. Count-based assertions are
     deliberately avoided: the corpus grows every session."""

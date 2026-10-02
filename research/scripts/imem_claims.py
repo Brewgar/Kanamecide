@@ -174,3 +174,102 @@ def duplicate_claims(records: dict, embed=None, threshold: float = 0.55) -> list
                                   "note": "CANDIDATE: same claim filed twice?"})
     pairs.sort(key=lambda p: (-p["score"], p["a"], p["b"]))
     return pairs
+
+
+# --- novelty: is the thing I am about to file already in the project? --------------
+
+def _jaccard(a: set, b: set) -> float:
+    if not a or not b:
+        return 0.0
+    return len(a & b) / len(a | b)
+
+
+def novelty_candidates(records: dict, query_text: str, embed=None, limit: int = 8,
+                       semantic_threshold: float = 0.45,
+                       lexical_threshold: float = 0.55) -> list:
+    """Closest already-existing live claims/hypotheses to `query_text`, each with its
+    basis marked. THE diagnostic for 'is this genuinely new to the project?' at filing
+    time: candidates are never merged or closed by this; the pairing the author should
+    then answer (novel to memory / same idea, new scope / genuine rediscovery) belongs
+    in the new record itself.
+
+    Three independent bases keep honesty: lexical token overlap (same words),
+    corpus-shape similarity (corpus-relative RI cosine, meaning-aware), and the
+    structural same-domain+parameter rule (must not claim novelty silently)."""
+    from imem_text import doc_terms, tokens as _tok
+    from collections import Counter
+    live = live_claims(records)
+    q_toks = set(_tok(query_text or ""))
+    hits: dict = {}
+    # lexical basis
+    for c in live:
+        base_toks = set(_tok(c["statement"] + " " + c["title"]))
+        ov = _jaccard(q_toks, base_toks)
+        if ov >= lexical_threshold:
+            hits.setdefault(c["id"], {"id": c["id"], "type": c["type"],
+                                      "status": c["status"], "score": ov,
+                                      "statement": c["statement"][:160],
+                                      "basis": []})["basis"].append(
+                f"lexical overlap {ov:.2f} (title/statement tokens)")
+    # structural basis (same research object shape): same domain + shared parameter token
+    for c in live:
+        if (c["domain"] != "unknown" and c["parameter"] and
+                any(t in c["params"] for t in q_toks)):
+            row = hits.setdefault(c["id"], {"id": c["id"], "type": c["type"],
+                                            "status": c["status"], "score": 0.6,
+                                            "statement": c["statement"][:160],
+                                            "basis": []})
+            row["basis"].append(
+                f"same domain '{c['domain']}' + parameter token of '{c['parameter']}'")
+    # semantic basis (corpus-relative RI cosine)
+    if embed is not None:
+        qtf = dict(Counter(_tok(query_text or "")))
+        if qtf:
+            recs = sorted(records.values(), key=lambda r: r.key)
+            df: dict = {}
+            for r in recs:
+                for t in doc_terms(r):
+                    df[t] = df.get(t, 0) + 1
+            qv = embed.vector_for_terms(qtf, df, max(1, len(recs)))
+            id_to_row = {c["id"]: c for c in live}
+            for i, key in enumerate(embed.keys):
+                rec = next((r for r in recs if r.key == key), None)
+                if rec is None or rec.id not in id_to_row:
+                    continue
+                denom = embed.norms[i]
+                sim = (sum(a * b for a, b in zip(qv, embed.vecs[i])) / denom
+                       if denom else 0.0)
+                if sim >= semantic_threshold:
+                    row = hits.setdefault(rec.id, {"id": rec.id, "type": rec.type,
+                                                   "status": str(rec.fm.get("status")),
+                                                   "score": sim,
+                                                   "statement":
+                                                       id_to_row[rec.id]["statement"],
+                                                   "basis": []})
+                    row["basis"].append(f"semantic cosine {sim:.3f} (corpus-relative RI)")
+    rows = list(hits.values())
+    for r in rows:
+        r["score"] = round(max(r["score"], 0.0) if isinstance(r["score"], float)
+                           else 0.0, 4)
+    rows.sort(key=lambda r: (-r["score"], r["id"]))
+    return rows[:max(1, limit)]
+
+
+def novelty_report(records: dict, text_or_id: str, embed=None, limit: int = 8) -> dict:
+    """Resolve the argument: an existing id (then compare against its own statement,
+    excluding the record itself) or free text. Output carries the query and whether it
+    resolved to an id, so the audit trail can see exactly what was compared."""
+    target = by_id(records, text_or_id)
+    if target is not None:
+        query_text = " ".join([target.title, str(target.fm.get("statement") or "")])
+        rows = [r for r in novelty_candidates(records, query_text, embed=embed,
+                                              limit=limit + 1)
+                if r["id"] != target.id][:limit]
+        return {"query": text_or_id, "resolved_record": target.id,
+                "title": target.title, "candidates": rows,
+                "advisory": "CANDIDATES only; novelty is judged by the author."}
+    return {"query": text_or_id, "resolved_record": None,
+            "candidates": novelty_candidates(records, text_or_id, embed=embed,
+                                             limit=limit),
+            "advisory": "CANDIDATES only; novelty is judged by the author."}
+
