@@ -153,6 +153,7 @@
 - [R-0024](reviews/R-0024-confirmation-of-the-contract-repair-and-the-flip-authorisation-part-6-is-unsatisfiable-as-written-and-is-re-specified.md) — (untitled) — status=COMPLETED
 - [R-0025](reviews/R-0025-independent-audit-of-the-e-0013-l5-only-lifecycle-flip-under-r-0024-q1-q8-ho-0017.md) — (untitled) — status=COMPLETED
 - [R-0026](reviews/R-0026-independent-verification-of-the-e-0013-s-0037-leakage-ruling-under-ho-0019-v1-v7-gate-3.md) — (untitled) — status=COMPLETED
+- [R-0027](reviews/R-0027-independent-audit-of-w-0008-imem-2-1-0-infrastructure-and-the-fnd-0032-self-closure-ho-0021.md) — (untitled) — status=COMPLETED
 
 ## Open Questions
 
@@ -208,7 +209,6 @@
 - [HO-0016](handoffs/HO-0016-execute-e-0015-count-only-realized-yield-pass-measurement-not-training.md) — Execute E-00015: count-only realized usable quiet yield pass (measurement, not training) — status=REQUESTED
 - [HO-0017](handoffs/HO-0017-audit-e0013-l5-flip-q1-q8.md) — Independently verify the E-0013 L5-only lifecycle flip (R-0024 Q1-Q8) — status=REQUESTED
 - [HO-0018](handoffs/HO-0018-implement-f-u7-f-u13-normalized-fen-dedup-key.md) — Implement the E-0013 Option-(1) leakage remediation F-U7..F-U13: the dedup key is the normalized FEN — status=REQUESTED
-- [HO-0021](handoffs/HO-0021-audit-w-0008-imem-2-1-work-the-fnd-0032-self-closure.md) — Audit W-0008: imem 2.1 work + the FND-0032 self-closure — status=REQUESTED
 
 ## Handoffs (closed)
 
@@ -227,6 +227,7 @@
 - [HO-0014](handoffs/HO-0014-re-critique-e-0013-addendum-vs-r-0019-findings-b1-b7-discharge-verification-only.md) — Re-critique E-0013 addendum vs R-0019 findings B1-B7 (discharge verification only) — status=DONE
 - [HO-0019](handoffs/HO-0019-verify-e0013-s0037-leakage-ruling.md) — Independently verify the E-0013 leakage ruling (S-0037 addendum): was option (1) chosen on the contract's own terms? — status=DONE
 - [HO-0020](handoffs/HO-0020-owner-repair-truncated-s-0037-leakage-addendum-fnd-0030-and-stale-z2-p4-fnd-0031.md) — Owner repair: the S-0037 leakage addendum on E-0013 is truncated/interleaved (FND-0030, blocking) and Z2's own proof row P4 is stale and self-referential (FND-0031, minor) — status=DONE
+- [HO-0021](handoffs/HO-0021-audit-w-0008-imem-2-1-work-the-fnd-0032-self-closure.md) — Audit W-0008: imem 2.1 work + the FND-0032 self-closure — status=DONE
 
 ## Runs (live)
 

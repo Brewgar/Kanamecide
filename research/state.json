@@ -1900,7 +1900,7 @@
       "title": "Gate 0 unrunnable: Device Guard hard-blocks kana.exe (every build, every path)"
     }
   ],
-  "generated": "2026-10-02T15:15:52",
+  "generated": "2026-10-02T19:40:52",
   "metrics": {
     "by_kind": {
       "agent_profile": 1,
@@ -1920,7 +1920,7 @@
       "profile": 5,
       "question": 8,
       "report": 13,
-      "review": 26,
+      "review": 27,
       "round_megaprompt": 2,
       "session": 43,
       "work": 8
@@ -1928,15 +1928,15 @@
     "by_status": {
       "ACTIVE": 15,
       "CLOSED": 43,
-      "COMPLETED": 34,
-      "DONE": 20,
+      "COMPLETED": 35,
+      "DONE": 21,
       "DRAFT": 1,
       "IN_PROGRESS": 3,
       "OPEN": 40,
       "PENDING": 5,
       "RECORDED": 2,
       "REGISTERED": 8,
-      "REQUESTED": 6,
+      "REQUESTED": 5,
       "RESOLVED": 25,
       "RUNNING": 1,
       "SUPERSEDED": 4
@@ -1945,10 +1945,10 @@
     "contradiction_candidates": 0,
     "dangling_ids": 11,
     "duplicate_candidates": 2,
-    "edges_total": 4387,
+    "edges_total": 4421,
     "legacy_experiments_without_pre_registration": 6,
     "open_questions": 8,
-    "records_total": 252,
+    "records_total": 253,
     "revival_candidates": 5
   },
   "questions_all": [
@@ -2340,15 +2340,6 @@
   "timeline_tail": [
     {
       "example": false,
-      "id": "FND-0005",
-      "kind": "finding",
-      "rel": "findings/FND-0005-b5-q-scope-the-king-pst-choice-was-deferred-and-the-consequence-ladder.md",
-      "status": "RESOLVED",
-      "title": "B5 Q-SCOPE: the KING-PST choice was deferred, and the consequence ladder",
-      "when": "2026-09-29"
-    },
-    {
-      "example": false,
       "id": "FND-0006",
       "kind": "finding",
       "rel": "findings/FND-0006-b6-the-yield-the-measured-label-was-applied-to-a-number-measured-for-a.md",
@@ -2667,7 +2658,7 @@
       "id": "HO-0021",
       "kind": "handoff",
       "rel": "handoffs/HO-0021-audit-w-0008-imem-2-1-work-the-fnd-0032-self-closure.md",
-      "status": "REQUESTED",
+      "status": "DONE",
       "title": "Audit W-0008: imem 2.1 work + the FND-0032 self-closure",
       "when": "2026-10-02"
     },
@@ -2678,6 +2669,15 @@
       "rel": "agents/chief-architect/profile.md",
       "status": "—",
       "title": "profile",
+      "when": "2026-10-02"
+    },
+    {
+      "example": false,
+      "id": "R-0027",
+      "kind": "review",
+      "rel": "reviews/R-0027-independent-audit-of-w-0008-imem-2-1-0-infrastructure-and-the-fnd-0032-self-closure-ho-0021.md",
+      "status": "COMPLETED",
+      "title": "R 0027 independent audit of w 0008 imem 2 1 0 infrastructure and the fnd 0032 self closure ho 0021",
       "when": "2026-10-02"
     },
     {

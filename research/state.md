@@ -1,7 +1,7 @@
 # Research State (GENERATED — do not edit)
 
 Derived from the record store by `research.py state`. Regenerate after every change.
-Generated: 2026-10-02T15:15:52; schema 2.
+Generated: 2026-10-02T19:40:52; schema 2.
 Every entry is a PROJECTION of the linked records — follow them before believing.
 
 ## Current best beliefs (hypotheses with measured weight)
@@ -43,7 +43,6 @@ Every entry is a PROJECTION of the linked records — follow them before believi
 - hypothesis **H-0002-magic-stub** Magic Bitboards with PEXT Provide >=3x NPS Speedup — SUPERSEDED. No revisit condition recorded.
 
 ## Recent timeline
-- 2026-09-30 finding FND-0029 (RESOLVED) : F-U13 The gate stays blocking; do not weaken it to make the run pass
 - 2026-09-30 finding FND-0030 (RESOLVED) : X1-CLASS: the S-0037 leakage addendum (E-0013 L2069+) is truncated and interleaved - sentences severed mid-clause at block boundaries
 - 2026-09-30 finding FND-0031 (RESOLVED) : Z2-P4: the Z2 withdrawal record's own verification row P4 is stale and self-referential - it claims four occurrences of the withdrawn hash and names two line numbers that no longer hold any
 - 2026-09-30 finding FND-0032 (RESOLVED) : DEC-0012 declares the findings status vocabulary OPEN|CLOSED; the implementation uses OPEN|RESOLVED and --close writes RESOLVED
@@ -54,8 +53,9 @@ Every entry is a PROJECTION of the linked records — follow them before believi
 - 2026-09-30 session S-0041 (CLOSED) : E-0013 FND ledger closure (12 blocking rows), F-U7..F-U13 migration, and HO-0019 independent verification (V1-V7)
 - 2026-09-30 session S-0042 (CLOSED) : Ledger-tail round: six OPEN majors (FND-0008..FND-0013) dispositioned OPEN-with-gap; file FND-0032/FND-0033; finding template vocab hunk
 - 2026-10-02 current_position current_position (—) : current_position
-- 2026-10-02 handoff HO-0021 (REQUESTED) : Audit W-0008: imem 2.1 work + the FND-0032 self-closure
+- 2026-10-02 handoff HO-0021 (DONE) : Audit W-0008: imem 2.1 work + the FND-0032 self-closure
 - 2026-10-02 profile profile (—) : profile
+- 2026-10-02 review R-0027 (COMPLETED) : R 0027 independent audit of w 0008 imem 2 1 0 infrastructure and the fnd 0032 self closure ho 0021
 - 2026-10-02 session S-0043 (CLOSED) : imem 2.1.0 + normative INFRASTRUCTURE.md + chief-architect seat + FND-0032 Gate-3 routing
 - 2026-10-02 work W-0008 (IN_PROGRESS) : imem 2.1 infrastructure: INFRASTRUCTURE.md normative doc + freshness/novelty advisory surfaces + chief-architect seat
 
@@ -80,7 +80,7 @@ Every entry is a PROJECTION of the linked records — follow them before believi
     "profile": 5,
     "question": 8,
     "report": 13,
-    "review": 26,
+    "review": 27,
     "round_megaprompt": 2,
     "session": 43,
     "work": 8
@@ -88,15 +88,15 @@ Every entry is a PROJECTION of the linked records — follow them before believi
   "by_status": {
     "ACTIVE": 15,
     "CLOSED": 43,
-    "COMPLETED": 34,
-    "DONE": 20,
+    "COMPLETED": 35,
+    "DONE": 21,
     "DRAFT": 1,
     "IN_PROGRESS": 3,
     "OPEN": 40,
     "PENDING": 5,
     "RECORDED": 2,
     "REGISTERED": 8,
-    "REQUESTED": 6,
+    "REQUESTED": 5,
     "RESOLVED": 25,
     "RUNNING": 1,
     "SUPERSEDED": 4
@@ -105,10 +105,10 @@ Every entry is a PROJECTION of the linked records — follow them before believi
   "contradiction_candidates": 0,
   "dangling_ids": 11,
   "duplicate_candidates": 2,
-  "edges_total": 4387,
+  "edges_total": 4421,
   "legacy_experiments_without_pre_registration": 6,
   "open_questions": 8,
-  "records_total": 252,
+  "records_total": 253,
   "revival_candidates": 5
 }
 

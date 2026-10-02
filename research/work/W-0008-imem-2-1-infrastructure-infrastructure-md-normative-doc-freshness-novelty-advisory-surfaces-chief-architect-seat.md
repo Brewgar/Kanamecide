@@ -8,8 +8,8 @@ status: IN_PROGRESS
 deliverable: "research/INFRASTRUCTURE.md + research/scripts/imem.py (VERSION 2.1.0, freshness + novelty commands) + research/scripts/imem_meta.py (freshness_rows/report) + research/scripts/imem_claims.py (novelty_candidates/report) + tests_imem.py (+5 tests) + regenerated projections; agents/chief-architect/ seat created"
 exit_check: "python research/scripts/tests_imem.py -> OK (48/48); python research/scripts/research.py selftest -> OK; python research/scripts/research.py validate -> Validation OK; python research/scripts/imem.py lint -> problems 0; python research/scripts/imem.py freshness -> advisory output rows with ids and windows"
 evidence: []
-verified_by: null
-verification_verdict: null
+verified_by: "verification-auditor (fresh seat, HO-0021 receiver; review R-0027) — NOT the owner (chief-architect)"
+verification_verdict: VERIFIED
 example: false
 created: 2026-10-02
 closed: null
@@ -75,6 +75,18 @@ python research/scripts/imem.py novelty CLM-0001      # candidates: [CLM-0003, H
 
 ## Verification
 
-- verified_by: (a different agent than owner)
-- verdict: (VERIFIED | CONTRADICTED | PARTIAL | UNVERIFIABLE)
-- evidence: (review record id, e.g. R-0004, plus the command outputs)
+- verified_by: **verification-auditor** (fresh seat, HO-0021 receiver) — a *different* agent than
+  the owner `chief-architect`, so Gate 3 holds. Appended 2026-10-02; this seat did **not** close
+  the work item (`status` left `IN_PROGRESS` for the owner).
+- verdict: **VERIFIED**
+- evidence: **R-0027** (`research/reviews/R-0027-independent-audit-of-w-0008-imem-2-1-0-infrastructure-and-the-fnd-0032-self-closure-ho-0021.md`),
+  raw output under `_obs/ho0021/` (`SUMMARY.md`, `final_summary.txt`, `g1..g13_*.txt`). All 7
+  named exit checks re-run by this seat and reproduced: `tests_imem.py` 48/48 OK (exit 0),
+  `research.py selftest` OK (0), `research.py validate` OK (0), `imem.py lint` problems 0 (0),
+  `imem.py index` records 255 / unresolved_links 0 (0), `imem.py freshness` `n_stale: 10`
+  (D-0002…D-0006, E-00004, E-00005, W-0003, W-0006, HO-0005) (0), `imem.py novelty CLM-0001`
+  → [CLM-0003 (structural), H-0013 (semantic)] (0). Four non-gate-failing defects recorded in
+  R-0027 (D-1 stale `imem.py L395` pointer in FND-0032/DEC-0012; D-2 `records: 249` annotation;
+  D-3 `(47 -> 48)` test-count conflation; D-4 latent freshness fail-open on a future-dated
+  `last_updated`). **The owner may close W-0008** (`status: DONE` + `closed:` + `evidence:`
+  populated) citing R-0027; D-2/D-3 are one-line prose fixes foldable at close.
