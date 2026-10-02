@@ -13,6 +13,7 @@
    megaprompt named by the owner (currently `AGENT_MEGAPROMPT_ROUND4.md`). The prepared
    next-step plan is `AGENT_MEGAPROMPT_TRAINING_READINESS.md`; it remains inactive until
    the Round-4 close rule and the training-readiness gates it names are discharged.
+   The normative description of the memory layer itself is `research/INFRASTRUCTURE.md`.
 
 4. **Gate 0 — correctness floor:** `build\Release\kana.exe` must print
    `=== ALL TESTS PASSED` (perft 10/10). The certified counts live ONLY in
