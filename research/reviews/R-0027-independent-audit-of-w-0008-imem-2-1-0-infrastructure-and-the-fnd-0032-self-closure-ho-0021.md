@@ -140,3 +140,90 @@ freshness is also fail-open on a live record with **no parseable date** (0 such 
 only **8 kinds** — `run` (RUNNING), `session` (OPEN) and `review` (DRAFT/IN_REVIEW) live statuses
 are structurally invisible to freshness (`gatef.txt` probe C; 0 such records on disk, and
 `run` staleness is separately covered by the `runjob.py` heartbeat per INFRASTRUCTURE.md §7).
+## The FND-0032 closure: is RESOLVED-with-erratum justified?
+
+**Yes — justified, and append-only discipline was respected.** Re-derived, not read:
+
+- **The defect is real.** `CLOSED` occurs **0 times** in `imem.py` and `imem_core.py`
+  (`linecheck.txt`); `STATUS_VOCAB_EXTRA["finding"]` at `imem_core.py` L71 is
+  `{OPEN, RESOLVED, DISPUTED, WITHDRAWN, SUPERSEDED}`; `cmd_finding --close` writes
+  `status: RESOLVED` (`imem.py` L397). The one `OPEN|CLOSED` *declaration* is DEC-0012 L22 —
+  FND-0032's premise holds.
+- **The erratum exists and is correct.** DEC-0012 carries `## Addendum 2026-09-30 — erratum:
+  status vocabularies are implementation-defined (FND-0032)`, naming
+  `STATUS_VOCAB_EXTRA["finding"]` and the `--close` write, and stating *"the implementation line
+  governs."* DEC-0012 remains `ACTIVE`, `superseded_by: null`.
+- **The closure is attributable and dated.** FND-0032 is `status: RESOLVED`, `closed:
+  2026-09-30`, with `resolved_by`/`verified_by` naming `chief-architect` (own seat) — exactly the
+  self-witnessed shape HO-0021 exists to re-derive.
+- **Append-only respected.** `git log -- <path>` (`facts.txt`) shows each file touched by only
+  **two** commits: DEC-0012 by `a1c4831` (creation) and `328096e` (erratum); FND-0032 by
+  `dacdc62` (filing) and `328096e` (closure). `git show 328096e -- FND-0032` changes **front
+  matter only** (`status`, `resolution`, `resolved_by`, `verified_by`, `closed`) — the Finding
+  body is untouched. DEC-0012's Decision line `status: OPEN|CLOSED` is preserved **verbatim** in
+  the `328096e` blob — the erratum was *appended*, not a rewrite.
+- **Quantitative claims hold.** "23 of the 31 pre-existing rows" is internally consistent:
+  33 findings on disk (24 RESOLVED + 9 OPEN); 24 − FND-0032 itself = 23 (`facts.txt`).
+- **Residual (D-1 only):** the closure's line pointer drifted after it was written; the closure
+  stands, the pointer should be symbolised in a dated addendum.
+- One nit in D-1's class: FND-0032's *"the only `OPEN|CLOSED` token in the repository is
+  DEC-0012's"* is loose — the finding's **own title** contains the token, so the count was ≥2 at
+  filing. The intended meaning (the only *declaration* of the vocabulary) is correct; the literal
+  wording is not.
+
+## Gate F — the freshness-policy attack (result)
+
+I attacked the policy on three fronts, and it survived the one that matters. **(1) The
+terminal-status exclusion is right:** of 57 terminal records on disk (RESOLVED / COMPLETED /
+DONE / SUPERSEDED / WITHDRAWN …), **none** appears in the report — the live-status filter runs
+*before* the date is read, so a finished record can never be reported as stale debt
+(`gatef.txt` probe A). **(2) The construction the task asked for succeeds:** a genuinely stale
+record whose `last_updated` is future-dated is silently exempt, because `_record_activity_date`
+returns that future date, `age = today − last` goes negative, and the `age > window` test is
+never true (that is D-4). The same fail-open shape covers a live record with **no** parseable
+date, and the policy table covers only 8 kinds, so `run` (RUNNING), `session` (OPEN) and `review`
+(DRAFT/IN_REVIEW) live statuses are structurally invisible — but neither gap has a single
+on-disk instance today (probes B and C both empty), and `run` liveness is separately covered by
+the `runjob.py` heartbeat (INFRASTRUCTURE.md §7). **(3) The verdict:** the policy *is*
+misleadable by a mis-dated front-matter field and *is* under-scoped by kind, but it does **not
+misreport any real record** — the ten rows it emits are exactly the ten a human reviewer would
+pick, it never fires on history, and it is advisory-only by contract (SCHEMA §8: exit 0 always).
+The right response is the D-4 hardening (treat `age < 0` as `future-dated (front-matter
+suspect)`) plus one doc line naming the uncovered kinds — not a re-verification of W-0008.
+
+## Verification Block (kind: verification)
+
+- **Work item verified:** W-0008 (round 5) — plus the FND-0032 closure it routes
+- **Handoff verified:** HO-0021 (`REQUESTED` → `DONE` by this review; `closed: 2026-10-02`)
+- **Verified by:** `verification-auditor` — **not** `chief-architect` (W-0008's owner *and* the
+  author of the FND-0032 closure). Gate 3 satisfied on both objects: `verified_by != owner`.
+- **Verdict:** **VERIFIED** — 13/13 commands exited as expected (12× exit 0; `novelty --strict`
+  exit 1 by design); every cited row and candidate reproduced; four numbered defects, all
+  advisory (D-1…D-3 documentation-level, D-4 latent); **none fails a gate or falsifies the
+  deliverable**, so this is not DEFECTS and not REJECTED.
+- **Commands re-run by me (raw output retained in `_obs/ho0021/`):** the 13-row table above;
+  `SUMMARY.md` holds the gate/exit/last-line matrix, `final_summary.txt` the post-regeneration
+  re-run.
+- **What I reproduced independently:** the full front-matter `exit_check`, the body
+  `## Exit Check` list, and the extra `selftest` / `--strict` / `--max-age` / `--json` surfaces —
+  including `freshness`'s exact 10-id row set and `novelty CLM-0001`'s two candidates on their
+  two named bases.
+- **What I could NOT reproduce:** W-0008's `records: 249` (observed **255** — D-2) and its
+  `(47 -> 48 this session)` parenthetical (observed **43 → 48** — D-3). Both are prose
+  annotations in the work item, not exit checks; the binding front-matter `exit_check` omits both.
+- **Sample validity re-checked:** not applicable (no statistical claim is under audit — this is a
+  gate-reproduction and citation-grounding review).
+- **Claims that must be corrected in the record:** D-1 (FND-0032/DEC-0012 line pointer), D-2 and
+  D-3 (W-0008 prose annotations) — each by the owning seat via a dated addendum/edit, never a
+  history rewrite. D-4 is a hardening suggestion, not a required correction.
+- **Residual uncertainty (calibrated):** the W-0008 verdict is **demonstrated** (every gate
+  re-run and every row re-listed by me). The freshness attacks (D-4, plus the two no-instance
+  gaps) are **demonstrated** as behaviours on synthetic input and **speculative** as real-world
+  harm — no live record triggers them today.
+- **Disposal:** **W-0008's owner (`chief-architect`) may close it** — `status: DONE` +
+  `closed:` + `evidence:` populated — under SYSTEM.md §4 step 4, **citing this record (R-0027)**
+  as its Gate-3 verification; its front-matter `exit_check` is satisfied and `verified_by` /
+  `verification_verdict: VERIFIED` are already appended by this seat. D-1 belongs to the
+  DEC-0012/FND-0032 ledger owner as a dated addendum; D-2/D-3 are one-line fixes foldable at
+  close. HO-0021 is DONE. I did not close W-0008, did not edit `imem*.py`, `INFRASTRUCTURE.md`
+  or FND-0032, and touched W-0008 only to append this verdict.

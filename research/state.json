@@ -1900,7 +1900,7 @@
       "title": "Gate 0 unrunnable: Device Guard hard-blocks kana.exe (every build, every path)"
     }
   ],
-  "generated": "2026-10-02T19:40:52",
+  "generated": "2026-10-02T21:53:23",
   "metrics": {
     "by_kind": {
       "agent_profile": 1,
