@@ -1,0 +1,359 @@
+{
+  "format": "kana-fu14-overlap-report-v1",
+  "written": "2026-10-02",
+  "written_at_commit": "f5883dce93a16fdc01e6e62d51ee077a83ea9e5a",
+  "written_by": "data-pipeline-engineer (F-U14 seat)",
+  "finding": "FND-0033",
+  "claim": "CLM-0003",
+  "gate": {
+    "rule": "normalized-FEN overlap between the F-U14 suite and EVERY existing corpus must be exactly 0 (CLM-0003; F-U7 key)",
+    "expected_value": 0,
+    "exit_criterion": "this command exits 0 iff overlap.value == 0; a nonzero value BLOCKS closure and routes to chief-architect"
+  },
+  "dedup_key": {
+    "source": "tools/e0013_extract.py::normalize_fen",
+    "fields": [
+      "piece placement",
+      "side to move",
+      "castling rights",
+      "en-passant rights"
+    ],
+    "excludes": [
+      "halfmove clock",
+      "fullmove number"
+    ]
+  },
+  "method": {
+    "discovery": "filesystem sweep of every *.jsonl / *.pgn plus tactics_set.py and tactics_gen.txt (build-system guts, __pycache__, .git and the derived index cache excluded); known roles in CORPUS_ROLES; unlisted position-bearing files are still loaded and counted",
+    "games": "full replay of opening (UCI) + san; startpos, every intermediate position and the final position are harvested (superset of the extractor's san-only candidate segment - stricter)",
+    "suite": "norm_fen values as written by generate, all via normalize_fen"
+  },
+  "suite": {
+    "path": "research/manifests/fu14-tactical-suite-n200.json",
+    "sha256": "d89b61982e5a6fe186f468f40887558d54e52b443b19dddd7c4efd7ca21c2d5b",
+    "n_positions": 200,
+    "distinct_norm_fen": 200
+  },
+  "corpora": [
+    {
+      "id": "build/s41/extract_new/positions.jsonl",
+      "path": "build/s41/extract_new/positions.jsonl",
+      "format": "positions-jsonl",
+      "role": "E-0013 count-only extraction (F-U9 hash-pinned artifacts)",
+      "bytes": 13004718,
+      "sha256": "ac8c92f05026646dc376deb9dbcc3205d0b324c815333d92d02bfba46040bf15",
+      "records": 74452,
+      "distinct_norm_fens": 74452,
+      "parse_errors": [],
+      "notes": [
+        "info: 1000 row(s) cross-checked against live normalize_fen"
+      ],
+      "overlap_count": 0,
+      "overlap_norm_fens": [],
+      "overlap_suite_ids": []
+    },
+    {
+      "id": "e0010_k1n_games.jsonl",
+      "path": "e0010_k1n_games.jsonl",
+      "format": "games-jsonl",
+      "role": "not in the known-corpus table (found by sweep)",
+      "bytes": 210230,
+      "sha256": "df66d3cf90858cd4263a4de08edbb67270e33299cf4eaa9a62150f3061f426c9",
+      "records": 200,
+      "distinct_norm_fens": 24254,
+      "parse_errors": [],
+      "notes": [],
+      "overlap_count": 0,
+      "overlap_norm_fens": [],
+      "overlap_suite_ids": []
+    },
+    {
+      "id": "e0010_k2n_games.jsonl",
+      "path": "e0010_k2n_games.jsonl",
+      "format": "games-jsonl",
+      "role": "not in the known-corpus table (found by sweep)",
+      "bytes": 248828,
+      "sha256": "334efce53e16239a6a2f64b20bc22eafec8a1dd2fbcca0882ba6f4f659ebba9f",
+      "records": 200,
+      "distinct_norm_fens": 29150,
+      "parse_errors": [],
+      "notes": [],
+      "overlap_count": 0,
+      "overlap_norm_fens": [],
+      "overlap_suite_ids": []
+    },
+    {
+      "id": "e0010_k3n_games.jsonl",
+      "path": "e0010_k3n_games.jsonl",
+      "format": "games-jsonl",
+      "role": "not in the known-corpus table (found by sweep)",
+      "bytes": 217702,
+      "sha256": "81d6e123c16fe27d0df415d9a6237f2b267dfae6f0802c40c9d2999cffccb480",
+      "records": 200,
+      "distinct_norm_fens": 25783,
+      "parse_errors": [],
+      "notes": [],
+      "overlap_count": 0,
+      "overlap_norm_fens": [],
+      "overlap_suite_ids": []
+    },
+    {
+      "id": "e0010_k4n_games.jsonl",
+      "path": "e0010_k4n_games.jsonl",
+      "format": "games-jsonl",
+      "role": "not in the known-corpus table (found by sweep)",
+      "bytes": 214416,
+      "sha256": "06750e89947e449962096a1442f51eeec910f3d1edea6f3b4b3f47a0594915a4",
+      "records": 200,
+      "distinct_norm_fens": 25565,
+      "parse_errors": [],
+      "notes": [],
+      "overlap_count": 0,
+      "overlap_norm_fens": [],
+      "overlap_suite_ids": []
+    },
+    {
+      "id": "e0010_k5n_games.jsonl",
+      "path": "e0010_k5n_games.jsonl",
+      "format": "games-jsonl",
+      "role": "not in the known-corpus table (found by sweep)",
+      "bytes": 226841,
+      "sha256": "835dc77f1e05dc36eb126b3e7283d54fdbe2ebad0ebac499b5ae986d39b86c28",
+      "records": 200,
+      "distinct_norm_fens": 26983,
+      "parse_errors": [],
+      "notes": [],
+      "overlap_count": 0,
+      "overlap_norm_fens": [],
+      "overlap_suite_ids": []
+    },
+    {
+      "id": "e0010_k6n_games.jsonl",
+      "path": "e0010_k6n_games.jsonl",
+      "format": "games-jsonl",
+      "role": "not in the known-corpus table (found by sweep)",
+      "bytes": 257704,
+      "sha256": "9da1cfa0cb24ed94cf4a64ad47c0fed9387b5a3163b590153677e61c1fd0d227",
+      "records": 240,
+      "distinct_norm_fens": 30586,
+      "parse_errors": [],
+      "notes": [],
+      "overlap_count": 0,
+      "overlap_norm_fens": [],
+      "overlap_suite_ids": []
+    },
+    {
+      "id": "m0_audit/e0011/games.jsonl",
+      "path": "m0_audit/e0011/games.jsonl",
+      "format": "games-jsonl",
+      "role": "E-0011 corpus (RUN-0001) - the CLM-0003 contamination reference",
+      "bytes": 1384548,
+      "sha256": "27ea181d32a9025e0fd9cea150540b6598ce7e608bc96ca245d7c07b7ac5bb95",
+      "records": 1000,
+      "distinct_norm_fens": 125401,
+      "parse_errors": [],
+      "notes": [],
+      "overlap_count": 0,
+      "overlap_norm_fens": [],
+      "overlap_suite_ids": []
+    },
+    {
+      "id": "m0_audit/e0011/smoke_games.jsonl",
+      "path": "m0_audit/e0011/smoke_games.jsonl",
+      "format": "games-jsonl",
+      "role": "E-0011 pipeline smoke games",
+      "bytes": 9346,
+      "sha256": "f62cbed74b2cfc6f86aa34714a337d09f25e7e51eeb4e0b7067aab8220a0be97",
+      "records": 6,
+      "distinct_norm_fens": 914,
+      "parse_errors": [],
+      "notes": [],
+      "overlap_count": 0,
+      "overlap_norm_fens": [],
+      "overlap_suite_ids": []
+    },
+    {
+      "id": "m0_audit/e0011/smoke_v2_games.jsonl",
+      "path": "m0_audit/e0011/smoke_v2_games.jsonl",
+      "format": "games-jsonl",
+      "role": "E-0011 pipeline smoke games (v2)",
+      "bytes": 9184,
+      "sha256": "98f649e3059c1e579038da4d9215a45f3a6e346304029aa73ef6962266601abb",
+      "records": 6,
+      "distinct_norm_fens": 905,
+      "parse_errors": [],
+      "notes": [],
+      "overlap_count": 0,
+      "overlap_norm_fens": [],
+      "overlap_suite_ids": []
+    },
+    {
+      "id": "m0_audit/e0011/synthetic20.jsonl",
+      "path": "m0_audit/e0011/synthetic20.jsonl",
+      "format": "games-jsonl",
+      "role": "E-0011 synthetic fixture games",
+      "bytes": 15329,
+      "sha256": "bca56914f622579472a5aadc6e19c0b6475cca23dde23d6e6643fa0159f5fd03",
+      "records": 20,
+      "distinct_norm_fens": 431,
+      "parse_errors": [
+        "line 21: json: Unterminated string starting at: line 1 column 373 (char 372)"
+      ],
+      "notes": [],
+      "overlap_count": 0,
+      "overlap_norm_fens": [],
+      "overlap_suite_ids": []
+    },
+    {
+      "id": "m0_audit/e0011/truncation_drill_games.jsonl",
+      "path": "m0_audit/e0011/truncation_drill_games.jsonl",
+      "format": "games-jsonl",
+      "role": "E-0011 truncation-drill games",
+      "bytes": 2223413,
+      "sha256": "a064680f4bec3b4395945cbfd545d3b77d27b77a372d6259907fbe1da0a56420",
+      "records": 1000,
+      "distinct_norm_fens": 270631,
+      "parse_errors": [],
+      "notes": [],
+      "overlap_count": 0,
+      "overlap_norm_fens": [],
+      "overlap_suite_ids": []
+    },
+    {
+      "id": "m0_audit/e0011_failed_attempt1/games.jsonl",
+      "path": "m0_audit/e0011_failed_attempt1/games.jsonl",
+      "format": "games-jsonl",
+      "role": "E-0011 abandoned first campaign segment",
+      "bytes": 287176,
+      "sha256": "1a95e8ddb418f42481fb1d4e8b59bd804f388cd7fa9c28db69d104e8fae76bfa",
+      "records": 202,
+      "distinct_norm_fens": 26566,
+      "parse_errors": [],
+      "notes": [],
+      "overlap_count": 0,
+      "overlap_norm_fens": [],
+      "overlap_suite_ids": []
+    },
+    {
+      "id": "m0_audit/e0012_known/games.jsonl",
+      "path": "m0_audit/e0012_known/games.jsonl",
+      "format": "games-jsonl",
+      "role": "E-0012 known-difference control games",
+      "bytes": 178549,
+      "sha256": "637a9fa4229ee8ab54b3c8f8420731659575d6ee59dda72c4a2311198650d407",
+      "records": 125,
+      "distinct_norm_fens": 16652,
+      "parse_errors": [],
+      "notes": [],
+      "overlap_count": 0,
+      "overlap_norm_fens": [],
+      "overlap_suite_ids": []
+    },
+    {
+      "id": "m0_audit/e0012_null/games.jsonl",
+      "path": "m0_audit/e0012_null/games.jsonl",
+      "format": "games-jsonl",
+      "role": "E-0012 null-pair control games",
+      "bytes": 340892,
+      "sha256": "5654db6075703625fd30c633805abaf935eb584da25dc4277fa24d494693e30d",
+      "records": 240,
+      "distinct_norm_fens": 32025,
+      "parse_errors": [],
+      "notes": [],
+      "overlap_count": 0,
+      "overlap_norm_fens": [],
+      "overlap_suite_ids": []
+    },
+    {
+      "id": "selfplay_o3d.pgn",
+      "path": "selfplay_o3d.pgn",
+      "format": "pgn",
+      "role": "E-00006 O3c self-play PGN",
+      "bytes": 1359,
+      "sha256": "f1a3ba087afc92712cbf530049a1380c2f7cca3d7ad354d83c2527722bb0484b",
+      "records": 2,
+      "distinct_norm_fens": 255,
+      "parse_errors": [],
+      "notes": [],
+      "overlap_count": 0,
+      "overlap_norm_fens": [],
+      "overlap_suite_ids": []
+    },
+    {
+      "id": "tactics_gen.txt",
+      "path": "tactics_gen.txt",
+      "format": "fen-lines",
+      "role": "E-00008 generator log (FEN-bearing lines)",
+      "bytes": 10296,
+      "sha256": "c479b13d074f50944cb249ca9b2e1e75d911e61a5b4724c4f3b013556eaeb156",
+      "records": 73,
+      "distinct_norm_fens": 73,
+      "parse_errors": [],
+      "notes": [],
+      "overlap_count": 0,
+      "overlap_norm_fens": [],
+      "overlap_suite_ids": []
+    },
+    {
+      "id": "tactics_set.py",
+      "path": "tactics_set.py",
+      "format": "tactics-py",
+      "role": "the pre-existing 73-position suite (EV-0006, E-00008)",
+      "bytes": 4835,
+      "sha256": "c593ceb2b57804621ee6bba7db9aaeef20dbab831f860a5fae448a3a9b5c500b",
+      "records": 73,
+      "distinct_norm_fens": 73,
+      "parse_errors": [],
+      "notes": [],
+      "overlap_count": 0,
+      "overlap_norm_fens": [],
+      "overlap_suite_ids": []
+    }
+  ],
+  "corpora_checked": 18,
+  "skipped": [
+    {
+      "path": "build/s41/extract_new/split_map.json",
+      "format": "no-position-content",
+      "reason": "game->split assignment; carries no FEN content (documented, not assumed)"
+    },
+    {
+      "path": "m0_audit/e0011/games.jsonl.events.jsonl",
+      "format": "no-position-content",
+      "reason": "first-record keys carry no position fields: ['binary_sha256', 'event', 'first_missing', 'games', 'mode', 'pairs', 'pid', 'salt', 'src_commit', 'tc', 'tc_command', 'timestamp', 'torn_recoverable_game_id', 'valid_before']"
+    },
+    {
+      "path": "m0_audit/e0011/smoke_games.jsonl.events.jsonl",
+      "format": "no-position-content",
+      "reason": "first-record keys carry no position fields: ['binary_sha256', 'event', 'first_missing', 'games', 'mode', 'pairs', 'pid', 'salt', 'src_commit', 'tc', 'tc_command', 'timestamp', 'torn_recoverable_game_id', 'valid_before']"
+    },
+    {
+      "path": "m0_audit/e0011/smoke_v2_games.jsonl.events.jsonl",
+      "format": "no-position-content",
+      "reason": "first-record keys carry no position fields: ['binary_sha256', 'event', 'first_missing', 'games', 'mode', 'pairs', 'pid', 'salt', 'src_commit', 'tc', 'tc_command', 'timestamp', 'torn_recoverable_game_id', 'valid_before']"
+    },
+    {
+      "path": "m0_audit/e0011/truncation_drill_games.jsonl.events.jsonl",
+      "format": "no-position-content",
+      "reason": "first-record keys carry no position fields: ['byte_offset', 'event', 'kill_game', 'pre_truncation_valid', 'timestamp']"
+    },
+    {
+      "path": "m0_audit/e0011_failed_attempt1/games.jsonl.events.jsonl",
+      "format": "no-position-content",
+      "reason": "first-record keys carry no position fields: ['binary_sha256', 'event', 'first_missing', 'games', 'mode', 'pairs', 'pid', 'salt', 'src_commit', 'tc', 'tc_command', 'timestamp', 'torn_recoverable_game_id', 'valid_before']"
+    },
+    {
+      "path": "m0_audit/runjob_test/games.jsonl",
+      "format": "no-position-content",
+      "reason": "first-record keys carry no position fields: ['game']"
+    }
+  ],
+  "overlap": {
+    "value": 0,
+    "union_suite_ids": [],
+    "union_norm_fens": [],
+    "sum_per_corpus": 0,
+    "max_per_corpus": 0,
+    "gate": "PASS"
+  }
+}

@@ -1,7 +1,7 @@
 # Research State (GENERATED — do not edit)
 
 Derived from the record store by `research.py state`. Regenerate after every change.
-Generated: 2026-10-02T21:53:23; schema 2.
+Generated: 2026-10-02T22:45:57; schema 2.
 Every entry is a PROJECTION of the linked records — follow them before believing.
 
 ## Current best beliefs (hypotheses with measured weight)
@@ -43,16 +43,16 @@ Every entry is a PROJECTION of the linked records — follow them before believi
 - hypothesis **H-0002-magic-stub** Magic Bitboards with PEXT Provide >=3x NPS Speedup — SUPERSEDED. No revisit condition recorded.
 
 ## Recent timeline
-- 2026-09-30 finding FND-0030 (RESOLVED) : X1-CLASS: the S-0037 leakage addendum (E-0013 L2069+) is truncated and interleaved - sentences severed mid-clause at block boundaries
 - 2026-09-30 finding FND-0031 (RESOLVED) : Z2-P4: the Z2 withdrawal record's own verification row P4 is stale and self-referential - it claims four occurrences of the withdrawn hash and names two line numbers that no longer hold any
 - 2026-09-30 finding FND-0032 (RESOLVED) : DEC-0012 declares the findings status vocabulary OPEN|CLOSED; the implementation uses OPEN|RESOLVED and --close writes RESOLVED
-- 2026-09-30 finding FND-0033 (OPEN) : F-U14 (build and hash-pin the independent tactical suite, N >= 200) is absent from the findings ledger
 - 2026-09-30 handoff HO-0019 (DONE) : Independently verify the E-0013 leakage ruling (S-0037 addendum): was option (1) chosen on the contract's own terms?
 - 2026-09-30 handoff HO-0020 (DONE) : Owner repair: the S-0037 leakage addendum on E-0013 is truncated/interleaved (FND-0030, blocking) and Z2's own proof row P4 is stale and self-referential (FND-0031, minor)
 - 2026-09-30 review R-0026 (COMPLETED) : R 0026 independent verification of the e 0013 s 0037 leakage ruling under ho 0019 v1 v7 gate 3
 - 2026-09-30 session S-0041 (CLOSED) : E-0013 FND ledger closure (12 blocking rows), F-U7..F-U13 migration, and HO-0019 independent verification (V1-V7)
 - 2026-09-30 session S-0042 (CLOSED) : Ledger-tail round: six OPEN majors (FND-0008..FND-0013) dispositioned OPEN-with-gap; file FND-0032/FND-0033; finding template vocab hunk
 - 2026-10-02 current_position current_position (—) : current_position
+- 2026-10-02 finding FND-0033 (RESOLVED) : F-U14 (build and hash-pin the independent tactical suite, N >= 200) is absent from the findings ledger
+- 2026-10-02 finding FND-0034 (OPEN) : EV-0010 pinned Release binary digest no longer matches the on-disk binary after a master rebuild; research.py validate now fails on evidence-hash drift (not repaired by the F-U14 seat - owner and chief-architect route)
 - 2026-10-02 handoff HO-0021 (DONE) : Audit W-0008: imem 2.1 work + the FND-0032 self-closure
 - 2026-10-02 profile profile (—) : profile
 - 2026-10-02 review R-0027 (COMPLETED) : R 0027 independent audit of w 0008 imem 2 1 0 infrastructure and the fnd 0032 self closure ho 0021
@@ -73,7 +73,7 @@ Every entry is a PROJECTION of the linked records — follow them before believi
     "evidence": 8,
     "experiment": 15,
     "failure": 2,
-    "finding": 33,
+    "finding": 34,
     "handoff": 21,
     "hypothesis": 17,
     "principle": 4,
@@ -97,18 +97,18 @@ Every entry is a PROJECTION of the linked records — follow them before believi
     "RECORDED": 2,
     "REGISTERED": 8,
     "REQUESTED": 5,
-    "RESOLVED": 25,
+    "RESOLVED": 26,
     "RUNNING": 1,
     "SUPERSEDED": 4
   },
-  "code_files": 29,
+  "code_files": 30,
   "contradiction_candidates": 0,
   "dangling_ids": 11,
   "duplicate_candidates": 2,
-  "edges_total": 4421,
+  "edges_total": 4434,
   "legacy_experiments_without_pre_registration": 6,
   "open_questions": 8,
-  "records_total": 253,
+  "records_total": 254,
   "revival_candidates": 5
 }
 

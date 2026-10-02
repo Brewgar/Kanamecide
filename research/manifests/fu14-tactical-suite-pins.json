@@ -1,0 +1,54 @@
+{
+  "format": "kana-fu14-pins-v1",
+  "record": "FND-0033 (F-U14) - E-0013 pre-fit commit element: the independent suite's identity and SHA-256",
+  "ruled_by": "FND-0033 F-U14 (N >= 200 independent tactical suite, hash-pinned); CLM-0003 (fresh-game normalized-FEN overlap must be zero); F-U7 dedup key (tools/e0013_extract.py::normalize_fen)",
+  "written": "2026-10-02",
+  "written_at_commit": "f5883dce93a16fdc01e6e62d51ee077a83ea9e5a",
+  "written_by": "data-pipeline-engineer (F-U14 seat)",
+  "read_time_check": "python tools/fu14_suite.py verify --manifest research/manifests/fu14-tactical-suite-pins.json  (re-hashes every artifact below, re-runs all 200 exhaustive proofs and re-checks the overlap gate value; exit 2 on any mismatch)",
+  "why_this_file_is_the_control": "A pin is only as good as the discipline around it: it must be committed BEFORE the read it protects, and a consumer must re-hash at read time. `verify` discharges the second half; this file's git history discharges the first.",
+  "dedup_key": {
+    "source": "tools/e0013_extract.py::normalize_fen",
+    "fields": [
+      "piece placement",
+      "side to move",
+      "castling rights",
+      "en-passant rights"
+    ],
+    "excludes": [
+      "halfmove clock",
+      "fullmove number"
+    ]
+  },
+  "artifacts": {
+    "fu14-tactical-suite-n200.json": {
+      "path": "research/manifests/fu14-tactical-suite-n200.json",
+      "sha256": "d89b61982e5a6fe186f468f40887558d54e52b443b19dddd7c4efd7ca21c2d5b",
+      "bytes": 212448,
+      "kind": "independent-tactical-suite",
+      "role": "THE pre-registered FEN list for E-0013's conjunct (f): N=200, every position with an exhaustively proved best-move/expected-tactic annotation. Committed, not just pinned: R-0019 Q-SUITE closed the substitution path, so the bytes below are the suite."
+    },
+    "fu14-overlap-report.json": {
+      "path": "research/manifests/fu14-overlap-report.json",
+      "sha256": "86a72649e39583af6985560d7b0ca4f13c63ca09751e67d017313a68245ed981",
+      "bytes": 12760,
+      "kind": "overlap-report",
+      "role": "the CLM-0003 normalized-FEN overlap-0 evidence against every existing corpus. The exit criterion for FND-0033 is overlap.value == 0 in this file."
+    },
+    "fu14_smoke_raw.jsonl": {
+      "path": "_obs/fu14_smoke_raw.jsonl",
+      "sha256": "37432ecef574ac42555c46c419aca2b7e0d9f1ed894e5ac5863cf9e793e5cc5f",
+      "bytes": 351860,
+      "kind": "engine-smoke-raw",
+      "role": "one raw UCI smoke pass of the master binary over the suite: full per-position transcripts, bestmoves and the suite's expected annotations. RAW DATA ONLY - no aggregate, no verdict, no strength claim is recorded in it.",
+      "records": 200,
+      "committed_despite_gitignore": "_obs/ is gitignored (session scratch); this file is force-added so the pin and the bytes stay together"
+    }
+  },
+  "constraints": {
+    "n_floor": "N >= 200 (E-0013 L292); this suite pins n = 200",
+    "provenance": "Constructed from scratch by tools/fu14_suite.py's seeded generator on an empty board (two kings + attacker material + optional filler pieces), accepted only after exhaustive python-chess proof of the annotation. NOT replayed from, derived from, or selected against any E-0011 (RUN-0001) or E-0013 corpus position; those corpora are read only by the `overlap` subcommand to count intersections.",
+    "substitution_closed": "R-0019 Q-SUITE: a substitute cannot be swapped in later; consumers must pass this manifest's digests",
+    "not_a_strength_claim": "nothing in this manifest is an engine-strength statement"
+  }
+}

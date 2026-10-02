@@ -81,7 +81,7 @@
 - [FND-0013](findings/FND-0013-f-u6-dn6-routing-flag-dec-0010-186-187-s-stale-pending-independent.md) — F-U6 DN6 routing.** Flag DEC-0010:186-187's stale "Pending: independent — status=OPEN
 - [FND-0027](findings/FND-0027-f-u11-re-derive-e-00014-s-inner-partition-under-the-new-key.md) — F-U11 Re-derive E-00014's inner partition under the new key — status=OPEN
 - [FND-0028](findings/FND-0028-f-u12-route-the-new-corpus-limitation-into-sample-validity.md) — F-U12 Route the new corpus limitation into Sample Validity — status=OPEN
-- [FND-0033](findings/FND-0033-f-u14-build-and-hash-pin-the-independent-tactical-suite-n-200-is-absent-from-the-findings-ledger.md) — F-U14 (build and hash-pin the independent tactical suite, N >= 200) is absent from the findings ledger — status=OPEN
+- [FND-0034](findings/FND-0034-ev-0010-binary-digest-drift-after-rebuild.md) — EV-0010 pinned Release binary digest no longer matches the on-disk binary after a master rebuild; research.py validate now fails on evidence-hash drift (not repaired by the F-U14 seat - owner and chief-architect route) — status=OPEN
 
 ## Findings (closed)
 
@@ -109,6 +109,7 @@
 - [FND-0030](findings/FND-0030-x1-class-the-s-0037-leakage-addendum-e-0013-l2069-is-truncated-and-interleaved-sentences-severed-mid-clause-at-block-boundaries.md) — X1-CLASS: the S-0037 leakage addendum (E-0013 L2069+) is truncated and interleaved - sentences severed mid-clause at block boundaries — status=RESOLVED
 - [FND-0031](findings/FND-0031-z2-p4-the-z2-withdrawal-record-s-own-verification-row-p4-is-stale-and-self-referential-it-claims-four-occurrences-of-the-withdrawn-hash-and-names-two-line-numbers-that-no-longer-hold-any.md) — Z2-P4: the Z2 withdrawal record's own verification row P4 is stale and self-referential - it claims four occurrences of the withdrawn hash and names two line numbers that no longer hold any — status=RESOLVED
 - [FND-0032](findings/FND-0032-dec-0012-declares-the-findings-status-vocabulary-open-closed-the-implementation-uses-open-resolved-and-close-writes-resolved.md) — DEC-0012 declares the findings status vocabulary OPEN|CLOSED; the implementation uses OPEN|RESOLVED and --close writes RESOLVED — status=RESOLVED
+- [FND-0033](findings/FND-0033-f-u14-build-and-hash-pin-the-independent-tactical-suite-n-200-is-absent-from-the-findings-ledger.md) — F-U14 (build and hash-pin the independent tactical suite, N >= 200) is absent from the findings ledger — status=RESOLVED
 
 ## Decisions
 

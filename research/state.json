@@ -972,6 +972,32 @@
     },
     {
       "code_files": [
+        "tools/e0013_extract.py",
+        "tools/fu14_suite.py",
+        "tools/uci_probe.py"
+      ],
+      "commits_mentioned": [
+        "0d4899c",
+        "2a8c71c",
+        "37432ec",
+        "475a3a2",
+        "504eb01",
+        "68245ed",
+        "686ea59",
+        "86a7264",
+        "8f78321",
+        "93e5cc5",
+        "a21c2d5",
+        "d89b619"
+      ],
+      "kind": "finding",
+      "record": "FND-0033",
+      "rel": "findings/FND-0033-f-u14-build-and-hash-pin-the-independent-tactical-suite-n-200-is-absent-from-the-findings-ledger.md",
+      "status": "RESOLVED",
+      "title": "F-U14 (build and hash-pin the independent tactical suite, N >= 200) is absent from the findings ledger"
+    },
+    {
+      "code_files": [
         "tools/e0011_check.py"
       ],
       "commits_mentioned": [],
@@ -1801,7 +1827,7 @@
       "path": "build/Release/kana.exe",
       "regenerate": "build.bat (Release), then: build\\\\Release\\\\kana.exe — expect 10x PASS with 0 diff and the final line 'ALL TESTS PASSED",
       "rel": "evidence/EV-0003-perft-anchor-gate0.md",
-      "sha256": "504eb01a828770dd9bfca252ab8245a5692df51580957cb6e5553012347a6daa",
+      "sha256": "686ea5979415054982703985c543ceb9ee7c0cd47c166903caf8c79d12276f3b",
       "sha256_recorded": null,
       "status": "REGISTERED",
       "title": "Certified Perft Anchor run (Gate 0 / the correctness floor)"
@@ -1816,7 +1842,7 @@
       "path": "build/Release/kana.exe",
       "regenerate": "build\\\\Release\\\\kana.exe --bench 5 (pinned, WMI clock proxy logged; self-SHA256 printed per run)",
       "rel": "evidence/EV-0004-e0002-certified-o2-bench.md",
-      "sha256": "504eb01a828770dd9bfca252ab8245a5692df51580957cb6e5553012347a6daa",
+      "sha256": "686ea5979415054982703985c543ceb9ee7c0cd47c166903caf8c79d12276f3b",
       "sha256_recorded": null,
       "status": "REGISTERED",
       "title": "E-0002 certified /O2 bench (5 reps, pinned, SHA-256 logged)"
@@ -1876,7 +1902,7 @@
       "path": "build/Release/kana.exe",
       "regenerate": "build.bat from commit 9b69e0a (src/eval.{h,cpp}, search.cpp crash fix). Rebuild reproduces the harness; the exact hash requires the exact toolchain.",
       "rel": "evidence/EV-0010-e0010-measurement-binary.md",
-      "sha256": "504eb01a828770dd9bfca252ab8245a5692df51580957cb6e5553012347a6daa",
+      "sha256": "686ea5979415054982703985c543ceb9ee7c0cd47c166903caf8c79d12276f3b",
       "sha256_recorded": "504EB01A828770DD9BFCA252AB8245A5692DF51580957CB6E5553012347A6DAA",
       "status": "REGISTERED",
       "title": "E-0010 measurement binary (the current build/Release/kana.exe)"
@@ -1900,7 +1926,7 @@
       "title": "Gate 0 unrunnable: Device Guard hard-blocks kana.exe (every build, every path)"
     }
   ],
-  "generated": "2026-10-02T21:53:23",
+  "generated": "2026-10-02T22:45:57",
   "metrics": {
     "by_kind": {
       "agent_profile": 1,
@@ -1913,7 +1939,7 @@
       "evidence": 8,
       "experiment": 15,
       "failure": 2,
-      "finding": 33,
+      "finding": 34,
       "handoff": 21,
       "hypothesis": 17,
       "principle": 4,
@@ -1937,18 +1963,18 @@
       "RECORDED": 2,
       "REGISTERED": 8,
       "REQUESTED": 5,
-      "RESOLVED": 25,
+      "RESOLVED": 26,
       "RUNNING": 1,
       "SUPERSEDED": 4
     },
-    "code_files": 29,
+    "code_files": 30,
     "contradiction_candidates": 0,
     "dangling_ids": 11,
     "duplicate_candidates": 2,
-    "edges_total": 4421,
+    "edges_total": 4434,
     "legacy_experiments_without_pre_registration": 6,
     "open_questions": 8,
-    "records_total": 253,
+    "records_total": 254,
     "revival_candidates": 5
   },
   "questions_all": [
@@ -2340,15 +2366,6 @@
   "timeline_tail": [
     {
       "example": false,
-      "id": "FND-0006",
-      "kind": "finding",
-      "rel": "findings/FND-0006-b6-the-yield-the-measured-label-was-applied-to-a-number-measured-for-a.md",
-      "status": "RESOLVED",
-      "title": "B6 The yield: the \"measured\" label was applied to a number measured for a",
-      "when": "2026-09-29"
-    },
-    {
-      "example": false,
       "id": "FND-0007",
       "kind": "finding",
       "rel": "findings/FND-0007-b7-q-0006-s-official-readiness-gate-7-was-missing-from-e-0013.md",
@@ -2592,15 +2609,6 @@
     },
     {
       "example": false,
-      "id": "FND-0033",
-      "kind": "finding",
-      "rel": "findings/FND-0033-f-u14-build-and-hash-pin-the-independent-tactical-suite-n-200-is-absent-from-the-findings-ledger.md",
-      "status": "OPEN",
-      "title": "F-U14 (build and hash-pin the independent tactical suite, N >= 200) is absent from the findings ledger",
-      "when": "2026-09-30"
-    },
-    {
-      "example": false,
       "id": "HO-0019",
       "kind": "handoff",
       "rel": "handoffs/HO-0019-verify-e0013-s0037-leakage-ruling.md",
@@ -2651,6 +2659,24 @@
       "rel": "agents/chief-architect/current_position.md",
       "status": "—",
       "title": "current_position",
+      "when": "2026-10-02"
+    },
+    {
+      "example": false,
+      "id": "FND-0033",
+      "kind": "finding",
+      "rel": "findings/FND-0033-f-u14-build-and-hash-pin-the-independent-tactical-suite-n-200-is-absent-from-the-findings-ledger.md",
+      "status": "RESOLVED",
+      "title": "F-U14 (build and hash-pin the independent tactical suite, N >= 200) is absent from the findings ledger",
+      "when": "2026-10-02"
+    },
+    {
+      "example": false,
+      "id": "FND-0034",
+      "kind": "finding",
+      "rel": "findings/FND-0034-ev-0010-binary-digest-drift-after-rebuild.md",
+      "status": "OPEN",
+      "title": "EV-0010 pinned Release binary digest no longer matches the on-disk binary after a master rebuild; research.py validate now fails on evidence-hash drift (not repaired by the F-U14 seat - owner and chief-architect route)",
       "when": "2026-10-02"
     },
     {
