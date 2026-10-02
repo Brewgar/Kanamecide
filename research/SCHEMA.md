@@ -100,3 +100,29 @@ reports which records lack which declared fields.
 experiments without Provenance, hypotheses marked SUPPORTED but untested, contradiction and
 duplicate candidates, open-question count, revival count. These are the memory's own
 vital signs; a rising contradiction-count is a research queue, not a bug.
+
+## 8. Promotion, novelty, freshness (the DEC-0012 advisory surfaces)
+
+Three surfaces make the layer's epistemic discipline computable rather than remembered:
+
+- **Promotion rungs** (`imem.py promote`): L0 raw → L1 anchored → L2 tested →
+  L3 measured → L4 reproduced → L5 adopted. A claim may be `SUPPORTED` only at L3+;
+  `promote --strict` exits non-zero on any mismatch (a claimed SUPPORTED below L3).
+- **Freshness** (`imem.py freshness`): live (non-terminal) records older than their kind's
+  window in `imem_meta.FRESHNESS_POLICY_DAYS` are listed with `age_days`,
+  `last_activity` (the last authored date, never file mtime) and `window_days`. Advisory:
+  exit 0 always; `--max-age N` overrides every kind's window for one query.
+- **Novelty** (`imem.py novelty <id|text>`): the pre-file screen. Returns the closest
+  existing live claims/hypotheses with a labelled basis — `lexical` token overlap,
+  corpus-relative `semantic` cosine (RI), and the structural `same domain + parameter`
+  rule. Candidates are never merged; `--strict` exits 1 when any candidate exists so a
+  filing script can gate on it.
+
+## 9. Closure without self-certification
+
+A finding's `--close` writes `status: RESOLVED` and the closure note, but the layer's
+own rule (Gate 3, PR-0004) is that its author's seat cannot also supply the
+verification. A closure written by the author therefore carries
+`resolved_by`/`verified_by` pointing at the closure evidence, and a *separate* seat
+re-derives it under a handoff (the pattern HO-0021 established for FND-0032). The
+finding row is append-only: a re-opened defect is a new dated addendum, never an edit.

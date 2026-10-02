@@ -52,8 +52,19 @@ research/
 ├── experiments/         # E-##### records
 ├── failures/            # F-#### records
 ├── reviews/             # R-#### records
+├── work/                # W-#### work items (owner, deliverable, exit_check, verification)
+├── handoffs/            # HO-#### cross-seat requests (commands + acceptance)
+├── runs/                # RUN-#### runjob execution records (heartbeat, checkpoint, resume)
+├── sessions/            # S-#### session records (one per agent session)
+├── claims/              # CLM-#### atomic typed claims (direction-bearing)
+├── findings/            # FND-#### closeable review findings (severity: blocking|major|minor|nit)
+├── questions/           # Q-#### persistent open questions (deps + suggested experiments)
+├── principles/          # PR-#### durable lessons (strategic / meta)
+├── evidence/            # EV-#### pinned artifact manifests (path, sha256, regenerate, cites)
+├── manifests/           # artifact-pin manifests (e.g. e0013-artifact-pins.json)
 ├── templates/           # reusable scaffolds used by `research new-*`
 ├── context/             # generated context packs (derived; gitignored)
+├── _index/              # derived index cache (iMEM layer; gitignored; `research/scripts/imem.py index`)
 └── scripts/research.py  # the CLI (stdlib-only Python)
 ```
 
@@ -164,6 +175,47 @@ python research/scripts/research.py new-question --title "..."
 python research/scripts/research.py new-principle --title "..."
 python research/scripts/research.py new-evidence --title "..." --path e0010_k6n_games.jsonl
 ```
+
+### Institutional-memory layer (DEC-0012, `scripts/imem.py`)
+
+```powershell
+python research/scripts/imem.py index             # rebuild _index/imem.sqlite + imem.json
+python research/scripts/imem.py lint              # deterministic ledger/link/anchor gate
+python research/scripts/imem.py search "..."      # fused lexical+semantic+graph retrieval
+python research/scripts/imem.py ask "..."         # retrieval + topic state + decomposition
+python research/scripts/imem.py similar <ID>      # corpus-relative near-copies
+python research/scripts/imem.py beliefs           # hypotheses with calibrated evidence rows
+python research/scripts/imem.py chain <ID>        # provenance ladder for one record
+python research/scripts/imem.py provenance <ID>   # claim -> experiments -> runs -> evidence
+python research/scripts/imem.py contradictions    # direction-opposing / declared pairs
+python research/scripts/imem.py duplicates        # candidate merges (never merged)
+python research/scripts/imem.py revivals          # revisit-condition triggers vs metrics.json
+python research/scripts/imem.py freshness         # live records older than their policy window
+python research/scripts/imem.py novelty <id|text> # pre-file closeness screen (candidates)
+python research/scripts/imem.py priority          # expected-value ranking with arithmetic
+python research/scripts/imem.py questions         # open-question readiness + blockers
+python research/scripts/imem.py promote [--strict]# claim promotion ladder rungs
+python research/scripts/imem.py findings          # findings ledger (target + severity)
+python research/scripts/imem.py finding <ID> --close ... --by ...   # close with evidence
+python research/scripts/imem.py agents            # seat calibration / verification tables
+python research/scripts/imem.py blind <topic> <question...>  # blind-research scaffold
+python research/scripts/imem.py handoff ...       # generate a checkable handoff
+python research/scripts/imem.py brief <seat> ...  # token-budgeted onboarding pack
+python research/scripts/imem.py meta              # process overhead over time
+python research/scripts/imem.py pathologies       # named-record hazards with fixes
+python research/scripts/imem.py velocity          # experiment latency and verdict mix
+python research/scripts/imem.py codemap           # symbol traceability records <-> code
+python research/scripts/imem.py snapshot          # write the JSON snapshot under _index/
+python research/scripts/imem.py metrics [...]     # live trigger inputs
+python research/scripts/imem.py new-claim ...     # new atomic claim
+python research/scripts/imem.py new-finding ...   # new finding
+python research/scripts/imem.py audit
+python research/scripts/imem.py selftest          # same tests as tests_imem.py
+python research/scripts/imem.py version
+```
+
+The normative description of this layer is `research/INFRASTRUCTURE.md`; the data model
+it extends is `research/SCHEMA.md`.
 
 The full data model, relation vocabulary, epistemic classes, and migration policy are in
 `research/SCHEMA.md`. The derived views are recomputable; the records are the truth.
