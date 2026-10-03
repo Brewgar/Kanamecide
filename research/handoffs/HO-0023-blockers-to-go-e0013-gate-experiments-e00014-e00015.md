@@ -131,7 +131,46 @@ python tools/e0013_pins.py --verify                    # re-hash the pins at rea
 ```
 
 ## Response (receiver, append-only)
-- {{DATE}} — (role) — ...
+- 2026-10-03 — **systems-researcher (E-00015's `owner:` and executor seat)** — **B6 DISCHARGED.**
+  The one artifact HO-0023 named as B6's unblocking artifact now exists: a single dated
+  amendment filed in `research/experiments/E-00015-*.md` on 2026-10-03, under Sponsor Ruling 2,
+  doing all four things B6 specified —
+  1. **Band clause replaced.** The Games/Samples `75,600..76,587` clause and its lower-bound
+     arithmetic are RETIRED; the expected magnitude is no longer pre-registered as a band and no
+     band replaces it. Retirement authority cited by record and date: E-0013 Addendum 2,
+     S-0039 Ruling 1 / F-U10, 2026-09-27 (`FND-0026`).
+  2. **Power section re-described, not deleted.** The `## Power And Sample Size` paragraph is
+     retained verbatim as filed and marked superseded in place at its own location; the live
+     text states that this is a deterministic count over a frozen 1,000-row dataset with no
+     sampling uncertainty, no effect size and no CI, and that the reason no band is given is
+     that projections rot under a key change while arithmetic does not (F-U10 and F-U7 cited by
+     date). Test Method item 4 is restated to name the identities.
+  3. **Decision rule 3 replaced** by the five exact accounting identities the tool already emits
+     under `accounting_identities` in `tools/e0013_extract.py`, named exactly as the tool names
+     them (`usable_equals_after_degenerate_minus_dedup`, `usable_equals_train_plus_holdout`,
+     `stages_monotone_non_increasing`, `dedup_removed_at_least_zero`,
+     `one_survivor_per_normalized_fen`), with the failure branch stated as an **ABORT** carrying
+     the offending dict, not a warning. No threshold is introduced.
+  4. **Filter stage 4 restated** as GLOBAL-before-split dedup on the **normalized FEN** (F-U7 /
+     `FND-0023`): side to move + piece placement + castling/EP rights, with the halfmove clock and
+     fullmove number excluded; cited to E-0013's S-0037 leakage ruling (2026-09-27). The
+     global-before-split ordering and the surviving copy's `game_id` clause are untouched.
+
+  **Run authorization stated in the amendment:** exactly ONE deterministic count-only pass under
+  HO-0016 on the frozen pinned inputs; **all seven abort conditions UNCHANGED and UNWEAKENED**,
+  per `FND-0029` / F-U13 — the gate stays blocking and nothing was relaxed to make a pass
+  runnable. The amendment states explicitly that **no field of E-00015 may be filled from any
+  pre-existing number** and that the count must be produced by the run itself.
+
+  **What B6's discharge does NOT mean.** E-00015 has **not** run. `status:` remains `PENDING`,
+  `result:` remains `null`, and no count exists. The `74,452` figure elsewhere in the project is
+  **still non-authoritative for E-00015** and its status is unchanged by this amendment — this
+  amendment neither adopts nor re-pins it. HO-0016 remains the route to run, and it is now
+  unblocked on the B6 axis only; E-0014's blockers B1-B5 are untouched by this seat.
+
+  **Nothing was run to produce this discharge.** No extraction, no counting, no fitting, no label
+  read, no holdout read, no engine invocation. `E-0014`, `E-0013`, `tools/e0013_eval.py`,
+  `tools/e0013_extract.py` and every `src/` file are unmodified.
 
 ## Verification (receiver, append-only)
 - raw output / exit codes / hashes:

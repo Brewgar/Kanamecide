@@ -13,6 +13,8 @@ example: false
 created: 2026-09-26
 completed: null
 tags: [texel, yield, count-pass, scope-floor, pre-registration]
+last_updated: 2026-10-03
+related: [HO-0023, E-0013, HO-0016, FND-0023, FND-0026, FND-0029]
 ---
 
 # E-00015 - count-only realized usable quiet yield pass for E-0013 (PENDING; NOT RUN)
@@ -49,6 +51,11 @@ The terminal checker diagnostic on the R-0017-VERIFIED dataset
 `total_positions=130930`, `degenerate_mate_san_le_6=1`, no `crash` row in `end_counts`.
 These are the already-measured quantities the pre-registered band is computed from. This
 record does not recompute them and does not treat them as its own output.
+
+> **[SUPERSEDED 2026-10-03 — B6 amendment, clause 1.]** The word "band" in the sentence above
+> is retired text, kept verbatim as filed. The band these figures were used to derive no longer
+> exists (E-0013 Addendum 2, S-0039 Ruling 1 / F-U10, 2026-09-27). The figures themselves are
+> unaffected: they remain cited, read-only, and are still **not** this record's output.
 
 ## Candidate
 
@@ -123,6 +130,11 @@ N/A - no fitting, by construction. If this pass ever fits anything, it is void.
    - `games_used`, `games_excluded_crash`, `games_excluded_degenerate`;
    - `duplicates_removed_by_dedup`.
 4. Report the pre-registered band comparison (below).
+
+> **[SUPERSEDED 2026-10-03 — B6 amendment, clause 1.]** There is no band to compare against.
+> This item is replaced by: report the five exact accounting identities named in the 2026-10-03
+> B6 amendment below, with the offending dict if any is false.
+
 5. Report every field in Provenance. Omitted field = abort condition 7.
 
 ## Games / Samples
@@ -135,6 +147,14 @@ positions from the single degenerate game and zero crash games. Lower bound = 76
 ~997 projected cross-game FEN duplicates, from the measured 1705/130930 = 1.302 %
 duplication rate. **The band is a sanity check, not a pass criterion: a count outside the
 band is reported as-is and routed, never adjusted, re-run to land inside, or discarded.**
+
+> **[SUPERSEDED IN PLACE 2026-10-03 — B6 amendment, clause 1. This paragraph is RETIRED text,
+> retained verbatim as filed and NOT deleted.]** The band `75,600..76,587` was **RETIRED** by
+> E-0013's Addendum 2 (S-0039 Ruling 1 / F-U10, 2026-09-27) as a pre-key-change artifact: both
+> endpoints were functions of the OLD exact-FEN key's expected output, and the 1.302 % rate that
+> produced the lower bound is blind by construction to the clock-only duplicates the
+> normalized-FEN key removes. The live replacement text for this clause is the 2026-10-03 B6
+> amendment at the end of this record.
 
 ## Metrics
 
@@ -152,6 +172,15 @@ band is reported as-is and routed, never adjusted, re-run to land inside, or dis
 > uncertainty in the expected figure lives entirely in the pre-registered band, which is
 > stated as a band for exactly that reason. No pass/fail in this record may be described
 > in terms of statistical confidence.
+
+> **[RE-DESCRIBED IN PLACE 2026-10-03 — B6 amendment, clause 2. The paragraph above is kept
+> verbatim as filed and is NOT deleted; one sentence in it no longer has an object.]** This is
+> a deterministic count over a frozen 1,000-row dataset, not a sample. There is no sampling
+> uncertainty, no effect size, and no CI. The reason a band is no longer given is that
+> **projections rot under a key change while arithmetic does not**: the band was a projection
+> of the old exact-FEN key's duplication volume (E-0013 Addendum 2, S-0039 Ruling 1 / F-U10,
+> 2026-09-27), whereas the replacement instrument is the five exact accounting identities,
+> which are key-independent. See the 2026-10-03 B6 amendment at the end of this record.
 
 ## Sample Validity
 
@@ -200,6 +229,10 @@ band is reported as-is and routed, never adjusted, re-run to land inside, or dis
 **An abort is a result.** It is reported in the open with its reason. It is never
 converted into a passing count by adjusting the filter, the band, or the floor.
 
+> **[SUPERSEDED IN PLACE 2026-10-03 — B6 amendment, clause 1.]** "the band" here is retired
+> text. It is replaced by "the accounting identities": a false identity aborts the pass, and it
+> may not be made to hold by adjusting the filter, the dedup key, or the floor.
+
 ## Results
 
 TBD - nothing has run. This section will be filled with the stage-by-stage counts and
@@ -235,6 +268,10 @@ TBD.
 1. If `count_usable_distinct_train >= 30000`: conjunct (a) of E-0013 PASSES on yield, and
    the all-terms scope (KING PSTs frozen) stands. Report the count and the band
    comparison.
+
+> **[SUPERSEDED IN PLACE 2026-10-03 — B6 amendment, clause 1.]** "the band comparison" in rule 1
+> is retired text. Rule 1's floor test is UNCHANGED and still governs; what is reported alongside
+> the count is now the five exact accounting identities, not a band comparison.
 2. If `count_usable_distinct_train < 30000`: conjunct (a) FAILS its scope sub-condition;
    the all-terms claim is **WITHDRAWN** (recorded, not silently kept); the scope is
    **NOT** reduced to the mobility/tempo subset, because per E-0013's B5 that subset is
@@ -246,6 +283,13 @@ TBD.
    report which arithmetic assumption it breaks (the duplication projection, the
    degenerate-game bound, or the crash count), and route to a named re-decision. Do NOT
    re-run with a modified filter to land inside the band.
+
+> **[SUPERSEDED IN PLACE 2026-10-03 — B6 amendment, clause 3 — this rule is RETIRED, kept
+> verbatim as filed and NOT deleted.]** It has no object: the band was retired by E-0013's
+> Addendum 2 (S-0039 Ruling 1 / F-U10, 2026-09-27), so a count cannot land outside it. It is
+> replaced by the five exact accounting identities and their ABORT branch; see the 2026-10-03
+> B6 amendment at the end of this record. Rules 1, 2 and 4 and the four pre-registered failure
+> interpretations are UNCHANGED.
 4. If any pre-registered field cannot be produced: report `null` with the reason. Do not
    substitute a different count.
 
@@ -258,8 +302,21 @@ salt, the split map, the floor, or the band after seeing the count. The executor
 compute any label-derived quantity. The executor may not report the count in a way that
 selects a favourable branch.
 
+> **[SUPERSEDED IN PLACE 2026-10-03 — B6 amendment, clause 1.]** "or the band" is retired text
+> (there is no band to move). The prohibition is UNCHANGED IN FORCE and now reads: the executor
+> may not change the filter, the dedup key, the dedup order, the split salt, the split map, the
+> floor, or the accounting identities after seeing the count.
+
 4. **GLOBAL-before-split exact-FEN dedup** (F9): dedup is global, before the split; the
    surviving copy's `game_id` determines the split.
+
+> **[SUPERSEDED IN PLACE 2026-10-03 — B6 amendment, clause 4 — stage 4 is RESTATED, kept
+> verbatim as filed and NOT deleted.]** The dedup key is no longer the exact FEN. It is the
+> **normalized FEN** (F-U7 / `FND-0023`): side to move + piece placement + castling/EP rights,
+> with the halfmove clock and fullmove number **excluded** from a position's identity. Ruled by
+> E-0013's S-0037 leakage ruling (2026-09-27) and implemented under S-0038. The
+> global-before-split ordering and the surviving copy's `game_id` clause are UNAFFECTED and
+> remain exactly as written above.
 
 ### The split
 
@@ -274,3 +331,171 @@ because a count that is not attached to a committed split map cannot arm a scope
 metadata. It does not touch `res`, does not compute a loss, a correlation, or a
 per-side-position label distribution. This is deliberate: it keeps the pass incapable of
 informing the fit's direction, and it means the pass cannot leak even in principle.
+
+---
+
+## Addendum 2026-10-03 — B6 AMENDMENT (systems-researcher, E-00015's executor seat): the retired band is replaced by the five exact accounting identities, filter stage 4 is restated as the normalized-FEN key, and ONE deterministic count-only pass is authorised
+
+> Filed by **systems-researcher** on 2026-10-03, as E-00015's `owner:` and its executor seat,
+> under **Sponsor Ruling 2** and discharging **HO-0023 row B6**. E-0013 Addendum 2 (S-0039
+> Ruling 1 / F-U10, 2026-09-27) required this amendment to be made, dated, in E-00015, by this
+> seat, **before the pass runs**.
+>
+> **APPEND-ONLY, and no pre-existing text above is deleted.** Every superseded clause is marked
+> in place, at its own location, with the clause number that replaces it. `status:` remains
+> `PENDING`; `result:` remains `null`; no count exists.
+>
+> **NOTHING WAS RUN TO PRODUCE THIS AMENDMENT.** No extraction, no counting, no fitting, no
+> label read, no holdout read, no engine invocation. Every claim below is either a quotation of
+> this repository's own text or a pointer to it. `tools/e0013_extract.py`,
+> `tools/e0013_pins.py`, `tools/e0013_eval.py`, `tools/e0011_check.py`, `tools/e0012_sprt.py`
+> and every `src/` file are **unmodified**. E-00014 and E-0013 are **unmodified**.
+
+### 0. Why this amendment exists, in one paragraph
+
+E-00015's pre-registration described an instrument that its owner had already retired. The band
+`75,600..76,587` was **RETIRED** by E-0013's Addendum 2 on 2026-09-27 (S-0039 Ruling 1 /
+F-U10, `FND-0026`): both of its endpoints were functions of the OLD exact-FEN key's expected
+output, and the 1.302 % duplication rate that produced its lower bound is blind by construction
+to exactly the clock-only duplicate class that the normalized-FEN key removes. The instrument
+was retired in the code — the band constants are gone from `tools/e0013_extract.py`, no report
+key named `band` is constructed anywhere, and the retirement is published as a tombstone with
+`is_live: False`. **The pre-registration still described the old instrument.** A count measured
+under a superseded description is the "number that looks authoritative and is wrong" the S-0037
+leakage ruling warned about, so the pass does not run until this amendment lands.
+
+### 1. Clause 1 — the Games/Samples band clause is replaced by the accounting identities
+
+**The expected output magnitude is NOT pre-registered as a band, and no band is reinstated in
+its place.** The `75,600..76,587` clause and its lower-bound arithmetic (76,593 minus ~997
+projected cross-game duplicates at the measured 1.302 % rate) are **RETIRED**. Retirement
+authority, cited by record and date: **E-0013 Addendum 2, S-0039 Ruling 1 / F-U10, 2026-09-27**
+(`FND-0026`, RESOLVED). Nothing replaces the band *as a band* — a re-derived band under the new
+key would be computed from `duplicates_removed_by_dedup`, which is an output of the very run the
+band is meant to check, and an instrument that cannot fail is not an instrument.
+
+**The audit instrument for this pass is now the five exact accounting identities in clause 3.**
+They are arithmetic between quantities this run measures, so they are key-independent and cannot
+rot. They introduce **no threshold**, so there is no new number that can be wrong.
+
+**What is still true of this section and is unchanged:** the pass counts the whole verified
+dataset, all 1,000 games, filtered; no subsampling, no cap; and the already-measured baseline
+figures in `## Baseline` and `## Provenance` remain **cited, read-only, and not this record's
+output**.
+
+### 2. Clause 2 — the Power section is re-described, not deleted
+
+The `## Power And Sample Size` paragraph is **kept verbatim as filed**; one sentence in it — that
+the uncertainty "lives entirely in the pre-registered band, which is stated as a band for exactly
+that reason" — no longer has an object, because there is no band. Its live replacement:
+
+- This record is a **deterministic count over a frozen 1,000-row dataset**, not a sample. The
+  relevant "N" is the full dataset and it is used in full.
+- There is **no sampling uncertainty, no effect size, and no CI.** That sentence of the filed
+  paragraph is correct and **stays**.
+- **No pass/fail in this record may be described in terms of statistical confidence.** Unchanged.
+- **Why no band is given:** projections rot under a key change while arithmetic does not. The
+  band was a projection of the old exact-FEN key's duplication volume (E-0013 Addendum 2,
+  S-0039 Ruling 1 / F-U10, 2026-09-27; `FND-0026`). The dedup key changed under **F-U7 /
+  `FND-0023`**, ruled by E-0013's S-0037 leakage ruling (2026-09-27) and implemented under
+  S-0038. The identities that replace the band are exact and key-independent.
+- **Test Method item 4** ("Report the pre-registered band comparison (below)") is replaced by:
+  report the five identities of clause 3, with the offending dict if any is false.
+
+### 3. Clause 3 — decision rule 3 is replaced by the five exact accounting identities
+
+Decision rule 3 as filed ("if the count lands outside the pre-registered band … report which
+arithmetic assumption it breaks … route to a named re-decision") is **RETIRED**: there is no
+band, so it has no object. Its replacement is the **five identities the tool already emits**
+under `accounting_identities` in `tools/e0013_extract.py`, named exactly as the tool names them
+so a reader can diff this clause against the code:
+
+| # | identity name | the arithmetic it asserts |
+|---|---|---|
+| 1 | `usable_equals_after_degenerate_minus_dedup` | `count_after_degenerate_excl - duplicates_removed_by_dedup == count_usable_distinct` |
+| 2 | `usable_equals_train_plus_holdout` | `train + holdout == count_usable_distinct` |
+| 3 | `stages_monotone_non_increasing` | `count_bare_ply >= count_after_crash_excl >= count_after_degenerate_excl >= count_usable_distinct` |
+| 4 | `dedup_removed_at_least_zero` | `duplicates_removed_by_dedup >= 0` |
+| 5 | `one_survivor_per_normalized_fen` | `distinct_norm_fens == count_usable_distinct` |
+
+**Failure branch — this is not a warning.** If **any** identity is false, the pass **ABORTS** and
+the violation is reported with the offending dict. `tools/e0013_extract.py` already aborts with
+`ABORT: EXACT ACCOUNTING IDENTITIES VIOLATED: {...}`; this clause makes that abort **E-00015's own
+pre-registered obligation** rather than the tool's private behaviour. A false identity is a
+finding to report, never a new baseline to adopt.
+
+Identity 5 is the one that answers what Ruling 1 says was lost: it ties the survivor count to the
+distinctness of the dedup key rather than to any expected magnitude, so a future key change that
+quietly stops deduplicating is caught at once instead of waiting for a magnitude cross-check.
+
+**Unchanged by clause 3:** decision rules **1, 2 and 4**; the **30,000 scope floor** on
+`count_usable_distinct_train` (explicitly *not* the retired band, and not renegotiable after the
+count is reported); and the pre-registered failure interpretations of rules 1-2.
+
+### 4. Clause 4 — filter stage 4 is restated as the normalized-FEN dedup key (F-U7)
+
+Stage 4 as filed reads "GLOBAL-before-split **exact-FEN** dedup (F9)". That key is **superseded**.
+Stage 4 is restated as:
+
+> **4. GLOBAL-before-split dedup on the NORMALIZED FEN (F-U7 / `FND-0023`).** A position's
+> identity is **side to move + piece placement + castling/EP rights**. The **halfmove clock and
+> the fullmove number are EXCLUDED** from that identity. Dedup is global, before the split; the
+> surviving copy's `game_id` determines the split.
+
+Authority, cited by record and date: **F-U7**, ruled by E-0013's **S-0037 leakage ruling
+(2026-09-27)**, implemented under **S-0038**, closed as `FND-0023` (RESOLVED). The
+global-before-split ordering and the surviving copy's `game_id` clause are **unaffected and
+remain exactly as filed** — only the key changed.
+
+The overlap-0 invariant is checkable, not asserted: both the game-level
+(`tuple(opening) + tuple(san)`) and normalized-FEN-level overlap counts are reported, and both
+must be zero (abort condition 4). Per **`FND-0029` / F-U13 the gate stays blocking** — this
+amendment weakens nothing, and in particular does not relax the overlap-0 gate, the
+dedup-before-split order, or the accounting identities to make a pass runnable.
+
+### 5. Run authorization — ONE deterministic count-only pass, aborts unchanged
+
+**Authorised:** exactly **one** deterministic, count-only pass, under **HO-0016**, on the frozen
+pinned inputs. Nothing else. No fitting, no SPRT game, no game generation, no engine pair, no
+label read, no holdout read, no re-run after seeing the count.
+
+**All seven abort conditions stand UNCHANGED and UNWEAKENED**, verbatim as filed. In particular:
+the dataset SHA-256 pin (1), the committed split map (2), no label field read (3), overlap-0 at
+both levels (4), predicate fidelity to E-0013 on all four stages (5), global-before-split dedup
+(6), and no omitted output field (7). **Nothing in this amendment is grounds to relax any of
+them** (`FND-0029` / F-U13).
+
+**No field of this record may be filled from any pre-existing number.** Every pre-registered
+output field must be produced by this run, from the pinned dataset, and reported as measured. The
+`74,452` already recorded elsewhere in the project is **non-authoritative for this record**: it is
+a count-only figure produced by a different, earlier invocation, and this amendment does not
+change its status. Citing it here would import a number into a contract that has not yet measured
+one. If a field cannot be produced, it is reported as `null` with the reason — never substituted
+from a pre-existing figure.
+
+**Sequence, and the order this amendment was required in.** The band was retired, and this
+amendment was filed, **before** the pass runs, before any number exists, and before the 30,000
+floor is evaluated on any count that arms or disarms a scope claim. **This amendment is a
+re-registration; it is not a run and it produces no number.**
+
+**Not authorised by this amendment:** running the pass in any mode; closing E-00015 on the
+existing `74,452`; editing any `tools/` or `src/` file; editing E-0013 or E-00014; or flipping
+any record's `status:`.
+
+### 6. Integrity assertions for this amendment
+
+1. `status: PENDING` and `result: null` are **unchanged**. No field of this record is filled from
+   any pre-existing number; the count must be produced by the run itself.
+2. No clause of this record now **relies on** a retired object: every band reference and the
+   exact-FEN stage-4 reference is marked superseded in place at its own location, and each
+   supersession names the clause that replaces it.
+3. Nothing was deleted. Each superseded clause is retained verbatim as filed, per append-only
+   style.
+4. The five identity names in clause 3 match `tools/e0013_extract.py` exactly, so the clause can
+   be diffed against the code.
+5. The 30,000 scope floor, decision rules 1/2/4, the failure interpretations, all seven abort
+   conditions, `result: null`, `status: PENDING`, the dataset and split-map pins, and the
+   label-free-by-construction property are all **untouched**.
+6. `E-00014`, `E-0013`, `tools/e0013_eval.py` and every `src/` file are **untouched**.
+7. Nothing was run. This amendment is textual, and every claim in it is a quotation of or a
+   pointer to text already in this repository.
