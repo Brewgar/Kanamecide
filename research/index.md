@@ -189,6 +189,7 @@
 - [EV-0006](evidence/EV-0006-e0008-tactical-set.md) — E-00008 tactical test set (73 self-validated positions) + qsearch effect — status=REGISTERED
 - [EV-0007](evidence/EV-0007-e0009-tt-id.md) — E-00009 TT + iterative-deepening vs fixed-depth (9.51x fewer nodes) — status=REGISTERED
 - [EV-0010](evidence/EV-0010-e0010-measurement-binary.md) — E-0010 measurement binary (the current build/Release/kana.exe) — status=REGISTERED
+- [EV-0011](evidence/EV-0011-fnd0035-f2-f3-repair-binary-and-validation.md) — Post-FND-0035 F2/F3 repair binary + validation artifacts (qsearch ply/repetition guard, in-check stand-pat suppression) — status=REGISTERED
 
 ## Work Items (open)
 

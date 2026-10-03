@@ -1,7 +1,7 @@
 # Research State (GENERATED — do not edit)
 
 Derived from the record store by `research.py state`. Regenerate after every change.
-Generated: 2026-10-03T11:13:40; schema 2.
+Generated: 2026-10-03T13:24:40; schema 2.
 Every entry is a PROJECTION of the linked records — follow them before believing.
 
 ## Current best beliefs (hypotheses with measured weight)
@@ -43,7 +43,6 @@ Every entry is a PROJECTION of the linked records — follow them before believi
 - hypothesis **H-0002-magic-stub** Magic Bitboards with PEXT Provide >=3x NPS Speedup — SUPERSEDED. No revisit condition recorded.
 
 ## Recent timeline
-- 2026-09-30 review R-0026 (COMPLETED) : R 0026 independent verification of the e 0013 s 0037 leakage ruling under ho 0019 v1 v7 gate 3
 - 2026-09-30 session S-0041 (CLOSED) : E-0013 FND ledger closure (12 blocking rows), F-U7..F-U13 migration, and HO-0019 independent verification (V1-V7)
 - 2026-09-30 session S-0042 (CLOSED) : Ledger-tail round: six OPEN majors (FND-0008..FND-0013) dispositioned OPEN-with-gap; file FND-0032/FND-0033; finding template vocab hunk
 - 2026-10-02 current_position current_position (—) : current_position
@@ -54,6 +53,7 @@ Every entry is a PROJECTION of the linked records — follow them before believi
 - 2026-10-02 profile profile (—) : profile
 - 2026-10-02 review R-0027 (COMPLETED) : R 0027 independent audit of w 0008 imem 2 1 0 infrastructure and the fnd 0032 self closure ho 0021
 - 2026-10-02 session S-0043 (CLOSED) : imem 2.1.0 + normative INFRASTRUCTURE.md + chief-architect seat + FND-0032 Gate-3 routing
+- 2026-10-03 evidence EV-0011 (REGISTERED) : Post-FND-0035 F2/F3 repair binary + validation artifacts (qsearch ply/repetition guard, in-check stand-pat suppression)
 - 2026-10-03 finding FND-0035 (OPEN) : Q-0002 pre-eval census of src/search.cpp|tt.cpp: PVS/aspiration/LMR/null-move/futility are ALL absent; ordering+qsearch exist; ORDER_STAGE is one boolean so E-0007's per-lever attribution is NOT reproducible from current source
 - 2026-10-03 handoff HO-0023 (REQUESTED) : Blockers to GO on the E-0013 gate experiments E-00014 / E-00015, with a NO-GO on both and one unblocking amendment named for E-00015
 - 2026-10-03 session S-0044 (CLOSED) : Round-6 umbrella for the six seat sessions T-001..T-006 (W-0006 root-scratch clean-up, D-0002..D-0006 + E-00004/E-00005 re-attestation addenda, E-0013 gate-readiness, FND-0035 census, HO-0022/HO-0023) + the normalization commit
@@ -70,7 +70,7 @@ Every entry is a PROJECTION of the linked records — follow them before believi
     "debate": 7,
     "decision": 12,
     "doc": 18,
-    "evidence": 8,
+    "evidence": 9,
     "experiment": 15,
     "failure": 2,
     "finding": 35,
@@ -95,7 +95,7 @@ Every entry is a PROJECTION of the linked records — follow them before believi
     "OPEN": 41,
     "PENDING": 5,
     "RECORDED": 2,
-    "REGISTERED": 8,
+    "REGISTERED": 9,
     "REQUESTED": 7,
     "RESOLVED": 26,
     "RUNNING": 1,
@@ -103,12 +103,12 @@ Every entry is a PROJECTION of the linked records — follow them before believi
   },
   "code_files": 30,
   "contradiction_candidates": 0,
-  "dangling_ids": 16,
+  "dangling_ids": 17,
   "duplicate_candidates": 2,
-  "edges_total": 4595,
+  "edges_total": 4612,
   "legacy_experiments_without_pre_registration": 6,
   "open_questions": 8,
-  "records_total": 259,
+  "records_total": 260,
   "revival_candidates": 5
 }
 

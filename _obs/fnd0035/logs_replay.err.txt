@@ -1,0 +1,165 @@
+[GO] 11940194 time_ms=0 depth=8 wtime=0 btime=0
+[SR] 11940195 enter time_ms=0 maxd=8
+[SR] 11941040 loop-exit best=1153 stopped=0 ms=843 nodes=6307627
+[SR] 11941041 pv_built len=39
+[BM] 11941047 best=b1c3
+[GO] 11941050 time_ms=0 depth=8 wtime=0 btime=0
+[SR] 11941052 enter time_ms=0 maxd=8
+[SR] 11989669 loop-exit best=1554 stopped=0 ms=48615 nodes=192558228
+[SR] 11989670 pv_built len=9
+[BM] 11989685 best=c3a4
+[GO] 11989688 time_ms=0 depth=8 wtime=0 btime=0
+[SR] 11989690 enter time_ms=0 maxd=8
+[SR] 11996086 loop-exit best=2453 stopped=0 ms=6394 nodes=24342871
+[SR] 11996087 pv_built len=24
+[BM] 11996100 best=f3g5
+[GO] 11996101 time_ms=0 depth=8 wtime=0 btime=0
+[SR] 11996101 enter time_ms=0 maxd=8
+[SR] 12043812 loop-exit best=261 stopped=0 ms=47710 nodes=227964576
+[SR] 12043812 pv_built len=4
+[BM] 12043814 best=f1e1
+[GO] 12043815 time_ms=0 depth=8 wtime=0 btime=0
+[SR] 12043815 enter time_ms=0 maxd=8
+[SR] 12090916 loop-exit best=1858 stopped=0 ms=47099 nodes=207884012
+[SR] 12090916 pv_built len=4
+[BM] 12090920 best=c1f4
+[GO] 12090921 time_ms=0 depth=8 wtime=0 btime=0
+[SR] 12090922 enter time_ms=0 maxd=8
+[SR] 12126108 loop-exit best=64 stopped=0 ms=35186 nodes=140415644
+[SR] 12126109 pv_built len=9
+[BM] 12126122 best=a1b1
+[GO] 12126123 time_ms=0 depth=8 wtime=0 btime=0
+[SR] 12126124 enter time_ms=0 maxd=8
+[SR] 12135548 loop-exit best=2258 stopped=0 ms=9424 nodes=35350552
+[SR] 12135549 pv_built len=9
+[BM] 12135551 best=c3d5
+[GO] 12135552 time_ms=0 depth=8 wtime=0 btime=0
+[SR] 12135552 enter time_ms=0 maxd=8
+[SR] 12137315 loop-exit best=2203 stopped=0 ms=1762 nodes=8470924
+[SR] 12137316 pv_built len=9
+[BM] 12137331 best=d4c5
+[GO] 12137332 time_ms=0 depth=8 wtime=0 btime=0
+[SR] 12137332 enter time_ms=0 maxd=8
+[SR] 12149041 loop-exit best=1025 stopped=0 ms=11708 nodes=55752948
+[SR] 12149041 pv_built len=4
+[BM] 12149052 best=b1a3
+[GO] 12149053 time_ms=0 depth=8 wtime=0 btime=0
+[SR] 12149053 enter time_ms=0 maxd=8
+[SR] 12171887 loop-exit best=1227 stopped=0 ms=22832 nodes=106058240
+[SR] 12171887 pv_built len=4
+[BM] 12171895 best=d2d3
+[GO] 12171897 time_ms=0 depth=8 wtime=0 btime=0
+[SR] 12171897 enter time_ms=0 maxd=8
+[SR] 12178435 loop-exit best=706 stopped=0 ms=6537 nodes=56744920
+[SR] 12178435 pv_built len=4
+[BM] 12178437 best=c1d2
+[GO] 12178457 time_ms=0 depth=8 wtime=0 btime=0
+[SR] 12178457 enter time_ms=0 maxd=8
+[SR] 12179267 loop-exit best=1153 stopped=0 ms=809 nodes=6307627
+[SR] 12179267 pv_built len=39
+[BM] 12179270 best=b1c3
+[GO] 12179271 time_ms=0 depth=8 wtime=0 btime=0
+[SR] 12179271 enter time_ms=0 maxd=8
+[SR] 12226278 loop-exit best=1554 stopped=0 ms=47006 nodes=192558228
+[SR] 12226278 pv_built len=9
+[BM] 12226290 best=c3a4
+[GO] 12226292 time_ms=0 depth=8 wtime=0 btime=0
+[SR] 12226292 enter time_ms=0 maxd=8
+[SR] 12232438 loop-exit best=2453 stopped=0 ms=6145 nodes=24342871
+[SR] 12232438 pv_built len=24
+[BM] 12232445 best=f3g5
+[GO] 12232447 time_ms=0 depth=8 wtime=0 btime=0
+[SR] 12232447 enter time_ms=0 maxd=8
+[SR] 12278845 loop-exit best=261 stopped=0 ms=46397 nodes=227964576
+[SR] 12278845 pv_built len=4
+[BM] 12278849 best=f1e1
+[GO] 12278850 time_ms=0 depth=8 wtime=0 btime=0
+[SR] 12278851 enter time_ms=0 maxd=8
+[SR] 12323768 loop-exit best=1858 stopped=0 ms=44917 nodes=207884012
+[SR] 12323769 pv_built len=4
+[BM] 12323784 best=c1f4
+[GO] 12323786 time_ms=0 depth=8 wtime=0 btime=0
+[SR] 12323786 enter time_ms=0 maxd=8
+[SR] 12357159 loop-exit best=64 stopped=0 ms=33372 nodes=140415644
+[SR] 12357159 pv_built len=9
+[BM] 12357169 best=a1b1
+[GO] 12357170 time_ms=0 depth=8 wtime=0 btime=0
+[SR] 12357171 enter time_ms=0 maxd=8
+[SR] 12366206 loop-exit best=2258 stopped=0 ms=9034 nodes=35350552
+[SR] 12366207 pv_built len=9
+[BM] 12366216 best=c3d5
+[GO] 12366217 time_ms=0 depth=8 wtime=0 btime=0
+[SR] 12366217 enter time_ms=0 maxd=8
+[SR] 12367917 loop-exit best=2203 stopped=0 ms=1699 nodes=8470924
+[SR] 12367918 pv_built len=9
+[BM] 12367933 best=d4c5
+[GO] 12367934 time_ms=0 depth=8 wtime=0 btime=0
+[SR] 12367934 enter time_ms=0 maxd=8
+[SR] 12378995 loop-exit best=1025 stopped=0 ms=11060 nodes=55752948
+[SR] 12378995 pv_built len=4
+[BM] 12378997 best=b1a3
+[GO] 12378998 time_ms=0 depth=8 wtime=0 btime=0
+[SR] 12378998 enter time_ms=0 maxd=8
+[SR] 12401926 loop-exit best=1227 stopped=0 ms=22926 nodes=106058240
+[SR] 12401927 pv_built len=4
+[BM] 12401935 best=d2d3
+[GO] 12401936 time_ms=0 depth=8 wtime=0 btime=0
+[SR] 12401936 enter time_ms=0 maxd=8
+[SR] 12408280 loop-exit best=706 stopped=0 ms=6343 nodes=56744920
+[SR] 12408281 pv_built len=4
+[BM] 12408292 best=c1d2
+[GO] 12408311 time_ms=0 depth=8 wtime=0 btime=0
+[SR] 12408311 enter time_ms=0 maxd=8
+[SR] 12409127 loop-exit best=1153 stopped=0 ms=815 nodes=6307627
+[SR] 12409128 pv_built len=39
+[BM] 12409141 best=b1c3
+[GO] 12409142 time_ms=0 depth=8 wtime=0 btime=0
+[SR] 12409142 enter time_ms=0 maxd=8
+[SR] 12457389 loop-exit best=1554 stopped=0 ms=48246 nodes=192558228
+[SR] 12457390 pv_built len=9
+[BM] 12457400 best=c3a4
+[GO] 12457402 time_ms=0 depth=8 wtime=0 btime=0
+[SR] 12457402 enter time_ms=0 maxd=8
+[SR] 12463594 loop-exit best=2453 stopped=0 ms=6191 nodes=24342871
+[SR] 12463594 pv_built len=24
+[BM] 12463598 best=f3g5
+[GO] 12463599 time_ms=0 depth=8 wtime=0 btime=0
+[SR] 12463599 enter time_ms=0 maxd=8
+[SR] 12509240 loop-exit best=261 stopped=0 ms=45640 nodes=227964576
+[SR] 12509241 pv_built len=4
+[BM] 12509245 best=f1e1
+[GO] 12509246 time_ms=0 depth=8 wtime=0 btime=0
+[SR] 12509246 enter time_ms=0 maxd=8
+[SR] 12553387 loop-exit best=1858 stopped=0 ms=44140 nodes=207884012
+[SR] 12553387 pv_built len=4
+[BM] 12553397 best=c1f4
+[GO] 12553398 time_ms=0 depth=8 wtime=0 btime=0
+[SR] 12553398 enter time_ms=0 maxd=8
+[SR] 12586725 loop-exit best=64 stopped=0 ms=33325 nodes=140415644
+[SR] 12586725 pv_built len=9
+[BM] 12586732 best=a1b1
+[GO] 12586733 time_ms=0 depth=8 wtime=0 btime=0
+[SR] 12586733 enter time_ms=0 maxd=8
+[SR] 12596036 loop-exit best=2258 stopped=0 ms=9302 nodes=35350552
+[SR] 12596036 pv_built len=9
+[BM] 12596051 best=c3d5
+[GO] 12596053 time_ms=0 depth=8 wtime=0 btime=0
+[SR] 12596053 enter time_ms=0 maxd=8
+[SR] 12598034 loop-exit best=2203 stopped=0 ms=1980 nodes=8470924
+[SR] 12598034 pv_built len=9
+[BM] 12598040 best=d4c5
+[GO] 12598041 time_ms=0 depth=8 wtime=0 btime=0
+[SR] 12598041 enter time_ms=0 maxd=8
+[SR] 12609430 loop-exit best=1025 stopped=0 ms=11388 nodes=55752948
+[SR] 12609430 pv_built len=4
+[BM] 12609437 best=b1a3
+[GO] 12609439 time_ms=0 depth=8 wtime=0 btime=0
+[SR] 12609439 enter time_ms=0 maxd=8
+[SR] 12632321 loop-exit best=1227 stopped=0 ms=22881 nodes=106058240
+[SR] 12632322 pv_built len=4
+[BM] 12632332 best=d2d3
+[GO] 12632333 time_ms=0 depth=8 wtime=0 btime=0
+[SR] 12632334 enter time_ms=0 maxd=8
+[SR] 12638870 loop-exit best=706 stopped=0 ms=6535 nodes=56744920
+[SR] 12638870 pv_built len=4
+[BM] 12638871 best=c1d2

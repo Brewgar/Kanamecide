@@ -1,0 +1,179 @@
+{
+  "exe": "build\\Release\\kana.exe",
+  "depth": 8,
+  "runs": 3,
+  "identical": true,
+  "per_run": [
+    [
+      {
+        "name": "startpos",
+        "nodes": 6307627,
+        "bestmove": "b1c3"
+      },
+      {
+        "name": "italian",
+        "nodes": 192558228,
+        "bestmove": "c3a4"
+      },
+      {
+        "name": "italian_early",
+        "nodes": 24342871,
+        "bestmove": "f3g5"
+      },
+      {
+        "name": "qgd",
+        "nodes": 227964576,
+        "bestmove": "f1e1"
+      },
+      {
+        "name": "kid",
+        "nodes": 207884012,
+        "bestmove": "c1f4"
+      },
+      {
+        "name": "giuoco_2",
+        "nodes": 140415644,
+        "bestmove": "a1b1"
+      },
+      {
+        "name": "q_out",
+        "nodes": 35350552,
+        "bestmove": "c3d5"
+      },
+      {
+        "name": "tact_b",
+        "nodes": 8470924,
+        "bestmove": "d4c5"
+      },
+      {
+        "name": "tact_c",
+        "nodes": 55752948,
+        "bestmove": "b1a3"
+      },
+      {
+        "name": "tact_d",
+        "nodes": 106058240,
+        "bestmove": "d2d3"
+      },
+      {
+        "name": "tact_e",
+        "nodes": 56744920,
+        "bestmove": "c1d2"
+      }
+    ],
+    [
+      {
+        "name": "startpos",
+        "nodes": 6307627,
+        "bestmove": "b1c3"
+      },
+      {
+        "name": "italian",
+        "nodes": 192558228,
+        "bestmove": "c3a4"
+      },
+      {
+        "name": "italian_early",
+        "nodes": 24342871,
+        "bestmove": "f3g5"
+      },
+      {
+        "name": "qgd",
+        "nodes": 227964576,
+        "bestmove": "f1e1"
+      },
+      {
+        "name": "kid",
+        "nodes": 207884012,
+        "bestmove": "c1f4"
+      },
+      {
+        "name": "giuoco_2",
+        "nodes": 140415644,
+        "bestmove": "a1b1"
+      },
+      {
+        "name": "q_out",
+        "nodes": 35350552,
+        "bestmove": "c3d5"
+      },
+      {
+        "name": "tact_b",
+        "nodes": 8470924,
+        "bestmove": "d4c5"
+      },
+      {
+        "name": "tact_c",
+        "nodes": 55752948,
+        "bestmove": "b1a3"
+      },
+      {
+        "name": "tact_d",
+        "nodes": 106058240,
+        "bestmove": "d2d3"
+      },
+      {
+        "name": "tact_e",
+        "nodes": 56744920,
+        "bestmove": "c1d2"
+      }
+    ],
+    [
+      {
+        "name": "startpos",
+        "nodes": 6307627,
+        "bestmove": "b1c3"
+      },
+      {
+        "name": "italian",
+        "nodes": 192558228,
+        "bestmove": "c3a4"
+      },
+      {
+        "name": "italian_early",
+        "nodes": 24342871,
+        "bestmove": "f3g5"
+      },
+      {
+        "name": "qgd",
+        "nodes": 227964576,
+        "bestmove": "f1e1"
+      },
+      {
+        "name": "kid",
+        "nodes": 207884012,
+        "bestmove": "c1f4"
+      },
+      {
+        "name": "giuoco_2",
+        "nodes": 140415644,
+        "bestmove": "a1b1"
+      },
+      {
+        "name": "q_out",
+        "nodes": 35350552,
+        "bestmove": "c3d5"
+      },
+      {
+        "name": "tact_b",
+        "nodes": 8470924,
+        "bestmove": "d4c5"
+      },
+      {
+        "name": "tact_c",
+        "nodes": 55752948,
+        "bestmove": "b1a3"
+      },
+      {
+        "name": "tact_d",
+        "nodes": 106058240,
+        "bestmove": "d2d3"
+      },
+      {
+        "name": "tact_e",
+        "nodes": 56744920,
+        "bestmove": "c1d2"
+      }
+    ]
+  ]
+}

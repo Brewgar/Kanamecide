@@ -1,0 +1,62 @@
+[GO] 11738797 time_ms=0 depth=6 wtime=0 btime=0
+[SR] 11738797 enter time_ms=0 maxd=6
+[SR] 11738925 loop-exit best=1153 stopped=0 ms=127 nodes=1246725
+[SR] 11738925 pv_built len=29
+[BM] 11738939 best=b1c3
+[GO] 11738941 time_ms=0 depth=6 wtime=0 btime=0
+[SR] 11738941 enter time_ms=0 maxd=6
+[SR] 11739371 loop-exit best=2434 stopped=0 ms=429 nodes=1637354
+[SR] 11739371 pv_built len=29
+[BM] 11739377 best=c1g5
+[GO] 11739378 time_ms=0 depth=6 wtime=0 btime=0
+[SR] 11739378 enter time_ms=0 maxd=6
+[SR] 11739614 loop-exit best=2453 stopped=0 ms=235 nodes=982416
+[SR] 11739614 pv_built len=29
+[BM] 11739629 best=f3g5
+[GO] 11739630 time_ms=0 depth=6 wtime=0 btime=0
+[SR] 11739631 enter time_ms=0 maxd=6
+[SR] 11739875 loop-exit best=261 stopped=0 ms=243 nodes=1100054
+[SR] 11739875 pv_built len=29
+[BM] 11739880 best=f1e1
+[GO] 11739882 time_ms=0 depth=6 wtime=0 btime=0
+[SR] 11739882 enter time_ms=0 maxd=6
+[SR] 11740524 loop-exit best=1858 stopped=0 ms=641 nodes=2772442
+[SR] 11740524 pv_built len=29
+[BM] 11740536 best=c1f4
+[GO] 11740537 time_ms=0 depth=6 wtime=0 btime=0
+[SR] 11740537 enter time_ms=0 maxd=6
+[SR] 11740882 loop-exit best=2434 stopped=0 ms=344 nodes=1315416
+[SR] 11740882 pv_built len=29
+[BM] 11740897 best=c1g5
+[GO] 11740899 time_ms=0 depth=6 wtime=0 btime=0
+[SR] 11740899 enter time_ms=0 maxd=6
+[SR] 11741447 loop-exit best=2258 stopped=0 ms=547 nodes=1890289
+[SR] 11741447 pv_built len=29
+[BM] 11741459 best=c3d5
+[GO] 11741461 time_ms=0 depth=6 wtime=0 btime=0
+[SR] 11741461 enter time_ms=0 maxd=6
+[SR] 11741595 loop-exit best=2203 stopped=0 ms=133 nodes=624025
+[SR] 11741595 pv_built len=29
+[BM] 11741601 best=d4c5
+[GO] 11741603 time_ms=0 depth=6 wtime=0 btime=0
+[SR] 11741603 enter time_ms=0 maxd=6
+[SR] 11741724 loop-exit best=1025 stopped=0 ms=119 nodes=574797
+[SR] 11741724 pv_built len=29
+[BM] 11741726 best=b1a3
+[GO] 11741727 time_ms=0 depth=6 wtime=0 btime=0
+[SR] 11741727 enter time_ms=0 maxd=6
+[SR] 11742697 loop-exit best=2130 stopped=0 ms=969 nodes=3203859
+[SR] 11742697 pv_built len=29
+[BM] 11742706 best=c3b5
+[GO] 11742708 time_ms=0 depth=6 wtime=0 btime=0
+[SR] 11742708 enter time_ms=0 maxd=6
+[SR] 11742807 loop-exit best=706 stopped=0 ms=98 nodes=593069
+[SR] 11742807 pv_built len=29
+[BM] 11742814 best=c1d2
+{
+  "exe": "build\\Release\\kana.exe",
+  "depth": 6,
+  "positions": 11,
+  "total_nodes": 15940446,
+  "out": "_obs\\fnd0035\\nodes_post_d6.csv"
+}

@@ -1,0 +1,16 @@
+Kana — chess engine correctness test harness
+CPU: AMD Ryzen 7 9700X (8C/16T, AVX-512)
+Target: correct move generation + make/unmake validated by perft
+
+PASS startpos               d= 1  got=20          expected=20          0 diff
+PASS startpos               d= 2  got=400         expected=400         0 diff
+PASS startpos               d= 3  got=8902        expected=8902        0 diff
+PASS startpos               d= 4  got=197281      expected=197281      0 diff
+PASS startpos               d= 5  got=4865609     expected=4865609     0 diff
+PASS kiwipete               d= 3  got=97862       expected=97862       0 diff
+PASS cpw_pos3_epins         d= 4  got=43238       expected=43238       0 diff
+PASS cpw_pos4_promo         d= 4  got=422333      expected=422333      0 diff
+PASS cpw_pos5_promo         d= 4  got=2103487     expected=2103487     0 diff
+PASS cpw_pos6_quiet         d= 4  got=3894594     expected=3894594     0 diff
+
+=== ALL TESTS PASSED

@@ -1,0 +1,89 @@
+game 20: plycap :: exceeded 250 plies
+game 29: plycap :: exceeded 250 plies
+game 31: plycap :: exceeded 250 plies
+[fuzz] 50/1000 games, 23s, failures=3
+game 52: plycap :: exceeded 250 plies
+game 57: plycap :: exceeded 250 plies
+game 64: plycap :: exceeded 250 plies
+game 66: plycap :: exceeded 250 plies
+game 73: plycap :: exceeded 250 plies
+game 98: plycap :: exceeded 250 plies
+[fuzz] 100/1000 games, 52s, failures=9
+game 119: plycap :: exceeded 250 plies
+game 131: plycap :: exceeded 250 plies
+[fuzz] 150/1000 games, 73s, failures=11
+game 179: plycap :: exceeded 250 plies
+game 185: plycap :: exceeded 250 plies
+[fuzz] 200/1000 games, 96s, failures=13
+game 216: plycap :: exceeded 250 plies
+game 235: plycap :: exceeded 250 plies
+[fuzz] 250/1000 games, 119s, failures=15
+game 253: plycap :: exceeded 250 plies
+game 294: plycap :: exceeded 250 plies
+[fuzz] 300/1000 games, 140s, failures=17
+game 302: plycap :: exceeded 250 plies
+game 319: plycap :: exceeded 250 plies
+game 339: plycap :: exceeded 250 plies
+game 342: plycap :: exceeded 250 plies
+[fuzz] 350/1000 games, 163s, failures=21
+game 371: plycap :: exceeded 250 plies
+game 381: plycap :: exceeded 250 plies
+game 384: plycap :: exceeded 250 plies
+game 387: plycap :: exceeded 250 plies
+[fuzz] 400/1000 games, 190s, failures=25
+game 422: plycap :: exceeded 250 plies
+game 439: plycap :: exceeded 250 plies
+[fuzz] 450/1000 games, 210s, failures=27
+game 464: plycap :: exceeded 250 plies
+game 483: plycap :: exceeded 250 plies
+game 499: plycap :: exceeded 250 plies
+[fuzz] 500/1000 games, 232s, failures=30
+game 518: plycap :: exceeded 250 plies
+game 523: plycap :: exceeded 250 plies
+game 534: plycap :: exceeded 250 plies
+game 545: plycap :: exceeded 250 plies
+[fuzz] 550/1000 games, 259s, failures=34
+game 580: plycap :: exceeded 250 plies
+[fuzz] 600/1000 games, 278s, failures=35
+game 610: plycap :: exceeded 250 plies
+[fuzz] 650/1000 games, 299s, failures=36
+game 681: plycap :: exceeded 250 plies
+game 684: plycap :: exceeded 250 plies
+[fuzz] 700/1000 games, 321s, failures=38
+game 736: plycap :: exceeded 250 plies
+game 744: plycap :: exceeded 250 plies
+game 747: plycap :: exceeded 250 plies
+[fuzz] 750/1000 games, 341s, failures=41
+game 764: plycap :: exceeded 250 plies
+game 778: plycap :: exceeded 250 plies
+[fuzz] 800/1000 games, 366s, failures=43
+game 815: plycap :: exceeded 250 plies
+game 838: plycap :: exceeded 250 plies
+game 847: plycap :: exceeded 250 plies
+[fuzz] 850/1000 games, 392s, failures=46
+game 852: plycap :: exceeded 250 plies
+[fuzz] 900/1000 games, 411s, failures=47
+[fuzz] 950/1000 games, 431s, failures=47
+game 960: plycap :: exceeded 250 plies
+game 989: plycap :: exceeded 250 plies
+[fuzz] 1000/1000 games, 456s, failures=49
+{
+  "games": 1000,
+  "depth": 4,
+  "counts": {
+    "ok": 951,
+    "illegal": 0,
+    "stall": 0,
+    "missing_bestmove": 0,
+    "crash": 0,
+    "plycap": 49
+  },
+  "gate": {
+    "illegal": 0,
+    "stall": 0,
+    "missing_bestmove": 0,
+    "crash": 0
+  },
+  "verdict": "PASS",
+  "wall_seconds": 455.5
+}

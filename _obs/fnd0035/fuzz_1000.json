@@ -1,0 +1,330 @@
+{
+  "exe": "build\\Release\\kana.exe",
+  "games": 1000,
+  "depth": 4,
+  "seed": 20261003,
+  "wall_seconds": 455.5,
+  "counts": {
+    "ok": 951,
+    "illegal": 0,
+    "stall": 0,
+    "missing_bestmove": 0,
+    "crash": 0,
+    "plycap": 49
+  },
+  "results": {
+    "1-0": 951,
+    "0-1": 0,
+    "1/2-1/2": 0,
+    "*": 0
+  },
+  "gate": {
+    "illegal": 0,
+    "stall": 0,
+    "missing_bestmove": 0,
+    "crash": 0
+  },
+  "gate_rule": "crashes == 0 AND stalls == 0 AND missing_bestmove == 0 AND illegal == 0",
+  "recorded_not_gated": {
+    "plycap": 49,
+    "why": "a game reaching the 250-ply cap is a game-length outcome against a random mover, not a crash/stall/missing-bestmove; disclosed, not gated"
+  },
+  "verdict": "PASS",
+  "failures": [
+    {
+      "game": 20,
+      "engine_white": false,
+      "label": "plycap",
+      "detail": "exceeded 250 plies"
+    },
+    {
+      "game": 29,
+      "engine_white": true,
+      "label": "plycap",
+      "detail": "exceeded 250 plies"
+    },
+    {
+      "game": 31,
+      "engine_white": true,
+      "label": "plycap",
+      "detail": "exceeded 250 plies"
+    },
+    {
+      "game": 52,
+      "engine_white": false,
+      "label": "plycap",
+      "detail": "exceeded 250 plies"
+    },
+    {
+      "game": 57,
+      "engine_white": true,
+      "label": "plycap",
+      "detail": "exceeded 250 plies"
+    },
+    {
+      "game": 64,
+      "engine_white": false,
+      "label": "plycap",
+      "detail": "exceeded 250 plies"
+    },
+    {
+      "game": 66,
+      "engine_white": false,
+      "label": "plycap",
+      "detail": "exceeded 250 plies"
+    },
+    {
+      "game": 73,
+      "engine_white": true,
+      "label": "plycap",
+      "detail": "exceeded 250 plies"
+    },
+    {
+      "game": 98,
+      "engine_white": false,
+      "label": "plycap",
+      "detail": "exceeded 250 plies"
+    },
+    {
+      "game": 119,
+      "engine_white": true,
+      "label": "plycap",
+      "detail": "exceeded 250 plies"
+    },
+    {
+      "game": 131,
+      "engine_white": true,
+      "label": "plycap",
+      "detail": "exceeded 250 plies"
+    },
+    {
+      "game": 179,
+      "engine_white": true,
+      "label": "plycap",
+      "detail": "exceeded 250 plies"
+    },
+    {
+      "game": 185,
+      "engine_white": true,
+      "label": "plycap",
+      "detail": "exceeded 250 plies"
+    },
+    {
+      "game": 216,
+      "engine_white": false,
+      "label": "plycap",
+      "detail": "exceeded 250 plies"
+    },
+    {
+      "game": 235,
+      "engine_white": true,
+      "label": "plycap",
+      "detail": "exceeded 250 plies"
+    },
+    {
+      "game": 253,
+      "engine_white": true,
+      "label": "plycap",
+      "detail": "exceeded 250 plies"
+    },
+    {
+      "game": 294,
+      "engine_white": false,
+      "label": "plycap",
+      "detail": "exceeded 250 plies"
+    },
+    {
+      "game": 302,
+      "engine_white": false,
+      "label": "plycap",
+      "detail": "exceeded 250 plies"
+    },
+    {
+      "game": 319,
+      "engine_white": true,
+      "label": "plycap",
+      "detail": "exceeded 250 plies"
+    },
+    {
+      "game": 339,
+      "engine_white": true,
+      "label": "plycap",
+      "detail": "exceeded 250 plies"
+    },
+    {
+      "game": 342,
+      "engine_white": false,
+      "label": "plycap",
+      "detail": "exceeded 250 plies"
+    },
+    {
+      "game": 371,
+      "engine_white": true,
+      "label": "plycap",
+      "detail": "exceeded 250 plies"
+    },
+    {
+      "game": 381,
+      "engine_white": true,
+      "label": "plycap",
+      "detail": "exceeded 250 plies"
+    },
+    {
+      "game": 384,
+      "engine_white": false,
+      "label": "plycap",
+      "detail": "exceeded 250 plies"
+    },
+    {
+      "game": 387,
+      "engine_white": true,
+      "label": "plycap",
+      "detail": "exceeded 250 plies"
+    },
+    {
+      "game": 422,
+      "engine_white": false,
+      "label": "plycap",
+      "detail": "exceeded 250 plies"
+    },
+    {
+      "game": 439,
+      "engine_white": true,
+      "label": "plycap",
+      "detail": "exceeded 250 plies"
+    },
+    {
+      "game": 464,
+      "engine_white": false,
+      "label": "plycap",
+      "detail": "exceeded 250 plies"
+    },
+    {
+      "game": 483,
+      "engine_white": true,
+      "label": "plycap",
+      "detail": "exceeded 250 plies"
+    },
+    {
+      "game": 499,
+      "engine_white": true,
+      "label": "plycap",
+      "detail": "exceeded 250 plies"
+    },
+    {
+      "game": 518,
+      "engine_white": false,
+      "label": "plycap",
+      "detail": "exceeded 250 plies"
+    },
+    {
+      "game": 523,
+      "engine_white": true,
+      "label": "plycap",
+      "detail": "exceeded 250 plies"
+    },
+    {
+      "game": 534,
+      "engine_white": false,
+      "label": "plycap",
+      "detail": "exceeded 250 plies"
+    },
+    {
+      "game": 545,
+      "engine_white": true,
+      "label": "plycap",
+      "detail": "exceeded 250 plies"
+    },
+    {
+      "game": 580,
+      "engine_white": false,
+      "label": "plycap",
+      "detail": "exceeded 250 plies"
+    },
+    {
+      "game": 610,
+      "engine_white": false,
+      "label": "plycap",
+      "detail": "exceeded 250 plies"
+    },
+    {
+      "game": 681,
+      "engine_white": true,
+      "label": "plycap",
+      "detail": "exceeded 250 plies"
+    },
+    {
+      "game": 684,
+      "engine_white": false,
+      "label": "plycap",
+      "detail": "exceeded 250 plies"
+    },
+    {
+      "game": 736,
+      "engine_white": false,
+      "label": "plycap",
+      "detail": "exceeded 250 plies"
+    },
+    {
+      "game": 744,
+      "engine_white": false,
+      "label": "plycap",
+      "detail": "exceeded 250 plies"
+    },
+    {
+      "game": 747,
+      "engine_white": true,
+      "label": "plycap",
+      "detail": "exceeded 250 plies"
+    },
+    {
+      "game": 764,
+      "engine_white": false,
+      "label": "plycap",
+      "detail": "exceeded 250 plies"
+    },
+    {
+      "game": 778,
+      "engine_white": false,
+      "label": "plycap",
+      "detail": "exceeded 250 plies"
+    },
+    {
+      "game": 815,
+      "engine_white": true,
+      "label": "plycap",
+      "detail": "exceeded 250 plies"
+    },
+    {
+      "game": 838,
+      "engine_white": false,
+      "label": "plycap",
+      "detail": "exceeded 250 plies"
+    },
+    {
+      "game": 847,
+      "engine_white": true,
+      "label": "plycap",
+      "detail": "exceeded 250 plies"
+    },
+    {
+      "game": 852,
+      "engine_white": false,
+      "label": "plycap",
+      "detail": "exceeded 250 plies"
+    },
+    {
+      "game": 960,
+      "engine_white": false,
+      "label": "plycap",
+      "detail": "exceeded 250 plies"
+    },
+    {
+      "game": 989,
+      "engine_white": true,
+      "label": "plycap",
+      "detail": "exceeded 250 plies"
+    }
+  ],
+  "note": "robustness fuzz only; no strength claim, no Elo, no SPRT"
+}

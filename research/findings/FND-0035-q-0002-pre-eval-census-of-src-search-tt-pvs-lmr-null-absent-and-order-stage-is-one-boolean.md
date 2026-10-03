@@ -288,3 +288,115 @@ cannot separate the margin from 0 at the planned N, the verdict is **INCONCLUSIV
 | DEC-0008 filter | **VERIFIED OK** | `:198`, `:285`, `:139`, `:244` | TT move is an ordering hint re-found in the fresh list `:180`, never trusted as legal |
 
 ---
+
+## Addendum 2026-10-03 — F2/F3 REPAIRED (implementation-engineer seat)
+
+**Scope of this addendum: Findings 2 and 3 ONLY. Status stays `OPEN`** — Findings 1, 4, 5
+and 6 are untouched and the adversarial pass is still owed. Nothing in this addendum
+interprets a strength effect and no SPRT was run.
+
+### F2 REPAIRED (HIGH) — unbounded `qsearch` recursion
+
+`qsearch` now takes `ply` and is bounded by `MAX_PLY = 128`:
+
+- signature `qsearch(Board&, alpha, beta, ply, nodes)` — `src/search.cpp:123`;
+- guard `if (ply >= MAX_PLY) return kana::evaluate(b);` — `:127`, with
+  `assert(ply < MAX_PLY)` alongside it (live in the Audit config);
+- recursion site passes `ply + 1` — `:157`;
+- the `negamax` depth-0 leaf passes its own `ply` through — `:179`.
+
+Repetition/halfmove adjudication was added at the top of every `qsearch` node, **identical in
+form to what `negamax` does at `:176-177`**:
+
+```cpp
+if (count_reps(b.key) >= 2) return 0;   // threefold repetition
+if (b.halfmove >= 100) return 0;        // 50-move rule
+```
+
+`count_reps` reads both the UCI game keys and the in-search `path_keys` stack, so a perpetual
+inside the quiescence search is now scored 0 instead of being searched forever. The
+stack-overflow / non-termination path reachable from live play is closed: recursion depth is now
+finite and the `path_keys[MAX_PLY]` / `killer[MAX_PLY][2]` arrays can no longer be indexed past
+their bounds from the quiescence side.
+
+### F3 REPAIRED (MED-HIGH) — stand-pat fail-high while in check
+
+`in_chk` is now computed **before** the stand-pat cutoff (`:132`), and stand-pat is skipped
+entirely while in check (`:133-137`):
+
+```cpp
+bool in_chk = in_check(b, b.side);   // F3: computed BEFORE the stand-pat cutoff
+if (!in_chk) {                       // F3: no stand pat while in check
+    if (sp >= beta) return beta;
+### Evidence
+
+Recorded as **EV-0011** (`research/evidence/EV-0011-fnd0035-f2-f3-repair-binary-and-validation.md`),
+a NEW evidence record bound to this commit. **`EV-0010` was deliberately NOT re-pinned** — per
+D-003 Ruling-1 step 3 it stays bound forever to the E-0010 epoch binary, and the post-repair
+digest is filed under a fresh id.
+
+| binary | sha256 | size |
+|---|---|---|
+| `build/Release/kana.exe` (post-repair) | `A0951F4F40B5B85923BA832362C378009F0F8ED7C4DD20BB39EF70F59B5D8BCF` | 121856 B |
+| `build/Audit/kana.exe` (post-repair) | `4BECA6D5D2A9B942836F63D87DA964EDDDA3B46673CD3F6A87688775B68327EE` | 549376 B |
+| `build/Release/kana.exe` (pre-repair, archived) | `686EA5979415054982703985C543CEB9EE7C0CD47C166903CAF8C79D12276F3B` | 121344 B |
+
+`src/search.cpp` is the only changed source file: 23 insertions, 7 deletions. `eval.cpp`,
+`tt.cpp` and `CMakeLists.txt` were not touched.
+
+### Validation — five gates, all green (artifacts under `_obs/fnd0035/`)
+
+| # | gate | result | artifact |
+|---|---|---|---|
+| 1 | perft anchor | **GREEN** — Release AND Audit 10/10 (`=== ALL TESTS PASSED`, `=== STATE AUDIT PASSED`); `research.py`'s own `PERFT_ANCHOR` check 10/10 | `perft_anchor.txt`, `perft_anchor_researchpy.txt` |
+| 2 | F-U14 suite re-verify | **GREEN** — `articles=3 re-proved=200 overlap_value=0`, exit 0 | `fu14_verify.txt` |
+| 3 | deterministic replay | **PASS** — `go depth 8`, 11 act_E00007 positions x3, **1,061,850,542 nodes per run, identical across all three runs**, verified independently rather than self-reported | `replay_d8_x3.json`, `replay_verdict.txt` |
+| 4 | node-count pre/post table (depth 6) | **EVIDENCE, NOT A DEFECT** — 13,983,338 -> 15,940,446 (**+14.0%**); best moves identical **11/11** | `nodes_pre_post_table_d6.md` |
+| 5 | fuzz | **PASS** — 1000 random-mover self-play games, depth 4: **0 crashes, 0 stalls, 0 missing-bestmove, 0 illegal** | `fuzz_1000.json` |
+
+**Why the node count rose +14.0% — expected, and not a defect.** F2 adds a repetition scan and a
+halfmove test to *every* `qsearch` node (work that did not exist there before), and F3 deletes a
+fail-high that previously returned `beta` immediately while in check, so those nodes now expand
+instead of cutting. Both push the count up. The table is recorded as evidence of what the repair
+cost; **no strength effect is claimed, interpreted, or measured, and no SPRT was run.**
+
+    best = sp;
+    if (sp > alpha) alpha = sp;
+### Honest limitations on this addendum
+
+- **`research/positions/act_E00007.fen` did not exist.** This record (`:156`, `:267`) and
+  E-00009:76 both cite it; at commit `bda64c7` the path was absent and untracked by git. The
+  file was **created** by this seat by transcribing the 11 records verbatim from
+  `measure_ob.py:9-23` — the driver this very record names as the Tier-N node/TTD driver — and
+  its header carries that provenance. It is not a re-derivation of the positions and not a
+  substitute for whatever the E-00007 owner holds. **This gap is itself a finding for the
+  adversarial pass.**
+- `research.py validate` still exits 1 with **exactly one** problem: the pre-existing EV-0010
+  evidence-digest drift. That is **FND-0034's** open item; this seat is explicitly forbidden to
+  re-pin EV-0010, so the perft-anchor sub-check is reported separately (gate 1) and the
+  post-repair digest is filed as EV-0011 instead.
+- Fuzz games reaching the 250-ply cap are counted and reported but are **not** gate terms —
+  against a random mover a long game is a game-length outcome, not a robustness failure. Every
+  gated counter is 0.
+- The F-U14 `verify` gate validates the *suite* (re-hash + re-prove all 200 mates). It does not
+  push the suite through the engine; `fu14_suite.py smoke` does, and was not re-run here.
+- One earlier fuzz attempt was aborted by the agent shell's console CTRL_C; its artifacts were
+  deleted rather than shipped, because a stale log beside a fresh JSON is a provenance defect in
+  its own right.
+
+### Not done, deliberately
+
+Finding 1 (ORDER_STAGE / E-00007 attribution), Finding 4 (`go nodes` suspect), Finding 5
+(`VALUE[]` unification — separately gated as F5) and all seven Finding 6 dead-code items are
+**unchanged**. No clang-format. Status remains **OPEN** for the adversarial pass.
+
+}
+```
+
+This restores E-00008's stated contract — "stand-pat `evaluate()`; if >= beta, fail high (only
+when NOT in check)" — which the pre-repair code did not honour, because `in_chk` was only
+computed later at what was then `:124` and the `sp >= beta` return at `:118` had already fired.
+The check-evasion branch below it is unchanged: when in check, all moves are still generated and
+searched (`:143-144`), which is what makes the mate detection at `:169` correct.
+
+---

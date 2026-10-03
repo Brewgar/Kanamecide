@@ -1,0 +1,12 @@
+name,depth,nodes,bestmove,score
+startpos,6,1237736,b1c3,cp 10
+italian,6,1331430,c1g5,cp 35
+italian_early,6,759586,f3g5,cp 21
+qgd,6,1257357,f1e1,cp 380
+kid,6,2600599,c1f4,cp 410
+giuoco_2,6,1101978,c1g5,cp 59
+q_out,6,1679991,c3d5,cp 373
+tact_b,6,556176,d4c5,cp 850
+tact_c,6,507212,b1a3,cp 402
+tact_d,6,2360817,c3b5,cp 777
+tact_e,6,590456,c1d2,cp 1329

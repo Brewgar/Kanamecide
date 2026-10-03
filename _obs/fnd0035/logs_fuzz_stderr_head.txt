@@ -1,0 +1,204 @@
+﻿# FND-0035 F2/F3 fuzz - engine stderr, LAST 200 lines of 200 sampled from the full run.
+# The full run wrote ~5.3 MB of per-move [SR]/[BM] debug chatter; only the tail is retained here
+# because the verdict lives in fuzz_1000.json and logs_fuzz_stdout.txt. Nothing is filtered out of
+# the JSON: all 1000 games and all 49 non-ok labels are recorded there.
+[GO] 13664280 time_ms=0 depth=4 wtime=0 btime=0
+[SR] 13664280 enter time_ms=0 maxd=4
+[SR] 13664305 loop-exit best=2281 stopped=0 ms=24 nodes=95893
+[SR] 13664306 pv_built len=19
+[BM] 13664311 best=b6d5
+[GO] 13664311 time_ms=0 depth=4 wtime=0 btime=0
+[SR] 13664311 enter time_ms=0 maxd=4
+[SR] 13664328 loop-exit best=3363 stopped=0 ms=15 nodes=69786
+[SR] 13664328 pv_built len=19
+[BM] 13664342 best=d5e7
+[GO] 13664343 time_ms=0 depth=4 wtime=0 btime=0
+[SR] 13664343 enter time_ms=0 maxd=4
+[SR] 13664350 loop-exit best=3950 stopped=0 ms=6 nodes=31825
+[SR] 13664350 pv_built len=19
+[BM] 13664358 best=g6f8
+[GO] 13664358 time_ms=0 depth=4 wtime=0 btime=0
+[SR] 13664359 enter time_ms=0 maxd=4
+[SR] 13664366 loop-exit best=3048 stopped=0 ms=6 nodes=32383
+[SR] 13664366 pv_built len=19
+[BM] 13664374 best=a6h6
+[GO] 13664374 time_ms=0 depth=4 wtime=0 btime=0
+[SR] 13664374 enter time_ms=0 maxd=4
+[SR] 13664378 loop-exit best=2996 stopped=0 ms=3 nodes=15645
+[SR] 13664378 pv_built len=19
+[BM] 13664390 best=e7g6
+[GO] 13664390 time_ms=0 depth=4 wtime=0 btime=0
+[SR] 13664391 enter time_ms=0 maxd=4
+[SR] 13664396 loop-exit best=1669 stopped=0 ms=4 nodes=19497
+[SR] 13664396 pv_built len=19
+[BM] 13664405 best=f1c4
+[GO] 13664406 time_ms=0 depth=4 wtime=0 btime=0
+[SR] 13664406 enter time_ms=0 maxd=4
+[SR] 13664412 loop-exit best=1282 stopped=0 ms=5 nodes=21385
+[SR] 13664412 pv_built len=19
+[BM] 13664421 best=c1e3
+[GO] 13664422 time_ms=0 depth=4 wtime=0 btime=0
+[SR] 13664422 enter time_ms=0 maxd=4
+[SR] 13664427 loop-exit best=3129 stopped=0 ms=4 nodes=16823
+[SR] 13664427 pv_built len=19
+[BM] 13664437 best=b8a7
+[GO] 13664438 time_ms=0 depth=4 wtime=0 btime=0
+[SR] 13664438 enter time_ms=0 maxd=4
+[SR] 13664444 loop-exit best=2608 stopped=0 ms=5 nodes=22631
+[SR] 13664444 pv_built len=19
+[BM] 13664452 best=a7a6
+[GO] 13664454 time_ms=0 depth=4 wtime=0 btime=0
+[SR] 13664454 enter time_ms=0 maxd=4
+[SR] 13664459 loop-exit best=3112 stopped=0 ms=4 nodes=18363
+[SR] 13664459 pv_built len=19
+[BM] 13664468 best=a6a7
+[GO] 13664468 time_ms=0 depth=4 wtime=0 btime=0
+[SR] 13664469 enter time_ms=0 maxd=4
+[SR] 13664474 loop-exit best=2332 stopped=0 ms=5 nodes=22836
+[SR] 13664474 pv_built len=19
+[BM] 13664483 best=e4e5
+[GO] 13664484 time_ms=0 depth=4 wtime=0 btime=0
+[SR] 13664484 enter time_ms=0 maxd=4
+[SR] 13664490 loop-exit best=1242 stopped=0 ms=6 nodes=24518
+[SR] 13664490 pv_built len=19
+[BM] 13664499 best=c4d3
+[GO] 13664499 time_ms=0 depth=4 wtime=0 btime=0
+[SR] 13664500 enter time_ms=0 maxd=4
+[SR] 13664505 loop-exit best=787 stopped=0 ms=5 nodes=21236
+[SR] 13664506 pv_built len=19
+[BM] 13664515 best=d3e2
+[GO] 13664515 time_ms=0 depth=4 wtime=0 btime=0
+[SR] 13664516 enter time_ms=0 maxd=4
+[SR] 13664522 loop-exit best=1487 stopped=0 ms=5 nodes=23038
+[SR] 13664522 pv_built len=19
+[BM] 13664530 best=h2h3
+[GO] 13664530 time_ms=0 depth=4 wtime=0 btime=0
+[SR] 13664530 enter time_ms=0 maxd=4
+[SR] 13664533 loop-exit best=1328 stopped=0 ms=2 nodes=8172
+[SR] 13664533 pv_built len=19
+[BM] 13664545 best=a7e3
+[GO] 13664546 time_ms=0 depth=4 wtime=0 btime=0
+[SR] 13664546 enter time_ms=0 maxd=4
+[SR] 13664548 loop-exit best=1932 stopped=0 ms=1 nodes=6525
+[SR] 13664548 pv_built len=19
+[BM] 13664561 best=e2g4
+[GO] 13664562 time_ms=0 depth=4 wtime=0 btime=0
+[SR] 13664562 enter time_ms=0 maxd=4
+[SR] 13664565 loop-exit best=1357 stopped=0 ms=2 nodes=10426
+[SR] 13664565 pv_built len=19
+[BM] 13664577 best=f2f3
+[GO] 13664577 time_ms=0 depth=4 wtime=0 btime=0
+[SR] 13664577 enter time_ms=0 maxd=4
+[SR] 13664579 loop-exit best=967 stopped=0 ms=1 nodes=3283
+[SR] 13664579 pv_built len=20
+[BM] 13664593 best=h1h2
+[GO] 13664593 time_ms=0 depth=4 wtime=0 btime=0
+[SR] 13664593 enter time_ms=0 maxd=4
+[SR] 13664595 loop-exit best=1812 stopped=0 ms=1 nodes=2454
+[SR] 13664595 pv_built len=19
+[BM] 13664608 best=e3e4
+[GO] 13664608 time_ms=0 depth=4 wtime=0 btime=0
+[SR] 13664609 enter time_ms=0 maxd=4
+[SR] 13664611 loop-exit best=1884 stopped=0 ms=1 nodes=3489
+[SR] 13664611 pv_built len=20
+[BM] 13664624 best=e4f4
+[GO] 13664624 time_ms=0 depth=4 wtime=0 btime=0
+[SR] 13664624 enter time_ms=0 maxd=4
+[SR] 13664626 loop-exit best=2013 stopped=0 ms=1 nodes=2577
+[SR] 13664626 pv_built len=4
+[BM] 13664639 best=f4h4
+[GO] 13664656 time_ms=0 depth=4 wtime=0 btime=0
+[SR] 13664656 enter time_ms=0 maxd=4
+[SR] 13664658 loop-exit best=1153 stopped=0 ms=1 nodes=8957
+[SR] 13664658 pv_built len=19
+[BM] 13664671 best=b1c3
+[GO] 13664671 time_ms=0 depth=4 wtime=0 btime=0
+[SR] 13664671 enter time_ms=0 maxd=4
+[SR] 13664675 loop-exit best=2258 stopped=0 ms=3 nodes=26749
+[SR] 13664675 pv_built len=19
+[BM] 13664687 best=c3d5
+[GO] 13664688 time_ms=0 depth=4 wtime=0 btime=0
+[SR] 13664688 enter time_ms=0 maxd=4
+[SR] 13664691 loop-exit best=1350 stopped=0 ms=3 nodes=19919
+[SR] 13664691 pv_built len=19
+[BM] 13664703 best=g1f3
+[GO] 13664703 time_ms=0 depth=4 wtime=0 btime=0
+[SR] 13664704 enter time_ms=0 maxd=4
+[SR] 13664708 loop-exit best=1749 stopped=0 ms=3 nodes=21793
+[SR] 13664708 pv_built len=19
+[BM] 13664719 best=f3d4
+[GO] 13664719 time_ms=0 depth=4 wtime=0 btime=0
+[SR] 13664719 enter time_ms=0 maxd=4
+[SR] 13664721 loop-exit best=2659 stopped=0 ms=1 nodes=7399
+[SR] 13664722 pv_built len=19
+[BM] 13664734 best=d5b6
+[GO] 13664735 time_ms=0 depth=4 wtime=0 btime=0
+[SR] 13664735 enter time_ms=0 maxd=4
+[SR] 13664737 loop-exit best=2843 stopped=0 ms=1 nodes=5665
+[SR] 13664737 pv_built len=19
+[BM] 13664750 best=d4e6
+[GO] 13664751 time_ms=0 depth=4 wtime=0 btime=0
+[SR] 13664751 enter time_ms=0 maxd=4
+[SR] 13664753 loop-exit best=3820 stopped=0 ms=1 nodes=6253
+[SR] 13664753 pv_built len=19
+[BM] 13664767 best=e6d8
+[GO] 13664767 time_ms=0 depth=4 wtime=0 btime=0
+[SR] 13664767 enter time_ms=0 maxd=4
+[SR] 13664769 loop-exit best=1577 stopped=0 ms=1 nodes=8952
+[SR] 13664769 pv_built len=19
+[BM] 13664782 best=b6a4
+[GO] 13664783 time_ms=0 depth=4 wtime=0 btime=0
+[SR] 13664783 enter time_ms=0 maxd=4
+[SR] 13664785 loop-exit best=1176 stopped=0 ms=1 nodes=3872
+[SR] 13664785 pv_built len=19
+[BM] 13664799 best=a4c3
+[GO] 13664799 time_ms=0 depth=4 wtime=0 btime=0
+[SR] 13664799 enter time_ms=0 maxd=4
+[SR] 13664801 loop-exit best=2130 stopped=0 ms=1 nodes=10102
+[SR] 13664802 pv_built len=19
+[BM] 13664815 best=c3b5
+[GO] 13664815 time_ms=0 depth=4 wtime=0 btime=0
+[SR] 13664815 enter time_ms=0 maxd=4
+[SR] 13664820 loop-exit best=1292 stopped=0 ms=4 nodes=26772
+[SR] 13664820 pv_built len=19
+[BM] 13664831 best=e2e3
+[GO] 13664831 time_ms=0 depth=4 wtime=0 btime=0
+[SR] 13664831 enter time_ms=0 maxd=4
+[SR] 13664839 loop-exit best=1761 stopped=0 ms=7 nodes=31033
+[SR] 13664839 pv_built len=19
+[BM] 13664846 best=b5d4
+[GO] 13664846 time_ms=0 depth=4 wtime=0 btime=0
+[SR] 13664847 enter time_ms=0 maxd=4
+[SR] 13664850 loop-exit best=2117 stopped=0 ms=3 nodes=13273
+[SR] 13664851 pv_built len=19
+[BM] 13664862 best=f1b5
+[GO] 13664862 time_ms=0 depth=4 wtime=0 btime=0
+[SR] 13664862 enter time_ms=0 maxd=4
+[SR] 13664868 loop-exit best=3873 stopped=0 ms=5 nodes=23206
+[SR] 13664868 pv_built len=19
+[BM] 13664878 best=b5e8
+[GO] 13664878 time_ms=0 depth=4 wtime=0 btime=0
+[SR] 13664879 enter time_ms=0 maxd=4
+[SR] 13664881 loop-exit best=2748 stopped=0 ms=2 nodes=11813
+[SR] 13664881 pv_built len=19
+[BM] 13664894 best=e8c6
+[GO] 13664894 time_ms=0 depth=4 wtime=0 btime=0
+[SR] 13664895 enter time_ms=0 maxd=4
+[SR] 13664897 loop-exit best=2395 stopped=0 ms=2 nodes=9591
+[SR] 13664897 pv_built len=19
+[BM] 13664910 best=d4f5
+[GO] 13664910 time_ms=0 depth=4 wtime=0 btime=0
+[SR] 13664911 enter time_ms=0 maxd=4
+[SR] 13664915 loop-exit best=2499 stopped=0 ms=4 nodes=19690
+[SR] 13664915 pv_built len=19
+[BM] 13664925 best=d1h5
+[GO] 13664926 time_ms=0 depth=4 wtime=0 btime=0
+[SR] 13664926 enter time_ms=0 maxd=4
+[SR] 13664931 loop-exit best=3431 stopped=0 ms=4 nodes=24588
+[SR] 13664931 pv_built len=14
+[BM] 13664941 best=h5f7
+[GO] 13664941 time_ms=0 depth=4 wtime=0 btime=0
+[SR] 13664941 enter time_ms=0 maxd=4
+[SR] 13664954 loop-exit best=3317 stopped=0 ms=11 nodes=54663
+[SR] 13664954 pv_built len=4
+[BM] 13664956 best=f7d7

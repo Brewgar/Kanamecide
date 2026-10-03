@@ -110,18 +110,34 @@ static int score_move(const Board& b, Move m, int ply, Move pv) {
 
 struct ScoredMove { Move m; int s; };
 
-static int qsearch(Board& b, int alpha, int beta, uint64_t& nodes) {
+// FND-0035 F2/F3 repair. Three changes, and only these three:
+//   F2  `ply` is threaded through qsearch and bounded by MAX_PLY (:34), and qsearch applies
+//       the same threefold-repetition / 50-move adjudication negamax applies at :160-161.
+//       Before this, qsearch took no ply, recursed at :141 with no cap and no draw check, so
+//       the "all moves when in check" branch made a perpetual sequence searchable to unbounded
+//       depth (stack-overflow / non-termination reachable from live play).
+//   F3  `in_chk` is computed BEFORE the stand-pat cutoff and stand-pat is SKIPPED while in
+//       check. A side to move that is in check cannot stand pat; E-00008's contract says the
+//       fail-high is "only when NOT in check" and the guard was absent.
+// Nothing else is changed: no VALUE[] unification, no Finding 6 cleanup, no reformat.
+static int qsearch(Board& b, int alpha, int beta, int ply, uint64_t& nodes) {
     nodes++;
+    if (count_reps(b.key) >= 2) return 0;        // threefold repetition (as negamax :160)
+    if (b.halfmove >= 100) return 0;             // 50-move rule (as negamax :161)
+    if (ply >= MAX_PLY) return kana::evaluate(b);// F2: hard recursion bound -> static eval
+    assert(ply < MAX_PLY);
     int best = -INF;
     int sp = kana::evaluate(b);
     if (stopped(nodes)) return sp;
-    if (sp >= beta) return beta;
-    best = sp;
-    if (sp > alpha) alpha = sp;
+    bool in_chk = in_check(b, b.side);          // F3: computed BEFORE the stand-pat cutoff
+    if (!in_chk) {                              // F3: no stand pat while in check
+        if (sp >= beta) return beta;
+        best = sp;
+        if (sp > alpha) alpha = sp;
+    }
 
     Move pseudo[256]; int np = generate_moves(b, pseudo);
     Move moves[256]; int n = 0;
-    bool in_chk = in_check(b, b.side);
     for (int i = 0; i < np; i++) {
         Move m = pseudo[i];
         if (in_chk || move_flag(m) == PROMOTION || move_flag(m) == EN_PASSANT || b.mailbox[move_to(m)] != 0)
@@ -138,7 +154,7 @@ static int qsearch(Board& b, int alpha, int beta, uint64_t& nodes) {
 #endif
         if (attacked_by(b, b.king_sq[~b.side], b.side)) { unmake_move(b, m, u); continue; }
         legal++;
-        int sc = -qsearch(b, -beta, -alpha, nodes);
+        int sc = -qsearch(b, -beta, -alpha, ply + 1, nodes);
 #ifndef NDEBUG
         { uint64_t _ck = compute_key(b); if (_ck != b.key) fprintf(stderr, "QRECURSE KEY MISMATCH stored=%llu computed=%llu side=%d\n", (unsigned long long)b.key, (unsigned long long)_ck, (int)b.side); assert(b.key == compute_key(b)); }
 #endif
@@ -160,7 +176,7 @@ int negamax(Board& b, int depth, int alpha, int beta, int ply, uint64_t& nodes) 
     if (count_reps(b.key) >= 2) return 0;        // threefold repetition
     if (b.halfmove >= 100) return 0;             // 50-move rule
     if (stopped(nodes)) return 0;
-    if (depth <= 0) return QSEARCH ? qsearch(b, alpha, beta, nodes) : kana::evaluate(b);
+    if (depth <= 0) return QSEARCH ? qsearch(b, alpha, beta, ply, nodes) : kana::evaluate(b);
     assert(ply < MAX_PLY && path_len < MAX_PLY);
 #ifndef NDEBUG
     uint64_t ck = compute_key(b);

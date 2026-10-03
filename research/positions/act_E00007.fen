@@ -1,0 +1,33 @@
+# Act E-00007 activation set — 11 fixed positions.
+#
+# Cited as the frozen Tier-N node/TTD set by:
+#   - research/experiments/E-00009-...md:76  ("Activation set E-00007: 11 fixed positions
+#     (`research/positions/act_E00007.fen`)")
+#   - research/findings/FND-0035-...md:156 and :267  (Tier N; "driver `measure_ob.py`,
+#     depth 6"; "Positions: research/positions/act_E00007.fen (Tier N), frozen")
+#
+# PROVENANCE OF THIS FILE (recorded, not blurred): this path was empty on disk and untracked
+# by git at commit bda64c7 (`Test-Path research/positions` -> False; `git ls-files` returns
+# nothing under research/positions), i.e. the two records above cite a file that does not
+# exist in the repository. The 11 records below are transcribed VERBATIM — field order,
+# castling/EP rights and both clocks — from the driver FND-0035 itself names for this set,
+# `measure_ob.py:9-23` (`POSITIONS`, DEPTH=6), which is the Tier-N node-count driver. Line 1
+# is the literal `startpos` token that measure_ob.py passes through UCI; lines 2-11 are the
+# FEN strings, unchanged.
+#
+#   name <TAB> fen|startpos
+#
+# This file is written by the FND-0035 F2/F3 repair seat ONLY so that the repair's own
+# validation could run against the cited set. It is NOT a re-derivation of the positions,
+# NOT a strength artifact, and NOT a substitute for whatever the E-00007 owner holds.
+startpos	startpos
+italian	r1bq1rk1/ppp2ppp/2np1n2/2b1p3/2B1P3/2NP1N2/PPP2PPP/R1BQ1RK1 w - - 0 1
+italian_early	r1bqkb1r/pppp1ppp/2n2n2/4p3/2B1P3/5N2/PPPP1PPP/RNBQK2R w KQkq - 6 4
+qgd	r2q1rk1/pp2bppp/2p2n2/3p2B1/3P4/2N2N2/PPP2PPP/R2Q1RK1 w - - 2 9
+kid	rnbq1rk1/ppp1ppbp/3p1np1/8/3PP3/2NB1N2/PPP1BPPP/R1BQK2R w KQ - 8 6
+giuoco_2	r1bq1rk1/1pp2ppp/p1np1n2/2b1p3/2B1P3/2NP1N2/PPP2PPP/R1BQ1RK1 w - - 0 1
+q_out	r1b1kb1r/pppp1ppp/2n2q2/4p3/2B1P3/2N2N2/PPPP1PPP/R1BQK2R w KQkq - 2 4
+tact_b	1k1r3r/pp3ppp/2np3q/2p5/3P4/2N1PN2/PPP1QPPP/R3KB1R w KQ - 0 1
+tact_c	r3kb1r/ppp1pppp/2n5/q4b2/5N2/2P5/PP1PPPPP/RNBQKB1R w KQkq - 0 1
+tact_d	r1b1k2r/ppppnppp/5q2/4p3/2B1P3/2N2N2/PPPP1PPP/R1BQ1RK1 w kq - 0 1
+tact_e	3r2k1/pp3ppp/2p5/3p4/3P4/2N1PN2/PPP2PPP/2KR3R w - - 0 1

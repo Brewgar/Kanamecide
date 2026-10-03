@@ -797,6 +797,20 @@
     },
     {
       "code_files": [
+        "src/search.cpp",
+        "tools/fu14_suite.py"
+      ],
+      "commits_mentioned": [
+        "bda64c7"
+      ],
+      "kind": "evidence",
+      "record": "EV-0011",
+      "rel": "evidence/EV-0011-fnd0035-f2-f3-repair-binary-and-validation.md",
+      "status": "REGISTERED",
+      "title": "Post-FND-0035 F2/F3 repair binary + validation artifacts (qsearch ply/repetition guard, in-check stand-pat suppression)"
+    },
+    {
+      "code_files": [
         "src/bitboard.cpp",
         "src/board.cpp",
         "src/movegen.cpp",
@@ -1068,7 +1082,8 @@
         "tools/e0012_sprt.py"
       ],
       "commits_mentioned": [
-        "82ac6fe"
+        "82ac6fe",
+        "bda64c7"
       ],
       "kind": "finding",
       "record": "FND-0035",
@@ -1941,7 +1956,7 @@
       "path": "build/Release/kana.exe",
       "regenerate": "build.bat (Release), then: build\\\\Release\\\\kana.exe — expect 10x PASS with 0 diff and the final line 'ALL TESTS PASSED",
       "rel": "evidence/EV-0003-perft-anchor-gate0.md",
-      "sha256": "686ea5979415054982703985c543ceb9ee7c0cd47c166903caf8c79d12276f3b",
+      "sha256": "a0951f4f40b5b85923ba832362c378009f0f8ed7c4dd20bb39ef70f59b5d8bcf",
       "sha256_recorded": null,
       "status": "REGISTERED",
       "title": "Certified Perft Anchor run (Gate 0 / the correctness floor)"
@@ -1956,7 +1971,7 @@
       "path": "build/Release/kana.exe",
       "regenerate": "build\\\\Release\\\\kana.exe --bench 5 (pinned, WMI clock proxy logged; self-SHA256 printed per run)",
       "rel": "evidence/EV-0004-e0002-certified-o2-bench.md",
-      "sha256": "686ea5979415054982703985c543ceb9ee7c0cd47c166903caf8c79d12276f3b",
+      "sha256": "a0951f4f40b5b85923ba832362c378009f0f8ed7c4dd20bb39ef70f59b5d8bcf",
       "sha256_recorded": null,
       "status": "REGISTERED",
       "title": "E-0002 certified /O2 bench (5 reps, pinned, SHA-256 logged)"
@@ -2016,10 +2031,27 @@
       "path": "build/Release/kana.exe",
       "regenerate": "build.bat from commit 9b69e0a (src/eval.{h,cpp}, search.cpp crash fix). Rebuild reproduces the harness; the exact hash requires the exact toolchain.",
       "rel": "evidence/EV-0010-e0010-measurement-binary.md",
-      "sha256": "686ea5979415054982703985c543ceb9ee7c0cd47c166903caf8c79d12276f3b",
+      "sha256": "a0951f4f40b5b85923ba832362c378009f0f8ed7c4dd20bb39ef70f59b5d8bcf",
       "sha256_recorded": "504EB01A828770DD9BFCA252AB8245A5692DF51580957CB6E5553012347A6DAA",
       "status": "REGISTERED",
       "title": "E-0010 measurement binary (the current build/Release/kana.exe)"
+    },
+    {
+      "cites": [
+        "FND-0035",
+        "E-00008",
+        "E-00009"
+      ],
+      "exists": true,
+      "id": "EV-0011",
+      "kind": "binary",
+      "path": "build/Release/kana.exe",
+      "regenerate": "cmake --build build --config Release (and --config Audit) from the commit this record is committed in; src/search.cpp is the only changed source file. The exact digest requires the exact toolchain (MSVC 18.10.1, /O2 /GL /arch:AVX512 /DNDEBUG /LTCG, CMake ORDER_STAGE=4 QSEARCH=1 EVAL_STAGE=6) - the same non-byte-reproducibility caveat EV-0010 already carries.",
+      "rel": "evidence/EV-0011-fnd0035-f2-f3-repair-binary-and-validation.md",
+      "sha256": "a0951f4f40b5b85923ba832362c378009f0f8ed7c4dd20bb39ef70f59b5d8bcf",
+      "sha256_recorded": "A0951F4F40B5B85923BA832362C378009F0F8ED7C4DD20BB39EF70F59B5D8BCF",
+      "status": "REGISTERED",
+      "title": "Post-FND-0035 F2/F3 repair binary + validation artifacts (qsearch ply/repetition guard, in-check stand-pat suppression)"
     }
   ],
   "facts": {
@@ -2040,7 +2072,7 @@
       "title": "Gate 0 unrunnable: Device Guard hard-blocks kana.exe (every build, every path)"
     }
   ],
-  "generated": "2026-10-03T11:13:40",
+  "generated": "2026-10-03T13:24:40",
   "metrics": {
     "by_kind": {
       "agent_profile": 1,
@@ -2050,7 +2082,7 @@
       "debate": 7,
       "decision": 12,
       "doc": 18,
-      "evidence": 8,
+      "evidence": 9,
       "experiment": 15,
       "failure": 2,
       "finding": 35,
@@ -2075,7 +2107,7 @@
       "OPEN": 41,
       "PENDING": 5,
       "RECORDED": 2,
-      "REGISTERED": 8,
+      "REGISTERED": 9,
       "REQUESTED": 7,
       "RESOLVED": 26,
       "RUNNING": 1,
@@ -2083,12 +2115,12 @@
     },
     "code_files": 30,
     "contradiction_candidates": 0,
-    "dangling_ids": 16,
+    "dangling_ids": 17,
     "duplicate_candidates": 2,
-    "edges_total": 4595,
+    "edges_total": 4612,
     "legacy_experiments_without_pre_registration": 6,
     "open_questions": 8,
-    "records_total": 259,
+    "records_total": 260,
     "revival_candidates": 5
   },
   "questions_all": [
@@ -2480,15 +2512,6 @@
   "timeline_tail": [
     {
       "example": false,
-      "id": "FND-0011",
-      "kind": "finding",
-      "rel": "findings/FND-0011-f-u4-the-e-0011-n1-backwards-citation-correction-see-b5-sentence-3-fil.md",
-      "status": "OPEN",
-      "title": "F-U4 the E-0011 N1 backwards-citation correction (see B5 sentence 3).** Fil",
-      "when": "2026-09-29"
-    },
-    {
-      "example": false,
       "id": "FND-0012",
       "kind": "finding",
       "rel": "findings/FND-0012-f-u5-q-0006-readiness-gate-7-see-b7-on-any-terminal-verdict-this-recor.md",
@@ -2801,6 +2824,15 @@
       "status": "CLOSED",
       "title": "imem 2.1.0 + normative INFRASTRUCTURE.md + chief-architect seat + FND-0032 Gate-3 routing",
       "when": "2026-10-02"
+    },
+    {
+      "example": false,
+      "id": "EV-0011",
+      "kind": "evidence",
+      "rel": "evidence/EV-0011-fnd0035-f2-f3-repair-binary-and-validation.md",
+      "status": "REGISTERED",
+      "title": "Post-FND-0035 F2/F3 repair binary + validation artifacts (qsearch ply/repetition guard, in-check stand-pat suppression)",
+      "when": "2026-10-03"
     },
     {
       "example": false,
