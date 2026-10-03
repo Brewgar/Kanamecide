@@ -4,15 +4,15 @@ type: work
 title: imem 2.1 infrastructure: INFRASTRUCTURE.md normative doc + freshness/novelty advisory surfaces + chief-architect seat
 round: 5
 owner: chief-architect
-status: IN_PROGRESS
+status: DONE
 deliverable: "research/INFRASTRUCTURE.md + research/scripts/imem.py (VERSION 2.1.0, freshness + novelty commands) + research/scripts/imem_meta.py (freshness_rows/report) + research/scripts/imem_claims.py (novelty_candidates/report) + tests_imem.py (+5 tests) + regenerated projections; agents/chief-architect/ seat created"
 exit_check: "python research/scripts/tests_imem.py -> OK (48/48); python research/scripts/research.py selftest -> OK; python research/scripts/research.py validate -> Validation OK; python research/scripts/imem.py lint -> problems 0; python research/scripts/imem.py freshness -> advisory output rows with ids and windows"
-evidence: []
+evidence: ["research/reviews/R-0027-independent-audit-of-w-0008-imem-2-1-0-infrastructure-and-the-fnd-0032-self-closure-ho-0021.md (Gate-3 verification: verdict VERIFIED, 13/13 commands re-run by the verification-auditor; raw output retained in _obs/ho0021/)"]
 verified_by: "verification-auditor (fresh seat, HO-0021 receiver; review R-0027) — NOT the owner (chief-architect)"
 verification_verdict: VERIFIED
 example: false
 created: 2026-10-02
-closed: null
+closed: 2026-10-03
 ---
 
 # W-0008 — imem 2.1 infrastructure: INFRASTRUCTURE.md normative doc + freshness/novelty advisory surfaces + chief-architect seat
@@ -65,6 +65,26 @@ python research/scripts/imem.py novelty CLM-0001      # candidates: [CLM-0003, H
   semantic), which is the known truthful answer.
 - Gates above each carry `EXIT=0` in `_obs/arch/v_*` (same session run).
 
+### Addendum 2026-10-03 — R-0027 prose corrections folded at close (owner; append-only)
+
+The lines above stand as written on 2026-10-02; the two `## Exit Check` annotations they govern
+are corrected here by addendum, never by re-editing history.
+
+- **D-2 (`records: 249`, now 255):** the `imem.py index` annotation on the `## Exit Check` line
+  was the pre-records figure from `_obs/arch/v_index.txt`. `255` is the post-records count
+  (`_obs/arch/b_index.txt`, re-observed by the verifier as `g5_index.txt`), and the delta is
+  exactly the six records this deliverable adds (W-0008, HO-0021, S-0043,
+  `agents/chief-architect/{profile,current_position,beliefs}`). `unresolved_links: 0` is
+  unaffected; the binding front-matter `exit_check` never named the count.
+- **D-3 (`47 -> 48`, really `43 -> 48`):** the `tests_imem.py` parenthetical conflated two
+  suites. The imem suite went **43 -> 48** (+5, exactly the `TestFreshnessAndNovelty` class the
+  Deliverable line already names); the `47` is `research.py`'s separate suite, counted on the
+  next line. The observable `48/48 OK` is correct; only the delta was misattributed.
+
+Both are annotation-level: neither fails a gate, and neither falsifies the deliverable. D-4 (the
+latent freshness fail-open on a future-dated `last_updated`) is **not** addressed here — it is a
+hardening change to `imem_meta.py` and belongs to a later item, not to this close.
+
 ## Work Log (append-only while OPEN)
 
 - 2026-10-02 — scoped after R-0005's audit of the derived layer and DEC-0012's ledger
@@ -72,6 +92,10 @@ python research/scripts/imem.py novelty CLM-0001      # candidates: [CLM-0003, H
   screen a proposed claim against existing knowledge before it was filed. Those are the
   two gaps addressed. The code is committed in `d9cb0bb`; Gate 3 verification is
   HO-0021's work, not this seat's.
+- 2026-10-03 — **closed as DONE** by the owner. R-0027 returned VERIFIED (13/13 commands
+  re-run by the `verification-auditor`, so `verified_by != owner`); D-2/D-3 folded into the
+  Evidence section above as dated addenda, D-1 filed onto FND-0032 as a dated pointer
+  addendum, D-4 left untouched for a later hardening item. No imem code edited at close.
 
 ## Verification
 

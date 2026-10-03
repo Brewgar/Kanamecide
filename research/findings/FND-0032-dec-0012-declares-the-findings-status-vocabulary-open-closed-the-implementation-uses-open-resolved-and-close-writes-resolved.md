@@ -48,3 +48,16 @@ is green at filing), but the ledger's own authorising decision contradicts the i
   the DEC-0012 repair decision (or keeping `CLOSED` and changing the CLI) belongs to the
   DEC-0012 owner, not to the verification-auditor.
 
+## Addendum 2026-10-03 — line-pointer erratum (R-0027 D-1, `minor`)
+
+The `imem.py L395` pointer carried in this record's `resolution` / `verified_by` (and in
+DEC-0012's Addendum 2026-09-30) was exact when written at `328096e`, but W-0008's `d9cb0bb`
+(imem 2.1.0) inserted lines above `cmd_finding` and moved the same `--close` write to **L397**.
+Read it thereafter as the symbol reference **`imem.py` `cmd_finding --close`**. The referent is
+unchanged — `--close` still writes `RESOLVED`, and `imem_core.STATUS_VOCAB_EXTRA["finding"]`
+still reads `{OPEN, RESOLVED, DISPUTED, WITHDRAWN, SUPERSEDED}` — so **this closure stands**;
+only the line number was stale. Raised and ruled by the `verification-auditor` in
+`research/reviews/R-0027-independent-audit-of-w-0008-imem-2-1-0-infrastructure-and-the-fnd-0032-self-closure-ho-0021.md`
+(D-1, non-gate-failing), whose audit also confirmed this closure **JUSTIFIED** and append-only
+discipline respected. Not re-edited above: the original text is history and is left as written.
+

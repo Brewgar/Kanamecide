@@ -194,7 +194,6 @@
 
 - [W-0003](work/W-0003-round2-agreement-matrix-reviewer-column-backfill.md) — Round-2 AGREEMENT_MATRIX reviewer column backfill (as an addendum review) — status=IN_PROGRESS
 - [W-0006](work/W-0006-root-scratch-debt-reduction-grandfathered-list-shrink.md) — Root-scratch debt reduction: shrink root_grandfathered.txt with itemized deletions — status=IN_PROGRESS
-- [W-0008](work/W-0008-imem-2-1-infrastructure-infrastructure-md-normative-doc-freshness-novelty-advisory-surfaces-chief-architect-seat.md) — imem 2.1 infrastructure: INFRASTRUCTURE.md normative doc + freshness/novelty advisory surfaces + chief-architect seat — status=IN_PROGRESS
 
 ## Work Items (closed)
 
@@ -203,6 +202,7 @@
 - [W-0004](work/W-0004-fresh-reviewer-onboarding-proof-two-verification-reviews-of-e-0010.md) — Fresh-reviewer onboarding proof: two independent verification reviews of E-0010 — status=DONE
 - [W-0005](work/W-0005-e-sprt-lite-comparison-harness-pre-register-build-validate.md) — E-SPRT-lite comparison harness: pre-register, build, validate against known difference — status=DONE
 - [W-0007](work/W-0007-derived-intelligence-layer.md) — Derived-intelligence layer (graph, retrieval, beliefs, contradiction/revival, state, audit, self-tests) — status=DONE
+- [W-0008](work/W-0008-imem-2-1-infrastructure-infrastructure-md-normative-doc-freshness-novelty-advisory-surfaces-chief-architect-seat.md) — imem 2.1 infrastructure: INFRASTRUCTURE.md normative doc + freshness/novelty advisory surfaces + chief-architect seat — status=DONE
 
 ## Handoffs (open)
 

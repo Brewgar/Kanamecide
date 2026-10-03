@@ -2040,7 +2040,7 @@
       "title": "Gate 0 unrunnable: Device Guard hard-blocks kana.exe (every build, every path)"
     }
   ],
-  "generated": "2026-10-03T10:59:48",
+  "generated": "2026-10-03T11:13:40",
   "metrics": {
     "by_kind": {
       "agent_profile": 1,
@@ -2069,9 +2069,9 @@
       "ACTIVE": 15,
       "CLOSED": 44,
       "COMPLETED": 35,
-      "DONE": 21,
+      "DONE": 22,
       "DRAFT": 1,
-      "IN_PROGRESS": 3,
+      "IN_PROGRESS": 2,
       "OPEN": 41,
       "PENDING": 5,
       "RECORDED": 2,
@@ -2085,7 +2085,7 @@
     "contradiction_candidates": 0,
     "dangling_ids": 16,
     "duplicate_candidates": 2,
-    "edges_total": 4591,
+    "edges_total": 4595,
     "legacy_experiments_without_pre_registration": 6,
     "open_questions": 8,
     "records_total": 259,
@@ -2804,15 +2804,6 @@
     },
     {
       "example": false,
-      "id": "W-0008",
-      "kind": "work",
-      "rel": "work/W-0008-imem-2-1-infrastructure-infrastructure-md-normative-doc-freshness-novelty-advisory-surfaces-chief-architect-seat.md",
-      "status": "IN_PROGRESS",
-      "title": "imem 2.1 infrastructure: INFRASTRUCTURE.md normative doc + freshness/novelty advisory surfaces + chief-architect seat",
-      "when": "2026-10-02"
-    },
-    {
-      "example": false,
       "id": "FND-0035",
       "kind": "finding",
       "rel": "findings/FND-0035-q-0002-pre-eval-census-of-src-search-tt-pvs-lmr-null-absent-and-order-stage-is-one-boolean.md",
@@ -2836,6 +2827,15 @@
       "rel": "sessions/S-0044-round-six-umbrella-t001-t006-w0006-root-scratch-cleanup-reattestation-addenda-e0013-gate-readiness-fnd-0035-ho-0022-0023.md",
       "status": "CLOSED",
       "title": "Round-6 umbrella for the six seat sessions T-001..T-006 (W-0006 root-scratch clean-up, D-0002..D-0006 + E-00004/E-00005 re-attestation addenda, E-0013 gate-readiness, FND-0035 census, HO-0022/HO-0023) + the normalization commit",
+      "when": "2026-10-03"
+    },
+    {
+      "example": false,
+      "id": "W-0008",
+      "kind": "work",
+      "rel": "work/W-0008-imem-2-1-infrastructure-infrastructure-md-normative-doc-freshness-novelty-advisory-surfaces-chief-architect-seat.md",
+      "status": "DONE",
+      "title": "imem 2.1 infrastructure: INFRASTRUCTURE.md normative doc + freshness/novelty advisory surfaces + chief-architect seat",
       "when": "2026-10-03"
     }
   ]
