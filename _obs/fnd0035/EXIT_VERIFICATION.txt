@@ -1,0 +1,36 @@
+﻿=========== EXIT CRITERIA VERIFICATION (post-commit) ===========
+HEAD: dd4051a92daf834cf4a73f1878a0c894b0b6d1b8
+
+--- 1. grep: ply guard present in qsearch ---
+  L123: static int qsearch(Board& b, int alpha, int beta, int ply, uint64_t& nodes) {
+  L127: if (ply >= MAX_PLY) return kana::evaluate(b);// F2: hard recursion bound -> static eval
+  L157: int sc = -qsearch(b, -beta, -alpha, ply + 1, nodes);
+  L173: int negamax(Board& b, int depth, int alpha, int beta, int ply, uint64_t& nodes) {
+  L179: if (depth <= 0) return QSEARCH ? qsearch(b, alpha, beta, ply, nodes) : kana::evaluate(b);
+
+--- 2. grep: repetition/halfmove in qsearch (consistent with negamax) ---
+  L125: if (count_reps(b.key) >= 2) return 0;        // threefold repetition (as negamax :160)
+  L126: if (b.halfmove >= 100) return 0;             // 50-move rule (as negamax :161)
+  L176: if (count_reps(b.key) >= 2) return 0;        // threefold repetition
+  L177: if (b.halfmove >= 100) return 0;             // 50-move rule
+
+--- 3. grep: in_chk computed BEFORE stand-pat cutoff (line numbers must be in_chk < sp>=beta) ---
+  L132: bool in_chk = in_check(b, b.side);          // F3: computed BEFORE the stand-pat cutoff
+  L133: if (!in_chk) {                              // F3: no stand pat while in check
+  L134: if (sp >= beta) return beta;
+
+--- 4. forbidden files untouched in this commit ---
+eval.cpp/tt.cpp/CMakeLists.txt in commit: 0
+
+--- 5. EV-0010 untouched (still records the E-0010 epoch digest) ---
+sha256: "504EB01A828770DD9BFCA252AB8245A5692DF51580957CB6E5553012347A6DAA"
+EV-0010 modified in this commit: False
+
+--- 6. EV-0011 filed as a NEW record with the post-repair digest ---
+id: EV-0011
+sha256: "A0951F4F40B5B85923BA832362C378009F0F8ED7C4DD20BB39EF70F59B5D8BCF"
+on-disk Release sha256 now: A0951F4F40B5B85923BA832362C378009F0F8ED7C4DD20BB39EF70F59B5D8BCF
+
+--- 7. FND-0035 addendum present, status still OPEN ---
+status: OPEN
+## Addendum 2026-10-03 — F2/F3 REPAIRED (implementation-engineer seat)
