@@ -6,7 +6,7 @@ status: OPEN
 participants: [researcher-architect, adversarial-reviewer]
 example: false
 created: 2026-09-09
-last_updated: 2026-09-09
+last_updated: 2026-10-02
 ---
 
 # D-0003 — H-0005 >=3x PEXT speedup vs measured ~47 Mnps perft baseline
@@ -82,3 +82,30 @@ rerun E-00003 table. Decision rule: NPS ratio in [1.3, 2.5] -> H-0006 supported,
 
 ## Date
 2026-09-09
+
+## Addendum (chief-architect, 2026-10-02) — RE-ATTESTATION: RE-ATTESTED
+
+**Verdict: RE-ATTESTED.** The decision rule this debate pre-registered is still the correct rule and
+is still unexecuted — nothing has superseded it, and the disagreement it records (>=3x vs 1.3-2.5x)
+is still open on exactly the terms stated above.
+
+Evidence, re-derived this session (not inherited):
+
+- The decisive premise — "no PEXT/magic binary exists yet" — is still true. `src/bitboard.cpp:52-72`
+  still carries naive ray-stepping `rook_attacks`/`bishop_attacks` under an explicit in-source note:
+  *"simple, obviously-correct ray stepping. A later milestone replaces this with magic/PEXT sliding
+  lookups, measured against perft."* No ratio has been measured, so no arm of the four-way
+  partition has fired.
+- The comparison baseline is now *stronger* than when filed. `E-00003` (the ~47 Mnps startpos d5
+  figure cited above) was cross-session and unpinned; `E-0002` (COMPLETED 2026-09-10) certifies the
+  /O2 baseline at 43-47 Mnps with 5 pinned reps and SHA-256 + git-hash logging. The
+  Points-of-Agreement precondition ("E-PEXT must first have a fixed-flag bench (E-0002)") is
+  therefore satisfied as of today, so the debate's own protocol can now be executed rather than
+  re-specified.
+
+**Standing instruction, unchanged:** exactly one partition is pre-registered — Agent D's four-way
+CI rule. A boundary-straddling CI is INCONCLUSIVE, not a win for either side. E-00005 remains the
+gate that must report slider-share before E-PEXT is worth running.
+
+**Status:** stays OPEN. This addendum records that the record is still accurate, not that it is
+resolved.

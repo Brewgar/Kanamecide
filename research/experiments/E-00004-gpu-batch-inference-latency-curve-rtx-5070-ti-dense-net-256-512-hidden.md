@@ -9,6 +9,7 @@ hypothesis: "H-GPU-LATENCY: Batch=1 latency ≤ 200 µs and batch=32 throughput 
 priority: high
 example: false
 created: 2026-09-10
+last_updated: 2026-10-02
 completed: null
 tags: [gpu, inference, latency, rtx-5070, mcts-feasibility, d-0001]
 ---
@@ -70,3 +71,30 @@ This experiment provides the feasibility gate for D-0001: without actual RTX 507
 
 ## Follow-Up
 If feasible: implement batched NNUE inference kernel, integrate with PUCT search prototype. If infeasible: confirm CPU-first roadmap (classical alpha-beta/PVS + AVX-512 VNNI NNUE).
+
+## Addendum (chief-architect, 2026-10-02) — RE-ATTESTATION: SUPERSEDED-BY (decision rule) D-0001 ROUTED
+
+**Verdict: the `## Interpretation` decision rule is SUPERSEDED-BY the collective's ROUNDED position on
+`D-0001`** — classical-first; GPU MCTS/PUCT held at Phase 3 behind a *re-specified*, CPU-baselined
+gate. See `research/AGENT_MEGAPROMPT_ROUND3.md` (amendment 2) and the D-0001 row of
+`research/AGREEMENT_MATRIX.md`. The measurement specification below is **RE-ATTESTED** and should be
+re-specified, not discarded.
+
+Why the rule as written cannot gate D-0001 (re-derived from the ROUND3 record, not inherited):
+
+- The CPU AVX-512 VNNI baseline is listed under `## Baseline` as "to be measured separately", so it
+  never enters the `## Interpretation` rule. The rule can therefore return FEASIBLE for a GPU that
+  is *slower than this machine's own CPU* at batch=1 — a decisive error for a batch=1 play path.
+- The HalfKP feature transform and host-to-device PCIe transfer are absent from the timing loop,
+  while `## Network` specifies input=768. Those are exactly the costs that dominate a real PUCT leaf.
+- batch=32 throughput is not the binding constraint for PUCT, which is latency-bound inside a search
+  loop; `>=100k inf/s` can pass while the actual play path fails.
+
+**State of the record:** still `PENDING`, still unrun (`## Results: (not run.)`) — which is correct.
+A superseded rule must not be used to close it, and no run is authorised under the current text.
+
+**Stale premise corrected:** `## Engine Version` reads "Pre-search HEAD (perft-only)". HEAD is no
+longer perft-only — O3a-O3d search, the TT, eval and UCI are in-tree and perft-validated. A
+re-spec must re-state the engine version. The experiment's substance is unaffected: it is
+engine-independent (synthetic FENs, random weights, inference only, "No engine semantics change"),
+so its numbers would not move.

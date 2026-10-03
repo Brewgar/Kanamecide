@@ -2962,3 +2962,165 @@ predicate above — not a number — is the claim this erratum leaves standing.
   and never via `Set-Content -Encoding utf8` (writes a BOM).
 - **No lifecycle movement.** `status:` remains `RUNNING`, no `result:` is set, and no work item
   is closed by this addendum.
+
+### Addendum 2026-10-03 — EXECUTION-READINESS CHECKLIST for the two gate experiments (E-00014 / E-00015), and a GO/NO-GO per gate
+
+> **Filed by the experimental-scientist seat (preparer role).** This seat is **not** the
+> systems-researcher executor seat that HO-0015 and HO-0016 dispatch to, and it is **not** the
+> owner of E-00014 or E-00015. Its whole function is preparation and gate-readiness.
+>
+> **NOTHING WAS RUN.** No training, no counting, no extraction, no fitting, no label read, no
+> holdout read, no engine invocation, no SPRT game. Every figure quoted below is either (a)
+> read out of an existing committed record or manifest, or (b) a SHA-256 this session computed
+> over a file that already existed on disk. `research.py validate` was run because it is a
+> read-only audit and because both handoffs name it as a command; it is a file scan, not a
+> measurement of anything this record governs.
+>
+> **NO LIFECYCLE MOVEMENT.** `status:` remains `RUNNING`, `result:` remains `null`. E-00014 and
+> E-00015 remain `PENDING`. Neither was flipped, run, edited, or closed. No `H-####` status is
+> touched. No engine source file, no `tools/` file, no `src/` file, no other record is edited.
+
+#### 0. One premise in the brief is now out of date, and the correction moves the blocker
+
+The brief describes **F-U14 as "being built in parallel and a hard prerequisite."** That is no
+longer true, and the correction matters more than the correction itself.
+
+**F-U14 is DISCHARGED.** `FND-0033` is `status: RESOLVED`, `closed: 2026-10-02`, written by the
+data-pipeline-engineer seat. The independent tactical suite exists, is committed, and is
+hash-pinned: `research/manifests/fu14-tactical-suite-n200.json` (N=200, 100 mate_in_1 + 100
+mate_in_2, every annotation proved by exhaustive python-chess enumeration),
+`research/manifests/fu14-overlap-report.json` with normalized-FEN overlap `== 0` against all
+18 position-bearing corpora on disk, and `research/manifests/fu14-tactical-suite-pins.json`.
+`git ls-files research/manifests` returns all four manifests, so the pins are committed and not
+merely local. `N = 200` meets E-0013's own `N >= 200` floor **exactly at the floor**, not above
+it. **This satisfies E-0013's F4-identity element and discharges the obligation that the
+pre-fit-commit section recorded as "the hard blocker."**
+
+**F-U14 is therefore not a blocker on either gate.** Neither E-00014 nor E-00015 reads the
+suite: it is E-0013's conjunct (f) and a pre-fit-commit element. It reaches E-00014 only
+*transitively*, because E-00014 needs the pre-fit commit and the pre-fit commit must carry the
+suite's identity and digest.
+
+**But the landing of F-U14 hardened the E-0014 block, and this is the part that is easy to
+miss.** Building the suite required a master-rebuilt `kana.exe`, which is not byte-reproducible
+on this machine. The rebuild produced `686ea597...` where EV-0010 records `504eb01a...`. That is
+filed as `FND-0034`, severity **`blocking`**, target `EV-0010`, status **OPEN** — deliberately
+not repaired by the seat that caused it, because re-pinning another record's evidence digest
+from a rebuilt, non-reproducible artifact is the substitution the pin discipline exists to
+prevent. Consequence, measured this session:
+
+> `python research/scripts/research.py validate` now exits **1** with exactly **1** problem:
+> `audit[evidence]: sha256 drift on build/Release/kana.exe: recorded 504EB01A8287 vs on-disk
+> 686EA5979415`.
+
+**`research.py validate` failing is E-00014's own abort condition 7, verbatim.** So the
+completion of a *different* obligation armed a *pre-registered abort* in E-00014. That is the
+system working, not the system breaking, and it is recorded here rather than smoothed.
+#### 1. Checklist for E-00014 — TRAIN-ONLY feasibility pass (HO-0015)
+
+| # | Item | Status | Unblocking artifact / note |
+|---|---|---|---|
+| **INPUTS — corpus hashes** | | | |
+| 1 | Dataset `m0_audit/e0011/games.jsonl`, SHA-256 `27ea181d...ac5bb95` | **READY** | Recomputed this session; matches the pin in both gate records and in the extractor's own `sha256_expected`. 1,000 rows, 1,384,548 B. |
+| 2 | Split map `split_map.json`, SHA-256 `bb079a41...4ada1ea` | **READY** | Recomputed this session; equals the extractor's `SPLIT_MAP_SHA256_EXPECTED` and is pinned in committed manifest `research/manifests/e0013-artifact-pins.json`. |
+| 3 | Pre-fit commit hash | **BLOCKED** | The single pre-fit commit (E-0013 B4 sentence 2) **does not exist**. Unblocked by: that commit landing as a committed artifact carrying its own SHA-256. |
+| 4 | Fitter-corpus digest | **BLOCKED** | `e0013-artifact-pins.json` has `fitter_corpus.sha256: null`, and the manifest says so honestly: the full-mode labelled extraction has not been re-emitted. `tools/e0013_pins.py::read_corpus()` **refuses** rather than handing back a count-only hash. The on-disk `positions.jsonl` (`ac8c92f0...`) is a **count-only measurement**, `is_fitter_corpus: false`, every row's `y` is `null` — it must never be quoted as the fitter's corpus digest. Unblocked by: a labelled-mode extraction writing a positions file flagged `is_fitter_corpus: true`, with its digest recorded in the manifest. |
+| 5 | Frozen floor table digest | **MISSING (spec gap)** | E-00014 assumes pinned `src/` commit `7348f89` and says it is "to be VERIFIED, not assumed." It does not verify: the last `src/` commit is `9b69e0a`, and `src/eval.cpp` on disk hashes `38b7b31c09e5...`. Neither the table digest nor the correct commit is pinned anywhere. Unblocked by: `python tools/e0013_eval.py --write-floor` emitting the compiled-in table and its SHA-256 against a named `src/` commit. |
+| 6 | Inner salt + inner game-id map | **MISSING (spec gap)** | `INNER_SALT` appears exactly once in the whole repository — in the sentence that defines it. **No value exists.** It must be distinct from `SPLIT_SALT` and from every prior salt, per E-0013 F6's admissibility rule. Unblocked by: a named salt value plus the inner game-id map's SHA-256, hash-committed before the fit runs. |
+| **CONFIGS** | | | |
+| 7 | Free-parameter set: five non-KING `mg_pst`/`eg_pst` tables plus items 1 and 3-6; KING frozen at 20000/20000 | **READY** | A pre-registered VALUE, not a pointer (E-0013 B5). 683 free parameters. May not be widened or narrowed by the executor. |
+| 8 | Evaluation stage `S* = 6`; phase weights N=B=1, R=2, Q=4; `GAME_PHASE_MAX = 24`; mirror `s ^ 56` | **READY** | Frozen integers, cited read-only. No engine binary is invoked by this pass at all. |
+| 9 | Label construction: `y = white_score` if side-to-move is WHITE else `1 - white_score`, `white_score` in `{1, 0.5, 0}` from `res`/`a_white` | **READY** | Side-to-move frame, pinned by B2; the White-frame error carries a FAIL consequence. |
+| 10 | Optimizer family: deterministic full-batch L-BFGS; SPSA **withdrawn** as a leakage channel | **BLOCKED** | The *specification* is READY and final, but **no implementation exists.** There is no trainer source file anywhere in the repository. `tools/e0013_eval.py` has the numerical primitives — `design_rows`, `loss_and_gradient`, `mean_logistic_loss`, `per_game_losses`, `paired_statistics`, `t`-based CIs — and a `--fitted`/`--floor` input, **but no optimizer driver and no training entry point at all.** Unblocked by: a trainer built and verified against `e0013_eval.py`'s primitives. E-0013's own readiness section calls this "the single largest remaining engineering item," and `FND-0027` names it as the reason that row stays OPEN. |
+| 11 | Fitter seed, L2 weight, iteration budget, early stopping (F2) | **BLOCKED** | All four are POINTERs into the pre-fit commit, which does not exist. They may be chosen only on the TRAIN inner partition, and no value may be first-assigned after the holdout is read (tripwire FAIL). Unblocked by: the pre-fit commit. |
+| 12 | Clipping bound `L` | **BLOCKED** | Same pre-fit-commit pointer. |
+| 13 | MAE phase-tertile boundaries (F5) | **BLOCKED** | Pointer, derived from TRAIN positions only. Requires the labelled corpus and the pre-fit commit. |
+| 14 | E-00014's own filter text | **MISSING (spec gap)** | E-00014's `## Difference` still describes stage 4 as the **exact-FEN** dedup (F9). F-U7 superseded that with the normalized-FEN key, and the extractor now enforces the normalized key. Unblocked by: a dated amendment to **E-00014** naming the new key at that clause, filed by its own executor seat **before** the pass. |
+| **STOPPING CRITERIA** | | | |
+| 15 | Non-convergence within the pinned iteration budget: abort 6; report it; do **not** raise the budget and re-run | **READY** (criterion) | Criterion is pre-registered and unambiguous. The budget *value* is BLOCKED by item 11. |
+| 16 | Gate 0 / `research.py validate` passes | **BLOCKED — AND CURRENTLY FIRED** | `validate` exits 1 on FND-0034's EV-0010 digest drift. This is abort condition 7 verbatim, so E-00014 would abort today at step zero. Unblocked by: FND-0034 dispositioned by its owner — either EV-0010 re-pinned to `686ea597...` **with the non-reproducibility caveat stated**, or a digest-stable build adopted. Not by suppressing the check. |
+| 17 | No field omitted; a field that cannot be produced is `null` with a reason | **READY** | Pre-registered; omission is itself abort 8. |
+| **STATISTICAL ANALYSIS PLAN (as pre-registered)** | | | |
+| 18 | `delta_star_inner`: attainable loss improvement of the fitted table over the frozen floor, inner-val, paired, same labels, `S* = 6`; positive means lower logistic loss | **READY** | |
+| 19 | `s_d_inner`: per-game SD of the per-game mean paired loss difference; `LOSS_MARGIN = 0.002` decidable **iff** `s_d_inner <= 0.0101` at G about 200 | **READY** | The threshold and its derivation are both pinned in E-0013 B3. |
+| 20 | 95% CI of the mean per-game paired difference on `t_{0.975, G-1}`, **plus the CI of `s_d_inner` itself and the game count**, so a borderline `s_d_inner` near 0.0101 is visibly borderline rather than silently decisive | **READY** | The most carefully pre-registered item in either record. Preserved verbatim. |
+| 21 | Achieved power at the 0.002 margin under the measured `s_d_inner` | **READY** (as a required reported field) | Its value cannot exist until items 3, 4 and 10 land. |
+| 22 | Effective N is inner-val **games**, not positions (the label is game-constant) | **READY** | E-0013 B3 corrects the earlier position-level error. |
+| **EXPECTED FAILURE INTERPRETATIONS** | | | |
+| 23 | **X-1** — `delta_star` measurable and `s_d_inner <= 0.0101` | **READY** | Decided 2026-09-26, *before* E-00014 was ever filed. Conjunct (c) evaluated as written; a CI including 0 is a **FAIL**. No INCONCLUSIVE exists in this branch. |
+| 24 | **X-2** — measurable and `s_d_inner > 0.0101` | **READY** | INCONCLUSIVE-BY-POWER. Not FAIL. Not a licence to widen the margin. Publishes `s_d_inner`, `delta_star`, the game count and the achieved power. |
+| 25 | **X-3** — optimizer does not beat the floor | **READY** | `delta_star_inner = null` with both arms' inner-val losses. INCONCLUSIVE-BY-DESIGN. **Never** FAIL, never "no achievement = FAIL". |
+| 26 | **X-2-prime** — `s_d_inner` not estimable (too few inner-val games) | **READY** | Report `s_d_inner = null` with the game count; routes to X-2 by the pre-registered table, not by judgement. |
+| 27 | X-2 routing to F-U3 | **READY, with an open dependency** | The route is named and pre-registered. Its own row, `FND-0010`, is still **OPEN**, so if X-2 fires, that routing obligation is unpaid on the day it is needed. Flagged, not silently assumed discharged. |
+| **RAW-DATA DESTINATIONS** | | | |
+| 28 | Raw evidence local and gitignored; ledger of command to exit code to path to SHA-256; aggregator command reproducing every reported number | **READY** (convention) | Established across E-0011/E-0012. `build/` and `m0_audit/` are gitignored, so these live on the executing machine only. |
+| 29 | Durable pins for the inner partition's artifacts | **MISSING (spec gap)** | E-00014 names no destination path for the inner game-id map or the per-game loss rows. Under Ruling 2's discipline a pin must be committed *before* the read it protects and re-hashed *at read time*; a gitignored artifact with no manifest is a comment, not a control. Unblocked by: naming the destination paths and adding them to the committed pre-fit-commit manifest. |
+#### 2. Checklist for E-00015 — count-only realized-yield pass (HO-0016)
+
+| # | Item | Status | Unblocking artifact / note |
+|---|---|---|---|
+| **INPUTS — corpus hashes** | | | |
+| 1 | Dataset `m0_audit/e0011/games.jsonl`, SHA-256 `27ea181d...ac5bb95` | **READY** | Recomputed this session; matches the pin. |
+| 2 | Split-map hash must exist and be recorded | **READY — and this is new** | E-00015's abort condition 2 was recorded by E-0013 as unsatisfiable "by a committed artifact." It is **satisfiable now**: `research/manifests/e0013-artifact-pins.json` is committed (confirmed via `git ls-files`) and pins `split_map.json` at `bb079a41...`, with `tools/e0013_pins.py --verify` as the read-time re-hash. Abort 2 is discharged. |
+| 3 | Label-free by construction: no `res`, no `a_white`, no loss, no per-side label distribution | **READY** | The extractor names `LABEL_KEYS = ("res", "a_white")` as the two keys count-only mode must never read. This is what makes a whole-dataset count admissible here at all. |
+| 4 | Counting instrument | **READY** | `tools/e0013_extract.py` in count-only mode: replays recorded SAN move lists through python-chess exactly as `tools/e0011_check.py` does. No engine binary invoked, no game generation, no build required. |
+| **CONFIGS** | | | |
+| 5 | Four filter stages in order: QUIET predicate (not in check *before* the move; no `x`; no `+`/`#` suffix; `full_ply >= 10`; `opening` never a candidate), then crash exclusion, then degenerate-mate exclusion (`end == "mate"` and `len(san) <= 6`), then GLOBAL-before-split **normalized-FEN** dedup | **READY** in the tool; **MISSING (spec gap)** in the record | The tool implements all four correctly under the F-U7 key. E-00015's own text still labels stage 4 "exact-FEN dedup (F9)". Unblocked by: a dated amendment to **E-00015** restating stage 4 as the normalized-FEN key. |
+| 6 | `SPLIT_SALT = 20260926`, `random.Random(SPLIT_SALT * 1000003 + game_id).random() < 0.8`, 80/20 **by game** | **READY** | F-U9 verified the map is a pure function of salt and `game_id` and is therefore **invariant** under the dedup-key change; the report's own `split_map_invariance` block shows measured == expected, `unchanged: true`. |
+| 7 | Scope floor `30,000` evaluated on `count_usable_distinct_train` | **READY** | `SCOPE_FLOOR = 30000` in the tool, marked not-renegotiable and explicitly *not* the retired band. The floor is on the TRAIN side so no whole-dataset quantity decides the fit's scope. |
+| 8 | Yield band `75,600..76,587` | **MISSING (spec gap) — band RETIRED, record not yet amended** | The band was **retired** by E-0013's second addendum (S-0039, Ruling 1 / F-U10). Its endpoints came from a 1.302% duplication projection measured under the *old* key; it missed by 6 positions under the old key and by 1,148 under the new one. **The band constants are gone from the tool** — verified this session: no `band` key is constructed anywhere, no live `75600`/`76587` outside a retirement tombstone, and `report["band"]` now raises rather than returning a stale number. That obligation is paid. **But E-00015's pre-registration still carries the band in three places**, and its Power section still says the uncertainty "lives entirely in the pre-registered band." Unblocked by: the dated amendment in item 5's note, extended to the band clauses. |
+| 9 | Replacement instrument: exact accounting identities | **READY** in the tool; uncited by E-00015 | The tool now emits five exact identities in place of the band — usable = after-degenerate minus dedup; train + holdout = usable; stages monotone non-increasing; dedup removed at least zero; one survivor per normalized FEN. They introduce **no threshold**, so there is no new number to be wrong about, and unlike the band they cannot rot when the key changes. E-00015 must cite them by the same amendment. |
+| **STOPPING CRITERIA** | | | |
+| 10 | One deterministic pass; no iteration budget, no convergence test, no cap, no subsampling | **READY** | There is nothing to converge and nothing to iterate. The only stopping rule is field completeness. |
+| 11 | Every pre-registered field reported, or `null` with a reason | **READY** | Omission is abort 7. |
+| 12 | `research.py validate` | **ADVISORY for this gate** | Deliberately recorded as such. E-00015's abort list has **no** Gate-0 clause — its aborts are dataset-pin, split-map, label-read, overlap, predicate-divergence, dedup-order and omission. So FND-0034's red validate does **not** arm an E-00015 abort the way it arms E-00014's. It is still an acceptance-criterion command in HO-0016, so it should be green before the pass for cleanliness, not for validity. |
+| **STATISTICAL ANALYSIS PLAN (as pre-registered)** | | | |
+| 13 | N/A in the statistical sense: a deterministic count over a frozen 1,000-row dataset, not a sample. No power question, no effect size, no CI. No pass/fail here may be described in terms of statistical confidence. | **READY, with one void clause** | The plan is complete and deliberately short. **One sentence is now VOID:** "the uncertainty in the expected figure lives entirely in the pre-registered band." The band is retired, so the uncertainty it carried must be **re-described, not deleted silently**. The replacement is the identities of item 9. Unblocked by: the same amendment. |
+| **EXPECTED FAILURE INTERPRETATIONS** | | | |
+| 14 | Branch 1 — `count_usable_distinct_train >= 30000`: conjunct (a) **PASSES** on yield; all-terms scope (KING PSTs frozen) stands | **READY** | Fixed before the count exists. |
+| 15 | Branch 2 — `< 30000`: conjunct (a) FAILS its scope sub-condition; all-terms claim **WITHDRAWN** and recorded, not silently kept; scope **NOT** reduced to the mobility/tempo subset; the reduced scope must be re-derived and re-registered under its own critique; E-0013 ends INCONCLUSIVE-BY-SCOPE | **READY** | The refusal to reduce to mobility/tempo is substantive and correct: E-0010 attributes the **two worst** marginal contributions to exactly those terms (mobility -3.7 Elo, tempo -11.5 Elo, both non-positive with CIs crossing zero), so the ladder's fallback scope is a mis-citation. |
+| 16 | Branch 3 — count outside the band | **MISSING (spec gap)** | With the band retired this branch has **no object**: there is nothing to be out of. E-0013 says so in terms — "NO OBJECT." Unblocked by: the amendment replacing this rule with the identity checks. |
+| 17 | Branch 4 — any pre-registered field unproducible: `null` with the reason; never substitute a different count | **READY** | |
+| **RAW-DATA DESTINATIONS** | | | |
+| 18 | Raw evidence local and gitignored; full ledger; aggregator command reproducing every number | **READY** (convention) | |
+| 19 | A conforming count-only report | **MISSING (spec gap) — and a live trap** | The on-disk `build/s41/extract_new/report.json` is a **pre-fix** artifact: the committed manifest says so (`schema_predates_the_2026_09_27_fixes: true`) and it still carries the retired `band` key with `comparison: "below"`. It is pinned **as what it is**, not as a current measurement. A fresh count-only run under the current tool is required to emit a report with no band key and a `corpus` block. |
+| 20 | **The trap, restated so it cannot be walked into** | — | E-00015's headline number and the engineer's existing `--count-only` run are the **same quantity and will agree to the digit**. That makes it very easy to read the existing run as "E-00015 already ran." **It has not.** E-00015 is a separate record with its own pre-registration, its own provenance block, its own command and its own executor seat, and a number produced under someone else's handoff cannot be laundered into it by being equal. Closing E-00015 on the strength of an existing `74,452` without its own pass would leave a record that reads complete and is hollow. |
+#### 3. GO / NO-GO per gate
+
+**E-0014 (HO-0015) — NO-GO.** This is not a marginal call and not paperwork.
+
+1. **No trainer exists.** Not a stale one, not a partial one — none. `tools/e0013_eval.py` supplies the loss, gradient, per-game aggregation and paired statistics, and then *consumes* a `--fitted` table it did not produce. There is no optimizer driver and no training entry point anywhere in the repository.
+2. **The fitter corpus does not exist as a corpus.** `fitter_corpus.sha256` is `null` and `read_corpus()` refuses, by design, to substitute the count-only digest.
+3. **The pre-fit commit does not exist**, so the seed, L2 weight, iteration budget, early stopping, clipping bound `L` and the F5 tertile boundaries — every one of them a pointer into it — have no values.
+4. **`research.py validate` currently fails, which is abort condition 7 already armed.**
+5. `INNER_SALT` has no value; the floor table's digest is unpinned and its assumed `src/` commit is wrong; E-00014's filter text still names the superseded exact-FEN key.
+6. `FND-0027` (F-U11) and `FND-0028` (F-U12) are **OPEN**, and F-U11's own addendum states the blocker is a missing artifact rather than paperwork.
+
+Minimum path to a re-decision: build and verify the trainer; emit the labelled extraction and pin `fitter_corpus.sha256`; land the pre-fit commit carrying F1-F12 values and the now-available F-U14 suite identity; disposition FND-0034 so Gate 0 is green; name `INNER_SALT`; pin the floor table; file E-00014's dated amendment. **All seven are engineering and record actions. None is a measurement, and none may be substituted by running E-00014 and reporting whatever comes out.**
+
+**E-00015 (HO-0016) — NO-GO, but it is the near gate and its blocker is re-registration, not engineering.**
+
+Every input, config, instrument and interpretation is in place. The split-map pin that E-00015's abort condition 2 demands is now committed and re-hashable. The band constants are already gone from the tool. The accounting identities that replace the band already exist in the tool. The scope floor is intact and unrenegotiable.
+
+**One artifact unblocks it:** a dated amendment to **E-00015 itself**, filed by its own executor seat **before** the pass, doing four things — replacing the band clause at its Games/Samples section; re-describing (not deleting) the Power section's reliance on that band; replacing decision rule 3, which now has no object, with the accounting identities; and restating stage 4 as the normalized-FEN key.
+
+That amendment is a precondition the record itself imposes. A count measured under a superseded description is precisely the "number that looks authoritative and is wrong" the S-0037 ruling warned about. **After that amendment, E-00015 has no missing artifact and could run.**
+
+**F-U14 dependency, called out explicitly as instructed.** F-U14 was a hard prerequisite while it was open and it **is now discharged** — suite N=200 built, overlap 0 against 18 corpora, hash-pinned, committed, re-verified by a command that re-runs all 200 exhaustive proofs. **It blocks neither gate.** It is not on E-00015's critical path at all. It reaches E-00014 only transitively, through the pre-fit commit that must carry its identity and digest. And its one residual consequence runs the *other* way from what the brief anticipated: landing it turned `validate` red, which is what arms E-00014's abort condition 7.
+
+#### 4. Gate 7 (FND-0007 / F-U5) — where this checklist stands relative to it
+
+`FND-0007` is **RESOLVED**: B7 quoted Q-0006's official readiness gate 7 verbatim into E-0013 and gave it teeth, and Q-0006 is now cited (also discharging DN7). That is the *text* being discharged.
+
+The operative Gate-7 obligation is carried by **F-U5**, whose row `FND-0012` is still **OPEN**. It requires that on any terminal PASS-FIT-QUALITY-ONLY, terminal FAIL, or any named INCONCLUSIVE, E-0013 files a handoff to **verification-auditor** — never the owner, never the seat that ran the fit — carrying `fitted_params_sha256`, the pre-fit commit hash, the split-map hash, the E-00014 numbers (`s_d_inner`, `delta_star`, contingency branch), the E-00015 numbers, and the full command/exit-code ledger.
+
+**Neither gate has produced a number, so Gate 7 cannot be satisfied yet and nothing here pretends otherwise.** What this addendum does is make the handoff *constructible*: every field Gate 7 will require is enumerated above with its current status, so that when the numbers exist the verifier's inputs exist with them. **The two gates' outputs are the raw material of Gate 7 and are not a substitute for it.** A verdict filed without its readiness-Gate-7 row remains invalid, and this seat cannot supply that row — it is the verification-auditor's, and only on a terminal verdict.
+
+#### 5. Integrity of this addendum
+
+- **The protected range is untouched, and this is recomputed rather than asserted.** `H_body` over lines 1-428 minus lines 5, 6, 7, 10 and 14, each re-terminated with one `0x0A`, read as **bytes**: before this addendum `c7ebe54ce8cd51ac90483744a3d11e56a04fc5d48c0d8669e0804f53f883bea7` over **22,196 bytes** — equal to the value pinned in E-0013's own section 6 and independently reproduced by R-0026 V7. After this append, recomputed the same way, the same digest over the same 22,196 bytes, because this addendum is appended at end-of-file and the protected range is an initial segment of the file, which an append cannot change.
+- **Method note, restated because it has already misled one reader.** `H_body` must be read as bytes. PowerShell `Get-Content` splits on CRLF semantics and reports a phantom drift on a file whose true value is unchanged. R-0026 hit exactly that false start.
+- **Encoding.** UTF-8, no BOM, LF only, single trailing `0x0A`, no trailing blank line — written under explicit byte control via Python, never via PowerShell redirection (`>` writes UTF-16) and never via `Set-Content -Encoding utf8` (writes a BOM).
+- **Nothing was measured.** Every hash quoted in this addendum is a digest of a file that already existed on disk, computed by a read-only `Get-FileHash`. No training, counting, extraction, fitting, label read or holdout read was performed, and no engine was invoked.
+- **No lifecycle movement.** `status:` remains `RUNNING`, `result:` remains `null`. E-00014 and E-00015 remain `PENDING` and were neither run nor edited.
+- **Routing.** The consolidated blocker list is filed as a separate handoff to the Sponsor, because a blocker list that lives only inside an addendum is a list nobody is obliged to answer.

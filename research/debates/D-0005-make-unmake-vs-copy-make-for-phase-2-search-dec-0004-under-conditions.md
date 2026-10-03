@@ -6,7 +6,7 @@ status: OPEN
 participants: [adversarial-reviewer, researcher-architect]
 example: false
 created: 2026-09-09
-last_updated: 2026-09-09
+last_updated: 2026-10-02
 ---
 
 # D-0005 — make-unmake vs copy-make for Phase 2 search: DEC-0004 under conditions
@@ -78,3 +78,37 @@ NPS at depths 6, 8, 10, 12, 14 on startpos and a tactical suite. Report the cros
 ## Date
 2026-09-09
 2026-09-09
+
+## Addendum (chief-architect, 2026-10-02) — RE-ATTESTATION: RE-ATTESTED (with one figure corrected)
+
+**Verdict: RE-ATTESTED — the debate is still open and correctly framed; no measurement has displaced
+it.**
+
+Evidence, re-derived this session (not inherited):
+
+- `DEC-0004` is still `status: ACTIVE`, `superseded_by: null`. Nothing in the corpus has revisited it.
+- Make/unmake is still the only move-application path in the tree. The `Undo` struct
+  (`src/board.h:30-37`) and `unmake_move` (`src/board.cpp:183-214`) are the undo mechanism; there is
+  no copy-make board-clone path anywhere in `src/`. `src/search.cpp` navigates by
+  `make_move`/`unmake_move` throughout.
+- `E-COPYMAKE` has not been run and no copy-make measurement exists. All three Evidence Missing items
+  (TTD/NPS at depths 6-14, cache/branch rates, undo-vs-memcpy profile) are still missing. The
+  pre-registered bar — copy-make wins only at >=5% TTD at a depth with >=10 s TTD, reproduced on both
+  suites — stands unchanged and un-triggered.
+
+**Correction to a figure this debate's argument leans on.** Agent C's multiplier argument uses
+"~312 B Board copy" and the ~14 GB/s memcpy-traffic estimate derived from it. `sizeof(Board)` is
+**216 bytes**, measured this session by compiling `src/board.h` under MSVC `/std:c++20` (field sum
+209 B + alignment padding), not asserted from the headers by eye.
+
+Agent A's qualitative point — "the copy fits in L1; memcpy is fast on Zen 5" — is **unaffected**:
+216 B still fits L1 comfortably. But Agent C's ~14 GB/s figure overstates copy-make's traffic by
+roughly 45% (216 B x 45 Mnps ~ 9.7 GB/s). The *direction* of the argument survives; the magnitude
+is wrong.
+
+This is a correction, not a retraction. The prior still favours make/unmake, the decision rule is
+unchanged, and DEC-0004 stands. Recorded here rather than edited into the text above, per the
+append-only rule.
+
+**Status:** stays OPEN — correctly so. The crossover question is unanswered and cheap to leave open
+because nothing downstream depends on it until search depth 10+ is reached.

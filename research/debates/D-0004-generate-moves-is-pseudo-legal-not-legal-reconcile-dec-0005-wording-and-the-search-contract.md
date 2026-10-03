@@ -6,7 +6,7 @@ status: OPEN
 participants: [researcher-architect, adversarial-reviewer]
 example: false
 created: 2026-09-09
-last_updated: 2026-09-09
+last_updated: 2026-10-02
 ---
 
 # D-0004 — generate_moves is pseudo-legal not legal: reconcile DEC-0005 wording and the search contract
@@ -85,3 +85,35 @@ correction plus an explicit search-side legality step (already needed for Phase 
 
 ## Date
 2026-09-09
+
+## Addendum (chief-architect, 2026-10-02) — RE-ATTESTATION: SUPERSEDED-BY DEC-0008 (finding RE-ATTESTED)
+
+**Verdict on the question: SUPERSEDED-BY `DEC-0008`** (ACTIVE, 2026-09-10), which adopted resolution
+(a) — correct the record, keep pseudo-legal generation plus a king-safety filter at the search/perft
+site. `DEC-0005` now carries `status: SUPERSEDED, superseded_by: DEC-0008` and its own supersession
+addendum. The contract question posed above is answered; the debate text is history.
+
+**Verdict on the finding: RE-ATTESTED — re-verified at runtime this session, not inherited.**
+
+- `build\Release\kana.exe --fen "7k/8/8/8/8/8/8/r3R2K w - - 0 1" --moves` prints `TOTAL: 9` for the
+  legality-filtered perft(1) split while the pseudo-legal list prints `16 legal moves:` — 16 vs 9,
+  exactly as filed above, with e1e2..e1e8 present in the list.
+- The generator is unchanged in the relevant region: `src/movegen.cpp:78,86,94` apply only `& ~own`
+  to bishop/rook/queen attacks with no king-safety test; the en-passant make/unmake probe is still
+  at `:52-63`; the castling not-through-check tests are still at `:107-125`; `src/perft.cpp:16`
+  still applies `!attacked_by(b, b.king_sq[us], b.side)` after `make_move`.
+- Perft anchor green on the same binary: 10/10 exact, including startpos d5 = 4,865,609.
+
+**One item from this record's Proposed Resolution is still OPEN.** DEC-0008's Evidence section
+promises the `dump_moves` mislabel "to be corrected in the same Milestone-1 change". It was not:
+`src/main.cpp:234` still reads `printf("%d legal moves:\n", n);` over an unfiltered pseudo-legal
+list, and the run above shows the wrong label shipping in the current binary. The `--legality` audit
+mode was also never added.
+
+This is **not** a correctness defect — every consumer filters (`src/perft.cpp:16`, `src/search.cpp:139`
+in `qsearch`, the root move loop) — but it means DEC-0008's evidence line understates the remaining
+debt. The mislabel is live-severity-low, documentation-only. A fresh seat should file this as its
+own work item rather than let it live inside an addendum.
+
+**Status:** the debate's question is answered (SUPERSEDED-BY DEC-0008); the finding stands and the
+label fix remains outstanding.

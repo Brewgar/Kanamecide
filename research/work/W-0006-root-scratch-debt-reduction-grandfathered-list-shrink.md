@@ -104,8 +104,75 @@ python e0010_report.py                          # still reproduces every E-0010 
   The full 134-file pass can now proceed — with the caveat that glob protection is
   deliberately conservative: a reviewer should still eyeball each candidate before
   deleting. Item stays IN_PROGRESS for its owner/verifier.
+- 2026-10-02 — MEMORY-KEEPER seat (owner task): **the full pass is executed.** Manifest
+  `MAN-W0006-ROOT-SCRATCH-001` written BEFORE any file was touched
+  (`research/manifests/MAN-W0006-root-scratch.{md,json}`), then applied.
+
+  **Result: root files 204 -> 79.** `root_grandfathered.txt` 267 -> **73** entries
+  (every remaining entry names a file that still exists — the 69 stale entries were
+  dropped too). `hygiene` now reports **0** unreferenced shrink candidates
+  (was 119) and **0** unsanctioned-NEW. Manifest rows: 79 KEEP / 29 DELETE / 96 MOVE.
+
+  **Two method corrections worth keeping.**
+  1. *Substring citation counting was unsound and was rejected.* `name in record_text`
+     gave `out.txt` **17** "citations" and `a.txt` **8** — matches inside longer
+     identifiers, nothing to do with these files. Counting that way would have frozen
+     ~30 junk files as protected evidence. All counts use a word-boundary regex.
+  2. *Untracked files are never destroyed.* Deletion was restricted to git-TRACKED
+     files (restorable from `HEAD`) and zero-byte files — 29 rows. The other 45
+     genuinely-regenerable junk files (build logs, UCI transcripts, diagnostic
+     scratch) are UNTRACKED, so deleting them would be irreversible; they were
+     quarantined to `_obs/e0010-era/garbage/` with bytes intact. The root reaches the
+     floor either way. This is a deviation from a literal "delete the garbage" reading
+     of the brief, and it is deliberate.
+
+  **What was deliberately NOT touched.** All 46 `e0010_*` files stay at root:
+  `e0010_report.py` hardcodes `BASE = r"C:\Users\tahae\Kanamecide"` and reads
+  `e0010_k{1..6}n_result.txt` / `_games.jsonl` by that absolute path, so moving them
+  would break the published-result reproduction path **while leaving `validate` green**
+  — a silent break the gates cannot catch. The exit check was run after the clean-up and
+  reproduces every E-0010 number (Elo +116.1, CI95 [+70.8,+163.5], LOS 100.00%, N=240,
+  duplicate-move-lists=0 on all six rungs), exit 0.
+  `kana_o3b.exe` / `kana_o3c.exe` also stay: they are cited by this work item and the
+  2026-09-21 note already flagged them for an owner decision, which is not this seat's
+  to take. They remain the only non-e0010 root debt (939,008 B).
+
+  **Defects found, recorded not absorbed** (see the manifest, "Known defects"): the
+  grandfathered list was saved with a UTF-8 BOM that `load_grandfathered()` does not
+  strip, so the header parsed as a phantom entry (mitigated by writing BOM-less; the
+  `research.py` fix is not this seat's to make); and `validate` fails on a PRE-EXISTING
+  EV-0010 sha256 drift that is already filed as FND-0034 and owner-routed.
+
+## Exit Check — results (2026-10-02)
+
+```powershell
+python research/scripts/research.py validate    # 1 problem (exit 1)
+python e0010_report.py                          # exit 0
+```
+
+| check | result |
+|---|---|
+| `validate` | **1 problem**, exit 1 — `audit[evidence]: sha256 drift on build/Release/kana.exe` (EV-0010). **Identical to the baseline taken before any file was touched.** Not introduced here, not repaired here (FND-0034, owner-routed). |
+| `validate` root-hygiene problems | **0** |
+| `e0010_report.py` | **exit 0**; k1-k6 Elo +36.3/+82.3/+104.5/+100.8/+127.6/+116.1; k6 CI95 [+70.8,+163.5] LOS 100.00% N=240; gate (c) FAIL (Elo>=150 false) — identical to the pre-clean-up run |
+| `research.py hygiene` | `{'sanctioned': 6, 'grandfathered-debt': 73, 'unsanctioned-NEW': 0}`, **0** unreferenced shrink candidates (was 119) |
+| `research.py selftest` | 47 tests, OK |
+| root file count | **204 -> 79** |
+| `root_grandfathered.txt` | **267 -> 73** entries; all 73 name files that exist (0 stale) |
+| `_obs/e0010-era/` | garbage 45 / evidence 12 / tooling 39 files — every moved byte preserved |
+| post-apply self-check | `apply.py` recomputed the root listing vs the manifest KEEP set: **MATCH** (79/79) |
+
+`validate` flagged `state.json is stale` transiently once the two manifest files were
+added; resolved by the documented `update` + `state --write` regeneration, after which
+`validate` returned to exactly the pre-existing single problem.
 
 ## Verification
-- verified_by: (a different agent than owner)
-- verdict: (VERIFIED | CONTRADICTED | PARTIAL | UNVERIFIABLE)
-- evidence: (review record id + command outputs)
+- verified_by: **verification-auditor — REQUESTED via HO-0022** (spot-check of 10
+  randomly chosen manifest rows). This seat does not close its own work.
+- verdict: **PENDING** — deliberately not self-closed. The MEMORY-KEEPER seat authored
+  the manifest, so it is not an acceptable verifier (DEC-0009 gate 3 — the same rule
+  that caught the FND-0032 self-closure).
+- evidence: `research/manifests/MAN-W0006-root-scratch.md` (every row with sha256 +
+  justification), `MAN-W0006-root-scratch.json` (machine-readable); reproducible
+  harness and raw command output in `_obs/w0006/` (`triage.py`, `apply.py`,
+  `post_validate.log`, `apply_log.txt`). Commands and acceptance: **HO-0022**.

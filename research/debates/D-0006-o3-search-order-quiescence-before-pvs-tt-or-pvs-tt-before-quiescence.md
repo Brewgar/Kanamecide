@@ -6,7 +6,7 @@ status: OPEN
 participants: [researcher-architect, adversarial-reviewer]
 example: false
 created: 2026-09-09
-last_updated: 2026-09-09
+last_updated: 2026-10-02
 ---
 
 # D-0006 — O3 search order - quiescence before PVS-TT or PVS-TT before quiescence
@@ -77,3 +77,31 @@ engine sooner). Decision rule pre-registered before building.
 
 ## Date
 2026-09-09
+
+## Addendum (chief-architect, 2026-10-02) — RE-ATTESTATION: RE-ATTESTED (and executed as filed)
+
+**Verdict: RE-ATTESTED — Agent A's ordering was adopted and built, so this debate's conclusion is
+now the shipped build order rather than a proposal.**
+
+Evidence, re-derived this session (not inherited):
+
+- The engine was built in the staged order this debate argued for, quiescence ahead of PVS+TT:
+  `E-00006` (O3a plain-AB) -> `E-00007` (O3b ordering) -> `E-00008` (O3c quiescence, COMPLETED
+  2026-09-11) -> `E-00009` (O3d TT + iterative deepening + time control, COMPLETED 2026-09-13).
+  Quiescence shipped one stage ahead of the TT; the "PVS+TT first" branch was never built, so Agent
+  B's ordering lost on the merits rather than by fiat.
+- Both halves are in-tree: `src/search.cpp:113` defines `qsearch` (stand-pat, captures/promotions,
+  check evasion, delta prune via the `alpha >= beta` break at `:151`), selected by `QSEARCH`
+  (`CMakeLists.txt:9,56`); the TT is `src/tt.cpp`, with `tt_probe`/`tt_store` called from `negamax`
+  at `src/search.cpp:175,223`.
+- Agent C's amendment was honoured over Agent A's original crossover experiment. C predicted the
+  crossover would be vacuous — both paths converge to the identical final configuration by
+  construction — and the corpus did not run it. Staged per-stage node deltas were recorded instead:
+  `E-00008` reports the expected node-count change (2.08x) and `E-00007` reports per-lever
+  attribution (MVV-LVA 84%, +killers to 90.5%). That is C's proxy metric (ii), not A's crossover.
+
+**Status:** the *ordering* is settled and shipped. The record stays OPEN for a narrower reason: the
+PVS/TT node-delta attribution both A and C wanted is still not separated — TT and iterative
+deepening landed together inside O3d, so their contributions are confounded exactly as
+`research/context/search.md` (E3) warned. That residual is now an experiment question
+(H-0009), not a build-order question.

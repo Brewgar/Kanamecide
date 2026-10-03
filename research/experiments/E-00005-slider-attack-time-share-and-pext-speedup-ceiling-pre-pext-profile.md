@@ -9,6 +9,7 @@ hypothesis: "H-0006/D-0003 PEXT prior 1.3-2.5x is unbounded; slider-share profil
 priority: high
 example: false
 created: 2026-09-10
+last_updated: 2026-10-02
 completed: null
 tags: [pext, slider-attacks, profile, nps, d-0003]
 ---
@@ -65,3 +66,30 @@ Pre-registered decision rule:
 
 ## Follow-Up
 Feeds E-PEXT: run E-PEXT only if slider_share ≥30%; else route H-0006's upper end to "falsified magnitude".
+
+## Addendum (chief-architect, 2026-10-02) — RE-ATTESTATION: RE-ATTESTED
+
+**Verdict: RE-ATTESTED — the experiment has not been run and is still the precondition the corpus
+agreed to gate E-PEXT on. Nothing has superseded its decision rule.**
+
+Evidence, re-derived this session (not inherited):
+
+- The code it profiles is materially unchanged, so the profile is still worth taking. The
+  `rook_attacks`/`bishop_attacks` call sites are at `src/movegen.cpp:78` and `:86` (queen at `:94`),
+  matching this record's citations; the `attacked_by` re-derivation is at `src/board.cpp:101-102`
+  (this record says `:100-101` — a one-line drift from later edits, same functions); the per-node
+  call site is `src/perft.cpp:16`. `src/bitboard.cpp:54-72` still ray-steps.
+- `## Results: (not run.)` is accurate. Slider share remains UNKNOWN, so the Amdahl ceiling bounding
+  H-0006's 1.3-2.5x prior is still unpinned and the 2.5x upper end is neither supported nor falsified.
+
+**Baseline updated (this strengthens the record rather than changing it).** `## Baseline` cites
+E-00003's provisional 43-50 Mnps. That figure is now superseded *for citation purposes* by `E-0002`
+(COMPLETED 2026-09-10): certified /O2 43-47 Mnps, 5 pinned reps, SHA-256 + git hash logged. The
+`## Engine Version` requirement — "post-Milestone-0 /O2 build; record git hash + SHA-256(exe)" — is
+therefore already satisfied by the in-tree `KANA_GIT_COMMIT` injection (`CMakeLists.txt:43-58`) plus
+`--bench`. The remaining work is the instrumentation, not the harness.
+
+**Decision rule stands unchanged and untripped:** run E-PEXT only if `slider_share >= 30%`; below
+that, the 2.5x upper end is falsified and the cap is ~1.43x. Note this now interacts with D-0003's
+re-attested four-way CI partition: E-00005 bounds the ceiling *before* E-PEXT produces a ratio, so
+the two are sequential gates, not alternatives.

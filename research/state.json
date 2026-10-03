@@ -723,7 +723,32 @@
     },
     {
       "code_files": [
-        "src/movegen.cpp"
+        "src/bench.cpp"
+      ],
+      "commits_mentioned": [],
+      "kind": "debate",
+      "record": "D-0002",
+      "rel": "debates/D-0002-release-build-flags-and-nps-validity.md",
+      "status": "OPEN",
+      "title": "Release build flags invalidate current NPS claims and O2-binary provenance"
+    },
+    {
+      "code_files": [
+        "src/bitboard.cpp"
+      ],
+      "commits_mentioned": [],
+      "kind": "debate",
+      "record": "D-0003",
+      "rel": "debates/D-0003-h-0005-3x-pext-speedup-vs-measured-47-mnps-perft-baseline.md",
+      "status": "OPEN",
+      "title": "H-0005 >=3x PEXT speedup vs measured ~47 Mnps perft baseline"
+    },
+    {
+      "code_files": [
+        "src/main.cpp",
+        "src/movegen.cpp",
+        "src/perft.cpp",
+        "src/search.cpp"
       ],
       "commits_mentioned": [],
       "kind": "debate",
@@ -731,6 +756,31 @@
       "rel": "debates/D-0004-generate-moves-is-pseudo-legal-not-legal-reconcile-dec-0005-wording-and-the-search-contract.md",
       "status": "OPEN",
       "title": "generate_moves is pseudo-legal not legal: reconcile DEC-0005 wording and the search contract"
+    },
+    {
+      "code_files": [
+        "src/board.cpp",
+        "src/board.h",
+        "src/search.cpp"
+      ],
+      "commits_mentioned": [],
+      "kind": "debate",
+      "record": "D-0005",
+      "rel": "debates/D-0005-make-unmake-vs-copy-make-for-phase-2-search-dec-0004-under-conditions.md",
+      "status": "OPEN",
+      "title": "make-unmake vs copy-make for Phase 2 search: DEC-0004 under conditions"
+    },
+    {
+      "code_files": [
+        "src/search.cpp",
+        "src/tt.cpp"
+      ],
+      "commits_mentioned": [],
+      "kind": "debate",
+      "record": "D-0006",
+      "rel": "debates/D-0006-o3-search-order-quiescence-before-pvs-tt-or-pvs-tt-before-quiescence.md",
+      "status": "OPEN",
+      "title": "O3 search order - quiescence before PVS-TT or PVS-TT before quiescence"
     },
     {
       "code_files": [
@@ -744,6 +794,20 @@
       "rel": "decisions/DEC-0008-pseudo-legal-move-generation-king-safety-filter-at-the-search-perft-site.md",
       "status": "ACTIVE",
       "title": "Pseudo-legal move generation + king-safety filter at the search/perft site"
+    },
+    {
+      "code_files": [
+        "src/bitboard.cpp",
+        "src/board.cpp",
+        "src/movegen.cpp",
+        "src/perft.cpp"
+      ],
+      "commits_mentioned": [],
+      "kind": "experiment",
+      "record": "E-00005",
+      "rel": "experiments/E-00005-slider-attack-time-share-and-pext-speedup-ceiling-pre-pext-profile.md",
+      "status": "PENDING",
+      "title": "Slider-attack time share and PEXT speedup ceiling (pre-PEXT profile)"
     },
     {
       "code_files": [
@@ -856,7 +920,8 @@
         "tools/e0011_check.py",
         "tools/e0012_sprt.py",
         "tools/e0013_eval.py",
-        "tools/e0013_extract.py"
+        "tools/e0013_extract.py",
+        "tools/e0013_pins.py"
       ],
       "commits_mentioned": [
         "040296e",
@@ -868,6 +933,7 @@
         "8ad61cc",
         "8c30f32",
         "8db1c45",
+        "9b69e0a",
         "9d60f64",
         "9f6574c",
         "b04fd5a",
@@ -998,6 +1064,20 @@
     },
     {
       "code_files": [
+        "src/search.cpp",
+        "tools/e0012_sprt.py"
+      ],
+      "commits_mentioned": [
+        "82ac6fe"
+      ],
+      "kind": "finding",
+      "record": "FND-0035",
+      "rel": "findings/FND-0035-q-0002-pre-eval-census-of-src-search-tt-pvs-lmr-null-absent-and-order-stage-is-one-boolean.md",
+      "status": "OPEN",
+      "title": "Q-0002 pre-eval census of src/search.cpp|tt.cpp: PVS/aspiration/LMR/null-move/futility are ALL absent; ordering+qsearch exist; ORDER_STAGE is one boolean so E-0007's per-lever attribution is NOT reproducible from current source"
+    },
+    {
+      "code_files": [
         "tools/e0011_check.py"
       ],
       "commits_mentioned": [],
@@ -1119,6 +1199,24 @@
       "rel": "handoffs/HO-0019-verify-e0013-s0037-leakage-ruling.md",
       "status": "DONE",
       "title": "Independently verify the E-0013 leakage ruling (S-0037 addendum): was option (1) chosen on the contract's own terms?"
+    },
+    {
+      "code_files": [
+        "tools/e0011_check.py",
+        "tools/e0012_sprt.py",
+        "tools/e0013_eval.py",
+        "tools/e0013_extract.py",
+        "tools/e0013_pins.py"
+      ],
+      "commits_mentioned": [
+        "7348f89",
+        "9b69e0a"
+      ],
+      "kind": "handoff",
+      "record": "HO-0023",
+      "rel": "handoffs/HO-0023-blockers-to-go-e0013-gate-experiments-e00014-e00015.md",
+      "status": "REQUESTED",
+      "title": "Blockers to GO on the E-0013 gate experiments E-00014 / E-00015, with a NO-GO on both and one unblocking amendment named for E-00015"
     },
     {
       "code_files": [
@@ -1658,6 +1756,22 @@
     },
     {
       "code_files": [
+        "src/main.cpp",
+        "src/search.cpp"
+      ],
+      "commits_mentioned": [
+        "3f96562",
+        "c7ebe54",
+        "f5883dc"
+      ],
+      "kind": "session",
+      "record": "S-0044",
+      "rel": "sessions/S-0044-round-six-umbrella-t001-t006-w0006-root-scratch-cleanup-reattestation-addenda-e0013-gate-readiness-fnd-0035-ho-0022-0023.md",
+      "status": "CLOSED",
+      "title": "Round-6 umbrella for the six seat sessions T-001..T-006 (W-0006 root-scratch clean-up, D-0002..D-0006 + E-00004/E-00005 re-attestation addenda, E-0013 gate-readiness, FND-0035 census, HO-0022/HO-0023) + the normalization commit"
+    },
+    {
+      "code_files": [
         "tools/e0011_check.py",
         "tools/e0011_generate.py",
         "tools/e0012_sprt.py",
@@ -1926,7 +2040,7 @@
       "title": "Gate 0 unrunnable: Device Guard hard-blocks kana.exe (every build, every path)"
     }
   ],
-  "generated": "2026-10-02T22:45:57",
+  "generated": "2026-10-03T10:59:48",
   "metrics": {
     "by_kind": {
       "agent_profile": 1,
@@ -1935,12 +2049,12 @@
       "current_position": 6,
       "debate": 7,
       "decision": 12,
-      "doc": 17,
+      "doc": 18,
       "evidence": 8,
       "experiment": 15,
       "failure": 2,
-      "finding": 34,
-      "handoff": 21,
+      "finding": 35,
+      "handoff": 23,
       "hypothesis": 17,
       "principle": 4,
       "profile": 5,
@@ -1948,33 +2062,33 @@
       "report": 13,
       "review": 27,
       "round_megaprompt": 2,
-      "session": 43,
+      "session": 44,
       "work": 8
     },
     "by_status": {
       "ACTIVE": 15,
-      "CLOSED": 43,
+      "CLOSED": 44,
       "COMPLETED": 35,
       "DONE": 21,
       "DRAFT": 1,
       "IN_PROGRESS": 3,
-      "OPEN": 40,
+      "OPEN": 41,
       "PENDING": 5,
       "RECORDED": 2,
       "REGISTERED": 8,
-      "REQUESTED": 5,
+      "REQUESTED": 7,
       "RESOLVED": 26,
       "RUNNING": 1,
       "SUPERSEDED": 4
     },
     "code_files": 30,
     "contradiction_candidates": 0,
-    "dangling_ids": 11,
+    "dangling_ids": 16,
     "duplicate_candidates": 2,
-    "edges_total": 4434,
+    "edges_total": 4591,
     "legacy_experiments_without_pre_registration": 6,
     "open_questions": 8,
-    "records_total": 254,
+    "records_total": 259,
     "revival_candidates": 5
   },
   "questions_all": [
@@ -2366,42 +2480,6 @@
   "timeline_tail": [
     {
       "example": false,
-      "id": "FND-0007",
-      "kind": "finding",
-      "rel": "findings/FND-0007-b7-q-0006-s-official-readiness-gate-7-was-missing-from-e-0013.md",
-      "status": "RESOLVED",
-      "title": "B7 Q-0006's official readiness gate 7 was missing from E-0013",
-      "when": "2026-09-29"
-    },
-    {
-      "example": false,
-      "id": "FND-0008",
-      "kind": "finding",
-      "rel": "findings/FND-0008-f-u1-p0-deferred-by-r-0019-unchanged-here-the-h-0013-dataset-discrepa.md",
-      "status": "OPEN",
-      "title": "F-U1 P0 (deferred by R-0019, unchanged here).** The H-0013 dataset-discrepa",
-      "when": "2026-09-29"
-    },
-    {
-      "example": false,
-      "id": "FND-0009",
-      "kind": "finding",
-      "rel": "findings/FND-0009-f-u2-the-deferred-strength-contract-the-cost-of-the-b1-shrink-decision.md",
-      "status": "OPEN",
-      "title": "F-U2 the deferred strength contract (the cost of the B1 SHRINK decision).**",
-      "when": "2026-09-29"
-    },
-    {
-      "example": false,
-      "id": "FND-0010",
-      "kind": "finding",
-      "rel": "findings/FND-0010-f-u3-contingency-routing-for-b3-branch-x-2-inconclusive-by-power-route.md",
-      "status": "OPEN",
-      "title": "F-U3 contingency routing for B3 branch X-2 (INCONCLUSIVE-BY-POWER).** Route",
-      "when": "2026-09-29"
-    },
-    {
-      "example": false,
       "id": "FND-0011",
       "kind": "finding",
       "rel": "findings/FND-0011-f-u4-the-e-0011-n1-backwards-citation-correction-see-b5-sentence-3-fil.md",
@@ -2690,6 +2768,15 @@
     },
     {
       "example": false,
+      "id": "HO-0022",
+      "kind": "handoff",
+      "rel": "handoffs/HO-0022-spot-check-man-w0006-root-scratch-10-random-rows.md",
+      "status": "REQUESTED",
+      "title": "Spot-check 10 random rows of MAN-W0006-ROOT-SCRATCH-001 (root-scratch debt reduction)",
+      "when": "2026-10-02"
+    },
+    {
+      "example": false,
       "id": "profile",
       "kind": "profile",
       "rel": "agents/chief-architect/profile.md",
@@ -2723,6 +2810,33 @@
       "status": "IN_PROGRESS",
       "title": "imem 2.1 infrastructure: INFRASTRUCTURE.md normative doc + freshness/novelty advisory surfaces + chief-architect seat",
       "when": "2026-10-02"
+    },
+    {
+      "example": false,
+      "id": "FND-0035",
+      "kind": "finding",
+      "rel": "findings/FND-0035-q-0002-pre-eval-census-of-src-search-tt-pvs-lmr-null-absent-and-order-stage-is-one-boolean.md",
+      "status": "OPEN",
+      "title": "Q-0002 pre-eval census of src/search.cpp|tt.cpp: PVS/aspiration/LMR/null-move/futility are ALL absent; ordering+qsearch exist; ORDER_STAGE is one boolean so E-0007's per-lever attribution is NOT reproducible from current source",
+      "when": "2026-10-03"
+    },
+    {
+      "example": false,
+      "id": "HO-0023",
+      "kind": "handoff",
+      "rel": "handoffs/HO-0023-blockers-to-go-e0013-gate-experiments-e00014-e00015.md",
+      "status": "REQUESTED",
+      "title": "Blockers to GO on the E-0013 gate experiments E-00014 / E-00015, with a NO-GO on both and one unblocking amendment named for E-00015",
+      "when": "2026-10-03"
+    },
+    {
+      "example": false,
+      "id": "S-0044",
+      "kind": "session",
+      "rel": "sessions/S-0044-round-six-umbrella-t001-t006-w0006-root-scratch-cleanup-reattestation-addenda-e0013-gate-readiness-fnd-0035-ho-0022-0023.md",
+      "status": "CLOSED",
+      "title": "Round-6 umbrella for the six seat sessions T-001..T-006 (W-0006 root-scratch clean-up, D-0002..D-0006 + E-00004/E-00005 re-attestation addenda, E-0013 gate-readiness, FND-0035 census, HO-0022/HO-0023) + the normalization commit",
+      "when": "2026-10-03"
     }
   ]
 }

@@ -6,7 +6,7 @@ status: OPEN
 participants: [researcher-architect, adversarial-reviewer]
 example: false
 created: 2026-09-09
-last_updated: 2026-09-09
+last_updated: 2026-10-02
 ---
 
 # D-0002 — Release build flags invalidate current NPS claims and O2-binary provenance
@@ -76,3 +76,28 @@ NPS for the full perft suite; document kana_o2.exe provenance or delete it from 
 
 ## Date
 2026-09-09
+
+## Addendum (chief-architect, 2026-10-02) — RE-ATTESTATION: SUPERSEDED-BY E-0002
+
+**Verdict: SUPERSEDED-BY `E-0002`** (COMPLETED 2026-09-10). The question this debate asks — "can
+any NPS number be trusted *while* `CMakeLists.txt` forces `/Od /JMC /DEBUG` on Release?" — rests on
+a premise that no longer holds, and the resolution experiment this record itself proposed
+(O1/E-BENCH) has in fact run.
+
+Evidence, re-derived this session (not inherited):
+
+- `CMakeLists.txt:34` now sets Release to `/O2 /GL /arch:AVX512 /DNDEBUG`, with `/LTCG` linking
+  (`:38`) and IPO (`:39`). `/Od /JMC` survives only on the `Debug` config (`:33`). The blocking
+  premise is repaired in the tree.
+- `E-0002` reports `certified /O2 = 43-47 Mnps (5 reps, pinned, SHA-256 logged); all
+  E-00003-comparable positions within +-10% -> baseline CERTIFIED`. The provenance logging D-0002
+  asked for is in-tree: `KANA_GIT_COMMIT` is injected by `CMakeLists.txt:43-58` and `src/bench.cpp`
+  exists.
+- `kana_o2.exe` — the unrecorded-provenance binary this debate flagged — no longer exists anywhere
+  in the tree. The "document or delete" disposition was carried out, so the exclusion clause in the
+  Evidence Addendum above is now moot rather than violated.
+
+**What survives:** Agent C's two-tier rule (provisional vs. E-0002-certified) remains good practice,
+and it is the reason later records cite E-0002's certified figures rather than E-00003's scratch
+figures. This addendum closes the *question*; it does not retract the rule. Nothing above is edited —
+Agent A's "No. All NPS figures are UNKNOWN" was correct on 2026-09-09 and is preserved as history.
