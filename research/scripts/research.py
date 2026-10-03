@@ -165,7 +165,7 @@ def load_grandfathered() -> set:
         return set()
     out = set()
     for ln in read_text(GRANDFATHERED_LIST).splitlines():
-        ln = ln.strip()
+        ln = ln.strip().lstrip("\ufeff")
         if ln and not ln.startswith("#"):
             out.add(ln)
     return out

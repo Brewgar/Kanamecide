@@ -33,6 +33,7 @@ import imem_meta as MT  # noqa: E402
 import imem_prior as PR  # noqa: E402
 import imem_retrieve as RT  # noqa: E402
 import imem_text as TX  # noqa: E402
+import research as R  # noqa: E402
 
 
 def write(path: Path, text: str):
@@ -591,6 +592,42 @@ class TestFreshnessAndNovelty(unittest.TestCase):
         out = MT.freshness_report(recs)
         self.assertIn("advisory", out)
 
+    def test_freshness_future_dated_activity_is_an_anomaly_row(self):
+        """R-0027 D-4: a stale record with a future last_updated used to fail OPEN
+        (negative age, never flagged). It must now surface as an explicit ANOMALY."""
+        from datetime import date
+        fixture(self.root, "hypotheses/H-0008-future.md", "H-0008", "hypothesis",
+                "# H-0008\n", status="OPEN", created="2020-01-01",
+                last_updated="2027-06-01")
+        rows = MT.freshness_rows(self.load(), today=date(2026, 10, 3))
+        row = next((r for r in rows if r["id"] == "H-0008"), None)
+        self.assertIsNotNone(row, "future-dated activity must not pass silently")
+        self.assertTrue(row.get("anomaly"))
+        self.assertLess(row["age_days"], 0)
+        self.assertIn("future", row["why"].lower())
+
+    def test_freshness_counts_dated_work_log_body_lines(self):
+        """A work record's append-only Work Log is activity: _record_activity_date must
+        take max(front-matter, latest '- YYYY-MM-DD —' body line), so a committed
+        work-log entry keeps W-0006-class records out of the stale list."""
+        from datetime import date
+        fixture(self.root, "work/W-0001-log.md", "W-0001", "work",
+                "# W-0001\n\n## Work Log (append-only while OPEN)\n"
+                "- 2026-01-01 — opened\n"
+                "- 2026-10-01 — substantive body activity\n",
+                status="IN_PROGRESS", created="2026-01-01")
+        fixture(self.root, "work/W-0002-fm.md", "W-0002", "work",
+                "# W-0002\n\n- 2026-01-05 — body stays older\n",
+                status="IN_PROGRESS", created="2026-01-01",
+                last_updated="2026-10-02")
+        recs = self.load()
+        self.assertEqual(MT._record_activity_date(C.by_id(recs, "W-0001")).isoformat(),
+                         "2026-10-01")
+        self.assertEqual(MT._record_activity_date(C.by_id(recs, "W-0002")).isoformat(),
+                         "2026-10-02")  # max(front-matter, body)
+        stale = [r["id"] for r in MT.freshness_rows(recs, today=date(2026, 10, 3))]
+        self.assertNotIn("W-0001", stale)
+
     def test_novelty_finds_a_lexical_near_duplicate(self):
         fixture(self.root, "claims/CLM-0001-a.md", "CLM-0001", "claim", "# CLM-0001\n",
                 domain="search",
@@ -614,6 +651,25 @@ class TestFreshnessAndNovelty(unittest.TestCase):
                                           "zucchini", embed=None)
         self.assertIsNone(by_text["resolved_record"])
         self.assertIn("advisory", by_text)
+
+
+class TestGrandfatheredListBOM(unittest.TestCase):
+    """W-0006 known-defect #1 regression (HW-1): a UTF-8 BOM in root_grandfathered.txt
+    must never parse as a phantom first entry."""
+
+    def test_bom_header_is_not_a_phantom_entry(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            listfile = Path(tmp) / "root_grandfathered.txt"
+            listfile.write_text(
+                "\ufeff# Repo-root grandfathered files\nbench.cpp\n_junk.txt\n",
+                encoding="utf-8")
+            saved = R.GRANDFATHERED_LIST
+            try:
+                R.GRANDFATHERED_LIST = listfile
+                got = R.load_grandfathered()
+            finally:
+                R.GRANDFATHERED_LIST = saved
+        self.assertEqual(got, {"bench.cpp", "_junk.txt"})
 
 
 class TestRealCorpusInvariants(unittest.TestCase):

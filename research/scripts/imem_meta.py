@@ -19,6 +19,7 @@ Every number carries its derivation. Thresholds are advisory; trends are the sig
 from __future__ import annotations
 
 import collections
+import re
 import subprocess
 
 from imem_core import as_list, records_of_type
@@ -209,26 +210,43 @@ _LIVE_STATUS = {
     "experiment": {"PENDING", "RUNNING"},
 }
 
+# Work records carry their own dated activity in the body's append-only Work Log
+# ('- YYYY-MM-DD — ...'); those dates count exactly like front-matter ones (W-0006).
+_WORK_LOG_DATE_RE = re.compile(r"^[ \t]*-[ \t]+(\d{4}-\d{2}-\d{2})[ \t]+—", re.MULTILINE)
+
 
 def _record_activity_date(rec):
     """Most recent authored timestamp on the record, or None. Deterministic: ties to
-    the front-matter the corpus carries, not to file mtimes (which are checkout-noisy)."""
+    the front-matter the corpus carries, not to file mtimes (which are checkout-noisy).
+    Work records also count their dated Work Log body lines ('- YYYY-MM-DD —'), taking
+    max(front-matter, latest body line): the append-only log is where activity lands."""
     from datetime import date
+    best = None
     for field in ("last_updated", "closed", "completed", "created"):
         raw = str(rec.fm.get(field) or "")[:10]
         if len(raw) == 10 and raw[4] == "-" and raw[7] == "-":
             try:
-                return date.fromisoformat(raw)
+                best = date.fromisoformat(raw)
+                break
             except ValueError:
                 continue
-    return None
+    if rec.type == "work":
+        for m in _WORK_LOG_DATE_RE.finditer(rec.body):
+            try:
+                d = date.fromisoformat(m.group(1))
+            except ValueError:
+                continue
+            if best is None or d > best:
+                best = d
+    return best
 
 
 def freshness_rows(records: dict, today=None, policy: dict = None) -> list:
     """[{id, type, status, age_days, last_activity, window, rel}] for every LIVE record
     older than its kind's freshness window. Advisory only: a stale record is a review
     flag, never an error; kinds with no live statuses (decisions, principles) are
-    structurally durable and are never flagged by this report."""
+    structurally durable and are never flagged by this report. A future-dated activity
+    date is an explicit ANOMALY row (anomaly=True) — R-0027 D-4: fail loud, not open."""
     from datetime import date as _date
     today = today or _date.today()
     policy = dict(FRESHNESS_POLICY_DAYS if policy is None else policy)
@@ -247,13 +265,20 @@ def freshness_rows(records: dict, today=None, policy: dict = None) -> list:
             continue
         age = (today - last).days
         window = policy.get(rec.type, 21)
-        if age > window:
+        if age < 0:
+            rows.append({"id": rec.id, "type": rec.type, "status": status,
+                         "age_days": age, "last_activity": last.isoformat(),
+                         "window_days": window, "rel": rec.key, "anomaly": True,
+                         "why": (f"ANOMALY: future-dated activity {last.isoformat()} "
+                                 f"is after today {today.isoformat()} for live "
+                                 f"{rec.type} ({status}) — date untrusted")})
+        elif age > window:
             rows.append({"id": rec.id, "type": rec.type, "status": status,
                          "age_days": age, "last_activity": last.isoformat(),
                          "window_days": window, "rel": rec.key,
                          "why": (f"live {rec.type} ({status}) untouched for {age} days "
                                  f"(window {window})")})
-    rows.sort(key=lambda r: (-r["age_days"], r["id"]))
+    rows.sort(key=lambda r: (not r.get("anomaly"), -r["age_days"], r["id"]))
     return rows
 
 
