@@ -172,6 +172,39 @@ python tools/e0013_pins.py --verify                    # re-hash the pins at rea
   read, no holdout read, no engine invocation. `E-0014`, `E-0013`, `tools/e0013_eval.py`,
   `tools/e0013_extract.py` and every `src/` file are unmodified.
 
+- **2026-10-03 — chief-architect seat — ruling package landed (adapted to post-inversion
+  reality).** The D-003 ruling texts were staged in `_obs/rulingpkg/` and three of five were
+  never applied; the FND-0035 F2/F3 repairs ran before Ruling 1's disposition step, so the staged
+  disposition text (which kept a live-path pin and assumed an on-disk `686EA597…`) could not
+  apply verbatim. Landed today instead:
+  - **B4 — DISCHARGED.** Ruling 1 executed per adapted plan: EV-0010 re-pinned to
+    `686EA5979415054982703985C543CEB9EE7C0CD47C166903CAF8C79D12276F3B` with a dated
+    non-reproducibility caveat, `path:` re-anchored to the tracked archive
+    `_obs/evidence/EV-0010__kana_686ea5979415.exe` under the newly filed
+    `DEC-0013` (evidence pins are content-addressed archived artifacts; live build outputs are
+    never pin targets); EV-0011 likewise hardened to
+    `_obs/evidence/EV-0011__kana_a0951f4f40b5.exe`; FND-0034 evidence block filled, disposition
+    appended, finding CLOSED; **W-0009 / HO-0024 filed for the digest-stable build (HW-3).**
+    `python research/scripts/research.py validate` re-derived: **exit 0, 0 problems** (E7's armed
+    problem is discharged).
+  - **B3-pins — PARTIALLY DISCHARGED (the Ruling-3 pin half landed, the pre-fit commit half did
+    not).** Ruling 3's operative text: pin the floor table to the last `src/`-touching commit,
+    **`9b69e0a9e20a7bd60821881aae68a8f91eed7ff8`** — E-0014's assumed `7348f89` is false (a
+    research-only commit that never touched `src/`). Emit its digest with
+    `python tools/e0013_eval.py --write-floor` against that named commit; the correction lands in
+    the pre-fit commit, which remains UNSATISFIED until B1 (trainer) and B2 (labelled corpus)
+    exist — pinning a floor table inside a commit carrying unpinned seed/L2/iters/early-stop/clip/F5
+    would produce a commit with six holes. B5's `INNER_SALT` half is likewise not ruling-gated:
+    naming the salt is an engineering act, open for implementation-engineer/systems-researcher.
+  - **B6 — DISCHARGED (by mandate, executed).** Ruling 2 directed the systems-researcher seat to
+    file E-0015's four-clause amendment; it is filed in `E-00015`, `HO-0023`'s Response carries
+    the discharge, and `74,452` remains non-authoritative. The run stays gated on HO-0016 until
+    `## Verification` below is executed by the verification-auditor.
+  - **B1 / B2 / B5-salt / B7 — UNLEANED, unchanged.** B1/B2 are the long pole (engineering, not
+    decisions); B7 is a post-verdict obligation (F-U5/FND-0012).
+  - **Recommendation state:** E-00014 remains NO-GO on B1/B2/B3/B5-salt. E-00015 is the near gate:
+    its spec is no longer stale; execution is HO-0016 once the readiness GO is signed below.
+
 ## Verification (receiver, append-only)
 - raw output / exit codes / hashes:
 - verdict: ...

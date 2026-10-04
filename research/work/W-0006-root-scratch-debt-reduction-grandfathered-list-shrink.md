@@ -142,6 +142,18 @@ python e0010_report.py                          # still reproduces every E-0010 
   strip, so the header parsed as a phantom entry (mitigated by writing BOM-less; the
   `research.py` fix is not this seat's to make); and `validate` fails on a PRE-EXISTING
   EV-0010 sha256 drift that is already filed as FND-0034 and owner-routed.
+- 2026-10-04 — chief-architect (memory-keeper hat; wave-resume session S-0045) — executed
+  Sponsor Ruling 4 / Q2 as recorded in HO-0022's owner verdict: moved `kana_o3b.exe` and
+  `kana_o3c.exe` (469,504 B each; untracked, so quarantine not deletion) from root to
+  `_obs/e0010-era/garbage/`, sha256-verified at destination
+  (`355560491A86C43BCA7F14A15F969BD5E7D11A6751AD1C4598C549C8F645F3F6`,
+  `563D502A04B47692C5D0D2F1D54E503E47AFF82ED877AD39F92E2541DE1DE06B`, matching HO-0022's
+  re-derivation), pruned both names from `root_grandfathered.txt` (73 → 71 entries), root
+  file count 79 → 77. This resolves the relocation stalemate the 2026-10-02 log deferred
+  ("flagged them for an owner decision, which is not this seat's to take") — the owner
+  decision is now taken (HO-0022 Q2: MOVE-quarantine-rather-than-delete). The
+  DEFECTS(4) prose corrections from HO-0022's verification remain the only open piece
+  before this item can seek closure (see HO-0022 response "Bottom line for the owner").
 
 ## Exit Check — results (2026-10-02)
 

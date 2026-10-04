@@ -60,8 +60,6 @@ e0010_wd_launch.bat
 evd_perft_rel.txt
 g0_perft.bat
 gen_tactics.py
-kana_o3b.exe
-kana_o3c.exe
 measure_ob.py
 measure_qs.py
 ob4.txt

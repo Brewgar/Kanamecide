@@ -3,7 +3,7 @@ id: EV-0011
 type: evidence
 title: "Post-FND-0035 F2/F3 repair binary + validation artifacts (qsearch ply/repetition guard, in-check stand-pat suppression)"
 status: REGISTERED
-path: build/Release/kana.exe
+path: _obs/evidence/EV-0011__kana_a0951f4f40b5.exe
 kind: binary
 sha256: "A0951F4F40B5B85923BA832362C378009F0F8ED7C4DD20BB39EF70F59B5D8BCF"
 regenerate: "cmake --build build --config Release (and --config Audit) from the commit this record is committed in; src/search.cpp is the only changed source file. The exact digest requires the exact toolchain (MSVC 18.10.1, /O2 /GL /arch:AVX512 /DNDEBUG /LTCG, CMake ORDER_STAGE=4 QSEARCH=1 EVAL_STAGE=6) - the same non-byte-reproducibility caveat EV-0010 already carries."
@@ -112,3 +112,14 @@ Get-FileHash build\Release\kana.exe -Algorithm SHA256   # -> A0951F4F…D8BCF
 - It does **not** prove any strength property, and it does not license an SPRT campaign on
   this binary: Q-0002's Tier-N ladder still needs its own re-baselined rung 0, and FND-0035
   Finding 1 (ORDER_STAGE) remains unreproduced.
+  Finding 1 (ORDER_STAGE) remains unreproduced.
+
+> ### 2026-10-03 addendum — `path:` re-pointed to the archived post-repair binary (DEC-0013)
+>
+> This record's front matter originally pinned the LIVE `build/Release/kana.exe` — the exact
+> FND-0034 failure mode, one rebuild away from silent drift. Under DEC-0013 (filed the same day),
+> the pin now names the tracked archive `_obs/evidence/EV-0011__kana_a0951f4f40b5.exe`, whose
+> sha256 is the digest above (verified at archive time: copy from `build/Release/kana.exe`,
+> `A0951F4F…D8BCF`, 121856 B). The live path remains the pointer documented in "## How to verify"
+> for convenience replays; the durable pin is the archive. Any future measured rebuild is a pin
+> event: archive → new EV id → archived path; this record is never re-pinned.

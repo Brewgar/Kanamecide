@@ -1082,6 +1082,27 @@
     },
     {
       "code_files": [
+        "src/eval.cpp",
+        "src/search.cpp"
+      ],
+      "commits_mentioned": [
+        "0d4899c",
+        "504eb01",
+        "686ea59",
+        "8f78321",
+        "9b69e0a",
+        "bda64c7",
+        "dd4051a",
+        "f5883dc"
+      ],
+      "kind": "finding",
+      "record": "FND-0034",
+      "rel": "findings/FND-0034-ev-0010-binary-digest-drift-after-rebuild.md",
+      "status": "RESOLVED",
+      "title": "EV-0010 pinned Release binary digest no longer matches the on-disk binary after a master rebuild; research.py validate now fails on evidence-hash drift (not repaired by the F-U14 seat - owner and chief-architect route)"
+    },
+    {
+      "code_files": [
         "src/search.cpp",
         "tools/e0012_sprt.py"
       ],
@@ -2032,11 +2053,11 @@
       "exists": true,
       "id": "EV-0010",
       "kind": "binary",
-      "path": "build/Release/kana.exe",
-      "regenerate": "build.bat from commit 9b69e0a (src/eval.{h,cpp}, search.cpp crash fix). Rebuild reproduces the harness; the exact hash requires the exact toolchain.",
+      "path": "_obs/evidence/EV-0010__kana_686ea5979415.exe",
+      "regenerate": "NON-REPRODUCIBLE as bytes on this host (re-pinned 2026-10-03; Sponsor Ruling 1 / FND-0034 / DEC-0013). A rebuild of the SAME epoch source (last src commit 9b69e0a, 2026-09-14) yields a same-size, different-digest binary: this MSVC toolchain does not emit byte-identical output twice. Verify by hashing the ARCHIVED bytes at this record's path: - a tracked, content-addressed artifact - NOT by rebuilding, and NOT by hashing the live build/Release/kana.exe (which has since been rebuilt to EV-0011's post-repair binary). Digest-stable builds are filed as W-0009 / HO-0024; until they land, this digest is the content address of a preserved artifact, not a reproducible output.",
       "rel": "evidence/EV-0010-e0010-measurement-binary.md",
-      "sha256": "a0951f4f40b5b85923ba832362c378009f0f8ed7c4dd20bb39ef70f59b5d8bcf",
-      "sha256_recorded": "504EB01A828770DD9BFCA252AB8245A5692DF51580957CB6E5553012347A6DAA",
+      "sha256": "686ea5979415054982703985c543ceb9ee7c0cd47c166903caf8c79d12276f3b",
+      "sha256_recorded": "686EA5979415054982703985C543CEB9EE7C0CD47C166903CAF8C79D12276F3B",
       "status": "REGISTERED",
       "title": "E-0010 measurement binary (the current build/Release/kana.exe)"
     },
@@ -2049,7 +2070,7 @@
       "exists": true,
       "id": "EV-0011",
       "kind": "binary",
-      "path": "build/Release/kana.exe",
+      "path": "_obs/evidence/EV-0011__kana_a0951f4f40b5.exe",
       "regenerate": "cmake --build build --config Release (and --config Audit) from the commit this record is committed in; src/search.cpp is the only changed source file. The exact digest requires the exact toolchain (MSVC 18.10.1, /O2 /GL /arch:AVX512 /DNDEBUG /LTCG, CMake ORDER_STAGE=4 QSEARCH=1 EVAL_STAGE=6) - the same non-byte-reproducibility caveat EV-0010 already carries.",
       "rel": "evidence/EV-0011-fnd0035-f2-f3-repair-binary-and-validation.md",
       "sha256": "a0951f4f40b5b85923ba832362c378009f0f8ed7c4dd20bb39ef70f59b5d8bcf",
@@ -2076,7 +2097,7 @@
       "title": "Gate 0 unrunnable: Device Guard hard-blocks kana.exe (every build, every path)"
     }
   ],
-  "generated": "2026-10-03T21:22:18",
+  "generated": "2026-10-04T16:48:09",
   "metrics": {
     "by_kind": {
       "agent_profile": 1,
@@ -2084,13 +2105,13 @@
       "claim": 3,
       "current_position": 6,
       "debate": 7,
-      "decision": 12,
+      "decision": 13,
       "doc": 18,
       "evidence": 9,
       "experiment": 15,
       "failure": 2,
       "finding": 35,
-      "handoff": 23,
+      "handoff": 24,
       "hypothesis": 17,
       "principle": 4,
       "profile": 5,
@@ -2098,12 +2119,12 @@
       "report": 13,
       "review": 27,
       "round_megaprompt": 2,
-      "session": 44,
-      "work": 8
+      "session": 45,
+      "work": 9
     },
     "by_status": {
-      "ACTIVE": 15,
-      "CLOSED": 44,
+      "ACTIVE": 16,
+      "CLOSED": 45,
       "COMPLETED": 35,
       "DONE": 22,
       "DRAFT": 1,
@@ -2112,19 +2133,19 @@
       "PENDING": 5,
       "RECORDED": 2,
       "REGISTERED": 9,
-      "REQUESTED": 7,
-      "RESOLVED": 26,
+      "REQUESTED": 8,
+      "RESOLVED": 27,
       "RUNNING": 1,
       "SUPERSEDED": 4
     },
     "code_files": 30,
     "contradiction_candidates": 0,
-    "dangling_ids": 17,
+    "dangling_ids": 18,
     "duplicate_candidates": 2,
-    "edges_total": 4625,
+    "edges_total": 4710,
     "legacy_experiments_without_pre_registration": 6,
     "open_questions": 8,
-    "records_total": 260,
+    "records_total": 264,
     "revival_candidates": 5
   },
   "questions_all": [
@@ -2516,42 +2537,6 @@
   "timeline_tail": [
     {
       "example": false,
-      "id": "FND-0012",
-      "kind": "finding",
-      "rel": "findings/FND-0012-f-u5-q-0006-readiness-gate-7-see-b7-on-any-terminal-verdict-this-recor.md",
-      "status": "OPEN",
-      "title": "F-U5 Q-0006 readiness gate 7 (see B7).** On any terminal verdict this recor",
-      "when": "2026-09-29"
-    },
-    {
-      "example": false,
-      "id": "FND-0013",
-      "kind": "finding",
-      "rel": "findings/FND-0013-f-u6-dn6-routing-flag-dec-0010-186-187-s-stale-pending-independent.md",
-      "status": "OPEN",
-      "title": "F-U6 DN6 routing.** Flag DEC-0010:186-187's stale \"Pending: independent",
-      "when": "2026-09-29"
-    },
-    {
-      "example": false,
-      "id": "FND-0014",
-      "kind": "finding",
-      "rel": "findings/FND-0014-x1-the-addendum-was-a-truncated-interleaved-document-ten-sentences-we.md",
-      "status": "RESOLVED",
-      "title": "X1 the addendum was a truncated, interleaved document.** Ten sentences we",
-      "when": "2026-09-29"
-    },
-    {
-      "example": false,
-      "id": "FND-0015",
-      "kind": "finding",
-      "rel": "findings/FND-0015-x2-b5-s-freezing-rationale-was-arithmetically-false-the-claim-that-fre.md",
-      "status": "RESOLVED",
-      "title": "X2 B5's freezing rationale was arithmetically false.** The claim that fre",
-      "when": "2026-09-29"
-    },
-    {
-      "example": false,
       "id": "FND-0016",
       "kind": "finding",
       "rel": "findings/FND-0016-x3-ownership-owner-systems-researcher-set-on-e-00014-and-e-00015-t.md",
@@ -2780,7 +2765,7 @@
       "id": "FND-0034",
       "kind": "finding",
       "rel": "findings/FND-0034-ev-0010-binary-digest-drift-after-rebuild.md",
-      "status": "OPEN",
+      "status": "RESOLVED",
       "title": "EV-0010 pinned Release binary digest no longer matches the on-disk binary after a master rebuild; research.py validate now fails on evidence-hash drift (not repaired by the F-U14 seat - owner and chief-architect route)",
       "when": "2026-10-02"
     },
@@ -2831,6 +2816,15 @@
     },
     {
       "example": false,
+      "id": "DEC-0013",
+      "kind": "decision",
+      "rel": "decisions/DEC-0013-evidence-pins-are-content-addressed-archived-artifacts.md",
+      "status": "ACTIVE",
+      "title": "Evidence pins are content-addressed archived artifacts; live build outputs are never pin targets",
+      "when": "2026-10-03"
+    },
+    {
+      "example": false,
       "id": "EV-0011",
       "kind": "evidence",
       "rel": "evidence/EV-0011-fnd0035-f2-f3-repair-binary-and-validation.md",
@@ -2858,6 +2852,15 @@
     },
     {
       "example": false,
+      "id": "HO-0024",
+      "kind": "handoff",
+      "rel": "handoffs/HO-0024-hw-3-make-the-release-binary-digest-stable-brepro-or-equivalent-so-ev-00nn-pins-are-reproducible.md",
+      "status": "REQUESTED",
+      "title": "HW-3: make the Release binary digest-stable (/Brepro or equivalent) so EV-00NN pins are reproducible",
+      "when": "2026-10-03"
+    },
+    {
+      "example": false,
       "id": "S-0044",
       "kind": "session",
       "rel": "sessions/S-0044-round-six-umbrella-t001-t006-w0006-root-scratch-cleanup-reattestation-addenda-e0013-gate-readiness-fnd-0035-ho-0022-0023.md",
@@ -2873,6 +2876,24 @@
       "status": "DONE",
       "title": "imem 2.1 infrastructure: INFRASTRUCTURE.md normative doc + freshness/novelty advisory surfaces + chief-architect seat",
       "when": "2026-10-03"
+    },
+    {
+      "example": false,
+      "id": "W-0009",
+      "kind": "work",
+      "rel": "work/W-0009-digest-stable-release-build-brepro-or-equivalent-so-an-evidence-binary-pin-is-reproducible-from-source-not-from-a-preserved-copy.md",
+      "status": "OPEN",
+      "title": "Digest-stable Release build (/Brepro or equivalent) so an evidence binary pin is reproducible from source, not from a preserved copy",
+      "when": "2026-10-03"
+    },
+    {
+      "example": false,
+      "id": "S-0045",
+      "kind": "session",
+      "rel": "sessions/S-0045-wave-resume-land-sponsor-rulings-1-4-post-inversion-fnd-0034-disposition-ev-0010-ev-0011-re-pin-under-dec-0013-w-0009-ho-0024-filed-ho-0022-owner-verdict-ho-0023-blocker-discharges.md",
+      "status": "CLOSED",
+      "title": "wave resume: land Sponsor rulings 1-4 post-inversion (FND-0034 disposition, EV-0010/EV-0011 re-pin under DEC-0013, W-0009/HO-0024 filed, HO-0022 owner verdict, HO-0023 blocker discharges)",
+      "when": "2026-10-04"
     }
   ]
 }
