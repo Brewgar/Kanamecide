@@ -1,7 +1,7 @@
 # Research State (GENERATED — do not edit)
 
 Derived from the record store by `research.py state`. Regenerate after every change.
-Generated: 2026-10-04T18:42:36; schema 2.
+Generated: 2026-10-04T18:57:04; schema 2.
 Every entry is a PROJECTION of the linked records — follow them before believing.
 
 ## Current best beliefs (hypotheses with measured weight)
@@ -43,7 +43,6 @@ Every entry is a PROJECTION of the linked records — follow them before believi
 - hypothesis **H-0002-magic-stub** Magic Bitboards with PEXT Provide >=3x NPS Speedup — SUPERSEDED. No revisit condition recorded.
 
 ## Recent timeline
-- 2026-10-02 profile profile (—) : profile
 - 2026-10-02 review R-0027 (COMPLETED) : R 0027 independent audit of w 0008 imem 2 1 0 infrastructure and the fnd 0032 self closure ho 0021
 - 2026-10-02 session S-0043 (CLOSED) : imem 2.1.0 + normative INFRASTRUCTURE.md + chief-architect seat + FND-0032 Gate-3 routing
 - 2026-10-03 decision DEC-0013 (ACTIVE) : Evidence pins are content-addressed archived artifacts; live build outputs are never pin targets
@@ -54,6 +53,7 @@ Every entry is a PROJECTION of the linked records — follow them before believi
 - 2026-10-03 work W-0008 (DONE) : imem 2.1 infrastructure: INFRASTRUCTURE.md normative doc + freshness/novelty advisory surfaces + chief-architect seat
 - 2026-10-03 work W-0009 (OPEN) : Digest-stable Release build (/Brepro or equivalent) so an evidence binary pin is reproducible from source, not from a preserved copy
 - 2026-10-04 experiment E-00015 (COMPLETED) : E-00015 - count-only realized usable quiet yield pass for E-0013 (MEASUREMENT, not training)
+- 2026-10-04 handoff HO-0016 (DONE) : Execute E-00015: count-only realized usable quiet yield pass (measurement, not training)
 - 2026-10-04 handoff HO-0022 (DONE) : Spot-check 10 random rows of MAN-W0006-ROOT-SCRATCH-001 (root-scratch debt reduction)
 - 2026-10-04 handoff HO-0023 (DONE) : Blockers to GO on the E-0013 gate experiments E-00014 / E-00015, with a NO-GO on both and one unblocking amendment named for E-00015
 - 2026-10-04 session S-0045 (CLOSED) : wave resume: land Sponsor rulings 1-4 post-inversion (FND-0034 disposition, EV-0010/EV-0011 re-pin under DEC-0013, W-0009/HO-0024 filed, HO-0022 owner verdict, HO-0023 blocker discharges)
@@ -89,14 +89,14 @@ Every entry is a PROJECTION of the linked records — follow them before believi
     "ACTIVE": 16,
     "CLOSED": 45,
     "COMPLETED": 36,
-    "DONE": 25,
+    "DONE": 26,
     "DRAFT": 1,
     "IN_PROGRESS": 1,
     "OPEN": 41,
     "PENDING": 4,
     "RECORDED": 2,
     "REGISTERED": 9,
-    "REQUESTED": 6,
+    "REQUESTED": 5,
     "RESOLVED": 27,
     "RUNNING": 1,
     "SUPERSEDED": 4

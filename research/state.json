@@ -1212,7 +1212,7 @@
       "kind": "handoff",
       "record": "HO-0016",
       "rel": "handoffs/HO-0016-execute-e-0015-count-only-realized-yield-pass-measurement-not-training.md",
-      "status": "REQUESTED",
+      "status": "DONE",
       "title": "Execute E-00015: count-only realized usable quiet yield pass (measurement, not training)"
     },
     {
@@ -2101,7 +2101,7 @@
       "title": "Gate 0 unrunnable: Device Guard hard-blocks kana.exe (every build, every path)"
     }
   ],
-  "generated": "2026-10-04T18:42:36",
+  "generated": "2026-10-04T18:57:04",
   "metrics": {
     "by_kind": {
       "agent_profile": 1,
@@ -2130,14 +2130,14 @@
       "ACTIVE": 16,
       "CLOSED": 45,
       "COMPLETED": 36,
-      "DONE": 25,
+      "DONE": 26,
       "DRAFT": 1,
       "IN_PROGRESS": 1,
       "OPEN": 41,
       "PENDING": 4,
       "RECORDED": 2,
       "REGISTERED": 9,
-      "REQUESTED": 6,
+      "REQUESTED": 5,
       "RESOLVED": 27,
       "RUNNING": 1,
       "SUPERSEDED": 4
@@ -2541,15 +2541,6 @@
   "timeline_tail": [
     {
       "example": false,
-      "id": "FND-0018",
-      "kind": "finding",
-      "rel": "findings/FND-0018-x5-discharged.md",
-      "status": "RESOLVED",
-      "title": "X5 DISCHARGED.**",
-      "when": "2026-09-29"
-    },
-    {
-      "example": false,
       "id": "FND-0019",
       "kind": "finding",
       "rel": "findings/FND-0019-z1-blocking-repaired-the-severed-sentence-at-l1376-l1377.md",
@@ -2861,6 +2852,15 @@
       "rel": "experiments/E-00015-e-0015-count-only-realized-usable-quiet-yield-pass-for-e-0013-measurement-not-training.md",
       "status": "COMPLETED",
       "title": "E-00015 - count-only realized usable quiet yield pass for E-0013 (MEASUREMENT, not training)",
+      "when": "2026-10-04"
+    },
+    {
+      "example": false,
+      "id": "HO-0016",
+      "kind": "handoff",
+      "rel": "handoffs/HO-0016-execute-e-0015-count-only-realized-yield-pass-measurement-not-training.md",
+      "status": "DONE",
+      "title": "Execute E-00015: count-only realized usable quiet yield pass (measurement, not training)",
       "when": "2026-10-04"
     },
     {

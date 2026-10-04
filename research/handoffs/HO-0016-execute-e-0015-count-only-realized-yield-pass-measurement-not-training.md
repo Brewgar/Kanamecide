@@ -4,14 +4,14 @@ type: handoff
 from: researcher-architect
 to: systems-researcher
 work_item: null
-status: REQUESTED
+status: DONE
 title: "Execute E-00015: count-only realized usable quiet yield pass (measurement, not training)"
 artifacts: ["research/experiments/E-00015-e-0015-count-only-realized-usable-quiet-yield-pass-for-e-0013-measurement-not-training.md", "research/experiments/E-0013-h-0013-texel-fit-on-verified-e-0011-dataset-game-split-holdout-tier-s-sprt-vs-pinned-stage-5.md", "research/reviews/R-0019-e-0013-pre-registration-critique-h-0013-texel-fit-contract-ho-0013-six-question-ruling.md", "m0_audit/e0011/check_output.txt", "tools/e0011_check.py"]
 commands: ["python research/scripts/research.py validate"]
 acceptance: "E-00015's Results section carries every pre-registered count field (count_bare_ply, count_after_crash_excl, count_after_degenerate_excl, count_usable_distinct, count_usable_distinct_train, count_usable_distinct_holdout, and the game/dedup counts) with the command/exit-code/hash ledger, OR an explicit abort with the triggered abort condition. No label is read, no fitting occurs, no filter, band, floor or split is changed after the count is seen, and the band comparison is reported as-is."
 example: false
 created: 2026-09-26
-closed: null
+closed: 2026-10-04
 ---
 
 # HO-0016 - Execute E-00015: the count-only realized-yield pass (MEASUREMENT, not training)
@@ -165,5 +165,26 @@ trap into a known state, and E-0013's rule already says what happens then.
   closing this handoff).
 
 ## Verification (receiver, append-only)
-- raw output / exit codes / hashes:
+- **2026-10-04 — verification-auditor (fresh seat; authored none of this run).** Independent
+  harness `_obs/e0015/verify_e0015.py` recomputes every headline number from the raw frozen
+  dataset and the committed split map **without importing the extractor**, then does a
+  byte-level determinism re-run into `_obs/e0015/scratch_rerun/`. Raw output:
+  `_obs/e0015/verify_out.txt` — **29/29 PASS, OVERALL PASS, exit 0.** Recount reproduced
+  `plies_san_total=120,930`, `count_bare_ply=76,593`, crash/degenerate stages, dedup
+  (2,141), `count_usable_distinct=74,452`, train/holdout `59,892 / 14,560`; split map
+  re-derived from `SPLIT_SALT=20260926` matches the committed map bit-for-bit; the executor's
+  `positions.jsonl` re-aggregated independently (74,452 rows, y all null, norm_fen unique,
+  train/holdout normalized-FEN overlap 0); scratch re-run bytes **identical** to the executor
+  artifact (exit 0). Abort conditions re-inspected: dataset/split-map pins match; no label
+  read; predicate fidelity — the record's `extraction_pin` block names the same four stages
+  and normalized-FEN key this seat counted against, and the tool's selftest (112 checks)
+  pinned the dedup key = gate key.
+- One observation, recorded not repaired (not a defect of the pass, which was one authorized
+  pre-amendment-state run already plus this fixing invocation): the tool's dataset-pin check
+  compares hex strings case-sensitively; the executor's first invocation aborted on uppercase
+  spelling of the same bytes. Disclosed openly in E-00015 Results; nothing was produced or
+  seen.
+- verdict: **VERIFIED** — the counts are the platform's numbers, reproducible bit-for-bit;
+  the record's lifecycle edit (COMPLETED, `2026-10-04`) and Results/Provenance fill match the
+  raw artifacts. This handoff is **DONE**, `closed: 2026-10-04`.
 - verdict: ...
