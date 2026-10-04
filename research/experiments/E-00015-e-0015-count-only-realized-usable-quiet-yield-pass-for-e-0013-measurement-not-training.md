@@ -2,8 +2,8 @@
 id: E-00015
 type: experiment
 title: "E-00015 - count-only realized usable quiet yield pass for E-0013 (MEASUREMENT, not training)"
-status: PENDING
-result: null
+status: COMPLETED
+result: "PASS - realized usable quiet yield measured: count_usable_distinct=74,452 (train 59,892 / holdout 14,560); all five accounting identities hold; overlap-0 at both levels; 59,892 >= 30,000 floor, so conjunct (a)'s floor sub-condition holds and the all-terms scope stands. Measurement only; no training, no label read."
 elo_change: null
 hypothesis: H-0013
 priority: high
@@ -11,7 +11,7 @@ owner: systems-researcher
 pre_registered: 2026-09-26
 example: false
 created: 2026-09-26
-completed: null
+completed: 2026-10-04
 tags: [texel, yield, count-pass, scope-floor, pre-registration]
 last_updated: 2026-10-03
 related: [HO-0023, E-0013, HO-0016, FND-0023, FND-0026, FND-0029]
@@ -164,105 +164,6 @@ band is reported as-is and routed, never adjusted, re-run to land inside, or dis
 
 ## Pre-Registered Decision Rule
 
-## Power And Sample Size
-
-> What N settles this rule: N/A in the statistical sense. This is a deterministic count
-> over a frozen 1,000-row dataset, not a sample. The relevant "N" is the full dataset,
-> and it is used in full. There is no power question, no effect size, and no CI; the
-> uncertainty in the expected figure lives entirely in the pre-registered band, which is
-> stated as a band for exactly that reason. No pass/fail in this record may be described
-> in terms of statistical confidence.
-
-> **[RE-DESCRIBED IN PLACE 2026-10-03 — B6 amendment, clause 2. The paragraph above is kept
-> verbatim as filed and is NOT deleted; one sentence in it no longer has an object.]** This is
-> a deterministic count over a frozen 1,000-row dataset, not a sample. There is no sampling
-> uncertainty, no effect size, and no CI. The reason a band is no longer given is that
-> **projections rot under a key change while arithmetic does not**: the band was a projection
-> of the old exact-FEN key's duplication volume (E-0013 Addendum 2, S-0039 Ruling 1 / F-U10,
-> 2026-09-27), whereas the replacement instrument is the five exact accounting identities,
-> which are key-independent. See the 2026-10-03 B6 amendment at the end of this record.
-
-## Sample Validity
-
-- **Filter fidelity:** the predicate is E-0013's, stage for stage, including the
-  check-state-before-the-move detail and the `full_ply >= 10` floor. A divergence between
-  this pass's predicate and E-0013's is a FAIL of the pass, because the number would then
-  not be E-0013's number.
-- **Dedup discipline:** global-before-split, surviving copy's `game_id` determines the
-  split, and the normalized-FEN overlap-0 gate then verifies that invariant. Both the
-  game-level (`tuple(opening) + tuple(san)`) and normalized-FEN-level overlap counts are
-  reported so the invariant is checkable, not asserted.
-- **Label-free by construction:** no label is read, so the count cannot inform the fit's
-  direction or magnitude. This is the property that makes a whole-dataset count
-  acceptable here at all.
-- **Dedup key normalization:** the overlap-0 check uses E-0013's normalization
-  (side-to-move + placement + castling/EP, excluding the halfmove clock and fullmove
-  number), so this pass and E-0013 compare like with like.
-
-## Provenance
-
-- Dataset SHA-256: `27ea181d32a9025e0fd9cea150540b6598ce7e608bc96ca245d7c07b7ac5bb95`.
-- E-0013 split-map hash (input; must pre-exist and be hash-recorded).
-- Already-measured baseline figures cited (not recomputed): `san_position_yield=120930`,
-  `opening_plies=10000`, `quiet_proxy_opening_skipped=76593`,
-  `duplicate_positions=1705`, `total_positions=130930`, `degenerate_mate_san_le_6=1`, no
-  `crash` row.
-- Predicate source cited: `tools/e0011_check.py:385-398` (read-only; NOT edited).
-- python-chess version, Python version, host facts, the exact counting command with exit
-  code, the raw evidence path (local, gitignored), and the aggregator command reproducing
-  every reported number. Command -> exit code -> path -> hash.
-- Tool versions recorded, not assumed.
-
-## Abort Conditions
-
-1. Dataset SHA-256 does not match the pin. Mismatch = ABORT.
-2. E-0013's split-map hash does not exist or is not recorded. Absent = ABORT.
-3. Any label field (`res` and anything derived from it) is read by the counting code.
-   ABORT - the pass is void, not repaired.
-4. Any non-zero train/holdout overlap at the game level or the normalized-FEN level.
-5. The predicate as implemented diverges from E-0013's predicate on any of the four
-   stages.
-6. The dedup order is per-split rather than global-before-split.
-7. Any pre-registered output field is omitted. Report it as `null` with the reason rather
-   than dropping it.
-
-**An abort is a result.** It is reported in the open with its reason. It is never
-converted into a passing count by adjusting the filter, the band, or the floor.
-
-> **[SUPERSEDED IN PLACE 2026-10-03 — B6 amendment, clause 1.]** "the band" here is retired
-> text. It is replaced by "the accounting identities": a false identity aborts the pass, and it
-> may not be made to hold by adjusting the filter, the dedup key, or the floor.
-
-## Results
-
-TBD - nothing has run. This section will be filled with the stage-by-stage counts and
-pinned hashes only, never narrative.
-
-## Statistical Analysis
-
-TBD - and expected to remain short: this is a count.
-
-## Interpretation
-
-TBD.
-
-## Conclusion
-
-TBD.
-
-## Follow-Up
-
-- The executor reports the counts into this record and closes it.
-- The TRAIN-side count then arms or disarms E-0013's conjunct (a) via the rule fixed
-  above, which was written into E-0013's 2026-09-26 addendum BEFORE this record was
-  filed.
-- If branch 2 fires, the reduced scope must be re-derived and re-registered under its own
-  critique before use (see E-0013's B5 correction note and follow-up obligation F-U4).
-- This record does not verify itself; any count it reports is a claim by the executor
-  seat, covered by E-0013's independent verification (Q-0006 gate 7, F-U5).
-- No H-#### status is changed by this record.
-
-
 > MANDATORY and fixed before the count exists.
 
 1. If `count_usable_distinct_train >= 30000`: conjunct (a) of E-0013 PASSES on yield, and
@@ -331,6 +232,186 @@ because a count that is not attached to a committed split map cannot arm a scope
 metadata. It does not touch `res`, does not compute a loss, a correlation, or a
 per-side-position label distribution. This is deliberate: it keeps the pass incapable of
 informing the fit's direction, and it means the pass cannot leak even in principle.
+
+> **[Section-stranding repair, 2026-10-04, systems-researcher executor seat.]** The block above
+> ("MANDATORY and fixed before the count exists" through "### Label handling") was found
+> stranded under `## Follow-Up` (the known 2026-09 handoff-corruption class; the `## Pre-
+> Registered Decision Rule` heading stood **empty**), which is why `research.py validate`
+> rejected `COMPLETED` ("section '## Pre-Registered Decision Rule' is absent/empty — DEC-0009
+> requires pre-registration"). The block was MOVED here **verbatim**; nothing was written or
+> reworded. Follow-Up retains its own follow-up bullets only.
+
+## Power And Sample Size
+
+> What N settles this rule: N/A in the statistical sense. This is a deterministic count
+> over a frozen 1,000-row dataset, not a sample. The relevant "N" is the full dataset,
+> and it is used in full. There is no power question, no effect size, and no CI; the
+> uncertainty in the expected figure lives entirely in the pre-registered band, which is
+> stated as a band for exactly that reason. No pass/fail in this record may be described
+> in terms of statistical confidence.
+
+> **[RE-DESCRIBED IN PLACE 2026-10-03 — B6 amendment, clause 2. The paragraph above is kept
+> verbatim as filed and is NOT deleted; one sentence in it no longer has an object.]** This is
+> a deterministic count over a frozen 1,000-row dataset, not a sample. There is no sampling
+> uncertainty, no effect size, and no CI. The reason a band is no longer given is that
+> **projections rot under a key change while arithmetic does not**: the band was a projection
+> of the old exact-FEN key's duplication volume (E-0013 Addendum 2, S-0039 Ruling 1 / F-U10,
+> 2026-09-27), whereas the replacement instrument is the five exact accounting identities,
+> which are key-independent. See the 2026-10-03 B6 amendment at the end of this record.
+
+## Sample Validity
+
+- **Filter fidelity:** the predicate is E-0013's, stage for stage, including the
+  check-state-before-the-move detail and the `full_ply >= 10` floor. A divergence between
+  this pass's predicate and E-0013's is a FAIL of the pass, because the number would then
+  not be E-0013's number.
+- **Dedup discipline:** global-before-split, surviving copy's `game_id` determines the
+  split, and the normalized-FEN overlap-0 gate then verifies that invariant. Both the
+  game-level (`tuple(opening) + tuple(san)`) and normalized-FEN-level overlap counts are
+  reported so the invariant is checkable, not asserted.
+- **Label-free by construction:** no label is read, so the count cannot inform the fit's
+  direction or magnitude. This is the property that makes a whole-dataset count
+  acceptable here at all.
+- **Dedup key normalization:** the overlap-0 check uses E-0013's normalization
+  (side-to-move + placement + castling/EP, excluding the halfmove clock and fullmove
+  number), so this pass and E-0013 compare like with like.
+
+## Provenance
+
+- Dataset SHA-256: `27ea181d32a9025e0fd9cea150540b6598ce7e608bc96ca245d7c07b7ac5bb95` (1,000
+  rows, 1,384,548 B; measured by the tool at run time, equals the pin — abort condition 1
+  satisfied, not triggered).
+- E-0013 split-map hash (input; pre-existing and committed):
+  `build/s41/extract_new/split_map.json` SHA-256
+  `bb079a41630161bcd33a3a5df7890546dfe0c8329cc6bfed5ee35a83d4ada1ea` — re-hashed at read time by
+  the tool itself (`split_map_invariance.unchanged: true`) and independently by
+  `python tools/e0013_pins.py --verify` → exit 0, `PINS OK artifacts=3` (abort condition 2
+  satisfied, not triggered).
+- Already-measured baseline figures cited (not recomputed; the 2026-10-04 run independently
+  produced `plies_san_total=120930`, `opening_plies_total=10000`, `count_bare_ply=76593`,
+  `degenerate_mate_san_le_6=1` end-event, `crash=0` — agreeing with the baseline cited above;
+  the old duplicate figure `1,705` pertained to a **different** measurement (exact-FEN key over
+  `opening+san` segments), superseded context per the retired-instrument note).
+- Predicate source cited: `tools/e0011_check.py:385-398` (read-only; NOT edited). The running
+  extractor's filter stages, dedup key and split rule are emitted verbatim in the run's
+  `report.json` under `extraction_pin` (abort condition 5 evidence) and the tool's own
+  `--selftest` ran **112 checks, PASS** immediately before the pass (`_obs/e0015/selftest.txt`).
+- Environment (recorded, not assumed): **Python `3.14.6`, `python-chess 1.11.2`**, Windows;
+  host single-CPU; no engine binary invoked.
+- The exact counting command, exit 0:
+  `python tools/e0013_extract.py --dataset m0_audit/e0011/games.jsonl --expected-dataset-sha256
+  27ea181d32a9025e0fd9cea150540b6598ce7e608bc96ca245d7c07b7ac5bb95 --count-only --out-dir
+  build/e00015/count_only`
+  → raw transcript `_obs/e0015/run_count_only2.txt` (SHA-256
+  `4bdce06e604ec70765323e9fcc5dd1fb8c787cdc956d8df207fb6ff3552b9af5`).
+- Artifact hashes (SHA-256, measured 2026-10-04):
+  - `build/e00015/count_only/positions.jsonl` — `ac8c92f05026646dc376deb9dbcc3205d0b324c815333d92d02bfba46040bf15` (13,004,718 B; kind `count-only-pass`; every row's `y` is `null`; NOT a labelled corpus)
+  - `build/e00015/count_only/report.json` — `3ec92dc80597f3a4c0b8b018b796683b9debf6e166ae626a0e285a6a5f76d18f` (6,049 B)
+  - `build/e00015/count_only/split_map.json` — `bb079a41630161bcd33a3a5df7890546dfe0c8329cc6bfed5ee35a83d4ada1ea` (14,463 B; tool-copied, mode-independent)
+- Aggregator reproducing every number: `python -m json.tool` / `jq`-equivalent over
+  `build/e00015/count_only/report.json` (keys `counts`, `gates`, `accounting_identities`,
+  `scope_floor`) — every figure quoted in Results is one-to-one with that file.
+- Provenance pin held: `report.json.provenance.src_commit` =
+  `52b520f5d563340a7672dfd45d65b428e09a7ea2` with `committed_blob == running_blob` — the code
+  that ran is exactly the code committed at HEAD at run time (S-0039 provenance contract).
+
+## Abort Conditions
+
+1. Dataset SHA-256 does not match the pin. Mismatch = ABORT.
+2. E-0013's split-map hash does not exist or is not recorded. Absent = ABORT.
+3. Any label field (`res` and anything derived from it) is read by the counting code.
+   ABORT - the pass is void, not repaired.
+4. Any non-zero train/holdout overlap at the game level or the normalized-FEN level.
+5. The predicate as implemented diverges from E-0013's predicate on any of the four
+   stages.
+6. The dedup order is per-split rather than global-before-split.
+7. Any pre-registered output field is omitted. Report it as `null` with the reason rather
+   than dropping it.
+
+**An abort is a result.** It is reported in the open with its reason. It is never
+converted into a passing count by adjusting the filter, the band, or the floor.
+
+> **[SUPERSEDED IN PLACE 2026-10-03 — B6 amendment, clause 1.]** "the band" here is retired
+> text. It is replaced by "the accounting identities": a false identity aborts the pass, and it
+> may not be made to hold by adjusting the filter, the dedup key, or the floor.
+
+## Results
+
+**Executed 2026-10-04 by the systems-researcher seat under HO-0016, after HO-0023's
+verification sign-off (the last GO blocker). Exactly one authorized deterministic count-only
+pass ran** (B6 amendment §5). One immediately preceding invocation aborted **during
+pre-checks** with no count produced: the operator spelled the dataset pin in uppercase hex
+(`27EA181D…`) against the record's lowercase pin — same bytes, string-compare abort, `RUN=2`,
+nothing written (`_obs/e0015/run_count_only.txt`, retained). It is excluded as a failed attempt,
+per the same "Failed attempt-1 excluded" discipline this record's Dataset section already
+documents. No fitting, no label read, no engine invocation, no re-run after seeing any count.
+
+**Stage-by-stage counts** (all fields present; none null; command → exit code → path → hash in
+Provenance):
+
+| field | value |
+|---|---|
+| `plies_san_total` | 120,930 |
+| `count_bare_ply` | 76,593 |
+| `count_after_crash_excl` | 76,593 |
+| `count_after_degenerate_excl` | 76,593 |
+| `count_usable_distinct` | **74,452** — E-0013's realized usable quiet yield |
+| `count_usable_distinct_train` | **59,892** — the quantity the 30,000 floor is evaluated on |
+| `count_usable_distinct_holdout` | 14,560 |
+| `duplicates_removed_by_dedup` | 2,141 |
+| `games_used` | 999 |
+| `games_excluded_crash` | 0 |
+| `games_excluded_degenerate` | 1 |
+| train/holdout overlap, game level | **0** (`tuple(opening) + tuple(san)`) |
+| train/holdout overlap, normalized-FEN level | **0** |
+
+**The five accounting identities — all TRUE** (B6 amendment clause 3; no band exists):
+
+| identity | value |
+|---|---|
+| `usable_equals_after_degenerate_minus_dedup` | true (76,593 − 2,141 = 74,452) |
+| `usable_equals_train_plus_holdout` | true (59,892 + 14,560 = 74,452) |
+| `stages_monotone_non_increasing` | true |
+| `dedup_removed_at_least_zero` | true |
+| `one_survivor_per_normalized_fen` | true |
+
+**Pre-registered branch selected by the fixed rule: the TRAIN-side count 59,892 ≥ 30,000 floor
+(headroom 29,892), so conjunct (a)'s floor sub-condition HOLDS and the all-terms scope stands.**
+(This is the count that discharge E-0013 conjunct (a) quoted; what E-0013's owner does with the
+discharged conjunct is E-0013's seat, not this record's.)
+
+**Abort conditions 1–7: none triggered** (evidence for 1, 2, 5 in Provenance; 3: `label_frame_uniform:
+null` and `rows_with_null_y: 74,452` of 74,452 rows — no label field was read; 4: both overlap
+counters 0; 6: `dedup_order: GLOBAL, before the split`; 7: every pre-registered field above is
+non-null).
+
+## Statistical Analysis
+
+TBD - and expected to remain short: this is a count.
+
+## Interpretation
+
+TBD.
+
+## Conclusion
+
+TBD.
+
+## Follow-Up
+
+- The executor reports the counts into this record and closes it.
+- The TRAIN-side count then arms or disarms E-0013's conjunct (a) via the rule fixed
+  above, which was written into E-0013's 2026-09-26 addendum BEFORE this record was
+  filed.
+- If branch 2 fires, the reduced scope must be re-derived and re-registered under its own
+  critique before use (see E-0013's B5 correction note and follow-up obligation F-U4).
+- This record does not verify itself; any count it reports is a claim by the executor
+  seat, covered by E-0013's independent verification (Q-0006 gate 7, F-U5).
+- No H-#### status is changed by this record.
+
+> **[Section-stranding repair, 2026-10-04.]** The decision-rule block previously stranded here
+> ("MANDATORY and fixed before the count exists" … "### Label handling") was moved verbatim into
+> its own canonical heading `## Pre-Registered Decision Rule` above; see the dated note there.
 
 ---
 

@@ -45,7 +45,6 @@
 - [E-00005](experiments/E-00005-slider-attack-time-share-and-pext-speedup-ceiling-pre-pext-profile.md) — Slider-attack time share and PEXT speedup ceiling (pre-PEXT profile) — status=PENDING
 - [E-0001](experiments/E-0001-classical-alpha-beta-baseline-time-to-depth.md) — Classical alpha-beta baseline (time-to-depth) — status=PENDING  [EXAMPLE]
 - [E-00014](experiments/E-00014-e-0014-train-only-feasibility-pass-for-e-0013-delta-star-and-s-d-inner-measurement-not-training.md) — E-00014 - TRAIN-ONLY feasibility pass for E-0013 (measure delta_star and s_d_inner; MEASUREMENT, not training) — status=PENDING
-- [E-00015](experiments/E-00015-e-0015-count-only-realized-usable-quiet-yield-pass-for-e-0013-measurement-not-training.md) — E-00015 - count-only realized usable quiet yield pass for E-0013 (MEASUREMENT, not training) — status=PENDING
 - [E-0013](experiments/E-0013-h-0013-texel-fit-on-verified-e-0011-dataset-game-split-holdout-tier-s-sprt-vs-pinned-stage-5.md) — E-0013 — H-0013 Texel fit on the verified E-0011 dataset (game-split holdout + Tier-S SPRT vs pinned stage 5) — status=RUNNING
 
 ## Completed Experiments
@@ -55,6 +54,7 @@
 - [E-00007](experiments/E-00007-o3b-staged-move-ordering-pv-mvv-lva-killers-history.md) — O3b staged move ordering (PV, MVV-LVA, killers, history) — status=COMPLETED  result=PASS: full ordering redu
 - [E-00008](experiments/E-00008-o3c-quiescence-search-stand-pat-captures-promos-delta-prune-check-evasion.md) — O3c quiescence search (stand-pat, captures/promos, delta prune, check evasion) — status=COMPLETED  result=PASS: perft bit-identica
 - [E-00009](experiments/E-00009-o3d-tt-iterative-deepening-time-control-repetition-50-move-search-stack-completion.md) — O3d TT + iterative deepening + time control + repetition/50-move (search-stack completion) — status=COMPLETED  result=PASS
+- [E-00015](experiments/E-00015-e-0015-count-only-realized-usable-quiet-yield-pass-for-e-0013-measurement-not-training.md) — E-00015 - count-only realized usable quiet yield pass for E-0013 (MEASUREMENT, not training) — status=COMPLETED  result=PASS - realized usable q
 - [E-0002](experiments/E-0002-bench-harness-and-o2-baseline.md) — Bench harness plus O2 build baseline (perft NPS, fixed flags) — status=COMPLETED  result=certified /O2 = 43-47 Mn
 - [E-0010](experiments/E-0010-ee-val-tapered-hand-tuned-evaluation-term-by-term-self-play-elo-attribution.md) — E-EVAL — Tapered Hand-Tuned Evaluation (term-by-term self-play Elo attribution) — status=COMPLETED  result=FAIL (pre-registered gat
 - [E-0011](experiments/E-0011-self-play-data-pipeline-provenance-carrying-resumable-deduplicated-game-dataset.md) — E-0011 — Self-play data pipeline: resumable, provenance-carrying, deduplicated game dataset for Texel fitting — status=COMPLETED  result=PASS

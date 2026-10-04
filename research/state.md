@@ -1,7 +1,7 @@
 # Research State (GENERATED — do not edit)
 
 Derived from the record store by `research.py state`. Regenerate after every change.
-Generated: 2026-10-04T18:11:33; schema 2.
+Generated: 2026-10-04T18:42:36; schema 2.
 Every entry is a PROJECTION of the linked records — follow them before believing.
 
 ## Current best beliefs (hypotheses with measured weight)
@@ -12,7 +12,7 @@ Every entry is a PROJECTION of the linked records — follow them before believi
 - **H-0008** Move ordering dominates raw NPS for Phase-2 time-to-depth — status OPEN; confidence 0.7 (likely); tested by E-00006 [positive], E-00007 [positive]. (hypotheses/H-0008-move-ordering-dominates-raw-nps-for-phase-2-time-to-depth.md)
 - **H-0010** SPRT-based engine comparison harness is required before any version claim is trustworthy — status OPEN; confidence 0.85 (strongly supported); tested by E-00006 [positive], E-00014 [unverdicted], E-0012 [positive], E-0013 [unverdicted]. (hypotheses/H-0010-sprt-based-engine-comparison-harness-is-required-before-any-version-claim-is-trustworthy.md)
 - **H-0012** Search fast-path move invariants - king-capture exclusion and promo-phantom asserts — status OPEN; confidence 0.7 (likely); tested by E-00008 [positive], E-0002 [unverdicted]. (hypotheses/H-0012-search-fast-path-move-invariants-king-capture-exclusion-and-promo-phantom-asserts.md)
-- **H-0013** Tapered eval plus Texel protocol - mg-eg interpolation and quiet-label holdout design — status OPEN; confidence 0.6 (likely); tested by E-00014 [unverdicted], E-00015 [unverdicted], E-0010 [negative], E-0011 [positive], E-0013 [unverdicted]. (hypotheses/H-0013-tapered-eval-plus-texel-protocol-mg-eg-interpolation-and-quiet-label-holdout-design.md)
+- **H-0013** Tapered eval plus Texel protocol - mg-eg interpolation and quiet-label holdout design — status OPEN; confidence 0.6 (likely); tested by E-00014 [unverdicted], E-00015 [positive], E-0010 [negative], E-0011 [positive], E-0013 [unverdicted]. (hypotheses/H-0013-tapered-eval-plus-texel-protocol-mg-eg-interpolation-and-quiet-label-holdout-design.md)
 - **H-0014** Board state integrity audit - halfmove EP-key castling-rights round-trip tests — status OPEN; confidence 0.6 (likely); tested by E-0002 [unverdicted]. (hypotheses/H-0014-board-state-integrity-audit-halfmove-ep-key-castling-rights-round-trip-tests.md)
 
 ## Open questions
@@ -43,7 +43,6 @@ Every entry is a PROJECTION of the linked records — follow them before believi
 - hypothesis **H-0002-magic-stub** Magic Bitboards with PEXT Provide >=3x NPS Speedup — SUPERSEDED. No revisit condition recorded.
 
 ## Recent timeline
-- 2026-10-02 handoff HO-0021 (DONE) : Audit W-0008: imem 2.1 work + the FND-0032 self-closure
 - 2026-10-02 profile profile (—) : profile
 - 2026-10-02 review R-0027 (COMPLETED) : R 0027 independent audit of w 0008 imem 2 1 0 infrastructure and the fnd 0032 self closure ho 0021
 - 2026-10-02 session S-0043 (CLOSED) : imem 2.1.0 + normative INFRASTRUCTURE.md + chief-architect seat + FND-0032 Gate-3 routing
@@ -54,6 +53,7 @@ Every entry is a PROJECTION of the linked records — follow them before believi
 - 2026-10-03 session S-0044 (CLOSED) : Round-6 umbrella for the six seat sessions T-001..T-006 (W-0006 root-scratch clean-up, D-0002..D-0006 + E-00004/E-00005 re-attestation addenda, E-0013 gate-readiness, FND-0035 census, HO-0022/HO-0023) + the normalization commit
 - 2026-10-03 work W-0008 (DONE) : imem 2.1 infrastructure: INFRASTRUCTURE.md normative doc + freshness/novelty advisory surfaces + chief-architect seat
 - 2026-10-03 work W-0009 (OPEN) : Digest-stable Release build (/Brepro or equivalent) so an evidence binary pin is reproducible from source, not from a preserved copy
+- 2026-10-04 experiment E-00015 (COMPLETED) : E-00015 - count-only realized usable quiet yield pass for E-0013 (MEASUREMENT, not training)
 - 2026-10-04 handoff HO-0022 (DONE) : Spot-check 10 random rows of MAN-W0006-ROOT-SCRATCH-001 (root-scratch debt reduction)
 - 2026-10-04 handoff HO-0023 (DONE) : Blockers to GO on the E-0013 gate experiments E-00014 / E-00015, with a NO-GO on both and one unblocking amendment named for E-00015
 - 2026-10-04 session S-0045 (CLOSED) : wave resume: land Sponsor rulings 1-4 post-inversion (FND-0034 disposition, EV-0010/EV-0011 re-pin under DEC-0013, W-0009/HO-0024 filed, HO-0022 owner verdict, HO-0023 blocker discharges)
@@ -88,12 +88,12 @@ Every entry is a PROJECTION of the linked records — follow them before believi
   "by_status": {
     "ACTIVE": 16,
     "CLOSED": 45,
-    "COMPLETED": 35,
+    "COMPLETED": 36,
     "DONE": 25,
     "DRAFT": 1,
     "IN_PROGRESS": 1,
     "OPEN": 41,
-    "PENDING": 5,
+    "PENDING": 4,
     "RECORDED": 2,
     "REGISTERED": 9,
     "REQUESTED": 6,
@@ -105,7 +105,7 @@ Every entry is a PROJECTION of the linked records — follow them before believi
   "contradiction_candidates": 0,
   "dangling_ids": 18,
   "duplicate_candidates": 2,
-  "edges_total": 4713,
+  "edges_total": 4722,
   "legacy_experiments_without_pre_registration": 6,
   "open_questions": 8,
   "records_total": 264,

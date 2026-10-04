@@ -78,3 +78,25 @@ implementation-engineer seat (its owner seat) acting under the same mandate:
 - **HO-0022 → DONE** (`closed: 2026-10-04`) with the owner-correction note appended.
 - Root count is now **77**, `root_grandfathered.txt` **71** entries; the trail is in W-0006's
   Work Log 2026-10-04 entry.
+
+## Addendum 2 (2026-10-04, same session — R-03 verification + R-04 execution)
+
+- **HO-0023 → DONE** (`closed: 2026-10-04`): the verification-auditor seat independently
+  re-derived every blocker state B1–B7, confirmed the B4/B6 discharges, named one staleness
+  (the Ruling-3 floor pin named `9b69e0a…`, but `git log -1 -- src` is now `dd4051a…` — the
+  FND-0035 repair landed after the ruling was staged; the pre-fit pin rule now reads "pin the
+  floor to the measuring binary's own src epoch"). Raw re-derivations: `_obs/replan2/`.
+- **E-00015 → COMPLETED, result PASS.** The one authorized deterministic count-only pass ran
+  under HO-0016 (exit 0, transcript `_obs/e0015/run_count_only2.txt`, artifacts under
+  `build/e00015/count_only/`, all hash-ledgers in the record): `count_usable_distinct = 74,452`
+  (train 59,892 / holdout 14,560), all five accounting identities true, overlap-0 at both
+  levels, the 30,000 TRAIN-side floor **holds** with headroom 29,892 → the fixed rule selects
+  **all-terms-scope-stands**. One earlier invocation the same day aborted in pre-checks on an
+  uppercase/lowercase hex-pin spelling artifact (same bytes, nothing produced; retained and
+  disclosed, excluded per the failed-attempt-1 precedent). **No** label field was read;
+  determinism receipt: today's `positions.jsonl` `ac8c92f0…` is byte-identical to the digest
+  already pinned in `research/manifests/e0013-artifact-pins.json`.
+- Open after this addendum: **HO-0016 verification** (fresh verification-auditor seat re-derives
+  the counts before HO-0016 closes), then the E-0014 long pole (B1 trainer, B2 labelled corpus,
+  B3 floor pin at the measuring epoch, B5 `INNER_SALT`), then the E-0013 verdict and the
+  F-U5/FND-0012 gate-7 handoff.

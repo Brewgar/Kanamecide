@@ -400,6 +400,7 @@
         "E-0010"
       ],
       "experiments_positive": [
+        "E-00015",
         "E-0011"
       ],
       "experiments_testing": [
@@ -414,10 +415,10 @@
         {
           "id": "E-00015",
           "rel": "experiments/E-00015-e-0015-count-only-realized-usable-quiet-yield-pass-for-e-0013-measurement-not-training.md",
-          "result": "",
-          "status": "PENDING",
+          "result": "PASS - realized usable quiet yield measured: count_usable_distinct=74,452 (train 59,892 / holdout 14,560); all five accounting identities hold; overlap-0 at bot",
+          "status": "COMPLETED",
           "title": "E-00015 - count-only realized usable quiet yield pass for E-0013 (MEASUREMENT, not training)",
-          "verdict": "unverdicted"
+          "verdict": "positive"
         },
         {
           "id": "E-0010",
@@ -872,7 +873,7 @@
       "kind": "experiment",
       "record": "E-00015",
       "rel": "experiments/E-00015-e-0015-count-only-realized-usable-quiet-yield-pass-for-e-0013-measurement-not-training.md",
-      "status": "PENDING",
+      "status": "COMPLETED",
       "title": "E-00015 - count-only realized usable quiet yield pass for E-0013 (MEASUREMENT, not training)"
     },
     {
@@ -1204,7 +1205,8 @@
     {
       "code_files": [
         "tools/e0011_check.py",
-        "tools/e0012_sprt.py"
+        "tools/e0012_sprt.py",
+        "tools/e0013_extract.py"
       ],
       "commits_mentioned": [],
       "kind": "handoff",
@@ -2099,7 +2101,7 @@
       "title": "Gate 0 unrunnable: Device Guard hard-blocks kana.exe (every build, every path)"
     }
   ],
-  "generated": "2026-10-04T18:11:33",
+  "generated": "2026-10-04T18:42:36",
   "metrics": {
     "by_kind": {
       "agent_profile": 1,
@@ -2127,12 +2129,12 @@
     "by_status": {
       "ACTIVE": 16,
       "CLOSED": 45,
-      "COMPLETED": 35,
+      "COMPLETED": 36,
       "DONE": 25,
       "DRAFT": 1,
       "IN_PROGRESS": 1,
       "OPEN": 41,
-      "PENDING": 5,
+      "PENDING": 4,
       "RECORDED": 2,
       "REGISTERED": 9,
       "REQUESTED": 6,
@@ -2144,7 +2146,7 @@
     "contradiction_candidates": 0,
     "dangling_ids": 18,
     "duplicate_candidates": 2,
-    "edges_total": 4713,
+    "edges_total": 4722,
     "legacy_experiments_without_pre_registration": 6,
     "open_questions": 8,
     "records_total": 264,
@@ -2539,15 +2541,6 @@
   "timeline_tail": [
     {
       "example": false,
-      "id": "FND-0017",
-      "kind": "finding",
-      "rel": "findings/FND-0017-x4-discharged.md",
-      "status": "RESOLVED",
-      "title": "X4 DISCHARGED.**",
-      "when": "2026-09-29"
-    },
-    {
-      "example": false,
       "id": "FND-0018",
       "kind": "finding",
       "rel": "findings/FND-0018-x5-discharged.md",
@@ -2860,6 +2853,15 @@
       "status": "OPEN",
       "title": "Digest-stable Release build (/Brepro or equivalent) so an evidence binary pin is reproducible from source, not from a preserved copy",
       "when": "2026-10-03"
+    },
+    {
+      "example": false,
+      "id": "E-00015",
+      "kind": "experiment",
+      "rel": "experiments/E-00015-e-0015-count-only-realized-usable-quiet-yield-pass-for-e-0013-measurement-not-training.md",
+      "status": "COMPLETED",
+      "title": "E-00015 - count-only realized usable quiet yield pass for E-0013 (MEASUREMENT, not training)",
+      "when": "2026-10-04"
     },
     {
       "example": false,

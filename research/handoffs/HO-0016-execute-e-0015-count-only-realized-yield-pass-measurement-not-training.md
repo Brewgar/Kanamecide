@@ -121,6 +121,48 @@ trap into a known state, and E-0013's rule already says what happens then.
 
 ## Response (receiver, append-only)
 - 2026-09-26 - (role) - ...
+- **2026-10-04 — systems-researcher (executor seat) — EXECUTED.** Pre-conditions: HO-0023's
+  verification sign-off landed today (B6 was E-00015's last blocker; B4/B6 discharged). Preflight:
+  `python tools/e0013_extract.py --selftest` → `SELFTEST PASS checks=112 failed=0`, exit 0;
+  `python research/scripts/research.py validate` → exit 0, 0 problems. Then the ONE authorized
+  count-only pass:
+
+  ```
+  python tools/e0013_extract.py --dataset m0_audit/e0011/games.jsonl \
+    --expected-dataset-sha256 27ea181d32a9025e0fd9cea150540b6598ce7e608bc96ca245d7c07b7ac5bb95 \
+    --count-only --out-dir build/e00015/count_only
+  -> exit 0 (RUN=0), transcript _obs/e0015/run_count_only2.txt
+  ```
+
+  One prior invocation aborted in pre-checks on hex-case spelling of the dataset pin (same bytes,
+  `RUN=2`, nothing written; retained at `_obs/e0015/run_count_only.txt`). No amendment or
+  instrument was touched; `tools/`, `src/`, E-0013, E-00014 are unmodified (`git status` attest
+  at commit time).
+
+  Headline: **`count_usable_distinct` = 74,452** (train 59,892 / holdout 14,560); all five
+  accounting identities hold; overlap-0 at game and normalized-FEN levels; the 30,000 floor on
+  the TRAIN side **HOLDS** (headroom 29,892) — the fixed rule selects the **all-terms-scope-stands**
+  branch. Full stage table, identity table, abort-condition discharge and hashes are now in
+  E-00015's Results/Provenance; E-00015 front matter is `status: COMPLETED`, `completed:
+  2026-10-04`, `result: PASS - ...` — per this handoff's acceptance criterion 1 and the record's
+  own Follow-Up ("the executor reports the counts and closes it").
+
+  **Determinism receipt:** this run's `positions.jsonl` digest
+  (`ac8c92f05026646dc376deb9dbcc3205d0b324c815333d92d02bfba46040bf15`) is byte-identical to the
+  count-only-pass digest already pinned in `research/manifests/e0013-artifact-pins.json` — the
+  same frozen dataset under the same tool reproduces the same bytes (an independent, unsolicited
+  cross-check, not a requirement of this pass).
+
+  Acceptance 1–8 self-check: 1 (all 11 count fields, non-null) ✓; 2 (headline recomputable:
+  76.593k − 2,141 = 74,452 = 59,892 + 14,560) ✓; 3 (no band exists post-amendment; reported
+  *as-retired*) ✓; 4 (overlap reported at both levels, both 0) ✓; 5 (no label read —
+  `rows_with_null_y` = rows) ✓; 6 (dataset/split-map hashes, tool versions, command, exit code,
+  raw paths recorded) ✓; 7 (no abort) ✓; 8 (edits confined to E-00015's Results/Provenance +
+  its own lifecycle fields; untrue to say 'nothing else edited' — this Response and the E-00015
+  status/result/completed fields are the authorized exceptions) ✓.
+- **Verification remains open for a fresh verification-auditor seat** (re-run the pass into a
+  scratch dir and/or independently recompute the counts from the produced artifacts before
+  closing this handoff).
 
 ## Verification (receiver, append-only)
 - raw output / exit codes / hashes:

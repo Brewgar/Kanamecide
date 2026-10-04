@@ -5,8 +5,8 @@
 > decisions in `research/decisions/`. Do not add unverified claims to this file.
 
 <!-- research-meta
-last_updated: 2026-10-03
-reflects: [DEC-0001, DEC-0002, DEC-0003, DEC-0004, DEC-0006, DEC-0007, DEC-0008, DEC-0009, DEC-0010, DEC-0011, DEC-0012, DEC-0013, E-0002, E-00003, E-00006, E-00007, E-00008, E-00009, E-0010, E-0011, E-0012]
+last_updated: 2026-10-04
+reflects: [DEC-0001, DEC-0002, DEC-0003, DEC-0004, DEC-0006, DEC-0007, DEC-0008, DEC-0009, DEC-0010, DEC-0011, DEC-0012, DEC-0013, E-0002, E-00003, E-00006, E-00007, E-00008, E-00009, E-0010, E-0011, E-0012, E-00015]
 not_reflected: []
 -->
 > The `research-meta` block above is machine-checked by `research.py validate`:
@@ -53,7 +53,11 @@ evaluation and learning.
 - **Phase:** Phase 2 COMPLETE (O3d), Phase 3 evaluation measured (E-0010), and the
   E-0011 self-play dataset campaign is COMPLETED/PASS for artifact gates (a)-(f). The
   1,000-record local dataset is pinned by SHA-256 in RUN-0001; independent verification
-  is requested by HO-0009. Next: E-0012 comparison harness and H-0013 Texel fitting.
+  is requested by HO-0009. **E-0013's yield gate E-00015 measured 2026-10-04 (count-only,
+  no labels): realized usable quiet yield 74,452 (train 59,892 ≥ 30,000 floor → all-terms
+  scope stands; five accounting identities hold; overlap-0).** E-00015 is COMPLETED/PASS;
+  pending: HO-0016 verification, the E-00014 blockers (no trainer exists), then E-0013
+  itself. Evidence binaries are content-addressed archived artifacts (DEC-0013, 2026-10-03).
 
 ## Certified Perft Anchors (SACRED — single protected home)
 
