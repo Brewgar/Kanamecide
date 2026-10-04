@@ -4,7 +4,7 @@ type: handoff
 from: experimental-scientist
 to: chief-architect
 work_item: null
-status: REQUESTED
+status: DONE
 title: "Blockers to GO on the E-0013 gate experiments E-00014 / E-00015, with a NO-GO on both and one unblocking amendment named for E-00015"
 artifacts:
   - research/experiments/E-0013-h-0013-texel-fit-on-verified-e-0011-dataset-game-split-holdout-tier-s-sprt-vs-pinned-stage-5.md
@@ -26,7 +26,7 @@ commands: []
 acceptance: null
 example: false
 created: 2026-10-03
-closed: null
+closed: 2026-10-04
 ---
 
 # HO-0023 — Gate-experiment blockers to GO (E-00014 / E-00015)
@@ -208,6 +208,51 @@ python tools/e0013_pins.py --verify                    # re-hash the pins at rea
 ## Verification (receiver, append-only)
 - raw output / exit codes / hashes:
 - verdict: ...
+
+### Verification (verification-auditor, fresh seat — 2026-10-04)
+
+Independently re-derived every discharge claim in the chief-architect's Response above
+(authored nothing under review):
+
+- **B4**: `python research/scripts/research.py validate` → **exit 0, 0 problems, warnings only**
+  (advisory rows only: legacy-grandfathered entries, dangling prose ids, ambiguity/dup
+  candidates — none new). `research.py selftest` → OK; `tests_imem` → `Ran 51 tests / OK`;
+  `imem.py lint` → `problems: 0`. The pre-existing armed problem (EV-0010 drift) is gone from
+  the output and is RESOLVED in FND-0034. Raw output: `_obs/replan2/v4.txt`, `s2.txt`, `t2.txt`,
+  `l2.txt`.
+- **B3-pins** — **PARTIAL CONFIRMED, ONE STALENESS FOUND.** `git log -1 --format=%H -- src`
+  → `dd4051a92daf834cf4a73f1878a0c894b0b6d1b8` (2026-10-03): the FND-0035 F2/F3 repair touched
+  `src/search.cpp`, so the Ruling-3 pin named in the Response (`9b69e0a9e20a7bd60821881aae68a8f91eed7ff8`)
+  is **already stale w.r.t. HEAD** — it was correct at ruling-staging time, before the inversion.
+  The substantive part **is confirmed**: `git show --stat 7348f89` touches only `research/` files
+  (7 files, 0 under `src/`), so E-00014's assumed `7348f89` floor anchor is genuinely false.
+  Ground rule for the pre-fit commit, stated openly: the floor table must be pinned against the
+  `src/` epoch of the binary that actually measures (today `dd4051a`), named at pre-fit time.
+- **B6** — CONFIRMED. E-00015's 2026-10-03 B6 amendment exists with all four clauses (1 band
+  retired, 2 Power re-described, 3 five accounting identities named *as the tool names them*,
+  4 normalized-FEN dedup key), `status: PENDING` / `result: null` untouched, the "run
+  authorization" clause intact (ONE deterministic count-only pass under HO-0016), and the
+  integrity assertions stated. Spot-checked the tool side: `report["band"]` construction is
+  absent from `tools/e0013_extract.py` and the identities are the ones clause 3 names.
+- **B1** — CONFIRMED UNCHANGED: `tools/` contains `e0011_check/e0012_sprt/e0013_eval/
+  e0013_extract/e0013_label/e0013_pins/fu14_suite/uci_probe` and **no trainer** — the largest
+  engineering block stands.
+- **B2** — CONFIRMED UNCHANGED: in `tools/e0013_pins.py:340` the pins manifest carries
+  `"corpus": {"is_fitter_corpus": False, "fitter_corpus_sha256": None}`; the e0013_extract corpus
+  digest field is null-for-count-only by construction (`e0013_extract.py:685`, `:1718`).
+- **B5** — CONFIRMED UNCHANGED: `INNER_SALT` appears nowhere under `tools/`.
+- **B7** — unchanged by construction (post-terminal-verdict obligation via FND-0012).
+- **Pins intact:** `python tools/e0013_pins.py --verify` → exit 0, `PINS OK artifacts=3
+  re-hashed at read time`; `m0_audit/e0011/games.jsonl` sha256 `27EA181D…AC5BB95`;
+  `build/s41/extract_new/split_map.json` `BB079A41…4ADA1EA` — both match the recorded pins.
+- E-00014 stays **NO-GO** on B1/B2/B3/B5-salt. **E-00015 is GO-READY under HO-0016** (B6 was
+  its last blocker): one deterministic count-only pass, all seven abort conditions in force,
+  no label read.
+
+- verdict: **VERIFIED** — the four discharge claims are true as stated, with the one staleness
+  correction on B3 (pin `9b69e0a…` → the pre-fit pin must track the measuring binary's `src/`
+  epoch, today `dd4051a…`). This handoff's work is done; **HO-0023 → DONE**, `closed: 2026-10-04`
+  (receiver discharged; verification by a seat that authored none of it).
 | **B7** | **both** | **Gate 7 cannot be satisfied.** `FND-0007` is RESOLVED (B7 quoted Q-0006 gate 7 into the record), but the operative obligation is F-U5 / `FND-0012`, still **OPEN**: any terminal verdict must file a verification-auditor handoff carrying `fitted_params_sha256`, the pre-fit commit hash, the split-map hash, the E-00014 numbers, the E-00015 numbers and the full ledger. | verification-auditor, on a terminal verdict | The gate runs **after** a terminal verdict, not before it. Neither gate has a number, so there is nothing to verify yet. This is not closable by effort now; it is a consequence of B1-B6. |
 **But its landing made E-0014 worse, in the opposite direction from what the brief anticipated.**
 Building the suite needed a master-rebuilt `kana.exe`; that build is not byte-reproducible here,

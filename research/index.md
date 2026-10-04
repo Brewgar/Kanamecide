@@ -214,7 +214,6 @@
 - [HO-0016](handoffs/HO-0016-execute-e-0015-count-only-realized-yield-pass-measurement-not-training.md) — Execute E-00015: count-only realized usable quiet yield pass (measurement, not training) — status=REQUESTED
 - [HO-0017](handoffs/HO-0017-audit-e0013-l5-flip-q1-q8.md) — Independently verify the E-0013 L5-only lifecycle flip (R-0024 Q1-Q8) — status=REQUESTED
 - [HO-0018](handoffs/HO-0018-implement-f-u7-f-u13-normalized-fen-dedup-key.md) — Implement the E-0013 Option-(1) leakage remediation F-U7..F-U13: the dedup key is the normalized FEN — status=REQUESTED
-- [HO-0023](handoffs/HO-0023-blockers-to-go-e0013-gate-experiments-e00014-e00015.md) — Blockers to GO on the E-0013 gate experiments E-00014 / E-00015, with a NO-GO on both and one unblocking amendment named for E-00015 — status=REQUESTED
 - [HO-0024](handoffs/HO-0024-hw-3-make-the-release-binary-digest-stable-brepro-or-equivalent-so-ev-00nn-pins-are-reproducible.md) — HW-3: make the Release binary digest-stable (/Brepro or equivalent) so EV-00NN pins are reproducible — status=REQUESTED
 
 ## Handoffs (closed)
@@ -236,6 +235,7 @@
 - [HO-0020](handoffs/HO-0020-owner-repair-truncated-s-0037-leakage-addendum-fnd-0030-and-stale-z2-p4-fnd-0031.md) — Owner repair: the S-0037 leakage addendum on E-0013 is truncated/interleaved (FND-0030, blocking) and Z2's own proof row P4 is stale and self-referential (FND-0031, minor) — status=DONE
 - [HO-0021](handoffs/HO-0021-audit-w-0008-imem-2-1-work-the-fnd-0032-self-closure.md) — Audit W-0008: imem 2.1 work + the FND-0032 self-closure — status=DONE
 - [HO-0022](handoffs/HO-0022-spot-check-man-w0006-root-scratch-10-random-rows.md) — Spot-check 10 random rows of MAN-W0006-ROOT-SCRATCH-001 (root-scratch debt reduction) — status=DONE
+- [HO-0023](handoffs/HO-0023-blockers-to-go-e0013-gate-experiments-e00014-e00015.md) — Blockers to GO on the E-0013 gate experiments E-00014 / E-00015, with a NO-GO on both and one unblocking amendment named for E-00015 — status=DONE
 
 ## Runs (live)
 

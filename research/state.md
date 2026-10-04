@@ -1,7 +1,7 @@
 # Research State (GENERATED — do not edit)
 
 Derived from the record store by `research.py state`. Regenerate after every change.
-Generated: 2026-10-04T17:32:11; schema 2.
+Generated: 2026-10-04T18:11:33; schema 2.
 Every entry is a PROJECTION of the linked records — follow them before believing.
 
 ## Current best beliefs (hypotheses with measured weight)
@@ -50,12 +50,12 @@ Every entry is a PROJECTION of the linked records — follow them before believi
 - 2026-10-03 decision DEC-0013 (ACTIVE) : Evidence pins are content-addressed archived artifacts; live build outputs are never pin targets
 - 2026-10-03 evidence EV-0011 (REGISTERED) : Post-FND-0035 F2/F3 repair binary + validation artifacts (qsearch ply/repetition guard, in-check stand-pat suppression)
 - 2026-10-03 finding FND-0035 (OPEN) : Q-0002 pre-eval census of src/search.cpp|tt.cpp: PVS/aspiration/LMR/null-move/futility are ALL absent; ordering+qsearch exist; ORDER_STAGE is one boolean so E-0007's per-lever attribution is NOT reproducible from current source
-- 2026-10-03 handoff HO-0023 (REQUESTED) : Blockers to GO on the E-0013 gate experiments E-00014 / E-00015, with a NO-GO on both and one unblocking amendment named for E-00015
 - 2026-10-03 handoff HO-0024 (REQUESTED) : HW-3: make the Release binary digest-stable (/Brepro or equivalent) so EV-00NN pins are reproducible
 - 2026-10-03 session S-0044 (CLOSED) : Round-6 umbrella for the six seat sessions T-001..T-006 (W-0006 root-scratch clean-up, D-0002..D-0006 + E-00004/E-00005 re-attestation addenda, E-0013 gate-readiness, FND-0035 census, HO-0022/HO-0023) + the normalization commit
 - 2026-10-03 work W-0008 (DONE) : imem 2.1 infrastructure: INFRASTRUCTURE.md normative doc + freshness/novelty advisory surfaces + chief-architect seat
 - 2026-10-03 work W-0009 (OPEN) : Digest-stable Release build (/Brepro or equivalent) so an evidence binary pin is reproducible from source, not from a preserved copy
 - 2026-10-04 handoff HO-0022 (DONE) : Spot-check 10 random rows of MAN-W0006-ROOT-SCRATCH-001 (root-scratch debt reduction)
+- 2026-10-04 handoff HO-0023 (DONE) : Blockers to GO on the E-0013 gate experiments E-00014 / E-00015, with a NO-GO on both and one unblocking amendment named for E-00015
 - 2026-10-04 session S-0045 (CLOSED) : wave resume: land Sponsor rulings 1-4 post-inversion (FND-0034 disposition, EV-0010/EV-0011 re-pin under DEC-0013, W-0009/HO-0024 filed, HO-0022 owner verdict, HO-0023 blocker discharges)
 - 2026-10-04 work W-0006 (DONE) : Root-scratch debt reduction: shrink root_grandfathered.txt with itemized deletions
 
@@ -89,14 +89,14 @@ Every entry is a PROJECTION of the linked records — follow them before believi
     "ACTIVE": 16,
     "CLOSED": 45,
     "COMPLETED": 35,
-    "DONE": 24,
+    "DONE": 25,
     "DRAFT": 1,
     "IN_PROGRESS": 1,
     "OPEN": 41,
     "PENDING": 5,
     "RECORDED": 2,
     "REGISTERED": 9,
-    "REQUESTED": 7,
+    "REQUESTED": 6,
     "RESOLVED": 27,
     "RUNNING": 1,
     "SUPERSEDED": 4
@@ -105,7 +105,7 @@ Every entry is a PROJECTION of the linked records — follow them before believi
   "contradiction_candidates": 0,
   "dangling_ids": 18,
   "duplicate_candidates": 2,
-  "edges_total": 4712,
+  "edges_total": 4713,
   "legacy_experiments_without_pre_registration": 6,
   "open_questions": 8,
   "records_total": 264,

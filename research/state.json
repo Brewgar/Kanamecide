@@ -1242,6 +1242,7 @@
     },
     {
       "code_files": [
+        "src/search.cpp",
         "tools/e0011_check.py",
         "tools/e0012_sprt.py",
         "tools/e0013_eval.py",
@@ -1250,12 +1251,13 @@
       ],
       "commits_mentioned": [
         "7348f89",
-        "9b69e0a"
+        "9b69e0a",
+        "dd4051a"
       ],
       "kind": "handoff",
       "record": "HO-0023",
       "rel": "handoffs/HO-0023-blockers-to-go-e0013-gate-experiments-e00014-e00015.md",
-      "status": "REQUESTED",
+      "status": "DONE",
       "title": "Blockers to GO on the E-0013 gate experiments E-00014 / E-00015, with a NO-GO on both and one unblocking amendment named for E-00015"
     },
     {
@@ -2097,7 +2099,7 @@
       "title": "Gate 0 unrunnable: Device Guard hard-blocks kana.exe (every build, every path)"
     }
   ],
-  "generated": "2026-10-04T17:32:11",
+  "generated": "2026-10-04T18:11:33",
   "metrics": {
     "by_kind": {
       "agent_profile": 1,
@@ -2126,14 +2128,14 @@
       "ACTIVE": 16,
       "CLOSED": 45,
       "COMPLETED": 35,
-      "DONE": 24,
+      "DONE": 25,
       "DRAFT": 1,
       "IN_PROGRESS": 1,
       "OPEN": 41,
       "PENDING": 5,
       "RECORDED": 2,
       "REGISTERED": 9,
-      "REQUESTED": 7,
+      "REQUESTED": 6,
       "RESOLVED": 27,
       "RUNNING": 1,
       "SUPERSEDED": 4
@@ -2142,7 +2144,7 @@
     "contradiction_candidates": 0,
     "dangling_ids": 18,
     "duplicate_candidates": 2,
-    "edges_total": 4712,
+    "edges_total": 4713,
     "legacy_experiments_without_pre_registration": 6,
     "open_questions": 8,
     "records_total": 264,
@@ -2825,15 +2827,6 @@
     },
     {
       "example": false,
-      "id": "HO-0023",
-      "kind": "handoff",
-      "rel": "handoffs/HO-0023-blockers-to-go-e0013-gate-experiments-e00014-e00015.md",
-      "status": "REQUESTED",
-      "title": "Blockers to GO on the E-0013 gate experiments E-00014 / E-00015, with a NO-GO on both and one unblocking amendment named for E-00015",
-      "when": "2026-10-03"
-    },
-    {
-      "example": false,
       "id": "HO-0024",
       "kind": "handoff",
       "rel": "handoffs/HO-0024-hw-3-make-the-release-binary-digest-stable-brepro-or-equivalent-so-ev-00nn-pins-are-reproducible.md",
@@ -2875,6 +2868,15 @@
       "rel": "handoffs/HO-0022-spot-check-man-w0006-root-scratch-10-random-rows.md",
       "status": "DONE",
       "title": "Spot-check 10 random rows of MAN-W0006-ROOT-SCRATCH-001 (root-scratch debt reduction)",
+      "when": "2026-10-04"
+    },
+    {
+      "example": false,
+      "id": "HO-0023",
+      "kind": "handoff",
+      "rel": "handoffs/HO-0023-blockers-to-go-e0013-gate-experiments-e00014-e00015.md",
+      "status": "DONE",
+      "title": "Blockers to GO on the E-0013 gate experiments E-00014 / E-00015, with a NO-GO on both and one unblocking amendment named for E-00015",
       "when": "2026-10-04"
     },
     {
