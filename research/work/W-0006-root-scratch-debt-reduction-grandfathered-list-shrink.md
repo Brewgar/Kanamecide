@@ -4,15 +4,15 @@ type: work
 title: "Root-scratch debt reduction: shrink root_grandfathered.txt with itemized deletions"
 round: 4
 owner: implementation-engineer
-status: IN_PROGRESS
+status: DONE
 deliverable: "updated research/scripts/root_grandfathered.txt + itemized deletion/retention log in this work item"
 exit_check: "research.py validate OK; every deleted file listed; e0010_report.py and E-0010 raw evidence retained (they reproduce a published result)"
 evidence: ["research/scripts/root_grandfathered.txt shrunk 282 -> 271 lines (11 deletions, itemized below); validate OK, 0 problems after the shrink (research/context/bootstrap/validate_w0006.txt)", "hygiene classifier false-negative characterized with raw output: `e0010_k1n..k5n_games.jsonl` + `_result.txt` (10 files, ~1.13 MB, the per-term ladder R-0008 re-derived) are flagged 'unreferenced' because EV-0001 and E-0010 name them by range shorthand (k1n..k5n) — classification script + output in research/context/w0006_triage.py / w0006_triage_out.txt", "retention cross-check: E-0010's own hygiene note (kept: e0010_k{1..6}n_games.jsonl + result.txt, e0010_gates_bd.txt, _g0_perft.txt, e0010_runner_log.txt, e0010_ALL_done.txt, all e0010_* harness scripts) and EV-0001/EV-0002 (pin the raw JSONL + harness) — all confirmed still present on disk"]
-verified_by: null
-verification_verdict: null
+verified_by: "verification-auditor (fresh seat, HO-0022 receiver) — NOT the owner (implementation-engineer)"
+verification_verdict: VERIFIED
 example: false
 created: 2026-09-14
-closed: null
+closed: 2026-10-04
 ---
 
 # W-0006 — Root-scratch debt reduction
@@ -179,12 +179,19 @@ added; resolved by the documented `update` + `state --write` regeneration, after
 `validate` returned to exactly the pre-existing single problem.
 
 ## Verification
-- verified_by: **verification-auditor — REQUESTED via HO-0022** (spot-check of 10
-  randomly chosen manifest rows). This seat does not close its own work.
-- verdict: **PENDING** — deliberately not self-closed. The MEMORY-KEEPER seat authored
-  the manifest, so it is not an acceptable verifier (DEC-0009 gate 3 — the same rule
-  that caught the FND-0032 self-closure).
+- verified_by: **verification-auditor (fresh seat, HO-0022 receiver)** — NOT the owner
+  (implementation-engineer / MEMORY-KEEPER). Independent harness `_obs/aud0022/verify1..5.py`;
+  seed re-derived (`20261002` reproduces the table byte-for-byte; independent draw
+  `20261003` also checked).
+- verdict: **VERIFIED — as the auditor's DEFECTS (4), with the owner's four corrections
+  applied** (applied 2026-10-04, this wave). The auditor's exact route: "the central claim
+  (nothing cited destroyed; no evidence lost; `validate` at the exact unsuppressed FND-0034
+  baseline) is independently confirmed… W-0006 may close once the owner has appended this
+  verdict and applied DEFECT-1/3/4." All four are wording/method/tally corrections applied
+  to `MAN-W0006-root-scratch.md` (Method block + Corrections section) and to HO-0022's own
+  brief tally (21, not 18). DEFECT-2 was the only defect in a requester document.
 - evidence: `research/manifests/MAN-W0006-root-scratch.md` (every row with sha256 +
-  justification), `MAN-W0006-root-scratch.json` (machine-readable); reproducible
-  harness and raw command output in `_obs/w0006/` (`triage.py`, `apply.py`,
-  `post_validate.log`, `apply_log.txt`). Commands and acceptance: **HO-0022**.
+  justification), `MAN-W0006-root-scratch.json` (machine-readable); the verifier's raw
+  output in `_obs/aud0022/`; whole-corpus sweeps quoted inside HO-0022 (KEEP 79/79 justified,
+  MOVE 96/96 hash-verified, DELETE 29/29 safe). Post-correction `validate`: exit 0,
+  0 problems (S-0045 wave, commit `bf4ea9a` and its successor).

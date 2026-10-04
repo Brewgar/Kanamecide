@@ -2097,7 +2097,7 @@
       "title": "Gate 0 unrunnable: Device Guard hard-blocks kana.exe (every build, every path)"
     }
   ],
-  "generated": "2026-10-04T16:48:09",
+  "generated": "2026-10-04T17:32:11",
   "metrics": {
     "by_kind": {
       "agent_profile": 1,
@@ -2126,14 +2126,14 @@
       "ACTIVE": 16,
       "CLOSED": 45,
       "COMPLETED": 35,
-      "DONE": 22,
+      "DONE": 24,
       "DRAFT": 1,
-      "IN_PROGRESS": 2,
+      "IN_PROGRESS": 1,
       "OPEN": 41,
       "PENDING": 5,
       "RECORDED": 2,
       "REGISTERED": 9,
-      "REQUESTED": 8,
+      "REQUESTED": 7,
       "RESOLVED": 27,
       "RUNNING": 1,
       "SUPERSEDED": 4
@@ -2142,7 +2142,7 @@
     "contradiction_candidates": 0,
     "dangling_ids": 18,
     "duplicate_candidates": 2,
-    "edges_total": 4710,
+    "edges_total": 4712,
     "legacy_experiments_without_pre_registration": 6,
     "open_questions": 8,
     "records_total": 264,
@@ -2537,15 +2537,6 @@
   "timeline_tail": [
     {
       "example": false,
-      "id": "FND-0016",
-      "kind": "finding",
-      "rel": "findings/FND-0016-x3-ownership-owner-systems-researcher-set-on-e-00014-and-e-00015-t.md",
-      "status": "RESOLVED",
-      "title": "X3 ownership.** `owner: systems-researcher` set on E-00014 and E-00015, t",
-      "when": "2026-09-29"
-    },
-    {
-      "example": false,
       "id": "FND-0017",
       "kind": "finding",
       "rel": "findings/FND-0017-x4-discharged.md",
@@ -2780,15 +2771,6 @@
     },
     {
       "example": false,
-      "id": "HO-0022",
-      "kind": "handoff",
-      "rel": "handoffs/HO-0022-spot-check-man-w0006-root-scratch-10-random-rows.md",
-      "status": "REQUESTED",
-      "title": "Spot-check 10 random rows of MAN-W0006-ROOT-SCRATCH-001 (root-scratch debt reduction)",
-      "when": "2026-10-02"
-    },
-    {
-      "example": false,
       "id": "profile",
       "kind": "profile",
       "rel": "agents/chief-architect/profile.md",
@@ -2888,11 +2870,29 @@
     },
     {
       "example": false,
+      "id": "HO-0022",
+      "kind": "handoff",
+      "rel": "handoffs/HO-0022-spot-check-man-w0006-root-scratch-10-random-rows.md",
+      "status": "DONE",
+      "title": "Spot-check 10 random rows of MAN-W0006-ROOT-SCRATCH-001 (root-scratch debt reduction)",
+      "when": "2026-10-04"
+    },
+    {
+      "example": false,
       "id": "S-0045",
       "kind": "session",
       "rel": "sessions/S-0045-wave-resume-land-sponsor-rulings-1-4-post-inversion-fnd-0034-disposition-ev-0010-ev-0011-re-pin-under-dec-0013-w-0009-ho-0024-filed-ho-0022-owner-verdict-ho-0023-blocker-discharges.md",
       "status": "CLOSED",
       "title": "wave resume: land Sponsor rulings 1-4 post-inversion (FND-0034 disposition, EV-0010/EV-0011 re-pin under DEC-0013, W-0009/HO-0024 filed, HO-0022 owner verdict, HO-0023 blocker discharges)",
+      "when": "2026-10-04"
+    },
+    {
+      "example": false,
+      "id": "W-0006",
+      "kind": "work",
+      "rel": "work/W-0006-root-scratch-debt-reduction-grandfathered-list-shrink.md",
+      "status": "DONE",
+      "title": "Root-scratch debt reduction: shrink root_grandfathered.txt with itemized deletions",
       "when": "2026-10-04"
     }
   ]

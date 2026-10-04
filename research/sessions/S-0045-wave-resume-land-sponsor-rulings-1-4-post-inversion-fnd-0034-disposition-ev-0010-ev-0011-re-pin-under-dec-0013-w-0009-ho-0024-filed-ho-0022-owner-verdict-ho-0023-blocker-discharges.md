@@ -63,3 +63,18 @@ closed: 2026-10-04
 ## Validation Status
 - `python research/scripts/research.py validate` → **exit 0, 0 problems** (storied warning set only: legacy-grandfathered rows, dangling prose ids incl. this record's own S-0045 forward-reference, fixed at regen).
 - `python research/scripts/research.py update` + `state --write` → projections regenerated in the wave's closing step; final numbers in the git commit.
+
+## Addendum (2026-10-04, same session — the R-02 segment ran after the above was frozen)
+
+The "What I Did NOT Do" queue was drained in this wave's second commit, by the
+implementation-engineer seat (its owner seat) acting under the same mandate:
+
+- **W-0006 → DONE** (`verified_by: verification-auditor (HO-0022)`,
+  `verification_verdict: VERIFIED`, `closed: 2026-10-04`). The DEFECTS(4) corrections were applied
+  exactly as routed: MAN-W0006's Method block now names the keep-set cross-check the primary
+  citation method (DEFECT-3), anchors all tracked flags to `f5883dc` with `59512e2` as the
+  recovery commit (DEFECT-1/4), and HO-0022's own brief tally was corrected inward (21, not 18;
+  DEFECT-2).
+- **HO-0022 → DONE** (`closed: 2026-10-04`) with the owner-correction note appended.
+- Root count is now **77**, `root_grandfathered.txt` **71** entries; the trail is in W-0006's
+  Work Log 2026-10-04 entry.

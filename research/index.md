@@ -195,7 +195,6 @@
 ## Work Items (open)
 
 - [W-0003](work/W-0003-round2-agreement-matrix-reviewer-column-backfill.md) — Round-2 AGREEMENT_MATRIX reviewer column backfill (as an addendum review) — status=IN_PROGRESS
-- [W-0006](work/W-0006-root-scratch-debt-reduction-grandfathered-list-shrink.md) — Root-scratch debt reduction: shrink root_grandfathered.txt with itemized deletions — status=IN_PROGRESS
 - [W-0009](work/W-0009-digest-stable-release-build-brepro-or-equivalent-so-an-evidence-binary-pin-is-reproducible-from-source-not-from-a-preserved-copy.md) — Digest-stable Release build (/Brepro or equivalent) so an evidence binary pin is reproducible from source, not from a preserved copy — status=OPEN
 
 ## Work Items (closed)
@@ -204,6 +203,7 @@
 - [W-0002](work/W-0002-recalibrate-e0010-effect-size-decision-rule-d-0007-dec-0010.md) — Recalibrate the E-0010 effect-size decision rule (D-0007 -> DEC-0010) — status=DONE
 - [W-0004](work/W-0004-fresh-reviewer-onboarding-proof-two-verification-reviews-of-e-0010.md) — Fresh-reviewer onboarding proof: two independent verification reviews of E-0010 — status=DONE
 - [W-0005](work/W-0005-e-sprt-lite-comparison-harness-pre-register-build-validate.md) — E-SPRT-lite comparison harness: pre-register, build, validate against known difference — status=DONE
+- [W-0006](work/W-0006-root-scratch-debt-reduction-grandfathered-list-shrink.md) — Root-scratch debt reduction: shrink root_grandfathered.txt with itemized deletions — status=DONE
 - [W-0007](work/W-0007-derived-intelligence-layer.md) — Derived-intelligence layer (graph, retrieval, beliefs, contradiction/revival, state, audit, self-tests) — status=DONE
 - [W-0008](work/W-0008-imem-2-1-infrastructure-infrastructure-md-normative-doc-freshness-novelty-advisory-surfaces-chief-architect-seat.md) — imem 2.1 infrastructure: INFRASTRUCTURE.md normative doc + freshness/novelty advisory surfaces + chief-architect seat — status=DONE
 
@@ -214,7 +214,6 @@
 - [HO-0016](handoffs/HO-0016-execute-e-0015-count-only-realized-yield-pass-measurement-not-training.md) — Execute E-00015: count-only realized usable quiet yield pass (measurement, not training) — status=REQUESTED
 - [HO-0017](handoffs/HO-0017-audit-e0013-l5-flip-q1-q8.md) — Independently verify the E-0013 L5-only lifecycle flip (R-0024 Q1-Q8) — status=REQUESTED
 - [HO-0018](handoffs/HO-0018-implement-f-u7-f-u13-normalized-fen-dedup-key.md) — Implement the E-0013 Option-(1) leakage remediation F-U7..F-U13: the dedup key is the normalized FEN — status=REQUESTED
-- [HO-0022](handoffs/HO-0022-spot-check-man-w0006-root-scratch-10-random-rows.md) — Spot-check 10 random rows of MAN-W0006-ROOT-SCRATCH-001 (root-scratch debt reduction) — status=REQUESTED
 - [HO-0023](handoffs/HO-0023-blockers-to-go-e0013-gate-experiments-e00014-e00015.md) — Blockers to GO on the E-0013 gate experiments E-00014 / E-00015, with a NO-GO on both and one unblocking amendment named for E-00015 — status=REQUESTED
 - [HO-0024](handoffs/HO-0024-hw-3-make-the-release-binary-digest-stable-brepro-or-equivalent-so-ev-00nn-pins-are-reproducible.md) — HW-3: make the Release binary digest-stable (/Brepro or equivalent) so EV-00NN pins are reproducible — status=REQUESTED
 
@@ -236,6 +235,7 @@
 - [HO-0019](handoffs/HO-0019-verify-e0013-s0037-leakage-ruling.md) — Independently verify the E-0013 leakage ruling (S-0037 addendum): was option (1) chosen on the contract's own terms? — status=DONE
 - [HO-0020](handoffs/HO-0020-owner-repair-truncated-s-0037-leakage-addendum-fnd-0030-and-stale-z2-p4-fnd-0031.md) — Owner repair: the S-0037 leakage addendum on E-0013 is truncated/interleaved (FND-0030, blocking) and Z2's own proof row P4 is stale and self-referential (FND-0031, minor) — status=DONE
 - [HO-0021](handoffs/HO-0021-audit-w-0008-imem-2-1-work-the-fnd-0032-self-closure.md) — Audit W-0008: imem 2.1 work + the FND-0032 self-closure — status=DONE
+- [HO-0022](handoffs/HO-0022-spot-check-man-w0006-root-scratch-10-random-rows.md) — Spot-check 10 random rows of MAN-W0006-ROOT-SCRATCH-001 (root-scratch debt reduction) — status=DONE
 
 ## Runs (live)
 

@@ -4,7 +4,7 @@ type: handoff
 from: implementation-engineer
 to: verification-auditor
 work_item: W-0006
-status: REQUESTED
+status: DONE
 title: "Spot-check 10 random rows of MAN-W0006-ROOT-SCRATCH-001 (root-scratch debt reduction)"
 artifacts:
   - research/manifests/MAN-W0006-root-scratch.md
@@ -16,7 +16,7 @@ commands: []
 acceptance: null
 example: false
 created: 2026-10-02
-closed: null
+closed: 2026-10-04
 ---
 
 # HO-0022 — Spot-check MAN-W0006-ROOT-SCRATCH-001
@@ -374,3 +374,22 @@ execution of this ruling under the R-02 task, which carries the runbook. This ve
 two judgement calls HO-0022 said "need an owner verdict, not a reviewer's" — correct — and does
 NOT close HO-0022 or W-0006: those belong to the verification-auditor's DEFECTS(4) record above
 and the owner's corrections, respectively.
+
+## Owner note on the DEFECTS + closure (implementation-engineer, 2026-10-04)
+
+- **DEFECT-1, DEFECT-3, DEFECT-4 — APPLIED in `MAN-W0006-root-scratch.md`.** Method block now
+  declares the keep-set cross-check as the primary citation method (the word-boundary grep misses
+  36 of 79 KEEP rows), and anchors every tracked/untracked flag to the pre-clean-up commit
+  `f5883dc` — with the recovery commit `59512e2` named — so the tracked removals read as
+  "restorable from history at `f5883dc`, not HEAD".
+- **DEFECT-2 — CORRECTED HERE (it is an error in this handoff's own brief, so the correction
+  lives in this record).** The brief's "18 tracked removals" is wrong: the true count is **21**
+  (6 DELETE + 15 MOVE; the three names the enumeration dropped are `rebuild_release.bat`,
+  `w_tt.py`, `write_search2.py`). The whole-corpus sweep covered all 21; no exception surfaced.
+- **Q2 execution — DONE the same day (S-0045).** `kana_o3b.exe` / `kana_o3c.exe` moved to
+  `_obs/e0010-era/garbage/`, sha256-verified, grandfathered entries pruned (73 → 71), root count
+  79 → 77; one-line relocation note appended to W-0006's Work Log as required above.
+- **Closure.** W-0006 is closed with `verification_verdict: VERIFIED` (the auditor's DEFECTS(4)
+  verdict, with the auditor's own statement that the central claim is independently confirmed and
+  that the item may close once the four corrections landed — they have). This handoff is hereby
+  `DONE`, `closed: 2026-10-04`; it carried both the independent audit and its own corrections.

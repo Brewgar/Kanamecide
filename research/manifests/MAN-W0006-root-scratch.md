@@ -9,9 +9,10 @@ Every root file is one row. `DELETE` rows carry a sha256 and a justification; `M
 ## Method (and one rejection worth recording)
 
 - **census:** every repo-root *file* enumerated (dirs untouched)
-- **citation_test:** word-boundary regex over research/**/*.md EXCLUDING the derived, gitignored research/context/ and research/_index/; substring matching was rejected because it fabricates citations for short names (a.txt matched 8 records)
-- **cross_check:** research.py hygiene keep-set (_hygiene_keep_names: backtick pins, x..y ranges, brace ranges, globs) re-run independently
+- **citation_test (PRIMARY — corrected 2026-10-04 per HO-0022 DEFECT-3):** `research.py`'s own hygiene keep-set (`_hygiene_keep_names`: backtick pins, `x..y` ranges, brace ranges, globs) is the **decision-grade** citation test, because records cite files by range/brace/glob shorthand (`e0010_k1n..k5n_games.jsonl`, `e0010_k{1..6}n_result.txt`). A bare word-boundary grep — this document's *originally stated* primary method — finds **zero citations for 36 of 79 KEEP rows** and would wrongly classify 36 files of published-result evidence as deletable; it is retained below as a secondary check only.
+- **secondary check:** word-boundary regex over research/**/*.md EXCLUDING the derived, gitignored research/context/ and research/_index/; substring matching was rejected because it fabricates citations for short names (a.txt matched 8 records)
 - **pins:** EV-#### `path:` front-matter and research/manifests/*.json hash pins are treated as hard constraints
+- **column meaning (corrected 2026-10-04 per HO-0022 DEFECT-1/DEFECT-4):** every `tracked`/`untracked`/`git` flag in this document denotes state at the pre-clean-up commit **`f5883dc`**, not at HEAD. The tracked removals were deleted by commit `59512e2`, so those bytes are **restorable from history at `f5883dc`, NOT from HEAD** — any spot-check method that tests against HEAD will report 21 apparent mismatches without anything being lost.
 
 **Rejected method — substring citation matching.** A first pass counted a file as "cited" if its name appeared anywhere in a record's text. That is unsound for short scratch names: `out.txt` scored **17** citations and `a.txt` **8**, purely by matching inside longer identifiers. Adopting it would have frozen ~30 junk files as protected evidence. All citation counts here use a word-boundary regex instead, cross-checked against `research.py`'s own keep-set extractor (`_hygiene_keep_names`).
 
@@ -274,3 +275,28 @@ python _obs/w0006/apply.py              # execute (dry-run unless --commit)
 python research/scripts/research.py validate
 python e0010_report.py
 ```
+
+## Corrections applied from HO-0022's verification (2026-10-04, owner seat)
+
+The verification-auditor's verdict on this manifest was **DEFECTS (4)** — all corrections, not
+rework; the central claim (nothing cited destroyed; no evidence lost; `validate` at the exact
+unsuppressed FND-0034 baseline) was **independently confirmed**. Applied here:
+
+1. **DEFECT-1** — "restorable from HEAD" was false: the tracked removals are restorable from
+   history at `f5883dc` (deletion commit `59512e2`). *Corrected:* the column-meaning note above
+   now anchors `tracked` to `f5883dc` and names the recovery commit.
+2. **DEFECT-2** — HO-0022's own brief said "18 tracked removals"; the true count is **21**
+   (6 DELETE + 15 MOVE; the three omitted names: `rebuild_release.bat`, `w_tt.py`,
+   `write_search2.py`). Corrected in HO-0022's owner note (2026-10-04); no safety conclusion
+   changes — all 21 are uncited and recoverable.
+3. **DEFECT-3** — the stated primary citation test (word-boundary literal) misses 36 KEEP rows.
+   *Corrected:* `cross_check` promoted to the stated primary method in the Method block; the
+   word-boundary grep is retained as secondary.
+4. **DEFECT-4** — `git_tracked` flags are exact for `f5883dc` but stale w.r.t. HEAD. *Corrected:*
+   the Method block now declares them `tracked-at-f5883dc`, so a HEAD-anchored re-check's 21
+   "failures" are expected, matching DEFECT-1's qualifier.
+
+Plus one non-defect unblocking note acted on the same day: HO-0022 Q2's owner verdict moved
+`kana_o3b.exe` / `kana_o3c.exe` (939,008 B) from root to `_obs/e0010-era/garbage/`
+(sha256-verified), pruning two more `root_grandfathered.txt` entries; root count 79 → 77,
+grandfathered 73 → 71 (W-0006 Work Log, 2026-10-04).
