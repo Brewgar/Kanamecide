@@ -15,7 +15,7 @@ completed: 2026-10-05
 tags: [texel, feasibility, power, train-only, pre-registration]
 ---
 
-# E-00014 - TRAIN-ONLY feasibility pass for E-0013 (PENDING; NOT RUN)
+# E-00014 - TRAIN-ONLY feasibility pass for E-0013 (COMPLETED 2026-10-05)
 
 > Filed by researcher-architect, 2026-09-26, as the BUCKET-2 sub-contract for R-0019's
 > B2 sentence 2 and B3 sentence 1. **This is a MEASUREMENT record, not a training run.**
