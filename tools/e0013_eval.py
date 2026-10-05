@@ -964,13 +964,26 @@ def load_samples(positions_path: Path, split_map_path: Path, splits: Iterable[st
     wanted = set(splits)
     if wanted - {"train", "holdout"}:
         raise ValueError(f"unknown splits {sorted(wanted - {'train', 'holdout'})}")
-    smap = json.loads(split_map_path.read_text(encoding="utf-8"))["map"]
+    smap_obj = json.loads(split_map_path.read_text(encoding="utf-8"))
+    smap = smap_obj["map"]
+    # E-00014's inner map (kana-e0013-innersplit-v1) covers OUTER-TRAIN games ONLY, so a
+    # missing key there is not an error: it IS an outer-holdout row and is excluded on
+    # game_id alone, exactly the E-00014 rule ("holdout ids touch only a set
+    # intersection, never a content read"). For E-0013's OUTER map a missing key is a
+    # real corruption and stays a hard error - the outer gate is not weakened.
+    inner_map = smap_obj.get("format") == "kana-e0013-innersplit-v1"
     samples: list[Sample] = []
     for line in positions_path.read_text(encoding="utf-8").splitlines():
         if not line.strip():
             continue
         head = json.loads(line)
-        if smap[str(head["game_id"])] not in wanted:
+        role = smap.get(str(head["game_id"]))
+        if role is None:
+            if inner_map:
+                continue
+            raise KeyError(f"game {head['game_id']} has no role in the split map "
+                           f"{split_map_path} - the map cannot partition the corpus")
+        if role not in wanted:
             continue
         if head["fen"] is None:
             raise ValueError("a row selected for scoring has no FEN")
