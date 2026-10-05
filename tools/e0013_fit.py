@@ -7,11 +7,22 @@ the optimizer driver, the inner-partition carver, and the pin-carrier. Its contr
 fixed by E-0013's F1-F12 table (the pre-fit commit pins seed, L2, iteration budget,
 early-stopping and the clipping bound L) and E-0014's abort conditions.
 
-Guarantees, each enforced in code:
-  1. TRAIN-only input: the labelled corpus is `tools/e0013_label.py`'s TRAIN-only
-     artifact; every row's `y` must be in {0, 0.5, 1}. With `--inner-map`, the fit set
-     is rows whose game's inner role is 'train'; the inner map partitions OUTER-TRAIN
-     games only (see --write-inner-map). The outer holdout is never named or read.
+Guarantees, each enforced in code (never assumed of the input):
+
+  1. TRAIN-only input, enforced TWICE and PROVED, not delegated to the input file:
+     (a) every row's game is re-classified with the cited outer-split rule
+         `random.Random(SPLIT_SALT * 1000003 + game_id).random() < 0.8` imported from
+         `tools/e0013_extract.py`; rows from outer-holdout games are excluded by set
+         membership BEFORE any label or FEN is used, and the exclusion receipt (holdout
+         game count + row count) is printed and written into the report. Only game-id
+         integers touch the holdout side - a set intersection, never a content read
+         (E-00014's own rule); (b) every remaining row's `y` must be in {0, 0.5, 1}.
+     With `--inner-map`, the fit set is further restricted to rows whose game's inner
+     role is 'train'; the inner map partitions OUTER-TRAIN games only (see
+     --write-inner-map). The outer holdout is never named, read, or scored by fits.
+     The labelled corpus is `tools/e0013_extract.py`'s full-mode artifact (rows carry
+     both `fen` and `y`); `tools/e0013_label.py`'s TRAIN-only labels.jsonl is the
+     audit artifact the fit set can be cross-checked against (same (norm_fen, y) pairs).
   2. Deterministic: full-batch L-BFGS-B from theta0 = the frozen hand-tuned floor.
      `--seed` is recorded and never consumed (no RNG anywhere); the run PROVES it by
      fitting twice in-process and asserting byte-identical solution vectors (E-0013
@@ -41,7 +52,12 @@ ROOT = HERE.parent
 sys.path.insert(0, str(HERE))
 
 import e0013_eval as ev  # noqa: E402
-from e0013_extract import canonical_json, sha256_file  # noqa: E402
+from e0013_extract import (  # noqa: E402
+    SPLIT_SALT,
+    canonical_json,
+    sha256_file,
+    split_of,
+)
 
 INNER_MAP_FORMAT = "kana-e0013-innersplit-v1"
 
@@ -124,6 +140,23 @@ def run_fit(args: argparse.Namespace) -> int:
 
     rows = [json.loads(l) for l in positions_path.read_bytes().decode("utf-8").splitlines()
             if l.strip()]
+    # E-0013 leakage contract, enforced in code FIRST: the fit surface is OUTER-TRAIN
+    # only. The split rule is re-derived from SPLIT_SALT via the extractor's own
+    # split_of(), never read from a file, so a swapped map cannot widen the scope. Only
+    # game-id integers classify; a holdout game's FEN/label content is never used, and
+    # `y` is not even inspected before this filter runs. The receipt (excluded row and
+    # game counts) lands in the report, so the omission is shown, not asserted.
+    train_rows: list[dict] = []
+    holdout_rows = 0
+    holdout_games: set[int] = set()
+    for r in rows:
+        gid = int(r["game_id"])
+        if split_of(gid) == "train":
+            train_rows.append(r)
+        else:
+            holdout_rows += 1
+            holdout_games.add(gid)
+    rows = train_rows
     if inner_map_path is not None:
         imap_obj = json.loads(inner_map_path.read_bytes())
         if imap_obj.get("format") != INNER_MAP_FORMAT:
@@ -177,6 +210,11 @@ def run_fit(args: argparse.Namespace) -> int:
                        "sha256": hashlib_sha256(inner_map_path.read_bytes())}
                       if inner_map_path is not None else None),
         "full_train": bool(args.full_train),
+        "outer_split": {"salt": SPLIT_SALT,
+                        "rule": "random.Random(SPLIT_SALT * 1000003 + game_id).random() < 0.8",
+                        "source": "re-derived via tools/e0013_extract.split_of, never read from a file",
+                        "holdout_games_excluded_before_any_label_read": len(holdout_games),
+                        "holdout_rows_excluded_before_any_label_read": holdout_rows},
         "games": len(game_ids),
         "labels": {"frame": "side-to-move (B2 s1)",
                    "label_counts": {str(v): int(np.sum(labels == v)) for v in (0.0, 0.5, 1.0)}},
@@ -213,6 +251,8 @@ def run_fit(args: argparse.Namespace) -> int:
 
     print(f"rows={len(rows)} games={len(game_ids)} clip={args.clip} l2={args.l2} "
           f"maxiter={args.maxiter} seed={args.seed}")
+    print(f"holdout excluded before any label read: games={len(holdout_games)} "
+          f"rows={holdout_rows} (outer split re-derived, salt={SPLIT_SALT})")
     print(f"convergence success={res1.success} nit={res1.nit} message={res1.message}")
     print(f"loss floor={loss0:.6f} fitted={loss_fitted:.6f} delta_on_fit={delta_on_fit:.6f}")
     print(f"arms differ: {fitted_sha != floor_sha} fitted_sha256={fitted_sha} "
@@ -272,7 +312,14 @@ def selftest() -> int:
     res_again = fit_once(jac, offset, cont, t0, clip, 0.0, 200)
     check("determinism: byte-identical solution on identical inputs",
           res.x.tobytes() == res_again.x.tobytes())
-    bad = [dict(fen=fens[0], game_id=0, y=2.0)]
+    import contextlib
+    import io
+
+    # Outer-split roles come from the re-derived rule itself, not hardcoded ids:
+    # a test that hardcoded the id would rot if the rule ever changed.
+    gid_train = next(g for g in range(50) if split_of(g) == "train")
+    gid_hold = next(g for g in range(50) if split_of(g) != "train")
+    bad = [dict(fen=fens[0], game_id=gid_train, y=2.0)]
     rowpath = ROOT / "_obs" / "_fit_st_bad.jsonl"
     try:
         ns = argparse.Namespace(positions=str(rowpath), inner_map=None, full_train=True,
@@ -280,13 +327,38 @@ def selftest() -> int:
                                 dry_run=True)
         rowpath.parent.mkdir(parents=True, exist_ok=True)
         rowpath.write_text(json.dumps(bad[0]) + "\n", encoding="utf-8")
+        buf = io.StringIO()
         try:
-            run_fit(ns)
+            with contextlib.redirect_stderr(buf):
+                run_fit(ns)
             check("abort on out-of-vocab label", False, "no abort raised")
         except SystemExit:
-            check("abort on out-of-vocab label", True)
+            check("abort on out-of-vocab label", "2.0" in buf.getvalue(),
+                  buf.getvalue()[:160])
     finally:
         rowpath.unlink(missing_ok=True)
+
+    # Leakage gate, synthetically: a corpus whose only game is an outer-HOLDOUT game
+    # must refuse to fit even though its label vocabulary is valid. The fit set is
+    # empty by the outer filter, and the abort precedes any label read.
+    hold = [dict(fen=fens[0], game_id=gid_hold, y=0.5)]
+    rowpath2 = ROOT / "_obs" / "_fit_st_holdout.jsonl"
+    try:
+        ns2 = argparse.Namespace(positions=str(rowpath2), inner_map=None, full_train=True,
+                                 clip=clip, l2=1e-6, maxiter=10, seed=1, out="x", report="y",
+                                 dry_run=True)
+        rowpath2.write_text(json.dumps(hold[0]) + "\n", encoding="utf-8")
+        buf2 = io.StringIO()
+        try:
+            with contextlib.redirect_stderr(buf2):
+                run_fit(ns2)
+            check("outer-split gate: holdout-only corpus aborts as empty fit set", False,
+                  "no abort raised")
+        except SystemExit:
+            check("outer-split gate: holdout-only corpus aborts as empty fit set",
+                  "empty fit set" in buf2.getvalue(), buf2.getvalue()[:160])
+    finally:
+        rowpath2.unlink(missing_ok=True)
 
     failed = [n for n, ok, _ in checks if not ok]
     for name, okv, detail in checks:
@@ -300,7 +372,7 @@ def selftest() -> int:
 def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
     p = argparse.ArgumentParser(description=__doc__.splitlines()[0])
     p.add_argument("--positions", required=False,
-                   default=str(ROOT / "build" / "e0013" / "labels" / "labels.jsonl"))
+                   default=str(ROOT / "build" / "e0013" / "extract" / "positions.jsonl"))
     p.add_argument("--inner-map")
     p.add_argument("--full-train", action="store_true")
     p.add_argument("--clip", type=float, required=False)
