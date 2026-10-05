@@ -37,11 +37,31 @@
       "is_fitter_corpus": false,
       "schema_predates_the_2026_09_27_fixes": true,
       "role": "the provenance record for the count-only pass. SUPERSEDED IN TWO RESPECTS, both recorded here so no reader inherits them unknowingly: (1) its src_commit reads 9f6574c, the PARENT of da93d9c, so its attribution is stale - the S-0039 section 9 defect; (2) it carries a `band` key for an instrument retired by S-0039 Ruling 1, and it has no `corpus` or `provenance` block at all, both added by this session's fixes. It is pinned as WHAT IT IS - a pre-fix measurement record - not as a current one. The digest is still a control: these bytes are the ones E-00015's executor will be reconciling against, and `tools/e0013_pins.py --modes` reports the schema gap as a NAMED state rather than passing it silently."
+    },
+    "positions_labelled.jsonl": {
+      "path": "build/e0013/extract/positions.jsonl",
+      "sha256": "19cee19027d5298756660fa4d57998c41144bcb3c92c0425008449ac6d31c48f",
+      "bytes": 12930266,
+      "rows": 74452,
+      "kind": "fitter-corpus",
+      "mode": "labelled",
+      "is_fitter_corpus": true,
+      "pinned_on": "2026-10-05",
+      "pinned_at_commit": "2d971a50b9f12904c55fb8ede7c1d1f3c40546d7",
+      "role": "the labelled-mode extraction over the pinned dataset at the labelled-mode gate: THE fitter's corpus. E-00015's count-only artifact stays pinned above as a MEASUREMENT; this entry is what `fitter_corpus.sha256` names and what read_corpus() hands back. Its own report.json (build/e0013/extract/report.json, sha256 7926464ba2344c7720271a517541390659ecd675c32efb2f50809282b175bc6b) is NOT pinned here on purpose: the report declares corpus.is_fitter_corpus=true of the positions file, and --modes cross-checks a pinned report's declared identity against its manifest entry, so pinning the report triples the surface without adding a control. The corpus digest itself is the control."
     }
   },
   "fitter_corpus": {
-    "sha256": null,
-    "null_reason": "NOT YET PINNED, and this null is the honest state rather than a gap. The full-mode (labelled) extraction has not been re-emitted: doing so is a run of the extractor on the pinned real dataset, which is outside this job's scope and is a separate seat's pass. Until it is, no fitter corpus digest exists and read_corpus() REFUSES rather than handing back a count-only hash. The count-only digest ac8c92f0... is a MEASUREMENT's digest and is not a substitute.",
+    "sha256": "19cee19027d5298756660fa4d57998c41144bcb3c92c0425008449ac6d31c48f",
+    "path": "build/e0013/extract/positions.jsonl",
+    "bytes": 12930266,
+    "rows": 74452,
+    "mode": "labelled",
+    "is_fitter_corpus": true,
+    "pinned_on": "2026-10-05",
+    "pinned_at_commit": "2d971a50b9f12904c55fb8ede7c1d1f3c40546d7",
+    "produced_by": "python tools/e0013_extract.py --dataset m0_audit/e0011/games.jsonl --expected-dataset-sha256 27ea181d32a9025e0fd9cea150540b6598ce7e608bc96ca245d7c07b7ac5bb95 --out-dir build/e0013/extract  (exit 0; report.json 7926464ba2344c7720271a517541390659ecd675c32efb2f50809282b175bc6b pins src_commit=2d971a5, mode=labelled, rows=74452, rows_with_null_y=0, label_frame_uniform=true, label_is_result_only=true, label_is_game_constant=true, overlap-0 at both levels, counts identical to E-00015's PASS numbers)",
+    "history": "2026-09-27..2026-10-04: sha256 was null with null_reason 'the full-mode (labelled) extraction has not been re-emitted'. On 2026-10-05 (HEAD 2d971a5, the commit that added tools/e0013_fit.py) the full-mode extraction was emitted under the pinned dataset + committed tool and the digest above was filled in. The count-only digest ac8c92f0... remains a MEASUREMENT's digest and is never a substitute.",
     "required_before": "any fitter or the E-00014 feasibility pass may read TRAIN",
     "how_to_produce": "run tools/e0013_extract.py at a clean commit (it now asserts its own src_commit at write time), then record the resulting positions_sha256 here with is_fitter_corpus true and mode labelled"
   }
