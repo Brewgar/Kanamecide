@@ -1,0 +1,130 @@
+{
+  "format": "kana-e0013-prefit-v1",
+  "record": "E-0013",
+  "scope_note": "This is the SINGLE PRE-FIT COMMIT artifact required by E-0013 B4 sentence 2: every value the record deferred with 'pinned at execution' is assigned ONCE here, hash-committed before any fitting job reads the corpus and before any holdout read. The tripwire binds first-time assignment exactly as it binds change: a value first assigned after the holdout is read is a FAIL. E-00015 (count-only) precedes any fitter; E-00014 (TRAIN-only feasibility) precedes any holdout read. E-0013 stage (b) (Tier-S strength SPRT) does NOT run in this record (B1 SHRINK); no fresh SPRT salt is therefore consumed here.",
+  "written": "2026-10-05",
+  "written_by_seat": "implementation-engineer (internal seat of this session's director; E-0013 RUNNING at 6a6eb0a, audited by R-0025/HO-0017)",
+  "tools_committed_at": {
+    "trainer_commit": "1d97645",
+    "note": "tools/e0013_fit.py (B1 trainer with the adverse-review outer-TRAIN leakage gate), tools/e0013_eval.py, tools/e0013_extract.py, tools/e0013_label.py, tools/e0013_pins.py are all committed; HEAD of the commit carrying this manifest is the pre-fit commit hash consumers must cite"
+  },
+  "dataset": {
+    "path": "m0_audit/e0011/games.jsonl",
+    "sha256": "27ea181d32a9025e0fd9cea150540b6598ce7e608bc96ca245d7c07b7ac5bb95",
+    "rows": 1000,
+    "status": "R-0017 VERIFIED replacement dataset; failed attempt-1 excluded; no external labels exist or are licensed"
+  },
+  "outer_split": {
+    "split_salt": 20260926,
+    "rule": "random.Random(SPLIT_SALT * 1000003 + game_id).random() < 0.8",
+    "train_fraction": 0.8,
+    "split_map_path_out_of_git": "build/e0013/extract/split_map.json",
+    "split_map_sha256": "bb079a41630161bcd33a3a5df7890546dfe0c8329cc6bfed5ee35a83d4ada1ea",
+    "pinned_in": "research/manifests/e0013-artifact-pins.json (committed at 65c9d8c)",
+    "invariance": "map is a pure function of (SPLIT_SALT, game_id); F-U9-verified invariant under the F-U7 dedup-key change (measured == expected, unchanged: true, re-verified this session)"
+  },
+  "corpus": {
+    "positions_jsonl": {
+      "path": "build/e0013/extract/positions.jsonl",
+      "sha256": "19cee19027d5298756660fa4d57998c41144bcb3c92c0425008449ac6d31c48f",
+      "bytes": 12930266,
+      "rows": 74452,
+      "mode": "labelled",
+      "is_fitter_corpus": true,
+      "label_frame_uniform": true,
+      "label_is_result_only": true,
+      "label_is_game_constant": true,
+      "overlap_game_level": 0,
+      "overlap_normalized_fen_level": 0
+    },
+    "report_json_sha256": "7926464ba2344c7720271a517541390659ecd675c32efb2f50809282b175bc6b",
+    "report_src_commit": "2d971a50b9f12904c55fb8ede7c1d1f3c40546d7",
+    "train_rows": 59892,
+    "holdout_rows": 14560,
+    "train_games": 792,
+    "holdout_games": 208,
+    "audit_artifact": {
+      "labels_jsonl": {
+        "path": "build/e0013/labels/labels.jsonl",
+        "sha256": "2bf68bfb1da371ae6d3146885ccf4ee4b36192de956b2b4d183156a9aa0f7bc2",
+        "bytes": 9562117,
+        "games_labelled": 791,
+        "positions_labelled": 59892,
+        "holdout_games_refused": 208,
+        "holdout_positions_refused": 14560,
+        "label_counts": {"0.0": 26553, "0.5": 8729, "1.0": 24610},
+        "note": "TRAIN-only audit artifact from tools/e0013_label.py --verify-pins --src-commit 2d971a5; NOT the fitter's numerical input (rows carry no fen). 791 labelled train games vs the extractor's 792: the degenerate-mate exclusion lands on a train-side game."
+      }
+    }
+  },
+  "inner_partition": {
+    "inner_salt": 20261005,
+    "why_this_salt": "DISTINCT from every prior salt {20260914 E-0010, 20260922 E-0011, 20260924 E-0012 live, 20260926 E-0013 SPLIT_SALT}. F6's admissibility rule abs(S - S') * 1000003 > cap - 1 holds trivially. Named as an engineering act (Sponsor: 'naming the salt is an engineering act, open for implementation-engineer/systems-researcher'), 2026-10-05.",
+    "rule": "over OUTER-TRAIN games only: random.Random(INNER_SALT * 1000003 + game_id).random() < 0.8 -> inner_train else inner_val",
+    "inner_map_path_out_of_git": "build/e0013/inner_map.json",
+    "inner_map_sha256": "a9d7e29bfc8614c44dceafe40d7908aeec73c63f8497ea464a153458c173a8c1",
+    "inner_map_bytes": 11733,
+    "games_outer_train": 791,
+    "games_inner_train": 621,
+    "games_inner_val": 170,
+    "notes_vocabulary": "the inner map file's role keys keep the outer loader's vocabulary (train/holdout) but MEAN inner_train / inner_val (format kana-e0013-innersplit-v1)"
+  },
+  "frozen_floor": {
+    "floor_table_sha256": "711c460dce3747bf1dcad59eefada488960066c43967f638a818510303b667f1",
+    "floor_table_path": "build/e0013/floor.json",
+    "floor_table_bytes": 3086,
+    "src_epoch_commit": "dd4051a92daf834cf4a73f1878a0c894b0b6d1b8",
+    "src_epoch_note": "B3 staleness correction discharged per HO-0023's verification addendum: E-00014's assumed 7348f89 is a research-only commit that never touched src/; Ruling-3's 9b69e0a predates the FND-0035 F2/F3 repair (search.cpp only), so the pin tracks the measuring epoch, today dd4051a. src/eval.cpp is unchanged between 9b69e0a and dd4051a, so the floor table transcription is identical either way.",
+    "emitted_by": "python tools/e0013_eval.py --write-floor build/e0013/floor.json (exit 0)",
+    "same_bytes_discipline": "E-00014 abort 5: the floor used there MUST hash to this digest"
+  },
+  "F_items": {
+    "F1_fitting_method_family": "VALUE: deterministic full-batch L-BFGS-B (scipy.optimize.minimize, method='L-BFGS-B') on the mean logistic loss of sigmoid(clip(E_theta(p), -L, L)) + l2 * ||theta - theta0||^2; SPSA permanently withdrawn (leakage channel)",
+    "F2_seed_l2_budget_earlystop": {
+      "seed": 1,
+      "seed_note": "RECORDED ONLY: the fit has no RNG anywhere; L-BFGS-B full-batch from theta0 = the frozen floor is deterministic, and tools/e0013_fit.py PROVES determinism by fitting twice in-process and asserting byte-identical solution vectors (Test Method 4).",
+      "l2": 0.000001,
+      "maxiter": 1000,
+      "early_stopping": "NONE (full convergence under pinned scipy defaults; non-convergence within maxiter is reported as abort 6 in E-00014's vocabulary, never cured by raising the budget)",
+      "selection_baseline": "A PRIORI assignment: NO train-side selection sweep was executed before this pinning, so no value here is fitted to any measurement. E-00014's inner-val measurement is the first and only selection signal ever applied to these values; a value FIRST-assigned after the holdout is read is a tripwire FAIL by B4 sentence 2."
+    },
+    "clipping_bound_L": {
+      "value": 1200,
+      "rationale": "a priori, recorded openly: L = 1200 cp ('three pawns') marks the score past which the result is treated as effectively decisive. The cp-scale sigmoid saturates well below that, so near-maximum scores contribute near-zero gradient; E-0013 B2 named the 903/999 mate-dominance of the label distribution and left attainability UNMEASURED on purpose - measuring delta_star and s_d_inner under exactly this form is E-00014's reason to exist. If the gain is not measurable, branch X-3 fires; it is a valid result."
+    },
+    "F3_king_pst": "VALUE: FROZEN at the hand-tuned values (B5 s1); frozen_block_mismatches enforced by code in both fitter and evaluator",
+    "F4_suite": {
+      "identity": "research/manifests/fu14-tactical-suite-pins.json",
+      "identity_sha256": "475a3a2deab6912f40adb9c4da773b19f495c4d373dca51c538e7029a8c71cf1",
+      "suite_n200_sha256": "d89b61982e5a6fe186f468f40887558d54e52b443b19dddd7c4efd7ca21c2d5b",
+      "overlap_report_sha256": "86a72649e39583af6985560d7b0ca4f13c63ca09751e67d017313a68245ed981",
+      "N": 200,
+      "metric": "solution rate",
+      "tolerance": 0.02,
+      "status_clause": "E-0013 conjunct (f) is evaluated only if stage (a) PASSES; stage (b) (Tier-S SPRT) is NOT-EVALUATED-IN-THIS-RUN (B1 SHRINK)"
+    },
+    "F5_tertiles": {
+      "boundaries": [6, 17],
+      "tertiles_sha256": "be8c3e2e840852935d706cdfbb09e697322cbe0ef025fc795feaf4d158b2b31f",
+      "derived_from": "TRAIN positions only (59,892 rows) via tools/e0013_eval.py --write-tertiles-from (exit 0) over the extractor corpus + pinned split map; never derived from holdout phase values",
+      "phase_formula": "phase = min(1*N + 1*B + 2*R + 4*Q, 24), frozen integers"
+    },
+    "F6_fresh_sprt_salt": "VALUE: NO fresh salt is consumed by this record (stage b deferred under B1 SHRINK). The admissibility rule stands: abs(S - S') * 1000003 > cap - 1 vs {20260914, 20260922, 20260924, 20260926} at the deferred strength contract's filing time.",
+    "F7_stage_and_floor": "VALUE: S* = 6 for both arms; floor = the compiled-in table of the pinned src epoch (see frozen_floor above)",
+    "F8_label_frame": "VALUE: side-to-move frame (B2 s1): y = white_score if WHITE to move else 1 - white_score, white_score in {1, 0.5, 0} from res/a_white; frame error = FAIL of conjunct (c)",
+    "F9_dedup": "VALUE: GLOBAL dedup BEFORE the split, dedup key = the NORMALIZED FEN (placement + side to move + castling + EP; clocks excluded) per F-U7 / the S-0037 leakage ruling; survivor rule: first occurrence in (game_id, ply_index) order",
+    "F10_salt_distances_computed": {"20260914": 12000036, "20260922": 4000012, "20260924": 2000006, "floor_1999_clears_all": true},
+    "F11_loss_margin": {"floor": 0.002, "attainability": "POINTER to E-00014's measured delta_star / s_d_inner with the X-1 / X-2 / X-3 contingency table pre-registered (LOSS_MARGIN := max(0.002, 0.5 * delta_star) under X-1)"},
+    "F12_per_game_position_cap": "VALUE: NONE (cap = all quiet positions after exclusions and dedup); ruled not re-openable"
+  },
+  "environment": {
+    "python": "3.14.6",
+    "scipy": "1.18.1",
+    "numpy": "2.5.1",
+    "python_chess": "1.11.2",
+    "host": "single host, CPU only (E-0010/E-0011/E-0012 precedent); no engine binary is invoked by the offline stage"
+  },
+  "engine_epoch_for_stage_a": {
+    "note": "Stage (a) is a pure offline parameter-table comparison (two PARAMETER TABLES, not two engines, B1 s1). No engine binary participates in stage (a). The pinned binaries (EV-0010 686EA597..., EV-0011 A0951F4F...) are the roll-back anchors and would be the arms of the DEFERRED stage (b) contract. Deterministic-replay evidence for the current Release binary: EV-0011 (go depth 8 x3, bit-identical 1,061,850,542 nodes)."
+  }
+}
