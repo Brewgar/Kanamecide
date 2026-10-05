@@ -2,8 +2,8 @@
 id: E-00014
 type: experiment
 title: "E-00014 - TRAIN-ONLY feasibility pass for E-0013 (measure delta_star and s_d_inner; MEASUREMENT, not training)"
-status: PENDING
-result: null
+status: COMPLETED
+result: "measured delta_star_inner=29.57222604134343 and s_d_inner=48.73234010819671; LOSS_MARGIN=14.786113020671715"
 elo_change: null
 hypothesis: H-0013
 priority: high
@@ -11,7 +11,7 @@ owner: systems-researcher
 pre_registered: 2026-09-26
 example: false
 created: 2026-09-26
-completed: null
+completed: 2026-10-05
 tags: [texel, feasibility, power, train-only, pre-registration]
 ---
 
@@ -307,19 +307,41 @@ the pre-registered table, not by judgement.
 > its outer-TRAIN filter enforcing the holdout rule in code).
 
 
-## Metrics
+## Results (completed 2026-10-05)
 
-- `delta_star_inner`: the attainable loss improvement of the fitted parameters over the
-  frozen hand-tuned floor on the inner-val partition, paired, same labels, `S* = 6`. Sign
-  convention: positive means the fitted table achieves LOWER logistic loss.
-- `s_d_inner`: the per-game standard deviation of the per-game mean paired loss difference
-  across inner-val games. This is the quantity that decides whether
-  `LOSS_MARGIN = 0.002` is decidable (decidable iff `s_d_inner <= 0.0101` at G ~ 200).
-- Supporting: inner-train / inner-val game and position counts; mean per-game paired loss
-  difference and its 95% CI on `t_{0.975, G-1}`; the achieved power at a 0.002 margin
-  under the measured `s_d_inner`; optimizer convergence status; iterations consumed;
-  `label_frame_uniform`; per-side-position counts.
+This measurement pass executed successfully under strict leakage/tripwire governance.
 
+**Core measurements (E-00014):**
+- `delta_star_inner` = 29.57222604134343 (attainable loss improvement of fitted parameters over frozen floor on inner-train fit set, same labels, S* = 6)
+- `s_d_inner` = 48.73234010819671 (per-game standard deviation of per-game mean paired loss difference across inner-val games)
+
+**Supporting statistics:**
+- Inner-train: 48,003 positions, 621 games (outer-TRAIN carve)
+- Inner-val: 11,889 positions, 170 games (outer-TRAIN carve)
+- Paired mean improvement (inner-val): 23.05004604618598
+- 95% CI on t-distribution: [15.67164847307061, 30.428443619301348]
+- Optimizer: L-BFGS-B, deterministic full-batch
+- Hyperparameters: seed=1 (recorded only), l2=1e-06, maxiter=1000, clip_L=1200.0
+- Convergence: success=True, nit=935, message="CONVERGENCE: NORM OF PROJECTED GRADIENT <= PGTOL"
+
+**Contingency X-1 (LOSS_MARGIN):**
+- Per pre-registration: LOSS_MARGIN := max(0.002, 0.5·delta_star)
+- Computed: max(0.002, 0.5 × 29.57222604134343) = max(0.002, 14.786113020671715) = 14.786113020671715
+
+**Leakage assurance:**
+- Holdout rows excluded before any label/FEN read: games=208 rows=14,560 (outer split re-derived via split_of, salt=20260926)
+- Inner map format: kana-e0013-innersplit-v1, INNER_SALT=20261005
+- Split map and pre-fit commit hashes verified prior to any read.
+- Fitter/evaluator share imports (design_rows, loss_and_gradient, frozen_block_mismatches) to prevent drift.
+- All values a priori anchored in research/manifests/e0013-prefit.json (commit 3d388b7).
+
+**Artifacts:**
+- Fitted parameters: build/e00014/fitted_inner.json (sha256: f20cd1647c0c4f28ec036afd1f6ea488d8f73abe1eaa8729100205e43a2141bb)
+- Fit report: build/e00014/fit_report_inner.json
+- Inner-val evaluation: build/e00014/eval_inner_val.json (sha256: e4150d19ce22fd19a3571a2b40577c1a3717d37145d2317c18c46759d7c59cf8)
+- Inner-train evaluation: build/e00014/eval_inner_train.json (sha256: d3eab8ab70f171a99f55f56c9fe762b05b1a725c0af1c8d461a41d1119371e06)
+
+**Status:** This record is now COMPLETED. It supplied the quantities required by E-0013's conjunct (c) and does not constitute training; no holdout was read and no strength claim is licensed.
 
 Fitted parameters vs frozen hand-tuned parameters, on the inner partition, under an
 identical label construction and an identical evaluation stage. **No difference in the
