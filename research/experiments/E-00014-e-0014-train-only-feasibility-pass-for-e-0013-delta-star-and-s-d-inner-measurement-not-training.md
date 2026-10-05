@@ -232,6 +232,81 @@ too small to support a per-game SD at all, that is reported as `s_d_inner = null
 the game count, which routes E-0013 to contingency branch X-2 (INCONCLUSIVE-BY-POWER) by
 the pre-registered table, not by judgement.
 
+---
+
+## Addendum 2026-10-05 — Dedup-key correction (F-U11), by this record's owner seat, BEFORE the pass
+
+> Filed by **systems-researcher** on 2026-10-05, as E-00014's `owner:` and its executor seat,
+> under E-0013's execution-readiness checklist item 14 ("E-00014's own filter text … still
+> describes stage 4 as the exact-FEN dedup (F9) … Unblocked by: a dated amendment to E-00014
+> naming the new key at that clause, filed by its own executor seat **before** the pass") and
+> FND-0027 (F-U11)'s missing-artifact list (a). **APPEND-ONLY — nothing above this amendment
+> is edited or deleted; `status: PENDING` and `result: null` are unchanged.** No measurement
+> was run to produce this text; every claim below names either a committed tool or a committed
+> manifest.
+>
+> ### 1. Clause 1 — the Difference section's dedup clause is re-stated under the key in force
+>
+> Line 68 reads "plus the GLOBAL-before-split **exact-FEN** dedup (F9)". Per the S-0037
+> leakage ruling (option 1, F-U7) and E-0013 Addendum 2 (S-0039), the KEY is the
+> **normalized FEN** — piece placement + side to move + castling/EP rights; the halfmove
+> clock and the fullmove number are NOT part of a position's identity. The dedup ORDER
+> (GLOBAL, before the split; survivor = first occurrence in (game_id, ply_index) order) is
+> unchanged. The overlap-0 gate and this record's abort condition 3 compare on that same
+> normalized key. The sentence as filed above is retained verbatim as history; this clause
+> replaces its operative content.
+>
+> ### 2. Clause 2 — the stranded Test Method block is named, not moved
+>
+> The numbered list "1. Confirm the E-0013 split-map hash … 6. Report every pre-registered
+> output field below." sits after `## Sample Validity` (the 2026-09 handoff-corruption class,
+> same as E-00015's). It IS the Test Method. The block is **not** moved here because this
+> amendment precedes the pass and the pass's own reporting order reproduces its steps one by
+> one; readers are directed to it by this sentence. (E-00015's executor moved its block
+> verbatim under its canonical heading only because that record was closing at COMPLETED and
+> validate rejected the lifecycle flip; E-00014 remains PENDING and no such gate fires here.)
+>
+> ### 3. Clause 3 — the recorded-at-execution fields now exist, and their values are named
+>
+> Every input the pre-registration left to "execution" now exists and is hash-committed in
+> the single pre-fit commit `3d388b72e5c46ec448168187cbd7e7e0d40ea0f7`,
+> `research/manifests/e0013-prefit.json`:
+>
+> - E-0013 split-map SHA-256 (input, pre-existing):
+>   `bb079a41630161bcd33a3a5df7890546dfe0c8329cc6bfed5ee35a83d4ada1ea`
+> - pre-fit commit hash: `3d388b72e5c46ec448168187cbd7e7e0d40ea0f7`
+> - pinned `src/` commit for the frozen floor: `dd4051a92fafde...` — correction to this
+>   record's own assumption: the filing-time text says "assumed `7348f89` at filing time and
+>   to be VERIFIED, not assumed". Verified-and-false: `7348f89` is a research-only commit
+>   that never touched `src/` (HO-0023 verification). The pin tracks the measuring epoch per
+>   HO-0023's post-filing correction, today `dd4051a92daf834cf4a73f1878a0c894b0b6d1b8`.
+> - Frozen floor table SHA-256: `711c460dce3747bf1dcad59eefada488960066c43967f638a818510303b667f1`
+>   (emitted by `tools/e0013_eval.py --write-floor`, abort 5's same-bytes object).
+> - `INNER_SALT = 20261005` (distinct from 20260914 / 20260922 / 20260924 / 20260926, F6's
+>   admissibility rule holds trivially); inner game-id map SHA-256
+>   `a9d7e29bfc8614c44dceafe40d7908aeec73c63f8497ea464a153458c173a8c1` (791 outer-train games
+>   → 621 inner-train / 170 inner-val), named and hash-deriving in the pre-fit commit.
+> - Pinned hyperparameters (pointer values from the pre-fit commit): seed=1 (recorded-only;
+>   the fit consumes no RNG and proves byte-identical deterministic reruns), L2 `1e-6`,
+>   iteration budget `maxiter=1000`, early stopping NONE, clipping bound `L = 1200`,
+>   optimizer = scipy L-BFGS-B full-batch.
+> - Fitter corpus: `build/e0013/extract/positions.jsonl` SHA-256
+>   `19cee19027d5298756660fa4d57998c41144bcb3c92c0425008449ac6d31c48f` (mode labelled,
+>   74,452 rows, overlap-0 at both levels), pinned in
+>   `research/manifests/e0013-artifact-pins.json` and re-hashable at read time via
+>   `python tools/e0013_pins.py --read-corpus`.
+>
+> ### 4. What this amendment does NOT do
+>
+> It does not run the pass, does not read the holdout, does not fit anything, does not name
+> or measure `delta_star_inner` or `s_d_inner`, does not flip `status:`, and does not edit
+> any other record, tool, or `src/` file. Run conditions after this amendment: abort
+> condition 1 (split-map + pre-fit commit exist and match) is satisfiable; abort condition 7
+> (`research.py validate`) re-verified exit 0 this session; F-U14 is discharged (N=200, its
+> identity in the pre-fit commit); the trainer exists and is committed (`tools/e0013_fit.py`,
+> its outer-TRAIN filter enforcing the holdout rule in code).
+
+
 ## Metrics
 
 - `delta_star_inner`: the attainable loss improvement of the fitted parameters over the
