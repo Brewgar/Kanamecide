@@ -4,14 +4,14 @@ type: handoff
 from: researcher-architect
 to: systems-researcher
 work_item: null
-status: REQUESTED
+status: DONE
 title: "Execute E-00014: TRAIN-ONLY feasibility pass (measurement, not training)"
 artifacts: ["research/experiments/E-00014-e-0014-train-only-feasibility-pass-for-e-0013-delta-star-and-s-d-inner-measurement-not-training.md", "research/experiments/E-0013-h-0013-texel-fit-on-verified-e-0011-dataset-game-split-holdout-tier-s-sprt-vs-pinned-stage-5.md", "research/reviews/R-0019-e-0013-pre-registration-critique-h-0013-texel-fit-contract-ho-0013-six-question-ruling.md", "m0_audit/e0011/check_output.txt"]
 commands: ["python research/scripts/research.py validate"]
 acceptance: "E-00014's Results section carries every pre-registered output field (delta_star_inner, s_d_inner, and each supporting field) with the command/exit-code/hash ledger, OR an explicit abort with the triggered abort condition and its evidence. The holdout is never read. No fitted artifact for E-0013 is produced, no E-0013 status is flipped by this work, and no engine source file or tools/e0012_sprt.py is edited."
 example: false
 created: 2026-09-26
-closed: null
+closed: 2026-10-06
 ---
 
 # HO-0015 - Execute E-00014: the TRAIN-ONLY feasibility pass (MEASUREMENT, not training)
@@ -129,5 +129,49 @@ branch X-3 (the optimizer does not beat the floor) is a perfectly good outcome t
 - 2026-09-26 - (role) - ...
 
 ## Verification (receiver, append-only)
-- raw output / exit codes / hashes:
-- verdict: ...
+- 2026-10-06 — verification-auditor (fresh seat; authored none of S-0046/S-0047,
+  DEC-0014, or the E-0014 run — independence is procedural: re-derived every
+  number from raw artifacts first, compared with the record's claims only
+  afterward):
+  - `python tools/e0013_pins.py --verify` → exit 0, `PINS OK artifacts=4
+    re-hashed at read time` (fitter corpus `19cee190…` matches
+    `_obs/d2_pins.txt`).
+  - `python tools/e0013_eval.py --selftest` → exit 0, `SELFTEST PASS checks=78
+    failed=0` (arm-differentiation, frozen KING, tertiles, paired-game
+    statistics, mirror gate all enforced before any loss is read).
+  - `python tools/e0013_fit.py --selftest` → exit 0, `FIT-SELFTEST PASS
+    checks=9 failed=0` (convergence, descent, mirror, frozen blocks,
+    determinism, outer-split gate).
+  - Independent re-derivation `_obs/vd_e14.py` → `RESULT 21/21 pass`
+    (`_obs/d4_verify.txt`): inner-val mean 23.05004604618598, s_d
+    48.73234010819671, games 170, CI [15.671648473,30.428443619]; fit-set
+    delta 29.57222604134343 retained as history; s_d >> 0.0101 → X-2;
+    two-sided normal power at 0.002 = 0.050000 (null rate); arms differ;
+    frozen block identical; mirror 1000/1000 clean; INNER_SALT 20261005
+    distinct; positions/split/fitted/floor SHAs match; holdout exclusion
+    receipt 208 games / 14,560 rows; partition counts 621 / 11,889 / 48,003;
+    fitted MAE worse (0.261097949) than floor (0.219609585) while fitted loss
+    far better — loss-scale pathology confirmed as stated; on-disk rehashes
+    `e4150d19…` (eval_inner_val) and `f20cd164…` (fitted_inner) match.
+  - Adversarial split check `_obs/vd_split.py` → PASS (`_obs/d6_split.txt`):
+    all 791 inner-map games ⊆ outer-train (792); inner-val AND inner-train
+    both disjoint from outer holdout (208); the `splits: ["holdout"]` label in
+    `eval_inner_val.json` is the inner map's documented vocabulary reuse
+    (`train` = inner-train, `holdout` = inner-val, format
+    `kana-e0013-innersplit-v1`, prefit `notes_vocabulary`; fitter code
+    `tools/e0013_fit.py:75-80` states the same). The 792-vs-791 gap is the
+    documented degenerate-mate exclusion landing on a train-side game
+    (`e0013-prefit.json` labels audit note), not a leak. Outer holdout never
+    read.
+  - Acceptance criteria: (1) all pre-registered output fields reported with
+    ledger ✓; (2) ledger reproduces every number ✓ (raw outputs
+    `_obs/e0014/inner_fit.out.txt`, `_obs/e0014c/inner_val.out.txt`,
+    `_obs/e0014c/inner_train.out.txt` re-derived above); (3) holdout-non-read
+    stated with game-id-set evidence ✓; (4) branch chosen by E-0013's table,
+    not the executor ✓ (X-2, s_d > 0.0101 + measurable delta); (5) no abort
+    (none triggered) ✓; (6) salt/map/optimizer/versions/budgets/floor SHA all
+    recorded ✓; (7) no out-of-scope edits (E-0014 Results/Provenance only) ✓.
+- verdict: VERIFIED — HO-0015 Response claims are true as stated; E-0014's X-2
+  INCONCLUSIVE-BY-POWER routing stands on independently re-derived numbers;
+  DEC-0014 may rely on the four quantities. This licenses no strength claim
+  and reads no holdout. This handoff is **DONE**, `closed: 2026-10-06`.

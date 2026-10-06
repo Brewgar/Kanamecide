@@ -1213,10 +1213,13 @@
       "code_files": [
         "tools/e0011_check.py",
         "tools/e0012_sprt.py",
-        "tools/e0013_fit.py"
+        "tools/e0013_eval.py",
+        "tools/e0013_fit.py",
+        "tools/e0013_pins.py"
       ],
       "commits_mentioned": [
         "1119371",
+        "19cee19",
         "3d388b7",
         "43a2141",
         "4ada1ea",
@@ -1229,7 +1232,7 @@
       "kind": "handoff",
       "record": "HO-0015",
       "rel": "handoffs/HO-0015-execute-e-0014-train-only-feasibility-pass-measurement-not-training.md",
-      "status": "REQUESTED",
+      "status": "DONE",
       "title": "Execute E-00014: TRAIN-ONLY feasibility pass (measurement, not training)"
     },
     {
@@ -1846,6 +1849,20 @@
     },
     {
       "code_files": [
+        "tools/e0013_pins.py"
+      ],
+      "commits_mentioned": [
+        "e4150d1",
+        "f20cd16"
+      ],
+      "kind": "session",
+      "record": "S-0048",
+      "rel": "sessions/S-0048-ho-0015-independent-verification-verified-handoff-closed.md",
+      "status": "CLOSED",
+      "title": "HO-0015 independent verification (fresh auditor seat): 21/21 re-derivation + adversarial split proof, VERIFIED, handoff closed"
+    },
+    {
+      "code_files": [
         "tools/e0011_check.py",
         "tools/e0011_generate.py",
         "tools/e0012_sprt.py",
@@ -2131,7 +2148,7 @@
       "title": "Gate 0 unrunnable: Device Guard hard-blocks kana.exe (every build, every path)"
     }
   ],
-  "generated": "2026-10-06T17:20:40",
+  "generated": "2026-10-06T17:39:43",
   "metrics": {
     "by_kind": {
       "agent_profile": 1,
@@ -2153,21 +2170,21 @@
       "report": 13,
       "review": 27,
       "round_megaprompt": 2,
-      "session": 46,
+      "session": 48,
       "work": 9
     },
     "by_status": {
       "ACTIVE": 17,
-      "CLOSED": 46,
+      "CLOSED": 48,
       "COMPLETED": 37,
-      "DONE": 26,
+      "DONE": 27,
       "DRAFT": 1,
       "IN_PROGRESS": 1,
       "OPEN": 41,
       "PENDING": 4,
       "RECORDED": 2,
       "REGISTERED": 9,
-      "REQUESTED": 5,
+      "REQUESTED": 4,
       "RESOLVED": 27,
       "RUNNING": 1,
       "SUPERSEDED": 4
@@ -2176,10 +2193,10 @@
     "contradiction_candidates": 0,
     "dangling_ids": 18,
     "duplicate_candidates": 2,
-    "edges_total": 4742,
+    "edges_total": 4765,
     "legacy_experiments_without_pre_registration": 6,
     "open_questions": 8,
-    "records_total": 267,
+    "records_total": 269,
     "revival_candidates": 6
   },
   "questions_all": [
@@ -2582,33 +2599,6 @@
   "timeline_tail": [
     {
       "example": false,
-      "id": "DEC-0012",
-      "kind": "decision",
-      "rel": "decisions/DEC-0012-claim-finding-ledger-and-deterministic-lint-gate.md",
-      "status": "ACTIVE",
-      "title": "Claim/finding ledger (CLM/FND record kinds) with a deterministic severity-vocabulary lint gate, built as a derived intelligence layer",
-      "when": "2026-09-30"
-    },
-    {
-      "example": false,
-      "id": "FND-0023",
-      "kind": "finding",
-      "rel": "findings/FND-0023-f-u7-change-the-dedup-key-in-tools-e0013-extract-py-to-the-normalized-fen.md",
-      "status": "RESOLVED",
-      "title": "F-U7 Change the dedup key in tools/e0013_extract.py to the normalized FEN",
-      "when": "2026-09-30"
-    },
-    {
-      "example": false,
-      "id": "FND-0024",
-      "kind": "finding",
-      "rel": "findings/FND-0024-f-u8-repair-the-self-test-that-passed-for-the-wrong-reason.md",
-      "status": "RESOLVED",
-      "title": "F-U8 Repair the self-test that passed for the wrong reason",
-      "when": "2026-09-30"
-    },
-    {
-      "example": false,
       "id": "FND-0025",
       "kind": "finding",
       "rel": "findings/FND-0025-f-u9-re-derive-and-re-commit-the-split-map-and-the-artifacts.md",
@@ -2938,6 +2928,33 @@
       "rel": "experiments/E-00016-e-0016-elo-scaled-texel-objective-feasibility-fit-x-2-follow-up-train-only-inner-pass-first-holdout-gated.md",
       "status": "PENDING",
       "title": "E-0016 - Elo-scaled Texel objective feasibility + fit (X-2 follow-up; TRAIN-only inner pass first, holdout gated)",
+      "when": "2026-10-06"
+    },
+    {
+      "example": false,
+      "id": "HO-0015",
+      "kind": "handoff",
+      "rel": "handoffs/HO-0015-execute-e-0014-train-only-feasibility-pass-measurement-not-training.md",
+      "status": "DONE",
+      "title": "Execute E-00014: TRAIN-ONLY feasibility pass (measurement, not training)",
+      "when": "2026-10-06"
+    },
+    {
+      "example": false,
+      "id": "S-0047",
+      "kind": "session",
+      "rel": "sessions/S-0047-dec-0014-completion-project-state-repair-validate-ok.md",
+      "status": "CLOSED",
+      "title": "DEC-0014 X-2 re-decision completion + project_state staleness repair + derived regen (validate OK)",
+      "when": "2026-10-06"
+    },
+    {
+      "example": false,
+      "id": "S-0048",
+      "kind": "session",
+      "rel": "sessions/S-0048-ho-0015-independent-verification-verified-handoff-closed.md",
+      "status": "CLOSED",
+      "title": "HO-0015 independent verification (fresh auditor seat): 21/21 re-derivation + adversarial split proof, VERIFIED, handoff closed",
       "when": "2026-10-06"
     }
   ]

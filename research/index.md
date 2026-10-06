@@ -212,7 +212,6 @@
 ## Handoffs (open)
 
 - [HO-0005](handoffs/HO-0005-verify-w-0003-round2-agreement-matrix-backfill-r-0013.md) — Verify W-0003: R-0013 (Round-2 AGREEMENT_MATRIX backfill) and the untouched matrix — status=REQUESTED
-- [HO-0015](handoffs/HO-0015-execute-e-0014-train-only-feasibility-pass-measurement-not-training.md) — Execute E-00014: TRAIN-ONLY feasibility pass (measurement, not training) — status=REQUESTED
 - [HO-0017](handoffs/HO-0017-audit-e0013-l5-flip-q1-q8.md) — Independently verify the E-0013 L5-only lifecycle flip (R-0024 Q1-Q8) — status=REQUESTED
 - [HO-0018](handoffs/HO-0018-implement-f-u7-f-u13-normalized-fen-dedup-key.md) — Implement the E-0013 Option-(1) leakage remediation F-U7..F-U13: the dedup key is the normalized FEN — status=REQUESTED
 - [HO-0024](handoffs/HO-0024-hw-3-make-the-release-binary-digest-stable-brepro-or-equivalent-so-ev-00nn-pins-are-reproducible.md) — HW-3: make the Release binary digest-stable (/Brepro or equivalent) so EV-00NN pins are reproducible — status=REQUESTED
@@ -232,6 +231,7 @@
 - [HO-0012](handoffs/HO-0012-independent-verification-w-0005-e-0012-live-runs-run-0002-and-run-0003.md) — Independent verification: W-0005 E-0012 live runs RUN-0002 and RUN-0003 — status=DONE
 - [HO-0013](handoffs/HO-0013-critique-e-0013-pre-registration-h-0013-texel-fit-contract-before-any-running.md) — Critique E-0013 pre-registration (H-0013 Texel fit contract) before any running — status=DONE
 - [HO-0014](handoffs/HO-0014-re-critique-e-0013-addendum-vs-r-0019-findings-b1-b7-discharge-verification-only.md) — Re-critique E-0013 addendum vs R-0019 findings B1-B7 (discharge verification only) — status=DONE
+- [HO-0015](handoffs/HO-0015-execute-e-0014-train-only-feasibility-pass-measurement-not-training.md) — Execute E-00014: TRAIN-ONLY feasibility pass (measurement, not training) — status=DONE
 - [HO-0016](handoffs/HO-0016-execute-e-0015-count-only-realized-yield-pass-measurement-not-training.md) — Execute E-00015: count-only realized usable quiet yield pass (measurement, not training) — status=DONE
 - [HO-0019](handoffs/HO-0019-verify-e0013-s0037-leakage-ruling.md) — Independently verify the E-0013 leakage ruling (S-0037 addendum): was option (1) chosen on the contract's own terms? — status=DONE
 - [HO-0020](handoffs/HO-0020-owner-repair-truncated-s-0037-leakage-addendum-fnd-0030-and-stale-z2-p4-fnd-0031.md) — Owner repair: the S-0037 leakage addendum on E-0013 is truncated/interleaved (FND-0030, blocking) and Z2's own proof row P4 is stale and self-referential (FND-0031, minor) — status=DONE
@@ -297,6 +297,8 @@
 - [S-0044](sessions/S-0044-round-six-umbrella-t001-t006-w0006-root-scratch-cleanup-reattestation-addenda-e0013-gate-readiness-fnd-0035-ho-0022-0023.md) — Round-6 umbrella for the six seat sessions T-001..T-006 (W-0006 root-scratch clean-up, D-0002..D-0006 + E-00004/E-00005 re-attestation addenda, E-0013 gate-readiness, FND-0035 census, HO-0022/HO-0023) + the normalization commit — status=CLOSED
 - [S-0045](sessions/S-0045-wave-resume-land-sponsor-rulings-1-4-post-inversion-fnd-0034-disposition-ev-0010-ev-0011-re-pin-under-dec-0013-w-0009-ho-0024-filed-ho-0022-owner-verdict-ho-0023-blocker-discharges.md) — wave resume: land Sponsor rulings 1-4 post-inversion (FND-0034 disposition, EV-0010/EV-0011 re-pin under DEC-0013, W-0009/HO-0024 filed, HO-0022 owner verdict, HO-0023 blocker discharges) — status=CLOSED
 - [S-0046](sessions/S-0046-e-0014-branch-correction-x-2-project-state-repair-ho-0015-response.md) — E-0014 branch-routing correction X-1 to X-2 INCONCLUSIVE-BY-POWER + project_state staleness repair + HO-0015 executor response — status=CLOSED
+- [S-0047](sessions/S-0047-dec-0014-completion-project-state-repair-validate-ok.md) — DEC-0014 X-2 re-decision completion + project_state staleness repair + derived regen (validate OK) — status=CLOSED
+- [S-0048](sessions/S-0048-ho-0015-independent-verification-verified-handoff-closed.md) — HO-0015 independent verification (fresh auditor seat): 21/21 re-derivation + adversarial split proof, VERIFIED, handoff closed — status=CLOSED
 
 ## Unrendered Records (bug — report this)
 
