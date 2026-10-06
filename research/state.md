@@ -1,7 +1,7 @@
 # Research State (GENERATED — do not edit)
 
 Derived from the record store by `research.py state`. Regenerate after every change.
-Generated: 2026-10-06T23:56:16; schema 2.
+Generated: 2026-10-07T00:15:06; schema 2.
 Every entry is a PROJECTION of the linked records — follow them before believing.
 
 ## Current best beliefs (hypotheses with measured weight)
@@ -44,7 +44,6 @@ Every entry is a PROJECTION of the linked records — follow them before believi
 - hypothesis **H-0002-magic-stub** Magic Bitboards with PEXT Provide >=3x NPS Speedup — SUPERSEDED. No revisit condition recorded.
 
 ## Recent timeline
-- 2026-10-04 handoff HO-0016 (DONE) : Execute E-00015: count-only realized usable quiet yield pass (measurement, not training)
 - 2026-10-04 handoff HO-0022 (DONE) : Spot-check 10 random rows of MAN-W0006-ROOT-SCRATCH-001 (root-scratch debt reduction)
 - 2026-10-04 handoff HO-0023 (DONE) : Blockers to GO on the E-0013 gate experiments E-00014 / E-00015, with a NO-GO on both and one unblocking amendment named for E-00015
 - 2026-10-04 session S-0045 (CLOSED) : wave resume: land Sponsor rulings 1-4 post-inversion (FND-0034 disposition, EV-0010/EV-0011 re-pin under DEC-0013, W-0009/HO-0024 filed, HO-0022 owner verdict, HO-0023 blocker discharges)
@@ -58,6 +57,7 @@ Every entry is a PROJECTION of the linked records — follow them before believi
 - 2026-10-06 review R-0028 (COMPLETED) : R 0028 adversarial review of the e 0016 elo scaled pre registration missing elo scale tooling blocks execution
 - 2026-10-06 session S-0047 (CLOSED) : DEC-0014 X-2 re-decision completion + project_state staleness repair + derived regen (validate OK)
 - 2026-10-06 session S-0048 (CLOSED) : HO-0015 independent verification (fresh auditor seat): 21/21 re-derivation + adversarial split proof, VERIFIED, handoff closed
+- 2026-10-06 session S-0049 (CLOSED) : W-0010 Elo-scale tooling implemented + backward-compat proven + E-0016 amended + HO-0025 executor handoff filed
 - 2026-10-06 work W-0010 (OPEN) : Elo-scale parameter for the fit/eval tooling: sigmoid(clip(E/D,-L,L)) with D pinned, D=1 backward-compatible, selftests extended (unblocks E-0016 stage a)
 
 ## Metrics
@@ -83,12 +83,12 @@ Every entry is a PROJECTION of the linked records — follow them before believi
     "report": 13,
     "review": 28,
     "round_megaprompt": 2,
-    "session": 48,
+    "session": 49,
     "work": 10
   },
   "by_status": {
     "ACTIVE": 17,
-    "CLOSED": 48,
+    "CLOSED": 49,
     "COMPLETED": 38,
     "DONE": 27,
     "DRAFT": 1,
@@ -104,12 +104,12 @@ Every entry is a PROJECTION of the linked records — follow them before believi
   },
   "code_files": 31,
   "contradiction_candidates": 0,
-  "dangling_ids": 19,
+  "dangling_ids": 18,
   "duplicate_candidates": 2,
-  "edges_total": 4872,
+  "edges_total": 4889,
   "legacy_experiments_without_pre_registration": 6,
   "open_questions": 8,
-  "records_total": 272,
+  "records_total": 273,
   "revival_candidates": 6
 }
 

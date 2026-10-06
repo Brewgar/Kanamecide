@@ -1910,6 +1910,22 @@
     },
     {
       "code_files": [
+        "tools/e0013_eval.py",
+        "tools/e0013_fit.py",
+        "tools/e0013_pins.py"
+      ],
+      "commits_mentioned": [
+        "48a657c",
+        "49338d8"
+      ],
+      "kind": "session",
+      "record": "S-0049",
+      "rel": "sessions/S-0049-w-0010-elo-scale-tooling-backward-compat-e-0016-amendment-ho-0025-filed.md",
+      "status": "CLOSED",
+      "title": "W-0010 Elo-scale tooling implemented + backward-compat proven + E-0016 amended + HO-0025 executor handoff filed"
+    },
+    {
+      "code_files": [
         "tools/e0011_check.py",
         "tools/e0011_generate.py",
         "tools/e0012_sprt.py",
@@ -2208,7 +2224,7 @@
       "title": "Gate 0 unrunnable: Device Guard hard-blocks kana.exe (every build, every path)"
     }
   ],
-  "generated": "2026-10-06T23:56:16",
+  "generated": "2026-10-07T00:15:06",
   "metrics": {
     "by_kind": {
       "agent_profile": 1,
@@ -2230,12 +2246,12 @@
       "report": 13,
       "review": 28,
       "round_megaprompt": 2,
-      "session": 48,
+      "session": 49,
       "work": 10
     },
     "by_status": {
       "ACTIVE": 17,
-      "CLOSED": 48,
+      "CLOSED": 49,
       "COMPLETED": 38,
       "DONE": 27,
       "DRAFT": 1,
@@ -2251,12 +2267,12 @@
     },
     "code_files": 31,
     "contradiction_candidates": 0,
-    "dangling_ids": 19,
+    "dangling_ids": 18,
     "duplicate_candidates": 2,
-    "edges_total": 4872,
+    "edges_total": 4889,
     "legacy_experiments_without_pre_registration": 6,
     "open_questions": 8,
-    "records_total": 272,
+    "records_total": 273,
     "revival_candidates": 6
   },
   "questions_all": [
@@ -2659,15 +2675,6 @@
   "timeline_tail": [
     {
       "example": false,
-      "id": "FND-0028",
-      "kind": "finding",
-      "rel": "findings/FND-0028-f-u12-route-the-new-corpus-limitation-into-sample-validity.md",
-      "status": "OPEN",
-      "title": "F-U12 Route the new corpus limitation into Sample Validity",
-      "when": "2026-09-30"
-    },
-    {
-      "example": false,
       "id": "FND-0029",
       "kind": "finding",
       "rel": "findings/FND-0029-f-u13-the-gate-stays-blocking-do-not-weaken-it-to-make-the-run-pass.md",
@@ -3006,6 +3013,15 @@
       "rel": "sessions/S-0048-ho-0015-independent-verification-verified-handoff-closed.md",
       "status": "CLOSED",
       "title": "HO-0015 independent verification (fresh auditor seat): 21/21 re-derivation + adversarial split proof, VERIFIED, handoff closed",
+      "when": "2026-10-06"
+    },
+    {
+      "example": false,
+      "id": "S-0049",
+      "kind": "session",
+      "rel": "sessions/S-0049-w-0010-elo-scale-tooling-backward-compat-e-0016-amendment-ho-0025-filed.md",
+      "status": "CLOSED",
+      "title": "W-0010 Elo-scale tooling implemented + backward-compat proven + E-0016 amended + HO-0025 executor handoff filed",
       "when": "2026-10-06"
     },
     {
