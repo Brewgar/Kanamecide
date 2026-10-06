@@ -5,8 +5,8 @@
 > decisions in `research/decisions/`. Do not add unverified claims to this file.
 
 <!-- research-meta
-last_updated: 2026-10-04
-reflects: [DEC-0001, DEC-0002, DEC-0003, DEC-0004, DEC-0006, DEC-0007, DEC-0008, DEC-0009, DEC-0010, DEC-0011, DEC-0012, DEC-0013, E-0002, E-00003, E-00006, E-00007, E-00008, E-00009, E-0010, E-0011, E-0012, E-00015]
+last_updated: 2026-10-05
+reflects: [DEC-0001, DEC-0002, DEC-0003, DEC-0004, DEC-0006, DEC-0007, DEC-0008, DEC-0009, DEC-0010, DEC-0011, DEC-0012, DEC-0013, E-0002, E-00003, E-00006, E-00007, E-00008, E-00009, E-0010, E-0011, E-0012, E-00015, E-00014]
 not_reflected: []
 -->
 > The `research-meta` block above is machine-checked by `research.py validate`:
@@ -55,9 +55,15 @@ evaluation and learning.
   1,000-record local dataset is pinned by SHA-256 in RUN-0001; independent verification
   is requested by HO-0009. **E-0013's yield gate E-00015 measured 2026-10-04 (count-only,
   no labels): realized usable quiet yield 74,452 (train 59,892 ≥ 30,000 floor → all-terms
-  scope stands; five accounting identities hold; overlap-0).** E-00015 is COMPLETED/PASS;
-  pending: HO-0016 verification, the E-00014 blockers (no trainer exists), then E-0013
-  itself. Evidence binaries are content-addressed archived artifacts (DEC-0013, 2026-10-03).
+  scope stands; five accounting identities hold; overlap-0).** E-00015 is COMPLETED/PASS
+  and independently VERIFIED (R-05: 29/29 checks PASS, HO-0016 DONE 2026-10-04).
+  **E-0013's TRAIN-ONLY feasibility gate E-00014 measured 2026-10-05 (no holdout read):
+  s_d_inner=48.73234010819671 (95% CI [44.0445,54.5457], df=169), delta_star_inner
+  (inner-val, paired)=23.05004604618598, achieved power at 0.002=0.050000 — branch X-2
+  INCONCLUSIVE-BY-POWER, so no LOSS_MARGIN is widened and no conjunct-(c) evaluation
+  fires; F-U3 re-decision (FND-0010, OPEN) is armed.** E-00014 is COMPLETED; HO-0015
+  closure (Response/Verification) is still open. Remaining: E-0013's own holdout comparison
+  has not run. Evidence binaries are content-addressed archived artifacts (DEC-0013, 2026-10-03).
 
 ## Certified Perft Anchors (SACRED — single protected home)
 
@@ -226,6 +232,9 @@ below its pre-registered ≥150 bar.
    verified E-0011 dataset only after downstream leakage checks pass.
 
 ## Last Updated
+2026-10-05 (E-00014 COMPLETED + branch corrected to X-2 INCONCLUSIVE-BY-POWER:
+s_d_inner=48.73 >> 0.0101, power at 0.002=0.05; prefit e0013-prefit.json + labelled
+fitter corpus 19cee190... pinned; HO-0015 closure still open)
 2026-09-25 (verification chain closed: R-0017 VERIFIED → W-0001 DONE (E-0011 1,000-game
 dataset); E-0012 live validation executed under HO-0011 — RUN-0002 known-difference H1 @
 game 125 ∈ [80, 800], RUN-0003 N4 null no-H1 at cap 240, colour-corrected band pass —

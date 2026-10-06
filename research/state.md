@@ -1,7 +1,7 @@
 # Research State (GENERATED — do not edit)
 
 Derived from the record store by `research.py state`. Regenerate after every change.
-Generated: 2026-10-04T18:57:04; schema 2.
+Generated: 2026-10-05T23:12:30; schema 2.
 Every entry is a PROJECTION of the linked records — follow them before believing.
 
 ## Current best beliefs (hypotheses with measured weight)
@@ -10,9 +10,9 @@ Every entry is a PROJECTION of the linked records — follow them before believi
 - **H-0005** Magic Bitboards with PEXT Provide >=3x NPS Speedup — status OPEN; confidence 0.45 (plausible); tested by E-00003 [unverdicted], E-0002 [unverdicted]. (hypotheses/H-0005-magic-bitboards-with-pext-provide-3x-nps-speedup.md)
 - **H-0006** PEXT/magic sliders raise perft NPS 1.3-2.5x (not >=3x) at O2 vs current ray-stepping — status OPEN; confidence 0.6 (likely); tested by E-00003 [unverdicted], E-00005 [unverdicted]. (hypotheses/H-0006-pext-magic-sliders-raise-perft-nps-1-3-2-5x-not-3x-at-o2-vs-current-ray-stepping.md)
 - **H-0008** Move ordering dominates raw NPS for Phase-2 time-to-depth — status OPEN; confidence 0.7 (likely); tested by E-00006 [positive], E-00007 [positive]. (hypotheses/H-0008-move-ordering-dominates-raw-nps-for-phase-2-time-to-depth.md)
-- **H-0010** SPRT-based engine comparison harness is required before any version claim is trustworthy — status OPEN; confidence 0.85 (strongly supported); tested by E-00006 [positive], E-00014 [unverdicted], E-0012 [positive], E-0013 [unverdicted]. (hypotheses/H-0010-sprt-based-engine-comparison-harness-is-required-before-any-version-claim-is-trustworthy.md)
+- **H-0010** SPRT-based engine comparison harness is required before any version claim is trustworthy — status OPEN; confidence 0.85 (strongly supported); tested by E-00006 [positive], E-00014 [neutral], E-0012 [positive], E-0013 [unverdicted]. (hypotheses/H-0010-sprt-based-engine-comparison-harness-is-required-before-any-version-claim-is-trustworthy.md)
 - **H-0012** Search fast-path move invariants - king-capture exclusion and promo-phantom asserts — status OPEN; confidence 0.7 (likely); tested by E-00008 [positive], E-0002 [unverdicted]. (hypotheses/H-0012-search-fast-path-move-invariants-king-capture-exclusion-and-promo-phantom-asserts.md)
-- **H-0013** Tapered eval plus Texel protocol - mg-eg interpolation and quiet-label holdout design — status OPEN; confidence 0.6 (likely); tested by E-00014 [unverdicted], E-00015 [positive], E-0010 [negative], E-0011 [positive], E-0013 [unverdicted]. (hypotheses/H-0013-tapered-eval-plus-texel-protocol-mg-eg-interpolation-and-quiet-label-holdout-design.md)
+- **H-0013** Tapered eval plus Texel protocol - mg-eg interpolation and quiet-label holdout design — status OPEN; confidence 0.6 (likely); tested by E-00014 [neutral], E-00015 [positive], E-0010 [negative], E-0011 [positive], E-0013 [unverdicted]. (hypotheses/H-0013-tapered-eval-plus-texel-protocol-mg-eg-interpolation-and-quiet-label-holdout-design.md)
 - **H-0014** Board state integrity audit - halfmove EP-key castling-rights round-trip tests — status OPEN; confidence 0.6 (likely); tested by E-0002 [unverdicted]. (hypotheses/H-0014-board-state-integrity-audit-halfmove-ep-key-castling-rights-round-trip-tests.md)
 
 ## Open questions
@@ -37,14 +37,13 @@ Every entry is a PROJECTION of the linked records — follow them before believi
 
 ## Revival candidates (revisit when conditions change)
 - decision **DEC-0005** Legal move generation — SUPERSEDED. No revisit condition recorded.
+- experiment **E-00014** E-00014 - TRAIN-ONLY feasibility pass for E-0013 (measure delta_star and s_d_inner; MEASUREMENT, not training) — COMPLETED. No revisit condition recorded.
 - experiment **E-0010** E-EVAL — Tapered Hand-Tuned Evaluation (term-by-term self-play Elo attribution) — COMPLETED. No revisit condition recorded.
 - hypothesis **H-0002-classical-stub** SUPERSEDED placeholder (renumbered to H-0003/H-0004/H-0005 on 2026-09-09) — SUPERSEDED. No revisit condition recorded.
 - hypothesis **H-0002-hand-tuned-stub** Hand-Tuned Evaluation Baseline Sufficient for 2500+ Elo — SUPERSEDED. No revisit condition recorded.
 - hypothesis **H-0002-magic-stub** Magic Bitboards with PEXT Provide >=3x NPS Speedup — SUPERSEDED. No revisit condition recorded.
 
 ## Recent timeline
-- 2026-10-02 review R-0027 (COMPLETED) : R 0027 independent audit of w 0008 imem 2 1 0 infrastructure and the fnd 0032 self closure ho 0021
-- 2026-10-02 session S-0043 (CLOSED) : imem 2.1.0 + normative INFRASTRUCTURE.md + chief-architect seat + FND-0032 Gate-3 routing
 - 2026-10-03 decision DEC-0013 (ACTIVE) : Evidence pins are content-addressed archived artifacts; live build outputs are never pin targets
 - 2026-10-03 evidence EV-0011 (REGISTERED) : Post-FND-0035 F2/F3 repair binary + validation artifacts (qsearch ply/repetition guard, in-check stand-pat suppression)
 - 2026-10-03 finding FND-0035 (OPEN) : Q-0002 pre-eval census of src/search.cpp|tt.cpp: PVS/aspiration/LMR/null-move/futility are ALL absent; ordering+qsearch exist; ORDER_STAGE is one boolean so E-0007's per-lever attribution is NOT reproducible from current source
@@ -58,6 +57,8 @@ Every entry is a PROJECTION of the linked records — follow them before believi
 - 2026-10-04 handoff HO-0023 (DONE) : Blockers to GO on the E-0013 gate experiments E-00014 / E-00015, with a NO-GO on both and one unblocking amendment named for E-00015
 - 2026-10-04 session S-0045 (CLOSED) : wave resume: land Sponsor rulings 1-4 post-inversion (FND-0034 disposition, EV-0010/EV-0011 re-pin under DEC-0013, W-0009/HO-0024 filed, HO-0022 owner verdict, HO-0023 blocker discharges)
 - 2026-10-04 work W-0006 (DONE) : Root-scratch debt reduction: shrink root_grandfathered.txt with itemized deletions
+- 2026-10-05 experiment E-00014 (COMPLETED) : E-00014 - TRAIN-ONLY feasibility pass for E-0013 (measure delta_star and s_d_inner; MEASUREMENT, not training)
+- 2026-10-05 session S-0046 (CLOSED) : E-0014 branch-routing correction X-1 to X-2 INCONCLUSIVE-BY-POWER + project_state staleness repair + HO-0015 executor response
 
 ## Metrics
 ```
@@ -82,18 +83,18 @@ Every entry is a PROJECTION of the linked records — follow them before believi
     "report": 13,
     "review": 27,
     "round_megaprompt": 2,
-    "session": 45,
+    "session": 46,
     "work": 9
   },
   "by_status": {
     "ACTIVE": 16,
-    "CLOSED": 45,
-    "COMPLETED": 36,
+    "CLOSED": 46,
+    "COMPLETED": 37,
     "DONE": 26,
     "DRAFT": 1,
     "IN_PROGRESS": 1,
     "OPEN": 41,
-    "PENDING": 4,
+    "PENDING": 3,
     "RECORDED": 2,
     "REGISTERED": 9,
     "REQUESTED": 5,
@@ -101,15 +102,15 @@ Every entry is a PROJECTION of the linked records — follow them before believi
     "RUNNING": 1,
     "SUPERSEDED": 4
   },
-  "code_files": 30,
+  "code_files": 31,
   "contradiction_candidates": 0,
   "dangling_ids": 18,
   "duplicate_candidates": 2,
-  "edges_total": 4722,
+  "edges_total": 4735,
   "legacy_experiments_without_pre_registration": 6,
   "open_questions": 8,
-  "records_total": 264,
-  "revival_candidates": 5
+  "records_total": 265,
+  "revival_candidates": 6
 }
 
 ```

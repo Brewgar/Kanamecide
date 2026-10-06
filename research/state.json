@@ -301,10 +301,10 @@
         {
           "id": "E-00014",
           "rel": "experiments/E-00014-e-0014-train-only-feasibility-pass-for-e-0013-delta-star-and-s-d-inner-measurement-not-training.md",
-          "result": "",
-          "status": "PENDING",
+          "result": "INCONCLUSIVE-BY-POWER (branch X-2): s_d_inner=48.73234010819671 > 0.0101; delta_star_inner (inner-val, paired)=23.05004604618598; achieved power at 0.002=0.0500",
+          "status": "COMPLETED",
           "title": "E-00014 - TRAIN-ONLY feasibility pass for E-0013 (measure delta_star and s_d_inner; MEASUREMENT, not training)",
-          "verdict": "unverdicted"
+          "verdict": "neutral"
         },
         {
           "id": "E-0012",
@@ -407,10 +407,10 @@
         {
           "id": "E-00014",
           "rel": "experiments/E-00014-e-0014-train-only-feasibility-pass-for-e-0013-delta-star-and-s-d-inner-measurement-not-training.md",
-          "result": "",
-          "status": "PENDING",
+          "result": "INCONCLUSIVE-BY-POWER (branch X-2): s_d_inner=48.73234010819671 > 0.0101; delta_star_inner (inner-val, paired)=23.05004604618598; achieved power at 0.002=0.0500",
+          "status": "COMPLETED",
           "title": "E-00014 - TRAIN-ONLY feasibility pass for E-0013 (measure delta_star and s_d_inner; MEASUREMENT, not training)",
-          "verdict": "unverdicted"
+          "verdict": "neutral"
         },
         {
           "id": "E-00015",
@@ -850,15 +850,19 @@
     {
       "code_files": [
         "src/eval.cpp",
-        "src/eval.h"
+        "src/eval.h",
+        "tools/e0013_eval.py",
+        "tools/e0013_fit.py",
+        "tools/e0013_pins.py"
       ],
       "commits_mentioned": [
+        "3d388b7",
         "7348f89"
       ],
       "kind": "experiment",
       "record": "E-00014",
       "rel": "experiments/E-00014-e-0014-train-only-feasibility-pass-for-e-0013-delta-star-and-s-d-inner-measurement-not-training.md",
-      "status": "PENDING",
+      "status": "COMPLETED",
       "title": "E-00014 - TRAIN-ONLY feasibility pass for E-0013 (measure delta_star and s_d_inner; MEASUREMENT, not training)"
     },
     {
@@ -1193,9 +1197,20 @@
     {
       "code_files": [
         "tools/e0011_check.py",
-        "tools/e0012_sprt.py"
+        "tools/e0012_sprt.py",
+        "tools/e0013_fit.py"
       ],
-      "commits_mentioned": [],
+      "commits_mentioned": [
+        "1119371",
+        "3d388b7",
+        "43a2141",
+        "4ada1ea",
+        "bb079a4",
+        "d3eab8a",
+        "d7c59cf",
+        "e4150d1",
+        "f20cd16"
+      ],
       "kind": "handoff",
       "record": "HO-0015",
       "rel": "handoffs/HO-0015-execute-e-0014-train-only-feasibility-pass-measurement-not-training.md",
@@ -2101,7 +2116,7 @@
       "title": "Gate 0 unrunnable: Device Guard hard-blocks kana.exe (every build, every path)"
     }
   ],
-  "generated": "2026-10-04T18:57:04",
+  "generated": "2026-10-05T23:12:30",
   "metrics": {
     "by_kind": {
       "agent_profile": 1,
@@ -2123,18 +2138,18 @@
       "report": 13,
       "review": 27,
       "round_megaprompt": 2,
-      "session": 45,
+      "session": 46,
       "work": 9
     },
     "by_status": {
       "ACTIVE": 16,
-      "CLOSED": 45,
-      "COMPLETED": 36,
+      "CLOSED": 46,
+      "COMPLETED": 37,
       "DONE": 26,
       "DRAFT": 1,
       "IN_PROGRESS": 1,
       "OPEN": 41,
-      "PENDING": 4,
+      "PENDING": 3,
       "RECORDED": 2,
       "REGISTERED": 9,
       "REQUESTED": 5,
@@ -2142,15 +2157,15 @@
       "RUNNING": 1,
       "SUPERSEDED": 4
     },
-    "code_files": 30,
+    "code_files": 31,
     "contradiction_candidates": 0,
     "dangling_ids": 18,
     "duplicate_candidates": 2,
-    "edges_total": 4722,
+    "edges_total": 4735,
     "legacy_experiments_without_pre_registration": 6,
     "open_questions": 8,
-    "records_total": 264,
-    "revival_candidates": 5
+    "records_total": 265,
+    "revival_candidates": 6
   },
   "questions_all": [
     {
@@ -2493,6 +2508,17 @@
       "why_it_died": ""
     },
     {
+      "created": "2026-09-26",
+      "id": "E-00014",
+      "kind": "experiment",
+      "note": "CANDIDATE: a newer architecture, hardware, or design may change the answer.",
+      "rel": "experiments/E-00014-e-0014-train-only-feasibility-pass-for-e-0013-delta-star-and-s-d-inner-measurement-not-training.md",
+      "revisit_when": "",
+      "status": "COMPLETED",
+      "title": "E-00014 - TRAIN-ONLY feasibility pass for E-0013 (measure delta_star and s_d_inner; MEASUREMENT, not training)",
+      "why_it_died": "INCONCLUSIVE-BY-POWER (branch X-2): s_d_inner=48.73234010819671 > 0.0101; delta_star_inner (inner-val, paired)=23.05004604618598; achieved power at 0.002=0.050000; no LOSS_MARGIN widened"
+    },
+    {
       "created": "2026-09-13",
       "id": "E-0010",
       "kind": "experiment",
@@ -2539,24 +2565,6 @@
   ],
   "schema_version": 2,
   "timeline_tail": [
-    {
-      "example": false,
-      "id": "FND-0019",
-      "kind": "finding",
-      "rel": "findings/FND-0019-z1-blocking-repaired-the-severed-sentence-at-l1376-l1377.md",
-      "status": "RESOLVED",
-      "title": "Z1 BLOCKING, REPAIRED: the severed sentence at L1376-L1377",
-      "when": "2026-09-29"
-    },
-    {
-      "example": false,
-      "id": "FND-0020",
-      "kind": "finding",
-      "rel": "findings/FND-0020-z2-corrected-the-unreproducible-projected-hash-withdrawn.md",
-      "status": "RESOLVED",
-      "title": "Z2 CORRECTED: the unreproducible projected hash, withdrawn",
-      "when": "2026-09-29"
-    },
     {
       "example": false,
       "id": "FND-0021",
@@ -2898,6 +2906,24 @@
       "status": "DONE",
       "title": "Root-scratch debt reduction: shrink root_grandfathered.txt with itemized deletions",
       "when": "2026-10-04"
+    },
+    {
+      "example": false,
+      "id": "E-00014",
+      "kind": "experiment",
+      "rel": "experiments/E-00014-e-0014-train-only-feasibility-pass-for-e-0013-delta-star-and-s-d-inner-measurement-not-training.md",
+      "status": "COMPLETED",
+      "title": "E-00014 - TRAIN-ONLY feasibility pass for E-0013 (measure delta_star and s_d_inner; MEASUREMENT, not training)",
+      "when": "2026-10-05"
+    },
+    {
+      "example": false,
+      "id": "S-0046",
+      "kind": "session",
+      "rel": "sessions/S-0046-e-0014-branch-correction-x-2-project-state-repair-ho-0015-response.md",
+      "status": "CLOSED",
+      "title": "E-0014 branch-routing correction X-1 to X-2 INCONCLUSIVE-BY-POWER + project_state staleness repair + HO-0015 executor response",
+      "when": "2026-10-05"
     }
   ]
 }

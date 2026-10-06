@@ -3,7 +3,7 @@ id: E-00014
 type: experiment
 title: "E-00014 - TRAIN-ONLY feasibility pass for E-0013 (measure delta_star and s_d_inner; MEASUREMENT, not training)"
 status: COMPLETED
-result: "measured delta_star_inner=29.57222604134343 and s_d_inner=48.73234010819671; LOSS_MARGIN=14.786113020671715"
+result: "INCONCLUSIVE-BY-POWER (branch X-2): s_d_inner=48.73234010819671 > 0.0101; delta_star_inner (inner-val, paired)=23.05004604618598; achieved power at 0.002=0.050000; no LOSS_MARGIN widened"
 elo_change: null
 hypothesis: H-0013
 priority: high
@@ -388,3 +388,85 @@ licensed.
   a warning.
 - The split map and the pre-fit commit MUST already exist and be hash-recorded before
   this pass reads anything. If they do not, this record ABORTS.
+
+## Addendum 2026-10-05 — Branch-routing correction (X-2, not X-1), by the director (implementation seat) AFTER the pass
+
+> Append-only. Nothing above this addendum is edited or deleted. The Results
+> section's measured fields stand as measured; what changes is the ROUTING
+> label applied to them, plus one mis-sourced field that is restated from the
+> artifact that actually governs.
+
+### 1. The routing label in Results is wrong and is corrected here
+
+> The Results section (2026-10-05) labels the contingency **"X-1"** and
+> computes `LOSS_MARGIN := max(0.002, 0.5 * delta_star) = 14.786113020671715`.
+> That label contradicts the pre-registered table it cites. E-0013 B3 sentence
+> 3 (X-1/X-2/X-3, decided 2026-09-26, before E-00014 ran) and E-00014's own
+> Pre-Registered Decision Rule item 2 both state: `s_d_inner > 0.0101` AND
+> measurable `delta_star` routes to **branch X-2, INCONCLUSIVE-BY-POWER**, and
+> X-2's text states verbatim that "the margin is **not** widened to manufacture
+> decidability." The measured `s_d_inner = 48.73234010819671` exceeds `0.0101`
+> by a factor of ~4,825, and its own 95% CI (`[44.0445, 54.5457]`, df=169,
+> chi-square, recomputed 2026-10-05 in `_obs/dir_power.txt`) sits four orders
+> of magnitude above the threshold — this is not borderline. **The correct
+> branch is X-2.** The `LOSS_MARGIN = 14.786113020671715` computation in
+> Results is therefore **withdrawn as a routing**: under X-2 no margin is
+> widened, no conjunct-(c) evaluation fires, and the number must not be quoted
+> as E-0013's holdout margin.
+
+### 2. `delta_star_inner` is restated from the partition the contract names
+
+> Results reports `delta_star_inner = 29.57222604134343` and describes it as
+> the improvement "on inner-train fit set." E-0013's readiness checklist item
+> 18 defines `delta_star_inner` as the "attainable loss improvement of the
+> fitted table over the frozen floor, **inner-val**, paired, same labels,
+> `S* = 6`." The artifact that governs is `build/e00014/eval_inner_val.json`
+> (sha256 `e4150d19ce22fd19a3571a2b40577c1a3717d37145d2317c18c46759d7c59cf8`):
+> `paired_mean_logistic_loss_improvement.mean_improvement =
+> 23.05004604618598`, games 170, CI95 `[15.671648473, 30.428443619]`. The
+> `29.57222604134343` figure is `fit_report_inner.json`'s
+> `delta_on_fit_set_floor_minus_fitted` — the fit-set (inner-train) number,
+> not the inner-val number the contingency consumes. **Restated:
+> `delta_star_inner (inner-val, paired) = 23.05004604618598`.** The fit-set
+> figure is retained as history in Results and is not deleted.
+
+### 3. Achieved power at the 0.002 margin (pre-registered required field)
+
+> E-00014's decision rule item 2 and E-0013 checklist item 21 require the
+> achieved power at the 0.002 margin. Recomputed 2026-10-05 from the pinned
+> inner-val artifacts (`_obs/dir_power.txt`, normal approximation):
+> SE = 48.732340108/sqrt(170) = 3.737599869; non-centrality
+> 0.002/3.737599869 = 0.000535103; two-sided power at alpha=0.05 =
+> **0.050000** (the null rejection rate — the margin is undecidable at this
+> dispersion). Games required to decide 0.002 at this `s_d`: **~4.66e9**
+> (4,660,009,000). This is the quantity F-U3's re-decision must carry.
+
+### 4. Loss-scale pathology, recorded as evidence (not a re-run trigger)
+
+> The inner-val artifact shows floor mean loss 23.928645818 vs fitted
+> 5.012580639, and the fitted arm's MAE (0.261097949) is WORSE than the
+> floor's (0.219609585) while its logistic loss is far better. Cause, read
+> from the pinned code, not inferred: the objective is
+> `sigmoid(clip(E_theta(p), -1200, 1200))` with NO Elo-scale divisor
+> (`tools/e0013_eval.py:859`, `loss_and_gradient`), so raw centipawn scores
+> saturate the sigmoid and a wrong-side saturated position pays loss near |E|
+> up to 1200. The pre-fit manifest's own rationale (`e0013-prefit.json`, F2
+> clipping_bound_L) states "the cp-scale sigmoid saturates well below" L and
+> near-maximum scores contribute near-zero gradient. The optimizer therefore
+> harvested ~23 points of loss by collapsing scores toward 0 (fitted material
+> PAWN mg about -30 scale, tempo 10→0 in `build/e00014/fitted_inner.json`),
+> not by ranking positions better. This does not void the measurement — the
+> measurement ran the pinned objective faithfully — but F-U3's re-decision
+> must price it: any follow-up that keeps this objective without an Elo scale
+> is re-measuring the same saturation, not eval quality.
+
+### 5. What this addendum does NOT do
+
+> It does not re-run anything, does not read the holdout, does not fit
+> anything, does not flip `status:`/`result:`/`completed:` (those stay as the
+> executor set them: COMPLETED / 2026-10-05), does not edit any other record,
+> tool, or `src/` file. It routes E-0013 to **X-2 INCONCLUSIVE-BY-POWER** by
+> the pre-registered table, and it arms F-U3 (`FND-0010`, still OPEN) with the
+> four published quantities: `s_d_inner = 48.73234010819671`,
+> `delta_star_inner (inner-val) = 23.05004604618598`, inner-val games = 170,
+> achieved power at 0.002 = 0.050000.

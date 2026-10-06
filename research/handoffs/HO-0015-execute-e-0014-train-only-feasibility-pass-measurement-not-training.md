@@ -106,6 +106,26 @@ branch X-3 (the optimizer does not beat the floor) is a perfectly good outcome t
 - Any game generation, engine pair, or SPRT activity.
 
 ## Response (receiver, append-only)
+- **2026-10-05 — systems-researcher (executor seat) — EXECUTED.** Pre-conditions met
+  per E-00014's 2026-10-05 amendment: split-map `bb079a41…4ada1ea` + pre-fit commit
+  `3d388b7` present; F-U14 discharged; trainer `tools/e0013_fit.py` committed; validate
+  green at run time. Exactly one deterministic TRAIN-only pass ran: fit on inner-train
+  (48,003 positions / 621 games) converged (nit=935), evaluated paired on inner-val
+  (11,889 positions / 170 games). Reported: `s_d_inner=48.73234010819671`,
+  `delta_star_inner (inner-val, paired)=23.05004604618598` (CI95
+  [15.671648473,30.428443619]), achieved power at 0.002=0.050000 → E-0013 branch X-2
+  INCONCLUSIVE-BY-POWER; no LOSS_MARGIN widened. Holdout never read (208 games /
+  14,560 rows excluded by re-derived game-id set before any label/FEN read; leakage
+  receipt in `build/e00014/fit_report_inner.json`). Fit-set figure 29.57222604134343 is
+  history only, not the contingency input. Artifacts: `build/e00014/fitted_inner.json`
+  (`f20cd164…43a2141bb`), `build/e00014/fit_report_inner.json`,
+  `build/e00014/eval_inner_val.json` (`e4150d19…d7c59cf8`),
+  `build/e00014/eval_inner_train.json` (`d3eab8ab…1119371e06`). Raw ledger:
+  `_obs/e0014/inner_fit.out.txt`, `_obs/e0014c/inner_val.out.txt`,
+  `_obs/e0014c/inner_train.out.txt`. No engine source/tool edits; no holdout read; no
+  SPRT. Branch selection is E-0013's table applied after the fact, not a judgement here.
+  **Verification remains open for a fresh verification-auditor seat.**
+
 - 2026-09-26 - (role) - ...
 
 ## Verification (receiver, append-only)
