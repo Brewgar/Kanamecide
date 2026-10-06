@@ -1,7 +1,7 @@
 # Research State (GENERATED — do not edit)
 
 Derived from the record store by `research.py state`. Regenerate after every change.
-Generated: 2026-10-05T23:12:30; schema 2.
+Generated: 2026-10-06T17:20:40; schema 2.
 Every entry is a PROJECTION of the linked records — follow them before believing.
 
 ## Current best beliefs (hypotheses with measured weight)
@@ -44,8 +44,6 @@ Every entry is a PROJECTION of the linked records — follow them before believi
 - hypothesis **H-0002-magic-stub** Magic Bitboards with PEXT Provide >=3x NPS Speedup — SUPERSEDED. No revisit condition recorded.
 
 ## Recent timeline
-- 2026-10-03 decision DEC-0013 (ACTIVE) : Evidence pins are content-addressed archived artifacts; live build outputs are never pin targets
-- 2026-10-03 evidence EV-0011 (REGISTERED) : Post-FND-0035 F2/F3 repair binary + validation artifacts (qsearch ply/repetition guard, in-check stand-pat suppression)
 - 2026-10-03 finding FND-0035 (OPEN) : Q-0002 pre-eval census of src/search.cpp|tt.cpp: PVS/aspiration/LMR/null-move/futility are ALL absent; ordering+qsearch exist; ORDER_STAGE is one boolean so E-0007's per-lever attribution is NOT reproducible from current source
 - 2026-10-03 handoff HO-0024 (REQUESTED) : HW-3: make the Release binary digest-stable (/Brepro or equivalent) so EV-00NN pins are reproducible
 - 2026-10-03 session S-0044 (CLOSED) : Round-6 umbrella for the six seat sessions T-001..T-006 (W-0006 root-scratch clean-up, D-0002..D-0006 + E-00004/E-00005 re-attestation addenda, E-0013 gate-readiness, FND-0035 census, HO-0022/HO-0023) + the normalization commit
@@ -59,6 +57,8 @@ Every entry is a PROJECTION of the linked records — follow them before believi
 - 2026-10-04 work W-0006 (DONE) : Root-scratch debt reduction: shrink root_grandfathered.txt with itemized deletions
 - 2026-10-05 experiment E-00014 (COMPLETED) : E-00014 - TRAIN-ONLY feasibility pass for E-0013 (measure delta_star and s_d_inner; MEASUREMENT, not training)
 - 2026-10-05 session S-0046 (CLOSED) : E-0014 branch-routing correction X-1 to X-2 INCONCLUSIVE-BY-POWER + project_state staleness repair + HO-0015 executor response
+- 2026-10-06 decision DEC-0014 (ACTIVE) : X-2 re-decision: E-0013 feasibility outcome routes to an Elo-scaled objective; a new pre-registration (never an edit to E-0013) owns the re-design
+- 2026-10-06 experiment E-00016 (PENDING) : E-0016 - Elo-scaled Texel objective feasibility + fit (X-2 follow-up; TRAIN-only inner pass first, holdout gated)
 
 ## Metrics
 ```
@@ -69,10 +69,10 @@ Every entry is a PROJECTION of the linked records — follow them before believi
     "claim": 3,
     "current_position": 6,
     "debate": 7,
-    "decision": 13,
+    "decision": 14,
     "doc": 18,
     "evidence": 9,
-    "experiment": 15,
+    "experiment": 16,
     "failure": 2,
     "finding": 35,
     "handoff": 24,
@@ -87,14 +87,14 @@ Every entry is a PROJECTION of the linked records — follow them before believi
     "work": 9
   },
   "by_status": {
-    "ACTIVE": 16,
+    "ACTIVE": 17,
     "CLOSED": 46,
     "COMPLETED": 37,
     "DONE": 26,
     "DRAFT": 1,
     "IN_PROGRESS": 1,
     "OPEN": 41,
-    "PENDING": 3,
+    "PENDING": 4,
     "RECORDED": 2,
     "REGISTERED": 9,
     "REQUESTED": 5,
@@ -106,10 +106,10 @@ Every entry is a PROJECTION of the linked records — follow them before believi
   "contradiction_candidates": 0,
   "dangling_ids": 18,
   "duplicate_candidates": 2,
-  "edges_total": 4735,
+  "edges_total": 4742,
   "legacy_experiments_without_pre_registration": 6,
   "open_questions": 8,
-  "records_total": 265,
+  "records_total": 267,
   "revival_candidates": 6
 }
 

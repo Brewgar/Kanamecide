@@ -5,8 +5,8 @@
 > decisions in `research/decisions/`. Do not add unverified claims to this file.
 
 <!-- research-meta
-last_updated: 2026-10-05
-reflects: [DEC-0001, DEC-0002, DEC-0003, DEC-0004, DEC-0006, DEC-0007, DEC-0008, DEC-0009, DEC-0010, DEC-0011, DEC-0012, DEC-0013, E-0002, E-00003, E-00006, E-00007, E-00008, E-00009, E-0010, E-0011, E-0012, E-00015, E-00014]
+last_updated: 2026-10-06
+reflects: [DEC-0001, DEC-0002, DEC-0003, DEC-0004, DEC-0006, DEC-0007, DEC-0008, DEC-0009, DEC-0010, DEC-0011, DEC-0012, DEC-0013, DEC-0014, E-0002, E-00003, E-00006, E-00007, E-00008, E-00009, E-0010, E-0011, E-0012, E-00015, E-00014]
 not_reflected: []
 -->
 > The `research-meta` block above is machine-checked by `research.py validate`:
@@ -232,6 +232,9 @@ below its pre-registered ≥150 bar.
    verified E-0011 dataset only after downstream leakage checks pass.
 
 ## Last Updated
+2026-10-06 (DEC-0014 ACTIVE: X-2 INCONCLUSIVE-BY-POWER routed — E-0013 frozen, no
+margin widened; follow-up is an Elo-scaled objective under NEW pre-registration
+E-0016 PENDING; F-U3/FND-0010 armed, HO-0015 verification still open)
 2026-10-05 (E-00014 COMPLETED + branch corrected to X-2 INCONCLUSIVE-BY-POWER:
 s_d_inner=48.73 >> 0.0101, power at 0.002=0.05; prefit e0013-prefit.json + labelled
 fitter corpus 19cee190... pinned; HO-0015 closure still open)

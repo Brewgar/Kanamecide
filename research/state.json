@@ -798,6 +798,21 @@
     },
     {
       "code_files": [
+        "tools/e0013_eval.py"
+      ],
+      "commits_mentioned": [
+        "711c460",
+        "e4150d1",
+        "f20cd16"
+      ],
+      "kind": "decision",
+      "record": "DEC-0014",
+      "rel": "decisions/DEC-0014-x-2-re-decision-e-0013-feasibility-outcome-routes-to-an-elo-scaled-objective-a-new-pre-registration-never-an-edit-to-e-0013-owns-the-re-design.md",
+      "status": "ACTIVE",
+      "title": "X-2 re-decision: E-0013 feasibility outcome routes to an Elo-scaled objective; a new pre-registration (never an edit to E-0013) owns the re-design"
+    },
+    {
+      "code_files": [
         "src/search.cpp",
         "tools/fu14_suite.py"
       ],
@@ -2116,7 +2131,7 @@
       "title": "Gate 0 unrunnable: Device Guard hard-blocks kana.exe (every build, every path)"
     }
   ],
-  "generated": "2026-10-05T23:12:30",
+  "generated": "2026-10-06T17:20:40",
   "metrics": {
     "by_kind": {
       "agent_profile": 1,
@@ -2124,10 +2139,10 @@
       "claim": 3,
       "current_position": 6,
       "debate": 7,
-      "decision": 13,
+      "decision": 14,
       "doc": 18,
       "evidence": 9,
-      "experiment": 15,
+      "experiment": 16,
       "failure": 2,
       "finding": 35,
       "handoff": 24,
@@ -2142,14 +2157,14 @@
       "work": 9
     },
     "by_status": {
-      "ACTIVE": 16,
+      "ACTIVE": 17,
       "CLOSED": 46,
       "COMPLETED": 37,
       "DONE": 26,
       "DRAFT": 1,
       "IN_PROGRESS": 1,
       "OPEN": 41,
-      "PENDING": 3,
+      "PENDING": 4,
       "RECORDED": 2,
       "REGISTERED": 9,
       "REQUESTED": 5,
@@ -2161,10 +2176,10 @@
     "contradiction_candidates": 0,
     "dangling_ids": 18,
     "duplicate_candidates": 2,
-    "edges_total": 4735,
+    "edges_total": 4742,
     "legacy_experiments_without_pre_registration": 6,
     "open_questions": 8,
-    "records_total": 265,
+    "records_total": 267,
     "revival_candidates": 6
   },
   "questions_all": [
@@ -2567,24 +2582,6 @@
   "timeline_tail": [
     {
       "example": false,
-      "id": "FND-0021",
-      "kind": "finding",
-      "rel": "findings/FND-0021-z3-corrected-the-boundary-table-re-pinned-and-every-figure-labelled-wit.md",
-      "status": "RESOLVED",
-      "title": "Z3 CORRECTED: the boundary table, re-pinned and every figure labelled wit",
-      "when": "2026-09-29"
-    },
-    {
-      "example": false,
-      "id": "FND-0022",
-      "kind": "finding",
-      "rel": "findings/FND-0022-z4-the-head-inside-a-committed-column-header-corrected-s-0034.md",
-      "status": "RESOLVED",
-      "title": "Z4 the HEAD inside a committed column header (CORRECTED, S-0034)",
-      "when": "2026-09-29"
-    },
-    {
-      "example": false,
       "id": "DEC-0012",
       "kind": "decision",
       "rel": "decisions/DEC-0012-claim-finding-ledger-and-deterministic-lint-gate.md",
@@ -2924,6 +2921,24 @@
       "status": "CLOSED",
       "title": "E-0014 branch-routing correction X-1 to X-2 INCONCLUSIVE-BY-POWER + project_state staleness repair + HO-0015 executor response",
       "when": "2026-10-05"
+    },
+    {
+      "example": false,
+      "id": "DEC-0014",
+      "kind": "decision",
+      "rel": "decisions/DEC-0014-x-2-re-decision-e-0013-feasibility-outcome-routes-to-an-elo-scaled-objective-a-new-pre-registration-never-an-edit-to-e-0013-owns-the-re-design.md",
+      "status": "ACTIVE",
+      "title": "X-2 re-decision: E-0013 feasibility outcome routes to an Elo-scaled objective; a new pre-registration (never an edit to E-0013) owns the re-design",
+      "when": "2026-10-06"
+    },
+    {
+      "example": false,
+      "id": "E-00016",
+      "kind": "experiment",
+      "rel": "experiments/E-00016-e-0016-elo-scaled-texel-objective-feasibility-fit-x-2-follow-up-train-only-inner-pass-first-holdout-gated.md",
+      "status": "PENDING",
+      "title": "E-0016 - Elo-scaled Texel objective feasibility + fit (X-2 follow-up; TRAIN-only inner pass first, holdout gated)",
+      "when": "2026-10-06"
     }
   ]
 }
