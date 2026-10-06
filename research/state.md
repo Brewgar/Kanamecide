@@ -1,7 +1,7 @@
 # Research State (GENERATED — do not edit)
 
 Derived from the record store by `research.py state`. Regenerate after every change.
-Generated: 2026-10-06T20:44:16; schema 2.
+Generated: 2026-10-06T23:56:16; schema 2.
 Every entry is a PROJECTION of the linked records — follow them before believing.
 
 ## Current best beliefs (hypotheses with measured weight)
@@ -44,8 +44,6 @@ Every entry is a PROJECTION of the linked records — follow them before believi
 - hypothesis **H-0002-magic-stub** Magic Bitboards with PEXT Provide >=3x NPS Speedup — SUPERSEDED. No revisit condition recorded.
 
 ## Recent timeline
-- 2026-10-03 work W-0009 (OPEN) : Digest-stable Release build (/Brepro or equivalent) so an evidence binary pin is reproducible from source, not from a preserved copy
-- 2026-10-04 experiment E-00015 (COMPLETED) : E-00015 - count-only realized usable quiet yield pass for E-0013 (MEASUREMENT, not training)
 - 2026-10-04 handoff HO-0016 (DONE) : Execute E-00015: count-only realized usable quiet yield pass (measurement, not training)
 - 2026-10-04 handoff HO-0022 (DONE) : Spot-check 10 random rows of MAN-W0006-ROOT-SCRATCH-001 (root-scratch debt reduction)
 - 2026-10-04 handoff HO-0023 (DONE) : Blockers to GO on the E-0013 gate experiments E-00014 / E-00015, with a NO-GO on both and one unblocking amendment named for E-00015
@@ -56,9 +54,11 @@ Every entry is a PROJECTION of the linked records — follow them before believi
 - 2026-10-06 decision DEC-0014 (ACTIVE) : X-2 re-decision: E-0013 feasibility outcome routes to an Elo-scaled objective; a new pre-registration (never an edit to E-0013) owns the re-design
 - 2026-10-06 experiment E-00016 (PENDING) : E-0016 - Elo-scaled Texel objective feasibility + fit (X-2 follow-up; TRAIN-only inner pass first, holdout gated)
 - 2026-10-06 handoff HO-0015 (DONE) : Execute E-00014: TRAIN-ONLY feasibility pass (measurement, not training)
+- 2026-10-06 handoff HO-0025 (REQUESTED) : Execute E-0016 stage (a): Elo-scaled TRAIN-only inner feasibility fit (measurement, not training)
 - 2026-10-06 review R-0028 (COMPLETED) : R 0028 adversarial review of the e 0016 elo scaled pre registration missing elo scale tooling blocks execution
 - 2026-10-06 session S-0047 (CLOSED) : DEC-0014 X-2 re-decision completion + project_state staleness repair + derived regen (validate OK)
 - 2026-10-06 session S-0048 (CLOSED) : HO-0015 independent verification (fresh auditor seat): 21/21 re-derivation + adversarial split proof, VERIFIED, handoff closed
+- 2026-10-06 work W-0010 (OPEN) : Elo-scale parameter for the fit/eval tooling: sigmoid(clip(E/D,-L,L)) with D pinned, D=1 backward-compatible, selftests extended (unblocks E-0016 stage a)
 
 ## Metrics
 ```
@@ -75,7 +75,7 @@ Every entry is a PROJECTION of the linked records — follow them before believi
     "experiment": 16,
     "failure": 2,
     "finding": 35,
-    "handoff": 24,
+    "handoff": 25,
     "hypothesis": 17,
     "principle": 4,
     "profile": 5,
@@ -84,7 +84,7 @@ Every entry is a PROJECTION of the linked records — follow them before believi
     "review": 28,
     "round_megaprompt": 2,
     "session": 48,
-    "work": 9
+    "work": 10
   },
   "by_status": {
     "ACTIVE": 17,
@@ -93,11 +93,11 @@ Every entry is a PROJECTION of the linked records — follow them before believi
     "DONE": 27,
     "DRAFT": 1,
     "IN_PROGRESS": 1,
-    "OPEN": 41,
+    "OPEN": 42,
     "PENDING": 4,
     "RECORDED": 2,
     "REGISTERED": 9,
-    "REQUESTED": 4,
+    "REQUESTED": 5,
     "RESOLVED": 27,
     "RUNNING": 1,
     "SUPERSEDED": 4
@@ -106,10 +106,10 @@ Every entry is a PROJECTION of the linked records — follow them before believi
   "contradiction_candidates": 0,
   "dangling_ids": 19,
   "duplicate_candidates": 2,
-  "edges_total": 4818,
+  "edges_total": 4872,
   "legacy_experiments_without_pre_registration": 6,
   "open_questions": 8,
-  "records_total": 270,
+  "records_total": 272,
   "revival_candidates": 6
 }
 

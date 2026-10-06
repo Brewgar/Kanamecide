@@ -215,6 +215,17 @@ fact, not a judgement made here.
   `s_d_inner <= 0.0256`**; otherwise it routes Y-2 by name instead of failing.
 - Clip in scaled units: `L/D = 1200/173.72 = 6.9078` (saturation only past
   ~99.9% win probability — a numerical guard, not a binding constraint).
+- Order of operations (R-0028, normative): the implementing tool divides E by D
+  FIRST and clips SECOND with the same numeric L — `clip(E/D, -1200, 1200)` —
+  which binds at raw ±208,461 cp and is a numerical guard only. An implementation
+  that clips E first and divides after would silently run the OLD objective.
+  Implemented in `tools/e0013_eval.py` / `tools/e0013_fit.py` (W-0010, `--elo-scale`,
+  default 1.0; E-00014 evidence re-derived bit-for-bit at D=1.0).
+- Non-convergence abort (R-0028): if the L-BFGS-B fit does not converge within the
+  pinned budget, the executor reports an abort-with-evidence (convergence status,
+  iterations consumed, loss trace) and routes Y-3; the budget is never raised
+  silently. Added 2026-10-06 by the owner seat (researcher-architect) per R-0028;
+  no other field of this pre-registration is touched.
 
 ## Sample Validity
 

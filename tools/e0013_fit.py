@@ -111,12 +111,13 @@ def write_inner_map(positions_path: Path, inner_salt: int, inner_map_path: Path)
     return out
 
 
-def fit_once(jac, offset, labels, theta0, clip, l2, maxiter):
+def fit_once(jac, offset, labels, theta0, clip, l2, maxiter, elo_scale=1.0):
     import numpy as np
     from scipy.optimize import minimize
 
     def f(v):
-        return ev.loss_and_gradient(jac, offset, labels, v, clip, l2, theta0)
+        return ev.loss_and_gradient(jac, offset, labels, v, clip, l2, theta0,
+                                    elo_scale=elo_scale)
 
     return minimize(f, np.asarray(theta0, dtype=np.float64), method="L-BFGS-B",
                     jac=True, options={"maxiter": int(maxiter)})
@@ -180,9 +181,12 @@ def run_fit(args: argparse.Namespace) -> int:
     theta0 = ev.design_vector(floor)
     jac, offset = ev.design_rows(terms_list)
 
-    loss0 = ev.mean_logistic_loss(jac, offset, np.asarray(theta0), labels, args.clip)
-    res1 = fit_once(jac, offset, labels, theta0, args.clip, args.l2, args.maxiter)
-    res2 = fit_once(jac, offset, labels, theta0, args.clip, args.l2, args.maxiter)
+    loss0 = ev.mean_logistic_loss(jac, offset, np.asarray(theta0), labels, args.clip,
+                                  elo_scale=args.elo_scale)
+    res1 = fit_once(jac, offset, labels, theta0, args.clip, args.l2, args.maxiter,
+                    elo_scale=args.elo_scale)
+    res2 = fit_once(jac, offset, labels, theta0, args.clip, args.l2, args.maxiter,
+                    elo_scale=args.elo_scale)
     # Deterministic-rerun proof (E-0013 Test Method 4): identical inputs -> byte-identical
     # solution vectors. The fit has no clock and no RNG; this asserts it.
     if res1.x.tobytes() != res2.x.tobytes():
@@ -197,7 +201,8 @@ def run_fit(args: argparse.Namespace) -> int:
     if fitted_sha == floor_sha:
         abort("arms identical: fitted sha256 == floor sha256 (negative control)")
     mirror_bad, mirror_n = ev.mirror_violations(fens, fitted)
-    loss_fitted = ev.mean_logistic_loss(jac, offset, res1.x, labels, args.clip)
+    loss_fitted = ev.mean_logistic_loss(jac, offset, res1.x, labels, args.clip,
+                                        elo_scale=args.elo_scale)
     delta_on_fit = loss0 - loss_fitted
 
     report = {
@@ -218,7 +223,8 @@ def run_fit(args: argparse.Namespace) -> int:
         "games": len(game_ids),
         "labels": {"frame": "side-to-move (B2 s1)",
                    "label_counts": {str(v): int(np.sum(labels == v)) for v in (0.0, 0.5, 1.0)}},
-        "hyperparameters": {"clip_L": args.clip, "l2": args.l2, "maxiter": args.maxiter,
+        "hyperparameters": {"clip_L": args.clip, "elo_scale": args.elo_scale, "l2": args.l2,
+                            "maxiter": args.maxiter,
                             "seed": args.seed, "early_stopping": None, "rng_consumed": False,
                             "optimizer": "scipy.optimize.minimize method=L-BFGS-B",
                             "scipy_version": __import__("scipy").__version__,
@@ -312,6 +318,20 @@ def selftest() -> int:
     res_again = fit_once(jac, offset, cont, t0, clip, 0.0, 200)
     check("determinism: byte-identical solution on identical inputs",
           res.x.tobytes() == res_again.x.tobytes())
+    res_d1 = fit_once(jac, offset, cont, t0, clip, 0.0, 200, elo_scale=1.0)
+    check("elo: D=1.0 fit reproduces the default fit bit-for-bit",
+          res.x.tobytes() == res_d1.x.tobytes())
+    _D = 400.0 / __import__("math").log(10.0)
+    res_sc = fit_once(jac, offset, cont, t0, clip, 0.0, 200, elo_scale=_D)
+    check("elo: scaled fit converges on synthetic labels",
+          bool(res_sc.success), str(res_sc.message))
+    check("elo: scaled fit descends below the floor loss on the same labels",
+          ev.mean_logistic_loss(jac, offset, res_sc.x, cont, clip, elo_scale=_D)
+          < ev.mean_logistic_loss(jac, offset, t0, cont, clip, elo_scale=_D))
+    res_sc2 = fit_once(jac, offset, cont, t0, clip, 0.0, 200, elo_scale=_D)
+    check("elo: scaled fit is deterministic (byte-identical rerun)",
+          res_sc.x.tobytes() == res_sc2.x.tobytes())
+    del _D, res_d1, res_sc, res_sc2
     import contextlib
     import io
 
@@ -324,7 +344,7 @@ def selftest() -> int:
     try:
         ns = argparse.Namespace(positions=str(rowpath), inner_map=None, full_train=True,
                                 clip=clip, l2=1e-6, maxiter=10, seed=1, out="x", report="y",
-                                dry_run=True)
+                                dry_run=True, elo_scale=1.0)
         rowpath.parent.mkdir(parents=True, exist_ok=True)
         rowpath.write_text(json.dumps(bad[0]) + "\n", encoding="utf-8")
         buf = io.StringIO()
@@ -346,7 +366,7 @@ def selftest() -> int:
     try:
         ns2 = argparse.Namespace(positions=str(rowpath2), inner_map=None, full_train=True,
                                  clip=clip, l2=1e-6, maxiter=10, seed=1, out="x", report="y",
-                                 dry_run=True)
+                                 dry_run=True, elo_scale=1.0)
         rowpath2.write_text(json.dumps(hold[0]) + "\n", encoding="utf-8")
         buf2 = io.StringIO()
         try:
@@ -376,6 +396,8 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
     p.add_argument("--inner-map")
     p.add_argument("--full-train", action="store_true")
     p.add_argument("--clip", type=float, required=False)
+    p.add_argument("--elo-scale", type=float, default=1.0,
+                       dest="elo_scale")
     p.add_argument("--l2", type=float, required=False)
     p.add_argument("--maxiter", type=int, required=False)
     p.add_argument("--seed", type=int, required=False)

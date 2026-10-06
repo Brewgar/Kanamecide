@@ -839,11 +839,13 @@ def design_rows(terms_list: list[Terms]) -> tuple[Any, Any]:
 
 
 def loss_and_gradient(jac: Any, offset: Any, labels: Any, vector: Any, clip: float,
-                      l2: float, theta0: Any) -> tuple[float, Any]:
+                      l2: float, theta0: Any, elo_scale: float = 1.0) -> tuple[float, Any]:
     """`(loss, gradient)` for one full-batch step.
 
     The objective is the pre-registered one: the MEAN logistic loss of
-    `sigmoid(clip(E, -L, L))` against the side-to-move-frame target.
+    `sigmoid(clip(E/D, -L, L))` against the side-to-move-frame target,
+    where `D = elo_scale` (divide FIRST, clip SECOND, same numeric `L`;
+    R-0028). At `D = 1.0` this is the unscaled E-0013/E-00014 objective.
 
     The L2 penalty is `l2 * ||theta - theta0||^2` - the SUM over parameters of the squared
     deviation from the INITIAL point, which is the frozen hand-tuned floor and the ridge
@@ -854,24 +856,34 @@ def loss_and_gradient(jac: Any, offset: Any, labels: Any, vector: Any, clip: flo
     """
     import numpy as np
 
+    if not elo_scale or not np.isfinite(elo_scale) or elo_scale <= 0:
+        raise ValueError("elo_scale (Elo divisor D) must be a positive finite number")
+    inv_d = 1.0 / float(elo_scale)
     raw = np.asarray(jac @ vector).ravel() + offset
-    e = np.clip(raw, -clip, clip)
+    scaled = raw * inv_d
+    e = np.clip(scaled, -clip, clip)
     q = 1.0 / (1.0 + np.exp(-e))
     loss = float(np.mean(np.log1p(np.exp(-np.abs(e))) - labels * e + np.maximum(e, 0.0)))
     loss += l2 * float(np.sum((vector - theta0) ** 2))
 
-    inside = (np.abs(raw) <= clip).astype(np.float64)
-    c = (q - labels) * inside
+    inside = (np.abs(scaled) <= clip).astype(np.float64)
+    c = (q - labels) * inside * inv_d
     grad = np.asarray(jac.T @ c).ravel() / len(labels)
     grad += 2.0 * l2 * (vector - theta0)
     return loss, grad
 
 
-def mean_logistic_loss(jac: Any, offset: Any, vector: Any, labels: Any, clip: float) -> float:
-    """The loss term on its own, without the L2 penalty (used for reporting)."""
+def mean_logistic_loss(jac: Any, offset: Any, vector: Any, labels: Any, clip: float,
+                       elo_scale: float = 1.0) -> float:
+    """The loss term on its own, without the L2 penalty (used for reporting).
+
+    Elo-scaled (W-0010): `sigmoid(clip(E/D, -L, L))`, divide first, clip second.
+    """
     import numpy as np
 
-    e = np.clip(np.asarray(jac @ vector).ravel() + offset, -clip, clip)
+    if not elo_scale or not np.isfinite(elo_scale) or elo_scale <= 0:
+        raise ValueError("elo_scale (Elo divisor D) must be a positive finite number")
+    e = np.clip((np.asarray(jac @ vector).ravel() + offset) / float(elo_scale), -clip, clip)
     return float(np.mean(np.log1p(np.exp(-np.abs(e))) - labels * e + np.maximum(e, 0.0)))
 
 
@@ -997,20 +1009,26 @@ def load_samples(positions_path: Path, split_map_path: Path, splits: Iterable[st
 
 
 def per_game_losses(samples: list[Sample], vector: list[int] | list[float], tempo: float,
-                    clip: float, mode: str) -> tuple[dict[int, float], list[float], list[float]]:
+                    clip: float, mode: str,
+                    elo_scale: float = 1.0) -> tuple[dict[int, float], list[float], list[float]]:
     """`(per-game mean loss, per-position loss, per-position score)`.
 
     `mode` selects the exact engine score or the continuous surrogate. The pair is reported
     rather than one being chosen, because the gap between them is the size of the integer
     quantisation and a reader is entitled to see it.
+
+    Elo-scaled (W-0010): `sigmoid(clip(E/D, -L, L))`, divide first, clip second.
     """
+    if not elo_scale or elo_scale <= 0:
+        raise ValueError("elo_scale (Elo divisor D) must be a positive number")
+    inv_d = 1.0 / float(elo_scale)
     score_fn = exact_stm_score if mode == "exact" else surrogate_stm_score
     per_position: list[float] = []
     scores: list[float] = []
     for sample in samples:
         e = score_fn(sample.terms, vector, tempo)
         scores.append(float(e))
-        per_position.append(logistic_loss(clip_value(float(e), clip), sample.y))
+        per_position.append(logistic_loss(clip_value(float(e) * inv_d, clip), sample.y))
     grouped: dict[int, list[float]] = {}
     for sample, value in zip(samples, per_position):
         grouped.setdefault(sample.game_id, []).append(value)
@@ -1068,14 +1086,17 @@ def load_table(path: Path) -> ParamTable:
     return from_json(json.loads(path.read_text(encoding="utf-8")))
 
 
-def mae(scores: list[float], labels: list[float], clip: float) -> float:
-    """Mean absolute error of the PREDICTED PROBABILITY `sigmoid(clip(E,-L,L))` against the
+def mae(scores: list[float], labels: list[float], clip: float, elo_scale: float = 1.0) -> float:
+    """Mean absolute error of the PREDICTED PROBABILITY `sigmoid(clip(E/D,-L,L))` against the
     label, in probability units - the only MAE this model can define without inventing a
     centipawn-to-result scale. Stated here because a bare "MAE" of centipawns against
-    {0, 0.5, 1} is not a quantity."""
+    {0, 0.5, 1} is not a quantity. Elo-scaled (W-0010): divide first, clip second."""
     if not scores:
         return float("nan")
-    return sum(abs(sigmoid(clip_value(e, clip)) - y) for e, y in zip(scores, labels)) / len(scores)
+    if not elo_scale or elo_scale <= 0:
+        raise ValueError("elo_scale (Elo divisor D) must be a positive number")
+    inv_d = 1.0 / float(elo_scale)
+    return sum(abs(sigmoid(clip_value(e * inv_d, clip)) - y) for e, y in zip(scores, labels)) / len(scores)
 
 
 def evaluate_arms(args: argparse.Namespace) -> dict[str, Any]:
@@ -1116,16 +1137,19 @@ def evaluate_arms(args: argparse.Namespace) -> dict[str, Any]:
     losses: dict[str, dict[str, Any]] = {}
     for arm, vector in vectors.items():
         tempo = (fitted if arm == "fitted" else floor).scalars["tempo"]
-        _, exact_pp, exact_scores = per_game_losses(samples, vector, tempo, args.clip, "exact")
-        exact_pg, _, _ = per_game_losses(samples, vector, tempo, args.clip, "exact")
-        surr_pg, surr_pp, _ = per_game_losses(samples, vector, tempo, args.clip, "surrogate")
+        _, exact_pp, exact_scores = per_game_losses(samples, vector, tempo, args.clip, "exact",
+                                                     elo_scale=args.elo_scale)
+        exact_pg, _, _ = per_game_losses(samples, vector, tempo, args.clip, "exact",
+                                          elo_scale=args.elo_scale)
+        surr_pg, surr_pp, _ = per_game_losses(samples, vector, tempo, args.clip, "surrogate",
+                                               elo_scale=args.elo_scale)
         losses[arm] = {
             "tempo": tempo,
             "per_game_exact": exact_pg,
             "per_game_surrogate": surr_pg,
             "mean_loss_exact": sum(exact_pp) / len(exact_pp),
             "mean_loss_surrogate": sum(surr_pp) / len(surr_pp),
-            "mae": mae(exact_scores, labels, args.clip),
+            "mae": mae(exact_scores, labels, args.clip, args.elo_scale),
             "scores": exact_scores,
         }
 
@@ -1144,6 +1168,7 @@ def evaluate_arms(args: argparse.Namespace) -> dict[str, Any]:
         "splits": sorted(splits),
         "positions": len(samples),
         "clip_L": args.clip,
+        "elo_scale": args.elo_scale,
         "arm_hashes": {"fitted": f"sha256:{fitted_hash}", "floor": f"sha256:{floor_hash}"},
         "arm_paths": {"fitted": str(Path(args.fitted).resolve()), "floor": floor_path},
         "arms_differ": True,
@@ -1166,7 +1191,7 @@ def evaluate_arms(args: argparse.Namespace) -> dict[str, Any]:
                 buckets[arm].setdefault(tertile_of(sample.terms.phase, boundaries), []).append(
                     (e, sample.y))
         report["mae_by_tertile"] = {
-            arm: {str(k): mae([e for e, _ in v], [y for _, y in v], args.clip)
+            arm: {str(k): mae([e for e, _ in v], [y for _, y in v], args.clip, args.elo_scale)
                   for k, v in sorted(buckets[arm].items())}
             for arm in buckets}
         report["tertile_boundaries"] = boundaries
@@ -1448,6 +1473,57 @@ def selftest() -> int:
                 - surrogate_stm_score(t, vector, floor.scalars["tempo"])) for t in terms_list]
     check("exact and surrogate scores differ by at most 1 cp", max(gaps) <= 1.0, f"max gap {max(gaps)}")
 
+    # --- Elo scale (W-0010): backward compat + scaled gradient ---
+    _D = 400.0 / math.log(10.0)
+    check("elo: D = 400/ln(10) derives to 173.7177927613",
+          abs(_D - 173.7177927613) < 1e-9, str(_D))
+    _l0_d1, _g0_d1 = loss_and_gradient(jac, offset, labels, theta, clip_big, l2, theta0,
+                                        elo_scale=1.0)
+    _l0_dflt, _g0_dflt = loss_and_gradient(jac, offset, labels, theta, clip_big, l2, theta0)
+    check("elo: D=1.0 reproduces the default call bit-for-bit",
+          _l0_d1 == _l0_dflt and np.array_equal(np.asarray(_g0_d1), np.asarray(_g0_dflt)))
+    check("elo: D=1.0 mean_logistic_loss reproduces the default call",
+          mean_logistic_loss(jac, offset, theta, labels, clip_big, elo_scale=1.0)
+          == mean_logistic_loss(jac, offset, theta, labels, clip_big))
+    check("elo: non-positive D refused by loss_and_gradient",
+          _raises(lambda: loss_and_gradient(jac, offset, labels, theta, clip_big, l2,
+                                            theta0, elo_scale=0.0)))
+    check("elo: non-positive D refused by mean_logistic_loss",
+          _raises(lambda: mean_logistic_loss(jac, offset, theta, labels, clip_big,
+                                             elo_scale=-2.0)))
+    check("elo: non-positive D refused by mae",
+          _raises(lambda: mae([1.0], [0.5], clip_big, elo_scale=0.0)))
+    _l_sc = mean_logistic_loss(jac, offset, theta, labels, clip_big, elo_scale=_D)
+    _l_un = mean_logistic_loss(jac, offset, theta, labels, clip_big)
+    check("elo: scaled loss at D=400/ln10 is finite and positive",
+          math.isfinite(_l_sc) and _l_sc > 0, str(_l_sc))
+    check("elo: scaling tempers the same scores (scaled loss below unscaled loss)",
+          _l_sc < _l_un, f"scaled={_l_sc:.6f} unscaled={_l_un:.6f}")
+    _l_mm, _g_mm = loss_and_gradient(jac, offset, labels, theta, clip_big, l2, theta0,
+                                      elo_scale=_D)
+    _pr = np.array(theta, dtype=np.float64)
+    _wo = 0.0
+    for _i in (0, 7, 100, 400, N_FREE - 1):
+        _h = 1e-5 * max(1.0, abs(_pr[_i]))
+        _o = _pr[_i]
+        _pr[_i] = _o + _h
+        _up = loss_and_gradient(jac, offset, labels, _pr, clip_big, l2, theta0,
+                                elo_scale=_D)[0]
+        _pr[_i] = _o - _h
+        _dn = loss_and_gradient(jac, offset, labels, _pr, clip_big, l2, theta0,
+                                elo_scale=_D)[0]
+        _pr[_i] = _o
+        _fd = (_up - _dn) / (2.0 * _h)
+        _wo = max(_wo, abs(_fd - _g_mm[_i]) / (1.0 + abs(_fd)))
+    check("elo: analytic gradient matches finite diffs at D=400/ln10",
+          _wo < 1e-6, f"worst rel err {_wo:.3e}")
+    check("elo: clip binds at L/D in scaled units (divide first, clip second)",
+          abs(clip_big / _D - 2.3026) < 1e-3, f"L/D={clip_big / _D:.4f}")
+    check("elo: E-0016 contract value L=1200 gives L/D = 6.9078 (scaled guard, not binding)",
+          abs(1200.0 / _D - 6.9078) < 1e-3, f"1200/D={1200.0 / _D:.4f}")
+    del _D, _l0_d1, _g0_d1, _l0_dflt, _g0_dflt, _l_sc, _l_un, _l_mm, _g_mm
+    del _pr, _wo
+
     # --- F5 tertiles -------------------------------------------------------------------
     phases = [0, 4, 8, 12, 16, 20, 24, 24, 12, 24]
     boundaries = phase_tertiles(phases)
@@ -1508,7 +1584,8 @@ def selftest() -> int:
         def arm_args(fitted_file: Path, split: list[str]) -> argparse.Namespace:
             return argparse.Namespace(fitted=str(fitted_file), floor=str(floor_path),
                                       positions=str(positions), split_map=str(split_map_path),
-                                      split=split, clip=400.0, tertiles=None, mirror_check_n=1000)
+                                      split=split, clip=400.0, tertiles=None, mirror_check_n=1000,
+                                      elo_scale=1.0)
 
         expect_abort("arms: identical tables abort before any loss is read",
                      lambda: evaluate_arms(arm_args(same_path, ["holdout"])))
@@ -1518,7 +1595,8 @@ def selftest() -> int:
                      lambda: evaluate_arms(argparse.Namespace(
                          fitted=str(fitted_path), floor=str(fitted_path),
                          positions=str(positions), split_map=str(split_map_path),
-                         split=["holdout"], clip=400.0, tertiles=None, mirror_check_n=1000)))
+                         split=["holdout"], clip=400.0, tertiles=None, mirror_check_n=1000,
+                         elo_scale=1.0)))
 
         report = evaluate_arms(arm_args(fitted_path, ["holdout"]))
         check("arms: the report records both arm hashes",
@@ -1535,10 +1613,12 @@ def selftest() -> int:
               report["paired_mean_logistic_loss_improvement"]["games"] == 1)
         check("arms: the loss margin reference is recorded, not inferred",
               report["loss_margin_reference"] == 0.002)
+        check("arms: the report records elo_scale 1.0 (unscaled passthrough)",
+              report["elo_scale"] == 1.0)
         trained = evaluate_arms(argparse.Namespace(
             fitted=str(fitted_path), floor=str(floor_path), positions=str(positions),
             split_map=str(split_map_path), split=["train", "holdout"], clip=400.0,
-            tertiles="8,16", mirror_check_n=2))
+            tertiles="8,16", mirror_check_n=2, elo_scale=1.0))
         check("arms: both splits score together when asked", trained["positions"] == 3)
         check("arms: tertile MAE appears for each arm when boundaries are supplied",
               set(trained["mae_by_tertile"]) == {"fitted", "floor"} and
@@ -1564,7 +1644,11 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
                         help="may be repeated; holdout is read only when it is named")
     parser.add_argument("--clip", type=float,
                         help="the pinned clipping bound L; required for a loss, because the "
-                             "objective is sigmoid(clip(E, -L, L)) and L has no default")
+                             "objective is sigmoid(clip(E/D, -L, L)) and L has no default")
+    parser.add_argument("--elo-scale", type=float, default=1.0,
+                        help="the Elo divisor D (W-0010/E-0016); loss uses sigmoid(clip(E/D, -L, L)) "
+                             "with divide-first-clip-second order; default 1.0 reproduces the "
+                             "unscaled E-0013/E-00014 objective bit-for-bit")
     parser.add_argument("--tertiles", help="F5's boundaries as 'a,b', from the pre-fit commit")
     parser.add_argument("--mirror-check-n", type=int, default=1000,
                         help="the pre-registered 1000-position full-mirror re-run")
@@ -1579,7 +1663,7 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
         parser.error("--fitted is required (or use --selftest / --write-floor / "
                      "--write-tertiles-from)")
     if args.fitted and args.clip is None:
-        parser.error("--clip is required: the objective is sigmoid(clip(E, -L, L)) and E-0013 "
+        parser.error("--clip is required: the objective is sigmoid(clip(E/D, -L, L)) and E-0013 "
                      "pins L in the pre-fit commit, so this tool will not invent one")
     if args.split is None:
         args.split = ["holdout"]
