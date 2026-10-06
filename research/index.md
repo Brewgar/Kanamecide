@@ -159,6 +159,7 @@
 - [R-0025](reviews/R-0025-independent-audit-of-the-e-0013-l5-only-lifecycle-flip-under-r-0024-q1-q8-ho-0017.md) — (untitled) — status=COMPLETED
 - [R-0026](reviews/R-0026-independent-verification-of-the-e-0013-s-0037-leakage-ruling-under-ho-0019-v1-v7-gate-3.md) — (untitled) — status=COMPLETED
 - [R-0027](reviews/R-0027-independent-audit-of-w-0008-imem-2-1-0-infrastructure-and-the-fnd-0032-self-closure-ho-0021.md) — (untitled) — status=COMPLETED
+- [R-0028](reviews/R-0028-adversarial-review-of-the-e-0016-elo-scaled-pre-registration-missing-elo-scale-tooling-blocks-execution.md) — (untitled) — status=COMPLETED
 
 ## Open Questions
 

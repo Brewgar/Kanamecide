@@ -421,6 +421,14 @@
           "verdict": "positive"
         },
         {
+          "id": "E-00016",
+          "rel": "experiments/E-00016-e-0016-elo-scaled-texel-objective-feasibility-fit-x-2-follow-up-train-only-inner-pass-first-holdout-gated.md",
+          "result": "",
+          "status": "PENDING",
+          "title": "E-0016 - Elo-scaled Texel objective feasibility + fit (X-2 follow-up; TRAIN-only inner pass first, holdout gated)",
+          "verdict": "unverdicted"
+        },
+        {
           "id": "E-0010",
           "rel": "experiments/E-0010-ee-val-tapered-hand-tuned-evaluation-term-by-term-self-play-elo-attribution.md",
           "result": "FAIL (pre-registered gate (c) effect size; direction significantly positive). Gates (a),(b),(d) PASS. gate (c): stage-6 (full tapered eval) beats stage-0 (mater",
@@ -447,7 +455,7 @@
       ],
       "falsifier": "",
       "id": "H-0013",
-      "n_experiments": 5,
+      "n_experiments": 6,
       "rel": "hypotheses/H-0013-tapered-eval-plus-texel-protocol-mg-eg-interpolation-and-quiet-label-holdout-design.md",
       "status": "OPEN",
       "title": "Tapered eval plus Texel protocol - mg-eg interpolation and quiet-label holdout design"
@@ -894,6 +902,18 @@
       "rel": "experiments/E-00015-e-0015-count-only-realized-usable-quiet-yield-pass-for-e-0013-measurement-not-training.md",
       "status": "COMPLETED",
       "title": "E-00015 - count-only realized usable quiet yield pass for E-0013 (MEASUREMENT, not training)"
+    },
+    {
+      "code_files": [
+        "src/eval.cpp",
+        "src/eval.h"
+      ],
+      "commits_mentioned": [],
+      "kind": "experiment",
+      "record": "E-00016",
+      "rel": "experiments/E-00016-e-0016-elo-scaled-texel-objective-feasibility-fit-x-2-follow-up-train-only-inner-pass-first-holdout-gated.md",
+      "status": "PENDING",
+      "title": "E-0016 - Elo-scaled Texel objective feasibility + fit (X-2 follow-up; TRAIN-only inner pass first, holdout gated)"
     },
     {
       "code_files": [
@@ -1519,6 +1539,18 @@
       "rel": "reviews/R-0026-independent-verification-of-the-e-0013-s-0037-leakage-ruling-under-ho-0019-v1-v7-gate-3.md",
       "status": "COMPLETED",
       "title": "R 0026 independent verification of the e 0013 s 0037 leakage ruling under ho 0019 v1 v7 gate 3"
+    },
+    {
+      "code_files": [
+        "tools/e0013_eval.py",
+        "tools/e0013_fit.py"
+      ],
+      "commits_mentioned": [],
+      "kind": "review",
+      "record": "R-0028",
+      "rel": "reviews/R-0028-adversarial-review-of-the-e-0016-elo-scaled-pre-registration-missing-elo-scale-tooling-blocks-execution.md",
+      "status": "COMPLETED",
+      "title": "R 0028 adversarial review of the e 0016 elo scaled pre registration missing elo scale tooling blocks execution"
     },
     {
       "code_files": [
@@ -2148,7 +2180,7 @@
       "title": "Gate 0 unrunnable: Device Guard hard-blocks kana.exe (every build, every path)"
     }
   ],
-  "generated": "2026-10-06T17:39:43",
+  "generated": "2026-10-06T20:44:16",
   "metrics": {
     "by_kind": {
       "agent_profile": 1,
@@ -2168,7 +2200,7 @@
       "profile": 5,
       "question": 8,
       "report": 13,
-      "review": 27,
+      "review": 28,
       "round_megaprompt": 2,
       "session": 48,
       "work": 9
@@ -2176,7 +2208,7 @@
     "by_status": {
       "ACTIVE": 17,
       "CLOSED": 48,
-      "COMPLETED": 37,
+      "COMPLETED": 38,
       "DONE": 27,
       "DRAFT": 1,
       "IN_PROGRESS": 1,
@@ -2191,12 +2223,12 @@
     },
     "code_files": 31,
     "contradiction_candidates": 0,
-    "dangling_ids": 18,
+    "dangling_ids": 19,
     "duplicate_candidates": 2,
-    "edges_total": 4765,
+    "edges_total": 4818,
     "legacy_experiments_without_pre_registration": 6,
     "open_questions": 8,
-    "records_total": 269,
+    "records_total": 270,
     "revival_candidates": 6
   },
   "questions_all": [
@@ -2599,15 +2631,6 @@
   "timeline_tail": [
     {
       "example": false,
-      "id": "FND-0025",
-      "kind": "finding",
-      "rel": "findings/FND-0025-f-u9-re-derive-and-re-commit-the-split-map-and-the-artifacts.md",
-      "status": "RESOLVED",
-      "title": "F-U9 Re-derive and re-commit the split map and the artifacts",
-      "when": "2026-09-30"
-    },
-    {
-      "example": false,
       "id": "FND-0026",
       "kind": "finding",
       "rel": "findings/FND-0026-f-u10-re-derive-the-yield-band-and-re-evaluate-the-30-000-floor-under-the-new-key.md",
@@ -2937,6 +2960,15 @@
       "rel": "handoffs/HO-0015-execute-e-0014-train-only-feasibility-pass-measurement-not-training.md",
       "status": "DONE",
       "title": "Execute E-00014: TRAIN-ONLY feasibility pass (measurement, not training)",
+      "when": "2026-10-06"
+    },
+    {
+      "example": false,
+      "id": "R-0028",
+      "kind": "review",
+      "rel": "reviews/R-0028-adversarial-review-of-the-e-0016-elo-scaled-pre-registration-missing-elo-scale-tooling-blocks-execution.md",
+      "status": "COMPLETED",
+      "title": "R 0028 adversarial review of the e 0016 elo scaled pre registration missing elo scale tooling blocks execution",
       "when": "2026-10-06"
     },
     {

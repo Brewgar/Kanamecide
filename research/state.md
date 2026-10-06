@@ -1,7 +1,7 @@
 # Research State (GENERATED — do not edit)
 
 Derived from the record store by `research.py state`. Regenerate after every change.
-Generated: 2026-10-06T17:39:43; schema 2.
+Generated: 2026-10-06T20:44:16; schema 2.
 Every entry is a PROJECTION of the linked records — follow them before believing.
 
 ## Current best beliefs (hypotheses with measured weight)
@@ -12,7 +12,7 @@ Every entry is a PROJECTION of the linked records — follow them before believi
 - **H-0008** Move ordering dominates raw NPS for Phase-2 time-to-depth — status OPEN; confidence 0.7 (likely); tested by E-00006 [positive], E-00007 [positive]. (hypotheses/H-0008-move-ordering-dominates-raw-nps-for-phase-2-time-to-depth.md)
 - **H-0010** SPRT-based engine comparison harness is required before any version claim is trustworthy — status OPEN; confidence 0.85 (strongly supported); tested by E-00006 [positive], E-00014 [neutral], E-0012 [positive], E-0013 [unverdicted]. (hypotheses/H-0010-sprt-based-engine-comparison-harness-is-required-before-any-version-claim-is-trustworthy.md)
 - **H-0012** Search fast-path move invariants - king-capture exclusion and promo-phantom asserts — status OPEN; confidence 0.7 (likely); tested by E-00008 [positive], E-0002 [unverdicted]. (hypotheses/H-0012-search-fast-path-move-invariants-king-capture-exclusion-and-promo-phantom-asserts.md)
-- **H-0013** Tapered eval plus Texel protocol - mg-eg interpolation and quiet-label holdout design — status OPEN; confidence 0.6 (likely); tested by E-00014 [neutral], E-00015 [positive], E-0010 [negative], E-0011 [positive], E-0013 [unverdicted]. (hypotheses/H-0013-tapered-eval-plus-texel-protocol-mg-eg-interpolation-and-quiet-label-holdout-design.md)
+- **H-0013** Tapered eval plus Texel protocol - mg-eg interpolation and quiet-label holdout design — status OPEN; confidence 0.6 (likely); tested by E-00014 [neutral], E-00015 [positive], E-00016 [unverdicted], E-0010 [negative], E-0011 [positive], E-0013 [unverdicted]. (hypotheses/H-0013-tapered-eval-plus-texel-protocol-mg-eg-interpolation-and-quiet-label-holdout-design.md)
 - **H-0014** Board state integrity audit - halfmove EP-key castling-rights round-trip tests — status OPEN; confidence 0.6 (likely); tested by E-0002 [unverdicted]. (hypotheses/H-0014-board-state-integrity-audit-halfmove-ep-key-castling-rights-round-trip-tests.md)
 
 ## Open questions
@@ -44,7 +44,6 @@ Every entry is a PROJECTION of the linked records — follow them before believi
 - hypothesis **H-0002-magic-stub** Magic Bitboards with PEXT Provide >=3x NPS Speedup — SUPERSEDED. No revisit condition recorded.
 
 ## Recent timeline
-- 2026-10-03 work W-0008 (DONE) : imem 2.1 infrastructure: INFRASTRUCTURE.md normative doc + freshness/novelty advisory surfaces + chief-architect seat
 - 2026-10-03 work W-0009 (OPEN) : Digest-stable Release build (/Brepro or equivalent) so an evidence binary pin is reproducible from source, not from a preserved copy
 - 2026-10-04 experiment E-00015 (COMPLETED) : E-00015 - count-only realized usable quiet yield pass for E-0013 (MEASUREMENT, not training)
 - 2026-10-04 handoff HO-0016 (DONE) : Execute E-00015: count-only realized usable quiet yield pass (measurement, not training)
@@ -57,6 +56,7 @@ Every entry is a PROJECTION of the linked records — follow them before believi
 - 2026-10-06 decision DEC-0014 (ACTIVE) : X-2 re-decision: E-0013 feasibility outcome routes to an Elo-scaled objective; a new pre-registration (never an edit to E-0013) owns the re-design
 - 2026-10-06 experiment E-00016 (PENDING) : E-0016 - Elo-scaled Texel objective feasibility + fit (X-2 follow-up; TRAIN-only inner pass first, holdout gated)
 - 2026-10-06 handoff HO-0015 (DONE) : Execute E-00014: TRAIN-ONLY feasibility pass (measurement, not training)
+- 2026-10-06 review R-0028 (COMPLETED) : R 0028 adversarial review of the e 0016 elo scaled pre registration missing elo scale tooling blocks execution
 - 2026-10-06 session S-0047 (CLOSED) : DEC-0014 X-2 re-decision completion + project_state staleness repair + derived regen (validate OK)
 - 2026-10-06 session S-0048 (CLOSED) : HO-0015 independent verification (fresh auditor seat): 21/21 re-derivation + adversarial split proof, VERIFIED, handoff closed
 
@@ -81,7 +81,7 @@ Every entry is a PROJECTION of the linked records — follow them before believi
     "profile": 5,
     "question": 8,
     "report": 13,
-    "review": 27,
+    "review": 28,
     "round_megaprompt": 2,
     "session": 48,
     "work": 9
@@ -89,7 +89,7 @@ Every entry is a PROJECTION of the linked records — follow them before believi
   "by_status": {
     "ACTIVE": 17,
     "CLOSED": 48,
-    "COMPLETED": 37,
+    "COMPLETED": 38,
     "DONE": 27,
     "DRAFT": 1,
     "IN_PROGRESS": 1,
@@ -104,12 +104,12 @@ Every entry is a PROJECTION of the linked records — follow them before believi
   },
   "code_files": 31,
   "contradiction_candidates": 0,
-  "dangling_ids": 18,
+  "dangling_ids": 19,
   "duplicate_candidates": 2,
-  "edges_total": 4765,
+  "edges_total": 4818,
   "legacy_experiments_without_pre_registration": 6,
   "open_questions": 8,
-  "records_total": 269,
+  "records_total": 270,
   "revival_candidates": 6
 }
 
