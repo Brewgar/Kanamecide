@@ -66,7 +66,24 @@ edits (E-0016 Results/Provenance/Analysis/Interpretation/Conclusion only, plus R
 
 ## Response (receiver, append-only)
 
-- (pending)
+- 2026-10-07 — systems-researcher (E-0016 executor, HO-0025 receiver):
+  pre-execution commit named BEFORE the run: 7f77422 (HO-0028 DONE; HO-0025
+  PRE-STEP = TRAIN-only `build/e0013/labels/labels.jsonl`). Preflight green:
+  validate/pins/fit-selftest/eval-selftest exit 0. Carve exit 0 ->
+  `build/e0016/inner_map.json`
+  `93bcd0db90bb33f10f15b70e032464492c16a17afa1a37b839f3005bec9ff9e0`
+  (791 games, 636/155, outer_holdout 0; byte-identical regen of the recorded
+  bytes). Fit exit 0 -> `build/e0016/fitted_inner.json`
+  `01c0d7a65a76ddcc7d9a04b3e23c2ec8eda92e65cc89930decfb5a7600758fb7`
+  (nit=10, delta_on_fit=0.017389, exclusion receipt 208/14560). Eval exit 0
+  -> `build/e0016/eval_inner_val.json`
+  `f5a390db86ea8fb05a33df63c780d78c8e9216b7f0afab74a254cf812e17f5ad`
+  (games=155, mean=0.026946091, s_d=0.073195627, ci95=[0.015331774,
+  0.038560409], mirror 1000/1000 clean, arms differ, frozen identical).
+  Routed Y-2 by the table (measurable delta, s_d > 0.0256; power 0.166 at
+  M16_floor on G=208). Full fields in E-0016 Results/Provenance. Raw ledgers:
+  `_obs/s0053_exec/` (local, gitignored). No tool/src/E-0013 edit; no
+  holdout/SPRT/suite activity; no re-run.
 
 ## Verification (receiver, append-only)
 

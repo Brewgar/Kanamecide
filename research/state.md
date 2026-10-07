@@ -1,7 +1,7 @@
 # Research State (GENERATED — do not edit)
 
 Derived from the record store by `research.py state`. Regenerate after every change.
-Generated: 2026-10-07T22:38:16; schema 2.
+Generated: 2026-10-07T22:57:01; schema 2.
 Every entry is a PROJECTION of the linked records — follow them before believing.
 
 ## Current best beliefs (hypotheses with measured weight)
@@ -44,8 +44,6 @@ Every entry is a PROJECTION of the linked records — follow them before believi
 - hypothesis **H-0002-magic-stub** Magic Bitboards with PEXT Provide >=3x NPS Speedup — SUPERSEDED. No revisit condition recorded.
 
 ## Recent timeline
-- 2026-10-06 experiment E-00016 (PENDING) : E-0016 - Elo-scaled Texel objective feasibility + fit (X-2 follow-up; TRAIN-only inner pass first, holdout gated)
-- 2026-10-06 handoff HO-0015 (DONE) : Execute E-00014: TRAIN-ONLY feasibility pass (measurement, not training)
 - 2026-10-06 handoff HO-0025 (REQUESTED) : Execute E-0016 stage (a): Elo-scaled TRAIN-only inner feasibility fit (measurement, not training)
 - 2026-10-06 review R-0028 (COMPLETED) : R 0028 adversarial review of the e 0016 elo scaled pre registration missing elo scale tooling blocks execution
 - 2026-10-06 session S-0047 (CLOSED) : DEC-0014 X-2 re-decision completion + project_state staleness repair + derived regen (validate OK)
@@ -53,11 +51,13 @@ Every entry is a PROJECTION of the linked records — follow them before believi
 - 2026-10-06 session S-0049 (CLOSED) : W-0010 Elo-scale tooling implemented + backward-compat proven + E-0016 amended + HO-0025 executor handoff filed
 - 2026-10-07 handoff HO-0026 (DONE) : Close W-0010 after R-0029 independent verification
 - 2026-10-07 handoff HO-0027 (DONE) : Repair E-0016 stage (a) salt conflict before any fit runs
-- 2026-10-07 handoff HO-0028 (REQUESTED) : Repair E-0016 carve-source conflict before any fit runs (extract vs TRAIN-only labels)
+- 2026-10-07 handoff HO-0028 (DONE) : Repair E-0016 carve-source conflict before any fit runs (extract vs TRAIN-only labels)
 - 2026-10-07 review R-0029 (COMPLETED) : R 0029 independent verification of w 0010 elo scale tooling backward compat
+- 2026-10-07 review R-0030 (COMPLETED) : R 0030 independent verification of e 0016 stage a y 2 run under ho 0025
 - 2026-10-07 session S-0050 (CLOSED) : W-0010 independent verification VERIFIED plus E-0016 salt-conflict escalation
 - 2026-10-07 session S-0051 (CLOSED) : W-0010 close-out DONE plus E-0016 salt repair, stage (a) still unexecuted
 - 2026-10-07 session S-0052 (CLOSED) : E-0016 launch-gate audit BLOCKED on carve-source conflict, HO-0028 filed
+- 2026-10-07 session S-0053 (CLOSED) : HO-0028 owner repair DONE, E-0016 stage (a) executed Y-2, verified R-0030
 - 2026-10-07 work W-0010 (DONE) : Elo-scale parameter for the fit/eval tooling: sigmoid(clip(E/D,-L,L)) with D pinned, D=1 backward-compatible, selftests extended (unblocks E-0016 stage a)
 
 ## Metrics
@@ -81,23 +81,23 @@ Every entry is a PROJECTION of the linked records — follow them before believi
     "profile": 5,
     "question": 8,
     "report": 13,
-    "review": 29,
+    "review": 30,
     "round_megaprompt": 2,
-    "session": 52,
+    "session": 53,
     "work": 10
   },
   "by_status": {
     "ACTIVE": 17,
-    "CLOSED": 52,
-    "COMPLETED": 39,
-    "DONE": 30,
+    "CLOSED": 53,
+    "COMPLETED": 40,
+    "DONE": 31,
     "DRAFT": 1,
     "IN_PROGRESS": 1,
     "OPEN": 41,
     "PENDING": 4,
     "RECORDED": 2,
     "REGISTERED": 9,
-    "REQUESTED": 6,
+    "REQUESTED": 5,
     "RESOLVED": 27,
     "RUNNING": 1,
     "SUPERSEDED": 4
@@ -106,10 +106,10 @@ Every entry is a PROJECTION of the linked records — follow them before believi
   "contradiction_candidates": 0,
   "dangling_ids": 18,
   "duplicate_candidates": 2,
-  "edges_total": 5079,
+  "edges_total": 5124,
   "legacy_experiments_without_pre_registration": 6,
   "open_questions": 8,
-  "records_total": 280,
+  "records_total": 282,
   "revival_candidates": 6
 }
 

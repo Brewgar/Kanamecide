@@ -910,7 +910,9 @@
         "tools/e0013_eval.py",
         "tools/e0013_fit.py"
       ],
-      "commits_mentioned": [],
+      "commits_mentioned": [
+        "7f77422"
+      ],
       "kind": "experiment",
       "record": "E-00016",
       "rel": "experiments/E-00016-e-0016-elo-scaled-texel-objective-feasibility-fit-x-2-follow-up-train-only-inner-pass-first-holdout-gated.md",
@@ -1323,7 +1325,9 @@
         "tools/e0013_fit.py",
         "tools/e0013_pins.py"
       ],
-      "commits_mentioned": [],
+      "commits_mentioned": [
+        "7f77422"
+      ],
       "kind": "handoff",
       "record": "HO-0025",
       "rel": "handoffs/HO-0025-execute-e-0016-stage-a-elo-scaled-train-only-inner-feasibility-fit-measurement-not-training.md",
@@ -1341,7 +1345,7 @@
       "kind": "handoff",
       "record": "HO-0028",
       "rel": "handoffs/HO-0028-repair-e-0016-carve-source-conflict-before-any-fit-runs-extract-vs-train-only-labels.md",
-      "status": "REQUESTED",
+      "status": "DONE",
       "title": "Repair E-0016 carve-source conflict before any fit runs (extract vs TRAIN-only labels)"
     },
     {
@@ -1580,6 +1584,19 @@
       "rel": "reviews/R-0028-adversarial-review-of-the-e-0016-elo-scaled-pre-registration-missing-elo-scale-tooling-blocks-execution.md",
       "status": "COMPLETED",
       "title": "R 0028 adversarial review of the e 0016 elo scaled pre registration missing elo scale tooling blocks execution"
+    },
+    {
+      "code_files": [
+        "tools/e0013_pins.py"
+      ],
+      "commits_mentioned": [
+        "7f77422"
+      ],
+      "kind": "review",
+      "record": "R-0030",
+      "rel": "reviews/R-0030-independent-verification-of-e-0016-stage-a-y-2-run-under-ho-0025.md",
+      "status": "COMPLETED",
+      "title": "R 0030 independent verification of e 0016 stage a y 2 run under ho 0025"
     },
     {
       "code_files": [
@@ -2242,7 +2259,7 @@
       "title": "Gate 0 unrunnable: Device Guard hard-blocks kana.exe (every build, every path)"
     }
   ],
-  "generated": "2026-10-07T22:38:16",
+  "generated": "2026-10-07T22:57:01",
   "metrics": {
     "by_kind": {
       "agent_profile": 1,
@@ -2262,23 +2279,23 @@
       "profile": 5,
       "question": 8,
       "report": 13,
-      "review": 29,
+      "review": 30,
       "round_megaprompt": 2,
-      "session": 52,
+      "session": 53,
       "work": 10
     },
     "by_status": {
       "ACTIVE": 17,
-      "CLOSED": 52,
-      "COMPLETED": 39,
-      "DONE": 30,
+      "CLOSED": 53,
+      "COMPLETED": 40,
+      "DONE": 31,
       "DRAFT": 1,
       "IN_PROGRESS": 1,
       "OPEN": 41,
       "PENDING": 4,
       "RECORDED": 2,
       "REGISTERED": 9,
-      "REQUESTED": 6,
+      "REQUESTED": 5,
       "RESOLVED": 27,
       "RUNNING": 1,
       "SUPERSEDED": 4
@@ -2287,10 +2304,10 @@
     "contradiction_candidates": 0,
     "dangling_ids": 18,
     "duplicate_candidates": 2,
-    "edges_total": 5079,
+    "edges_total": 5124,
     "legacy_experiments_without_pre_registration": 6,
     "open_questions": 8,
-    "records_total": 280,
+    "records_total": 282,
     "revival_candidates": 6
   },
   "questions_all": [
@@ -2693,24 +2710,6 @@
   "timeline_tail": [
     {
       "example": false,
-      "id": "S-0041",
-      "kind": "session",
-      "rel": "sessions/S-0041-e-0013-fnd-ledger-closure-12-blocking-rows-f-u7-f-u13-migration-and-ho-0019-independent-verification-v1-v7.md",
-      "status": "CLOSED",
-      "title": "E-0013 FND ledger closure (12 blocking rows), F-U7..F-U13 migration, and HO-0019 independent verification (V1-V7)",
-      "when": "2026-09-30"
-    },
-    {
-      "example": false,
-      "id": "S-0042",
-      "kind": "session",
-      "rel": "sessions/S-0042-ledger-tail-round-six-open-majors-fnd-0008-fnd-0013-dispositioned-open-with-gap-file-fnd-0032-fnd-0033-finding-template-vocab-hunk.md",
-      "status": "CLOSED",
-      "title": "Ledger-tail round: six OPEN majors (FND-0008..FND-0013) dispositioned OPEN-with-gap; file FND-0032/FND-0033; finding template vocab hunk",
-      "when": "2026-09-30"
-    },
-    {
-      "example": false,
       "id": "current_position",
       "kind": "current_position",
       "rel": "agents/chief-architect/current_position.md",
@@ -3002,7 +3001,7 @@
       "id": "HO-0028",
       "kind": "handoff",
       "rel": "handoffs/HO-0028-repair-e-0016-carve-source-conflict-before-any-fit-runs-extract-vs-train-only-labels.md",
-      "status": "REQUESTED",
+      "status": "DONE",
       "title": "Repair E-0016 carve-source conflict before any fit runs (extract vs TRAIN-only labels)",
       "when": "2026-10-07"
     },
@@ -3013,6 +3012,15 @@
       "rel": "reviews/R-0029-independent-verification-of-w-0010-elo-scale-tooling-backward-compat.md",
       "status": "COMPLETED",
       "title": "R 0029 independent verification of w 0010 elo scale tooling backward compat",
+      "when": "2026-10-07"
+    },
+    {
+      "example": false,
+      "id": "R-0030",
+      "kind": "review",
+      "rel": "reviews/R-0030-independent-verification-of-e-0016-stage-a-y-2-run-under-ho-0025.md",
+      "status": "COMPLETED",
+      "title": "R 0030 independent verification of e 0016 stage a y 2 run under ho 0025",
       "when": "2026-10-07"
     },
     {
@@ -3040,6 +3048,15 @@
       "rel": "sessions/S-0052-e-0016-launch-gate-audit-blocked-carve-source-conflict-ho-0028-filed.md",
       "status": "CLOSED",
       "title": "E-0016 launch-gate audit BLOCKED on carve-source conflict, HO-0028 filed",
+      "when": "2026-10-07"
+    },
+    {
+      "example": false,
+      "id": "S-0053",
+      "kind": "session",
+      "rel": "sessions/S-0053-e-0016-ho-0028-repair-stage-a-y-2-verified-r-0030.md",
+      "status": "CLOSED",
+      "title": "HO-0028 owner repair DONE, E-0016 stage (a) executed Y-2, verified R-0030",
       "when": "2026-10-07"
     },
     {

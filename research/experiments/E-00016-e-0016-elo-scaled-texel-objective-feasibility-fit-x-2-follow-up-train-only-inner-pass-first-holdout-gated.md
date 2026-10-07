@@ -266,34 +266,90 @@ fact, not a judgement made here.
   seed/L2/budget/clip/D — all pinned in the pre-execution commit named before
   the run.
 
-Arm-differentiation evidence: (executor fills from run output)
-Independence proof: (executor fills: inner salt, game counts, overlap-0 receipts)
-Provenance: (executor fills: hashes, commits, versions)
+Arm-differentiation evidence: fitted arm
+`sha256:01c0d7a65a76ddcc7d9a04b3e23c2ec8eda92e65cc89930decfb5a7600758fb7`
+vs floor arm `sha256:711c460dce3747bf1dcad59eefada488960066c43967f638a818510303b667f1`;
+`arms_differ: true` asserted by the tool before any loss was read
+(`_obs/s0053_exec/eval.out.txt:1-2`).
+Independence proof: INNER_SALT=20261007; inner map
+`93bcd0db90bb33f10f15b70e032464492c16a17afa1a37b839f3005bec9ff9e0`
+(791 outer-train games: 636 inner-train / 155 inner-val); outer-holdout
+intersection of the map = 0 games; fit-path exclusion receipt 208 games /
+14,560 rows before any label/FEN read
+(`_obs/s0053_exec/fit.out.txt:2`).
+Provenance: pre-execution commit 7f77422; fitter corpus
+`19cee19027d5298756660fa4d57998c41144bcb3c92c0425008449ac6d31c48f`;
+split map `bb079a41630161bcd33a3a5df7890546dfe0c8329cc6bfed5ee35a83d4ada1ea`;
+labels input `2bf68bfb1da371ae6d3146885ccf4ee4b36192de956b2b4d183156a9aa0f7bc2`;
+floor `711c460dce3747bf1dcad59eefada488960066c43967f638a818510303b667f1`;
+src epoch dd4051a92daf834cf4a73f1878a0c894b0b6d1b8; seed 1, L2 1e-6,
+maxiter 1000, clip L 1200.0, D 173.7177927613; fitted
+`01c0d7a65a76ddcc7d9a04b3e23c2ec8eda92e65cc89930decfb5a7600758fb7`;
+eval `f5a390db86ea8fb05a33df63c780d78c8e9216b7f0afab74a254cf812e17f5ad`.
 
 ## Provenance
 
-(executor fills — pre-execution commit hash, `src/` epoch, tool commits,
+(pre-execution commit 7f77422; src epoch
+dd4051a92daf834cf4a73f1878a0c894b0b6d1b8; tool commits per HEAD 7f77422;
+fitter-corpus/split/labels/inner-map/fitted/eval SHAs as above; raw evidence
+_obs/s0053_exec/carve.out.txt, fit.out.txt, eval.out.txt (local, gitignored);
+aggregator: `_obs/s0053_route.py` + this record's quoted fields. Executor
+fills — pre-execution commit hash, `src/` epoch, tool commits,
 fitter-corpus/split/inner-map SHA-256, raw evidence paths (local, gitignored),
 aggregator command reproducing every number)
 
 ## Results
 
-(PENDING — executor fills under the new handoff; or explicit abort with the
+2026-10-07 executor (systems-researcher seat) under repaired HO-0025,
+pre-execution commit 7f77422. Carve:
+`python tools/e0013_fit.py --write-inner-map --positions
+build/e0013/labels/labels.jsonl --inner-salt 20261007 --inner-map
+build/e0016/inner_map.json` -> exit 0, games=791 inner_train=636
+inner_val=155 sha256=`93bcd0db90bb33f10f15b70e032464492c16a17afa1a37b839f3005bec9ff9e0`.
+Fit: `--inner-map build/e0016/inner_map.json --clip 1200.0 --elo-scale
+173.7177927613 --l2 1e-6 --maxiter 1000 --seed 1 --out
+build/e0016/fitted_inner.json --report build/e0016/fit_report_inner.json` ->
+exit 0: rows=47995 games=636; holdout excluded before any label read:
+games=208 rows=14560; convergence success=True nit=10
+(CONVERGENCE: NORM OF PROJECTED GRADIENT <= PGTOL); loss floor=0.447215
+fitted=0.429826 delta_on_fit=0.017389; arms differ True; mirror 0/47995.
+Eval: `--fitted build/e0016/fitted_inner.json --floor build/e0013/floor.json
+--split-map build/e0016/inner_map.json --split holdout --clip 1200.0
+--elo-scale 173.7177927613 --mirror-check-n 1000 --out
+build/e0016/eval_inner_val.json` -> exit 0: splits=['holdout']
+positions=11897 games=155; loss fitted mean_exact=0.445416556
+mean_surrogate=0.445470392 mae=0.250482220; floor mean_exact=0.465058024
+mean_surrogate=0.465142465 mae=0.262752193;
+paired_mean_improvement=0.026946091 s_d=0.073195627 se=0.005879214
+ci95=[0.015331774,0.038560409]; mirror 1000/1000 clean; arms_differ true;
+frozen_block_identical true; elo_scale 173.7177927613; clip_L 1200.0.
+delta_star_inner=0.026946091434270198; s_d_inner=0.07319562658592449;
+achieved power at M16_floor=0.005 on G=208 (normal approx, two-sided
+a=0.05): 0.166. MAE pathology watch: fitted MAE 0.25048 BETTER than floor
+MAE 0.26275 (no E-00014-style collapse signature). (PENDING — executor fills under the new handoff; or explicit abort with the
 triggered abort condition number and its evidence. An abort is a result.)
 
 ## Statistical Analysis
 
+Paired-t CI over 155 inner-val games brackets the mean above zero
+([0.0153,0.0386]); s_d_inner=0.0732 exceeds s_d_crit=0.0256 by ~2.9x, so the
+planned holdout rule is not decidable at G=208 (power 0.166 at M16_floor).
 (PENDING — paired-t CI over inner-val games, achieved power at `M16_floor`,
 MAE pathology watch.)
 
 ## Interpretation
 
-(PENDING — route Y-1/Y-2/Y-3 by the table; no strength claim is licensed by
+delta_star_inner measurable (fitted beats floor, CI above zero) AND
+s_d_inner=0.0732 > 0.0256 routes Y-2 (INCONCLUSIVE-BY-POWER) by the
+pre-registered table: not a FAIL, no margin change, no re-fit, no strength
+claim. Follow-up obligation: named re-decision with the four quantities
+(s_d_inner, delta_star_inner, 155 inner-val games, power 0.166). (PENDING — route Y-1/Y-2/Y-3 by the table; no strength claim is licensed by
 stage (a) under any branch.)
 
 ## Conclusion
 
-(PENDING.)
+Stage (a) COMPLETE: Y-2 INCONCLUSIVE-BY-POWER. E-0013 stays frozen (DEC-0014).
+(PENDING record-close by owner + fresh verification.)
 
 ## Follow-Up
 

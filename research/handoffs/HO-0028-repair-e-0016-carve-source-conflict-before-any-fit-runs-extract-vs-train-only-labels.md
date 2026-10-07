@@ -4,14 +4,14 @@ type: handoff
 from: director
 to: researcher-architect
 work_item: null
-status: REQUESTED
+status: DONE
 title: Repair E-0016 carve-source conflict before any fit runs (extract vs TRAIN-only labels)
 artifacts: ["research/experiments/E-00016-e-0016-elo-scaled-texel-objective-feasibility-fit-x-2-follow-up-train-only-inner-pass-first-holdout-gated.md", "research/handoffs/HO-0025-execute-e-0016-stage-a-elo-scaled-train-only-inner-feasibility-fit-measurement-not-training.md", "research/handoffs/HO-0027-repair-e-0016-stage-a-salt-conflict-before-any-fit-runs.md", "research/experiments/E-00014-e-0014-train-only-feasibility-pass-for-e-0013-delta-star-and-s-d-inner-measurement-not-training.md", "tools/e0013_fit.py", "tools/e0013_eval.py", "research/manifests/e0013-prefit.json"]
 commands: ["python research/scripts/research.py validate"]
 acceptance: HO-0025 PRE-STEP carve input matches the E-0016 contract (TRAIN side only) with the eval-path holdout firewall shown safe for the chosen input, or execution stays blocked with the conflict named.
 example: false
 created: 2026-10-07
-closed: null
+closed: 2026-10-07
 ---
 
 # HO-0028 — Repair E-0016 carve-source conflict before any fit runs (extract vs TRAIN-only labels)

@@ -161,6 +161,7 @@
 - [R-0027](reviews/R-0027-independent-audit-of-w-0008-imem-2-1-0-infrastructure-and-the-fnd-0032-self-closure-ho-0021.md) — (untitled) — status=COMPLETED
 - [R-0028](reviews/R-0028-adversarial-review-of-the-e-0016-elo-scaled-pre-registration-missing-elo-scale-tooling-blocks-execution.md) — (untitled) — status=COMPLETED
 - [R-0029](reviews/R-0029-independent-verification-of-w-0010-elo-scale-tooling-backward-compat.md) — (untitled) — status=COMPLETED
+- [R-0030](reviews/R-0030-independent-verification-of-e-0016-stage-a-y-2-run-under-ho-0025.md) — (untitled) — status=COMPLETED
 
 ## Open Questions
 
@@ -219,7 +220,6 @@
 - [HO-0018](handoffs/HO-0018-implement-f-u7-f-u13-normalized-fen-dedup-key.md) — Implement the E-0013 Option-(1) leakage remediation F-U7..F-U13: the dedup key is the normalized FEN — status=REQUESTED
 - [HO-0024](handoffs/HO-0024-hw-3-make-the-release-binary-digest-stable-brepro-or-equivalent-so-ev-00nn-pins-are-reproducible.md) — HW-3: make the Release binary digest-stable (/Brepro or equivalent) so EV-00NN pins are reproducible — status=REQUESTED
 - [HO-0025](handoffs/HO-0025-execute-e-0016-stage-a-elo-scaled-train-only-inner-feasibility-fit-measurement-not-training.md) — Execute E-0016 stage (a): Elo-scaled TRAIN-only inner feasibility fit (measurement, not training) — status=REQUESTED
-- [HO-0028](handoffs/HO-0028-repair-e-0016-carve-source-conflict-before-any-fit-runs-extract-vs-train-only-labels.md) — Repair E-0016 carve-source conflict before any fit runs (extract vs TRAIN-only labels) — status=REQUESTED
 
 ## Handoffs (closed)
 
@@ -245,6 +245,7 @@
 - [HO-0023](handoffs/HO-0023-blockers-to-go-e0013-gate-experiments-e00014-e00015.md) — Blockers to GO on the E-0013 gate experiments E-00014 / E-00015, with a NO-GO on both and one unblocking amendment named for E-00015 — status=DONE
 - [HO-0026](handoffs/HO-0026-close-w-0010-after-r-0029-independent-verification.md) — Close W-0010 after R-0029 independent verification — status=DONE
 - [HO-0027](handoffs/HO-0027-repair-e-0016-stage-a-salt-conflict-before-any-fit-runs.md) — Repair E-0016 stage (a) salt conflict before any fit runs — status=DONE
+- [HO-0028](handoffs/HO-0028-repair-e-0016-carve-source-conflict-before-any-fit-runs-extract-vs-train-only-labels.md) — Repair E-0016 carve-source conflict before any fit runs (extract vs TRAIN-only labels) — status=DONE
 
 ## Runs (live)
 
@@ -310,6 +311,7 @@
 - [S-0050](sessions/S-0050-w-0010-verified-r-0029-salt-conflict-ho-0026-ho-0027.md) — W-0010 independent verification VERIFIED plus E-0016 salt-conflict escalation — status=CLOSED
 - [S-0051](sessions/S-0051-w-0010-closeout-e-0016-salt-repair.md) — W-0010 close-out DONE plus E-0016 salt repair, stage (a) still unexecuted — status=CLOSED
 - [S-0052](sessions/S-0052-e-0016-launch-gate-audit-blocked-carve-source-conflict-ho-0028-filed.md) — E-0016 launch-gate audit BLOCKED on carve-source conflict, HO-0028 filed — status=CLOSED
+- [S-0053](sessions/S-0053-e-0016-ho-0028-repair-stage-a-y-2-verified-r-0030.md) — HO-0028 owner repair DONE, E-0016 stage (a) executed Y-2, verified R-0030 — status=CLOSED
 
 ## Unrendered Records (bug — report this)
 
