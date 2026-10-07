@@ -1,7 +1,7 @@
 # Research State (GENERATED — do not edit)
 
 Derived from the record store by `research.py state`. Regenerate after every change.
-Generated: 2026-10-07T00:15:06; schema 2.
+Generated: 2026-10-07T16:40:37; schema 2.
 Every entry is a PROJECTION of the linked records — follow them before believing.
 
 ## Current best beliefs (hypotheses with measured weight)
@@ -44,10 +44,6 @@ Every entry is a PROJECTION of the linked records — follow them before believi
 - hypothesis **H-0002-magic-stub** Magic Bitboards with PEXT Provide >=3x NPS Speedup — SUPERSEDED. No revisit condition recorded.
 
 ## Recent timeline
-- 2026-10-04 handoff HO-0022 (DONE) : Spot-check 10 random rows of MAN-W0006-ROOT-SCRATCH-001 (root-scratch debt reduction)
-- 2026-10-04 handoff HO-0023 (DONE) : Blockers to GO on the E-0013 gate experiments E-00014 / E-00015, with a NO-GO on both and one unblocking amendment named for E-00015
-- 2026-10-04 session S-0045 (CLOSED) : wave resume: land Sponsor rulings 1-4 post-inversion (FND-0034 disposition, EV-0010/EV-0011 re-pin under DEC-0013, W-0009/HO-0024 filed, HO-0022 owner verdict, HO-0023 blocker discharges)
-- 2026-10-04 work W-0006 (DONE) : Root-scratch debt reduction: shrink root_grandfathered.txt with itemized deletions
 - 2026-10-05 experiment E-00014 (COMPLETED) : E-00014 - TRAIN-ONLY feasibility pass for E-0013 (measure delta_star and s_d_inner; MEASUREMENT, not training)
 - 2026-10-05 session S-0046 (CLOSED) : E-0014 branch-routing correction X-1 to X-2 INCONCLUSIVE-BY-POWER + project_state staleness repair + HO-0015 executor response
 - 2026-10-06 decision DEC-0014 (ACTIVE) : X-2 re-decision: E-0013 feasibility outcome routes to an Elo-scaled objective; a new pre-registration (never an edit to E-0013) owns the re-design
@@ -59,6 +55,10 @@ Every entry is a PROJECTION of the linked records — follow them before believi
 - 2026-10-06 session S-0048 (CLOSED) : HO-0015 independent verification (fresh auditor seat): 21/21 re-derivation + adversarial split proof, VERIFIED, handoff closed
 - 2026-10-06 session S-0049 (CLOSED) : W-0010 Elo-scale tooling implemented + backward-compat proven + E-0016 amended + HO-0025 executor handoff filed
 - 2026-10-06 work W-0010 (OPEN) : Elo-scale parameter for the fit/eval tooling: sigmoid(clip(E/D,-L,L)) with D pinned, D=1 backward-compatible, selftests extended (unblocks E-0016 stage a)
+- 2026-10-07 handoff HO-0026 (REQUESTED) : Close W-0010 after R-0029 independent verification
+- 2026-10-07 handoff HO-0027 (REQUESTED) : Repair E-0016 stage (a) salt conflict before any fit runs
+- 2026-10-07 review R-0029 (COMPLETED) : R 0029 independent verification of w 0010 elo scale tooling backward compat
+- 2026-10-07 session S-0050 (CLOSED) : W-0010 independent verification VERIFIED plus E-0016 salt-conflict escalation
 
 ## Metrics
 ```
@@ -75,21 +75,21 @@ Every entry is a PROJECTION of the linked records — follow them before believi
     "experiment": 16,
     "failure": 2,
     "finding": 35,
-    "handoff": 25,
+    "handoff": 27,
     "hypothesis": 17,
     "principle": 4,
     "profile": 5,
     "question": 8,
     "report": 13,
-    "review": 28,
+    "review": 29,
     "round_megaprompt": 2,
-    "session": 49,
+    "session": 50,
     "work": 10
   },
   "by_status": {
     "ACTIVE": 17,
-    "CLOSED": 49,
-    "COMPLETED": 38,
+    "CLOSED": 50,
+    "COMPLETED": 39,
     "DONE": 27,
     "DRAFT": 1,
     "IN_PROGRESS": 1,
@@ -97,7 +97,7 @@ Every entry is a PROJECTION of the linked records — follow them before believi
     "PENDING": 4,
     "RECORDED": 2,
     "REGISTERED": 9,
-    "REQUESTED": 5,
+    "REQUESTED": 7,
     "RESOLVED": 27,
     "RUNNING": 1,
     "SUPERSEDED": 4
@@ -106,10 +106,10 @@ Every entry is a PROJECTION of the linked records — follow them before believi
   "contradiction_candidates": 0,
   "dangling_ids": 18,
   "duplicate_candidates": 2,
-  "edges_total": 4889,
+  "edges_total": 5001,
   "legacy_experiments_without_pre_registration": 6,
   "open_questions": 8,
-  "records_total": 273,
+  "records_total": 277,
   "revival_candidates": 6
 }
 

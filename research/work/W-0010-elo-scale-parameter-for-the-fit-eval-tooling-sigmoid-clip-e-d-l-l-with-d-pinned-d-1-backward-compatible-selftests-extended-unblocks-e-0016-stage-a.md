@@ -97,6 +97,16 @@ python tools/e0013_fit.py --selftest
 ## Verification
 > Filled by the verifying agent (a different agent than `owner`), never by the owner.
 
-- verified_by: (pending — handoff after close)
-- verdict: (pending)
-- evidence: (pending)
+- verified_by: verification-auditor (fresh seat; authored none of S-0049, W-0010, E-0016, HO-0025, or the 48a657c tool diff)
+- verdict: VERIFIED (2026-10-07) — 17/17 independent checks PASS
+- evidence: research/reviews/R-0029-independent-verification-of-w-0010-elo-scale-tooling-backward-compat.md
+  (kind: verification); driver _obs/w10_verify2.py; machine report _obs/w10_verify/report.json
+  (UTF-8 verdicts); console capture _obs/w10_verify_run.txt (UTF-16 env artifact).
+  Re-ran exit_check clean: eval selftest 90/90, fit selftest 13/13, pins verify OK,
+  validate OK. Backward-compat proven by JSON comparison: both E-00014 evals numeric
+  bit-for-bit (sole diffs live src_commit stamp + new elo_scale field); arm hashes
+  stable (floor 711c460d, fitted f20cd164); R-0028 divide-first order matched in all
+  three numeric paths; 48a657c touches no src/ file. Forward blocker recorded (not a
+  W-0010 defect): HO-0025 reuses inner salt 20261005 vs E-0016 Test Method step 2
+  requiring a NEW distinct salt — routed via HO-0027. Lifecycle close-out NOT done
+  here (owner act; HO-0026 requests it citing R-0029).
