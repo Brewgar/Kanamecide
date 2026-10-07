@@ -1981,7 +1981,7 @@
       "kind": "work",
       "record": "W-0010",
       "rel": "work/W-0010-elo-scale-parameter-for-the-fit-eval-tooling-sigmoid-clip-e-d-l-l-with-d-pinned-d-1-backward-compatible-selftests-extended-unblocks-e-0016-stage-a.md",
-      "status": "OPEN",
+      "status": "DONE",
       "title": "Elo-scale parameter for the fit/eval tooling: sigmoid(clip(E/D,-L,L)) with D pinned, D=1 backward-compatible, selftests extended (unblocks E-0016 stage a)"
     }
   ],
@@ -2228,7 +2228,7 @@
       "title": "Gate 0 unrunnable: Device Guard hard-blocks kana.exe (every build, every path)"
     }
   ],
-  "generated": "2026-10-07T16:40:37",
+  "generated": "2026-10-07T20:33:32",
   "metrics": {
     "by_kind": {
       "agent_profile": 1,
@@ -2250,21 +2250,21 @@
       "report": 13,
       "review": 29,
       "round_megaprompt": 2,
-      "session": 50,
+      "session": 51,
       "work": 10
     },
     "by_status": {
       "ACTIVE": 17,
-      "CLOSED": 50,
+      "CLOSED": 51,
       "COMPLETED": 39,
-      "DONE": 27,
+      "DONE": 30,
       "DRAFT": 1,
       "IN_PROGRESS": 1,
-      "OPEN": 42,
+      "OPEN": 41,
       "PENDING": 4,
       "RECORDED": 2,
       "REGISTERED": 9,
-      "REQUESTED": 7,
+      "REQUESTED": 5,
       "RESOLVED": 27,
       "RUNNING": 1,
       "SUPERSEDED": 4
@@ -2273,10 +2273,10 @@
     "contradiction_candidates": 0,
     "dangling_ids": 18,
     "duplicate_candidates": 2,
-    "edges_total": 5001,
+    "edges_total": 5022,
     "legacy_experiments_without_pre_registration": 6,
     "open_questions": 8,
-    "records_total": 277,
+    "records_total": 278,
     "revival_candidates": 6
   },
   "questions_all": [
@@ -2679,15 +2679,6 @@
   "timeline_tail": [
     {
       "example": false,
-      "id": "HO-0019",
-      "kind": "handoff",
-      "rel": "handoffs/HO-0019-verify-e0013-s0037-leakage-ruling.md",
-      "status": "DONE",
-      "title": "Independently verify the E-0013 leakage ruling (S-0037 addendum): was option (1) chosen on the contract's own terms?",
-      "when": "2026-09-30"
-    },
-    {
-      "example": false,
       "id": "HO-0020",
       "kind": "handoff",
       "rel": "handoffs/HO-0020-owner-repair-truncated-s-0037-leakage-addendum-fnd-0030-and-stale-z2-p4-fnd-0031.md",
@@ -2994,19 +2985,10 @@
     },
     {
       "example": false,
-      "id": "W-0010",
-      "kind": "work",
-      "rel": "work/W-0010-elo-scale-parameter-for-the-fit-eval-tooling-sigmoid-clip-e-d-l-l-with-d-pinned-d-1-backward-compatible-selftests-extended-unblocks-e-0016-stage-a.md",
-      "status": "OPEN",
-      "title": "Elo-scale parameter for the fit/eval tooling: sigmoid(clip(E/D,-L,L)) with D pinned, D=1 backward-compatible, selftests extended (unblocks E-0016 stage a)",
-      "when": "2026-10-06"
-    },
-    {
-      "example": false,
       "id": "HO-0026",
       "kind": "handoff",
       "rel": "handoffs/HO-0026-close-w-0010-after-r-0029-independent-verification.md",
-      "status": "REQUESTED",
+      "status": "DONE",
       "title": "Close W-0010 after R-0029 independent verification",
       "when": "2026-10-07"
     },
@@ -3015,7 +2997,7 @@
       "id": "HO-0027",
       "kind": "handoff",
       "rel": "handoffs/HO-0027-repair-e-0016-stage-a-salt-conflict-before-any-fit-runs.md",
-      "status": "REQUESTED",
+      "status": "DONE",
       "title": "Repair E-0016 stage (a) salt conflict before any fit runs",
       "when": "2026-10-07"
     },
@@ -3035,6 +3017,24 @@
       "rel": "sessions/S-0050-w-0010-verified-r-0029-salt-conflict-ho-0026-ho-0027.md",
       "status": "CLOSED",
       "title": "W-0010 independent verification VERIFIED plus E-0016 salt-conflict escalation",
+      "when": "2026-10-07"
+    },
+    {
+      "example": false,
+      "id": "S-0051",
+      "kind": "session",
+      "rel": "sessions/S-0051-w-0010-closeout-e-0016-salt-repair.md",
+      "status": "CLOSED",
+      "title": "W-0010 close-out DONE plus E-0016 salt repair, stage (a) still unexecuted",
+      "when": "2026-10-07"
+    },
+    {
+      "example": false,
+      "id": "W-0010",
+      "kind": "work",
+      "rel": "work/W-0010-elo-scale-parameter-for-the-fit-eval-tooling-sigmoid-clip-e-d-l-l-with-d-pinned-d-1-backward-compatible-selftests-extended-unblocks-e-0016-stage-a.md",
+      "status": "DONE",
+      "title": "Elo-scale parameter for the fit/eval tooling: sigmoid(clip(E/D,-L,L)) with D pinned, D=1 backward-compatible, selftests extended (unblocks E-0016 stage a)",
       "when": "2026-10-07"
     }
   ]

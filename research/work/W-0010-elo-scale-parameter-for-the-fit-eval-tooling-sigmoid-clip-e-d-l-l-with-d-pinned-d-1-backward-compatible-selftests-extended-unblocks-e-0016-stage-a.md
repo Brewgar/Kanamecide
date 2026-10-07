@@ -4,15 +4,15 @@ type: work
 title: Elo-scale parameter for the fit/eval tooling: sigmoid(clip(E/D,-L,L)) with D pinned, D=1 backward-compatible, selftests extended (unblocks E-0016 stage a)
 round: 7
 owner: implementation-engineer
-status: OPEN
+status: DONE
 deliverable: "tools/e0013_eval.py + tools/e0013_fit.py with an --elo-scale parameter (default 1.0) threaded through loss/gradient/eval paths; extended selftests"
 exit_check: "python tools/e0013_eval.py --selftest and python tools/e0013_fit.py --selftest exit 0 with new scale checks PASS; D=1.0 reproduces unscaled numbers bit-for-bit"
-evidence: []
-verified_by: null
-verification_verdict: null
+evidence: ["research/reviews/R-0029-independent-verification-of-w-0010-elo-scale-tooling-backward-compat.md (Gate-3 verification: verdict VERIFIED, 17/17 checks re-run by verification-auditor; raw output in _obs/w10_verify/)", "_obs/w10/bwcompat.json", "_obs/w10/eval_inner_val_d1.json", "_obs/w10/eval_inner_train_d1.json"]
+verified_by: verification-auditor (fresh seat; authored none of S-0049, W-0010, E-0016, HO-0025, or the 48a657c tool diff)
+verification_verdict: VERIFIED
 example: false
 created: 2026-10-06
-closed: null
+closed: 2026-10-07
 ---
 
 # W-0010 — Elo-scale parameter for the fit/eval tooling: sigmoid(clip(E/D,-L,L)) with D pinned, D=1 backward-compatible, selftests extended (unblocks E-0016 stage a)
@@ -93,6 +93,13 @@ python tools/e0013_fit.py --selftest
   selftest-local clip 400) - corrected to finite/tempered + L/D=2.3026 with the
   E-0016 contract value 1200/D=6.9078 stated separately; the implementation was
   never at fault. Backward-compat proven by re-execution, not by assertion.
+- 2026-10-07 - implementation-engineer (owner close-out via HO-0026): R-0029 is
+  COMPLETED with verdict VERIFIED (kind: verification, work_item W-0010, reviewer
+  verification-auditor, not the owner); no blocker, proceeding. Lifecycle OPEN ->
+  DONE; closed 2026-10-07; front-matter evidence populated citing R-0029. Untouched
+  by construction: verified_by, verification_verdict, the Verification section,
+  tools, src, E-0016, HO-0025, R-0029. Explicitly NOT a second verification and
+  NOT E-0016 execution (still blocked on HO-0027 salt repair).
 
 ## Verification
 > Filled by the verifying agent (a different agent than `owner`), never by the owner.

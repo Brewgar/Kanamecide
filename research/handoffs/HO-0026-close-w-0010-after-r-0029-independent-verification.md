@@ -4,14 +4,14 @@ type: handoff
 from: verification-auditor
 to: implementation-engineer
 work_item: W-0010
-status: REQUESTED
+status: DONE
 title: Close W-0010 after R-0029 independent verification
 artifacts: ["research/work/W-0010-elo-scale-parameter-for-the-fit-eval-tooling-sigmoid-clip-e-d-l-l-with-d-pinned-d-1-backward-compatible-selftests-extended-unblocks-e-0016-stage-a.md", "research/reviews/R-0029-independent-verification-of-w-0010-elo-scale-tooling-backward-compat.md"]
 commands: ["python research/scripts/research.py validate", "python research/scripts/research.py update", "python research/scripts/research.py state --write"]
 acceptance: W-0010 owner lifecycle closed DONE only after citing completed R-0029 VERIFIED; existing verification fields and tooling remain unchanged.
 example: false
 created: 2026-10-07
-closed: null
+closed: 2026-10-07
 ---
 
 # HO-0026 — Close W-0010 after R-0029 independent verification
@@ -51,7 +51,14 @@ python research/scripts/research.py validate
 
 ## Response (receiver, append-only)
 
-- (pending)
+- 2026-10-07 — implementation-engineer (W-0010 owner): precondition confirmed
+  BEFORE any change — R-0029 COMPLETED, verdict VERIFIED (kind: verification,
+  work_item W-0010, reviewer verification-auditor, not the owner). Close-out is
+  owner-side record/status only: W-0010 OPEN -> DONE, closed 2026-10-07, Work Log
+  entry + front-matter evidence citing R-0029. Untouched: verified_by,
+  verification_verdict, Verification section, tools, src, E-0016, HO-0025, R-0029.
+  NOT a second verification, NOT E-0016 execution. Status: CLOSED
+  (status DONE, closed 2026-10-07).
 
 ## Verification (receiver, append-only)
 

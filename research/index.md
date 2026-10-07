@@ -200,7 +200,6 @@
 
 - [W-0003](work/W-0003-round2-agreement-matrix-reviewer-column-backfill.md) — Round-2 AGREEMENT_MATRIX reviewer column backfill (as an addendum review) — status=IN_PROGRESS
 - [W-0009](work/W-0009-digest-stable-release-build-brepro-or-equivalent-so-an-evidence-binary-pin-is-reproducible-from-source-not-from-a-preserved-copy.md) — Digest-stable Release build (/Brepro or equivalent) so an evidence binary pin is reproducible from source, not from a preserved copy — status=OPEN
-- [W-0010](work/W-0010-elo-scale-parameter-for-the-fit-eval-tooling-sigmoid-clip-e-d-l-l-with-d-pinned-d-1-backward-compatible-selftests-extended-unblocks-e-0016-stage-a.md) — Elo-scale parameter for the fit/eval tooling: sigmoid(clip(E/D,-L,L)) with D pinned, D=1 backward-compatible, selftests extended (unblocks E-0016 stage a) — status=OPEN
 
 ## Work Items (closed)
 
@@ -211,6 +210,7 @@
 - [W-0006](work/W-0006-root-scratch-debt-reduction-grandfathered-list-shrink.md) — Root-scratch debt reduction: shrink root_grandfathered.txt with itemized deletions — status=DONE
 - [W-0007](work/W-0007-derived-intelligence-layer.md) — Derived-intelligence layer (graph, retrieval, beliefs, contradiction/revival, state, audit, self-tests) — status=DONE
 - [W-0008](work/W-0008-imem-2-1-infrastructure-infrastructure-md-normative-doc-freshness-novelty-advisory-surfaces-chief-architect-seat.md) — imem 2.1 infrastructure: INFRASTRUCTURE.md normative doc + freshness/novelty advisory surfaces + chief-architect seat — status=DONE
+- [W-0010](work/W-0010-elo-scale-parameter-for-the-fit-eval-tooling-sigmoid-clip-e-d-l-l-with-d-pinned-d-1-backward-compatible-selftests-extended-unblocks-e-0016-stage-a.md) — Elo-scale parameter for the fit/eval tooling: sigmoid(clip(E/D,-L,L)) with D pinned, D=1 backward-compatible, selftests extended (unblocks E-0016 stage a) — status=DONE
 
 ## Handoffs (open)
 
@@ -219,8 +219,6 @@
 - [HO-0018](handoffs/HO-0018-implement-f-u7-f-u13-normalized-fen-dedup-key.md) — Implement the E-0013 Option-(1) leakage remediation F-U7..F-U13: the dedup key is the normalized FEN — status=REQUESTED
 - [HO-0024](handoffs/HO-0024-hw-3-make-the-release-binary-digest-stable-brepro-or-equivalent-so-ev-00nn-pins-are-reproducible.md) — HW-3: make the Release binary digest-stable (/Brepro or equivalent) so EV-00NN pins are reproducible — status=REQUESTED
 - [HO-0025](handoffs/HO-0025-execute-e-0016-stage-a-elo-scaled-train-only-inner-feasibility-fit-measurement-not-training.md) — Execute E-0016 stage (a): Elo-scaled TRAIN-only inner feasibility fit (measurement, not training) — status=REQUESTED
-- [HO-0026](handoffs/HO-0026-close-w-0010-after-r-0029-independent-verification.md) — Close W-0010 after R-0029 independent verification — status=REQUESTED
-- [HO-0027](handoffs/HO-0027-repair-e-0016-stage-a-salt-conflict-before-any-fit-runs.md) — Repair E-0016 stage (a) salt conflict before any fit runs — status=REQUESTED
 
 ## Handoffs (closed)
 
@@ -244,6 +242,8 @@
 - [HO-0021](handoffs/HO-0021-audit-w-0008-imem-2-1-work-the-fnd-0032-self-closure.md) — Audit W-0008: imem 2.1 work + the FND-0032 self-closure — status=DONE
 - [HO-0022](handoffs/HO-0022-spot-check-man-w0006-root-scratch-10-random-rows.md) — Spot-check 10 random rows of MAN-W0006-ROOT-SCRATCH-001 (root-scratch debt reduction) — status=DONE
 - [HO-0023](handoffs/HO-0023-blockers-to-go-e0013-gate-experiments-e00014-e00015.md) — Blockers to GO on the E-0013 gate experiments E-00014 / E-00015, with a NO-GO on both and one unblocking amendment named for E-00015 — status=DONE
+- [HO-0026](handoffs/HO-0026-close-w-0010-after-r-0029-independent-verification.md) — Close W-0010 after R-0029 independent verification — status=DONE
+- [HO-0027](handoffs/HO-0027-repair-e-0016-stage-a-salt-conflict-before-any-fit-runs.md) — Repair E-0016 stage (a) salt conflict before any fit runs — status=DONE
 
 ## Runs (live)
 
@@ -307,6 +307,7 @@
 - [S-0048](sessions/S-0048-ho-0015-independent-verification-verified-handoff-closed.md) — HO-0015 independent verification (fresh auditor seat): 21/21 re-derivation + adversarial split proof, VERIFIED, handoff closed — status=CLOSED
 - [S-0049](sessions/S-0049-w-0010-elo-scale-tooling-backward-compat-e-0016-amendment-ho-0025-filed.md) — W-0010 Elo-scale tooling implemented + backward-compat proven + E-0016 amended + HO-0025 executor handoff filed — status=CLOSED
 - [S-0050](sessions/S-0050-w-0010-verified-r-0029-salt-conflict-ho-0026-ho-0027.md) — W-0010 independent verification VERIFIED plus E-0016 salt-conflict escalation — status=CLOSED
+- [S-0051](sessions/S-0051-w-0010-closeout-e-0016-salt-repair.md) — W-0010 close-out DONE plus E-0016 salt repair, stage (a) still unexecuted — status=CLOSED
 
 ## Unrendered Records (bug — report this)
 

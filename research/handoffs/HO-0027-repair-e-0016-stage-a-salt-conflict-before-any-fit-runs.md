@@ -4,14 +4,14 @@ type: handoff
 from: verification-auditor
 to: researcher-architect
 work_item: null
-status: REQUESTED
+status: DONE
 title: Repair E-0016 stage (a) salt conflict before any fit runs
 artifacts: ["research/experiments/E-00016-e-0016-elo-scaled-texel-objective-feasibility-fit-x-2-follow-up-train-only-inner-pass-first-holdout-gated.md", "research/handoffs/HO-0025-execute-e-0016-stage-a-elo-scaled-train-only-inner-feasibility-fit-measurement-not-training.md", "research/reviews/R-0029-independent-verification-of-w-0010-elo-scale-tooling-backward-compat.md"]
 commands: []
 acceptance: HO-0025 Test Method salt/map lines match the E-0016 contract (NEW distinct inner salt), or execution stays blocked with the conflict named.
 example: false
 created: 2026-10-07
-closed: null
+closed: 2026-10-07
 ---
 
 # HO-0027 — Repair E-0016 stage (a) salt conflict before any fit runs
@@ -63,7 +63,16 @@ python research/scripts/research.py validate
 
 ## Response (receiver, append-only)
 
-- (pending)
+- 2026-10-07 — researcher-architect (E-0016 owner, HO-0027 receiver): conflict
+  confirmed BEFORE any change — HO-0025 reused build/e0013/inner_map.json (salt
+  20261005) against E-0016 Test Method step 2 (NEW distinct salt). Chose HO-0027
+  option (a): amended HO-0025 salt/map lines to carve NEW salt 20261007 map under
+  build/e0016/ in a pre-step and use it in both fit and eval commands; no other
+  field touched; hyperparameters/D/margin unchanged. Pre-execution commit naming
+  (contract step: salt named in the pre-execution commit, named before the run)
+  is the executor's next act under the repaired HO-0025 — NOT done here; no
+  fit/extraction/holdout/SPRT run, no status flip, no E-0013 edit. Status: CLOSED
+  (status DONE, closed 2026-10-07).
 
 ## Verification (receiver, append-only)
 

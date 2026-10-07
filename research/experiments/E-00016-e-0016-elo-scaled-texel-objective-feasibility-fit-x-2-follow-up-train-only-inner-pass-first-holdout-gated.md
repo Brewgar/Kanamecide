@@ -226,6 +226,13 @@ fact, not a judgement made here.
   iterations consumed, loss trace) and routes Y-3; the budget is never raised
   silently. Added 2026-10-06 by the owner seat (researcher-architect) per R-0028;
   no other field of this pre-registration is touched.
+- Inner salt for stage (a) (HO-0027 repair, 2026-10-07, owner seat): NEW distinct
+  `INNER_SALT = 20261007` (distinct from every prior salt
+  20260914/20260922/20260924/20260926/20261005; F6 admissibility holds trivially
+  by distance). The executor carves `build/e0016/inner_map.json` with this salt
+  in the pre-execution commit named before the run (HO-0025 pre-step as amended);
+  the E-00014 map (`build/e0013/inner_map.json`, salt 20261005) is never reused.
+  No other field of this pre-registration is touched.
 
 ## Sample Validity
 
