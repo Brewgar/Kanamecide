@@ -54,7 +54,26 @@ python research/scripts/research.py validate
 
 ## Response (receiver, append-only)
 
-- (pending)
+- 2026-10-07 — researcher-architect (E-0016 owner, HO-0028 receiver): conflict
+  confirmed BEFORE any change — HO-0025 PRE-STEP at HEAD names
+  `build/e0013/extract/positions.jsonl` (full 74,452-row corpus carrying
+  outer-holdout rows) against E-0016 Test Method step 1 (exclude holdout 208
+  games / 14,560 rows BEFORE any label read, by game-id set) + step 2 (carve
+  FROM THE TRAIN SIDE ONLY) and the E-00014 precedent
+  (`_obs/run_checks8.py:16-18` carve from TRAIN-only
+  `build/e0013/labels/labels.jsonl`). Chose HO-0028 option (a): amend HO-0025
+  PRE-STEP carve input to the TRAIN-only labels file; no other field touched;
+  hyperparameters/D/L/margin/salt/split/holdout/dataset/optimizer/routing
+  unchanged. Firewall note: `run_fit` re-derives `split_of` before any
+  label/FEN read (safe either way); `load_samples`
+  (`tools/e0013_eval.py:954-986`) has NO outer-split gate, so the full-extract
+  input would expose holdout content at eval — option (a) keeps holdout rows
+  out of the carve input entirely. Dated addenda: E-0016 contract addendum
+  2026-10-07 (carve-source sentence) + HO-0025 PRE-STEP amendment 2026-10-07.
+  Pre-execution commit naming is the executor's next act under repaired
+  HO-0025 — NOT done here; no fit/extraction/holdout/SPRT run, no status flip,
+  no E-0013 edit, no tool/src edit. Status: CLOSED (status DONE,
+  closed 2026-10-07).
 
 ## Verification (receiver, append-only)
 

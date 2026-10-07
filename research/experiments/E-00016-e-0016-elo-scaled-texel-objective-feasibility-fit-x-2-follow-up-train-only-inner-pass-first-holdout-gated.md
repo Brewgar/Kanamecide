@@ -234,6 +234,17 @@ fact, not a judgement made here.
   the E-00014 map (`build/e0013/inner_map.json`, salt 20261005) is never reused.
   No other field of this pre-registration is touched.
 
+- Carve-source sentence for stage (a) (HO-0028 repair, 2026-10-07, owner seat):
+  the PRE-STEP carve input is the TRAIN-only labels file
+  `build/e0013/labels/labels.jsonl` (E-00014 precedent,
+  `_obs/run_checks8.py:16-18`) — never the full extractor corpus
+  `build/e0013/extract/positions.jsonl`, which carries outer-holdout rows.
+  Rationale: `run_fit` re-derives the outer split before any label/FEN read,
+  but `load_samples` (`tools/e0013_eval.py:954-986`) applies no outer-split
+  gate, so only a TRAIN-only carve input keeps the eval path inside the
+  holdout firewall as-coded. No other field of this pre-registration is
+  touched.
+
 ## Sample Validity
 
 > Validation is part of the result.
