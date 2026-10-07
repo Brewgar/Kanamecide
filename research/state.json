@@ -1332,6 +1332,20 @@
     },
     {
       "code_files": [
+        "tools/e0013_eval.py",
+        "tools/e0013_fit.py"
+      ],
+      "commits_mentioned": [
+        "dcd7bd0"
+      ],
+      "kind": "handoff",
+      "record": "HO-0028",
+      "rel": "handoffs/HO-0028-repair-e-0016-carve-source-conflict-before-any-fit-runs-extract-vs-train-only-labels.md",
+      "status": "REQUESTED",
+      "title": "Repair E-0016 carve-source conflict before any fit runs (extract vs TRAIN-only labels)"
+    },
+    {
+      "code_files": [
         "src/bitboard.cpp"
       ],
       "commits_mentioned": [],
@@ -2228,7 +2242,7 @@
       "title": "Gate 0 unrunnable: Device Guard hard-blocks kana.exe (every build, every path)"
     }
   ],
-  "generated": "2026-10-07T20:33:32",
+  "generated": "2026-10-07T22:22:11",
   "metrics": {
     "by_kind": {
       "agent_profile": 1,
@@ -2242,7 +2256,7 @@
       "experiment": 16,
       "failure": 2,
       "finding": 35,
-      "handoff": 27,
+      "handoff": 28,
       "hypothesis": 17,
       "principle": 4,
       "profile": 5,
@@ -2250,12 +2264,12 @@
       "report": 13,
       "review": 29,
       "round_megaprompt": 2,
-      "session": 51,
+      "session": 52,
       "work": 10
     },
     "by_status": {
       "ACTIVE": 17,
-      "CLOSED": 51,
+      "CLOSED": 52,
       "COMPLETED": 39,
       "DONE": 30,
       "DRAFT": 1,
@@ -2264,7 +2278,7 @@
       "PENDING": 4,
       "RECORDED": 2,
       "REGISTERED": 9,
-      "REQUESTED": 5,
+      "REQUESTED": 6,
       "RESOLVED": 27,
       "RUNNING": 1,
       "SUPERSEDED": 4
@@ -2273,10 +2287,10 @@
     "contradiction_candidates": 0,
     "dangling_ids": 18,
     "duplicate_candidates": 2,
-    "edges_total": 5022,
+    "edges_total": 5078,
     "legacy_experiments_without_pre_registration": 6,
     "open_questions": 8,
-    "records_total": 278,
+    "records_total": 280,
     "revival_candidates": 6
   },
   "questions_all": [
@@ -2679,24 +2693,6 @@
   "timeline_tail": [
     {
       "example": false,
-      "id": "HO-0020",
-      "kind": "handoff",
-      "rel": "handoffs/HO-0020-owner-repair-truncated-s-0037-leakage-addendum-fnd-0030-and-stale-z2-p4-fnd-0031.md",
-      "status": "DONE",
-      "title": "Owner repair: the S-0037 leakage addendum on E-0013 is truncated/interleaved (FND-0030, blocking) and Z2's own proof row P4 is stale and self-referential (FND-0031, minor)",
-      "when": "2026-09-30"
-    },
-    {
-      "example": false,
-      "id": "R-0026",
-      "kind": "review",
-      "rel": "reviews/R-0026-independent-verification-of-the-e-0013-s-0037-leakage-ruling-under-ho-0019-v1-v7-gate-3.md",
-      "status": "COMPLETED",
-      "title": "R 0026 independent verification of the e 0013 s 0037 leakage ruling under ho 0019 v1 v7 gate 3",
-      "when": "2026-09-30"
-    },
-    {
-      "example": false,
       "id": "S-0041",
       "kind": "session",
       "rel": "sessions/S-0041-e-0013-fnd-ledger-closure-12-blocking-rows-f-u7-f-u13-migration-and-ho-0019-independent-verification-v1-v7.md",
@@ -3003,6 +2999,15 @@
     },
     {
       "example": false,
+      "id": "HO-0028",
+      "kind": "handoff",
+      "rel": "handoffs/HO-0028-repair-e-0016-carve-source-conflict-before-any-fit-runs-extract-vs-train-only-labels.md",
+      "status": "REQUESTED",
+      "title": "Repair E-0016 carve-source conflict before any fit runs (extract vs TRAIN-only labels)",
+      "when": "2026-10-07"
+    },
+    {
+      "example": false,
       "id": "R-0029",
       "kind": "review",
       "rel": "reviews/R-0029-independent-verification-of-w-0010-elo-scale-tooling-backward-compat.md",
@@ -3026,6 +3031,15 @@
       "rel": "sessions/S-0051-w-0010-closeout-e-0016-salt-repair.md",
       "status": "CLOSED",
       "title": "W-0010 close-out DONE plus E-0016 salt repair, stage (a) still unexecuted",
+      "when": "2026-10-07"
+    },
+    {
+      "example": false,
+      "id": "S-0052",
+      "kind": "session",
+      "rel": "sessions/S-0052-e-0016-launch-gate-audit-blocked-carve-source-conflict-ho-0028-filed.md",
+      "status": "CLOSED",
+      "title": "E-0016 launch-gate audit BLOCKED on carve-source conflict, HO-0028 filed",
       "when": "2026-10-07"
     },
     {

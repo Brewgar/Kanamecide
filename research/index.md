@@ -219,6 +219,7 @@
 - [HO-0018](handoffs/HO-0018-implement-f-u7-f-u13-normalized-fen-dedup-key.md) — Implement the E-0013 Option-(1) leakage remediation F-U7..F-U13: the dedup key is the normalized FEN — status=REQUESTED
 - [HO-0024](handoffs/HO-0024-hw-3-make-the-release-binary-digest-stable-brepro-or-equivalent-so-ev-00nn-pins-are-reproducible.md) — HW-3: make the Release binary digest-stable (/Brepro or equivalent) so EV-00NN pins are reproducible — status=REQUESTED
 - [HO-0025](handoffs/HO-0025-execute-e-0016-stage-a-elo-scaled-train-only-inner-feasibility-fit-measurement-not-training.md) — Execute E-0016 stage (a): Elo-scaled TRAIN-only inner feasibility fit (measurement, not training) — status=REQUESTED
+- [HO-0028](handoffs/HO-0028-repair-e-0016-carve-source-conflict-before-any-fit-runs-extract-vs-train-only-labels.md) — Repair E-0016 carve-source conflict before any fit runs (extract vs TRAIN-only labels) — status=REQUESTED
 
 ## Handoffs (closed)
 
@@ -308,6 +309,7 @@
 - [S-0049](sessions/S-0049-w-0010-elo-scale-tooling-backward-compat-e-0016-amendment-ho-0025-filed.md) — W-0010 Elo-scale tooling implemented + backward-compat proven + E-0016 amended + HO-0025 executor handoff filed — status=CLOSED
 - [S-0050](sessions/S-0050-w-0010-verified-r-0029-salt-conflict-ho-0026-ho-0027.md) — W-0010 independent verification VERIFIED plus E-0016 salt-conflict escalation — status=CLOSED
 - [S-0051](sessions/S-0051-w-0010-closeout-e-0016-salt-repair.md) — W-0010 close-out DONE plus E-0016 salt repair, stage (a) still unexecuted — status=CLOSED
+- [S-0052](sessions/S-0052-e-0016-launch-gate-audit-blocked-carve-source-conflict-ho-0028-filed.md) — E-0016 launch-gate audit BLOCKED on carve-source conflict, HO-0028 filed — status=CLOSED
 
 ## Unrendered Records (bug — report this)
 
