@@ -1,7 +1,7 @@
 # Research State (GENERATED — do not edit)
 
 Derived from the record store by `research.py state`. Regenerate after every change.
-Generated: 2026-10-07T22:57:01; schema 2.
+Generated: 2026-10-08T22:32:06; schema 2.
 Every entry is a PROJECTION of the linked records — follow them before believing.
 
 ## Current best beliefs (hypotheses with measured weight)
@@ -12,7 +12,7 @@ Every entry is a PROJECTION of the linked records — follow them before believi
 - **H-0008** Move ordering dominates raw NPS for Phase-2 time-to-depth — status OPEN; confidence 0.7 (likely); tested by E-00006 [positive], E-00007 [positive]. (hypotheses/H-0008-move-ordering-dominates-raw-nps-for-phase-2-time-to-depth.md)
 - **H-0010** SPRT-based engine comparison harness is required before any version claim is trustworthy — status OPEN; confidence 0.85 (strongly supported); tested by E-00006 [positive], E-00014 [neutral], E-0012 [positive], E-0013 [unverdicted]. (hypotheses/H-0010-sprt-based-engine-comparison-harness-is-required-before-any-version-claim-is-trustworthy.md)
 - **H-0012** Search fast-path move invariants - king-capture exclusion and promo-phantom asserts — status OPEN; confidence 0.7 (likely); tested by E-00008 [positive], E-0002 [unverdicted]. (hypotheses/H-0012-search-fast-path-move-invariants-king-capture-exclusion-and-promo-phantom-asserts.md)
-- **H-0013** Tapered eval plus Texel protocol - mg-eg interpolation and quiet-label holdout design — status OPEN; confidence 0.6 (likely); tested by E-00014 [neutral], E-00015 [positive], E-00016 [unverdicted], E-0010 [negative], E-0011 [positive], E-0013 [unverdicted]. (hypotheses/H-0013-tapered-eval-plus-texel-protocol-mg-eg-interpolation-and-quiet-label-holdout-design.md)
+- **H-0013** Tapered eval plus Texel protocol - mg-eg interpolation and quiet-label holdout design — status OPEN; confidence 0.6 (likely); tested by E-00014 [neutral], E-00015 [positive], E-00016 [unverdicted], E-00017 [unverdicted], E-0010 [negative], E-0011 [positive], E-0013 [unverdicted]. (hypotheses/H-0013-tapered-eval-plus-texel-protocol-mg-eg-interpolation-and-quiet-label-holdout-design.md)
 - **H-0014** Board state integrity audit - halfmove EP-key castling-rights round-trip tests — status OPEN; confidence 0.6 (likely); tested by E-0002 [unverdicted]. (hypotheses/H-0014-board-state-integrity-audit-halfmove-ep-key-castling-rights-round-trip-tests.md)
 
 ## Open questions
@@ -44,21 +44,21 @@ Every entry is a PROJECTION of the linked records — follow them before believi
 - hypothesis **H-0002-magic-stub** Magic Bitboards with PEXT Provide >=3x NPS Speedup — SUPERSEDED. No revisit condition recorded.
 
 ## Recent timeline
-- 2026-10-06 handoff HO-0025 (REQUESTED) : Execute E-0016 stage (a): Elo-scaled TRAIN-only inner feasibility fit (measurement, not training)
-- 2026-10-06 review R-0028 (COMPLETED) : R 0028 adversarial review of the e 0016 elo scaled pre registration missing elo scale tooling blocks execution
-- 2026-10-06 session S-0047 (CLOSED) : DEC-0014 X-2 re-decision completion + project_state staleness repair + derived regen (validate OK)
-- 2026-10-06 session S-0048 (CLOSED) : HO-0015 independent verification (fresh auditor seat): 21/21 re-derivation + adversarial split proof, VERIFIED, handoff closed
-- 2026-10-06 session S-0049 (CLOSED) : W-0010 Elo-scale tooling implemented + backward-compat proven + E-0016 amended + HO-0025 executor handoff filed
+- 2026-10-07 decision DEC-0015 (ACTIVE) : Y-2 re-decision: E-0016 stage (a) INCONCLUSIVE-BY-POWER routes to TRAIN-only first training; holdout stage (b) stays blocked
+- 2026-10-07 experiment E-00017 (PENDING) : E-0017 first TRAIN-only Elo-scaled Texel fit on the full outer-train set with inner-val eval (measurement-grade first training; holdout never read)
 - 2026-10-07 handoff HO-0026 (DONE) : Close W-0010 after R-0029 independent verification
 - 2026-10-07 handoff HO-0027 (DONE) : Repair E-0016 stage (a) salt conflict before any fit runs
 - 2026-10-07 handoff HO-0028 (DONE) : Repair E-0016 carve-source conflict before any fit runs (extract vs TRAIN-only labels)
+- 2026-10-07 handoff HO-0029 (ACCEPTED) : Execute E-0017 TRAIN-only first training (measurement-grade; holdout never read)
 - 2026-10-07 review R-0029 (COMPLETED) : R 0029 independent verification of w 0010 elo scale tooling backward compat
 - 2026-10-07 review R-0030 (COMPLETED) : R 0030 independent verification of e 0016 stage a y 2 run under ho 0025
+- 2026-10-07 review R-0031 (COMPLETED) : R 0031 adversarial critique of the e 0017 first training pre registration train only holdout never read
 - 2026-10-07 session S-0050 (CLOSED) : W-0010 independent verification VERIFIED plus E-0016 salt-conflict escalation
 - 2026-10-07 session S-0051 (CLOSED) : W-0010 close-out DONE plus E-0016 salt repair, stage (a) still unexecuted
 - 2026-10-07 session S-0052 (CLOSED) : E-0016 launch-gate audit BLOCKED on carve-source conflict, HO-0028 filed
 - 2026-10-07 session S-0053 (CLOSED) : HO-0028 owner repair DONE, E-0016 stage (a) executed Y-2, verified R-0030
 - 2026-10-07 work W-0010 (DONE) : Elo-scale parameter for the fit/eval tooling: sigmoid(clip(E/D,-L,L)) with D pinned, D=1 backward-compatible, selftests extended (unblocks E-0016 stage a)
+- 2026-10-07 work W-0011 (OPEN) : First-training pipeline: canonical trainer entry point, frozen config, firewall, preflight, dry-run, checkpointing, manifest, tests
 
 ## Metrics
 ```
@@ -69,32 +69,33 @@ Every entry is a PROJECTION of the linked records — follow them before believi
     "claim": 3,
     "current_position": 6,
     "debate": 7,
-    "decision": 14,
+    "decision": 15,
     "doc": 18,
     "evidence": 9,
-    "experiment": 16,
+    "experiment": 17,
     "failure": 2,
     "finding": 35,
-    "handoff": 28,
+    "handoff": 29,
     "hypothesis": 17,
     "principle": 4,
     "profile": 5,
     "question": 8,
     "report": 13,
-    "review": 30,
+    "review": 31,
     "round_megaprompt": 2,
     "session": 53,
-    "work": 10
+    "work": 11
   },
   "by_status": {
-    "ACTIVE": 17,
+    "ACCEPTED": 1,
+    "ACTIVE": 18,
     "CLOSED": 53,
-    "COMPLETED": 40,
+    "COMPLETED": 41,
     "DONE": 31,
     "DRAFT": 1,
     "IN_PROGRESS": 1,
-    "OPEN": 41,
-    "PENDING": 4,
+    "OPEN": 42,
+    "PENDING": 5,
     "RECORDED": 2,
     "REGISTERED": 9,
     "REQUESTED": 5,
@@ -102,14 +103,14 @@ Every entry is a PROJECTION of the linked records — follow them before believi
     "RUNNING": 1,
     "SUPERSEDED": 4
   },
-  "code_files": 31,
+  "code_files": 33,
   "contradiction_candidates": 0,
-  "dangling_ids": 18,
+  "dangling_ids": 19,
   "duplicate_candidates": 2,
-  "edges_total": 5124,
+  "edges_total": 5236,
   "legacy_experiments_without_pre_registration": 6,
   "open_questions": 8,
-  "records_total": 282,
+  "records_total": 287,
   "revival_candidates": 6
 }
 

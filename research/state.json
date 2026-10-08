@@ -429,6 +429,14 @@
           "verdict": "unverdicted"
         },
         {
+          "id": "E-00017",
+          "rel": "experiments/E-00017-e-0017-first-train-only-elo-scaled-texel-fit-on-the-full-outer-train-set-with-inner-val-eval-measurement-grade-first-training-holdout-never-read.md",
+          "result": "",
+          "status": "PENDING",
+          "title": "E-0017 first TRAIN-only Elo-scaled Texel fit on the full outer-train set with inner-val eval (measurement-grade first training; holdout never read)",
+          "verdict": "unverdicted"
+        },
+        {
           "id": "E-0010",
           "rel": "experiments/E-0010-ee-val-tapered-hand-tuned-evaluation-term-by-term-self-play-elo-attribution.md",
           "result": "FAIL (pre-registered gate (c) effect size; direction significantly positive). Gates (a),(b),(d) PASS. gate (c): stage-6 (full tapered eval) beats stage-0 (mater",
@@ -455,7 +463,7 @@
       ],
       "falsifier": "",
       "id": "H-0013",
-      "n_experiments": 6,
+      "n_experiments": 7,
       "rel": "hypotheses/H-0013-tapered-eval-plus-texel-protocol-mg-eg-interpolation-and-quiet-label-holdout-design.md",
       "status": "OPEN",
       "title": "Tapered eval plus Texel protocol - mg-eg interpolation and quiet-label holdout design"
@@ -922,6 +930,24 @@
     {
       "code_files": [
         "src/eval.cpp",
+        "tools/e0013_eval.py"
+      ],
+      "commits_mentioned": [
+        "19cee19",
+        "2bf68bf",
+        "711c460",
+        "93bcd0d",
+        "bb079a4"
+      ],
+      "kind": "experiment",
+      "record": "E-00017",
+      "rel": "experiments/E-00017-e-0017-first-train-only-elo-scaled-texel-fit-on-the-full-outer-train-set-with-inner-val-eval-measurement-grade-first-training-holdout-never-read.md",
+      "status": "PENDING",
+      "title": "E-0017 first TRAIN-only Elo-scaled Texel fit on the full outer-train set with inner-val eval (measurement-grade first training; holdout never read)"
+    },
+    {
+      "code_files": [
+        "src/eval.cpp",
         "src/eval.h",
         "src/main.cpp",
         "src/search.cpp"
@@ -1350,6 +1376,18 @@
     },
     {
       "code_files": [
+        "tools/kaname_train.py",
+        "tools/test_kaname_train.py"
+      ],
+      "commits_mentioned": [],
+      "kind": "handoff",
+      "record": "HO-0029",
+      "rel": "handoffs/HO-0029-execute-e-0017-train-only-first-training-measurement-grade-holdout-never-read.md",
+      "status": "ACCEPTED",
+      "title": "Execute E-0017 TRAIN-only first training (measurement-grade; holdout never read)"
+    },
+    {
+      "code_files": [
         "src/bitboard.cpp"
       ],
       "commits_mentioned": [],
@@ -1597,6 +1635,27 @@
       "rel": "reviews/R-0030-independent-verification-of-e-0016-stage-a-y-2-run-under-ho-0025.md",
       "status": "COMPLETED",
       "title": "R 0030 independent verification of e 0016 stage a y 2 run under ho 0025"
+    },
+    {
+      "code_files": [
+        "tools/e0013_eval.py",
+        "tools/e0013_fit.py",
+        "tools/kaname_train.py",
+        "tools/test_kaname_train.py"
+      ],
+      "commits_mentioned": [
+        "19cee19",
+        "27ea181",
+        "2bf68bf",
+        "711c460",
+        "8a7955d",
+        "93bcd0d"
+      ],
+      "kind": "review",
+      "record": "R-0031",
+      "rel": "reviews/R-0031-adversarial-critique-of-the-e-0017-first-training-pre-registration-train-only-holdout-never-read.md",
+      "status": "COMPLETED",
+      "title": "R 0031 adversarial critique of the e 0017 first training pre registration train only holdout never read"
     },
     {
       "code_files": [
@@ -2014,6 +2073,27 @@
       "rel": "work/W-0010-elo-scale-parameter-for-the-fit-eval-tooling-sigmoid-clip-e-d-l-l-with-d-pinned-d-1-backward-compatible-selftests-extended-unblocks-e-0016-stage-a.md",
       "status": "DONE",
       "title": "Elo-scale parameter for the fit/eval tooling: sigmoid(clip(E/D,-L,L)) with D pinned, D=1 backward-compatible, selftests extended (unblocks E-0016 stage a)"
+    },
+    {
+      "code_files": [
+        "tools/e0013_eval.py",
+        "tools/e0013_fit.py",
+        "tools/kaname_train.py",
+        "tools/test_kaname_train.py"
+      ],
+      "commits_mentioned": [
+        "6c085ab",
+        "711c460",
+        "8a7955d",
+        "d58b050",
+        "da13fc3",
+        "ef80f8b"
+      ],
+      "kind": "work",
+      "record": "W-0011",
+      "rel": "work/W-0011-first-training-pipeline-canonical-trainer-entry-point-frozen-config-firewall-preflight-dry-run-checkpointing-manifest-tests.md",
+      "status": "OPEN",
+      "title": "First-training pipeline: canonical trainer entry point, frozen config, firewall, preflight, dry-run, checkpointing, manifest, tests"
     }
   ],
   "contradiction_candidates": [],
@@ -2259,7 +2339,7 @@
       "title": "Gate 0 unrunnable: Device Guard hard-blocks kana.exe (every build, every path)"
     }
   ],
-  "generated": "2026-10-07T22:57:01",
+  "generated": "2026-10-08T22:32:06",
   "metrics": {
     "by_kind": {
       "agent_profile": 1,
@@ -2267,32 +2347,33 @@
       "claim": 3,
       "current_position": 6,
       "debate": 7,
-      "decision": 14,
+      "decision": 15,
       "doc": 18,
       "evidence": 9,
-      "experiment": 16,
+      "experiment": 17,
       "failure": 2,
       "finding": 35,
-      "handoff": 28,
+      "handoff": 29,
       "hypothesis": 17,
       "principle": 4,
       "profile": 5,
       "question": 8,
       "report": 13,
-      "review": 30,
+      "review": 31,
       "round_megaprompt": 2,
       "session": 53,
-      "work": 10
+      "work": 11
     },
     "by_status": {
-      "ACTIVE": 17,
+      "ACCEPTED": 1,
+      "ACTIVE": 18,
       "CLOSED": 53,
-      "COMPLETED": 40,
+      "COMPLETED": 41,
       "DONE": 31,
       "DRAFT": 1,
       "IN_PROGRESS": 1,
-      "OPEN": 41,
-      "PENDING": 4,
+      "OPEN": 42,
+      "PENDING": 5,
       "RECORDED": 2,
       "REGISTERED": 9,
       "REQUESTED": 5,
@@ -2300,14 +2381,14 @@
       "RUNNING": 1,
       "SUPERSEDED": 4
     },
-    "code_files": 31,
+    "code_files": 33,
     "contradiction_candidates": 0,
-    "dangling_ids": 18,
+    "dangling_ids": 19,
     "duplicate_candidates": 2,
-    "edges_total": 5124,
+    "edges_total": 5236,
     "legacy_experiments_without_pre_registration": 6,
     "open_questions": 8,
-    "records_total": 282,
+    "records_total": 287,
     "revival_candidates": 6
   },
   "questions_all": [
@@ -2710,51 +2791,6 @@
   "timeline_tail": [
     {
       "example": false,
-      "id": "current_position",
-      "kind": "current_position",
-      "rel": "agents/chief-architect/current_position.md",
-      "status": "—",
-      "title": "current_position",
-      "when": "2026-10-02"
-    },
-    {
-      "example": false,
-      "id": "FND-0033",
-      "kind": "finding",
-      "rel": "findings/FND-0033-f-u14-build-and-hash-pin-the-independent-tactical-suite-n-200-is-absent-from-the-findings-ledger.md",
-      "status": "RESOLVED",
-      "title": "F-U14 (build and hash-pin the independent tactical suite, N >= 200) is absent from the findings ledger",
-      "when": "2026-10-02"
-    },
-    {
-      "example": false,
-      "id": "FND-0034",
-      "kind": "finding",
-      "rel": "findings/FND-0034-ev-0010-binary-digest-drift-after-rebuild.md",
-      "status": "RESOLVED",
-      "title": "EV-0010 pinned Release binary digest no longer matches the on-disk binary after a master rebuild; research.py validate now fails on evidence-hash drift (not repaired by the F-U14 seat - owner and chief-architect route)",
-      "when": "2026-10-02"
-    },
-    {
-      "example": false,
-      "id": "HO-0021",
-      "kind": "handoff",
-      "rel": "handoffs/HO-0021-audit-w-0008-imem-2-1-work-the-fnd-0032-self-closure.md",
-      "status": "DONE",
-      "title": "Audit W-0008: imem 2.1 work + the FND-0032 self-closure",
-      "when": "2026-10-02"
-    },
-    {
-      "example": false,
-      "id": "profile",
-      "kind": "profile",
-      "rel": "agents/chief-architect/profile.md",
-      "status": "—",
-      "title": "profile",
-      "when": "2026-10-02"
-    },
-    {
-      "example": false,
       "id": "R-0027",
       "kind": "review",
       "rel": "reviews/R-0027-independent-audit-of-w-0008-imem-2-1-0-infrastructure-and-the-fnd-0032-self-closure-ho-0021.md",
@@ -2980,6 +3016,24 @@
     },
     {
       "example": false,
+      "id": "DEC-0015",
+      "kind": "decision",
+      "rel": "decisions/DEC-0015-y-2-re-decision-e-0016-stage-a-inconclusive-by-power-routes-to-train-only-first-training-holdout-stage-b-stays-blocked.md",
+      "status": "ACTIVE",
+      "title": "Y-2 re-decision: E-0016 stage (a) INCONCLUSIVE-BY-POWER routes to TRAIN-only first training; holdout stage (b) stays blocked",
+      "when": "2026-10-07"
+    },
+    {
+      "example": false,
+      "id": "E-00017",
+      "kind": "experiment",
+      "rel": "experiments/E-00017-e-0017-first-train-only-elo-scaled-texel-fit-on-the-full-outer-train-set-with-inner-val-eval-measurement-grade-first-training-holdout-never-read.md",
+      "status": "PENDING",
+      "title": "E-0017 first TRAIN-only Elo-scaled Texel fit on the full outer-train set with inner-val eval (measurement-grade first training; holdout never read)",
+      "when": "2026-10-07"
+    },
+    {
+      "example": false,
       "id": "HO-0026",
       "kind": "handoff",
       "rel": "handoffs/HO-0026-close-w-0010-after-r-0029-independent-verification.md",
@@ -3007,6 +3061,15 @@
     },
     {
       "example": false,
+      "id": "HO-0029",
+      "kind": "handoff",
+      "rel": "handoffs/HO-0029-execute-e-0017-train-only-first-training-measurement-grade-holdout-never-read.md",
+      "status": "ACCEPTED",
+      "title": "Execute E-0017 TRAIN-only first training (measurement-grade; holdout never read)",
+      "when": "2026-10-07"
+    },
+    {
+      "example": false,
       "id": "R-0029",
       "kind": "review",
       "rel": "reviews/R-0029-independent-verification-of-w-0010-elo-scale-tooling-backward-compat.md",
@@ -3021,6 +3084,15 @@
       "rel": "reviews/R-0030-independent-verification-of-e-0016-stage-a-y-2-run-under-ho-0025.md",
       "status": "COMPLETED",
       "title": "R 0030 independent verification of e 0016 stage a y 2 run under ho 0025",
+      "when": "2026-10-07"
+    },
+    {
+      "example": false,
+      "id": "R-0031",
+      "kind": "review",
+      "rel": "reviews/R-0031-adversarial-critique-of-the-e-0017-first-training-pre-registration-train-only-holdout-never-read.md",
+      "status": "COMPLETED",
+      "title": "R 0031 adversarial critique of the e 0017 first training pre registration train only holdout never read",
       "when": "2026-10-07"
     },
     {
@@ -3066,6 +3138,15 @@
       "rel": "work/W-0010-elo-scale-parameter-for-the-fit-eval-tooling-sigmoid-clip-e-d-l-l-with-d-pinned-d-1-backward-compatible-selftests-extended-unblocks-e-0016-stage-a.md",
       "status": "DONE",
       "title": "Elo-scale parameter for the fit/eval tooling: sigmoid(clip(E/D,-L,L)) with D pinned, D=1 backward-compatible, selftests extended (unblocks E-0016 stage a)",
+      "when": "2026-10-07"
+    },
+    {
+      "example": false,
+      "id": "W-0011",
+      "kind": "work",
+      "rel": "work/W-0011-first-training-pipeline-canonical-trainer-entry-point-frozen-config-firewall-preflight-dry-run-checkpointing-manifest-tests.md",
+      "status": "OPEN",
+      "title": "First-training pipeline: canonical trainer entry point, frozen config, firewall, preflight, dry-run, checkpointing, manifest, tests",
       "when": "2026-10-07"
     }
   ]

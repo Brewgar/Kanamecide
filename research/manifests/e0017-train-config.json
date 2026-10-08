@@ -1,0 +1,93 @@
+{
+  "format": "kana-e0017-train-config-v1",
+  "record": "E-0017",
+  "decided_by": "DEC-0015 (Y-2 re-decision; TRAIN-only first training; holdout stage (b) blocked)",
+  "written": "2026-10-07",
+  "written_by_seat": "researcher-architect (E-0017 owner; implementation by implementation-engineer under W-0011)",
+  "scope_note": "Every value has project authority (E-0016/W-0010/pre-fit manifest) or is a recorded implementation default. No magic defaults: the trainer refuses to run if any field is missing.",
+  "provenance": {
+    "dataset_path": "m0_audit/e0011/games.jsonl",
+    "dataset_sha256": "27ea181d32a9025e0fd9cea150540b6598ce7e608bc96ca245d7c07b7ac5bb95",
+    "dataset_rows": 1000,
+    "outer_split_salt": 20260926,
+    "outer_split_rule": "random.Random(SPLIT_SALT * 1000003 + game_id).random() < 0.8",
+    "outer_map_sha256": "bb079a41630161bcd33a3a5df7890546dfe0c8329cc6bfed5ee35a83d4ada1ea",
+    "outer_train_games": 792,
+    "outer_train_rows": 59892,
+    "outer_holdout_games": 208,
+    "outer_holdout_rows": 14560,
+    "labels_path": "build/e0013/labels/labels.jsonl",
+    "labels_sha256": "2bf68bfb1da371ae6d3146885ccf4ee4b36192de956b2b4d183156a9aa0f7bc2",
+    "labels_games": 791,
+    "labels_rows": 59892,
+    "corpus_path": "build/e0013/extract/positions.jsonl",
+    "corpus_sha256": "19cee19027d5298756660fa4d57998c41144bcb3c92c0425008449ac6d31c48f",
+    "corpus_rows": 74452,
+    "inner_map_path": "build/e0016/inner_map.json",
+    "inner_map_sha256": "93bcd0db90bb33f10f15b70e032464492c16a17afa1a37b839f3005bec9ff9e0",
+    "inner_salt": 20261007,
+    "inner_train_games": 636,
+    "inner_val_games": 155,
+    "floor_sha256": "711c460dce3747bf1dcad59eefada488960066c43967f638a818510303b667f1",
+    "src_epoch": "dd4051a92daf834cf4a73f1878a0c894b0b6d1b8",
+    "join_rule": "fit rows = extractor rows whose (game_id, norm_fen) pair is in TRAIN-only labels, restricted to outer-train ids; expected 791 games / 59892 rows or abort"
+  },
+  "expected_counts": {
+    "fit_games": 791,
+    "fit_rows": 59892,
+    "holdout_games_excluded": 208,
+    "holdout_rows_excluded": 14560,
+    "join_miss_rows": 0,
+    "inner_val_games": 155
+  },
+  "model": {
+    "family": "linear tapered evaluation (E-0013 family; NOT a neural network)",
+    "free_scalars": 683,
+    "stage": 6,
+    "authority": "E-0013 B5 + tools/e0013_eval.py design_rows/loss_and_gradient (W-0010)"
+  },
+  "objective": {
+    "loss": "mean logistic loss of sigmoid(clip(E/D, -L, L)) vs side-to-move y in {0,0.5,1}",
+    "clip_L": 1200.0,
+    "elo_scale_D": 173.7177927613,
+    "l2": 1.0e-06,
+    "l2_convention": "l2 * ||theta - theta0||^2 SUM from frozen floor theta0",
+    "authority": "E-0016 + W-0010 (divide-first-clip-second + 1/D chain rule)"
+  },
+  "optimizer": {
+    "method": "scipy.optimize.minimize method=L-BFGS-B, full-batch, jac=True",
+    "maxiter": 1000,
+    "seed": 1,
+    "seed_note": "recorded never consumed; determinism PROVED by double-fit byte-identity",
+    "theta0": "frozen hand-tuned floor design vector",
+    "early_stopping": null,
+    "authority": "E-0013 B4 + E-0016 non-convergence abort"
+  },
+  "execution": {
+    "device": "cpu",
+    "precision": "float64 (numpy); tables per tools/e0013_eval.py table_bytes",
+    "output_dir": "build/e0017",
+    "checkpoint_dir": "build/e0017/checkpoints",
+    "checkpoint_phases": ["design-matrix", "fit", "eval"],
+    "launch_command": "python tools/kaname_train.py train --config research/manifests/e0017-train-config.json"
+  },
+  "evaluation": {
+    "partition": "inner-val only (155 games; inner_map role holdout; salt 20261007 READ-ONLY)",
+    "method": "paired two-table comparison via e0013_eval semantics, Elo-scaled, S*=6",
+    "holdout_clause": "THE HOLDOUT IS NOT READ. NOT ONCE. (abort 2 on any other touch)"
+  },
+  "reproducibility": {
+    "python": "3.14.6",
+    "scipy": "1.18.1",
+    "numpy": "2.5.1",
+    "python_chess": "1.11.2",
+    "torch_note": "2.13.0+cpu present, cuda=False, NOT used",
+    "claim": "configuration + statistical reproducibility (deterministic rerun proved); no GPU bit-claim"
+  },
+  "implementation_defaults_recorded": {
+    "join_key": "(game_id, norm_fen)",
+    "checkpoint_format": "kana-e0017-checkpoint-v1",
+    "manifest_format": "kana-e0017-manifest-v1",
+    "metrics_format": "kana-e0017-metrics-v1"
+  }
+}
