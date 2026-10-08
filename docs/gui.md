@@ -9,10 +9,10 @@ here; the GUI shells out to `tools/kaname_train.py` only.
 python tools/gui_app.py
 ```
 
-Windows:
+Windows (`tools/run_gui.bat`):
 
 ```text
-run_gui.bat
+tools\run_gui.bat
 ```
 
 ## Workflow
