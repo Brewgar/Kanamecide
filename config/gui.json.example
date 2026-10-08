@@ -1,0 +1,9 @@
+# KANAMECIDE GUI user-local settings template.
+# Copy to .kanamecide-gui.json at the repo root and edit paths.
+# NEVER commit the real file (it is gitignored): no machine paths in git.
+{
+  "config": "research/manifests/e0017-train-config.json",
+  "kana_engine": "",
+  "cutechess": "",
+  "stockfish": ""
+}

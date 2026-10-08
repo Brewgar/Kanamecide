@@ -323,12 +323,30 @@ def checkpoint_path(cfg: dict, phase: str) -> Path:
 
 def write_checkpoint(cfg: dict, phase: str, payload: dict) -> Path:
     import e0013_eval as ev
+    import os
+    import tempfile
     path = checkpoint_path(cfg, phase)
     path.parent.mkdir(parents=True, exist_ok=True)
     body = {"format": CHECKPOINT_FORMAT, "phase": phase,
             "config_sha256": sha256_bytes(canonical_json(cfg)),
             "payload": payload}
-    path.write_bytes(canonical_json(body))
+    data = canonical_json(body)
+    # Atomic write (GUI-stop safety): temp file + fsync + os.replace, so a
+    # terminate during write can never leave a torn checkpoint behind.
+    fd, tmp = tempfile.mkstemp(prefix=phase + ".", suffix=".tmp",
+                                dir=str(path.parent))
+    try:
+        with os.fdopen(fd, "wb") as fh:
+            fh.write(data)
+            fh.flush()
+            os.fsync(fh.fileno())
+        os.replace(tmp, path)
+    except BaseException:
+        try:
+            os.unlink(tmp)
+        except OSError:
+            pass
+        raise
     print(f"checkpoint[{phase}] {path} sha256={sha256_file(path)}")
     return path
 

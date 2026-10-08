@@ -150,4 +150,18 @@ e0010_ALL_done.txt
 _chtest.py
 # DEC-0012 imem: derived index cache (disposable; rebuild via imem.py index) + task scratch.
 research/_index/
+
+# KANAMECIDE GUI (user-local; never commit real paths)
+.kanamecide-gui.json
+# External engine-testing tools (fetched via tools/fetch_engines.py; GPL)
+tools/engines/
+# GUI probe scratch (verification logs, never commit)
+probe*.py
+gui_probe.py
+_probe*.txt
+_probe*.pgn
+uci_smoke_out.txt
+_gui_probe_out.txt
+_fetch_out.txt
+
 _obs/
