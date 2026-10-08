@@ -393,6 +393,7 @@ def evaluate_inner_val(cfg: dict, fitted_table, floor_table,
         surr_pg, surr_pp, _ = ev.per_game_losses(
             samples, vector, tempo, clip, "surrogate", elo_scale=elo_scale)
         losses[arm] = {"per_game_exact": exact_pg,
+                       "per_game_surrogate": surr_pg,
                        "mean_loss_exact": sum(exact_pp) / len(exact_pp),
                        "mean_loss_surrogate": sum(surr_pp) / len(surr_pp),
                        "mae": ev.mae(exact_scores, labels, clip, elo_scale),

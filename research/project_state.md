@@ -6,7 +6,7 @@
 
 <!-- research-meta
 last_updated: 2026-10-08
-reflects: [DEC-0001, DEC-0002, DEC-0003, DEC-0004, DEC-0006, DEC-0007, DEC-0008, DEC-0009, DEC-0010, DEC-0011, DEC-0012, DEC-0013, DEC-0014, DEC-0015, E-0002, E-00003, E-00006, E-00007, E-00008, E-00009, E-0010, E-0011, E-0012, E-00015, E-00014]
+reflects: [DEC-0001, DEC-0002, DEC-0003, DEC-0004, DEC-0006, DEC-0007, DEC-0008, DEC-0009, DEC-0010, DEC-0011, DEC-0012, DEC-0013, DEC-0014, DEC-0015, E-0002, E-00003, E-00006, E-00007, E-00008, E-00009, E-0010, E-0011, E-0012, E-00015, E-00014, E-00017]
 not_reflected: []
 -->
 > The `research-meta` block above is machine-checked by `research.py validate`:
@@ -232,6 +232,11 @@ below its pre-registered ≥150 bar.
    verified E-0011 dataset only after downstream leakage checks pass.
 
 ## Last Updated
+2026-10-08 (E-0017 COMPLETED TRAINING-GATE PASS: full outer-train fit
+converged nit=10, inner-val delta 0.036211 CI95 [0.023754, 0.048668],
+s_d 0.078509, MAE watch clean, mirror 0/1000, first learned artifact
+`1de93a39…` pinned; W-0011 DONE + VERIFIED; HO-0029 DONE; holdout never
+read; no strength claimed)
 2026-10-08 (DEC-0015 ACTIVE: Y-2 INCONCLUSIVE-BY-POWER routed — E-0016
 stage (b) blocked, holdout never read; owned next step is TRAIN-only
 first training pre-registered as E-0017 PENDING; W-0011 pipeline built —

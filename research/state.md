@@ -1,7 +1,7 @@
 # Research State (GENERATED — do not edit)
 
 Derived from the record store by `research.py state`. Regenerate after every change.
-Generated: 2026-10-08T22:32:06; schema 2.
+Generated: 2026-10-08T22:46:36; schema 2.
 Every entry is a PROJECTION of the linked records — follow them before believing.
 
 ## Current best beliefs (hypotheses with measured weight)
@@ -44,12 +44,9 @@ Every entry is a PROJECTION of the linked records — follow them before believi
 - hypothesis **H-0002-magic-stub** Magic Bitboards with PEXT Provide >=3x NPS Speedup — SUPERSEDED. No revisit condition recorded.
 
 ## Recent timeline
-- 2026-10-07 decision DEC-0015 (ACTIVE) : Y-2 re-decision: E-0016 stage (a) INCONCLUSIVE-BY-POWER routes to TRAIN-only first training; holdout stage (b) stays blocked
-- 2026-10-07 experiment E-00017 (PENDING) : E-0017 first TRAIN-only Elo-scaled Texel fit on the full outer-train set with inner-val eval (measurement-grade first training; holdout never read)
 - 2026-10-07 handoff HO-0026 (DONE) : Close W-0010 after R-0029 independent verification
 - 2026-10-07 handoff HO-0027 (DONE) : Repair E-0016 stage (a) salt conflict before any fit runs
 - 2026-10-07 handoff HO-0028 (DONE) : Repair E-0016 carve-source conflict before any fit runs (extract vs TRAIN-only labels)
-- 2026-10-07 handoff HO-0029 (ACCEPTED) : Execute E-0017 TRAIN-only first training (measurement-grade; holdout never read)
 - 2026-10-07 review R-0029 (COMPLETED) : R 0029 independent verification of w 0010 elo scale tooling backward compat
 - 2026-10-07 review R-0030 (COMPLETED) : R 0030 independent verification of e 0016 stage a y 2 run under ho 0025
 - 2026-10-07 review R-0031 (COMPLETED) : R 0031 adversarial critique of the e 0017 first training pre registration train only holdout never read
@@ -58,7 +55,10 @@ Every entry is a PROJECTION of the linked records — follow them before believi
 - 2026-10-07 session S-0052 (CLOSED) : E-0016 launch-gate audit BLOCKED on carve-source conflict, HO-0028 filed
 - 2026-10-07 session S-0053 (CLOSED) : HO-0028 owner repair DONE, E-0016 stage (a) executed Y-2, verified R-0030
 - 2026-10-07 work W-0010 (DONE) : Elo-scale parameter for the fit/eval tooling: sigmoid(clip(E/D,-L,L)) with D pinned, D=1 backward-compatible, selftests extended (unblocks E-0016 stage a)
-- 2026-10-07 work W-0011 (OPEN) : First-training pipeline: canonical trainer entry point, frozen config, firewall, preflight, dry-run, checkpointing, manifest, tests
+- 2026-10-07 work W-0011 (DONE) : First-training pipeline: canonical trainer entry point, frozen config, firewall, preflight, dry-run, checkpointing, manifest, tests
+- 2026-10-08 experiment E-00017 (COMPLETED) : E-0017 first TRAIN-only Elo-scaled Texel fit on the full outer-train set with inner-val eval (measurement-grade first training; holdout never read)
+- 2026-10-08 handoff HO-0029 (DONE) : Execute E-0017 TRAIN-only first training (measurement-grade; holdout never read)
+- 2026-10-08 session S-0054 (CLOSED) : W-0011 first-training pipeline built, E-0017 executed TRAINING-GATE PASS, launch-ready
 
 ## Metrics
 ```
@@ -83,19 +83,18 @@ Every entry is a PROJECTION of the linked records — follow them before believi
     "report": 13,
     "review": 31,
     "round_megaprompt": 2,
-    "session": 53,
+    "session": 54,
     "work": 11
   },
   "by_status": {
-    "ACCEPTED": 1,
     "ACTIVE": 18,
-    "CLOSED": 53,
-    "COMPLETED": 41,
-    "DONE": 31,
+    "CLOSED": 54,
+    "COMPLETED": 42,
+    "DONE": 33,
     "DRAFT": 1,
     "IN_PROGRESS": 1,
-    "OPEN": 42,
-    "PENDING": 5,
+    "OPEN": 41,
+    "PENDING": 4,
     "RECORDED": 2,
     "REGISTERED": 9,
     "REQUESTED": 5,
@@ -107,10 +106,10 @@ Every entry is a PROJECTION of the linked records — follow them before believi
   "contradiction_candidates": 0,
   "dangling_ids": 19,
   "duplicate_candidates": 2,
-  "edges_total": 5236,
+  "edges_total": 5270,
   "legacy_experiments_without_pre_registration": 6,
   "open_questions": 8,
-  "records_total": 287,
+  "records_total": 288,
   "revival_candidates": 6
 }
 

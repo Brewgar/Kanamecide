@@ -431,8 +431,8 @@
         {
           "id": "E-00017",
           "rel": "experiments/E-00017-e-0017-first-train-only-elo-scaled-texel-fit-on-the-full-outer-train-set-with-inner-val-eval-measurement-grade-first-training-holdout-never-read.md",
-          "result": "",
-          "status": "PENDING",
+          "result": "TRAINING-GATE PASS — inner-val improvement 0.036211 (CI95 [0.023754, 0.048668] above zero), s_d 0.078509, MAE fitted 0.245440 < floor 0.262752 (watch CLEAN), mi",
+          "status": "COMPLETED",
           "title": "E-0017 first TRAIN-only Elo-scaled Texel fit on the full outer-train set with inner-val eval (measurement-grade first training; holdout never read)",
           "verdict": "unverdicted"
         },
@@ -930,19 +930,28 @@
     {
       "code_files": [
         "src/eval.cpp",
-        "tools/e0013_eval.py"
+        "tools/e0013_eval.py",
+        "tools/kaname_train.py"
       ],
       "commits_mentioned": [
+        "020a8e1",
+        "0445383",
+        "1073e4b",
         "19cee19",
+        "1de93a3",
+        "253245e",
         "2bf68bf",
+        "579c69d",
+        "6a73da7",
         "711c460",
+        "8a7955d",
         "93bcd0d",
         "bb079a4"
       ],
       "kind": "experiment",
       "record": "E-00017",
       "rel": "experiments/E-00017-e-0017-first-train-only-elo-scaled-texel-fit-on-the-full-outer-train-set-with-inner-val-eval-measurement-grade-first-training-holdout-never-read.md",
-      "status": "PENDING",
+      "status": "COMPLETED",
       "title": "E-0017 first TRAIN-only Elo-scaled Texel fit on the full outer-train set with inner-val eval (measurement-grade first training; holdout never read)"
     },
     {
@@ -1379,11 +1388,17 @@
         "tools/kaname_train.py",
         "tools/test_kaname_train.py"
       ],
-      "commits_mentioned": [],
+      "commits_mentioned": [
+        "020a8e1",
+        "0445383",
+        "1de93a3",
+        "253245e",
+        "6a73da7"
+      ],
       "kind": "handoff",
       "record": "HO-0029",
       "rel": "handoffs/HO-0029-execute-e-0017-train-only-first-training-measurement-grade-holdout-never-read.md",
-      "status": "ACCEPTED",
+      "status": "DONE",
       "title": "Execute E-0017 TRAIN-only first training (measurement-grade; holdout never read)"
     },
     {
@@ -1421,9 +1436,11 @@
     },
     {
       "code_files": [
-        "tools/e0012_sprt.py"
+        "tools/e0012_sprt.py",
+        "tools/kaname_train.py"
       ],
       "commits_mentioned": [
+        "1de93a3",
         "300bdeb"
       ],
       "kind": "doc",
@@ -2016,6 +2033,22 @@
     },
     {
       "code_files": [
+        "tools/kaname_train.py",
+        "tools/test_kaname_train.py"
+      ],
+      "commits_mentioned": [
+        "1de93a3",
+        "6a73da7",
+        "d58b050"
+      ],
+      "kind": "session",
+      "record": "S-0054",
+      "rel": "sessions/S-0054-w-0011-pipeline-e-0017-training-gate-pass-launch-ready.md",
+      "status": "CLOSED",
+      "title": "W-0011 first-training pipeline built, E-0017 executed TRAINING-GATE PASS, launch-ready"
+    },
+    {
+      "code_files": [
         "tools/e0011_check.py",
         "tools/e0011_generate.py",
         "tools/e0012_sprt.py",
@@ -2092,7 +2125,7 @@
       "kind": "work",
       "record": "W-0011",
       "rel": "work/W-0011-first-training-pipeline-canonical-trainer-entry-point-frozen-config-firewall-preflight-dry-run-checkpointing-manifest-tests.md",
-      "status": "OPEN",
+      "status": "DONE",
       "title": "First-training pipeline: canonical trainer entry point, frozen config, firewall, preflight, dry-run, checkpointing, manifest, tests"
     }
   ],
@@ -2339,7 +2372,7 @@
       "title": "Gate 0 unrunnable: Device Guard hard-blocks kana.exe (every build, every path)"
     }
   ],
-  "generated": "2026-10-08T22:32:06",
+  "generated": "2026-10-08T22:46:36",
   "metrics": {
     "by_kind": {
       "agent_profile": 1,
@@ -2361,19 +2394,18 @@
       "report": 13,
       "review": 31,
       "round_megaprompt": 2,
-      "session": 53,
+      "session": 54,
       "work": 11
     },
     "by_status": {
-      "ACCEPTED": 1,
       "ACTIVE": 18,
-      "CLOSED": 53,
-      "COMPLETED": 41,
-      "DONE": 31,
+      "CLOSED": 54,
+      "COMPLETED": 42,
+      "DONE": 33,
       "DRAFT": 1,
       "IN_PROGRESS": 1,
-      "OPEN": 42,
-      "PENDING": 5,
+      "OPEN": 41,
+      "PENDING": 4,
       "RECORDED": 2,
       "REGISTERED": 9,
       "REQUESTED": 5,
@@ -2385,10 +2417,10 @@
     "contradiction_candidates": 0,
     "dangling_ids": 19,
     "duplicate_candidates": 2,
-    "edges_total": 5236,
+    "edges_total": 5270,
     "legacy_experiments_without_pre_registration": 6,
     "open_questions": 8,
-    "records_total": 287,
+    "records_total": 288,
     "revival_candidates": 6
   },
   "questions_all": [
@@ -2791,15 +2823,6 @@
   "timeline_tail": [
     {
       "example": false,
-      "id": "R-0027",
-      "kind": "review",
-      "rel": "reviews/R-0027-independent-audit-of-w-0008-imem-2-1-0-infrastructure-and-the-fnd-0032-self-closure-ho-0021.md",
-      "status": "COMPLETED",
-      "title": "R 0027 independent audit of w 0008 imem 2 1 0 infrastructure and the fnd 0032 self closure ho 0021",
-      "when": "2026-10-02"
-    },
-    {
-      "example": false,
       "id": "S-0043",
       "kind": "session",
       "rel": "sessions/S-0043-imem-2-1-0-normative-infrastructure-md-chief-architect-seat-fnd-0032-gate-3-routing.md",
@@ -3025,15 +3048,6 @@
     },
     {
       "example": false,
-      "id": "E-00017",
-      "kind": "experiment",
-      "rel": "experiments/E-00017-e-0017-first-train-only-elo-scaled-texel-fit-on-the-full-outer-train-set-with-inner-val-eval-measurement-grade-first-training-holdout-never-read.md",
-      "status": "PENDING",
-      "title": "E-0017 first TRAIN-only Elo-scaled Texel fit on the full outer-train set with inner-val eval (measurement-grade first training; holdout never read)",
-      "when": "2026-10-07"
-    },
-    {
-      "example": false,
       "id": "HO-0026",
       "kind": "handoff",
       "rel": "handoffs/HO-0026-close-w-0010-after-r-0029-independent-verification.md",
@@ -3057,15 +3071,6 @@
       "rel": "handoffs/HO-0028-repair-e-0016-carve-source-conflict-before-any-fit-runs-extract-vs-train-only-labels.md",
       "status": "DONE",
       "title": "Repair E-0016 carve-source conflict before any fit runs (extract vs TRAIN-only labels)",
-      "when": "2026-10-07"
-    },
-    {
-      "example": false,
-      "id": "HO-0029",
-      "kind": "handoff",
-      "rel": "handoffs/HO-0029-execute-e-0017-train-only-first-training-measurement-grade-holdout-never-read.md",
-      "status": "ACCEPTED",
-      "title": "Execute E-0017 TRAIN-only first training (measurement-grade; holdout never read)",
       "when": "2026-10-07"
     },
     {
@@ -3145,9 +3150,36 @@
       "id": "W-0011",
       "kind": "work",
       "rel": "work/W-0011-first-training-pipeline-canonical-trainer-entry-point-frozen-config-firewall-preflight-dry-run-checkpointing-manifest-tests.md",
-      "status": "OPEN",
+      "status": "DONE",
       "title": "First-training pipeline: canonical trainer entry point, frozen config, firewall, preflight, dry-run, checkpointing, manifest, tests",
       "when": "2026-10-07"
+    },
+    {
+      "example": false,
+      "id": "E-00017",
+      "kind": "experiment",
+      "rel": "experiments/E-00017-e-0017-first-train-only-elo-scaled-texel-fit-on-the-full-outer-train-set-with-inner-val-eval-measurement-grade-first-training-holdout-never-read.md",
+      "status": "COMPLETED",
+      "title": "E-0017 first TRAIN-only Elo-scaled Texel fit on the full outer-train set with inner-val eval (measurement-grade first training; holdout never read)",
+      "when": "2026-10-08"
+    },
+    {
+      "example": false,
+      "id": "HO-0029",
+      "kind": "handoff",
+      "rel": "handoffs/HO-0029-execute-e-0017-train-only-first-training-measurement-grade-holdout-never-read.md",
+      "status": "DONE",
+      "title": "Execute E-0017 TRAIN-only first training (measurement-grade; holdout never read)",
+      "when": "2026-10-08"
+    },
+    {
+      "example": false,
+      "id": "S-0054",
+      "kind": "session",
+      "rel": "sessions/S-0054-w-0011-pipeline-e-0017-training-gate-pass-launch-ready.md",
+      "status": "CLOSED",
+      "title": "W-0011 first-training pipeline built, E-0017 executed TRAINING-GATE PASS, launch-ready",
+      "when": "2026-10-08"
     }
   ]
 }

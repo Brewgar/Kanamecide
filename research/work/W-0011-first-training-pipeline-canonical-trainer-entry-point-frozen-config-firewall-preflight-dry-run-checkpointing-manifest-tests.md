@@ -4,12 +4,12 @@ type: work
 title: "First-training pipeline: canonical trainer entry point, frozen config, firewall, preflight, dry-run, checkpointing, manifest, tests"
 round: 8
 owner: implementation-engineer
-status: OPEN
+status: DONE
 deliverable: "tools/kaname_train.py (preflight/dry-run/train/resume/manifest) + research/manifests/e0017-train-config.json (frozen) + tools/test_kaname_train.py (firewall/loader/model/optimizer/checkpoint/repro tests) reusing the authorized E-0013-family math; E-0017 pre-registered; R-0031 critique CLEAN"
 exit_check: "python tools/kaname_train.py preflight --config research/manifests/e0017-train-config.json AND python tools/kaname_train.py dry-run --config research/manifests/e0017-train-config.json AND python tools/test_kaname_train.py, all exit 0"
-evidence: []
-verified_by: null
-verification_verdict: null
+evidence: ["_obs/r9_status_out.txt (preflight/dry-run/tests/selftests all exit 0)", "R-0031 CLEAN recomputed", "_obs/r9_hostile_out.txt (8/8 attacks abort)", "E-0017 TRAINING-GATE PASS artifact 1de93a39"]
+verified_by: verification-auditor
+verification_verdict: VERIFIED
 example: false
 created: 2026-10-07
 closed: null
@@ -101,6 +101,10 @@ python tools/e0013_eval.py --selftest
 ## Verification
 > Filled by the verifying agent (a different agent than `owner`), never by the owner.
 
-- verified_by: (role)
-- verdict: (VERIFIED | CONTRADICTED | PARTIAL | UNVERIFIABLE)
-- evidence: (review record id, e.g. R-0004, plus the command outputs)
+- verified_by: verification-auditor (independent seat; re-ran all exit
+  checks + hostile audit, recomputed every SHA)
+- verdict: VERIFIED
+- evidence: R-0031 (CLEAN, recomputed) + `_obs/r9_status_out.txt`
+  (preflight/dry-run/tests/selftests all exit 0 post-fix) +
+  `_obs/r9_hostile_out.txt` (8/8 attacks abort) + E-0017 real run
+  (TRAINING-GATE PASS, TRAIN PASS, resume proved byte-identical)

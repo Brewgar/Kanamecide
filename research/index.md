@@ -45,7 +45,6 @@
 - [E-00005](experiments/E-00005-slider-attack-time-share-and-pext-speedup-ceiling-pre-pext-profile.md) — Slider-attack time share and PEXT speedup ceiling (pre-PEXT profile) — status=PENDING
 - [E-0001](experiments/E-0001-classical-alpha-beta-baseline-time-to-depth.md) — Classical alpha-beta baseline (time-to-depth) — status=PENDING  [EXAMPLE]
 - [E-00016](experiments/E-00016-e-0016-elo-scaled-texel-objective-feasibility-fit-x-2-follow-up-train-only-inner-pass-first-holdout-gated.md) — E-0016 - Elo-scaled Texel objective feasibility + fit (X-2 follow-up; TRAIN-only inner pass first, holdout gated) — status=PENDING
-- [E-00017](experiments/E-00017-e-0017-first-train-only-elo-scaled-texel-fit-on-the-full-outer-train-set-with-inner-val-eval-measurement-grade-first-training-holdout-never-read.md) — E-0017 first TRAIN-only Elo-scaled Texel fit on the full outer-train set with inner-val eval (measurement-grade first training; holdout never read) — status=PENDING
 - [E-0013](experiments/E-0013-h-0013-texel-fit-on-verified-e-0011-dataset-game-split-holdout-tier-s-sprt-vs-pinned-stage-5.md) — E-0013 — H-0013 Texel fit on the verified E-0011 dataset (game-split holdout + Tier-S SPRT vs pinned stage 5) — status=RUNNING
 
 ## Completed Experiments
@@ -57,6 +56,7 @@
 - [E-00009](experiments/E-00009-o3d-tt-iterative-deepening-time-control-repetition-50-move-search-stack-completion.md) — O3d TT + iterative deepening + time control + repetition/50-move (search-stack completion) — status=COMPLETED  result=PASS
 - [E-00014](experiments/E-00014-e-0014-train-only-feasibility-pass-for-e-0013-delta-star-and-s-d-inner-measurement-not-training.md) — E-00014 - TRAIN-ONLY feasibility pass for E-0013 (measure delta_star and s_d_inner; MEASUREMENT, not training) — status=COMPLETED  result=INCONCLUSIVE-BY-POWER (b
 - [E-00015](experiments/E-00015-e-0015-count-only-realized-usable-quiet-yield-pass-for-e-0013-measurement-not-training.md) — E-00015 - count-only realized usable quiet yield pass for E-0013 (MEASUREMENT, not training) — status=COMPLETED  result=PASS - realized usable q
+- [E-00017](experiments/E-00017-e-0017-first-train-only-elo-scaled-texel-fit-on-the-full-outer-train-set-with-inner-val-eval-measurement-grade-first-training-holdout-never-read.md) — E-0017 first TRAIN-only Elo-scaled Texel fit on the full outer-train set with inner-val eval (measurement-grade first training; holdout never read) — status=COMPLETED  result=TRAINING-GATE PASS — inn
 - [E-0002](experiments/E-0002-bench-harness-and-o2-baseline.md) — Bench harness plus O2 build baseline (perft NPS, fixed flags) — status=COMPLETED  result=certified /O2 = 43-47 Mn
 - [E-0010](experiments/E-0010-ee-val-tapered-hand-tuned-evaluation-term-by-term-self-play-elo-attribution.md) — E-EVAL — Tapered Hand-Tuned Evaluation (term-by-term self-play Elo attribution) — status=COMPLETED  result=FAIL (pre-registered gat
 - [E-0011](experiments/E-0011-self-play-data-pipeline-provenance-carrying-resumable-deduplicated-game-dataset.md) — E-0011 — Self-play data pipeline: resumable, provenance-carrying, deduplicated game dataset for Texel fitting — status=COMPLETED  result=PASS
@@ -204,7 +204,6 @@
 
 - [W-0003](work/W-0003-round2-agreement-matrix-reviewer-column-backfill.md) — Round-2 AGREEMENT_MATRIX reviewer column backfill (as an addendum review) — status=IN_PROGRESS
 - [W-0009](work/W-0009-digest-stable-release-build-brepro-or-equivalent-so-an-evidence-binary-pin-is-reproducible-from-source-not-from-a-preserved-copy.md) — Digest-stable Release build (/Brepro or equivalent) so an evidence binary pin is reproducible from source, not from a preserved copy — status=OPEN
-- [W-0011](work/W-0011-first-training-pipeline-canonical-trainer-entry-point-frozen-config-firewall-preflight-dry-run-checkpointing-manifest-tests.md) — First-training pipeline: canonical trainer entry point, frozen config, firewall, preflight, dry-run, checkpointing, manifest, tests — status=OPEN
 
 ## Work Items (closed)
 
@@ -216,6 +215,7 @@
 - [W-0007](work/W-0007-derived-intelligence-layer.md) — Derived-intelligence layer (graph, retrieval, beliefs, contradiction/revival, state, audit, self-tests) — status=DONE
 - [W-0008](work/W-0008-imem-2-1-infrastructure-infrastructure-md-normative-doc-freshness-novelty-advisory-surfaces-chief-architect-seat.md) — imem 2.1 infrastructure: INFRASTRUCTURE.md normative doc + freshness/novelty advisory surfaces + chief-architect seat — status=DONE
 - [W-0010](work/W-0010-elo-scale-parameter-for-the-fit-eval-tooling-sigmoid-clip-e-d-l-l-with-d-pinned-d-1-backward-compatible-selftests-extended-unblocks-e-0016-stage-a.md) — Elo-scale parameter for the fit/eval tooling: sigmoid(clip(E/D,-L,L)) with D pinned, D=1 backward-compatible, selftests extended (unblocks E-0016 stage a) — status=DONE
+- [W-0011](work/W-0011-first-training-pipeline-canonical-trainer-entry-point-frozen-config-firewall-preflight-dry-run-checkpointing-manifest-tests.md) — First-training pipeline: canonical trainer entry point, frozen config, firewall, preflight, dry-run, checkpointing, manifest, tests — status=DONE
 
 ## Handoffs (open)
 
@@ -224,7 +224,6 @@
 - [HO-0018](handoffs/HO-0018-implement-f-u7-f-u13-normalized-fen-dedup-key.md) — Implement the E-0013 Option-(1) leakage remediation F-U7..F-U13: the dedup key is the normalized FEN — status=REQUESTED
 - [HO-0024](handoffs/HO-0024-hw-3-make-the-release-binary-digest-stable-brepro-or-equivalent-so-ev-00nn-pins-are-reproducible.md) — HW-3: make the Release binary digest-stable (/Brepro or equivalent) so EV-00NN pins are reproducible — status=REQUESTED
 - [HO-0025](handoffs/HO-0025-execute-e-0016-stage-a-elo-scaled-train-only-inner-feasibility-fit-measurement-not-training.md) — Execute E-0016 stage (a): Elo-scaled TRAIN-only inner feasibility fit (measurement, not training) — status=REQUESTED
-- [HO-0029](handoffs/HO-0029-execute-e-0017-train-only-first-training-measurement-grade-holdout-never-read.md) — Execute E-0017 TRAIN-only first training (measurement-grade; holdout never read) — status=ACCEPTED
 
 ## Handoffs (closed)
 
@@ -251,6 +250,7 @@
 - [HO-0026](handoffs/HO-0026-close-w-0010-after-r-0029-independent-verification.md) — Close W-0010 after R-0029 independent verification — status=DONE
 - [HO-0027](handoffs/HO-0027-repair-e-0016-stage-a-salt-conflict-before-any-fit-runs.md) — Repair E-0016 stage (a) salt conflict before any fit runs — status=DONE
 - [HO-0028](handoffs/HO-0028-repair-e-0016-carve-source-conflict-before-any-fit-runs-extract-vs-train-only-labels.md) — Repair E-0016 carve-source conflict before any fit runs (extract vs TRAIN-only labels) — status=DONE
+- [HO-0029](handoffs/HO-0029-execute-e-0017-train-only-first-training-measurement-grade-holdout-never-read.md) — Execute E-0017 TRAIN-only first training (measurement-grade; holdout never read) — status=DONE
 
 ## Runs (live)
 
@@ -317,6 +317,7 @@
 - [S-0051](sessions/S-0051-w-0010-closeout-e-0016-salt-repair.md) — W-0010 close-out DONE plus E-0016 salt repair, stage (a) still unexecuted — status=CLOSED
 - [S-0052](sessions/S-0052-e-0016-launch-gate-audit-blocked-carve-source-conflict-ho-0028-filed.md) — E-0016 launch-gate audit BLOCKED on carve-source conflict, HO-0028 filed — status=CLOSED
 - [S-0053](sessions/S-0053-e-0016-ho-0028-repair-stage-a-y-2-verified-r-0030.md) — HO-0028 owner repair DONE, E-0016 stage (a) executed Y-2, verified R-0030 — status=CLOSED
+- [S-0054](sessions/S-0054-w-0011-pipeline-e-0017-training-gate-pass-launch-ready.md) — W-0011 first-training pipeline built, E-0017 executed TRAINING-GATE PASS, launch-ready — status=CLOSED
 
 ## Unrendered Records (bug — report this)
 

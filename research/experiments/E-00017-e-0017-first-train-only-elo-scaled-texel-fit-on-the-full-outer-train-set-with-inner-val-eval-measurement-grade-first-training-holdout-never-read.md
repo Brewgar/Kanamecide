@@ -2,8 +2,8 @@
 id: E-00017
 type: experiment
 title: E-0017 first TRAIN-only Elo-scaled Texel fit on the full outer-train set with inner-val eval (measurement-grade first training; holdout never read)
-status: PENDING
-result: null
+status: COMPLETED
+result: TRAINING-GATE PASS — inner-val improvement 0.036211 (CI95 [0.023754, 0.048668] above zero), s_d 0.078509, MAE fitted 0.245440 < floor 0.262752 (watch CLEAN), mirror 0/1000, arms differ (1de93a39 vs 711c460d), frozen intact, convergence nit=10, determinism proved (double-fit + resume byte-identical); first learned artifact 1de93a39 pinned; no strength claim licensed
 elo_change: null
 hypothesis: H-0013
 priority: high
@@ -11,7 +11,7 @@ owner: researcher-architect
 pre_registered: 2026-10-07
 example: false
 created: 2026-10-07
-completed: null
+completed: 2026-10-08
 tags: [texel, elo-scale, first-training, train-only-first, pre-registration, y-2-follow-up]
 ---
 
@@ -265,22 +265,92 @@ by this run under any branch. `M16_floor` is not re-derived here.
 
 ## Results
 
-(PENDING — executor fills under HO-0029; or explicit abort with the
-triggered abort condition number and its evidence. An abort is a result.)
+## Results
+
+2026-10-08 executor (systems-researcher seat) under HO-0029,
+pre-execution commit `6a73da7` (W-0011 pipeline + governance records;
+validate OK). Canonical trainer `tools/kaname_train.py` (+ one bugfix
+commit for the eval surrogate-dict key, see below).
+
+- Carve: TRAIN-only join — fit rows = extractor rows whose
+  `(game_id, norm_fen)` pair is in the TRAIN-only labels file, restricted
+  to outer-train ids by the re-derived split rule. Fit: 791 games /
+  59,892 rows; holdout excluded before any label read: 208 games /
+  14,560 rows; join_miss = 0. Inner-val (READ-ONLY map): 155 games /
+  11,897 rows; skipped_outer_holdout = 14,560.
+- Fit: `python tools/kaname_train.py train --config
+  research/manifests/e0017-train-config.json` → exit 0. Design matrix
+  (59,892 × 683) → deterministic full-batch L-BFGS-B (double-fit
+  byte-identity proved in-process) → exit 0: convergence success=True,
+  nit=10, nfev=12, message `CONVERGENCE: NORM OF PROJECTED GRADIENT <=
+  PGTOL`; loss floor=0.450776 fitted=0.431617 delta_on_fit=0.019160.
+  Arms differ: fitted `1de93a39…` vs floor `711c460d…`; frozen-block
+  mismatches none; mirror 0/1000.
+- Eval (paired, inner-val, Elo-scaled, S* = 6): games=155,
+  `delta_inner_val = 0.03621102784460066`,
+  `s_d = 0.07850860237584147`, se=0.0063059626913396505,
+  CI95=[0.0237536738521879, 0.04866838183701342]; surrogate
+  mean_improvement=0.03626430564742754 (quantisation gap visible, tiny);
+  MAE fitted=0.24543964443082955 vs floor=0.26275219257415794 (pathology
+  watch CLEAN — fitted not worse while fitted loss better);
+  mean_loss fitted=0.4355858953303157 vs floor=0.46505802390285045.
+- Determinism receipt: the first `train` invocation crashed AFTER writing
+  the fit checkpoint (eval-side `KeyError: 'per_game_surrogate'` — the
+  trainer stored per-arm `mean_loss_surrogate` but not the per-game dict
+  the paired-surrogate builder reads; a trainer bug, NOT a science
+  change). After the one-line fix (store `per_game_surrogate` in the
+  per-arm dict), `resume --checkpoint build/e0017/checkpoints/fit.json`
+  re-ran the fit deterministically and produced the byte-identical table
+  `1de93a39…` (fit checkpoint SHA `253245ee…` unchanged across both
+  invocations), then completed the eval. Resume-from-checkpoint therefore
+  proved on real artifacts.
+- Artifacts (local, gitignored): `build/e0017/fitted.json`
+  (`1de93a39…`), `build/e0017/metrics.json` (`0445383c…`),
+  `build/e0017/manifest.json` (`020a8e18…`), checkpoints
+  `design-matrix.json` (`1073e4b5…`), `fit.json` (`253245ee…`),
+  `eval.json` (`579c69d6…`); raw ledgers `_obs/e0017_exec/train_out.txt`
+  + `_obs/e0017_exec/resume_out.txt`.
+- NO holdout quantity appears anywhere in any artifact (the holdout is
+  touched only as the game-id exclusion receipt, abort 2 otherwise).
 
 ## Statistical Analysis
 
-(PENDING — paired-t CI over the 155 inner-val games, MAE pathology
-watch.)
+Paired-t CI over the 155 inner-val games (E-0013 B3, game-clustered, sign
+positive = fitted lower loss): mean improvement 0.036211, s_d 0.078509,
+SE 0.006306, CI95 [0.023754, 0.048668] — strictly above zero. MAE
+pathology watch: fitted MAE 0.245440 < floor MAE 0.262752 with fitted
+loss better — CLEAN (no E-00014-style saturation collapse). Mirror gate:
+0/1000. Arms differ; frozen blocks identical. Surrogate improvement
+0.036264 agrees with exact 0.036211 (quantisation gap negligible).
 
 ## Interpretation
 
-(PENDING — route by the TRAINING-GATE table above; no strength claim is
-licensed by this run under any branch.)
+TRAINING-GATE pass (all conjuncts):
+
+- (a) convergence success=True — PASS.
+- (b) exclusion receipt 208/14,560 + fit 791/59,892 + join_miss=0 —
+  PASS.
+- (c) arms differ (`1de93a39…` vs `711c460d…`) — PASS.
+- (d) frozen-block mismatches none — PASS.
+- (e) inner-val improvement 0.036211 with CI95 [0.023754, 0.048668]
+  strictly above zero — PASS (measurable).
+- (f) mirror 0/1000 — PASS.
+- (g) MAE watch: fitted 0.245440 < floor 0.262752 — PASS.
+- (h) manifest complete (config SHA `8a7955d6…`, all input SHAs, device,
+  environment) — PASS.
+- (i) deterministic rerun proved (double-fit byte-identity in-process +
+  resume reproduced `1de93a39…` byte-identically) — PASS.
+
+Route: TRAINING-GATE PASS. The fitted table `1de93a39…` becomes the
+first pinned learned artifact. No strength claim is licensed by this run
+under any branch. F-U3-pattern accountability for Y-2 was already
+discharged by DEC-0015; this record creates no new holdout obligation.
 
 ## Conclusion
 
-(PENDING — record-close by owner + fresh verification.)
+(PENDING — record-close by owner + fresh verification. Proposed: E-0017
+COMPLETED with result TRAINING-GATE PASS; W-0011 DONE + VERIFIED;
+HO-0029 DONE; first learned artifact `1de93a39…` pinned.)
 
 ## Follow-Up
 
