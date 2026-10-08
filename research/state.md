@@ -1,7 +1,7 @@
 # Research State (GENERATED — do not edit)
 
 Derived from the record store by `research.py state`. Regenerate after every change.
-Generated: 2026-10-08T22:46:36; schema 2.
+Generated: 2026-10-08T23:09:44; schema 2.
 Every entry is a PROJECTION of the linked records — follow them before believing.
 
 ## Current best beliefs (hypotheses with measured weight)
@@ -55,10 +55,10 @@ Every entry is a PROJECTION of the linked records — follow them before believi
 - 2026-10-07 session S-0052 (CLOSED) : E-0016 launch-gate audit BLOCKED on carve-source conflict, HO-0028 filed
 - 2026-10-07 session S-0053 (CLOSED) : HO-0028 owner repair DONE, E-0016 stage (a) executed Y-2, verified R-0030
 - 2026-10-07 work W-0010 (DONE) : Elo-scale parameter for the fit/eval tooling: sigmoid(clip(E/D,-L,L)) with D pinned, D=1 backward-compatible, selftests extended (unblocks E-0016 stage a)
-- 2026-10-07 work W-0011 (DONE) : First-training pipeline: canonical trainer entry point, frozen config, firewall, preflight, dry-run, checkpointing, manifest, tests
 - 2026-10-08 experiment E-00017 (COMPLETED) : E-0017 first TRAIN-only Elo-scaled Texel fit on the full outer-train set with inner-val eval (measurement-grade first training; holdout never read)
 - 2026-10-08 handoff HO-0029 (DONE) : Execute E-0017 TRAIN-only first training (measurement-grade; holdout never read)
 - 2026-10-08 session S-0054 (CLOSED) : W-0011 first-training pipeline built, E-0017 executed TRAINING-GATE PASS, launch-ready
+- 2026-10-08 work W-0011 (DONE) : First-training pipeline: canonical trainer entry point, frozen config, firewall, preflight, dry-run, checkpointing, manifest, tests
 
 ## Metrics
 ```
@@ -106,7 +106,7 @@ Every entry is a PROJECTION of the linked records — follow them before believi
   "contradiction_candidates": 0,
   "dangling_ids": 19,
   "duplicate_candidates": 2,
-  "edges_total": 5270,
+  "edges_total": 5283,
   "legacy_experiments_without_pre_registration": 6,
   "open_questions": 8,
   "records_total": 288,

@@ -348,9 +348,19 @@ discharged by DEC-0015; this record creates no new holdout obligation.
 
 ## Conclusion
 
-(PENDING — record-close by owner + fresh verification. Proposed: E-0017
-COMPLETED with result TRAINING-GATE PASS; W-0011 DONE + VERIFIED;
-HO-0029 DONE; first learned artifact `1de93a39…` pinned.)
+2026-10-08 — E-0017 COMPLETED with result TRAINING-GATE PASS (all nine
+conjuncts a–i). The deterministic full-batch L-BFGS-B fit on the full
+outer-train set (791 games / 59,892 rows) converged (nit=10, nfev=12,
+delta_on_fit=0.019160) and beats the frozen floor on the inner-val
+partition (155 games): delta=0.036211, CI95 [0.023754, 0.048668]
+strictly above zero, s_d=0.078509, MAE watch CLEAN, mirror 0/1000,
+frozen blocks intact, determinism proved by double-fit byte-identity
+plus resume reproducing `1de93a39…` byte-identically. First learned
+artifact `1de93a39…` pinned. Holdout never read (exclusion receipt
+208/14,560 in every ledger; no holdout quantity in any artifact). No
+strength claim licensed under any branch. W-0011 DONE + VERIFIED;
+HO-0029 DONE. Follow-up strength evaluation, if any, requires its own
+pre-registration.
 
 ## Follow-Up
 

@@ -2372,7 +2372,7 @@
       "title": "Gate 0 unrunnable: Device Guard hard-blocks kana.exe (every build, every path)"
     }
   ],
-  "generated": "2026-10-08T22:46:36",
+  "generated": "2026-10-08T23:09:44",
   "metrics": {
     "by_kind": {
       "agent_profile": 1,
@@ -2417,7 +2417,7 @@
     "contradiction_candidates": 0,
     "dangling_ids": 19,
     "duplicate_candidates": 2,
-    "edges_total": 5270,
+    "edges_total": 5283,
     "legacy_experiments_without_pre_registration": 6,
     "open_questions": 8,
     "records_total": 288,
@@ -3147,15 +3147,6 @@
     },
     {
       "example": false,
-      "id": "W-0011",
-      "kind": "work",
-      "rel": "work/W-0011-first-training-pipeline-canonical-trainer-entry-point-frozen-config-firewall-preflight-dry-run-checkpointing-manifest-tests.md",
-      "status": "DONE",
-      "title": "First-training pipeline: canonical trainer entry point, frozen config, firewall, preflight, dry-run, checkpointing, manifest, tests",
-      "when": "2026-10-07"
-    },
-    {
-      "example": false,
       "id": "E-00017",
       "kind": "experiment",
       "rel": "experiments/E-00017-e-0017-first-train-only-elo-scaled-texel-fit-on-the-full-outer-train-set-with-inner-val-eval-measurement-grade-first-training-holdout-never-read.md",
@@ -3179,6 +3170,15 @@
       "rel": "sessions/S-0054-w-0011-pipeline-e-0017-training-gate-pass-launch-ready.md",
       "status": "CLOSED",
       "title": "W-0011 first-training pipeline built, E-0017 executed TRAINING-GATE PASS, launch-ready",
+      "when": "2026-10-08"
+    },
+    {
+      "example": false,
+      "id": "W-0011",
+      "kind": "work",
+      "rel": "work/W-0011-first-training-pipeline-canonical-trainer-entry-point-frozen-config-firewall-preflight-dry-run-checkpointing-manifest-tests.md",
+      "status": "DONE",
+      "title": "First-training pipeline: canonical trainer entry point, frozen config, firewall, preflight, dry-run, checkpointing, manifest, tests",
       "when": "2026-10-08"
     }
   ]

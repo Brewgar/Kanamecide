@@ -12,7 +12,7 @@ verified_by: verification-auditor
 verification_verdict: VERIFIED
 example: false
 created: 2026-10-07
-closed: null
+closed: 2026-10-08
 ---
 
 # W-0011 — First-training pipeline: canonical trainer entry point, frozen config, firewall, preflight, dry-run, checkpointing, manifest, tests
