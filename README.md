@@ -1,11 +1,12 @@
-﻿# Kanamecide
+# Kanamecide
 
-C++20 chess engine (`kana`) and long-term multi-agent research platform.
-Correctness first, then search, then evaluation and learning.
+A chess engine written in C++20, plus a long-term research playground built around it.
+
+The engine is called `kana`. The priorities, in order: **make it correct, then make it search well, then make it evaluate and learn well.** A fast engine that plays illegal moves is just a very confident bug.
 
 ## Build & run (Windows, MSVC, CMake)
 
-```bat
+```
 build.bat
 build\Release\kana.exe                 :: perft suite - expect: === ALL TESTS PASSED
 build\Release\kana.exe --bench 5       :: NPS harness
@@ -13,25 +14,25 @@ build\Release\kana.exe uci             :: UCI mode
 build\Release\kana.exe --symmetry 1000 6
 ```
 
-## Correctness floor (perft)
+If the perft suite doesn't say `ALL TESTS PASSED`, nothing else matters yet. Go fix that first.
 
-The certified perft counts are maintained in **exactly one place**:
-[`research/project_state.md`](research/project_state.md) section "Certified Perft Anchors" -
-asserted by `python research/scripts/research.py validate` on every validation run.
-Any change that alters one of those counts is a correctness regression and is reverted.
+## Correctness (perft)
 
-## First training (E-0017, TRAINING-GATE PASS)
+Perft counts how many positions you can reach at a given depth. If your number differs from the known-good one, your move generator is wrong. No exceptions, no "it's probably fine."
 
-The first verified learned artifact is the Elo-scaled Texel fit on the full
-outer-train set (791 games / 59,892 rows), evaluated on inner-val only
-(155 games). The holdout is never read — the firewall is structural, not a
-comment. Result: `TRAINING-GATE PASS`, artifact `1de93a39…` (fit checkpoint
-`253245ee…`), deterministic double-fit and deterministic resume both proved
-byte-identical. No strength claim is licensed by this run.
+The certified counts live in exactly one place: [`research/project_state.md`](research/project_state.md), under "Certified Perft Anchors." Running `python research/scripts/research.py validate` checks them every time. Any change that alters one of those numbers is a regression and gets reverted. Harsh, but fair.
 
-Canonical trainer (the ONE authoritative training implementation):
+## First training run (E-0017)
 
-```bat
+The first verified learned artifact is an Elo-scaled Texel fit trained on the full outer-train set (791 games, 59,892 rows) and evaluated on the inner-val set only (155 games). The holdout set is never read, and that's enforced by the code's structure rather than by a polite comment asking nicely.
+
+Result: `TRAINING-GATE PASS`. The double-fit and the resume-from-checkpoint both came out byte-identical, so the run is deterministic.
+
+Important caveat: **this does not prove the engine got stronger.** No strength claim is made.
+
+The one true trainer:
+
+```
 python tools/kaname_train.py preflight --config research/manifests/e0017-train-config.json
 python tools/kaname_train.py dry-run   --config research/manifests/e0017-train-config.json
 python tools/kaname_train.py train     --config research/manifests/e0017-train-config.json
@@ -41,45 +42,38 @@ python tools/kaname_train.py manifest  --config research/manifests/e0017-train-c
 
 Tests: `python tools/test_kaname_train.py` (22/22).
 
-## Training Control GUI (Tkinter)
+## Training GUI (Tkinter)
 
-Lightweight local developer tool — a thin controller over the canonical
-trainer above. No training logic lives in the GUI.
+A small local tool for people who'd rather click than type. It's just a remote control for the trainer above; there's no training logic hiding in the GUI.
 
-```bat
+```
 python tools/gui_app.py        :: canonical launcher
 tools\run_gui.bat              :: Windows launcher
 ```
 
-Start Training (preflight-gated), background train with live status/logs,
-graceful Stop (atomic checkpoints — a stop can never tear one), Resume from
-the latest config-valid checkpoint, Dry Run, plus output/log/manifest
-access. Engine-testing panel: UCI check, casual test games, and one-click
-launch of the external Cute Chess GUI. Full guide: [`docs/gui.md`](docs/gui.md).
-Tests: `python tools/gui_test.py` (8/8).
+It can start training (preflight-gated), show live status and logs, stop gracefully, resume from the latest valid checkpoint, and do dry runs. Checkpoints are written atomically, so pressing Stop can't leave you with a half-written one. There's also an engine-testing panel with a UCI check, casual test games, and a button that launches Cute Chess. More in [`docs/gui.md`](docs/gui.md). Tests: `python tools/gui_test.py` (8/8).
 
 ## Engine testing (Cute Chess + Stockfish, casual only)
 
-Cute Chess 1.5.1 (GPLv3+) and Stockfish are **external tools**, never vendored —
-fetch official builds into gitignored `tools/engines/`:
+Cute Chess and Stockfish are external tools. They are not bundled here. Fetch the official builds into `tools/engines/` (gitignored):
 
-```bat
+```
 python tools/fetch_engines.py
 python tools/cutechess_setup.py --path <cutechess-gui-exe>
 ```
 
-Verified working match syntax (each sub-option is a separate argv element;
-`kana.exe` needs `arg=uci`):
+A match that is known to work (every sub-option is its own argument, and `kana.exe` needs `arg=uci`):
 
-```bat
+```
 cutechess-cli -engine cmd=<kana.exe> arg=uci name=kana -engine cmd=<stockfish.exe> name=sf -each proto=uci tc=1+0.05 -games 2 -rounds 1 -repeat -pgnout match.pgn -recover
 ```
 
-Casual games are NOT strength claims — any Elo/SPRT statement needs its own
-pre-registration.
+These games are for fun and sanity checks. Please don't read an Elo claim into them. Any real Elo or SPRT statement needs its own pre-registered test.
 
 ## Research
 
-The multi-agent research system (roles, handoffs, verification gates, round lifecycle)
-is described in [`research/SYSTEM.md`](research/SYSTEM.md) and ratified by
-`research/decisions/DEC-0009`. New agents start with `research/README.md`.
+The multi-agent research setup (roles, handoffs, verification gates, how a round runs) is described in [`research/SYSTEM.md`](research/SYSTEM.md) and ratified in `research/decisions/DEC-0009`. If you're a new agent, start with `research/README.md`.
+
+## License
+
+MIT.
